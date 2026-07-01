@@ -151,12 +151,12 @@ Deploy Key 事实：
 - GitHub SSH auth 返回 `Hi cpf1236/lolobuyspreadsheets.com! You've successfully authenticated, but GitHub does not provide shell access.`
 - `git ls-remote` 能读取 `HEAD`。
 - `/opt/lolobuyspreadsheets/app/repo` 已从一次性 `git archive` 目录切换为正式 Git clone。
-- 当前 clone revision：`c1d35e5 docs: record phase 15 api baseline deployment`。
+- 当前 clone revision：`ce37214 docs: record phase 16 vps product import`。
 - clone 后未发现 `.env`、`.env.local`、`.env.production`。
 
 ## 当前 VPS 服务状态
 
-截至 2026-07-01，Phase 16 已启动并验证以下服务：
+截至 2026-07-01，Phase 17 已启动并验证以下服务：
 
 | 服务 | 状态 | 端口绑定 |
 | --- | --- | --- |
@@ -165,6 +165,7 @@ Deploy Key 事实：
 | Meilisearch | healthy | `127.0.0.1:7700->7700/tcp` |
 | embedding service | healthy | `127.0.0.1:8001->8001/tcp` |
 | API | healthy | `127.0.0.1:4101->4101/tcp` |
+| Caddy | active | `*:80` |
 
 已执行：
 
@@ -176,6 +177,7 @@ Deploy Key 事实：
 - post-import safety cleanup
 - validation SQL
 - Meilisearch 产品索引 rebuild
+- API HTTP-only 反代准备
 
 Phase 16 关键结果：
 
@@ -196,8 +198,17 @@ Phase 16 关键结果：
 
 未执行：
 
+- API HTTPS/TLS
 - DNS 切换
 - Vercel 生产部署
+
+Phase 17 反代状态：
+
+- Caddy 已安装：`2.6.2`。
+- 当前 `/etc/caddy/Caddyfile` 为 DNS 切换前 HTTP-only 验证配置。
+- `Host: api.lolobuyspreadsheets.com` 会反代到 `127.0.0.1:4101`。
+- 非目标 Host 返回 `404 not found`。
+- `api.lolobuyspreadsheets.com` 尚未解析到 `43.165.1.148`，因此暂不启用自动 HTTPS。
 
 后续 VPS 拉取更新命令：
 
