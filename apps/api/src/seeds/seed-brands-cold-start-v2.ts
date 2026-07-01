@@ -39,7 +39,8 @@ const appDataSource = new DataSource({
   username: process.env.DB_USER || process.env.POSTGRES_USER || 'postgres',
   password:
     process.env.DB_PASSWORD || process.env.POSTGRES_PASSWORD || 'postgres',
-  database: process.env.DB_NAME || process.env.POSTGRES_DB || 'lolobuyspreadsheets_dev',
+  database:
+    process.env.DB_NAME || process.env.POSTGRES_DB || 'lolobuyspreadsheets_dev',
   entities: [join(__dirname, '../**/*.entity{.ts,.js}')],
   synchronize: false,
   ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,

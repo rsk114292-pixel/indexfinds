@@ -1,8 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class EnsureSearchTrackingTables1790000200000
-  implements MigrationInterface
-{
+export class EnsureSearchTrackingTables1790000200000 implements MigrationInterface {
   name = 'EnsureSearchTrackingTables1790000200000';
 
   public async up(queryRunner: QueryRunner): Promise<void> {

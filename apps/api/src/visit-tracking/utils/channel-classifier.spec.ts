@@ -12,10 +12,10 @@ describe('channel-classifier', () => {
     }
   });
 
-  it('treats lolobuyspreadsheets.com as normal referral traffic by default', () => {
+  it('treats unrelated domains as normal referral traffic by default', () => {
     expect(
       classifyChannel({
-        referrerDomain: 'lolobuyspreadsheets.com',
+        referrerDomain: 'example-referrer.com',
       }),
     ).toBe(ChannelType.REFERRAL);
   });
@@ -49,7 +49,7 @@ describe('channel-classifier', () => {
   it('keeps external source with referral medium as referral traffic', () => {
     expect(
       classifyChannel({
-        utmSource: 'lolobuyspreadsheets.com',
+        utmSource: 'example-referrer.com',
         utmMedium: 'referral',
       }),
     ).toBe(ChannelType.REFERRAL);

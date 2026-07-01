@@ -21,9 +21,9 @@ describe('traffic-source', () => {
     expect(isInternalDomain('shop.lolobuyspreadsheets.com')).toBe(true);
   });
 
-  it('treats lolobuyspreadsheets.com as external traffic by default', () => {
-    expect(getDomainKind('lolobuyspreadsheets.com')).toBe('external');
-    expect(isOwnedReferralDomain('www.lolobuyspreadsheets.com')).toBe(false);
+  it('treats unrelated domains as external traffic by default', () => {
+    expect(getDomainKind('example-referrer.com')).toBe('external');
+    expect(isOwnedReferralDomain('www.example-referrer.com')).toBe(false);
   });
 
   it('marks configured owned domains as owned referral traffic', () => {

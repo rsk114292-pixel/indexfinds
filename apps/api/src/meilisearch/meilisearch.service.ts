@@ -41,7 +41,9 @@ export class MeilisearchService implements OnModuleInit {
 
   async addDocuments(documents: RecordAny[]): Promise<void> {
     if (!documents.length) return;
-    await this.getIndex().addDocuments(documents).waitTask(MEILI_TASK_WAIT_OPTIONS);
+    await this.getIndex()
+      .addDocuments(documents)
+      .waitTask(MEILI_TASK_WAIT_OPTIONS);
   }
 
   async updateDocuments(documents: RecordAny[]): Promise<void> {
@@ -57,7 +59,9 @@ export class MeilisearchService implements OnModuleInit {
 
   async deleteDocuments(ids: string[]): Promise<void> {
     if (!ids.length) return;
-    await this.getIndex().deleteDocuments(ids).waitTask(MEILI_TASK_WAIT_OPTIONS);
+    await this.getIndex()
+      .deleteDocuments(ids)
+      .waitTask(MEILI_TASK_WAIT_OPTIONS);
   }
 
   async isHealthy(): Promise<boolean> {
