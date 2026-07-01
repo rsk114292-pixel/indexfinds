@@ -17,6 +17,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # 复制依赖文件
 COPY requirements.txt .
 
+# 安装 CPU-only PyTorch，避免 CPU VPS 下载 CUDA 运行时依赖
+RUN pip install --no-cache-dir \
+    --index-url https://download.pytorch.org/whl/cpu \
+    --trusted-host download.pytorch.org \
+    torch==2.2.2+cpu
+
 # 安装 Python 依赖（使用清华镜像加速）
 RUN pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple \
     --trusted-host pypi.tuna.tsinghua.edu.cn \
