@@ -151,27 +151,28 @@ Deploy Key 事实：
 - GitHub SSH auth 返回 `Hi cpf1236/lolobuyspreadsheets.com! You've successfully authenticated, but GitHub does not provide shell access.`
 - `git ls-remote` 能读取 `HEAD`。
 - `/opt/lolobuyspreadsheets/app/repo` 已从一次性 `git archive` 目录切换为正式 Git clone。
-- 当前 clone revision：`07949c3 fix: expose redis password to prod healthcheck`。
+- 当前 clone revision：`892521a fix: pin embedding numpy below 2`。
 - clone 后未发现 `.env`、`.env.local`、`.env.production`。
 
-## 当前 VPS 基础服务状态
+## 当前 VPS 服务状态
 
-截至 2026-07-01，Phase 14 已启动并验证以下基础服务：
+截至 2026-07-01，Phase 15 已启动并验证以下服务：
 
 | 服务 | 状态 | 端口绑定 |
 | --- | --- | --- |
 | Postgres | healthy | `127.0.0.1:5432->5432/tcp` |
 | Redis | healthy | `127.0.0.1:6379->6379/tcp` |
 | Meilisearch | healthy | `127.0.0.1:7700->7700/tcp` |
+| embedding service | healthy | `127.0.0.1:8001->8001/tcp` |
+| API | healthy | `127.0.0.1:4101->4101/tcp` |
 
-未启动：
+已执行：
 
-- API
-- embedding service
+- baseline migration
+- `settings` 默认 key 安全重建
 
 未执行：
 
-- baseline migration
 - 产品域导入
 - uploads 解压
 - URL rewrite
