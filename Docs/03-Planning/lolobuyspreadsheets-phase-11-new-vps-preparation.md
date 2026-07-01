@@ -213,15 +213,15 @@ POSTGRES_DB=lolobuyspreadsheets_prod
 
 REDIS_PASSWORD=<NEW_REDIS_PASSWORD>
 
-DB_PORT=127.0.0.1:5432
-REDIS_PORT=127.0.0.1:6379
-MEILISEARCH_PORT=127.0.0.1:7700
-EMBEDDING_SERVICE_PORT=127.0.0.1:8001
+POSTGRES_PORT_BIND=127.0.0.1:5432
+REDIS_PORT_BIND=127.0.0.1:6379
+MEILISEARCH_PORT_BIND=127.0.0.1:7700
+EMBEDDING_SERVICE_PORT_BIND=127.0.0.1:8001
 
 MEILISEARCH_API_KEY=<NEW_MEILISEARCH_MASTER_KEY>
 MEILI_ENV=production
 
-API_PUBLIC_PORT=127.0.0.1:4101
+API_PUBLIC_PORT_BIND=127.0.0.1:4101
 UPLOADS_HOST_PATH=/opt/lolobuyspreadsheets/data/uploads
 HF_CACHE_HOST_PATH=/opt/lolobuyspreadsheets/data/hf-cache
 ```
@@ -280,11 +280,11 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 | `REDIS_PASSWORD` | Redis 密码 | 新生成，生产必须设置 |
 | `MEILISEARCH_API_KEY` | Meilisearch master key | 新生成 |
 | `MEILI_ENV` | Meilisearch 环境 | `production` |
-| `DB_PORT` | 宿主机 DB 绑定 | 只绑 `127.0.0.1` |
-| `REDIS_PORT` | 宿主机 Redis 绑定 | 只绑 `127.0.0.1` |
-| `MEILISEARCH_PORT` | 宿主机 Meili 绑定 | 只绑 `127.0.0.1` |
-| `EMBEDDING_SERVICE_PORT` | embedding service 绑定 | 只绑 `127.0.0.1` |
-| `API_PUBLIC_PORT` | API 反代端口 | 只绑 `127.0.0.1` |
+| `POSTGRES_PORT_BIND` | 宿主机 DB 绑定 | 只绑 `127.0.0.1` |
+| `REDIS_PORT_BIND` | 宿主机 Redis 绑定 | 只绑 `127.0.0.1` |
+| `MEILISEARCH_PORT_BIND` | 宿主机 Meili 绑定 | 只绑 `127.0.0.1` |
+| `EMBEDDING_SERVICE_PORT_BIND` | embedding service 绑定 | 只绑 `127.0.0.1` |
+| `API_PUBLIC_PORT_BIND` | API 反代端口 | 只绑 `127.0.0.1` |
 | `UPLOADS_HOST_PATH` | uploads volume host path | `/opt/lolobuyspreadsheets/data/uploads` |
 | `HF_CACHE_HOST_PATH` | 模型缓存 host path | `/opt/lolobuyspreadsheets/data/hf-cache` |
 
