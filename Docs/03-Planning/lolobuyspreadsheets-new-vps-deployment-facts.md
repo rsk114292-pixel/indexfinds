@@ -130,6 +130,45 @@ API 容器内挂载点：
 /app/uploads
 ```
 
+## GitHub 部署读取方式
+
+生产 VPS 使用 GitHub repository Deploy Key 只读拉取私有仓库，不使用旧项目 GitHub Actions secrets，不使用个人 SSH key，不把 GitHub token 写入 VPS env。
+
+Deploy Key 事实：
+
+| 项目 | 值 |
+| --- | --- |
+| GitHub Deploy Key title | `lolobuyspreadsheets-vps-43.165.1.148-readonly-2026-07` |
+| GitHub Deploy Key ID | `156050576` |
+| 权限 | Read-only |
+| VPS 私钥路径 | `/home/ubuntu/.ssh/lolobuyspreadsheets_github_deploy` |
+| VPS SSH alias | `github.com-lolobuyspreadsheets` |
+| 仓库 remote | `git@github.com-lolobuyspreadsheets:cpf1236/lolobuyspreadsheets.com.git` |
+| VPS repo 路径 | `/opt/lolobuyspreadsheets/app/repo` |
+
+验证结果：
+
+- GitHub SSH auth 返回 `Hi cpf1236/lolobuyspreadsheets.com! You've successfully authenticated, but GitHub does not provide shell access.`
+- `git ls-remote` 能读取 `HEAD`。
+- `/opt/lolobuyspreadsheets/app/repo` 已从一次性 `git archive` 目录切换为正式 Git clone。
+- 当前 clone revision：`ca3db66e05d073b5c1ba3860f42991caf5344ffe`。
+- clone 后未发现 `.env`、`.env.local`、`.env.production`。
+
+后续 VPS 拉取更新命令：
+
+```bash
+cd /opt/lolobuyspreadsheets/app/repo
+git fetch --prune origin
+git checkout main
+git pull --ff-only origin main
+```
+
+说明：
+
+- Deploy Key 私钥只存在于新 VPS 的 `ubuntu` 用户目录。
+- 不把 Deploy Key 私钥内容写进 Git、文档、聊天记录或本机项目。
+- 如果未来改成 GHCR 镜像部署，应另开 Phase，使用新仓库、新镜像名、新 token，不复用旧项目 secret。
+
 ## 后续执行边界
 
 首次连接新 VPS 前，只做文档和本地准备。

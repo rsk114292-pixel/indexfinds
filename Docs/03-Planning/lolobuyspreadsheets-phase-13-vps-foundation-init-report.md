@@ -136,13 +136,13 @@ env 权限：
 
 ## 源码部署入口
 
-由于 GitHub 仓库是私有仓库，VPS 上没有 GitHub deploy token，直接 HTTPS clone 失败：
+由于 GitHub 仓库是私有仓库，VPS 上没有 GitHub deploy token，直接 HTTPS clone 曾失败：
 
 ```text
 fatal: could not read Username for 'https://github.com': terminal prompts disabled
 ```
 
-本次采用本地 `git archive HEAD` 上传当前已推送 commit 的 tracked 文件，不包含 `.git`、本地 `.env`、未跟踪文件。
+Phase 13 初始处理采用本地 `git archive HEAD` 上传当前已推送 commit 的 tracked 文件，不包含 `.git`、本地 `.env`、未跟踪文件。
 
 VPS 源码路径：
 
@@ -150,13 +150,13 @@ VPS 源码路径：
 /opt/lolobuyspreadsheets/app/repo
 ```
 
-部署 revision：
+初始 archive 部署 revision：
 
 ```text
 92abc7c deploy: add production compose
 ```
 
-验证结果：
+初始 archive 验证结果：
 
 - `/opt/lolobuyspreadsheets/app/repo` 不包含 `.git`。
 - 不包含 `.env`、`.env.local`、`.env.production`。
@@ -167,6 +167,17 @@ VPS 源码路径：
 - GitHub fine-grained deploy token；或
 - GHCR 私有镜像拉取 token；或
 - 继续用人工 `git archive` 上传，但不建议长期使用。
+
+2026-07-01 已补正式读取方式：
+
+- 在新 VPS 上生成项目专用 GitHub Deploy Key。
+- GitHub 仓库添加 read-only Deploy Key：`lolobuyspreadsheets-vps-43.165.1.148-readonly-2026-07`。
+- VPS SSH alias：`github.com-lolobuyspreadsheets`。
+- VPS repo remote：`git@github.com-lolobuyspreadsheets:cpf1236/lolobuyspreadsheets.com.git`。
+- `/opt/lolobuyspreadsheets/app/repo` 已切换为正式 Git clone。
+- 当前 clone revision：`ca3db66e05d073b5c1ba3860f42991caf5344ffe`。
+- clone 后未发现 `.env`、`.env.local`、`.env.production`。
+- 原 archive 目录仅在 VPS 上重命名归档，没有删除。
 
 ## 生产 Compose
 
@@ -255,7 +266,7 @@ kbdinteractiveauthentication no
 
 - 新 VPS 短时间并发 SSH 连接时偶发 `Connection timed out during banner exchange`。顺序执行 SSH 命令稳定。后续部署脚本应避免并发 SSH。
 - 120 GB 系统盘首版可用，但产品数据、Meilisearch、uploads、Docker image 会持续增长；导入前后必须记录磁盘水位。
-- 当前 VPS 没有 GitHub deploy token，长期部署方式还没定型。
+- VPS 已配置 GitHub read-only Deploy Key，可正式 `git pull` 私有仓库。后续如需 GHCR 镜像部署，应单独规划，不复用旧项目 token 或 Actions secrets。
 
 ## 下一步建议
 
