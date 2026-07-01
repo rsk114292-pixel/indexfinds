@@ -196,7 +196,7 @@ Phase 16 关键结果：
 | `platforms.inviteCode` non-empty | 0 |
 | imported `users` | 0 |
 
-未执行：
+已执行：
 
 - Vercel 生产部署
 
@@ -218,6 +218,56 @@ Phase 17 HTTPS smoke test：
 | 普通搜索 | `q=nike`, `total=2` |
 | 视觉搜索状态 | `available=true`, `coverage=100` |
 | uploads 静态文件 | `HTTP/2 200` |
+
+Phase 18 Vercel Web 状态：
+
+| 项 | 值 |
+| --- | --- |
+| Vercel Team | `cpf1236's projects` |
+| Vercel Team ID | `team_nbsiCxihYzaUdImbLC4Mdxz7` |
+| Vercel Project | `lolobuyspreadsheets-com` |
+| Vercel Project ID | `prj_s02wzyoO9hLVQuABSVFdwjLQ7k2S` |
+| Root Directory | `apps/web` |
+| Framework | `nextjs` |
+| Node.js | `24.x` |
+| Build Command | `pnpm build` |
+| Install Command | `pnpm install --frozen-lockfile` |
+| Deployment ID | `dpl_8KEBAhAW4TzisPhKVGdj5A7oaDSR` |
+| Production alias | `https://lolobuyspreadsheets-com.vercel.app` |
+| State | `READY` |
+| Commit | `454e7c1 docs: record api https activation` |
+
+Vercel Web env 只记录 key 名称：
+
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_APP_URL`
+- `NEXT_PUBLIC_SITE_NAME`
+- `NEXT_PUBLIC_APP_NAME`
+- `NEXT_PUBLIC_API_URL`
+- `NEXT_PUBLIC_API_HOSTNAME`
+- `NEXT_PUBLIC_CONTACT_EMAIL`
+- `NEXT_PUBLIC_PRIVACY_EMAIL`
+- `NEXT_PUBLIC_LEGAL_EMAIL`
+- `NEXT_PUBLIC_CDN_WEBP`
+- `REVALIDATE_SECRET`
+
+Phase 18 smoke test：
+
+| 检查项 | 结果 |
+| --- | --- |
+| 首页 | `https://lolobuyspreadsheets-com.vercel.app/en` 正常渲染 |
+| 首页图片 | 65 张图片，坏图 0 |
+| 普通搜索 | `q=nike`, `15866 products found` |
+| 搜索页图片 | 20 张图片，坏图 0 |
+| Vercel 搜索页 HTTP | `HTTP/2 200` |
+| 视觉搜索 API | `available=true`, `coverage=100` |
+| 视觉搜索 UI | 弹窗正常出现，上传 input 可用 |
+| Vercel runtime error logs | 最近 15 分钟无 error logs |
+
+尚未绑定：
+
+- `lolobuyspreadsheets.com`
+- `www.lolobuyspreadsheets.com`
 
 后续 VPS 拉取更新命令：
 
@@ -283,6 +333,7 @@ free -h
 
 - `Docs/03-Planning/lolobuyspreadsheets-phase-11-new-vps-preparation.md`
 - `Docs/03-Planning/lolobuyspreadsheets-phase-10-new-vps-import-runbook.md`
+- `Docs/03-Planning/lolobuyspreadsheets-phase-18-vercel-frontend-deployment-report.md`
 - `migration-artifacts/product-domain-import/README.md`
 - `migration-artifacts/product-domain-import/sql/10-rewrite-upload-urls.sql`
 - `migration-artifacts/product-domain-import/sql/20-post-import-validation.sql`
