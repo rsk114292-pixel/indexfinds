@@ -21,11 +21,12 @@
 - 新 VPS 尚未购买，本文中的服务器路径和域名是部署目标设计，不代表已经存在。
 - 首版继续使用现有普通外部商品图片 URL；只重写旧 `api.findsindex.com/uploads/...` 到新站 uploads URL。
 - 首版必须开启视觉搜索，因此新 VPS 需要运行 embedding service，并保留 `VISUAL_SEARCH_UPLOAD_ENABLED=true`。
-- 当前 `docker-compose.yml` 偏本地 infra 形态，生产部署前需要补齐或另建生产 compose，将 API/Web/infra/embedding/Meilisearch/uploads 统一纳入管理。
+- 部署拓扑沿用旧项目形态：前端 `apps/web` 部署到 Vercel；新 VPS 只运行 API、Postgres、Redis、Meilisearch、embedding service、uploads 和反代。
+- 当前 `docker-compose.yml` 偏本地 infra 形态，生产部署前需要补齐或另建生产 compose，将 API/infra/embedding/Meilisearch/uploads 统一纳入管理；生产 compose 不应包含 `web` 服务。
 
 ## 不确定点和取舍
 
-- Web 生产部署方式有两种：同 VPS Docker 部署，或后续独立托管。为了第一版迁移闭环，建议先同 VPS 部署，减少 API/CORS/DNS 变量。
+- Web 生产部署方式确认沿用旧项目：Vercel 托管 `apps/web`，Root Directory 为 `apps/web`；VPS 不跑 Next.js Web 服务。这样保留旧项目的部署边界，避免 VPS 同时承担前端构建、SSR 和 CDN 压力。
 - uploads 首版建议用 VPS 本地 volume，原因是当前 artifact 是 `referenced-uploads.tar`，已有代码支持 `/app/uploads`。后续如果迁到对象存储，应单独开 Phase，不混入首次上线。
 - Ubuntu 默认建议 24.04 LTS。Ubuntu 26.04 LTS 已进入 LTS 周期，但发布时间较新；如果 VPS 面板默认镜像和 Docker 生态验证充分，可以选 26.04 LTS，否则用 24.04 LTS 保守上线。
 
@@ -90,7 +91,6 @@
     releases/                     # 可选：后续按 commit/tag 发布
   env/
     api.env                       # API 生产 env，不提交 Git
-    web.env                       # Web 生产 env，不提交 Git
     compose.env                   # Docker Compose 生产变量，不提交 Git
   data/
     postgres/                     # Docker named volume 或 bind mount 二选一
@@ -181,9 +181,9 @@ MAX_LOGIN_ATTEMPTS=5
 LOCK_DURATION_MINUTES=30
 ```
 
-### Web env：`/opt/lolobuyspreadsheets/env/web.env`
+### Web env：Vercel Production Environment Variables
 
-变量名按当前 `apps/web` 代码只读审计结果整理。生产部署前仍需在 Phase 12 对最终 compose 和 build 环境复核一次。
+Web 不在 VPS 上部署。本节变量应配置在 Vercel 项目的 Production Environment Variables，Root Directory 设置为 `apps/web`，Framework Preset 设置为 `Next.js`。不要在 VPS 上创建或维护 `web.env`。
 
 ```dotenv
 NODE_ENV=production
@@ -222,7 +222,6 @@ MEILISEARCH_API_KEY=<NEW_MEILISEARCH_MASTER_KEY>
 MEILI_ENV=production
 
 API_PUBLIC_PORT=127.0.0.1:4101
-WEB_PUBLIC_PORT=127.0.0.1:3101
 UPLOADS_HOST_PATH=/opt/lolobuyspreadsheets/data/uploads
 HF_CACHE_HOST_PATH=/opt/lolobuyspreadsheets/data/hf-cache
 ```
@@ -233,7 +232,8 @@ HF_CACHE_HOST_PATH=/opt/lolobuyspreadsheets/data/hf-cache
 
 - API 容器监听端口与 `PORT=4101` 一致。
 - API healthcheck 使用真实监听端口。当前 `apps/api/Dockerfile` 已显式设置 `PORT=4101`、`EXPOSE 4101`，healthcheck 也走同一个 `PORT`；Phase 12 创建生产 compose 时仍需确认没有被 compose 覆盖成其他端口。
-- Web build 阶段能拿到 `NEXT_PUBLIC_API_URL`、`NEXT_PUBLIC_APP_URL`、`NEXT_PUBLIC_SITE_URL` 等 build-time env。
+- API 镜像发布可沿用旧项目的预构建镜像模式，但必须使用新仓库、新镜像名、新 token，不复用旧项目 GHCR/GitHub Actions secrets。
+- Vercel Web build 阶段能拿到 `NEXT_PUBLIC_API_URL`、`NEXT_PUBLIC_APP_URL`、`NEXT_PUBLIC_SITE_URL` 等 build-time env。
 
 ## 必须新生成的 secret 清单
 
@@ -285,7 +285,6 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 | `MEILISEARCH_PORT` | 宿主机 Meili 绑定 | 只绑 `127.0.0.1` |
 | `EMBEDDING_SERVICE_PORT` | embedding service 绑定 | 只绑 `127.0.0.1` |
 | `API_PUBLIC_PORT` | API 反代端口 | 只绑 `127.0.0.1` |
-| `WEB_PUBLIC_PORT` | Web 反代端口 | 只绑 `127.0.0.1` |
 | `UPLOADS_HOST_PATH` | uploads volume host path | `/opt/lolobuyspreadsheets/data/uploads` |
 | `HF_CACHE_HOST_PATH` | 模型缓存 host path | `/opt/lolobuyspreadsheets/data/hf-cache` |
 
@@ -388,11 +387,10 @@ git rev-parse --short HEAD
 
 ```bash
 sudo install -m 600 /dev/null /opt/lolobuyspreadsheets/env/api.env
-sudo install -m 600 /dev/null /opt/lolobuyspreadsheets/env/web.env
 sudo install -m 600 /dev/null /opt/lolobuyspreadsheets/env/compose.env
 ```
 
-人工填入 Phase 11 模板中的新值。
+人工填入 Phase 11 模板中的新值。Web 变量在 Vercel 项目中配置，不写入 VPS。
 
 ### 5. 启动基础服务
 
@@ -485,10 +483,10 @@ psql "$NEW_PRODUCTION_DATABASE_URL" \
 - `platforms.inviteCode` 非空数量为 0。
 - 硬编码旧 invite/ref 参数数量为 0。
 
-### 12. 启动 API 和 Web
+### 12. 启动 API
 
 ```bash
-docker compose --env-file /opt/lolobuyspreadsheets/env/compose.env -f docker-compose.prod.yml up -d api web
+docker compose --env-file /opt/lolobuyspreadsheets/env/compose.env -f docker-compose.prod.yml up -d api
 docker compose --env-file /opt/lolobuyspreadsheets/env/compose.env -f docker-compose.prod.yml ps
 ```
 
@@ -496,7 +494,6 @@ docker compose --env-file /opt/lolobuyspreadsheets/env/compose.env -f docker-com
 
 ```bash
 curl -fsS http://127.0.0.1:4101/health
-curl -fsS http://127.0.0.1:3101/
 ```
 
 ### 13. 重建 Meilisearch
@@ -518,11 +515,30 @@ docker compose --env-file /opt/lolobuyspreadsheets/env/compose.env -f docker-com
 
 建议域名：
 
-- `lolobuyspreadsheets.com` → Web
-- `www.lolobuyspreadsheets.com` → Web
-- `api.lolobuyspreadsheets.com` → API
+- `lolobuyspreadsheets.com` → Vercel Web
+- `www.lolobuyspreadsheets.com` → Vercel Web
+- `api.lolobuyspreadsheets.com` → 新 VPS API
 
-上线前先用临时 hosts 或临时子域名验证，避免过早切主域 DNS。
+上线前先用临时 API 子域名或本机 hosts 验证 API；Web 使用 Vercel preview/production deployment 验证，避免过早切主域 DNS。Web 的 TLS 由 Vercel 管理，VPS 反代只负责 `api.lolobuyspreadsheets.com`。
+
+### 15. 配置 Vercel Web
+
+沿用旧项目部署形态，但必须创建新 Vercel 项目，不复制旧 `.vercel` 目录或旧项目环境变量。
+
+配置要求：
+
+- GitHub 仓库：`cpf1236/lolobuyspreadsheets.com`
+- Root Directory：`apps/web`
+- Framework Preset：`Next.js`
+- Production Environment Variables：使用本文 Web env 模板，全部重新填写
+- Domains：`lolobuyspreadsheets.com`、`www.lolobuyspreadsheets.com`
+
+验证：
+
+- Vercel build 成功。
+- Vercel preview 能打开首页、搜索页和产品详情页。
+- Vercel 运行环境的 `NEXT_PUBLIC_API_URL` 指向 `https://api.lolobuyspreadsheets.com`。
+- 不出现旧 `findsindex.com`、旧 Vercel project id、旧 team/project 绑定。
 
 ## 数据初始化严格顺序
 
@@ -535,11 +551,12 @@ docker compose --env-file /opt/lolobuyspreadsheets/env/compose.env -f docker-com
 5. 执行 `10-rewrite-upload-urls.sql`，只重写旧 `api.findsindex.com/uploads/...`。
 6. 执行 `30-post-import-safety-cleanup.sql`。
 7. 执行 `20-post-import-validation.sql`。
-8. 启动 API/Web。
+8. 启动 API。
 9. Meilisearch full rebuild。
 10. 普通搜索和视觉搜索 smoke test。
 11. 选择性重建安全 `settings`。
-12. DNS 切换。
+12. 配置并验证 Vercel Web。
+13. DNS 切换。
 
 不允许跳过：
 
@@ -556,7 +573,8 @@ docker compose --env-file /opt/lolobuyspreadsheets/env/compose.env -f docker-com
 
 - 降低旧 DNS TTL 到 300 秒。
 - 新 VPS 完成服务启动、导入、validation、Meilisearch rebuild。
-- 使用临时域名或本机 hosts 验证 Web/API。
+- 使用临时 API 子域名或本机 hosts 验证 API。
+- 使用 Vercel preview/production deployment 验证 Web。
 - 确认 TLS 证书可签发。
 - 创建上线前快照：VPS 快照、Postgres dump、uploads 文件清单。
 
@@ -569,8 +587,8 @@ docker compose --env-file /opt/lolobuyspreadsheets/env/compose.env -f docker-com
 1. 暂停会写入旧站业务数据的操作，避免用户/日志数据误以为要迁移。
 2. 确认新站 health、搜索、视觉搜索通过。
 3. 修改 DNS：
-   - `A lolobuyspreadsheets.com -> 新 VPS IP`
-   - `A www.lolobuyspreadsheets.com -> 新 VPS IP`
+   - `A/CNAME lolobuyspreadsheets.com -> Vercel 指定目标`
+   - `CNAME www.lolobuyspreadsheets.com -> Vercel 指定目标`
    - `A api.lolobuyspreadsheets.com -> 新 VPS IP`
 4. 观察 DNS 生效：
    - `dig +short lolobuyspreadsheets.com`
@@ -580,14 +598,14 @@ docker compose --env-file /opt/lolobuyspreadsheets/env/compose.env -f docker-com
 ### 切换后 2 小时
 
 - 观察 API logs。
-- 观察 Web logs。
+- 观察 Vercel deployment logs。
 - 检查错误率、慢请求、容器重启。
 - 抽样搜索和产品详情。
 - 确认视觉搜索上传和 by-product 两条路径可用。
 
 回滚原则：
 
-- 如果 API 或 Web 无法稳定响应，先把 DNS 切回旧目标。
+- 如果 API 或 Web 无法稳定响应，先把对应 DNS 切回旧目标。
 - 不把新站新增 runtime 数据反向写回旧站。
 - 记录失败点，再从新 VPS 修复后重新切换。
 
@@ -632,7 +650,7 @@ Web：
 安全：
 
 - Postgres/Redis/Meilisearch/embedding service 不对公网开放。
-- API/Web 只通过反代公开。
+- API 只通过新 VPS 反代公开；Web 只通过 Vercel 公开。
 - CORS 只允许新站域名。
 - `SEARCH_ENGINE=meilisearch`。
 - `VISUAL_SEARCH_UPLOAD_ENABLED=true`。
@@ -643,6 +661,7 @@ Web：
 - 不复制旧 VPS 配置。
 - 不复制旧 SSH key、SSH config、IP、key path。
 - 不复制旧 GitHub Actions secrets。
+- 不复制旧 `.vercel` 目录、旧 Vercel project/team 绑定或旧 Vercel 环境变量。
 - 不复制旧 Caddy 生产配置。
 - 不连接旧生产 DB。
 - 不在新项目窗口运行旧项目 migration/seed/reset/cleanup/delete。
@@ -656,8 +675,9 @@ Web：
 
 购买 VPS 后，先不要直接切 DNS。建议下一阶段是 Phase 12：
 
-1. 在新 VPS 创建目录、env 和生产 compose。
+1. 在新 VPS 创建目录、API env 和生产 compose。
 2. 空库跑 baseline migration。
 3. 上传 artifact 并按本文顺序导入。
-4. 完成 validation、Meilisearch rebuild 和公网前 smoke test。
-5. 生成上线前检查报告，再决定 DNS 切换。
+4. 在 Vercel 创建 Web 项目，Root Directory 设置为 `apps/web`，配置 Production Environment Variables。
+5. 完成 validation、Meilisearch rebuild 和公网前 smoke test。
+6. 生成上线前检查报告，再决定 DNS 切换。
