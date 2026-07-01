@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "incremental": false
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.d.ts",
+    ".next/types/validator.ts",
+    "**/*.mts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next/dev"
+  ]
+}

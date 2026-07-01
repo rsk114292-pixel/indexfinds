@@ -1,0 +1,88 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: lolobuyspreadsheets_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}
+      POSTGRES_DB: ${POSTGRES_DB:-lolobuyspreadsheets_dev}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-pgvector.sql:/docker-entrypoint-initdb.d/init-pgvector.sql
+
+  redis:
+    image: redis:7-alpine
+    container_name: lolobuyspreadsheets_redis
+    restart: always
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+
+  # 多模态特征提取服务 (CLIP + MiniLM + FastAPI)
+  # - 图片向量：clip-ViT-B-32 (512维)
+  # - 文本向量：all-MiniLM-L6-v2 (384维)
+  embedding-service:
+    build:
+      context: ./embedding-service
+      dockerfile: Dockerfile
+    container_name: lolobuyspreadsheets_embedding
+    restart: always
+    ports:
+      - "${EMBEDDING_SERVICE_PORT:-8001}:8001"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - RATE_LIMIT_SINGLE=300/minute
+      - RATE_LIMIT_BATCH=60/minute
+      - CORS_ALLOWED_ORIGINS=http://localhost:4101,http://localhost:3101
+      # 模型下载源；可在 .env 中覆盖
+      - HF_ENDPOINT=${HF_ENDPOINT:-https://huggingface.co}
+      # 可选：指定本地模型路径（如果有预下载的模型）
+      # - IMAGE_MODEL_PATH=/models/clip-ViT-B-32
+      # - TEXT_MODEL_PATH=/models/all-MiniLM-L6-v2
+    volumes:
+      # 持久化 HuggingFace 缓存，避免重复下载
+      - hf_cache:/root/.cache/huggingface
+    # 模型会优先使用镜像/缓存；构建时预下载失败时，运行时会继续尝试加载
+    # 如需重新构建镜像：docker compose build --no-cache embedding-service
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "python -c \"import json,sys,urllib.request; sys.exit(0 if json.load(urllib.request.urlopen('http://localhost:8001/health', timeout=5)).get('status') == 'ok' else 1)\"",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    # 内存建议：至少 2GB（两个模型约需 1.5GB）
+    deploy:
+      resources:
+        limits:
+          memory: 3G
+          cpus: '2.0'
+        reservations:
+          memory: 2G
+          cpus: '0.5'
+
+  # 搜索引擎
+  meilisearch:
+    image: getmeili/meilisearch:v1.12
+    container_name: lolobuyspreadsheets_meilisearch
+    restart: always
+    ports:
+      - "${MEILISEARCH_PORT:-7700}:7700"
+    environment:
+      - MEILI_MASTER_KEY=${MEILISEARCH_API_KEY:-masterKey_dev_only}
+      - MEILI_ENV=development
+    volumes:
+      - meilisearch_data:/meili_data
+
+volumes:
+  postgres_data:
+  redis_data:
+  hf_cache:
+  meilisearch_data:

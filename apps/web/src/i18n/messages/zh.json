@@ -1,0 +1,1467 @@
+{
+  "common": {
+    "login": "登录",
+    "signUp": "注册",
+    "logout": "退出登录",
+    "submit": "提交",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "clearAll": "清除全部",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "noResults": "暂无结果",
+    "home": "首页",
+    "back": "返回",
+    "viewAll": "查看全部",
+    "more": "更多",
+    "noData": "暂无数据",
+    "noMore": "— 没有更多了 —",
+    "loadFailed": "加载失败，点击重试",
+    "confirm": "确定",
+    "pullToRefresh": "下拉刷新",
+    "releaseToRefresh": "释放刷新",
+    "refreshing": "刷新中...",
+    "backToTop": "返回顶部",
+    "goBack": "返回",
+    "skipToContent": "跳到主要内容",
+    "upload": "上传",
+    "imageUploadSuccess": "图片上传成功！",
+    "imageUploadFailed": "图片上传失败！",
+    "imageFilesOnly": "只能上传图片文件！",
+    "imageTooLarge": "图片不能超过 {maxSize}MB！",
+    "close": "关闭",
+    "showMore": "展开更多",
+    "showLess": "收起",
+    "showMoreCount": "展开更多 (+{count})"
+  },
+  "tabBar": {
+    "home": "首页",
+    "categories": "分类",
+    "newArrivals": "新品",
+    "allProducts": "产品",
+    "favorites": "收藏",
+    "account": "我的",
+    "loginRequired": "需要登录",
+    "loginRequiredDesc": "登录后即可查看收藏和个人中心",
+    "goLogin": "去登录",
+    "skipLogin": "暂不登录"
+  },
+  "header": {
+    "categories": "分类",
+    "brands": "品牌",
+    "newArrivals": "新品上架",
+    "allProducts": "全部产品",
+    "myAccount": "我的账户",
+    "switchLanguage": "切换语言",
+    "closeMenu": "关闭菜单",
+    "openMenu": "打开菜单",
+    "search": "搜索",
+    "userMenu": "用户菜单",
+    "mainNavigation": "主导航",
+    "mobileNavigation": "移动端导航",
+    "platformSelect": "选择代购平台",
+    "settings": "设置",
+    "language": "语言",
+    "noPlatformSelected": "选择平台",
+    "menu": "菜单"
+  },
+  "drawer": {
+    "menu": "菜单",
+    "home": "首页",
+    "categories": "分类",
+    "brands": "品牌",
+    "newArrivals": "新品上架",
+    "allProducts": "全部产品",
+    "howItWorks": "使用指南",
+    "helpCenter": "帮助中心",
+    "blog": "博客",
+    "referralProgram": "推荐计划",
+    "discord": "Discord",
+    "telegram": "Telegram",
+    "language": "语言",
+    "currency": "货币",
+    "platform": "代购平台",
+    "selectPlatform": "选择平台",
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "login": "登录",
+    "register": "注册"
+  },
+  "currency": {
+    "label": "货币",
+    "CNY": "¥ 人民币",
+    "USD": "$ 美元",
+    "EUR": "€ 欧元",
+    "GBP": "£ 英镑",
+    "CAD": "$ 加元",
+    "AUD": "$ 澳元",
+    "approximateNotice": "以 {currency} 显示的价格为近似值，仅供参考。"
+  },
+  "footer": {
+    "about": "关于",
+    "shop": "商店",
+    "support": "支持",
+    "legal": "法律",
+    "aboutUs": "关于我们",
+    "howItWorks": "运作方式",
+    "allCategories": "所有分类",
+    "allBrands": "所有品牌",
+    "newArrivals": "新品上架",
+    "bestSellers": "热销商品",
+    "helpCenter": "帮助中心",
+    "shippingInfo": "物流信息",
+    "returns": "退换货",
+    "contactUs": "联系我们",
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "服务条款",
+    "cookiePolicy": "Cookie 政策",
+    "allRightsReserved": "© {year} 保留所有权利。"
+  },
+  "search": {
+    "placeholder": "搜索商品、品牌或分类...",
+    "searching": "搜索中...",
+    "noResults": "无搜索结果",
+    "hotSearches": "热门搜索",
+    "searchHistory": "搜索历史",
+    "brands": "品牌",
+    "categories": "分类",
+    "products": "商品",
+    "productCount": "{count} 款商品",
+    "itemCount": "{count} 款",
+    "enterKeyword": "输入关键词搜索",
+    "enterKeywordDesc": "试试搜索品牌、分类或商品名称",
+    "searchError": "搜索出错",
+    "noResultsFor": "未找到「{query}」的相关结果",
+    "noResultsForDesc": "试试不同的关键词或检查拼写",
+    "resultsFor": "「{query}」的搜索结果",
+    "productsFound": "找到 {count} 款商品",
+    "popularProducts": "你可能感兴趣的热门商品",
+    "noProductsFor": "未找到「{query}」的相关商品",
+    "noProductsForDesc": "试试不同的关键词或移除部分筛选条件",
+    "cancel": "取消",
+    "entryHint": "搜索商品或品牌",
+    "searchFor": "搜索“{query}”",
+    "clearHistory": "清除",
+    "photoSearch": "拍照搜索",
+    "photoSearchDesc": "上传图片找同款",
+    "recentSearches": "最近搜索",
+    "requestProduct": {
+      "title": "没找到合适的商品？",
+      "description": "提交找货需求给我们，后台可以跟进评估并安排后续上架。",
+      "button": "提交找货需求",
+      "modalTitle": "提交找货需求",
+      "sheetDesc": "告诉我们你想找什么商品。请至少填写描述或上传一张图片。",
+      "productName": "商品名称",
+      "productNamePlaceholder": "例如：Nike Air Max 95 x Corteiz",
+      "descriptionLabel": "补充描述",
+      "descriptionPlaceholder": "颜色、款式、版本、Logo 细节、卖家线索，或任何能帮助我们找货的信息。",
+      "referenceUrlLabel": "参考链接",
+      "referenceUrlPlaceholder": "选填：Yupoo、微店、淘宝或其他参考链接",
+      "budgetLabel": "预算区间",
+      "budgetMinPlaceholder": "最低预算",
+      "budgetMaxPlaceholder": "最高预算",
+      "imagesLabel": "参考图片",
+      "imagesHint": "最多上传 4 张图片，支持 JPG、PNG、WebP、GIF。",
+      "uploadButton": "上传",
+      "cancel": "取消",
+      "submit": "提交需求",
+      "success": "找货需求已提交。",
+      "submitFailed": "提交找货需求失败",
+      "loginFirst": "请先登录后再提交",
+      "imageTypeError": "仅支持 JPG、PNG、WebP、GIF 图片",
+      "imageSizeError": "单张图片不能超过 {size}MB",
+      "imageUploadFailed": "图片上传失败",
+      "productNameRequired": "请填写商品名称",
+      "requireContent": "请至少填写描述或上传一张图片",
+      "referenceUrlInvalid": "请输入有效的参考链接",
+      "budgetRangeInvalid": "最低预算不能高于最高预算"
+    }
+  },
+  "sort": {
+    "label": "排序商品",
+    "relevance": "相关性",
+    "newest": "最新上架",
+    "priceAsc": "价格从低到高",
+    "priceDesc": "价格从高到低",
+    "popular": "综合排序",
+    "sortBy": "排序"
+  },
+  "filter": {
+    "filters": "筛选",
+    "category": "分类",
+    "brands": "品牌",
+    "priceRange": "价格区间",
+    "colors": "颜色",
+    "gender": "性别",
+    "styles": "风格",
+    "seasons": "季节",
+    "occasions": "场合",
+    "clearAll": "清除全部",
+    "clearAllFilters": "清除所有筛选",
+    "applyFilters": "应用筛选",
+    "apply": "应用",
+    "openFilters": "打开筛选",
+    "activeCount": "{count} 个已选",
+    "closeFilterPanel": "关闭筛选面板",
+    "filterPanel": "筛选面板",
+    "collapse": "收起",
+    "expand": "展开",
+    "filterSuffix": "筛选",
+    "filtersLabel": "筛选条件：",
+    "removeFilter": "移除筛选 {label}",
+    "brand": "品牌",
+    "color": "颜色",
+    "style": "风格",
+    "season": "季节",
+    "minPrice": "最低价",
+    "maxPrice": "最高价",
+    "minimumPrice": "最低价格",
+    "maximumPrice": "最高价格",
+    "men": "男款",
+    "women": "女款",
+    "unisex": "男女通用",
+    "kids": "童款",
+    "spring": "春季",
+    "summer": "夏季",
+    "fall": "秋季",
+    "winter": "冬季",
+    "viewItems": "查看 {count} 件商品",
+    "showResults": "查看结果",
+    "showMore": "展开更多",
+    "showLess": "收起",
+    "showMoreCount": "展开更多 (+{count})",
+    "moreCount": "+{count} 更多",
+    "searchBrands": "搜索品牌...",
+    "noBrandsFound": "未找到品牌"
+  },
+  "product": {
+    "addToFavorites": "添加收藏",
+    "removeFromFavorites": "取消收藏",
+    "favorited": "已收藏",
+    "favorite": "收藏",
+    "pleaseLoginFirst": "请先登录",
+    "addedToFavorites": "已添加到收藏",
+    "removedFromFavorites": "已从收藏中移除",
+    "failedToUpdateFavorite": "更新收藏失败",
+    "listView": "列表视图",
+    "gridView": "网格视图",
+    "compactView": "紧凑视图",
+    "totalItems": "共 {count} 件商品",
+    "previousPage": "上一页",
+    "nextPage": "下一页",
+    "page": "第 {page} 页",
+    "pagination": "分页",
+    "breadcrumb": "面包屑导航",
+    "save": "收藏",
+    "share": "分享",
+    "purchaseInfo": "通过代购平台购买",
+    "purchaseInfoDesc": "点击「立即购买」后将跳转至合作代购平台完成购买。",
+    "priceRangeLabel": "价格区间：{min} - {max}",
+    "showLess": "收起",
+    "readMore": "展开全文",
+    "skuNotAvailable": "SKU 信息不可用",
+    "contactSeller": "请联系卖家获取商品选项",
+    "style": "款式",
+    "styleN": "款式{n}",
+    "collapseOptions": "收起 ↑",
+    "viewAllOptions": "查看所有 {count} 款 ↓",
+    "stockAvailable": "库存：{count} 件",
+    "size": "尺码",
+    "productDetails": "商品详情",
+    "selectSpec": "请选择规格",
+    "linkCopied": "链接已复制到剪贴板",
+    "linkCopyFailed": "复制链接失败",
+    "tabDescription": "商品描述",
+    "tabAttributes": "商品属性",
+    "tabQcPhotos": "QC 实拍",
+    "noDescription": "暂无商品描述。",
+    "noAttributes": "暂无商品属性。",
+    "qcPhotosPlaceholder": "有 QC 实拍图时会在这里展示。",
+    "uploadQcPhotos": "QC 实拍",
+    "completeLook": "搭配推荐",
+    "youMayAlsoLike": "猜你喜欢",
+    "findSimilar": "找相似",
+    "previousImage": "上一张图片",
+    "nextImage": "下一张图片",
+    "hot": "热门",
+    "shareRewards": {
+      "eyebrow": "分享赚分",
+      "title": "分享这个商品可获得 +1 积分",
+      "body": "",
+      "pill": "+1 积分",
+      "cta": "立即分享"
+    }
+  },
+  "auth": {
+    "welcomeBack": "欢迎回来",
+    "noAccount": "还没有账号？",
+    "signUpFree": "免费注册",
+    "orContinueWithEmail": "或使用邮箱继续",
+    "emailPlaceholder": "邮箱地址",
+    "passwordPlaceholder": "密码",
+    "rememberMe": "记住我",
+    "forgotPassword": "忘记密码？",
+    "signIn": "登录",
+    "loginSuccess": "登录成功！",
+    "loginFailed": "登录失败",
+    "createYourAccount": "创建您的账号",
+    "alreadyHaveAccount": "已有账号？",
+    "signInLink": "登录",
+    "orRegisterWithEmail": "或使用邮箱注册",
+    "usernamePlaceholder": "用户名（可选）",
+    "passwordWithLength": "密码（6-20 个字符）",
+    "confirmPasswordPlaceholder": "确认密码",
+    "createAccount": "创建账号",
+    "agreeTo": "注册即表示您同意我们的",
+    "termsOfService": "服务条款",
+    "and": "和",
+    "privacyPolicy": "隐私政策",
+    "registrationSuccess": "注册成功！",
+    "registrationFailed": "注册失败",
+    "forgotYourPassword": "忘记密码？",
+    "forgotPasswordDesc": "输入您的邮箱地址，我们将发送重置密码链接。",
+    "emailOnlyPlaceholder": "邮箱",
+    "sendResetLink": "发送重置链接",
+    "backToSignIn": "返回登录",
+    "checkYourEmail": "请检查您的邮箱",
+    "checkYourEmailDesc": "如果该邮箱存在关联账号，我们已发送密码重置链接。请检查收件箱和垃圾邮件。",
+    "failedToSendResetEmail": "发送重置邮件失败",
+    "invalidResetLink": "无效的重置链接",
+    "invalidResetLinkDesc": "密码重置链接无效或已过期，请重新申请。",
+    "requestNewLink": "重新申请链接",
+    "passwordResetSuccess": "密码重置成功",
+    "passwordResetSuccessDesc": "您的密码已更新，现在可以使用新密码登录。",
+    "goToSignIn": "前往登录",
+    "setNewPassword": "设置新密码",
+    "setNewPasswordDesc": "密码需 8-32 个字符，包含大写、小写字母、数字和特殊字符。",
+    "newPasswordPlaceholder": "新密码",
+    "confirmNewPasswordPlaceholder": "确认新密码",
+    "resetPassword": "重置密码",
+    "failedToResetPassword": "重置密码失败",
+    "verifyingEmail": "正在验证您的邮箱...",
+    "emailVerified": "邮箱验证成功！",
+    "emailVerifiedDesc": "您的邮箱已成功验证，现在可以使用所有功能。",
+    "goToHome": "前往首页",
+    "verificationFailed": "验证失败",
+    "verificationFailedDesc": "验证链接无效或已过期。",
+    "invalidVerificationLink": "无效的验证链接，未提供 token。",
+    "failedToVerifyEmail": "邮箱验证失败",
+    "errorCodes": {
+      "AUTH_INVALID_CREDENTIALS": "邮箱或密码错误",
+      "AUTH_NO_PASSWORD": "此账号通过社交登录创建，请使用社交登录或先设置密码",
+      "AUTH_ACCOUNT_LOCKED": "登录失败次数过多，账号已锁定 {remainingMinutes} 分钟",
+      "AUTH_OAUTH_ALREADY_LINKED": "此社交账号已绑定到其他用户",
+      "AUTH_OAUTH_PROVIDER_DUPLICATE": "您已绑定此社交平台的账号，请先解绑再重新绑定",
+      "AUTH_OAUTH_LAST_LOGIN_METHOD": "无法解绑：这是您唯一的登录方式。请先设置密码或绑定其他账号",
+      "AUTH_OAUTH_NOT_LINKED": "未找到该社交平台的绑定账号",
+      "AUTH_USER_NOT_FOUND": "用户不存在"
+    },
+    "validation": {
+      "emailRequired": "请输入邮箱！",
+      "emailInvalid": "请输入有效的邮箱地址！",
+      "passwordRequired": "请输入密码！",
+      "usernameMaxLength": "用户名不能超过 30 个字符！",
+      "passwordMinLength6": "密码至少 6 个字符！",
+      "passwordMaxLength20": "密码不能超过 20 个字符！",
+      "confirmPasswordRequired": "请确认密码！",
+      "passwordsNotMatch": "两次密码不一致！",
+      "newPasswordRequired": "请输入新密码！",
+      "passwordMinLength8": "密码至少 8 个字符！",
+      "passwordMaxLength32": "密码不能超过 32 个字符！",
+      "passwordComplexity": "需包含大写、小写字母、数字和特殊字符"
+    },
+    "features": {
+      "heroTitle": "发现最优质的\n商品与优惠",
+      "heroDesc": "您的智能购物助手。搜索、比较，从数千家商家中省钱购物。",
+      "smartSearch": "智能搜索",
+      "smartSearchDesc": "从数千款商品中找到最优惠的价格",
+      "priceTracking": "价格追踪",
+      "priceTrackingDesc": "追踪价格变动，降价即时通知",
+      "trustedSources": "可信来源",
+      "trustedSourcesDesc": "经过验证的卖家，只售正品",
+      "allRightsReserved": "保留所有权利。"
+    },
+    "register": {
+      "heroTitle": "今天开始\n您的购物之旅",
+      "heroDesc": "加入数千名精明购物者，省时省钱找到最好的商品。",
+      "statsProducts": "商品",
+      "statsBrands": "品牌",
+      "statsVerified": "已验证",
+      "testimonial": "这个平台为我节省了大量搜索时间。我以最优价格找到了需要的商品。",
+      "verifiedBuyer": "已验证买家"
+    }
+  },
+  "home": {
+    "hero": {
+      "discover": "发现",
+      "products": "优质商品",
+      "fromChina": "来自中国",
+      "descLine1": "轻松浏览、搜索和发现正品中国商品。",
+      "descLine2": "完整 SKU 展示、真实质检照片、代购一键下单。",
+      "featureAI": "AI 驱动",
+      "featureVisualSearch": "以图搜图",
+      "featureProducts": "{count}+ 商品",
+      "featureBrands": "{count}+ 品牌"
+    },
+    "howItWorks": {
+      "title": "如何使用",
+      "subtitle": "从发现到收货，只需 4 个简单步骤",
+      "searchTitle": "搜索",
+      "searchDesc": "通过名称、品牌、图片或分类查找商品。",
+      "compareTitle": "比较",
+      "compareDesc": "查看不同卖家的 SKU、价格、尺码和颜色。",
+      "chooseTitle": "选择",
+      "chooseDesc": "选择最佳选项，获取购买链接。",
+      "receiveTitle": "收货",
+      "receiveDesc": "通过代购下单，全球配送到家。"
+    },
+    "featuredBrands": {
+      "title": "精选品牌"
+    },
+    "popularCategories": {
+      "title": "热门分类",
+      "items": "{count} 件商品"
+    },
+    "showcase": {
+      "newArrivals": "新品上架",
+      "popular": "热门",
+      "trending": "趋势",
+      "loadMore": "加载更多商品",
+      "noProducts": "暂无商品",
+      "browseMoreLabel": "想继续浏览更多商品？",
+      "browseMoreCta": "浏览更多{tab}"
+    },
+    "cta": {
+      "comingSoon": "即将推出",
+      "qcCommunity": "QC 社区",
+      "qcCommunityDesc": "来自真实买家的质检照片。下单前看到真实商品 — 社区验证，无惊喜。",
+      "startDiscovering": "立即开始发现好物",
+      "startDiscoveringDesc": "浏览数千款正品中国商品，完整详情、真实照片、优惠价格。",
+      "browseProducts": "浏览商品",
+      "exploreBrands": "探索品牌"
+    },
+    "rewardsSpotlight": {
+      "eyebrow": "积分奖励",
+      "title": "立即注册，今天就开始赚积分！🎉",
+      "body": "邀请好友即可获得积分奖励，然后把积分兑换成真实现金。💰",
+      "mobileTitle": "邀请好友，轻松赚积分 🎉",
+      "pointsRate": "10 积分 = $1",
+      "cashoutMethods": "PayPal / Crypto",
+      "primaryCta": "查看积分",
+      "secondaryCta": "邀请好友",
+      "floatingShare": "+1 分享商品",
+      "floatingVerify": "+5 验证邮箱",
+      "floatingFavorite": "+2 首次收藏",
+      "progress": "再得 45 积分即可提现",
+      "progressCaption": "新用户完成几个简单动作后，就能更快解锁提现。"
+    }
+  },
+  "brands": {
+    "title": "品牌",
+    "discoverCount": "浏览我们收录的 {count} 个品牌",
+    "searchPlaceholder": "搜索品牌...",
+    "searchResults": "搜索结果 ({count})",
+    "noSearchResults": "没有匹配的品牌",
+    "featuredBrands": "精选品牌",
+    "allBrands": "所有品牌",
+    "brandCount": "{count} 个品牌",
+    "errorLoading": "品牌加载失败",
+    "noBrands": "暂无品牌",
+    "notFound": "品牌未找到",
+    "notFoundDesc": "您查找的品牌不存在。",
+    "popular": "热门",
+    "productCount": "{count} 款商品",
+    "noProducts": "该品牌暂无商品",
+    "noProductsDesc": "请尝试移除部分筛选条件或稍后再来"
+  },
+  "categories": {
+    "title": "浏览分类",
+    "subtitle": "精准找到您想要的商品",
+    "errorLoading": "分类加载失败",
+    "noCategories": "暂无分类",
+    "itemCount": "{count} 件商品",
+    "moreCount": "+{count} 更多",
+    "trendingNow": "热门趋势",
+    "notFound": "分类未找到",
+    "productCount": "{count} 款商品",
+    "noProducts": "该分类暂无商品",
+    "noProductsDesc": "请尝试移除部分筛选条件"
+  },
+  "account": {
+    "overview": "概览",
+    "favorites": "收藏",
+    "browsingHistory": "浏览记录",
+    "referral": "推荐",
+    "security": "安全",
+    "logOut": "退出登录",
+    "loggedOutSuccess": "已成功退出登录",
+    "loginPromptTitle": "欢迎",
+    "loginPromptDesc": "登录后可使用收藏、浏览历史等更多功能",
+    "loginButton": "登录",
+    "registerButton": "注册",
+    "accountNavigation": "账户导航",
+    "user": "用户",
+    "avatar": "头像",
+    "editNickname": "编辑昵称",
+    "verified": "已验证",
+    "unverified": "未验证",
+    "emailNotVerified": "邮箱未验证",
+    "emailNotVerifiedDesc": "请验证您的邮箱地址以使用全部功能。",
+    "sendVerificationEmail": "发送验证邮件",
+    "verificationEmailSent": "验证邮件已发送！请检查收件箱。",
+    "failedToSendVerification": "发送验证邮件失败",
+    "usernameLength": "用户名需 2-30 个字符",
+    "usernameUpdated": "用户名已更新！",
+    "failedToUpdateUsername": "更新用户名失败",
+    "statsViewed": "已浏览",
+    "statsRefClicks": "推荐点击",
+    "recentBrowsing": "最近浏览",
+    "noBrowsingHistoryYet": "暂无浏览记录",
+    "noImage": "无图片",
+    "securitySettings": "安全设置",
+    "securitySettingsDesc": "密码、会话、关联账户",
+    "myFavorites": "我的收藏",
+    "sessionExpired": "会话已过期，请重新登录。",
+    "failedToLoadFavorites": "加载收藏失败，请稍后重试。",
+    "noFavoritesYet": "暂无收藏",
+    "noFavoritesDesc": "您收藏的商品将显示在这里",
+    "justNow": "刚刚",
+    "minutesAgo": "{count}分钟前",
+    "hoursAgo": "{count}小时前",
+    "daysAgo": "{count}天前",
+    "historyLimitSet": "历史记录上限设为 {value}",
+    "historyCount": "{count} 条记录",
+    "clear": "清除",
+    "yourPreferences": "您的偏好：",
+    "prefBrands": "品牌：{brands}",
+    "prefCategories": "分类：{categories}",
+    "noBrowsingHistory": "暂无浏览记录",
+    "historySaved": "最多保存 {max} 条记录，自动更新",
+    "historyCleared": "浏览记录已清除",
+    "historyLimitLabel": "记录上限",
+    "clearHistoryLabel": "清空浏览历史",
+    "itemsOption": "{count} 条",
+    "referralProgram": "推荐计划",
+    "language": "语言",
+    "unableToLoadReferral": "无法加载推荐数据",
+    "totalClicks": "总点击量",
+    "conversions": "转化数",
+    "yourReferralCode": "您的推荐码",
+    "copyCode": "复制推荐码",
+    "shareLink": "分享链接",
+    "shareLinkDesc": "将链接分享给好友，好友注册后双方均可获益！",
+    "registrations": "注册数",
+    "totalEarnings": "总收益",
+    "referralDetails": "被推荐用户",
+    "statusRegistered": "已注册",
+    "statusConverted": "已转化",
+    "progressRegistered": "已注册",
+    "progressEmailVerified": "邮箱已验证",
+    "progressProductViews": "浏览商品",
+    "progressFavorite": "收藏/点击",
+    "shareViaChannels": "分享到",
+    "shareInviteTitle": "加入 {siteName} - 发现最好的潮牌好物！",
+    "copied": "已复制！",
+    "copyFailed": "复制失败",
+    "allFavorites": "全部",
+    "done": "完成",
+    "collections": "收藏夹",
+    "createCollection": "新建收藏夹",
+    "collectionName": "收藏夹名称",
+    "collectionNamePlaceholder": "例如：夏季穿搭",
+    "renameCollection": "重命名",
+    "deleteCollection": "删除收藏夹",
+    "deleteCollectionConfirm": "确定删除「{name}」？收藏的商品不会被删除。",
+    "collectionCreated": "收藏夹已创建",
+    "collectionRenamed": "已重命名",
+    "collectionDeleted": "收藏夹已删除",
+    "collectionLimitReached": "最多创建 {max} 个收藏夹",
+    "collectionNameExists": "该名称已存在",
+    "addToCollection": "添加到收藏夹",
+    "removeFromCollection": "从收藏夹移除",
+    "addedToCollection": "已添加到「{name}」",
+    "removedFromCollection": "已从「{name}」移除",
+    "favoriteLimitReached": "最多收藏 {max} 个商品",
+    "sortByTime": "收藏时间",
+    "sortByPriceAsc": "价格从低到高",
+    "sortByPriceDesc": "价格从高到低",
+    "itemCount": "{count} 件商品",
+    "manageCollection": "管理",
+    "loginForReferral": "请登录以获取您的推荐码",
+    "copyReferralCode": "复制推荐码",
+    "referralShareUrl": "推荐分享链接",
+    "copyShareUrl": "复制分享链接",
+    "avatarUpdated": "头像已更新！",
+    "avatarUploadFailed": "头像上传失败",
+    "uploadAvatar": "上传头像",
+    "changeAvatar": "更换头像",
+    "avatarAlt": "头像",
+    "selectImageFile": "请选择图片文件",
+    "points": "积分",
+    "pointsBalance": "积分余额",
+    "totalEarned": "累计获得",
+    "totalWithdrawn": "累计提现",
+    "checkin": "每日签到",
+    "checkinSuccess": "签到成功！",
+    "alreadyCheckedIn": "今日已签到",
+    "streakDays": "连续签到 {count} 天",
+    "withdraw": "提现",
+    "withdrawPoints": "积分提现",
+    "withdrawAmount": "提现积分数量",
+    "cashEquivalent": "兑换金额",
+    "paymentMethod": "收款方式",
+    "paymentAccount": "收款账户信息",
+    "submitWithdrawal": "提交提现申请",
+    "withdrawalSubmitted": "提现申请已提交！",
+    "withdrawalFailed": "提现申请提交失败",
+    "withdrawAmountRequired": "请输入有效的提现数量",
+    "insufficientPoints": "积分余额不足",
+    "paymentAccountRequired": "请输入收款账户信息",
+    "pointsHistory": "积分流水",
+    "noTransactions": "暂无流水记录",
+    "withdrawalRecords": "提现记录",
+    "noWithdrawals": "暂无提现记录",
+    "pointsUnit": "积分",
+    "submittedAt": "提交时间",
+    "reviewedAt": "审核时间",
+    "withdrawalPending": "审核中",
+    "withdrawalApproved": "已到账",
+    "withdrawalRejected": "已拒绝",
+    "withdrawalCancelled": "已取消",
+    "withdrawalPendingDesc": "提现申请审核中，请耐心等待。",
+    "transferProof": "转账凭证",
+    "rejectReason": "拒绝原因",
+    "legacyPaymentMethod": "旧提现方式",
+    "withdrawalRejectedRefund": "积分已退回您的账户。",
+    "pointsRules": "积分获取规则",
+    "ruleCheckin": "每日签到",
+    "ruleCheckinStreak": "连续签到7天奖励",
+    "ruleShare": "分享商品（每天最多3次）",
+    "ruleRegister": "新用户注册",
+    "ruleReferredRegister": "通过推荐链接注册",
+    "ruleReferralConversion": "推荐转化奖励",
+    "ruleWithdrawRate": "兑换比例：10积分 = $1",
+    "ruleWithdrawMin": "最低提现：首次50积分，后续100积分",
+    "ruleWithdrawMonthly": "每月最多提现2次",
+    "welcomeGuide": {
+      "eyebrow": "新手引导",
+      "title": "完成这些快速步骤，开始使用你的账户。",
+      "completedTitle": "你的账户已经准备好了。",
+      "description": "先完成基础设置，这样浏览、收藏和积分功能都会正常工作。",
+      "referredDescription": "先完成基础设置。你的推荐激活进度会在下方继续显示。",
+      "completedDescription": "基础步骤已经完成。现在可以继续浏览、收藏并赚取积分。",
+      "progress": "已完成 {done}/{total} 步",
+      "referralBadge": "已关联推荐",
+      "referralNote": "这个账户来自推荐邀请，下面会继续显示推荐激活进度。",
+      "stepAccount": "创建账户",
+      "stepVerifyEmail": "验证邮箱",
+      "stepBrowse": "浏览商品",
+      "stepFavorite": "收藏第一个商品",
+      "browseMeta": "已浏览 {count} 个商品",
+      "verifyCta": "发送验证邮件",
+      "browseCta": "去浏览商品",
+      "favoriteCta": "去找一个想收藏的商品",
+      "doneCta": "进入账户",
+      "done": "已完成",
+      "pending": "待完成",
+      "dismiss": "隐藏",
+      "skip": "稍后再看"
+    },
+    "referralActivation": {
+      "guide": {
+        "eyebrow": "推荐激活",
+        "title": "完成这些步骤，解锁推荐奖励结算。",
+        "readyTitle": "条件已满足，系统正在同步结算。",
+        "completedTitle": "推荐奖励已完成结算。",
+        "rejectedTitle": "该推荐奖励正在审核中。",
+        "description": "这个账号来自推荐链路。把剩余步骤补齐，推荐奖励才能按真实口径结算。",
+        "readyDescription": "所需动作已经完成。如果奖励还没到账，下一次校验事件会自动完成结算。",
+        "completedDescription": "你的推荐激活已经完成，后续可以正常浏览和继续使用账号。",
+        "rejectedDescription": "该推荐当前处于审核状态，你仍然可以正常浏览商品和使用账号。",
+        "stepRegistered": "已通过推荐链接注册",
+        "stepVerifyEmail": "完成邮箱验证",
+        "stepBrowseProducts": "浏览 3 个商品",
+        "stepFavoriteOrPurchase": "收藏商品或点击购买",
+        "done": "已完成",
+        "pending": "待完成",
+        "viewCount": "已浏览 {count}/{required}",
+        "browseMore": "还差 {count} 个商品",
+        "browseCta": "去逛商品",
+        "actionCta": "去完成动作",
+        "referralCta": "查看推荐页",
+        "sendEmailCta": "发送验证邮件",
+        "dismiss": "关闭"
+      },
+      "nudge": {
+        "eyebrow": "推荐进度",
+        "verifyTitle": "邮箱已验证，继续完成剩余步骤即可激活推荐奖励。",
+        "verifyDescriptionViews": "再浏览 {count} 个商品即可进入下一步。",
+        "verifyDescriptionAction": "最后一步：收藏一个商品或点击一次购买，即可满足推荐要求。",
+        "productTitleViewsOne": "这次浏览已经计入，再看 1 个商品就能进入下一步。",
+        "productTitleViewsMany": "还差 {count} 个商品浏览才能继续推进推荐激活。",
+        "productTitleAction": "最后一步：收藏当前商品，或点击购买，即可完成推荐要求。",
+        "productTitleVerify": "先完成邮箱验证，这次推荐才能继续往下走。",
+        "readyTitle": "推荐条件已经完成，系统会自动同步结算。",
+        "rejectedTitle": "该推荐奖励当前正在审核中。",
+        "sendEmail": "发送验证邮件",
+        "browseProducts": "继续逛商品",
+        "viewReferral": "查看推荐页",
+        "dismiss": "关闭",
+        "progressViews": "已浏览 {count}/{total} 个商品",
+        "progressLabel": "已完成 {done}/{total} 步"
+      },
+      "mobileCard": {
+        "eyebrow": "推荐激活",
+        "collapse": "收起",
+        "expand": "查看详情",
+        "dismiss": "关闭",
+        "progress": "{done}/{total}",
+        "summaryVerify": "先完成邮箱验证",
+        "summaryViews": "还差 {count} 个商品浏览",
+        "summaryAction": "最后一步：收藏或点击购买",
+        "summaryRejected": "推荐奖励正在审核中",
+        "sendEmail": "发送验证邮件",
+        "browseProducts": "去逛商品",
+        "finishAction": "完成最后一步",
+        "viewReferral": "查看推荐页",
+        "stepRegistered": "已通过推荐链接注册",
+        "stepEmail": "完成邮箱验证",
+        "stepBrowse": "浏览 3 个商品",
+        "stepAction": "收藏商品或点击购买",
+        "done": "已完成",
+        "pending": "待完成",
+        "browseMeta": "还差 {count} 个商品"
+      },
+      "mobileBanner": {
+        "eyebrow": "推荐进度",
+        "dismiss": "关闭",
+        "progress": "已完成 {done}/{total} 步",
+        "verifyTitle": "先验证邮箱",
+        "verifyDescription": "完成邮箱验证后，这次推荐才能继续推进。",
+        "viewsTitleOne": "再看 1 个商品即可进入下一步",
+        "viewsTitleMany": "还差 {count} 个商品浏览",
+        "viewsDescription": "已完成 {count}/{total} 个商品浏览",
+        "actionTitle": "最后一步：收藏或点击购买",
+        "actionDescription": "你现在就在最合适的页面完成它。",
+        "rejectedTitle": "推荐奖励正在审核中",
+        "rejectedDescription": "审核期间你仍可以正常浏览和下单。",
+        "sendEmail": "发送邮件",
+        "browseProducts": "去逛",
+        "viewReferral": "推荐页"
+      }
+    }
+  },
+  "security": {
+    "activeSessions": "活跃会话",
+    "logoutAll": "全部登出",
+    "noActiveSessions": "暂无活跃会话",
+    "failedToLoadSessions": "加载会话失败",
+    "sessionRevoked": "会话已撤销",
+    "failedToRevokeSession": "撤销会话失败",
+    "logoutAllConfirmTitle": "从所有设备退出登录？",
+    "logoutAllConfirmContent": "这将撤销所有会话（包括当前会话），您需要重新登录。",
+    "loggedOutAll": "已从所有设备退出登录",
+    "failedToLogoutAll": "全部退出登录失败",
+    "current": "当前",
+    "revoke": "撤销",
+    "ip": "IP：{ip}",
+    "created": "创建时间：{date}",
+    "unknownDevice": "未知设备",
+    "chromeBrowser": "Chrome 浏览器",
+    "firefoxBrowser": "Firefox 浏览器",
+    "safariBrowser": "Safari 浏览器",
+    "edgeBrowser": "Edge 浏览器",
+    "unknown": "未知",
+    "password": "密码",
+    "changePassword": "修改密码",
+    "currentPassword": "当前密码",
+    "newPassword": "新密码",
+    "confirmNewPassword": "确认新密码",
+    "updatePassword": "更新密码",
+    "passwordChangedSuccess": "密码修改成功",
+    "failedToChangePassword": "密码修改失败",
+    "passwordsDoNotMatch": "两次密码不一致",
+    "rule8to32": "8-32 个字符",
+    "ruleLowercase": "至少一个小写字母",
+    "ruleUppercase": "至少一个大写字母",
+    "ruleNumber": "至少一个数字",
+    "ruleSpecialChar": "至少一个特殊字符",
+    "linkedAccounts": "关联账户",
+    "failedToLoadLinkedAccounts": "加载关联账户失败",
+    "unlinkConfirmTitle": "取消关联 {provider}？",
+    "unlinkConfirmContent": "取消后将无法使用此 {provider} 账户登录。",
+    "unlink": "取消关联",
+    "accountUnlinked": "{provider} 账户已取消关联",
+    "failedToUnlink": "取消关联失败",
+    "linkProvider": "关联 {provider}",
+    "noSocialAccounts": "暂无可用的社交账户"
+  },
+  "error": {
+    "notFound": "页面未找到",
+    "notFoundDesc": "您访问的页面不存在或已被移除。",
+    "backHome": "返回首页",
+    "redirectNotice": "页面将在几秒后自动返回首页。",
+    "searchTitle": "站内搜索",
+    "searchPlaceholder": "搜索商品、品牌或分类",
+    "searchAction": "搜索",
+    "popularBrands": "热门品牌",
+    "errorTitle": "出错了",
+    "errorDesc": "发生了意外错误，请重试。",
+    "tryAgain": "重试"
+  },
+  "buy": {
+    "buyNow": "立即购买",
+    "failedToGetLink": "获取购买链接失败",
+    "selectPlatform": "选择代购平台",
+    "noPlatforms": "暂无可用平台",
+    "rememberChoice": "记住我的选择，下次自动使用",
+    "continueTo": "前往 {platform}",
+    "platformFallback": "平台"
+  },
+  "visualSearch": {
+    "title": "以图搜图",
+    "description": "上传商品图片，找到相似商品",
+    "searchImage": "搜索图片",
+    "clearSearch": "清除搜索",
+    "searching": "正在搜索相似商品...",
+    "resultsCount": "找到 {count} 个相似商品",
+    "reSearch": "重新搜索",
+    "cropAndSearch": "裁剪重搜",
+    "changeImage": "换一张图片",
+    "selectImage": "选择图片",
+    "uploadHint": "点击或拖拽图片到此区域",
+    "formatHint": "支持 JPG、PNG、WebP、GIF 格式，最大 5MB",
+    "pasteHint": "也可以直接 Ctrl+V 粘贴截图",
+    "similarity": "{value}% 相似",
+    "noResults": "未找到相似商品",
+    "noResultsHint": "图片中有多个物品？试试裁剪只保留目标商品",
+    "cropAndSearchAgain": "裁剪图片重新搜索",
+    "uploadAnother": "上传其他图片",
+    "uploadToSearch": "上传图片开始搜索相似商品",
+    "searchFailed": "搜索失败 ({status})",
+    "noSimilarProducts": "未找到相似商品，请尝试其他图片",
+    "searchError": "搜索失败，请重试",
+    "invalidFileType": "请选择图片文件",
+    "fileTooLarge": "图片大小不能超过 5MB",
+    "cropImage": "裁剪图片",
+    "cropHint": "拖动调整裁剪区域，只保留想搜索的商品",
+    "confirmCropAndSearch": "确认裁剪并搜索",
+    "imageToCrop": "待裁剪图片",
+    "notConfigured": "视觉搜索未配置。",
+    "searchFailedGeneric": "视觉搜索失败。",
+    "networkError": "网络连接失败，请检查 API 服务是否运行",
+    "viewAllResults": "查看全部 {count} 个相似商品",
+    "sortBySimilarity": "相似度",
+    "sortByPriceAsc": "价格 ↑",
+    "sortByPriceDesc": "价格 ↓",
+    "clearFilters": "清除筛选",
+    "noFilterResults": "没有商品符合当前筛选条件",
+    "imageSearch": "以图搜图"
+  },
+  "metadata": {
+    "homeTitle": "{siteName} | Kakobuy、CNFans、ACBuy Spreadsheet 精选",
+    "homeDescription": "{siteName} 帮助你通过 Kakobuy、CNFans、ACBuy 等平台，以 spreadsheet 风格浏览微店、淘宝和 1688 商品，查看 QC 实拍、SKU 细节和商品链接。",
+    "homeOgTitle": "{siteName} | Kakobuy、CNFans、ACBuy Spreadsheet 精选",
+    "homeOgDescription": "{siteName} 帮助你通过 Kakobuy、CNFans、ACBuy 等平台，以 spreadsheet 风格浏览微店、淘宝和 1688 商品，查看 QC 实拍、SKU 细节和商品链接。",
+    "productNotFound": "商品未找到",
+    "productFallbackDescription": "在 {siteName} 购买 {title}，来自可信中国卖家。最优价格、质检照片、便捷代购。",
+    "searchTitle": "搜索：{query}",
+    "searchDefaultTitle": "搜索商品",
+    "searchDescription": "「{query}」的搜索结果 - 在 {siteName} 找到中国卖家的最优惠商品。",
+    "searchDefaultDescription": "从微店、淘宝等中国电商平台搜索商品。",
+    "categoryNotFound": "分类未找到",
+    "categoryTitle": "{name} - 中国好物购物",
+    "categoryDescription": "浏览中国{name}商品。完整 SKU 信息、真实质检照片、便捷代购集成。",
+    "brandNotFound": "品牌未找到",
+    "brandTitle": "{name} - 商品浏览",
+    "brandFallbackDescription": "浏览 {name} 品牌商品，来自可靠的中国卖家。在 {siteName} 上查看 QC 实拍图并轻松代购。",
+    "categoriesTitle": "所有分类 - 按产品类型选购",
+    "categoriesDescription": "浏览 {siteName} 上的所有产品分类。从微店、淘宝和1688上寻找服装、鞋子、包包、配饰等。",
+    "brandsTitle": "全部品牌 - 中国商品品牌",
+    "brandsDescription": "浏览 {siteName} 上的全部品牌，发现来自顶级品牌的正品中国商品，提供 QC 实拍图和代购服务。",
+    "howItWorksTitle": "使用指南",
+    "howItWorksDescription": "了解如何通过 {siteName} 发现和购买优质中国商品。4 个简单步骤，从发现到送达。",
+    "helpTitle": "帮助中心",
+    "helpDescription": "查找关于使用 {siteName} 的常见问题解答。了解代购平台、QC 照片等。",
+    "termsTitle": "服务条款",
+    "termsDescription": "阅读 {siteName} 的服务条款。了解我们关于商品发现、联盟链接和用户责任的政策。",
+    "privacyTitle": "隐私政策",
+    "privacyDescription": "了解 {siteName} 如何收集、使用和保护您的个人信息。符合 GDPR 要求。",
+    "cookiesTitle": "Cookie 政策",
+    "cookiesDescription": "了解 {siteName} 使用的 Cookie 以及如何管理您的 Cookie 偏好。",
+    "aboutTitle": "关于我们",
+    "aboutDescription": "了解 {siteName}，帮助您从微店、淘宝和1688发现优质中国商品的产品发现平台。",
+    "contactTitle": "联系我们",
+    "contactDescription": "联系 {siteName} 团队。通过电子邮件联系我们获取支持、隐私咨询或一般问题。",
+    "shippingTitle": "物流指南",
+    "shippingDescription": "了解通过代购平台购物的物流运作方式。了解运输方式、费用和国际配送的实用技巧。",
+    "returnsTitle": "退换货与退款",
+    "returnsDescription": "了解通过代购平台购物的退换货和退款流程。了解QC照片以及如何处理问题。",
+    "productsTitle": "全部商品",
+    "productsDescription": "浏览 {siteName} 上的全部商品。查看来自微店、淘宝和 1688 的精选好物，支持 QC 实拍、SKU 细节和价格对比。",
+    "agentsTitle": "全部代购平台 Spreadsheet 指南",
+    "agentsDescription": "在 {siteName} 一次查看全部代购平台 spreadsheet 指南，涵盖主推平台、完整目录和热门主题入口。"
+  },
+  "products": {
+    "allProducts": "全部商品",
+    "productCount": "{count} 款商品",
+    "noProducts": "未找到商品",
+    "noProductsDesc": "请尝试移除部分筛选条件",
+    "errorLoading": "商品加载失败"
+  },
+  "cookies": {
+    "message": "我们使用 Cookie 来改善您的体验并分析网站流量。",
+    "attributionHint": "请选择接受或拒绝，以便我们完成这次邀请访问的分析统计设置。",
+    "accept": "接受",
+    "reject": "拒绝"
+  },
+  "share": {
+    "title": "分享",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "twitter": "X (Twitter)",
+    "reddit": "Reddit",
+    "email": "邮件",
+    "pinterest": "Pinterest",
+    "discord": "Discord",
+    "tiktok": "TikTok",
+    "copyLink": "复制链接",
+    "copied": "已复制！",
+    "copyFailed": "复制失败",
+    "copiedForDiscord": "链接已复制！粘贴到 Discord",
+    "copiedForTiktok": "链接已复制！粘贴到 TikTok",
+    "claimed": "已领取",
+    "showQrCode": "二维码",
+    "scanToShare": "扫码查看此商品",
+    "moreOptions": "更多...",
+    "rewardsHint": {
+      "eyebrow": "积分奖励",
+      "title": "分享即可获得 +1 积分",
+      "body": ""
+    }
+  },
+  "howItWorksPage": {
+    "hero": {
+      "title": "使用指南",
+      "subtitle": "从发现到收货 — 我们帮您找到来自中国的最优商品"
+    },
+    "steps": {
+      "stepLabel": "步骤",
+      "step1": {
+        "label": "搜索",
+        "title": "搜索与发现",
+        "description": "按品牌、分类浏览超过 10,000 款商品，或使用以图搜图精准找到您想要的商品。"
+      },
+      "step2": {
+        "label": "比较",
+        "title": "比较与质检",
+        "description": "查看详细的 SKU 信息、不同卖家的价格对比，以及来自真实买家的 QC 质检照片。"
+      },
+      "step3": {
+        "label": "选择",
+        "title": "选择代购平台",
+        "description": "点击购买按钮，从 Litbuy、Kakobuy、MuleBuy 等多个代购平台中选择。"
+      },
+      "step4": {
+        "label": "收货",
+        "title": "下单与收货",
+        "description": "在代购平台上完成购买。他们负责采购、物流和配送到您家门口。"
+      }
+    },
+    "features": {
+      "title": "为什么选择 {siteName}？",
+      "products": {
+        "title": "10,000+ 款商品",
+        "description": "来自微店、淘宝和 1688 的海量精选商品合集。"
+      },
+      "updates": {
+        "title": "每日更新",
+        "description": "每天上新商品，保持目录新鲜且及时。"
+      },
+      "qc": {
+        "title": "免费 QC 照片",
+        "description": "来自真实买家的质检实拍照片，让您购买前了解商品实物。"
+      },
+      "agents": {
+        "title": "多平台支持",
+        "description": "可选择 Litbuy、Kakobuy、MuleBuy、USFANS 等多个代购平台。"
+      }
+    },
+    "cta": {
+      "title": "准备好找到下一件心仪好物了吗？",
+      "description": "浏览我们收录的超过 10,000 款来自中国顶级电商平台的商品。",
+      "button": "开始浏览"
+    }
+  },
+  "agentsPage": {
+    "listName": "全部代购平台 Spreadsheet 指南",
+    "eyebrow": "代购平台目录",
+    "heading": "全部代购平台 spreadsheet 指南",
+    "body": "你可以先浏览主推平台，再继续查看完整的平台列表，在一个页面里把全部入口看完。",
+    "featuredTitle": "主推指南",
+    "featuredDescription": "这些是站内重点展示的主推平台指南。",
+    "growthTitle": "更多平台",
+    "growthDescription": "如果你想继续扩展平台范围，可以从这里往下浏览更多平台。",
+    "topicTitle": "热门主题指南",
+    "topicDescription": "这些快捷入口方便你更快进入最常用的主题页面。",
+    "directoryTitle": "按字母浏览全部平台",
+    "directoryDescription": "通过字母索引快速跳转到完整的平台列表。",
+    "statsTitle": "覆盖概览",
+    "totalPlatforms": "平台指南",
+    "featuredPlatforms": "主推平台",
+    "growthPlatforms": "更多平台",
+    "longTailPlatforms": "补充平台",
+    "topicRoutes": "主题页面",
+    "directoryEyebrow": "全量覆盖",
+    "directoryHint": "首页保留的是精选入口，这个目录把全部平台集中在一起，方便继续浏览。",
+    "jumpTo": "跳转到",
+    "groupCountLabel": "个平台",
+    "featuredBadge": "主推",
+    "growthBadge": "更多",
+    "longTailBadge": "补充",
+    "cardSuffix": "spreadsheet、yupoo、links"
+  },
+  "helpPage": {
+    "hero": {
+      "title": "帮助中心",
+      "subtitle": "查找关于使用 {siteName} 的常见问题解答"
+    },
+    "categoryCardCount": "{count} 个问题",
+    "categories": {
+      "gettingStarted": {
+        "title": "入门指南",
+        "q1": {
+          "question": "{siteName} 是什么？",
+          "answer": "{siteName} 是一个商品发现平台，帮助您找到来自微店、淘宝和 1688 等中国电商平台的最优商品。我们收录超过 10,000 款商品，提供详细信息和 QC 质检照片。"
+        },
+        "q2": {
+          "question": "如何创建账号？",
+          "answer": "点击右上角的「注册」按钮。您可以使用邮箱地址注册。注册后，您可以收藏商品并查看浏览记录。"
+        },
+        "q3": {
+          "question": "什么是代购？",
+          "answer": "代购是一种代为购买的服务，帮助您从中国电商平台购买商品并进行国际配送。常用的代购平台包括 Litbuy、Kakobuy、MuleBuy 和 USFANS。"
+        },
+        "q4": {
+          "question": "{siteName} 是否免费使用？",
+          "answer": "是的！{siteName} 完全免费。当您通过我们的链接购买商品时，我们会从代购平台获得少量佣金，不会向您收取任何额外费用。"
+        }
+      },
+      "shoppingQc": {
+        "title": "购物与质检",
+        "q1": {
+          "question": "如何查找商品？",
+          "answer": "您可以按分类或品牌浏览，使用搜索栏输入关键词搜索，或尝试我们的以图搜图功能上传图片查找商品。"
+        },
+        "q2": {
+          "question": "什么是 QC 照片？",
+          "answer": "QC（质量检查）照片是买家收到商品后拍摄的真实照片。它们可以帮助您在购买前了解商品的实际质量。"
+        },
+        "q3": {
+          "question": "价格准确吗？",
+          "answer": "价格从人民币（CNY）换算为您所选的货币。实际价格可能因汇率波动而略有差异。"
+        },
+        "q4": {
+          "question": "可以比较不同卖家的商品吗？",
+          "answer": "可以！每个商品列表都展示了可选的 SKU、尺码、颜色和价格，方便您进行对比。"
+        }
+      },
+      "agentsOrders": {
+        "title": "代购与订单",
+        "q1": {
+          "question": "支持哪些代购平台？",
+          "answer": "我们支持多个代购平台，包括 Litbuy、Kakobuy、MuleBuy、USFANS、iTaoBuy 等。点击购买按钮时，您可以选择您偏好的平台。"
+        },
+        "q2": {
+          "question": "如何下单？",
+          "answer": "找到心仪的商品，点击「购买」按钮，选择您偏好的代购平台，系统将跳转至该平台的网站完成购买。"
+        },
+        "q3": {
+          "question": "你们处理支付或物流吗？",
+          "answer": "不处理。{siteName} 仅是一个商品发现平台。所有支付、物流和客户服务均由您选择的代购平台处理。"
+        },
+        "q4": {
+          "question": "如果商品缺货怎么办？",
+          "answer": "库存由原始卖家管理。如果您通过代购平台下单时商品缺货，代购平台会通知您并办理退款。"
+        }
+      },
+      "accountSupport": {
+        "title": "账户与支持",
+        "q1": {
+          "question": "如何收藏商品？",
+          "answer": "点击任意商品上的爱心图标即可添加到收藏。您需要登录才能使用此功能。"
+        },
+        "q2": {
+          "question": "可以更改显示货币吗？",
+          "answer": "可以！使用顶部导航栏中的货币选择器切换支持的货币。价格将自动换算。"
+        },
+        "q3": {
+          "question": "如何更改语言？",
+          "answer": "使用顶部导航栏中的语言选择器，可在英语、中文、法语、德语、西班牙语、意大利语、葡萄牙语和阿拉伯语之间切换。"
+        },
+        "q4": {
+          "question": "如何联系客服？",
+          "answer": "您可以通过邮箱 {contactEmail} 联系我们，或加入我们的 Discord 和 Telegram 社区。"
+        }
+      }
+    },
+    "contact": {
+      "title": "还需要帮助？",
+      "subtitle": "我们的团队随时为您提供支持",
+      "email": {
+        "label": "发送邮件"
+      },
+      "discord": {
+        "label": "Discord",
+        "description": "加入我们的社区"
+      },
+      "telegram": {
+        "label": "Telegram",
+        "description": "在线聊天"
+      }
+    }
+  },
+  "termsPage": {
+    "title": "服务条款",
+    "sections": {
+      "introduction": {
+        "title": "引言与接受",
+        "content": "欢迎使用 {siteName}（以下简称「我们」）。访问或使用我们位于 {siteUrl} 的网站（以下简称「服务」）即表示您同意受这些服务条款的约束。如果您不同意这些条款，请勿使用我们的服务。"
+      },
+      "service-description": {
+        "title": "服务描述",
+        "content": "{siteName} 是一个商品发现与策展平台。我们从中国电商平台（包括微店、淘宝和 1688）汇集商品信息并以有序的格式呈现。我们不是代购商、卖家或零售商。我们不销售商品、不处理支付、不负责物流，也不管理订单。"
+      },
+      "independent-platform": {
+        "title": "独立平台声明",
+        "content": "{siteName} 独立运营，与任何代购平台（包括但不限于 Litbuy、Kakobuy、MuleBuy、USFANS、iTaoBuy）或任何中国电商平台均无官方隶属关系。指向第三方代购平台的链接仅为方便用户而提供。"
+      },
+      "user-accounts": {
+        "title": "用户账户",
+        "content": "您必须年满 18 周岁才能创建账户。您有责任维护账户凭证的保密性以及对账户下所有活动负责。您同意在注册时提供准确完整的信息。"
+      },
+      "affiliate-links": {
+        "title": "联盟链接与收入",
+        "content": "我们的服务包含指向代购平台的联盟链接。当您通过这些链接进行购买时，我们可能会获得佣金，且不会向您收取额外费用。这种联盟关系不会影响我们的商品策展或推荐。"
+      },
+      "product-information": {
+        "title": "商品信息准确性",
+        "content": "虽然我们努力提供准确的商品信息、价格和库存状况，但我们无法保证所有商品列表的准确性。商品价格从人民币换算而来，可能因汇率变动而波动。实际商品外观可能与展示图片有所不同。"
+      },
+      "qc-photos": {
+        "title": "QC 质检照片",
+        "content": "本平台展示的 QC（质量检查）照片来源于真实买家。这些照片代表特定买家收到的具体商品，您收到的商品可能与之不完全一致。我们不保证您购买的商品与展示的任何 QC 照片完全一致。"
+      },
+      "intellectual-property": {
+        "title": "知识产权",
+        "content": "{siteName} 上的所有内容，包括但不限于文本、设计、标识和软件，均为我们所有或经许可使用。未经我们书面许可，您不得复制、分发或创建衍生作品。"
+      },
+      "prohibited-conduct": {
+        "title": "禁止行为",
+        "content": "您同意不得：",
+        "item1": "未经许可爬取或抓取我们的网站",
+        "item2": "干扰服务的正常运行",
+        "item3": "将服务用于任何违法目的",
+        "item4": "创建多个账户以滥用功能",
+        "item5": "尝试绕过安全措施"
+      },
+      "limitation-of-liability": {
+        "title": "责任限制",
+        "content": "{siteName} 不对以下事项承担责任：",
+        "item1": "通过第三方代购平台进行的任何购买",
+        "item2": "商品质量、真伪或状况",
+        "item3": "物流延误、海关问题或包裹丢失",
+        "item4": "您与代购平台或卖家之间的任何争议",
+        "footer": "我们的最大赔偿责任限于您直接支付给我们的金额（如有）。"
+      },
+      "changes-to-terms": {
+        "title": "条款变更",
+        "content": "我们保留随时修改这些条款的权利。变更将发布在此页面并更新「最后更新」日期。在变更后继续使用服务即表示您接受新条款。"
+      },
+      "contact": {
+        "title": "联系信息",
+        "content": "如对本服务条款有任何疑问，请联系我们：{legalEmail}"
+      }
+    }
+  },
+  "privacyPage": {
+    "title": "隐私政策",
+    "sections": {
+      "introduction": {
+        "title": "引言",
+        "content": "{siteName}（以下简称「我们」）尊重您的隐私。本隐私政策说明了当您使用我们位于 {siteUrl} 的网站时，我们如何收集、使用和保护您的个人信息。"
+      },
+      "data-we-collect": {
+        "title": "我们收集的数据",
+        "providedTitle": "您提供的信息",
+        "provided1": "姓名和邮箱地址",
+        "provided2": "密码（加密存储）",
+        "provided3": "显示偏好（语言、货币）",
+        "provided4": "收藏商品和浏览记录",
+        "autoTitle": "自动收集的信息",
+        "auto1": "IP 地址",
+        "auto2": "浏览器类型和版本",
+        "auto3": "设备信息",
+        "auto4": "访问的页面和停留时间",
+        "auto5": "来源 URL",
+        "auto6": "访问时间戳"
+      },
+      "how-we-use": {
+        "title": "我们如何使用您的数据",
+        "content": "我们使用您的数据来：",
+        "item1": "提供和维护服务",
+        "item2": "管理您的账户和偏好设置",
+        "item3": "保存您的收藏和浏览记录",
+        "item4": "发送事务性邮件（账户验证、密码重置）",
+        "item5": "通过数据分析改进我们的服务",
+        "item6": "回复客服请求"
+      },
+      "cookies": {
+        "title": "Cookie",
+        "content": "我们使用以下类型的 Cookie：",
+        "essentialTitle": "必要 Cookie",
+        "essentialContent": "用于身份验证和用户偏好设置等基本功能。这些 Cookie 无法禁用。",
+        "analyticsTitle": "分析 Cookie",
+        "analyticsContent": "通过 Google Analytics 帮助我们了解访客如何使用我们的网站。您可以通过 Cookie 横幅禁用这些 Cookie。",
+        "footer": "我们不使用广告或追踪 Cookie。"
+      },
+      "third-party-services": {
+        "title": "第三方服务",
+        "content": "我们使用以下第三方服务：",
+        "item1": "Google Analytics — 用于网站流量分析",
+        "item2": "代购平台 — 当您点击购买链接时，您将被重定向到拥有自己隐私政策的第三方平台",
+        "footer": "我们建议您查阅所使用的代购平台的隐私政策。"
+      },
+      "data-sharing": {
+        "title": "数据共享",
+        "content": "我们不会出售您的个人数据。我们可能会与以下方共享数据：",
+        "item1": "帮助运营我们平台的服务提供商（托管、邮件）",
+        "item2": "法律要求时向执法机构提供",
+        "footer": "我们不会与代购平台或商品卖家共享您的数据。"
+      },
+      "international-transfers": {
+        "title": "国际数据传输",
+        "content": "您的数据可能在您居住国以外的国家处理。我们采取适当的保障措施，包括标准合同条款（SCCs），以保护您在国际传输过程中的数据安全。"
+      },
+      "data-retention": {
+        "title": "数据保留",
+        "item1": "账户数据：保留至您删除账户，删除后 30 天内永久清除",
+        "item2": "分析数据：保留 26 个月",
+        "item3": "服务器日志：保留 90 天"
+      },
+      "your-rights": {
+        "title": "您的权利（GDPR）",
+        "content": "如果您在欧盟/欧洲经济区，您有权：",
+        "item1": "访问您的个人数据",
+        "item2": "更正不准确的数据",
+        "item3": "删除您的数据（「被遗忘权」）",
+        "item4": "导出您的数据（数据可携权）",
+        "item5": "反对数据处理",
+        "item6": "限制数据处理",
+        "footer": "如需行使这些权利，请联系我们：{privacyEmail}。"
+      },
+      "security": {
+        "title": "安全性",
+        "content": "我们采用行业标准的安全措施：",
+        "item1": "所有连接使用 HTTPS/TLS 加密",
+        "item2": "Bcrypt 密码哈希",
+        "item3": "定期安全更新",
+        "item4": "访问控制和监控",
+        "footer": "没有任何传输方式是 100% 安全的。虽然我们努力保护您的数据，但无法保证绝对安全。"
+      },
+      "changes-to-policy": {
+        "title": "政策变更",
+        "content": "我们可能会不时更新本隐私政策。重大变更将通过邮件或网站通知告知您。在变更后继续使用即表示您接受更新后的政策。"
+      },
+      "contact": {
+        "title": "联系我们",
+        "content": "如有隐私相关问题或需行使您的权利，请发送邮件至：{privacyEmail}"
+      }
+    }
+  },
+  "cookiesPage": {
+    "title": "Cookie 政策",
+    "sections": {
+      "introduction": {
+        "title": "简介",
+        "content": "本 Cookie 政策解释了什么是 Cookie、{siteName}（\"我们\"）如何在网站上使用 Cookie，以及您对 Cookie 的选择权。Cookie 是您访问网站时存储在设备上的小型文本文件，帮助网站记住您的偏好并改善浏览体验。"
+      },
+      "essential-cookies": {
+        "title": "必要 Cookie",
+        "content": "必要 Cookie 是网站基本功能所必需的，无法禁用，因为它们用于以下核心功能：",
+        "item1": "会话 Cookie — 在您浏览网站时维持会话状态",
+        "item2": "认证 Cookie — 记住您的登录状态，使您保持登录",
+        "item3": "偏好 Cookie — 存储您的语言和货币偏好设置"
+      },
+      "analytics-cookies": {
+        "title": "分析 Cookie",
+        "content": "我们使用分析 Cookie 来了解访客如何与网站互动，帮助我们改进服务和用户体验：",
+        "item1": "_ga — Google Analytics Cookie，用于区分唯一用户（有效期 2 年）",
+        "item2": "_ga_* — Google Analytics Cookie，用于持久化会话状态（有效期 2 年）",
+        "item3": "_gid — Google Analytics Cookie，用于区分用户（有效期 24 小时）"
+      },
+      "marketing-cookies": {
+        "title": "营销 Cookie",
+        "content": "我们目前不使用任何营销或广告 Cookie。如果将来引入，我们会更新本政策并在设置任何营销 Cookie 之前征求您的同意。"
+      },
+      "cookie-management": {
+        "title": "Cookie 管理",
+        "content": "您可以通过浏览器设置来控制和管理 Cookie。大多数浏览器允许您：",
+        "item1": "查看已存储的 Cookie 并逐个删除",
+        "item2": "阻止第三方 Cookie",
+        "item3": "阻止特定网站的 Cookie",
+        "item4": "关闭浏览器时删除所有 Cookie",
+        "footer": "请注意，禁用必要 Cookie 可能会影响网站功能，导致某些功能无法使用。"
+      },
+      "third-party-cookies": {
+        "title": "第三方 Cookie",
+        "content": "我们网站上的部分 Cookie 由第三方服务设置：",
+        "item1": "Google Analytics — 用于网站流量分析和使用统计",
+        "item2": "代购平台 — 当您点击外部链接时，这些平台可能会设置自己的 Cookie",
+        "footer": "我们无法控制第三方 Cookie。建议您查阅通过本网站访问的任何第三方服务的 Cookie 政策。"
+      },
+      "data-retention": {
+        "title": "数据保留",
+        "content": "不同类型的 Cookie 保留期限不同：",
+        "item1": "会话 Cookie — 关闭浏览器时自动删除",
+        "item2": "偏好 Cookie — 保留最长 1 年",
+        "item3": "分析 Cookie — 保留最长 2 年"
+      },
+      "your-choices": {
+        "title": "您的选择",
+        "content": "根据 GDPR 和 CCPA，您对通过 Cookie 收集的数据享有以下权利：",
+        "item1": "您可以通过我们的 Cookie 设置选择退出分析 Cookie",
+        "item2": "您可以配置浏览器拒绝非必要 Cookie",
+        "item3": "您可以请求了解我们收集了哪些关于您的数据",
+        "item4": "您可以联系我们请求删除通过 Cookie 收集的数据"
+      },
+      "contact": {
+        "title": "联系我们",
+        "content": "如果您对我们使用 Cookie 有任何疑问，请联系：{privacyEmail}"
+      }
+    }
+  },
+  "aboutPage": {
+    "title": "关于我们",
+    "sections": {
+      "who-we-are": {
+        "title": "我们是谁",
+        "content": "{siteName} 是一个产品发现平台，而非商店。我们从微店、淘宝和1688等中国电商平台精选和整理数以千计的商品，让您轻松浏览、比较和找到所需产品。"
+      },
+      "our-mission": {
+        "title": "我们的使命",
+        "content": "我们的使命是在国际买家和中国广阔的市场之间架起桥梁。我们相信每个人都应该能够获得优质且价格公道的产品，无论语言障碍或对中国购物平台的不熟悉。"
+      },
+      "how-it-works": {
+        "title": "运作方式",
+        "content": "{siteName} 将产品发现过程简化为三个简单步骤：",
+        "step1": "发现 — 浏览我们精选的产品目录，包含详细的照片、价格和规格信息",
+        "step2": "点击 — 找到心仪的商品后，点击链接前往原始平台查看",
+        "step3": "购买 — 通过您喜欢的代购平台（如 Kakobuy、Sugargoo 等）进行购买",
+        "learnMore": "想了解更多关于流程的信息？",
+        "learnMoreLink": "查看我们的详细指南"
+      },
+      "affiliate-disclosure": {
+        "title": "联盟营销披露",
+        "content": "{siteName} 可能包含联盟链接。当您点击某些链接并通过代购平台完成购买时，我们可能会收到少量佣金，而您无需支付额外费用。这有助于我们维护和改善平台。我们承诺透明 — 联盟关系绝不影响我们的产品精选或推荐。"
+      },
+      "independence": {
+        "title": "独立性声明",
+        "content": "{siteName} 是一个独立平台。我们与网站上展示的任何品牌、制造商、代购平台或电商平台均无关联、背书或官方联系。所有产品名称、标志和品牌均为其各自所有者的财产。我们的角色仅限于帮助您发现产品 — 所有交易均发生在您和第三方平台之间。"
+      }
+    }
+  },
+  "contactPage": {
+    "title": "联系我们",
+    "sections": {
+      "get-in-touch": {
+        "title": "与我们联系",
+        "content": "我们很乐意听到您的声音！无论您对平台有疑问、有改进建议还是需要帮助，我们的团队都会为您服务。我们通常在 24-48 小时内回复。"
+      },
+      "email": {
+        "title": "电子邮件",
+        "generalLabel": "通用支持：",
+        "generalDesc": "关于平台、商品列表或一般咨询的问题",
+        "privacyLabel": "隐私咨询：",
+        "privacyDesc": "数据保护、GDPR 请求或隐私问题"
+      },
+      "community": {
+        "title": "社区",
+        "content": "加入我们的社区，与其他买家交流、分享发现并获得经验丰富的买家的帮助：",
+        "discord": "与社区交流并获取实时帮助",
+        "telegram": "最新动态、优惠信息和社区讨论"
+      },
+      "important-note": {
+        "title": "重要提示",
+        "content": "{siteName} 是产品发现平台 — 我们不处理订单、运输或支付。有关订单状态、物流追踪、支付问题或退款的问题，请直接联系您的代购平台。他们负责处理所有交易相关事务。"
+      }
+    }
+  },
+  "shippingPage": {
+    "title": "物流指南",
+    "sections": {
+      "introduction": {
+        "title": "简介",
+        "content": "{siteName} 是产品发现平台 — 我们不直接发货。当您通过代购平台购买商品时，他们负责处理所有物流和配送事宜。本指南解释物流通常如何运作，帮助您了解大致流程。"
+      },
+      "how-shipping-works": {
+        "title": "物流运作方式",
+        "content": "当您通过代购平台购买在 {siteName} 上发现的产品时，物流通常按照以下步骤进行：",
+        "step1": "下单 — 您在代购平台上下单，他们代您从中国卖家处购买商品",
+        "step2": "国内配送 — 卖家将商品发往代购平台在中国的仓库（通常 2-5 天）",
+        "step3": "质检与合包 — 代购平台收到商品后进行检查并拍照。您可以将多个订单合并到一个包裹中以节省运费",
+        "step4": "国际运输 — 确认 QC 照片满意后，代购平台将包裹寄往您的地址"
+      },
+      "shipping-methods": {
+        "title": "运输方式",
+        "content": "大多数代购平台提供多种国际运输选项。常见的方式包括：",
+        "method1": "EMS / ePacket — 经济实惠的邮政服务，通常 10-20 个工作日。性价比较高",
+        "method2": "DHL / FedEx / UPS — 快递服务，通常 5-10 个工作日。速度更快但费用更高",
+        "method3": "海运 — 适合重物的经济选择，通常 30-60 天。最适合大件或重物",
+        "method4": "特殊线路 — 代购平台针对特定地区优化的运输路线，速度和费用各异"
+      },
+      "shipping-tips": {
+        "title": "物流小贴士",
+        "tip1": "合并包裹 — 将多个订单合并为一次发货，节省国际运费",
+        "tip2": "检查限运物品 — 某些商品（电池、液体、品牌商品）根据目的地国家可能有运输限制",
+        "tip3": "考虑运输保险 — 对于贵重物品，建议通过代购平台购买运输保险",
+        "tip4": "准确申报 — 确保代购平台正确申报包裹内容和价值，避免海关问题"
+      },
+      "need-help": {
+        "title": "需要帮助？",
+        "content": "如有关于运费、物流追踪或配送问题的具体疑问，请直接联系代购平台的客服。如有关于产品发现的一般问题，请访问我们的",
+        "helpLink": "帮助中心"
+      }
+    }
+  },
+  "returnsPage": {
+    "title": "退换货与退款",
+    "sections": {
+      "introduction": {
+        "title": "简介",
+        "content": "{siteName} 是产品发现平台 — 我们不销售产品也不处理退货。所有购买均通过第三方代购平台完成，退换货政策完全由这些平台管理。本指南解释退货流程通常如何运作。"
+      },
+      "how-returns-work": {
+        "title": "退货流程",
+        "content": "通过代购平台购买的退货与普通网购不同。通常有两种情况：",
+        "option1": "国际发货前（质检阶段）— 如果您对 QC 照片不满意，通常可以通过代购平台向中国卖家申请退货。这通常是免费的或只需支付少量国内运费",
+        "option2": "国际发货后 — 包裹已经国际发货后的退货通常非常困难且费用高昂，因为您需要将商品寄回中国"
+      },
+      "qc-photos": {
+        "title": "QC 照片 — 您的最佳保障",
+        "content": "质量检查（QC）照片是您通过代购平台购物时最重要的工具。当商品到达代购平台仓库时，他们会拍摄详细的照片供您审核。这是您在商品国际发货前检查的机会。请务必仔细查看 QC 照片，检查是否有瑕疵、尺码错误或商品不符。在质检阶段退货比国际发货后退货要容易且便宜得多。"
+      },
+      "refund-process": {
+        "title": "退款流程",
+        "content": "当卖家批准退货后，退款通常会退回到您的代购平台账户余额，而非原始付款方式。处理时间因平台和卖家而异，通常需要 3-7 个工作日。每个代购平台都有自己的退款政策，请查看其具体条款了解退款资格和时间安排的详细信息。"
+      },
+      "need-help": {
+        "title": "需要帮助？",
+        "content": "如有关于退换货、退款或订单问题的具体疑问，请直接联系代购平台的客服。如有关于平台的一般问题，请访问我们的",
+        "helpLink": "帮助中心"
+      }
+    }
+  }
+}

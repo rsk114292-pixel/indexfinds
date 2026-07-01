@@ -1,0 +1,3 @@
+export const POINTS_PER_USD = 10;
+export const FIRST_WITHDRAWAL_MIN_POINTS = 50;
+export const STANDARD_WITHDRAWAL_MIN_POINTS = 100;

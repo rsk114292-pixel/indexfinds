@@ -1,0 +1,1467 @@
+{
+  "common": {
+    "login": "Accedi",
+    "signUp": "Registrati",
+    "logout": "Esci",
+    "submit": "Invia",
+    "cancel": "Annulla",
+    "save": "Salva",
+    "delete": "Elimina",
+    "clearAll": "Cancella tutto",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo",
+    "noResults": "Nessun risultato",
+    "home": "Home",
+    "back": "Indietro",
+    "viewAll": "Vedi tutto",
+    "more": "Altro",
+    "noData": "Nessun dato disponibile",
+    "noMore": "— Nessun altro risultato —",
+    "loadFailed": "Caricamento fallito, tocca per riprovare",
+    "confirm": "Conferma",
+    "pullToRefresh": "Scorri per aggiornare",
+    "releaseToRefresh": "Rilascia per aggiornare",
+    "refreshing": "Aggiornamento...",
+    "backToTop": "Torna in alto",
+    "goBack": "Torna indietro",
+    "skipToContent": "Vai al contenuto principale",
+    "upload": "Carica",
+    "imageUploadSuccess": "Immagine caricata con successo!",
+    "imageUploadFailed": "Caricamento immagine fallito!",
+    "imageFilesOnly": "Sono ammessi solo file immagine!",
+    "imageTooLarge": "L'immagine deve essere inferiore a {maxSize} MB!",
+    "close": "Chiudi",
+    "showMore": "Mostra di più",
+    "showLess": "Mostra meno",
+    "showMoreCount": "Mostra di più (+{count})"
+  },
+  "tabBar": {
+    "home": "Home",
+    "categories": "Categorie",
+    "newArrivals": "Novità",
+    "allProducts": "Prodotti",
+    "favorites": "Preferiti",
+    "account": "Io",
+    "loginRequired": "Accesso richiesto",
+    "loginRequiredDesc": "Accedi per vedere i tuoi preferiti e il tuo account",
+    "goLogin": "Accedi",
+    "skipLogin": "Non ora"
+  },
+  "header": {
+    "categories": "Categorie",
+    "brands": "Marchi",
+    "newArrivals": "Nuovi arrivi",
+    "allProducts": "Tutti i prodotti",
+    "myAccount": "Il mio account",
+    "switchLanguage": "Cambia lingua",
+    "closeMenu": "Chiudi menu",
+    "openMenu": "Apri menu",
+    "search": "Cerca",
+    "userMenu": "Menu utente",
+    "mainNavigation": "Navigazione principale",
+    "mobileNavigation": "Navigazione mobile",
+    "platformSelect": "Seleziona piattaforma",
+    "settings": "Impostazioni",
+    "language": "Lingua",
+    "noPlatformSelected": "Seleziona agente",
+    "menu": "Menu"
+  },
+  "drawer": {
+    "menu": "Menu",
+    "home": "Home",
+    "categories": "Categorie",
+    "brands": "Marchi",
+    "newArrivals": "Nuovi arrivi",
+    "allProducts": "Tutti i prodotti",
+    "howItWorks": "Come funziona",
+    "helpCenter": "Centro assistenza",
+    "blog": "Blog",
+    "referralProgram": "Programma referral",
+    "discord": "Discord",
+    "telegram": "Telegram",
+    "language": "Lingua",
+    "currency": "Valuta",
+    "platform": "Piattaforma",
+    "selectPlatform": "Seleziona piattaforma",
+    "terms": "Termini di servizio",
+    "privacy": "Informativa sulla privacy",
+    "login": "Accedi",
+    "register": "Registrati"
+  },
+  "currency": {
+    "label": "Valuta",
+    "CNY": "¥ CNY",
+    "USD": "$ USD",
+    "EUR": "€ EUR",
+    "GBP": "£ GBP",
+    "CAD": "$ CAD",
+    "AUD": "$ AUD",
+    "approximateNotice": "I prezzi mostrati in {currency} sono approssimativi e solo a scopo indicativo."
+  },
+  "footer": {
+    "about": "Chi siamo",
+    "shop": "Negozio",
+    "support": "Supporto",
+    "legal": "Legale",
+    "aboutUs": "Chi siamo",
+    "howItWorks": "Come funziona",
+    "allCategories": "Tutte le categorie",
+    "allBrands": "Tutti i marchi",
+    "newArrivals": "Nuovi arrivi",
+    "bestSellers": "Più venduti",
+    "helpCenter": "Centro assistenza",
+    "shippingInfo": "Informazioni sulla spedizione",
+    "returns": "Resi",
+    "contactUs": "Contattaci",
+    "privacyPolicy": "Informativa sulla privacy",
+    "termsOfService": "Termini di servizio",
+    "cookiePolicy": "Politica sui cookie",
+    "allRightsReserved": "© {year} Tutti i diritti riservati."
+  },
+  "search": {
+    "placeholder": "Cerca prodotti, marchi o categorie...",
+    "searching": "Ricerca in corso...",
+    "noResults": "Nessun risultato trovato",
+    "hotSearches": "Ricerche popolari",
+    "searchHistory": "Cronologia ricerche",
+    "brands": "Marchi",
+    "categories": "Categorie",
+    "products": "Prodotti",
+    "productCount": "{count} prodotti",
+    "itemCount": "{count} articoli",
+    "enterKeyword": "Inserisci una parola chiave per cercare",
+    "enterKeywordDesc": "Prova a cercare marchi, categorie o nomi di prodotti",
+    "searchError": "Errore di ricerca",
+    "noResultsFor": "Nessun risultato trovato per \"{query}\"",
+    "noResultsForDesc": "Prova con parole chiave diverse o controlla l'ortografia",
+    "resultsFor": "Risultati di ricerca per \"{query}\"",
+    "productsFound": "{count} prodotti trovati",
+    "popularProducts": "Prodotti popolari che potrebbero piacerti",
+    "noProductsFor": "Nessun prodotto trovato per \"{query}\"",
+    "noProductsForDesc": "Prova con parole chiave diverse o rimuovi alcuni filtri",
+    "cancel": "Annulla",
+    "entryHint": "Cerca prodotti o marchi",
+    "searchFor": "Cerca \"{query}\"",
+    "clearHistory": "Cancella",
+    "photoSearch": "Ricerca per foto",
+    "photoSearchDesc": "Carica una foto per trovare prodotti simili",
+    "recentSearches": "Recenti",
+    "requestProduct": {
+      "title": "Non hai trovato il prodotto giusto?",
+      "description": "Invia una richiesta di reperimento e il nostro team potrà valutarla per una futura pubblicazione.",
+      "button": "Invia richiesta",
+      "modalTitle": "Invia una richiesta di reperimento",
+      "sheetDesc": "Dicci cosa stai cercando. Inserisci una descrizione o almeno un'immagine.",
+      "productName": "Nome del prodotto",
+      "productNamePlaceholder": "Per esempio: Nike Air Max 95 x Corteiz",
+      "descriptionLabel": "Descrizione",
+      "descriptionPlaceholder": "Colore, stile, versione, dettagli del logo, indizi sul venditore o qualsiasi altra informazione utile per trovarlo.",
+      "referenceUrlLabel": "Link di riferimento",
+      "referenceUrlPlaceholder": "Opzionale: Yupoo, Weidian, Taobao o qualsiasi altro URL di riferimento",
+      "budgetLabel": "Budget",
+      "budgetMinPlaceholder": "Min.",
+      "budgetMaxPlaceholder": "Max.",
+      "imagesLabel": "Immagini di riferimento",
+      "imagesHint": "Carica fino a 4 immagini. Sono supportati JPG, PNG, WebP e GIF.",
+      "uploadButton": "Carica",
+      "cancel": "Annulla",
+      "submit": "Invia richiesta",
+      "success": "Richiesta inviata con successo.",
+      "submitFailed": "Invio della richiesta non riuscito",
+      "loginFirst": "Accedi prima di continuare",
+      "imageTypeError": "Sono supportate solo immagini JPG, PNG, WebP e GIF",
+      "imageSizeError": "Ogni immagine deve essere di {size} MB o meno",
+      "imageUploadFailed": "Caricamento immagine non riuscito",
+      "productNameRequired": "Inserisci il nome del prodotto",
+      "requireContent": "Aggiungi una descrizione o carica almeno un'immagine",
+      "referenceUrlInvalid": "Inserisci un link di riferimento valido",
+      "budgetRangeInvalid": "Il budget minimo non può essere superiore al budget massimo"
+    }
+  },
+  "sort": {
+    "label": "Ordina prodotti",
+    "relevance": "Pertinenza",
+    "newest": "Più recenti",
+    "priceAsc": "Prezzo: dal più basso",
+    "priceDesc": "Prezzo: dal più alto",
+    "popular": "Consigliato",
+    "sortBy": "Ordina"
+  },
+  "filter": {
+    "filters": "Filtri",
+    "category": "Categoria",
+    "brands": "Marchi",
+    "priceRange": "Fascia di prezzo",
+    "colors": "Colori",
+    "gender": "Genere",
+    "styles": "Stili",
+    "seasons": "Stagioni",
+    "occasions": "Occasioni",
+    "clearAll": "Cancella tutto",
+    "clearAllFilters": "Cancella tutti i filtri",
+    "applyFilters": "Applica filtri",
+    "apply": "Applica",
+    "openFilters": "Apri filtri",
+    "activeCount": "{count} attivi",
+    "closeFilterPanel": "Chiudi pannello filtri",
+    "filterPanel": "Pannello filtri",
+    "collapse": "Comprimi",
+    "expand": "Espandi",
+    "filterSuffix": "filtro",
+    "filtersLabel": "Filtri:",
+    "removeFilter": "Rimuovi filtro {label}",
+    "brand": "Marchio",
+    "color": "Colore",
+    "style": "Stile",
+    "season": "Stagione",
+    "minPrice": "Prezzo minimo",
+    "maxPrice": "Prezzo massimo",
+    "minimumPrice": "Prezzo minimo",
+    "maximumPrice": "Prezzo massimo",
+    "men": "Uomo",
+    "women": "Donna",
+    "unisex": "Unisex",
+    "kids": "Bambini",
+    "spring": "Primavera",
+    "summer": "Estate",
+    "fall": "Autunno",
+    "winter": "Inverno",
+    "viewItems": "Mostra {count} articoli",
+    "showResults": "Mostra risultati",
+    "showMore": "Mostra di più",
+    "showLess": "Mostra meno",
+    "showMoreCount": "Mostra di più (+{count})",
+    "moreCount": "+{count} in più",
+    "searchBrands": "Cerca marchi...",
+    "noBrandsFound": "Nessun marchio trovato"
+  },
+  "product": {
+    "addToFavorites": "Aggiungi ai preferiti",
+    "removeFromFavorites": "Rimuovi dai preferiti",
+    "favorited": "Nei preferiti",
+    "favorite": "Preferito",
+    "pleaseLoginFirst": "Effettua prima l'accesso",
+    "addedToFavorites": "Aggiunto ai preferiti",
+    "removedFromFavorites": "Rimosso dai preferiti",
+    "failedToUpdateFavorite": "Aggiornamento preferito non riuscito",
+    "listView": "Vista elenco",
+    "gridView": "Vista griglia",
+    "compactView": "Vista compatta",
+    "totalItems": "Totale {count} articoli",
+    "previousPage": "Pagina precedente",
+    "nextPage": "Pagina successiva",
+    "page": "Pagina {page}",
+    "pagination": "Paginazione",
+    "breadcrumb": "Percorso di navigazione",
+    "save": "Salva",
+    "share": "Condividi",
+    "purchaseInfo": "Acquista tramite piattaforma daigou",
+    "purchaseInfoDesc": "Cliccando 'Acquista ora' verrai reindirizzato alla nostra piattaforma daigou partner per completare l'acquisto.",
+    "priceRangeLabel": "Fascia di prezzo: {min} - {max}",
+    "showLess": "Mostra meno",
+    "readMore": "Leggi di più",
+    "skuNotAvailable": "Informazioni SKU non disponibili",
+    "contactSeller": "Contatta il venditore per le opzioni prodotto",
+    "style": "Stile",
+    "styleN": "Stile {n}",
+    "collapseOptions": "Comprimi ↑",
+    "viewAllOptions": "Vedi tutte le {count} opzioni ↓",
+    "stockAvailable": "Disponibilità: {count} in magazzino",
+    "size": "Taglia",
+    "productDetails": "Dettagli del prodotto",
+    "selectSpec": "Seleziona le specifiche",
+    "linkCopied": "Link copiato negli appunti",
+    "linkCopyFailed": "Impossibile copiare il link",
+    "tabDescription": "Descrizione",
+    "tabAttributes": "Caratteristiche",
+    "tabQcPhotos": "Foto QC",
+    "noDescription": "Nessuna descrizione disponibile.",
+    "noAttributes": "Nessuna caratteristica disponibile.",
+    "qcPhotosPlaceholder": "Le foto QC appariranno qui quando disponibili.",
+    "uploadQcPhotos": "Foto QC",
+    "completeLook": "Completa il look",
+    "youMayAlsoLike": "Potrebbe piacerti anche",
+    "findSimilar": "Trova simili",
+    "previousImage": "Immagine precedente",
+    "nextImage": "Immagine successiva",
+    "hot": "Popolare",
+    "shareRewards": {
+      "eyebrow": "Condividi e guadagna",
+      "title": "Condividi questo prodotto e guadagna +1 punto",
+      "body": "",
+      "pill": "+1 punto",
+      "cta": "Condividi ora"
+    }
+  },
+  "auth": {
+    "welcomeBack": "Bentornato",
+    "noAccount": "Non hai un account?",
+    "signUpFree": "Registrati gratis",
+    "orContinueWithEmail": "o continua con l'email",
+    "emailPlaceholder": "Indirizzo email",
+    "passwordPlaceholder": "Password",
+    "rememberMe": "Ricordami",
+    "forgotPassword": "Password dimenticata?",
+    "signIn": "Accedi",
+    "loginSuccess": "Accesso effettuato!",
+    "loginFailed": "Accesso non riuscito",
+    "createYourAccount": "Crea il tuo account",
+    "alreadyHaveAccount": "Hai già un account?",
+    "signInLink": "Accedi",
+    "orRegisterWithEmail": "o registrati con l'email",
+    "usernamePlaceholder": "Nome utente (facoltativo)",
+    "passwordWithLength": "Password (6-20 caratteri)",
+    "confirmPasswordPlaceholder": "Conferma password",
+    "createAccount": "Crea account",
+    "agreeTo": "Registrandoti, accetti i nostri",
+    "termsOfService": "Termini di servizio",
+    "and": "e",
+    "privacyPolicy": "Informativa sulla privacy",
+    "registrationSuccess": "Registrazione riuscita!",
+    "registrationFailed": "Registrazione non riuscita",
+    "forgotYourPassword": "Hai dimenticato la password?",
+    "forgotPasswordDesc": "Inserisci il tuo indirizzo email e ti invieremo un link per reimpostare la password.",
+    "emailOnlyPlaceholder": "Email",
+    "sendResetLink": "Invia link di reimpostazione",
+    "backToSignIn": "Torna all'accesso",
+    "checkYourEmail": "Controlla la tua email",
+    "checkYourEmailDesc": "Se esiste un account con quell'email, ti abbiamo inviato un link per reimpostare la password. Controlla la posta in arrivo e la cartella spam.",
+    "failedToSendResetEmail": "Invio email di reimpostazione non riuscito",
+    "invalidResetLink": "Link di reimpostazione non valido",
+    "invalidResetLinkDesc": "Il link di reimpostazione della password non è valido o è scaduto. Richiedine uno nuovo.",
+    "requestNewLink": "Richiedi nuovo link",
+    "passwordResetSuccess": "Password reimpostata con successo",
+    "passwordResetSuccessDesc": "La tua password è stata aggiornata. Ora puoi accedere con la nuova password.",
+    "goToSignIn": "Vai all'accesso",
+    "setNewPassword": "Imposta una nuova password",
+    "setNewPasswordDesc": "La password deve contenere 8-32 caratteri con maiuscole, minuscole, numeri e caratteri speciali.",
+    "newPasswordPlaceholder": "Nuova password",
+    "confirmNewPasswordPlaceholder": "Conferma nuova password",
+    "resetPassword": "Reimposta password",
+    "failedToResetPassword": "Reimpostazione password non riuscita",
+    "verifyingEmail": "Verifica email in corso...",
+    "emailVerified": "Email verificata!",
+    "emailVerifiedDesc": "La tua email è stata verificata con successo. Ora puoi usufruire di tutte le funzionalità.",
+    "goToHome": "Vai alla home",
+    "verificationFailed": "Verifica non riuscita",
+    "verificationFailedDesc": "Il link di verifica non è valido o è scaduto.",
+    "invalidVerificationLink": "Link di verifica non valido. Nessun token fornito.",
+    "failedToVerifyEmail": "Verifica email non riuscita",
+    "errorCodes": {
+      "AUTH_INVALID_CREDENTIALS": "Email o password non validi",
+      "AUTH_NO_PASSWORD": "Questo account utilizza l'accesso social. Usa l'accesso social o imposta prima una password.",
+      "AUTH_ACCOUNT_LOCKED": "Troppi tentativi falliti. Account bloccato per {remainingMinutes} minuto/i.",
+      "AUTH_OAUTH_ALREADY_LINKED": "Questo account social è già collegato a un altro utente",
+      "AUTH_OAUTH_PROVIDER_DUPLICATE": "Hai già un account di questo provider collegato. Scollegalo prima.",
+      "AUTH_OAUTH_LAST_LOGIN_METHOD": "Impossibile scollegare: è il tuo unico metodo di accesso. Imposta una password o collega un altro account.",
+      "AUTH_OAUTH_NOT_LINKED": "Nessun account social collegato trovato per questo provider",
+      "AUTH_USER_NOT_FOUND": "Utente non trovato"
+    },
+    "validation": {
+      "emailRequired": "Inserisci la tua email!",
+      "emailInvalid": "Inserisci un indirizzo email valido!",
+      "passwordRequired": "Inserisci la tua password!",
+      "usernameMaxLength": "Il nome utente deve contenere al massimo 30 caratteri!",
+      "passwordMinLength6": "La password deve contenere almeno 6 caratteri!",
+      "passwordMaxLength20": "La password deve contenere al massimo 20 caratteri!",
+      "confirmPasswordRequired": "Conferma la tua password!",
+      "passwordsNotMatch": "Le password non corrispondono!",
+      "newPasswordRequired": "Inserisci la tua nuova password!",
+      "passwordMinLength8": "La password deve contenere almeno 8 caratteri!",
+      "passwordMaxLength32": "La password deve contenere al massimo 32 caratteri!",
+      "passwordComplexity": "Deve contenere maiuscole, minuscole, numeri e caratteri speciali"
+    },
+    "features": {
+      "heroTitle": "Scopri i migliori\nprodotti e offerte",
+      "heroDesc": "Il tuo compagno intelligente per lo shopping. Cerca, confronta e risparmia tra migliaia di venditori.",
+      "smartSearch": "Ricerca intelligente",
+      "smartSearchDesc": "Trova le migliori offerte tra migliaia di prodotti",
+      "priceTracking": "Monitoraggio prezzi",
+      "priceTrackingDesc": "Monitora le variazioni di prezzo e ricevi notifiche sui ribassi",
+      "trustedSources": "Fonti affidabili",
+      "trustedSourcesDesc": "Solo venditori verificati e prodotti autentici",
+      "allRightsReserved": "Tutti i diritti riservati."
+    },
+    "register": {
+      "heroTitle": "Inizia il tuo viaggio\ncon noi oggi",
+      "heroDesc": "Unisciti a migliaia di acquirenti intelligenti che risparmiano tempo e denaro trovando i migliori prodotti.",
+      "statsProducts": "Prodotti",
+      "statsBrands": "Marchi",
+      "statsVerified": "Verificati",
+      "testimonial": "Questa piattaforma mi ha fatto risparmiare ore di ricerca. Ho trovato esattamente ciò di cui avevo bisogno al miglior prezzo.",
+      "verifiedBuyer": "Acquirente verificato"
+    }
+  },
+  "home": {
+    "hero": {
+      "discover": "Scopri ",
+      "products": "Prodotti",
+      "fromChina": " dalla Cina",
+      "descLine1": "Sfoglia, cerca e trova prodotti cinesi autentici con facilità.",
+      "descLine2": "Catalogo SKU completo, foto QC reali e integrazione daigou.",
+      "featureAI": "IA integrata",
+      "featureVisualSearch": "Ricerca visiva",
+      "featureProducts": "{count}+ Prodotti",
+      "featureBrands": "{count}+ Marchi"
+    },
+    "howItWorks": {
+      "title": "Come funziona",
+      "subtitle": "Dalla scoperta alla consegna in 4 semplici passi",
+      "searchTitle": "Cerca",
+      "searchDesc": "Trova prodotti per nome, marchio, immagine o categoria.",
+      "compareTitle": "Confronta",
+      "compareDesc": "Visualizza SKU, prezzi, taglie e colori tra i venditori.",
+      "chooseTitle": "Scegli",
+      "chooseDesc": "Seleziona l'opzione migliore e ottieni il link d'acquisto.",
+      "receiveTitle": "Ricevi",
+      "receiveDesc": "Ordina tramite il tuo agente e ricevi la consegna in tutto il mondo."
+    },
+    "featuredBrands": {
+      "title": "Marchi in evidenza"
+    },
+    "popularCategories": {
+      "title": "Categorie popolari",
+      "items": "{count} articoli"
+    },
+    "showcase": {
+      "newArrivals": "Nuovi arrivi",
+      "popular": "Popolari",
+      "trending": "Di tendenza",
+      "loadMore": "Carica altri prodotti",
+      "noProducts": "Nessun prodotto disponibile al momento",
+      "browseMoreLabel": "Vuoi continuare a esplorare?",
+      "browseMoreCta": "Vedi altri {tab}"
+    },
+    "cta": {
+      "comingSoon": "Prossimamente",
+      "qcCommunity": "Comunità QC",
+      "qcCommunityDesc": "Foto reali di controllo qualità da acquirenti reali. Guarda esattamente cosa riceverai prima di ordinare — verificato dalla comunità, senza sorprese.",
+      "startDiscovering": "Inizia a scoprire i prodotti ora",
+      "startDiscoveringDesc": "Sfoglia migliaia di prodotti cinesi autentici con dettagli completi, foto reali e prezzi competitivi.",
+      "browseProducts": "Sfoglia prodotti",
+      "exploreBrands": "Esplora marchi"
+    },
+    "rewardsSpotlight": {
+      "eyebrow": "Rewards",
+      "title": "Iscriviti e inizia a guadagnare oggi stesso! 🎉",
+      "body": "Invita i tuoi amici e ottieni punti premio, poi converti i tuoi punti in denaro reale. 💰",
+      "mobileTitle": "Invita amici, guadagna punti 🎉",
+      "pointsRate": "10 punti = 1 $",
+      "cashoutMethods": "PayPal / Crypto",
+      "primaryCta": "Vedi punti",
+      "secondaryCta": "Invita amici",
+      "floatingShare": "+1 Condividi un prodotto",
+      "floatingVerify": "+5 Verifica email",
+      "floatingFavorite": "+2 Primo preferito",
+      "progress": "Ti mancano 45 punti per il prelievo",
+      "progressCaption": "I nuovi membri possono sbloccare presto il prelievo con poche azioni rapide."
+    }
+  },
+  "brands": {
+    "title": "Marchi",
+    "discoverCount": "Scopri {count} marchi dalla nostra collezione",
+    "searchPlaceholder": "Cerca marchi...",
+    "searchResults": "Risultati di ricerca ({count})",
+    "noSearchResults": "Nessun marchio corrisponde alla tua ricerca",
+    "featuredBrands": "Marchi in evidenza",
+    "allBrands": "Tutti i marchi",
+    "brandCount": "{count} marchi",
+    "errorLoading": "Errore nel caricamento dei marchi",
+    "noBrands": "Nessun marchio trovato",
+    "notFound": "Marchio non trovato",
+    "notFoundDesc": "Il marchio che stai cercando non esiste.",
+    "popular": "Popolare",
+    "productCount": "{count} prodotti",
+    "noProducts": "Nessun prodotto trovato per questo marchio",
+    "noProductsDesc": "Prova a rimuovere alcuni filtri o ricontrolla più tardi"
+  },
+  "categories": {
+    "title": "Sfoglia categorie",
+    "subtitle": "Trova esattamente ciò che stai cercando",
+    "errorLoading": "Errore nel caricamento delle categorie",
+    "noCategories": "Nessuna categoria trovata",
+    "itemCount": "{count} articoli",
+    "moreCount": "+{count} altri",
+    "trendingNow": "Di tendenza ora",
+    "notFound": "Categoria non trovata",
+    "productCount": "{count} prodotti",
+    "noProducts": "Nessun prodotto trovato in questa categoria",
+    "noProductsDesc": "Prova a rimuovere alcuni filtri"
+  },
+  "account": {
+    "overview": "Panoramica",
+    "favorites": "Preferiti",
+    "browsingHistory": "Cronologia di navigazione",
+    "referral": "Referral",
+    "security": "Sicurezza",
+    "logOut": "Esci",
+    "loggedOutSuccess": "Disconnessione riuscita",
+    "loginPromptTitle": "Benvenuto",
+    "loginPromptDesc": "Accedi per visualizzare preferiti, cronologia e altro",
+    "loginButton": "Accedi",
+    "registerButton": "Registrati",
+    "accountNavigation": "Navigazione account",
+    "user": "Utente",
+    "avatar": "Avatar",
+    "editNickname": "Modifica soprannome",
+    "verified": "Verificato",
+    "unverified": "Non verificato",
+    "emailNotVerified": "Email non verificata",
+    "emailNotVerifiedDesc": "Verifica il tuo indirizzo email per accedere a tutte le funzionalità.",
+    "sendVerificationEmail": "Invia email di verifica",
+    "verificationEmailSent": "Email di verifica inviata! Controlla la posta in arrivo.",
+    "failedToSendVerification": "Invio email di verifica non riuscito",
+    "usernameLength": "Il nome utente deve contenere 2-30 caratteri",
+    "usernameUpdated": "Nome utente aggiornato!",
+    "failedToUpdateUsername": "Aggiornamento nome utente non riuscito",
+    "statsViewed": "Visualizzati",
+    "statsRefClicks": "Click referral",
+    "recentBrowsing": "Navigazione recente",
+    "noBrowsingHistoryYet": "Nessuna cronologia di navigazione",
+    "noImage": "Nessuna immagine",
+    "securitySettings": "Impostazioni di sicurezza",
+    "securitySettingsDesc": "Password, sessioni, account collegati",
+    "myFavorites": "I miei preferiti",
+    "sessionExpired": "Sessione scaduta. Effettua nuovamente l'accesso.",
+    "failedToLoadFavorites": "Caricamento preferiti non riuscito. Riprova più tardi.",
+    "noFavoritesYet": "Nessun preferito ancora",
+    "noFavoritesDesc": "I prodotti che salvi appariranno qui",
+    "justNow": "Proprio ora",
+    "minutesAgo": "{count} min fa",
+    "hoursAgo": "{count} ore fa",
+    "daysAgo": "{count} giorni fa",
+    "historyLimitSet": "Limite cronologia impostato a {value}",
+    "historyCount": "{count} articoli",
+    "clear": "Cancella",
+    "yourPreferences": "Le tue preferenze:",
+    "prefBrands": "Marchi: {brands}",
+    "prefCategories": "Categorie: {categories}",
+    "noBrowsingHistory": "Nessuna cronologia di navigazione",
+    "historySaved": "Fino a {max} articoli salvati, aggiornamento automatico",
+    "historyCleared": "Cronologia di navigazione cancellata",
+    "historyLimitLabel": "Limite cronologia",
+    "clearHistoryLabel": "Cancella cronologia di navigazione",
+    "itemsOption": "{count} articoli",
+    "referralProgram": "Programma referral",
+    "language": "Lingua",
+    "unableToLoadReferral": "Impossibile caricare i dati referral",
+    "totalClicks": "Click totali",
+    "conversions": "Conversioni",
+    "yourReferralCode": "Il tuo codice referral",
+    "copyCode": "Copia codice",
+    "shareLink": "Condividi link",
+    "shareLinkDesc": "Condividi questo link con gli amici. Quando si registrano, entrambi ne traete vantaggio!",
+    "registrations": "Registrazioni",
+    "totalEarnings": "Guadagni totali",
+    "referralDetails": "Utenti invitati",
+    "statusRegistered": "Registrato",
+    "statusConverted": "Convertito",
+    "progressRegistered": "Registrato",
+    "progressEmailVerified": "Email verificata",
+    "progressProductViews": "Visualizzazioni",
+    "progressFavorite": "Preferito/Clic",
+    "shareViaChannels": "Condividi tramite",
+    "shareInviteTitle": "Unisciti a {siteName} - Scopri le migliori offerte streetwear!",
+    "copied": "Copiato!",
+    "copyFailed": "Copia non riuscita",
+    "allFavorites": "Tutti",
+    "done": "Fatto",
+    "collections": "Collezioni",
+    "createCollection": "Nuova collezione",
+    "collectionName": "Nome della collezione",
+    "collectionNamePlaceholder": "es. Preferiti estivi",
+    "renameCollection": "Rinomina",
+    "deleteCollection": "Elimina collezione",
+    "deleteCollectionConfirm": "Eliminare \"{name}\"? Gli articoli rimarranno nei tuoi preferiti.",
+    "collectionCreated": "Collezione creata",
+    "collectionRenamed": "Collezione rinominata",
+    "collectionDeleted": "Collezione eliminata",
+    "collectionLimitReached": "Massimo {max} collezioni consentite",
+    "collectionNameExists": "Questo nome esiste già",
+    "addToCollection": "Aggiungi alla collezione",
+    "removeFromCollection": "Rimuovi dalla collezione",
+    "addedToCollection": "Aggiunto a \"{name}\"",
+    "removedFromCollection": "Rimosso da \"{name}\"",
+    "favoriteLimitReached": "Massimo {max} preferiti consentiti",
+    "sortByTime": "Data aggiunta",
+    "sortByPriceAsc": "Prezzo: Crescente",
+    "sortByPriceDesc": "Prezzo: Decrescente",
+    "itemCount": "{count} articoli",
+    "manageCollection": "Gestisci",
+    "loginForReferral": "Accedi per ottenere il tuo codice referral",
+    "copyReferralCode": "Copia codice referral",
+    "referralShareUrl": "Link di condivisione referral",
+    "copyShareUrl": "Copia link di condivisione",
+    "avatarUpdated": "Avatar aggiornato!",
+    "avatarUploadFailed": "Caricamento avatar fallito",
+    "uploadAvatar": "Carica avatar",
+    "changeAvatar": "Cambia avatar",
+    "avatarAlt": "Avatar",
+    "selectImageFile": "Seleziona un file immagine",
+    "points": "Punti",
+    "pointsBalance": "Saldo punti",
+    "totalEarned": "Totale guadagnato",
+    "totalWithdrawn": "Totale prelevato",
+    "checkin": "Check-in giornaliero",
+    "checkinSuccess": "Check-in riuscito!",
+    "alreadyCheckedIn": "Già registrato oggi",
+    "streakDays": "{count} giorni consecutivi",
+    "withdraw": "Prelevare",
+    "withdrawPoints": "Preleva punti",
+    "withdrawAmount": "Importo da prelevare",
+    "cashEquivalent": "Equivalente in contanti",
+    "paymentMethod": "Metodo di pagamento",
+    "paymentAccount": "Informazioni account",
+    "submitWithdrawal": "Invia richiesta di prelievo",
+    "withdrawalSubmitted": "Richiesta di prelievo inviata!",
+    "withdrawalFailed": "Invio richiesta di prelievo fallito",
+    "withdrawAmountRequired": "Inserisci un importo valido",
+    "insufficientPoints": "Saldo punti insufficiente",
+    "paymentAccountRequired": "Inserisci le informazioni del tuo account",
+    "pointsHistory": "Storico punti",
+    "noTransactions": "Nessuna transazione ancora",
+    "withdrawalRecords": "Storico prelievi",
+    "noWithdrawals": "Nessun prelievo ancora",
+    "pointsUnit": "pts",
+    "submittedAt": "Inviato",
+    "reviewedAt": "Esaminato",
+    "withdrawalPending": "In attesa",
+    "withdrawalApproved": "Approvato",
+    "withdrawalRejected": "Rifiutato",
+    "withdrawalCancelled": "Annullato",
+    "withdrawalPendingDesc": "Il tuo prelievo è in fase di revisione, attendi con pazienza.",
+    "transferProof": "Prova di trasferimento",
+    "rejectReason": "Motivo del rifiuto",
+    "legacyPaymentMethod": "Metodo precedente",
+    "withdrawalRejectedRefund": "I punti sono stati restituiti al tuo account.",
+    "pointsRules": "Come guadagnare punti",
+    "ruleCheckin": "Check-in giornaliero",
+    "ruleCheckinStreak": "Bonus 7 giorni consecutivi",
+    "ruleShare": "Condividi prodotto (max 3/giorno)",
+    "ruleRegister": "Registrazione nuovo utente",
+    "ruleReferredRegister": "Registrazione tramite link referral",
+    "ruleReferralConversion": "Premio conversione referral",
+    "ruleWithdrawRate": "Tasso: 10 pts = $1",
+    "ruleWithdrawMin": "Prelievo min: 50 pts (1°), 100 pts (dopo)",
+    "ruleWithdrawMonthly": "Max 2 prelievi al mese",
+    "welcomeGuide": {
+      "eyebrow": "Benvenuto",
+      "title": "Completa questi passaggi rapidi per configurare il tuo account.",
+      "completedTitle": "Il tuo account è pronto.",
+      "description": "Completa le basi così navigazione, preferiti e punti funzioneranno come previsto.",
+      "referredDescription": "Completa prima le basi. L'attivazione del referral continua subito sotto.",
+      "completedDescription": "Le basi sono complete. Puoi continuare a navigare, salvare e guadagnare punti.",
+      "progress": "{done}/{total} passaggi completati",
+      "referralBadge": "Referral collegato",
+      "referralNote": "Questo account proviene da un invito. L'attivazione del referral viene tracciata qui sotto.",
+      "stepAccount": "Crea il tuo account",
+      "stepVerifyEmail": "Verifica la tua e-mail",
+      "stepBrowse": "Esplora i prodotti",
+      "stepFavorite": "Salva il tuo primo preferito",
+      "browseMeta": "{count} prodotti visualizzati",
+      "verifyCta": "Invia e-mail di verifica",
+      "browseCta": "Esplora i prodotti",
+      "favoriteCta": "Trova qualcosa da salvare",
+      "doneCta": "Vai all'account",
+      "done": "Fatto",
+      "pending": "In sospeso",
+      "dismiss": "Nascondi",
+      "skip": "Più tardi"
+    },
+    "referralActivation": {
+      "guide": {
+        "eyebrow": "Attivazione referral",
+        "title": "Completa questi passaggi per sbloccare il regolamento del referral.",
+        "readyTitle": "È tutto pronto. Il regolamento si sta sincronizzando.",
+        "completedTitle": "La ricompensa referral è già sbloccata.",
+        "rejectedTitle": "La ricompensa referral è in revisione.",
+        "description": "Questo account proviene da un referral. Completa i passaggi rimanenti così l'invito potrà essere conteggiato correttamente.",
+        "readyDescription": "Le azioni richieste sono complete. Se la ricompensa è ancora in attesa, il prossimo evento di verifica dovrebbe finalizzare il regolamento.",
+        "completedDescription": "L'attivazione referral è completa. Puoi continuare a navigare e condividere normalmente.",
+        "rejectedDescription": "Questo referral è attualmente in revisione. Puoi comunque continuare a navigare e usare il tuo account normalmente.",
+        "stepRegistered": "Registrato dal link referral",
+        "stepVerifyEmail": "Verifica la tua email",
+        "stepBrowseProducts": "Guarda 3 prodotti",
+        "stepFavoriteOrPurchase": "Aggiungi ai preferiti o clicca compra",
+        "done": "Completato",
+        "pending": "In sospeso",
+        "viewCount": "{count}/{required} visualizzati",
+        "browseMore": "Servono ancora {count} prodotti",
+        "browseCta": "Guarda prodotti",
+        "actionCta": "Apri prodotti",
+        "referralCta": "Vedi pagina referral",
+        "sendEmailCta": "Invia email di verifica",
+        "dismiss": "Nascondi"
+      },
+      "nudge": {
+        "eyebrow": "Avanzamento referral",
+        "verifyTitle": "Email verificata. Continua per completare l'attivazione referral.",
+        "verifyDescriptionViews": "Guarda ancora {count} prodotti per sbloccare il passaggio successivo.",
+        "verifyDescriptionAction": "Ultimo passaggio: aggiungi un prodotto ai preferiti o tocca compra una volta per completare il requisito referral.",
+        "productTitleViewsOne": "Questa visualizzazione conta. Ancora una visualizzazione prodotto sblocca il passaggio successivo.",
+        "productTitleViewsMany": "Servono ancora {count} visualizzazioni prodotto per l'attivazione referral.",
+        "productTitleAction": "Ultimo passaggio: aggiungi questo prodotto ai preferiti o tocca compra per completare il requisito referral.",
+        "productTitleVerify": "Verifica prima la tua email così questo referral può continuare.",
+        "readyTitle": "Tutti i passaggi referral sono completi. Il regolamento dovrebbe sincronizzarsi automaticamente.",
+        "rejectedTitle": "Questa ricompensa referral è attualmente in revisione.",
+        "sendEmail": "Invia email di verifica",
+        "browseProducts": "Guarda prodotti",
+        "viewReferral": "Vedi referral",
+        "dismiss": "Nascondi",
+        "progressViews": "{count}/{total} prodotti visualizzati",
+        "progressLabel": "{done}/{total} passaggi completati"
+      },
+      "mobileCard": {
+        "eyebrow": "Attivazione referral",
+        "collapse": "Comprimi",
+        "expand": "Vedi dettagli",
+        "dismiss": "Nascondi",
+        "progress": "{done}/{total}",
+        "summaryVerify": "Verifica prima la tua email",
+        "summaryViews": "Servono ancora {count} visualizzazioni prodotto",
+        "summaryAction": "Ultimo passaggio: preferito o compra",
+        "summaryRejected": "La ricompensa referral è in revisione",
+        "sendEmail": "Invia email di verifica",
+        "browseProducts": "Guarda prodotti",
+        "finishAction": "Completa l'ultimo passaggio",
+        "viewReferral": "Vedi referral",
+        "stepRegistered": "Registrato dal link referral",
+        "stepEmail": "Verifica la tua email",
+        "stepBrowse": "Guarda 3 prodotti",
+        "stepAction": "Preferito o clicca compra",
+        "done": "Completato",
+        "pending": "In sospeso",
+        "browseMeta": "Ancora {count} prodotti"
+      },
+      "mobileBanner": {
+        "eyebrow": "Avanzamento referral",
+        "dismiss": "Nascondi",
+        "progress": "{done}/{total} passaggi",
+        "verifyTitle": "Verifica prima la tua email",
+        "verifyDescription": "Questo referral potrà continuare dopo la verifica dell'email.",
+        "viewsTitleOne": "Ancora una visualizzazione prodotto sblocca il passaggio successivo",
+        "viewsTitleMany": "Servono ancora {count} visualizzazioni prodotto",
+        "viewsDescription": "{count}/{total} visualizzazioni prodotto completate",
+        "actionTitle": "Ultimo passaggio: preferito o compra",
+        "actionDescription": "Sei già nella pagina giusta per completarlo.",
+        "rejectedTitle": "La ricompensa referral è in revisione",
+        "rejectedDescription": "Puoi continuare a navigare normalmente mentre la revisione è in corso.",
+        "sendEmail": "Invia email",
+        "browseProducts": "Guarda",
+        "viewReferral": "Referral"
+      }
+    }
+  },
+  "security": {
+    "activeSessions": "Sessioni attive",
+    "logoutAll": "Disconnetti tutte",
+    "noActiveSessions": "Nessuna sessione attiva",
+    "failedToLoadSessions": "Caricamento sessioni non riuscito",
+    "sessionRevoked": "Sessione revocata",
+    "failedToRevokeSession": "Revoca sessione non riuscita",
+    "logoutAllConfirmTitle": "Disconnettersi da tutti i dispositivi?",
+    "logoutAllConfirmContent": "Questo revocherà tutte le sessioni, inclusa quella corrente. Dovrai effettuare nuovamente l'accesso.",
+    "loggedOutAll": "Disconnesso da tutti i dispositivi",
+    "failedToLogoutAll": "Disconnessione da tutti i dispositivi non riuscita",
+    "current": "Corrente",
+    "revoke": "Revoca",
+    "ip": "IP: {ip}",
+    "created": "Creata: {date}",
+    "unknownDevice": "Dispositivo sconosciuto",
+    "chromeBrowser": "Browser Chrome",
+    "firefoxBrowser": "Browser Firefox",
+    "safariBrowser": "Browser Safari",
+    "edgeBrowser": "Browser Edge",
+    "unknown": "Sconosciuto",
+    "password": "Password",
+    "changePassword": "Cambia password",
+    "currentPassword": "Password attuale",
+    "newPassword": "Nuova password",
+    "confirmNewPassword": "Conferma nuova password",
+    "updatePassword": "Aggiorna password",
+    "passwordChangedSuccess": "Password cambiata con successo",
+    "failedToChangePassword": "Cambio password non riuscito",
+    "passwordsDoNotMatch": "Le password non corrispondono",
+    "rule8to32": "8-32 caratteri",
+    "ruleLowercase": "Una lettera minuscola",
+    "ruleUppercase": "Una lettera maiuscola",
+    "ruleNumber": "Un numero",
+    "ruleSpecialChar": "Un carattere speciale",
+    "linkedAccounts": "Account collegati",
+    "failedToLoadLinkedAccounts": "Caricamento account collegati non riuscito",
+    "unlinkConfirmTitle": "Scollegare {provider}?",
+    "unlinkConfirmContent": "Non potrai più accedere con questo account {provider}.",
+    "unlink": "Scollega",
+    "accountUnlinked": "Account {provider} scollegato",
+    "failedToUnlink": "Scollegamento non riuscito",
+    "linkProvider": "Collega {provider}",
+    "noSocialAccounts": "Nessun account social disponibile"
+  },
+  "error": {
+    "notFound": "Pagina non trovata",
+    "notFoundDesc": "La pagina che stai cercando non esiste o è stata spostata.",
+    "backHome": "Torna alla home",
+    "redirectNotice": "Reindirizzamento automatico alla home tra pochi secondi.",
+    "searchTitle": "Cerca nel sito",
+    "searchPlaceholder": "Cerca prodotti, marchi o categorie",
+    "searchAction": "Cerca",
+    "popularBrands": "Marchi popolari",
+    "errorTitle": "Qualcosa è andato storto",
+    "errorDesc": "Si è verificato un errore imprevisto. Riprova.",
+    "tryAgain": "Riprova"
+  },
+  "buy": {
+    "buyNow": "Acquista ora",
+    "failedToGetLink": "Recupero link d'acquisto non riuscito",
+    "selectPlatform": "Seleziona piattaforma daigou",
+    "noPlatforms": "Nessuna piattaforma disponibile",
+    "rememberChoice": "Ricorda la mia scelta per acquisti futuri",
+    "continueTo": "Continua su {platform}",
+    "platformFallback": "Piattaforma"
+  },
+  "visualSearch": {
+    "title": "Ricerca visiva",
+    "description": "Carica l'immagine di un prodotto per trovare prodotti simili",
+    "searchImage": "Cerca immagine",
+    "clearSearch": "Cancella ricerca",
+    "searching": "Ricerca di prodotti simili in corso...",
+    "resultsCount": "Trovati {count} prodotti simili",
+    "reSearch": "Cerca di nuovo",
+    "cropAndSearch": "Ritaglia e cerca",
+    "changeImage": "Cambia immagine",
+    "selectImage": "Seleziona immagine",
+    "uploadHint": "Clicca o trascina un'immagine qui",
+    "formatHint": "Supporta i formati JPG, PNG, WebP, GIF, max 5MB",
+    "pasteHint": "Puoi anche incollare uno screenshot con Ctrl+V",
+    "similarity": "{value}% simile",
+    "noResults": "Nessun prodotto simile trovato",
+    "noResultsHint": "Più articoli nell'immagine? Prova a ritagliare per mantenere solo il prodotto desiderato",
+    "cropAndSearchAgain": "Ritaglia l'immagine e cerca di nuovo",
+    "uploadAnother": "Carica un'altra immagine",
+    "uploadToSearch": "Carica un'immagine per cercare prodotti simili",
+    "searchFailed": "Ricerca non riuscita ({status})",
+    "noSimilarProducts": "Nessun prodotto simile trovato, prova un'altra immagine",
+    "searchError": "Ricerca non riuscita, riprova",
+    "invalidFileType": "Seleziona un file immagine",
+    "fileTooLarge": "La dimensione dell'immagine non può superare 5MB",
+    "cropImage": "Ritaglia immagine",
+    "cropHint": "Trascina per regolare l'area di ritaglio, mantieni solo il prodotto che vuoi cercare",
+    "confirmCropAndSearch": "Conferma ritaglio e cerca",
+    "imageToCrop": "Immagine da ritagliare",
+    "notConfigured": "La ricerca visiva non è configurata.",
+    "searchFailedGeneric": "La ricerca visiva non è riuscita.",
+    "networkError": "Connessione di rete non riuscita, verifica che il servizio API sia in esecuzione",
+    "viewAllResults": "Vedi tutti i {count} prodotti simili",
+    "sortBySimilarity": "Somiglianza",
+    "sortByPriceAsc": "Prezzo ↑",
+    "sortByPriceDesc": "Prezzo ↓",
+    "clearFilters": "Cancella filtri",
+    "noFilterResults": "Nessun prodotto corrisponde ai filtri attuali",
+    "imageSearch": "Ricerca immagine"
+  },
+  "metadata": {
+    "homeTitle": "{siteName} | Selezioni Spreadsheet di Kakobuy, CNFans e ACBuy",
+    "homeDescription": "{siteName} ti aiuta a scoprire prodotti da Weidian, Taobao e 1688 con foto QC, dettagli SKU e navigazione in stile spreadsheet per Kakobuy, CNFans, ACBuy e altri.",
+    "homeOgTitle": "{siteName} | Selezioni Spreadsheet di Kakobuy, CNFans e ACBuy",
+    "homeOgDescription": "{siteName} ti aiuta a scoprire prodotti da Weidian, Taobao e 1688 con foto QC, dettagli SKU e navigazione in stile spreadsheet per Kakobuy, CNFans, ACBuy e altri.",
+    "productNotFound": "Prodotto non trovato",
+    "productFallbackDescription": "Acquista {title} da venditori cinesi affidabili su {siteName}. Migliori prezzi, foto QC e ordini daigou facili.",
+    "searchTitle": "Ricerca: {query}",
+    "searchDefaultTitle": "Cerca prodotti",
+    "searchDescription": "Risultati di ricerca per \"{query}\" - Trova le migliori offerte da venditori cinesi su {siteName}.",
+    "searchDefaultDescription": "Cerca prodotti da Weidian, Taobao e altre piattaforme e-commerce cinesi.",
+    "categoryNotFound": "Categoria non trovata",
+    "categoryTitle": "{name} - Acquista prodotti cinesi",
+    "categoryDescription": "Sfoglia i prodotti {name} dalla Cina. Trova articoli autentici con informazioni SKU complete, foto QC reali e facile integrazione daigou.",
+    "brandNotFound": "Marca non trovata",
+    "brandTitle": "{name} - Acquista prodotti",
+    "brandFallbackDescription": "Sfoglia i prodotti {name} da venditori cinesi affidabili. Trova articoli autentici con foto QC e ordini daigou facili su {siteName}.",
+    "categoriesTitle": "Tutte le categorie - Acquista per tipo di prodotto",
+    "categoriesDescription": "Sfoglia tutte le categorie di prodotti su {siteName}. Trova abbigliamento, scarpe, borse, accessori e altro.",
+    "brandsTitle": "Tutti i marchi - Marchi di prodotti cinesi",
+    "brandsDescription": "Sfoglia tutti i marchi disponibili su {siteName}. Scopri prodotti cinesi autentici dei migliori marchi con foto QC e integrazione daigou.",
+    "howItWorksTitle": "Come funziona",
+    "howItWorksDescription": "Scopri come trovare e acquistare i migliori prodotti cinesi tramite {siteName}. Dalla scoperta alla consegna in 4 semplici passi.",
+    "helpTitle": "Centro assistenza",
+    "helpDescription": "Trova risposte alle domande più frequenti sull'utilizzo di {siteName}. Scopri di più su agenti di acquisto, foto QC e altro.",
+    "termsTitle": "Termini di servizio",
+    "termsDescription": "Leggi i Termini di servizio di {siteName}. Scopri le nostre politiche sulla scoperta di prodotti, link di affiliazione e responsabilità degli utenti.",
+    "privacyTitle": "Informativa sulla privacy",
+    "privacyDescription": "Scopri come {siteName} raccoglie, utilizza e protegge le tue informazioni personali. Conforme al GDPR.",
+    "cookiesTitle": "Politica sui cookie",
+    "cookiesDescription": "Scopri i cookie utilizzati su {siteName} e come gestire le tue preferenze sui cookie.",
+    "aboutTitle": "Chi Siamo",
+    "aboutDescription": "Scopri {siteName}, la piattaforma di scoperta prodotti che ti aiuta a trovare prodotti cinesi di qualità su Weidian, Taobao e 1688.",
+    "contactTitle": "Contattaci",
+    "contactDescription": "Contatta il team di {siteName}. Scrivici via email per supporto, domande sulla privacy o richieste generali.",
+    "shippingTitle": "Guida alla Spedizione",
+    "shippingDescription": "Scopri come funziona la spedizione quando acquisti tramite agenti di acquisto. Metodi di spedizione, costi e consigli per le consegne internazionali.",
+    "returnsTitle": "Resi e Rimborsi",
+    "returnsDescription": "Comprendi il processo di reso e rimborso quando acquisti tramite agenti di acquisto. Foto QC e come gestire i problemi.",
+    "productsTitle": "Tutti i prodotti",
+    "productsDescription": "Sfoglia tutti i prodotti su {siteName}. Scopri finds da Weidian, Taobao e 1688 con foto QC, dettagli SKU e confronto prezzi.",
+    "agentsTitle": "Tutte le guide spreadsheet degli agenti",
+    "agentsDescription": "Esplora su {siteName} tutte le guide spreadsheet degli agenti di acquisto con piattaforme in evidenza, elenco completo e percorsi popolari."
+  },
+  "products": {
+    "allProducts": "Tutti i prodotti",
+    "productCount": "{count} prodotti",
+    "noProducts": "Nessun prodotto trovato",
+    "noProductsDesc": "Prova a rimuovere alcuni filtri",
+    "errorLoading": "Errore nel caricamento dei prodotti"
+  },
+  "cookies": {
+    "message": "Utilizziamo i cookie per migliorare la tua esperienza e analizzare il traffico del sito.",
+    "attributionHint": "Scegli Accetta o Rifiuta così possiamo completare la misurazione analitica di questa visita da invito.",
+    "accept": "Accetta",
+    "reject": "Rifiuta"
+  },
+  "share": {
+    "title": "Condividi",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "twitter": "X (Twitter)",
+    "reddit": "Reddit",
+    "email": "E-mail",
+    "pinterest": "Pinterest",
+    "discord": "Discord",
+    "tiktok": "TikTok",
+    "copyLink": "Copia link",
+    "copied": "Copiato!",
+    "copyFailed": "Copia fallita",
+    "copiedForDiscord": "Link copiato! Incolla in Discord",
+    "copiedForTiktok": "Link copiato! Incolla in TikTok",
+    "claimed": "Riscosso",
+    "showQrCode": "Codice QR",
+    "scanToShare": "Scansiona per vedere questo prodotto",
+    "moreOptions": "Altro...",
+    "rewardsHint": {
+      "eyebrow": "Rewards",
+      "title": "Guadagna +1 punto quando condividi",
+      "body": ""
+    }
+  },
+  "howItWorksPage": {
+    "hero": {
+      "title": "Come funziona",
+      "subtitle": "Dalla scoperta alla consegna — ti aiutiamo a trovare i migliori prodotti dalla Cina"
+    },
+    "steps": {
+      "stepLabel": "Passo",
+      "step1": {
+        "label": "Cerca",
+        "title": "Cerca e scopri",
+        "description": "Sfoglia oltre 10.000 prodotti per marchio, categoria o usa la ricerca visiva per trovare esattamente ciò che cerchi."
+      },
+      "step2": {
+        "label": "Confronta",
+        "title": "Confronta e verifica QC",
+        "description": "Visualizza informazioni SKU dettagliate, prezzi tra venditori e foto QC autentiche da acquirenti reali."
+      },
+      "step3": {
+        "label": "Scegli",
+        "title": "Scegli il tuo agente",
+        "description": "Clicca sul pulsante acquista e scegli tra più agenti di acquisto come Litbuy, Kakobuy, MuleBuy e altri."
+      },
+      "step4": {
+        "label": "Ricevi",
+        "title": "Ordina e ricevi",
+        "description": "Completa il tuo acquisto sulla piattaforma dell'agente. Si occupano loro di acquisto, spedizione e consegna a domicilio."
+      }
+    },
+    "features": {
+      "title": "Perché {siteName}?",
+      "products": {
+        "title": "Oltre 10.000 prodotti",
+        "description": "Un'enorme collezione curata di prodotti da Weidian, Taobao e 1688."
+      },
+      "updates": {
+        "title": "Aggiornamenti quotidiani",
+        "description": "Nuovi prodotti aggiunti ogni giorno per mantenere il nostro catalogo fresco e aggiornato."
+      },
+      "qc": {
+        "title": "Foto QC gratuite",
+        "description": "Foto reali di controllo qualità da acquirenti reali per sapere cosa aspettarti."
+      },
+      "agents": {
+        "title": "Più agenti",
+        "description": "Scegli tra Litbuy, Kakobuy, MuleBuy, USFANS e molti altri agenti."
+      }
+    },
+    "cta": {
+      "title": "Pronto a trovare il tuo prossimo articolo preferito?",
+      "description": "Sfoglia la nostra collezione di oltre 10.000 prodotti dai migliori mercati della Cina.",
+      "button": "Inizia a sfogliare"
+    }
+  },
+  "agentsPage": {
+    "listName": "Tutte le guide spreadsheet degli agenti",
+    "eyebrow": "Directory agenti",
+    "heading": "Tutte le guide spreadsheet degli agenti",
+    "body": "Usa questa directory per vedere prima le guide in evidenza e poi continuare con l'elenco completo delle piattaforme quando vuoi piu opzioni.",
+    "featuredTitle": "Guide in evidenza",
+    "featuredDescription": "Queste sono le principali guide piattaforma messe in evidenza sul sito.",
+    "growthTitle": "Piu piattaforme",
+    "growthDescription": "Esplora queste guide aggiuntive quando vuoi andare oltre la selezione principale.",
+    "topicTitle": "Guide tematiche popolari",
+    "topicDescription": "Queste scorciatoie ti aiutano a raggiungere piu velocemente i percorsi tematici piu usati.",
+    "directoryTitle": "Esplora tutte le piattaforme per lettera",
+    "directoryDescription": "Usa l'indice alfabetico per saltare direttamente all'elenco completo delle piattaforme.",
+    "statsTitle": "Panoramica della copertura",
+    "totalPlatforms": "Guide piattaforma",
+    "featuredPlatforms": "Guide in evidenza",
+    "growthPlatforms": "Piu piattaforme",
+    "longTailPlatforms": "Guide aggiuntive",
+    "topicRoutes": "Percorsi tematici",
+    "directoryEyebrow": "Copertura completa",
+    "directoryHint": "La homepage mantiene compatta la selezione principale. Questa directory raccoglie l'elenco completo delle piattaforme in un solo posto.",
+    "jumpTo": "Vai a",
+    "groupCountLabel": "guide",
+    "featuredBadge": "Top",
+    "growthBadge": "Piu",
+    "longTailBadge": "Extra",
+    "cardSuffix": "spreadsheet, yupoo, link"
+  },
+  "helpPage": {
+    "hero": {
+      "title": "Centro assistenza",
+      "subtitle": "Trova risposte alle domande più frequenti sull'utilizzo di {siteName}"
+    },
+    "categoryCardCount": "{count} domande",
+    "categories": {
+      "gettingStarted": {
+        "title": "Per iniziare",
+        "q1": {
+          "question": "Cos'è {siteName}?",
+          "answer": "{siteName} è una piattaforma di scoperta prodotti che ti aiuta a trovare i migliori prodotti dai mercati cinesi come Weidian, Taobao e 1688. Curiamo oltre 10.000 prodotti con informazioni dettagliate e foto QC."
+        },
+        "q2": {
+          "question": "Come creo un account?",
+          "answer": "Clicca sul pulsante \"Registrati\" nell'angolo in alto a destra. Puoi registrarti con il tuo indirizzo email. Dopo la registrazione, puoi salvare i preferiti e monitorare la cronologia di navigazione."
+        },
+        "q3": {
+          "question": "Cos'è un agente di acquisto?",
+          "answer": "Un agente di acquisto (daigou) è un servizio che acquista prodotti dai mercati cinesi per tuo conto e li spedisce a livello internazionale. Gli agenti più popolari includono Litbuy, Kakobuy, MuleBuy e USFANS."
+        },
+        "q4": {
+          "question": "{siteName} è gratuito?",
+          "answer": "Sì! {siteName} è completamente gratuito. Guadagniamo una piccola commissione dagli agenti di acquisto quando acquisti tramite i nostri link, senza costi aggiuntivi per te."
+        }
+      },
+      "shoppingQc": {
+        "title": "Acquisti e QC",
+        "q1": {
+          "question": "Come trovo i prodotti?",
+          "answer": "Puoi sfogliare per categoria o marchio, usare la barra di ricerca con parole chiave, o provare la nostra funzione di ricerca visiva per trovare prodotti caricando un'immagine."
+        },
+        "q2": {
+          "question": "Cosa sono le foto QC?",
+          "answer": "Le foto QC (Controllo Qualità) sono foto reali scattate dagli acquirenti dopo aver ricevuto i loro articoli. Ti aiutano a vedere la qualità reale del prodotto prima dell'acquisto."
+        },
+        "q3": {
+          "question": "Quanto sono accurati i prezzi?",
+          "answer": "I prezzi vengono convertiti dallo Yuan cinese (CNY) alla valuta selezionata. I prezzi effettivi possono variare leggermente a causa delle fluttuazioni del tasso di cambio."
+        },
+        "q4": {
+          "question": "Posso confrontare prodotti di diversi venditori?",
+          "answer": "Sì! Ogni scheda prodotto mostra SKU disponibili, taglie, colori e prezzi, facilitando il confronto tra le opzioni."
+        }
+      },
+      "agentsOrders": {
+        "title": "Agenti e ordini",
+        "q1": {
+          "question": "Quali agenti supportate?",
+          "answer": "Supportiamo più agenti tra cui Litbuy, Kakobuy, MuleBuy, USFANS, iTaoBuy e molti altri. Puoi scegliere il tuo agente preferito cliccando sul pulsante acquista."
+        },
+        "q2": {
+          "question": "Come effettuo un ordine?",
+          "answer": "Trova un prodotto che ti piace, clicca sul pulsante \"Acquista\", seleziona il tuo agente preferito e verrai reindirizzato al sito dell'agente per completare l'acquisto."
+        },
+        "q3": {
+          "question": "Gestite pagamenti o spedizioni?",
+          "answer": "No. {siteName} è solo una piattaforma di scoperta prodotti. Tutti i pagamenti, le spedizioni e il servizio clienti sono gestiti dall'agente di acquisto che scegli."
+        },
+        "q4": {
+          "question": "Cosa succede se un articolo è esaurito?",
+          "answer": "La disponibilità è gestita dai venditori originali. Se un articolo è esaurito quando provi a ordinare tramite un agente, l'agente ti avviserà ed elaborerà un rimborso."
+        }
+      },
+      "accountSupport": {
+        "title": "Account e supporto",
+        "q1": {
+          "question": "Come salvo i miei prodotti preferiti?",
+          "answer": "Clicca sull'icona del cuore su qualsiasi prodotto per aggiungerlo ai tuoi preferiti. Devi aver effettuato l'accesso per usare questa funzione."
+        },
+        "q2": {
+          "question": "Posso cambiare la valuta di visualizzazione?",
+          "answer": "Sì! Usa il selettore di valuta nell'intestazione per passare da una valuta supportata all'altra. I prezzi verranno convertiti automaticamente."
+        },
+        "q3": {
+          "question": "Come cambio la lingua?",
+          "answer": "Usa il selettore di lingua nell'intestazione per passare tra inglese, cinese, francese, tedesco, spagnolo, italiano, portoghese e arabo."
+        },
+        "q4": {
+          "question": "Come posso contattare il supporto?",
+          "answer": "Puoi contattarci via email a {contactEmail} o unirti alle nostre comunità Discord e Telegram."
+        }
+      }
+    },
+    "contact": {
+      "title": "Hai ancora bisogno di aiuto?",
+      "subtitle": "Il nostro team è qui per assisterti",
+      "email": {
+        "label": "Scrivici un'email"
+      },
+      "discord": {
+        "label": "Discord",
+        "description": "Unisciti alla nostra comunità"
+      },
+      "telegram": {
+        "label": "Telegram",
+        "description": "Chatta con noi"
+      }
+    }
+  },
+  "termsPage": {
+    "title": "Termini di servizio",
+    "sections": {
+      "introduction": {
+        "title": "Introduzione e accettazione",
+        "content": "Benvenuto su {siteName} (\"noi\" o \"nostro\"). Accedendo o utilizzando il nostro sito web su {siteUrl} (il \"Servizio\"), accetti di essere vincolato da questi Termini di Servizio. Se non sei d'accordo con questi termini, ti preghiamo di non utilizzare il nostro Servizio."
+      },
+      "service-description": {
+        "title": "Descrizione del servizio",
+        "content": "{siteName} è una piattaforma di scoperta e curazione prodotti. Aggreghiamo informazioni sui prodotti dai mercati cinesi (inclusi Weidian, Taobao e 1688) e li presentiamo in un formato organizzato. NON siamo un agente di acquisto, venditore o rivenditore. Non vendiamo prodotti, non elaboriamo pagamenti, non gestiamo spedizioni né ordini."
+      },
+      "independent-platform": {
+        "title": "Dichiarazione di indipendenza della piattaforma",
+        "content": "{siteName} opera in modo indipendente e non è ufficialmente affiliato ad alcuna piattaforma di agenti di acquisto (inclusi, a titolo esemplificativo, Litbuy, Kakobuy, MuleBuy, USFANS, iTaoBuy) né ad alcun mercato cinese. I link a piattaforme di agenti di terze parti sono forniti solo per comodità."
+      },
+      "user-accounts": {
+        "title": "Account utente",
+        "content": "Devi avere almeno 18 anni per creare un account. Sei responsabile del mantenimento della riservatezza delle credenziali del tuo account e di tutte le attività svolte con il tuo account. Accetti di fornire informazioni accurate e complete durante la registrazione."
+      },
+      "affiliate-links": {
+        "title": "Link di affiliazione e ricavi",
+        "content": "Il nostro Servizio contiene link di affiliazione a piattaforme di agenti di acquisto. Quando effettui un acquisto tramite questi link, potremmo ricevere una commissione senza costi aggiuntivi per te. Questa relazione di affiliazione non influenza la nostra curazione dei prodotti né le nostre raccomandazioni."
+      },
+      "product-information": {
+        "title": "Accuratezza delle informazioni sui prodotti",
+        "content": "Sebbene ci impegniamo a fornire informazioni accurate su prodotti, prezzi e disponibilità, non possiamo garantire l'esattezza di tutte le inserzioni. I prezzi dei prodotti vengono convertiti da CNY e possono variare a causa delle fluttuazioni del tasso di cambio. L'aspetto reale del prodotto può differire dalle immagini mostrate."
+      },
+      "qc-photos": {
+        "title": "Foto QC",
+        "content": "Le foto di controllo qualità (QC) visualizzate sulla nostra piattaforma provengono da acquirenti reali. Queste foto rappresentano articoli specifici ricevuti da quegli acquirenti e potrebbero non essere identiche agli articoli che riceverai. Non garantiamo che il tuo acquisto corrisponda alle foto QC mostrate."
+      },
+      "intellectual-property": {
+        "title": "Proprietà intellettuale",
+        "content": "Tutti i contenuti su {siteName}, inclusi, a titolo esemplificativo, testi, design, loghi e software, sono di nostra proprietà o concessi in licenza a noi. Non è consentito riprodurre, distribuire o creare opere derivate senza il nostro consenso scritto."
+      },
+      "prohibited-conduct": {
+        "title": "Condotta vietata",
+        "content": "Accetti di non:",
+        "item1": "Effettuare scraping o crawling del nostro sito web senza autorizzazione",
+        "item2": "Interferire con il funzionamento del Servizio",
+        "item3": "Utilizzare il Servizio per scopi illegali",
+        "item4": "Creare account multipli per abusare delle funzionalità",
+        "item5": "Tentare di aggirare le misure di sicurezza"
+      },
+      "limitation-of-liability": {
+        "title": "Limitazione di responsabilità",
+        "content": "{siteName} non sarà responsabile per:",
+        "item1": "Qualsiasi acquisto effettuato tramite piattaforme di agenti di terze parti",
+        "item2": "Qualità, autenticità o condizione del prodotto",
+        "item3": "Ritardi nelle spedizioni, problemi doganali o pacchi smarriti",
+        "item4": "Qualsiasi controversia tra te e agenti di acquisto o venditori",
+        "footer": "La nostra responsabilità massima è limitata all'importo che ci hai pagato direttamente (se applicabile)."
+      },
+      "changes-to-terms": {
+        "title": "Modifiche ai termini",
+        "content": "Ci riserviamo il diritto di modificare questi termini in qualsiasi momento. Le modifiche verranno pubblicate su questa pagina con una data di \"Ultimo aggiornamento\" aggiornata. L'uso continuato del Servizio dopo le modifiche costituisce accettazione dei nuovi termini."
+      },
+      "contact": {
+        "title": "Informazioni di contatto",
+        "content": "Per domande su questi Termini di Servizio, contattaci all'indirizzo: {legalEmail}"
+      }
+    }
+  },
+  "privacyPage": {
+    "title": "Informativa sulla privacy",
+    "sections": {
+      "introduction": {
+        "title": "Introduzione",
+        "content": "{siteName} (\"noi\" o \"nostro\") rispetta la tua privacy. Questa Informativa sulla Privacy spiega come raccogliamo, utilizziamo e proteggiamo le tue informazioni personali quando utilizzi il nostro sito web su {siteUrl}."
+      },
+      "data-we-collect": {
+        "title": "Dati che raccogliamo",
+        "providedTitle": "Informazioni che fornisci",
+        "provided1": "Nome e indirizzo email",
+        "provided2": "Password (memorizzata in forma crittografata)",
+        "provided3": "Preferenze di visualizzazione (lingua, valuta)",
+        "provided4": "Prodotti preferiti e cronologia di navigazione",
+        "autoTitle": "Informazioni raccolte automaticamente",
+        "auto1": "Indirizzo IP",
+        "auto2": "Tipo e versione del browser",
+        "auto3": "Informazioni sul dispositivo",
+        "auto4": "Pagine visitate e tempo trascorso",
+        "auto5": "URL di provenienza",
+        "auto6": "Timestamp delle visite"
+      },
+      "how-we-use": {
+        "title": "Come utilizziamo i tuoi dati",
+        "content": "Utilizziamo i tuoi dati per:",
+        "item1": "Fornire e mantenere il Servizio",
+        "item2": "Gestire il tuo account e le preferenze",
+        "item3": "Salvare i tuoi preferiti e la cronologia di navigazione",
+        "item4": "Inviare email transazionali (verifica account, reimpostazione password)",
+        "item5": "Migliorare il nostro Servizio tramite analisi",
+        "item6": "Rispondere alle richieste di supporto"
+      },
+      "cookies": {
+        "title": "Cookie",
+        "content": "Utilizziamo i seguenti tipi di cookie:",
+        "essentialTitle": "Cookie essenziali",
+        "essentialContent": "Necessari per funzionalità di base come l'autenticazione e le preferenze utente. Non possono essere disattivati.",
+        "analyticsTitle": "Cookie analitici",
+        "analyticsContent": "Ci aiutano a capire come i visitatori utilizzano il nostro sito tramite Google Analytics. Possono essere disattivati tramite il nostro banner dei cookie.",
+        "footer": "Non utilizziamo cookie pubblicitari o di tracciamento."
+      },
+      "third-party-services": {
+        "title": "Servizi di terze parti",
+        "content": "Utilizziamo i seguenti servizi di terze parti:",
+        "item1": "Google Analytics — per l'analisi del traffico del sito web",
+        "item2": "Piattaforme di agenti di acquisto — quando clicchi sui link di acquisto, vieni reindirizzato a piattaforme di terze parti con le proprie informative sulla privacy",
+        "footer": "Ti consigliamo di consultare le informative sulla privacy di qualsiasi piattaforma di agenti che utilizzi."
+      },
+      "data-sharing": {
+        "title": "Condivisione dei dati",
+        "content": "NON vendiamo i tuoi dati personali. Potremmo condividere i dati con:",
+        "item1": "Fornitori di servizi che aiutano a gestire la nostra piattaforma (hosting, email)",
+        "item2": "Autorità giudiziarie quando richiesto dalla legge",
+        "footer": "Non condividiamo i tuoi dati con agenti di acquisto o venditori di prodotti."
+      },
+      "international-transfers": {
+        "title": "Trasferimenti internazionali di dati",
+        "content": "I tuoi dati potrebbero essere elaborati in paesi al di fuori della tua residenza. Implementiamo misure di salvaguardia appropriate, incluse le Clausole Contrattuali Standard (SCCs), per proteggere i tuoi dati durante i trasferimenti internazionali."
+      },
+      "data-retention": {
+        "title": "Conservazione dei dati",
+        "item1": "Dati dell'account: conservati fino alla cancellazione dell'account, poi eliminati definitivamente entro 30 giorni",
+        "item2": "Dati analitici: conservati per 26 mesi",
+        "item3": "Log del server: conservati per 90 giorni"
+      },
+      "your-rights": {
+        "title": "I tuoi diritti (GDPR)",
+        "content": "Se ti trovi nell'UE/SEE, hai il diritto di:",
+        "item1": "Accedere ai tuoi dati personali",
+        "item2": "Rettificare dati inesatti",
+        "item3": "Cancellare i tuoi dati (\"diritto all'oblio\")",
+        "item4": "Esportare i tuoi dati (portabilità dei dati)",
+        "item5": "Opporti al trattamento",
+        "item6": "Limitare il trattamento",
+        "footer": "Per esercitare questi diritti, contattaci all'indirizzo {privacyEmail}."
+      },
+      "security": {
+        "title": "Sicurezza",
+        "content": "Implementiamo misure di sicurezza standard del settore:",
+        "item1": "Crittografia HTTPS/TLS per tutte le connessioni",
+        "item2": "Hashing delle password con bcrypt",
+        "item3": "Aggiornamenti di sicurezza regolari",
+        "item4": "Controlli di accesso e monitoraggio",
+        "footer": "Nessun metodo di trasmissione è sicuro al 100%. Sebbene ci impegniamo a proteggere i tuoi dati, non possiamo garantire una sicurezza assoluta."
+      },
+      "changes-to-policy": {
+        "title": "Modifiche a questa informativa",
+        "content": "Potremmo aggiornare questa Informativa sulla Privacy di tanto in tanto. Ti informeremo di modifiche significative via email o tramite un avviso sul nostro sito web. L'uso continuato dopo le modifiche costituisce accettazione."
+      },
+      "contact": {
+        "title": "Contattaci",
+        "content": "Per domande relative alla privacy o per esercitare i tuoi diritti, scrivici a: {privacyEmail}"
+      }
+    }
+  },
+  "cookiesPage": {
+    "title": "Politica sui cookie",
+    "sections": {
+      "introduction": {
+        "title": "Introduzione",
+        "content": "Questa politica sui cookie spiega cosa sono i cookie, come {siteName} (\"noi\") utilizza i cookie sul nostro sito web e le tue scelte riguardo ai cookie. I cookie sono piccoli file di testo memorizzati sul tuo dispositivo quando visiti un sito web. Aiutano il sito a ricordare le tue preferenze e a migliorare la tua esperienza di navigazione."
+      },
+      "essential-cookies": {
+        "title": "Cookie essenziali",
+        "content": "I cookie essenziali sono necessari per il funzionamento di base del nostro sito web. Questi cookie non possono essere disattivati poiché sono richiesti per le funzionalità principali:",
+        "item1": "Cookie di sessione — mantengono la tua sessione mentre navighi sul nostro sito web",
+        "item2": "Cookie di autenticazione — ricordano il tuo stato di accesso per mantenerti connesso",
+        "item3": "Cookie di preferenze — memorizzano le tue preferenze di lingua e valuta"
+      },
+      "analytics-cookies": {
+        "title": "Cookie analitici",
+        "content": "Utilizziamo cookie analitici per capire come i visitatori interagiscono con il nostro sito web. Questo ci aiuta a migliorare i nostri servizi e l'esperienza utente:",
+        "item1": "_ga — cookie di Google Analytics che distingue gli utenti unici (scade dopo 2 anni)",
+        "item2": "_ga_* — cookie di Google Analytics utilizzato per persistere lo stato della sessione (scade dopo 2 anni)",
+        "item3": "_gid — cookie di Google Analytics che distingue gli utenti (scade dopo 24 ore)"
+      },
+      "marketing-cookies": {
+        "title": "Cookie di marketing",
+        "content": "Attualmente non utilizziamo cookie di marketing o pubblicitari. Se li introdurremo in futuro, aggiorneremo questa politica e richiederemo il tuo consenso prima di impostare qualsiasi cookie di marketing."
+      },
+      "cookie-management": {
+        "title": "Gestione dei cookie",
+        "content": "Puoi controllare e gestire i cookie attraverso le impostazioni del tuo browser. La maggior parte dei browser ti consente di:",
+        "item1": "Visualizzare quali cookie sono memorizzati ed eliminarli singolarmente",
+        "item2": "Bloccare i cookie di terze parti",
+        "item3": "Bloccare i cookie da siti specifici",
+        "item4": "Eliminare tutti i cookie alla chiusura del browser",
+        "footer": "Tieni presente che la disattivazione dei cookie essenziali potrebbe influire sulla funzionalità del nostro sito web e impedirti di utilizzare alcune funzionalità."
+      },
+      "third-party-cookies": {
+        "title": "Cookie di terze parti",
+        "content": "Alcuni cookie sul nostro sito web sono impostati da servizi di terze parti:",
+        "item1": "Google Analytics — per l'analisi del traffico web e le statistiche di utilizzo",
+        "item2": "Piattaforme di agenti di acquisto — quando clicchi su link esterni, quelle piattaforme potrebbero impostare i propri cookie",
+        "footer": "Non controlliamo i cookie di terze parti. Ti consigliamo di consultare le politiche sui cookie di qualsiasi servizio di terze parti con cui interagisci attraverso il nostro sito web."
+      },
+      "data-retention": {
+        "title": "Conservazione dei dati",
+        "content": "I diversi cookie vengono conservati per periodi diversi:",
+        "item1": "Cookie di sessione — eliminati automaticamente alla chiusura del browser",
+        "item2": "Cookie di preferenze — conservati fino a 1 anno",
+        "item3": "Cookie analitici — conservati fino a 2 anni"
+      },
+      "your-choices": {
+        "title": "Le tue scelte",
+        "content": "In base al GDPR e al CCPA, hai diritti riguardo ai dati raccolti tramite i cookie:",
+        "item1": "Puoi rifiutare i cookie analitici tramite le nostre impostazioni dei cookie",
+        "item2": "Puoi configurare il tuo browser per rifiutare i cookie non essenziali",
+        "item3": "Puoi richiedere informazioni su quali dati abbiamo raccolto su di te",
+        "item4": "Puoi richiedere la cancellazione dei dati raccolti tramite i cookie contattandoci"
+      },
+      "contact": {
+        "title": "Contattaci",
+        "content": "Se hai domande sul nostro utilizzo dei cookie, contattaci a: {privacyEmail}"
+      }
+    }
+  },
+  "aboutPage": {
+    "title": "Chi Siamo",
+    "sections": {
+      "who-we-are": {
+        "title": "Chi Siamo",
+        "content": "{siteName} è una piattaforma di scoperta prodotti — non un negozio. Curiamo e organizziamo migliaia di prodotti da piattaforme e-commerce cinesi come Weidian, Taobao e 1688, rendendo facile la navigazione, il confronto e la ricerca dei prodotti."
+      },
+      "our-mission": {
+        "title": "La Nostra Missione",
+        "content": "La nostra missione è colmare il divario tra acquirenti internazionali e il vasto mercato cinese. Crediamo che tutti dovrebbero avere accesso a prodotti di qualità a prezzi equi, indipendentemente dalle barriere linguistiche."
+      },
+      "how-it-works": {
+        "title": "Come Funziona",
+        "content": "{siteName} semplifica il processo di scoperta in tre semplici passaggi:",
+        "step1": "Scopri — Esplora il nostro catalogo curato con foto dettagliate, prezzi e specifiche",
+        "step2": "Clicca — Quando trovi qualcosa che ti piace, clicca per andare al prodotto sulla piattaforma originale",
+        "step3": "Acquista — Compra tramite il tuo agente di acquisto preferito (daigou) come Kakobuy, Sugargoo o altri",
+        "learnMore": "Vuoi saperne di più sul processo?",
+        "learnMoreLink": "Consulta la nostra guida dettagliata"
+      },
+      "affiliate-disclosure": {
+        "title": "Divulgazione Affiliazione",
+        "content": "{siteName} può contenere link di affiliazione. Quando clicchi su determinati link e acquisti tramite un agente, potremmo ricevere una piccola commissione senza costi aggiuntivi per te. Questo ci aiuta a mantenere e migliorare la piattaforma. Ci impegniamo per la trasparenza — le relazioni di affiliazione non influenzano mai la nostra selezione di prodotti."
+      },
+      "independence": {
+        "title": "Dichiarazione di Indipendenza",
+        "content": "{siteName} è una piattaforma indipendente. Non siamo affiliati, approvati o ufficialmente collegati a nessun marchio, produttore, agente di acquisto o piattaforma e-commerce presente sul nostro sito. Tutti i nomi dei prodotti, loghi e marchi sono di proprietà dei rispettivi titolari. Il nostro ruolo è esclusivamente aiutarti a scoprire prodotti — tutte le transazioni avvengono tra te e piattaforme di terze parti."
+      }
+    }
+  },
+  "contactPage": {
+    "title": "Contattaci",
+    "sections": {
+      "get-in-touch": {
+        "title": "Mettiti in Contatto",
+        "content": "Ci farebbe piacere sentirti! Che tu abbia domande sulla piattaforma, suggerimenti per miglioramenti o bisogno di assistenza, il nostro team è qui per aiutarti. Normalmente rispondiamo entro 24-48 ore."
+      },
+      "email": {
+        "title": "Email",
+        "generalLabel": "Supporto Generale:",
+        "generalDesc": "Domande sulla piattaforma, elenchi prodotti o richieste generali",
+        "privacyLabel": "Richieste Privacy:",
+        "privacyDesc": "Protezione dati, richieste GDPR o preoccupazioni sulla privacy"
+      },
+      "community": {
+        "title": "Comunità",
+        "content": "Unisciti alla nostra comunità per connetterti con altri acquirenti, condividere scoperte e ottenere aiuto da acquirenti esperti:",
+        "discord": "Chatta con la comunità e ottieni aiuto in tempo reale",
+        "telegram": "Aggiornamenti, offerte e discussioni della comunità"
+      },
+      "important-note": {
+        "title": "Nota Importante",
+        "content": "{siteName} è una piattaforma di scoperta prodotti — non gestiamo ordini, spedizioni o pagamenti. Per domande sullo stato dell'ordine, tracciamento spedizioni, problemi di pagamento o rimborsi, contatta direttamente il tuo agente di acquisto."
+      }
+    }
+  },
+  "shippingPage": {
+    "title": "Guida alla Spedizione",
+    "sections": {
+      "introduction": {
+        "title": "Introduzione",
+        "content": "{siteName} è una piattaforma di scoperta prodotti — non spediamo prodotti direttamente. Quando acquisti tramite un agente di acquisto, gestiscono tutta la logistica. Questa guida spiega come funziona tipicamente il processo di spedizione."
+      },
+      "how-shipping-works": {
+        "title": "Come Funziona la Spedizione",
+        "content": "Quando acquisti prodotti trovati su {siteName} tramite un agente, il processo di spedizione segue generalmente questi passaggi:",
+        "step1": "Ordine — Effettui un ordine sulla piattaforma del tuo agente, che acquista l'articolo dal venditore cinese per tuo conto",
+        "step2": "Consegna Nazionale — Il venditore spedisce l'articolo al magazzino del tuo agente in Cina (di solito 2-5 giorni)",
+        "step3": "QC e Consolidamento — L'agente riceve, ispeziona e fotografa i tuoi articoli. Puoi consolidare più ordini in un unico pacco",
+        "step4": "Spedizione Internazionale — Una volta soddisfatto delle foto QC, l'agente spedisce il pacco al tuo indirizzo"
+      },
+      "shipping-methods": {
+        "title": "Metodi di Spedizione",
+        "content": "La maggior parte degli agenti offre diverse opzioni di spedizione internazionale:",
+        "method1": "EMS / ePacket — Servizio postale conveniente, normalmente 10-20 giorni lavorativi. Buon rapporto qualità-prezzo",
+        "method2": "DHL / FedEx / UPS — Servizi corriere espresso, normalmente 5-10 giorni lavorativi. Più veloce ma più costoso",
+        "method3": "Trasporto Marittimo — Opzione economica per articoli pesanti, normalmente 30-60 giorni. Ideale per ordini grandi",
+        "method4": "Linee Speciali — Rotte di spedizione dell'agente ottimizzate per determinate regioni"
+      },
+      "shipping-tips": {
+        "title": "Consigli di Spedizione",
+        "tip1": "Consolida i pacchi — Combina più ordini in un'unica spedizione per risparmiare sui costi di spedizione internazionale",
+        "tip2": "Controlla articoli con restrizioni — Alcuni prodotti (batterie, liquidi, articoli di marca) possono avere restrizioni di spedizione",
+        "tip3": "Considera l'assicurazione — Per articoli di valore, è consigliata l'assicurazione sulla spedizione",
+        "tip4": "Dichiara correttamente — Assicurati che il tuo agente dichiari correttamente contenuto e valore del pacco"
+      },
+      "need-help": {
+        "title": "Hai Bisogno di Aiuto?",
+        "content": "Per domande specifiche su tariffe di spedizione, tracciamento o problemi di consegna, contatta direttamente il servizio clienti del tuo agente. Per domande generali, visita il nostro",
+        "helpLink": "Centro Assistenza"
+      }
+    }
+  },
+  "returnsPage": {
+    "title": "Resi e Rimborsi",
+    "sections": {
+      "introduction": {
+        "title": "Introduzione",
+        "content": "{siteName} è una piattaforma di scoperta prodotti — non vendiamo prodotti e non gestiamo resi. Tutti gli acquisti avvengono tramite agenti di acquisto di terze parti, e le politiche di reso sono gestite interamente da quelle piattaforme."
+      },
+      "how-returns-work": {
+        "title": "Come Funzionano i Resi",
+        "content": "I resi quando si acquista tramite agenti funzionano diversamente dallo shopping online tradizionale. Ci sono generalmente due scenari:",
+        "option1": "Prima della spedizione internazionale (fase QC) — Se non sei soddisfatto delle foto QC, puoi generalmente richiedere un reso al venditore cinese tramite il tuo agente. Spesso è gratuito o con un piccolo costo di spedizione nazionale",
+        "option2": "Dopo la spedizione internazionale — I resi dopo la spedizione internazionale sono tipicamente molto più difficili e costosi, poiché dovresti rispedire l'articolo in Cina"
+      },
+      "qc-photos": {
+        "title": "Foto QC — La Tua Migliore Protezione",
+        "content": "Le foto di controllo qualità (QC) sono lo strumento più importante quando acquisti tramite agenti. Quando gli articoli arrivano al magazzino dell'agente, vengono scattate foto dettagliate per la tua revisione. Questa è la tua opportunità di ispezionare l'articolo prima della spedizione internazionale. Controlla sempre attentamente difetti, taglie errate o articoli sbagliati."
+      },
+      "refund-process": {
+        "title": "Processo di Rimborso",
+        "content": "Quando un reso viene approvato dal venditore, i rimborsi vengono generalmente accreditati sul saldo del tuo account dell'agente anziché sul metodo di pagamento originale. I tempi variano per piattaforma e venditore, di solito 3-7 giorni lavorativi. Ogni agente ha le proprie politiche di rimborso."
+      },
+      "need-help": {
+        "title": "Hai Bisogno di Aiuto?",
+        "content": "Per domande specifiche su resi, rimborsi o problemi con ordini, contatta direttamente il servizio clienti del tuo agente. Per domande generali, visita il nostro",
+        "helpLink": "Centro Assistenza"
+      }
+    }
+  }
+}

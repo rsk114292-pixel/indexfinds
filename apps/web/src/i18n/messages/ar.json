@@ -1,0 +1,1467 @@
+{
+  "common": {
+    "login": "تسجيل الدخول",
+    "signUp": "إنشاء حساب",
+    "logout": "تسجيل الخروج",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "clearAll": "مسح الكل",
+    "loading": "جارٍ التحميل...",
+    "error": "خطأ",
+    "success": "تم بنجاح",
+    "noResults": "لا توجد نتائج",
+    "home": "الرئيسية",
+    "back": "رجوع",
+    "viewAll": "عرض الكل",
+    "more": "المزيد",
+    "noData": "لا توجد بيانات",
+    "noMore": "— لا مزيد —",
+    "loadFailed": "فشل التحميل، انقر للمحاولة مجدداً",
+    "confirm": "تأكيد",
+    "pullToRefresh": "اسحب للتحديث",
+    "releaseToRefresh": "أفلت للتحديث",
+    "refreshing": "جارٍ التحديث...",
+    "backToTop": "العودة للأعلى",
+    "goBack": "العودة",
+    "skipToContent": "تخطي إلى المحتوى الرئيسي",
+    "upload": "رفع",
+    "imageUploadSuccess": "تم رفع الصورة بنجاح!",
+    "imageUploadFailed": "فشل رفع الصورة!",
+    "imageFilesOnly": "يمكنك رفع ملفات الصور فقط!",
+    "imageTooLarge": "يجب أن يكون حجم الصورة أقل من {maxSize} ميغابايت!",
+    "close": "إغلاق",
+    "showMore": "عرض المزيد",
+    "showLess": "عرض أقل",
+    "showMoreCount": "عرض المزيد (+{count})"
+  },
+  "tabBar": {
+    "home": "الرئيسية",
+    "categories": "التصنيفات",
+    "newArrivals": "جديد",
+    "allProducts": "المنتجات",
+    "favorites": "المفضلة",
+    "account": "حسابي",
+    "loginRequired": "يلزم تسجيل الدخول",
+    "loginRequiredDesc": "سجّل دخولك لعرض المفضلة وحسابك",
+    "goLogin": "تسجيل الدخول",
+    "skipLogin": "ليس الآن"
+  },
+  "header": {
+    "categories": "التصنيفات",
+    "brands": "العلامات التجارية",
+    "newArrivals": "وصل حديثاً",
+    "allProducts": "جميع المنتجات",
+    "myAccount": "حسابي",
+    "switchLanguage": "تغيير اللغة",
+    "closeMenu": "إغلاق القائمة",
+    "openMenu": "فتح القائمة",
+    "search": "بحث",
+    "userMenu": "قائمة المستخدم",
+    "mainNavigation": "التنقل الرئيسي",
+    "mobileNavigation": "تنقل الهاتف",
+    "platformSelect": "اختر المنصة",
+    "settings": "الإعدادات",
+    "language": "اللغة",
+    "noPlatformSelected": "اختر وكيل",
+    "menu": "القائمة"
+  },
+  "drawer": {
+    "menu": "القائمة",
+    "home": "الرئيسية",
+    "categories": "التصنيفات",
+    "brands": "العلامات التجارية",
+    "newArrivals": "وصل حديثاً",
+    "allProducts": "جميع المنتجات",
+    "howItWorks": "كيف يعمل",
+    "helpCenter": "مركز المساعدة",
+    "blog": "المدونة",
+    "referralProgram": "برنامج الإحالة",
+    "discord": "ديسكورد",
+    "telegram": "تيليجرام",
+    "language": "اللغة",
+    "currency": "العملة",
+    "platform": "المنصة",
+    "selectPlatform": "اختر المنصة",
+    "terms": "شروط الخدمة",
+    "privacy": "سياسة الخصوصية",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب"
+  },
+  "currency": {
+    "label": "العملة",
+    "CNY": "¥ يوان",
+    "USD": "$ دولار",
+    "EUR": "€ يورو",
+    "GBP": "£ جنيه",
+    "CAD": "$ دولار كندي",
+    "AUD": "$ دولار أسترالي",
+    "approximateNotice": "الأسعار المعروضة بـ {currency} تقريبية وللاستدلال فقط."
+  },
+  "footer": {
+    "about": "عن الموقع",
+    "shop": "التسوق",
+    "support": "الدعم",
+    "legal": "قانوني",
+    "aboutUs": "من نحن",
+    "howItWorks": "كيف يعمل",
+    "allCategories": "جميع التصنيفات",
+    "allBrands": "جميع العلامات التجارية",
+    "newArrivals": "وصل حديثاً",
+    "bestSellers": "الأكثر مبيعاً",
+    "helpCenter": "مركز المساعدة",
+    "shippingInfo": "معلومات الشحن",
+    "returns": "الإرجاع",
+    "contactUs": "اتصل بنا",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termsOfService": "شروط الخدمة",
+    "cookiePolicy": "سياسة ملفات تعريف الارتباط",
+    "allRightsReserved": "© {year} جميع الحقوق محفوظة."
+  },
+  "search": {
+    "placeholder": "ابحث عن منتجات أو علامات تجارية أو تصنيفات...",
+    "searching": "جارٍ البحث...",
+    "noResults": "لم يتم العثور على نتائج",
+    "hotSearches": "عمليات بحث رائجة",
+    "searchHistory": "سجل البحث",
+    "brands": "العلامات التجارية",
+    "categories": "التصنيفات",
+    "products": "المنتجات",
+    "productCount": "{count} منتج",
+    "itemCount": "{count} عنصر",
+    "enterKeyword": "أدخل كلمة للبحث",
+    "enterKeywordDesc": "جرّب البحث عن علامات تجارية أو تصنيفات أو أسماء منتجات",
+    "searchError": "خطأ في البحث",
+    "noResultsFor": "لم يتم العثور على نتائج لـ \"{query}\"",
+    "noResultsForDesc": "جرّب كلمات مختلفة أو تحقق من الإملاء",
+    "resultsFor": "نتائج البحث عن \"{query}\"",
+    "productsFound": "تم العثور على {count} منتج",
+    "popularProducts": "منتجات شائعة قد تعجبك",
+    "noProductsFor": "لم يتم العثور على منتجات لـ \"{query}\"",
+    "noProductsForDesc": "جرّب كلمات مختلفة أو أزل بعض الفلاتر",
+    "cancel": "إلغاء",
+    "entryHint": "ابحث عن منتجات أو علامات تجارية",
+    "searchFor": "ابحث عن \"{query}\"",
+    "clearHistory": "مسح",
+    "photoSearch": "بحث بالصورة",
+    "photoSearchDesc": "ارفع صورة للعثور على منتجات مشابهة",
+    "recentSearches": "الأخيرة",
+    "requestProduct": {
+      "title": "لم تجد المنتج المناسب؟",
+      "description": "أرسل طلب توفير وسيراجعه فريقنا لإدراجه لاحقًا.",
+      "button": "إرسال الطلب",
+      "modalTitle": "إرسال طلب توفير",
+      "sheetDesc": "أخبرنا بما تبحث عنه. يرجى إضافة وصف أو صورة واحدة على الأقل.",
+      "productName": "اسم المنتج",
+      "productNamePlaceholder": "على سبيل المثال: Nike Air Max 95 x Corteiz",
+      "descriptionLabel": "الوصف",
+      "descriptionPlaceholder": "اللون أو النمط أو الإصدار أو تفاصيل الشعار أو دلائل البائع أو أي معلومات أخرى تساعدنا في العثور عليه.",
+      "referenceUrlLabel": "رابط مرجعي",
+      "referenceUrlPlaceholder": "اختياري: Yupoo أو Weidian أو Taobao أو أي رابط مرجعي آخر",
+      "budgetLabel": "الميزانية",
+      "budgetMinPlaceholder": "الحد الأدنى",
+      "budgetMaxPlaceholder": "الحد الأقصى",
+      "imagesLabel": "صور مرجعية",
+      "imagesHint": "يمكنك رفع ما يصل إلى 4 صور. يتم دعم JPG وPNG وWebP وGIF.",
+      "uploadButton": "رفع",
+      "cancel": "إلغاء",
+      "submit": "إرسال الطلب",
+      "success": "تم إرسال الطلب بنجاح.",
+      "submitFailed": "تعذر إرسال الطلب",
+      "loginFirst": "يرجى تسجيل الدخول أولاً",
+      "imageTypeError": "يتم دعم صور JPG وPNG وWebP وGIF فقط",
+      "imageSizeError": "يجب ألا يزيد حجم كل صورة عن {size} ميجابايت",
+      "imageUploadFailed": "فشل رفع الصورة",
+      "productNameRequired": "يرجى إدخال اسم المنتج",
+      "requireContent": "يرجى إضافة وصف أو رفع صورة واحدة على الأقل",
+      "referenceUrlInvalid": "يرجى إدخال رابط مرجعي صالح",
+      "budgetRangeInvalid": "لا يمكن أن تكون الميزانية الدنيا أكبر من الميزانية القصوى"
+    }
+  },
+  "sort": {
+    "label": "ترتيب المنتجات",
+    "relevance": "الصلة",
+    "newest": "الأحدث",
+    "priceAsc": "السعر: من الأقل للأعلى",
+    "priceDesc": "السعر: من الأعلى للأقل",
+    "popular": "موصى به",
+    "sortBy": "ترتيب"
+  },
+  "filter": {
+    "filters": "الفلاتر",
+    "category": "الفئة",
+    "brands": "العلامات التجارية",
+    "priceRange": "نطاق السعر",
+    "colors": "الألوان",
+    "gender": "الجنس",
+    "styles": "الأنماط",
+    "seasons": "المواسم",
+    "occasions": "المناسبات",
+    "clearAll": "مسح الكل",
+    "clearAllFilters": "مسح جميع الفلاتر",
+    "applyFilters": "تطبيق الفلاتر",
+    "apply": "تطبيق",
+    "openFilters": "فتح الفلاتر",
+    "activeCount": "{count} نشط",
+    "closeFilterPanel": "إغلاق لوحة الفلاتر",
+    "filterPanel": "لوحة الفلاتر",
+    "collapse": "طي",
+    "expand": "توسيع",
+    "filterSuffix": "فلتر",
+    "filtersLabel": "الفلاتر:",
+    "removeFilter": "إزالة الفلتر {label}",
+    "brand": "العلامة التجارية",
+    "color": "اللون",
+    "style": "النمط",
+    "season": "الموسم",
+    "minPrice": "أقل سعر",
+    "maxPrice": "أعلى سعر",
+    "minimumPrice": "الحد الأدنى للسعر",
+    "maximumPrice": "الحد الأقصى للسعر",
+    "men": "رجال",
+    "women": "نساء",
+    "unisex": "للجنسين",
+    "kids": "أطفال",
+    "spring": "ربيع",
+    "summer": "صيف",
+    "fall": "خريف",
+    "winter": "شتاء",
+    "viewItems": "عرض {count} عنصر",
+    "showResults": "عرض النتائج",
+    "showMore": "عرض المزيد",
+    "showLess": "عرض أقل",
+    "showMoreCount": "عرض المزيد (+{count})",
+    "moreCount": "+{count} المزيد",
+    "searchBrands": "البحث عن العلامات التجارية...",
+    "noBrandsFound": "لم يتم العثور على علامات تجارية"
+  },
+  "product": {
+    "addToFavorites": "إضافة للمفضلة",
+    "removeFromFavorites": "إزالة من المفضلة",
+    "favorited": "في المفضلة",
+    "favorite": "مفضلة",
+    "pleaseLoginFirst": "يرجى تسجيل الدخول أولاً",
+    "addedToFavorites": "تمت الإضافة للمفضلة",
+    "removedFromFavorites": "تمت الإزالة من المفضلة",
+    "failedToUpdateFavorite": "فشل تحديث المفضلة",
+    "listView": "عرض قائمة",
+    "gridView": "عرض شبكي",
+    "compactView": "عرض مضغوط",
+    "totalItems": "إجمالي {count} عنصر",
+    "previousPage": "الصفحة السابقة",
+    "nextPage": "الصفحة التالية",
+    "page": "صفحة {page}",
+    "pagination": "التنقل بين الصفحات",
+    "breadcrumb": "مسار التنقل",
+    "save": "حفظ",
+    "share": "مشاركة",
+    "purchaseInfo": "الشراء عبر منصة دايقو",
+    "purchaseInfoDesc": "سيتم توجيهك إلى منصة دايقو الشريكة لإتمام عملية الشراء عند النقر على 'اشترِ الآن'.",
+    "priceRangeLabel": "نطاق السعر: {min} - {max}",
+    "showLess": "عرض أقل",
+    "readMore": "اقرأ المزيد",
+    "skuNotAvailable": "معلومات المواصفات غير متوفرة",
+    "contactSeller": "يرجى التواصل مع البائع لمعرفة خيارات المنتج",
+    "style": "النمط",
+    "styleN": "النمط {n}",
+    "collapseOptions": "طي ↑",
+    "viewAllOptions": "عرض جميع الخيارات ({count}) ↓",
+    "stockAvailable": "المخزون: {count} متوفر",
+    "size": "المقاس",
+    "productDetails": "تفاصيل المنتج",
+    "selectSpec": "يرجى اختيار المواصفات",
+    "linkCopied": "تم نسخ الرابط",
+    "linkCopyFailed": "فشل نسخ الرابط",
+    "tabDescription": "الوصف",
+    "tabAttributes": "المواصفات",
+    "tabQcPhotos": "صور فحص الجودة",
+    "noDescription": "لا يوجد وصف متاح.",
+    "noAttributes": "لا توجد مواصفات متاحة.",
+    "qcPhotosPlaceholder": "ستظهر صور فحص الجودة هنا عند توفرها.",
+    "uploadQcPhotos": "صور فحص الجودة",
+    "completeLook": "أكمل الإطلالة",
+    "youMayAlsoLike": "قد يعجبك أيضاً",
+    "findSimilar": "البحث عن مشابه",
+    "previousImage": "الصورة السابقة",
+    "nextImage": "الصورة التالية",
+    "hot": "رائج",
+    "shareRewards": {
+      "eyebrow": "شارك واكسب",
+      "title": "شارك هذا المنتج واكسب +1 نقطة",
+      "body": "",
+      "pill": "+1 نقطة",
+      "cta": "شارك الآن"
+    }
+  },
+  "auth": {
+    "welcomeBack": "مرحباً بعودتك",
+    "noAccount": "ليس لديك حساب؟",
+    "signUpFree": "سجّل مجاناً",
+    "orContinueWithEmail": "أو تابع بالبريد الإلكتروني",
+    "emailPlaceholder": "البريد الإلكتروني",
+    "passwordPlaceholder": "كلمة المرور",
+    "rememberMe": "تذكرني",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "signIn": "تسجيل الدخول",
+    "loginSuccess": "تم تسجيل الدخول بنجاح!",
+    "loginFailed": "فشل تسجيل الدخول",
+    "createYourAccount": "أنشئ حسابك",
+    "alreadyHaveAccount": "لديك حساب بالفعل؟",
+    "signInLink": "سجّل دخولك",
+    "orRegisterWithEmail": "أو سجّل بالبريد الإلكتروني",
+    "usernamePlaceholder": "اسم المستخدم (اختياري)",
+    "passwordWithLength": "كلمة المرور (6-20 حرفاً)",
+    "confirmPasswordPlaceholder": "تأكيد كلمة المرور",
+    "createAccount": "إنشاء حساب",
+    "agreeTo": "بالتسجيل، أنت توافق على",
+    "termsOfService": "شروط الخدمة",
+    "and": "و",
+    "privacyPolicy": "سياسة الخصوصية",
+    "registrationSuccess": "تم التسجيل بنجاح!",
+    "registrationFailed": "فشل التسجيل",
+    "forgotYourPassword": "نسيت كلمة المرور؟",
+    "forgotPasswordDesc": "أدخل بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور.",
+    "emailOnlyPlaceholder": "البريد الإلكتروني",
+    "sendResetLink": "إرسال رابط إعادة التعيين",
+    "backToSignIn": "العودة لتسجيل الدخول",
+    "checkYourEmail": "تحقق من بريدك الإلكتروني",
+    "checkYourEmailDesc": "إذا كان هناك حساب مرتبط بهذا البريد، فقد أرسلنا رابط إعادة تعيين كلمة المرور. يرجى التحقق من صندوق الوارد ومجلد الرسائل غير المرغوبة.",
+    "failedToSendResetEmail": "فشل إرسال بريد إعادة التعيين",
+    "invalidResetLink": "رابط إعادة تعيين غير صالح",
+    "invalidResetLinkDesc": "رابط إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية. يرجى طلب رابط جديد.",
+    "requestNewLink": "طلب رابط جديد",
+    "passwordResetSuccess": "تم إعادة تعيين كلمة المرور بنجاح",
+    "passwordResetSuccessDesc": "تم تحديث كلمة المرور. يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة.",
+    "goToSignIn": "الذهاب لتسجيل الدخول",
+    "setNewPassword": "تعيين كلمة مرور جديدة",
+    "setNewPasswordDesc": "يجب أن تكون كلمة المرور 8-32 حرفاً وتحتوي على أحرف كبيرة وصغيرة ورقم ورمز خاص.",
+    "newPasswordPlaceholder": "كلمة المرور الجديدة",
+    "confirmNewPasswordPlaceholder": "تأكيد كلمة المرور الجديدة",
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "failedToResetPassword": "فشل إعادة تعيين كلمة المرور",
+    "verifyingEmail": "جارٍ التحقق من بريدك الإلكتروني...",
+    "emailVerified": "تم التحقق من البريد الإلكتروني!",
+    "emailVerifiedDesc": "تم التحقق من بريدك الإلكتروني بنجاح. يمكنك الآن الاستمتاع بجميع الميزات.",
+    "goToHome": "الذهاب للرئيسية",
+    "verificationFailed": "فشل التحقق",
+    "verificationFailedDesc": "رابط التحقق غير صالح أو منتهي الصلاحية.",
+    "invalidVerificationLink": "رابط تحقق غير صالح. لم يتم تقديم رمز.",
+    "failedToVerifyEmail": "فشل التحقق من البريد الإلكتروني",
+    "errorCodes": {
+      "AUTH_INVALID_CREDENTIALS": "بريد إلكتروني أو كلمة مرور غير صحيحة",
+      "AUTH_NO_PASSWORD": "هذا الحساب يستخدم تسجيل الدخول الاجتماعي. يرجى استخدام تسجيل الدخول الاجتماعي أو تعيين كلمة مرور أولاً.",
+      "AUTH_ACCOUNT_LOCKED": "محاولات فاشلة كثيرة. تم قفل الحساب لمدة {remainingMinutes} دقيقة.",
+      "AUTH_OAUTH_ALREADY_LINKED": "هذا الحساب الاجتماعي مرتبط بالفعل بمستخدم آخر",
+      "AUTH_OAUTH_PROVIDER_DUPLICATE": "لديك هذا الحساب الاجتماعي مرتبط بالفعل. يرجى إلغاء ربطه أولاً.",
+      "AUTH_OAUTH_LAST_LOGIN_METHOD": "لا يمكن إلغاء الربط: هذه طريقة تسجيل الدخول الوحيدة. يرجى تعيين كلمة مرور أو ربط حساب آخر أولاً.",
+      "AUTH_OAUTH_NOT_LINKED": "لم يتم العثور على حساب اجتماعي مرتبط لهذا المزوّد",
+      "AUTH_USER_NOT_FOUND": "المستخدم غير موجود"
+    },
+    "validation": {
+      "emailRequired": "يرجى إدخال بريدك الإلكتروني!",
+      "emailInvalid": "يرجى إدخال بريد إلكتروني صالح!",
+      "passwordRequired": "يرجى إدخال كلمة المرور!",
+      "usernameMaxLength": "يجب ألا يتجاوز اسم المستخدم 30 حرفاً!",
+      "passwordMinLength6": "يجب أن تكون كلمة المرور 6 أحرف على الأقل!",
+      "passwordMaxLength20": "يجب ألا تتجاوز كلمة المرور 20 حرفاً!",
+      "confirmPasswordRequired": "يرجى تأكيد كلمة المرور!",
+      "passwordsNotMatch": "كلمتا المرور غير متطابقتين!",
+      "newPasswordRequired": "يرجى إدخال كلمة المرور الجديدة!",
+      "passwordMinLength8": "يجب أن تكون كلمة المرور 8 أحرف على الأقل!",
+      "passwordMaxLength32": "يجب ألا تتجاوز كلمة المرور 32 حرفاً!",
+      "passwordComplexity": "يجب أن تحتوي على أحرف كبيرة وصغيرة ورقم ورمز خاص"
+    },
+    "features": {
+      "heroTitle": "اكتشف أفضل\nالمنتجات والعروض",
+      "heroDesc": "رفيقك الذكي للتسوق. ابحث وقارن ووفّر عبر آلاف البائعين.",
+      "smartSearch": "بحث ذكي",
+      "smartSearchDesc": "اعثر على أفضل العروض عبر آلاف المنتجات",
+      "priceTracking": "تتبع الأسعار",
+      "priceTrackingDesc": "تتبع تغيرات الأسعار واحصل على إشعارات عند الانخفاض",
+      "trustedSources": "مصادر موثوقة",
+      "trustedSourcesDesc": "بائعون معتمدون ومنتجات أصلية فقط",
+      "allRightsReserved": "جميع الحقوق محفوظة."
+    },
+    "register": {
+      "heroTitle": "ابدأ رحلتك\nمعنا اليوم",
+      "heroDesc": "انضم لآلاف المتسوقين الأذكياء الذين يوفرون الوقت والمال في إيجاد أفضل المنتجات.",
+      "statsProducts": "منتجات",
+      "statsBrands": "علامات تجارية",
+      "statsVerified": "موثّق",
+      "testimonial": "هذه المنصة وفّرت عليّ ساعات من البحث. وجدت ما أحتاجه بالضبط بأفضل سعر.",
+      "verifiedBuyer": "مشترٍ موثّق"
+    }
+  },
+  "home": {
+    "hero": {
+      "discover": "اكتشف ",
+      "products": "المنتجات",
+      "fromChina": " من الصين",
+      "descLine1": "تصفّح وابحث واعثر على المنتجات الصينية الأصلية بسهولة.",
+      "descLine2": "عرض كامل للمواصفات، صور فحص جودة حقيقية، وتكامل مع دايقو.",
+      "featureAI": "مدعوم بالذكاء الاصطناعي",
+      "featureVisualSearch": "البحث بالصور",
+      "featureProducts": "{count}+ منتج",
+      "featureBrands": "{count}+ علامة تجارية"
+    },
+    "howItWorks": {
+      "title": "كيف يعمل",
+      "subtitle": "من الاكتشاف إلى التوصيل في 4 خطوات بسيطة",
+      "searchTitle": "ابحث",
+      "searchDesc": "اعثر على المنتجات بالاسم أو العلامة التجارية أو الصورة أو التصنيف.",
+      "compareTitle": "قارن",
+      "compareDesc": "اطّلع على المواصفات والأسعار والمقاسات والألوان من عدة بائعين.",
+      "chooseTitle": "اختر",
+      "chooseDesc": "اختر الخيار الأفضل واحصل على رابط الشراء.",
+      "receiveTitle": "استلم",
+      "receiveDesc": "اطلب عبر وكيلك واحصل على التوصيل لأي مكان في العالم."
+    },
+    "featuredBrands": {
+      "title": "علامات تجارية مميزة"
+    },
+    "popularCategories": {
+      "title": "تصنيفات شائعة",
+      "items": "{count} عنصر"
+    },
+    "showcase": {
+      "newArrivals": "وصل حديثاً",
+      "popular": "شائع",
+      "trending": "رائج",
+      "loadMore": "تحميل المزيد من المنتجات",
+      "noProducts": "لا توجد منتجات متاحة بعد",
+      "browseMoreLabel": "هل تريد متابعة تصفح المزيد؟",
+      "browseMoreCta": "تصفح المزيد من {tab}"
+    },
+    "cta": {
+      "comingSoon": "قريباً",
+      "qcCommunity": "مجتمع فحص الجودة",
+      "qcCommunityDesc": "صور فحص جودة حقيقية من مشترين حقيقيين. شاهد ما ستحصل عليه بالضبط قبل الطلب — موثّق من المجتمع، بدون مفاجآت.",
+      "startDiscovering": "ابدأ اكتشاف المنتجات الآن",
+      "startDiscoveringDesc": "تصفّح آلاف المنتجات الصينية الأصلية بتفاصيل كاملة وصور حقيقية وأسعار تنافسية.",
+      "browseProducts": "تصفّح المنتجات",
+      "exploreBrands": "استكشف العلامات التجارية"
+    },
+    "rewardsSpotlight": {
+      "eyebrow": "المكافآت",
+      "title": "سجّل الآن وابدأ في كسب النقاط اليوم! 🎉",
+      "body": "ادعُ أصدقاءك واحصل على نقاط مكافآت، ثم حوّل نقاطك إلى أموال حقيقية. 💰",
+      "mobileTitle": "ادعُ الأصدقاء واكسب النقاط 🎉",
+      "pointsRate": "10 نقاط = 1 $",
+      "cashoutMethods": "PayPal / Crypto",
+      "primaryCta": "عرض النقاط",
+      "secondaryCta": "دعوة الأصدقاء",
+      "floatingShare": "+1 مشاركة منتج",
+      "floatingVerify": "+5 توثيق البريد",
+      "floatingFavorite": "+2 أول مفضلة",
+      "progress": "تحتاج إلى 45 نقطة إضافية للسحب",
+      "progressCaption": "يمكن للأعضاء الجدد فتح السحب بسرعة من خلال بعض الخطوات البسيطة."
+    }
+  },
+  "brands": {
+    "title": "العلامات التجارية",
+    "discoverCount": "اكتشف {count} علامة تجارية من مجموعتنا",
+    "searchPlaceholder": "ابحث عن العلامات التجارية...",
+    "searchResults": "نتائج البحث ({count})",
+    "noSearchResults": "لا توجد علامات تجارية تطابق بحثك",
+    "featuredBrands": "علامات تجارية مميزة",
+    "allBrands": "جميع العلامات التجارية",
+    "brandCount": "{count} علامة تجارية",
+    "errorLoading": "خطأ في تحميل العلامات التجارية",
+    "noBrands": "لم يتم العثور على علامات تجارية",
+    "notFound": "العلامة التجارية غير موجودة",
+    "notFoundDesc": "العلامة التجارية التي تبحث عنها غير موجودة.",
+    "popular": "شائع",
+    "productCount": "{count} منتج",
+    "noProducts": "لم يتم العثور على منتجات لهذه العلامة التجارية",
+    "noProductsDesc": "جرّب إزالة بعض الفلاتر أو عد لاحقاً"
+  },
+  "categories": {
+    "title": "تصفّح التصنيفات",
+    "subtitle": "اعثر على ما تبحث عنه بالضبط",
+    "errorLoading": "خطأ في تحميل التصنيفات",
+    "noCategories": "لم يتم العثور على تصنيفات",
+    "itemCount": "{count} عنصر",
+    "moreCount": "+{count} المزيد",
+    "trendingNow": "رائج الآن",
+    "notFound": "التصنيف غير موجود",
+    "productCount": "{count} منتج",
+    "noProducts": "لم يتم العثور على منتجات في هذا التصنيف",
+    "noProductsDesc": "جرّب إزالة بعض الفلاتر"
+  },
+  "account": {
+    "overview": "نظرة عامة",
+    "favorites": "المفضلة",
+    "browsingHistory": "سجل التصفح",
+    "referral": "الإحالة",
+    "security": "الأمان",
+    "logOut": "تسجيل الخروج",
+    "loggedOutSuccess": "تم تسجيل الخروج بنجاح",
+    "loginPromptTitle": "مرحباً",
+    "loginPromptDesc": "سجّل دخولك للوصول إلى المفضلة وسجل الطلبات والمزيد",
+    "loginButton": "تسجيل الدخول",
+    "registerButton": "إنشاء حساب",
+    "accountNavigation": "تنقل الحساب",
+    "user": "مستخدم",
+    "avatar": "الصورة الرمزية",
+    "editNickname": "تعديل الاسم المستعار",
+    "verified": "موثّق",
+    "unverified": "غير موثّق",
+    "emailNotVerified": "البريد الإلكتروني غير موثّق",
+    "emailNotVerifiedDesc": "يرجى التحقق من بريدك الإلكتروني للوصول إلى جميع الميزات.",
+    "sendVerificationEmail": "إرسال بريد التحقق",
+    "verificationEmailSent": "تم إرسال بريد التحقق! يرجى التحقق من صندوق الوارد.",
+    "failedToSendVerification": "فشل إرسال بريد التحقق",
+    "usernameLength": "يجب أن يكون اسم المستخدم 2-30 حرفاً",
+    "usernameUpdated": "تم تحديث اسم المستخدم!",
+    "failedToUpdateUsername": "فشل تحديث اسم المستخدم",
+    "statsViewed": "المشاهدات",
+    "statsRefClicks": "نقرات الإحالة",
+    "recentBrowsing": "التصفح الأخير",
+    "noBrowsingHistoryYet": "لا يوجد سجل تصفح بعد",
+    "noImage": "لا توجد صورة",
+    "securitySettings": "إعدادات الأمان",
+    "securitySettingsDesc": "كلمة المرور، الجلسات، الحسابات المرتبطة",
+    "myFavorites": "مفضلتي",
+    "sessionExpired": "انتهت الجلسة. يرجى تسجيل الدخول مجدداً.",
+    "failedToLoadFavorites": "فشل تحميل المفضلة. يرجى المحاولة لاحقاً.",
+    "noFavoritesYet": "لا توجد مفضلات بعد",
+    "noFavoritesDesc": "المنتجات التي تحفظها ستظهر هنا",
+    "justNow": "الآن",
+    "minutesAgo": "منذ {count} دقيقة",
+    "hoursAgo": "منذ {count} ساعة",
+    "daysAgo": "منذ {count} يوم",
+    "historyLimitSet": "تم تعيين حد السجل إلى {value}",
+    "historyCount": "{count} عنصر",
+    "clear": "مسح",
+    "yourPreferences": "تفضيلاتك:",
+    "prefBrands": "العلامات التجارية: {brands}",
+    "prefCategories": "التصنيفات: {categories}",
+    "noBrowsingHistory": "لا يوجد سجل تصفح",
+    "historySaved": "يتم حفظ حتى {max} عنصر، مع التحديث التلقائي",
+    "historyCleared": "تم مسح سجل التصفح",
+    "historyLimitLabel": "حد السجل",
+    "clearHistoryLabel": "مسح سجل التصفح",
+    "itemsOption": "{count} عنصر",
+    "referralProgram": "برنامج الإحالة",
+    "language": "اللغة",
+    "unableToLoadReferral": "تعذر تحميل بيانات الإحالة",
+    "totalClicks": "إجمالي النقرات",
+    "conversions": "التحويلات",
+    "yourReferralCode": "رمز الإحالة الخاص بك",
+    "copyCode": "نسخ الرمز",
+    "shareLink": "مشاركة الرابط",
+    "shareLinkDesc": "شارك هذا الرابط مع أصدقائك. عند تسجيلهم، يستفيد الطرفان!",
+    "registrations": "التسجيلات",
+    "totalEarnings": "إجمالي الأرباح",
+    "referralDetails": "المستخدمون المُحالون",
+    "statusRegistered": "مسجّل",
+    "statusConverted": "محوّل",
+    "progressRegistered": "مسجل",
+    "progressEmailVerified": "البريد موثق",
+    "progressProductViews": "المشاهدات",
+    "progressFavorite": "مفضل/نقرة",
+    "shareViaChannels": "مشاركة عبر",
+    "shareInviteTitle": "انضم إلى {siteName} - اكتشف أفضل عروض أزياء الشارع!",
+    "copied": "تم النسخ!",
+    "copyFailed": "فشل النسخ",
+    "allFavorites": "الكل",
+    "done": "تم",
+    "collections": "المجموعات",
+    "createCollection": "مجموعة جديدة",
+    "collectionName": "اسم المجموعة",
+    "collectionNamePlaceholder": "مثال: اختيارات الصيف",
+    "renameCollection": "إعادة تسمية",
+    "deleteCollection": "حذف المجموعة",
+    "deleteCollectionConfirm": "حذف \"{name}\"؟ ستبقى العناصر في مفضلتك.",
+    "collectionCreated": "تم إنشاء المجموعة",
+    "collectionRenamed": "تم إعادة تسمية المجموعة",
+    "collectionDeleted": "تم حذف المجموعة",
+    "collectionLimitReached": "الحد الأقصى {max} مجموعة مسموح بها",
+    "collectionNameExists": "هذا الاسم موجود بالفعل",
+    "addToCollection": "إضافة إلى مجموعة",
+    "removeFromCollection": "إزالة من مجموعة",
+    "addedToCollection": "تمت الإضافة إلى \"{name}\"",
+    "removedFromCollection": "تمت الإزالة من \"{name}\"",
+    "favoriteLimitReached": "الحد الأقصى {max} مفضلة مسموح بها",
+    "sortByTime": "تاريخ الإضافة",
+    "sortByPriceAsc": "السعر: من الأقل للأعلى",
+    "sortByPriceDesc": "السعر: من الأعلى للأقل",
+    "itemCount": "{count} عنصر",
+    "manageCollection": "إدارة",
+    "loginForReferral": "يرجى تسجيل الدخول للحصول على رمز الإحالة",
+    "copyReferralCode": "نسخ رمز الإحالة",
+    "referralShareUrl": "رابط مشاركة الإحالة",
+    "copyShareUrl": "نسخ رابط المشاركة",
+    "avatarUpdated": "تم تحديث الصورة الرمزية!",
+    "avatarUploadFailed": "فشل رفع الصورة الرمزية",
+    "uploadAvatar": "رفع صورة رمزية",
+    "changeAvatar": "تغيير الصورة الرمزية",
+    "avatarAlt": "الصورة الرمزية",
+    "selectImageFile": "يرجى اختيار ملف صورة",
+    "points": "النقاط",
+    "pointsBalance": "رصيد النقاط",
+    "totalEarned": "إجمالي المكتسب",
+    "totalWithdrawn": "إجمالي المسحوب",
+    "checkin": "تسجيل الحضور اليومي",
+    "checkinSuccess": "تم تسجيل الحضور بنجاح!",
+    "alreadyCheckedIn": "تم تسجيل الحضور اليوم بالفعل",
+    "streakDays": "{count} أيام متتالية",
+    "withdraw": "سحب",
+    "withdrawPoints": "سحب النقاط",
+    "withdrawAmount": "المبلغ المراد سحبه",
+    "cashEquivalent": "المعادل النقدي",
+    "paymentMethod": "طريقة الدفع",
+    "paymentAccount": "معلومات الحساب",
+    "submitWithdrawal": "تقديم طلب السحب",
+    "withdrawalSubmitted": "تم تقديم طلب السحب!",
+    "withdrawalFailed": "فشل تقديم طلب السحب",
+    "withdrawAmountRequired": "يرجى إدخال مبلغ صحيح",
+    "insufficientPoints": "رصيد النقاط غير كافٍ",
+    "paymentAccountRequired": "يرجى إدخال معلومات حسابك",
+    "pointsHistory": "سجل النقاط",
+    "noTransactions": "لا توجد معاملات بعد",
+    "withdrawalRecords": "سجل عمليات السحب",
+    "noWithdrawals": "لا توجد سجلات سحب بعد",
+    "pointsUnit": "نقطة",
+    "submittedAt": "تاريخ التقديم",
+    "reviewedAt": "تاريخ المراجعة",
+    "withdrawalPending": "قيد الانتظار",
+    "withdrawalApproved": "تمت الموافقة",
+    "withdrawalRejected": "مرفوض",
+    "withdrawalCancelled": "ملغى",
+    "withdrawalPendingDesc": "طلب السحب الخاص بك قيد المراجعة، يرجى الانتظار.",
+    "transferProof": "إثبات التحويل",
+    "rejectReason": "سبب الرفض",
+    "legacyPaymentMethod": "طريقة سحب قديمة",
+    "withdrawalRejectedRefund": "تم إعادة النقاط إلى حسابك.",
+    "pointsRules": "كيف تكسب النقاط",
+    "ruleCheckin": "تسجيل الدخول اليومي",
+    "ruleCheckinStreak": "مكافأة 7 أيام متتالية",
+    "ruleShare": "مشاركة منتج (حد أقصى 3/يوم)",
+    "ruleRegister": "تسجيل مستخدم جديد",
+    "ruleReferredRegister": "التسجيل عبر رابط الإحالة",
+    "ruleReferralConversion": "مكافأة تحويل الإحالة",
+    "ruleWithdrawRate": "السعر: 10 نقطة = 1$",
+    "ruleWithdrawMin": "الحد الأدنى للسحب: 50 نقطة (أول مرة)، 100 نقاط (لاحقاً)",
+    "ruleWithdrawMonthly": "حد أقصى 2 سحب شهرياً",
+    "welcomeGuide": {
+      "eyebrow": "مرحباً",
+      "title": "أكمل هذه الخطوات السريعة لإعداد حسابك.",
+      "completedTitle": "حسابك جاهز الآن.",
+      "description": "أكمل الأساسيات حتى يعمل التصفح والمفضلة والنقاط كما ينبغي.",
+      "referredDescription": "أكمل الأساسيات أولاً. سيستمر تفعيل الإحالة الخاص بك في القسم التالي.",
+      "completedDescription": "اكتملت الأساسيات. يمكنك الآن المتابعة في التصفح والحفظ وكسب النقاط.",
+      "progress": "اكتمل {done} من {total}",
+      "referralBadge": "تم ربط الإحالة",
+      "referralNote": "هذا الحساب جاء عبر دعوة، وسيستمر تتبع تفعيل الإحالة أدناه.",
+      "stepAccount": "إنشاء الحساب",
+      "stepVerifyEmail": "تأكيد البريد الإلكتروني",
+      "stepBrowse": "تصفح المنتجات",
+      "stepFavorite": "احفظ أول منتج في المفضلة",
+      "browseMeta": "تمت مشاهدة {count} منتجات",
+      "verifyCta": "إرسال رسالة التحقق",
+      "browseCta": "تصفح المنتجات",
+      "favoriteCta": "ابحث عن شيء لحفظه",
+      "doneCta": "الذهاب إلى الحساب",
+      "done": "مكتمل",
+      "pending": "قيد الانتظار",
+      "dismiss": "إخفاء",
+      "skip": "لاحقاً"
+    },
+    "referralActivation": {
+      "guide": {
+        "eyebrow": "تفعيل الإحالة",
+        "title": "أكمل هذه الخطوات لفتح تسوية مكافأة الإحالة.",
+        "readyTitle": "اكتملت كل الشروط. تتم الآن مزامنة التسوية.",
+        "completedTitle": "تم بالفعل فتح مكافأة الإحالة.",
+        "rejectedTitle": "مكافأة الإحالة قيد المراجعة.",
+        "description": "هذا الحساب جاء عبر إحالة. أكمل الخطوات المتبقية حتى تتم تسوية الدعوة بشكل صحيح.",
+        "readyDescription": "تمت جميع الإجراءات المطلوبة. إذا كانت المكافأة ما زالت معلقة، فيفترض أن يكمل حدث التحقق التالي التسوية.",
+        "completedDescription": "اكتمل تفعيل الإحالة. يمكنك متابعة التصفح والمشاركة بشكل طبيعي.",
+        "rejectedDescription": "هذه الإحالة قيد المراجعة حالياً. ما زال بإمكانك تصفح المنتجات واستخدام حسابك بشكل طبيعي.",
+        "stepRegistered": "تم التسجيل عبر رابط الإحالة",
+        "stepVerifyEmail": "تحقق من بريدك الإلكتروني",
+        "stepBrowseProducts": "تصفح 3 منتجات",
+        "stepFavoriteOrPurchase": "أضف منتجاً للمفضلة أو اضغط شراء",
+        "done": "مكتمل",
+        "pending": "قيد الانتظار",
+        "viewCount": "تمت مشاهدة {count}/{required}",
+        "browseMore": "تحتاج إلى {count} منتجات إضافية",
+        "browseCta": "تصفح المنتجات",
+        "actionCta": "افتح المنتجات",
+        "referralCta": "عرض صفحة الإحالة",
+        "sendEmailCta": "إرسال بريد التحقق",
+        "dismiss": "إخفاء"
+      },
+      "nudge": {
+        "eyebrow": "تقدم الإحالة",
+        "verifyTitle": "تم التحقق من البريد الإلكتروني. واصل لإكمال تفعيل الإحالة.",
+        "verifyDescriptionViews": "تصفح {count} منتجات إضافية لفتح الخطوة التالية.",
+        "verifyDescriptionAction": "الخطوة الأخيرة: أضف منتجاً إلى المفضلة أو اضغط شراء مرة واحدة لإكمال شرط الإحالة.",
+        "productTitleViewsOne": "تم احتساب هذه المشاهدة. مشاهدة منتج إضافي واحد ستفتح الخطوة التالية.",
+        "productTitleViewsMany": "تحتاج إلى {count} مشاهدات منتجات إضافية لتفعيل الإحالة.",
+        "productTitleAction": "الخطوة الأخيرة: أضف هذا المنتج إلى المفضلة أو اضغط شراء لإكمال شرط الإحالة.",
+        "productTitleVerify": "تحقق من بريدك الإلكتروني أولاً حتى تواصل هذه الإحالة التقدم.",
+        "readyTitle": "اكتملت جميع خطوات الإحالة. ينبغي أن تتم مزامنة التسوية تلقائياً.",
+        "rejectedTitle": "مكافأة الإحالة هذه قيد المراجعة حالياً.",
+        "sendEmail": "إرسال بريد التحقق",
+        "browseProducts": "تصفح المنتجات",
+        "viewReferral": "عرض الإحالة",
+        "dismiss": "إخفاء",
+        "progressViews": "تمت مشاهدة {count}/{total} منتجات",
+        "progressLabel": "اكتمل {done}/{total} خطوات"
+      },
+      "mobileCard": {
+        "eyebrow": "تفعيل الإحالة",
+        "collapse": "طي",
+        "expand": "عرض التفاصيل",
+        "dismiss": "إخفاء",
+        "progress": "{done}/{total}",
+        "summaryVerify": "تحقق من بريدك الإلكتروني أولاً",
+        "summaryViews": "تحتاج إلى {count} مشاهدات منتجات إضافية",
+        "summaryAction": "الخطوة الأخيرة: مفضلة أو شراء",
+        "summaryRejected": "مكافأة الإحالة قيد المراجعة",
+        "sendEmail": "إرسال بريد التحقق",
+        "browseProducts": "تصفح المنتجات",
+        "finishAction": "أكمل الخطوة الأخيرة",
+        "viewReferral": "عرض الإحالة",
+        "stepRegistered": "تم التسجيل عبر رابط الإحالة",
+        "stepEmail": "تحقق من بريدك الإلكتروني",
+        "stepBrowse": "تصفح 3 منتجات",
+        "stepAction": "أضف للمفضلة أو اضغط شراء",
+        "done": "مكتمل",
+        "pending": "قيد الانتظار",
+        "browseMeta": "متبقي {count} منتجات"
+      },
+      "mobileBanner": {
+        "eyebrow": "تقدم الإحالة",
+        "dismiss": "إخفاء",
+        "progress": "{done}/{total} خطوات",
+        "verifyTitle": "تحقق من بريدك الإلكتروني أولاً",
+        "verifyDescription": "يمكن لهذه الإحالة أن تواصل التقدم بعد التحقق من البريد الإلكتروني.",
+        "viewsTitleOne": "مشاهدة منتج إضافي واحدة تفتح الخطوة التالية",
+        "viewsTitleMany": "تحتاج إلى {count} مشاهدات منتجات إضافية",
+        "viewsDescription": "اكتملت {count}/{total} من مشاهدات المنتجات",
+        "actionTitle": "الخطوة الأخيرة: مفضلة أو شراء",
+        "actionDescription": "أنت بالفعل في الصفحة المناسبة لإكمالها.",
+        "rejectedTitle": "مكافأة الإحالة قيد المراجعة",
+        "rejectedDescription": "ما زال بإمكانك التصفح بشكل طبيعي أثناء اكتمال المراجعة.",
+        "sendEmail": "إرسال البريد",
+        "browseProducts": "تصفح",
+        "viewReferral": "الإحالة"
+      }
+    }
+  },
+  "security": {
+    "activeSessions": "الجلسات النشطة",
+    "logoutAll": "تسجيل خروج الكل",
+    "noActiveSessions": "لا توجد جلسات نشطة",
+    "failedToLoadSessions": "فشل تحميل الجلسات",
+    "sessionRevoked": "تم إلغاء الجلسة",
+    "failedToRevokeSession": "فشل إلغاء الجلسة",
+    "logoutAllConfirmTitle": "تسجيل الخروج من جميع الأجهزة؟",
+    "logoutAllConfirmContent": "سيتم إلغاء جميع الجلسات بما فيها الحالية. ستحتاج لتسجيل الدخول مجدداً.",
+    "loggedOutAll": "تم تسجيل الخروج من جميع الأجهزة",
+    "failedToLogoutAll": "فشل تسجيل الخروج من جميع الأجهزة",
+    "current": "الحالية",
+    "revoke": "إلغاء",
+    "ip": "IP: {ip}",
+    "created": "تاريخ الإنشاء: {date}",
+    "unknownDevice": "جهاز غير معروف",
+    "chromeBrowser": "متصفح كروم",
+    "firefoxBrowser": "متصفح فايرفوكس",
+    "safariBrowser": "متصفح سفاري",
+    "edgeBrowser": "متصفح إيدج",
+    "unknown": "غير معروف",
+    "password": "كلمة المرور",
+    "changePassword": "تغيير كلمة المرور",
+    "currentPassword": "كلمة المرور الحالية",
+    "newPassword": "كلمة المرور الجديدة",
+    "confirmNewPassword": "تأكيد كلمة المرور الجديدة",
+    "updatePassword": "تحديث كلمة المرور",
+    "passwordChangedSuccess": "تم تغيير كلمة المرور بنجاح",
+    "failedToChangePassword": "فشل تغيير كلمة المرور",
+    "passwordsDoNotMatch": "كلمتا المرور غير متطابقتين",
+    "rule8to32": "8-32 حرفاً",
+    "ruleLowercase": "حرف صغير واحد",
+    "ruleUppercase": "حرف كبير واحد",
+    "ruleNumber": "رقم واحد",
+    "ruleSpecialChar": "رمز خاص واحد",
+    "linkedAccounts": "الحسابات المرتبطة",
+    "failedToLoadLinkedAccounts": "فشل تحميل الحسابات المرتبطة",
+    "unlinkConfirmTitle": "إلغاء ربط {provider}؟",
+    "unlinkConfirmContent": "لن تتمكن من تسجيل الدخول بحساب {provider} هذا بعد الآن.",
+    "unlink": "إلغاء الربط",
+    "accountUnlinked": "تم إلغاء ربط حساب {provider}",
+    "failedToUnlink": "فشل إلغاء الربط",
+    "linkProvider": "ربط {provider}",
+    "noSocialAccounts": "لا توجد حسابات اجتماعية متاحة"
+  },
+  "error": {
+    "notFound": "الصفحة غير موجودة",
+    "notFoundDesc": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+    "backHome": "العودة للرئيسية",
+    "redirectNotice": "سيتم تحويلك إلى الصفحة الرئيسية تلقائيا خلال بضع ثوان.",
+    "searchTitle": "ابحث في الموقع",
+    "searchPlaceholder": "ابحث عن منتجات أو علامات تجارية أو فئات",
+    "searchAction": "بحث",
+    "popularBrands": "العلامات التجارية الشائعة",
+    "errorTitle": "حدث خطأ ما",
+    "errorDesc": "حدث خطأ غير متوقع. يرجى المحاولة مجدداً.",
+    "tryAgain": "حاول مجدداً"
+  },
+  "buy": {
+    "buyNow": "اشترِ الآن",
+    "failedToGetLink": "فشل الحصول على رابط الشراء",
+    "selectPlatform": "اختر منصة دايقو",
+    "noPlatforms": "لا توجد منصات متاحة",
+    "rememberChoice": "تذكر اختياري للمشتريات المستقبلية",
+    "continueTo": "المتابعة إلى {platform}",
+    "platformFallback": "المنصة"
+  },
+  "visualSearch": {
+    "title": "البحث المرئي",
+    "description": "ارفع صورة منتج للعثور على منتجات مشابهة",
+    "searchImage": "صورة البحث",
+    "clearSearch": "مسح البحث",
+    "searching": "جارٍ البحث عن منتجات مشابهة...",
+    "resultsCount": "تم العثور على {count} منتج مشابه",
+    "reSearch": "إعادة البحث",
+    "cropAndSearch": "قص وبحث",
+    "changeImage": "تغيير الصورة",
+    "selectImage": "اختر صورة",
+    "uploadHint": "انقر أو اسحب صورة هنا",
+    "formatHint": "يدعم صيغ JPG، PNG، WebP، GIF، بحد أقصى 5 ميغابايت",
+    "pasteHint": "يمكنك أيضاً لصق لقطة شاشة بـ Ctrl+V",
+    "similarity": "تشابه {value}%",
+    "noResults": "لم يتم العثور على منتجات مشابهة",
+    "noResultsHint": "عدة عناصر في الصورة؟ جرّب القص للإبقاء على المنتج المستهدف فقط",
+    "cropAndSearchAgain": "قص الصورة وابحث مجدداً",
+    "uploadAnother": "ارفع صورة أخرى",
+    "uploadToSearch": "ارفع صورة للبحث عن منتجات مشابهة",
+    "searchFailed": "فشل البحث ({status})",
+    "noSimilarProducts": "لم يتم العثور على منتجات مشابهة، جرّب صورة أخرى",
+    "searchError": "فشل البحث، يرجى المحاولة مجدداً",
+    "invalidFileType": "يرجى اختيار ملف صورة",
+    "fileTooLarge": "حجم الصورة لا يمكن أن يتجاوز 5 ميغابايت",
+    "cropImage": "قص الصورة",
+    "cropHint": "اسحب لتعديل منطقة القص، أبقِ فقط المنتج الذي تريد البحث عنه",
+    "confirmCropAndSearch": "تأكيد القص والبحث",
+    "imageToCrop": "صورة للقص",
+    "notConfigured": "البحث المرئي غير مُعدّ.",
+    "searchFailedGeneric": "فشل البحث المرئي.",
+    "networkError": "فشل الاتصال بالشبكة، يرجى التحقق من تشغيل خدمة API",
+    "viewAllResults": "عرض جميع النتائج ({count}) المشابهة",
+    "sortBySimilarity": "التشابه",
+    "sortByPriceAsc": "السعر ↑",
+    "sortByPriceDesc": "السعر ↓",
+    "clearFilters": "مسح الفلاتر",
+    "noFilterResults": "لا توجد منتجات تطابق الفلاتر الحالية",
+    "imageSearch": "البحث بالصور"
+  },
+  "metadata": {
+    "homeTitle": "{siteName} | مختارات Kakobuy وCNFans وACBuy spreadsheet",
+    "homeDescription": "يساعدك {siteName} على اكتشاف منتجات من Weidian وTaobao و1688 مع صور QC وتفاصيل SKU وتصفح بنمط spreadsheet لـ Kakobuy وCNFans وACBuy وغير ذلك.",
+    "homeOgTitle": "{siteName} | مختارات Kakobuy وCNFans وACBuy spreadsheet",
+    "homeOgDescription": "يساعدك {siteName} على اكتشاف منتجات من Weidian وTaobao و1688 مع صور QC وتفاصيل SKU وتصفح بنمط spreadsheet لـ Kakobuy وCNFans وACBuy وغير ذلك.",
+    "productNotFound": "المنتج غير موجود",
+    "productFallbackDescription": "تسوّق {title} من بائعين صينيين موثوقين على {siteName}. أفضل الأسعار وصور فحص الجودة وطلب دايقو سهل.",
+    "searchTitle": "بحث: {query}",
+    "searchDefaultTitle": "البحث عن المنتجات",
+    "searchDescription": "نتائج البحث عن \"{query}\" - اعثر على أفضل العروض من بائعين صينيين على {siteName}.",
+    "searchDefaultDescription": "ابحث عن منتجات من ويديان وتاوباو ومنصات التجارة الإلكترونية الصينية الأخرى.",
+    "categoryNotFound": "التصنيف غير موجود",
+    "categoryTitle": "{name} - تسوّق المنتجات الصينية",
+    "categoryDescription": "تصفّح منتجات {name} من الصين. اعثر على منتجات أصلية مع معلومات كاملة عن المواصفات وصور فحص جودة حقيقية وتكامل سهل مع دايقو.",
+    "brandNotFound": "العلامة التجارية غير موجودة",
+    "brandTitle": "{name} - تسوّق المنتجات",
+    "brandFallbackDescription": "تصفّح منتجات {name} من بائعين صينيين موثوقين. اعثر على منتجات أصلية مع صور فحص الجودة وطلب دايقو سهل على {siteName}.",
+    "categoriesTitle": "جميع الفئات - التسوق حسب نوع المنتج",
+    "categoriesDescription": "تصفح جميع فئات المنتجات على {siteName}. ابحث عن الملابس والأحذية والحقائب والإكسسوارات والمزيد.",
+    "brandsTitle": "جميع العلامات التجارية - علامات المنتجات الصينية",
+    "brandsDescription": "تصفّح جميع العلامات التجارية المتاحة على {siteName}. اكتشف منتجات صينية أصلية من أفضل العلامات التجارية مع صور فحص الجودة وتكامل دايقو.",
+    "howItWorksTitle": "كيف يعمل",
+    "howItWorksDescription": "تعرّف على كيفية العثور على أفضل المنتجات الصينية وشرائها عبر {siteName}. من الاكتشاف إلى التوصيل في 4 خطوات بسيطة.",
+    "helpTitle": "مركز المساعدة",
+    "helpDescription": "اعثر على إجابات للأسئلة الشائعة حول استخدام {siteName}. تعرّف على وكلاء الشراء وصور QC والمزيد.",
+    "termsTitle": "شروط الخدمة",
+    "termsDescription": "اقرأ شروط الخدمة الخاصة بـ {siteName}. تعرّف على سياساتنا المتعلقة باكتشاف المنتجات وروابط الإحالة ومسؤوليات المستخدم.",
+    "privacyTitle": "سياسة الخصوصية",
+    "privacyDescription": "تعرّف على كيفية جمع {siteName} لمعلوماتك الشخصية واستخدامها وحمايتها. متوافق مع GDPR.",
+    "cookiesTitle": "سياسة ملفات تعريف الارتباط",
+    "cookiesDescription": "تعرّف على ملفات تعريف الارتباط المستخدمة في {siteName} وكيفية إدارة تفضيلاتك.",
+    "aboutTitle": "من نحن",
+    "aboutDescription": "تعرف على {siteName}، منصة اكتشاف المنتجات التي تساعدك في العثور على منتجات صينية عالية الجودة من Weidian و Taobao و 1688.",
+    "contactTitle": "اتصل بنا",
+    "contactDescription": "تواصل مع فريق {siteName}. راسلنا عبر البريد الإلكتروني للدعم أو استفسارات الخصوصية أو الأسئلة العامة.",
+    "shippingTitle": "دليل الشحن",
+    "shippingDescription": "تعرف على كيفية عمل الشحن عند الشراء عبر وكلاء الشراء. طرق الشحن والتكاليف ونصائح للتوصيل الدولي.",
+    "returnsTitle": "الإرجاع والاسترداد",
+    "returnsDescription": "افهم عملية الإرجاع والاسترداد عند الشراء عبر وكلاء الشراء. صور QC وكيفية التعامل مع المشكلات.",
+    "productsTitle": "جميع المنتجات",
+    "productsDescription": "تصفح كل المنتجات على {siteName}. اكتشف منتجات من Weidian وTaobao و1688 مع صور QC وتفاصيل SKU ومقارنة الاسعار.",
+    "agentsTitle": "جميع ادلة السبريدشيت للوكلاء",
+    "agentsDescription": "تصفح على {siteName} جميع ادلة السبريدشيت لوكلاء الشراء مع المنصات المميزة والدليل الكامل والمسارات الاكثر شيوعا."
+  },
+  "products": {
+    "allProducts": "جميع المنتجات",
+    "productCount": "{count} منتج",
+    "noProducts": "لم يتم العثور على منتجات",
+    "noProductsDesc": "جرّب إزالة بعض الفلاتر",
+    "errorLoading": "خطأ في تحميل المنتجات"
+  },
+  "cookies": {
+    "message": "نستخدم ملفات تعريف الارتباط لتحسين تجربتك وتحليل حركة المرور على الموقع.",
+    "attributionHint": "اختر قبول أو رفض حتى نتمكن من إكمال إعداد التحليلات لهذه الزيارة القادمة عبر الدعوة.",
+    "accept": "قبول",
+    "reject": "رفض"
+  },
+  "share": {
+    "title": "مشاركة",
+    "whatsapp": "واتساب",
+    "telegram": "تيليجرام",
+    "twitter": "X (تويتر)",
+    "reddit": "ريديت",
+    "email": "بريد إلكتروني",
+    "pinterest": "بنترست",
+    "discord": "ديسكورد",
+    "tiktok": "تيك توك",
+    "copyLink": "نسخ الرابط",
+    "copied": "تم النسخ!",
+    "copyFailed": "فشل النسخ",
+    "copiedForDiscord": "تم نسخ الرابط! الصقه في ديسكورد",
+    "copiedForTiktok": "تم نسخ الرابط! الصقه في تيك توك",
+    "claimed": "تم التحصيل",
+    "showQrCode": "رمز QR",
+    "scanToShare": "امسح لعرض هذا المنتج",
+    "moreOptions": "المزيد...",
+    "rewardsHint": {
+      "eyebrow": "المكافآت",
+      "title": "اكسب +1 نقطة عند المشاركة",
+      "body": ""
+    }
+  },
+  "howItWorksPage": {
+    "hero": {
+      "title": "كيف يعمل",
+      "subtitle": "من الاكتشاف إلى التوصيل — نساعدك في العثور على أفضل المنتجات من الصين"
+    },
+    "steps": {
+      "stepLabel": "خطوة",
+      "step1": {
+        "label": "ابحث",
+        "title": "ابحث واكتشف",
+        "description": "تصفّح أكثر من 10,000 منتج حسب العلامة التجارية أو التصنيف، أو استخدم البحث المرئي للعثور على ما تبحث عنه بالضبط."
+      },
+      "step2": {
+        "label": "قارن",
+        "title": "قارن وتحقق من QC",
+        "description": "اطّلع على معلومات تفصيلية عن المواصفات والأسعار من بائعين مختلفين وصور QC حقيقية من مشترين فعليين."
+      },
+      "step3": {
+        "label": "اختر",
+        "title": "اختر وكيلك",
+        "description": "انقر على زر الشراء واختر من بين عدة وكلاء شراء مثل Litbuy و Kakobuy و MuleBuy وغيرهم."
+      },
+      "step4": {
+        "label": "استلم",
+        "title": "اطلب واستلم",
+        "description": "أتمّ عملية الشراء على منصة الوكيل. يتولون الشراء والشحن والتوصيل إلى باب منزلك."
+      }
+    },
+    "features": {
+      "title": "لماذا {siteName}؟",
+      "products": {
+        "title": "أكثر من 10,000 منتج",
+        "description": "مجموعة ضخمة منتقاة من المنتجات من Weidian و Taobao و 1688."
+      },
+      "updates": {
+        "title": "تحديثات يومية",
+        "description": "يتم إضافة منتجات جديدة كل يوم للحفاظ على كتالوجنا محدّثاً."
+      },
+      "qc": {
+        "title": "صور QC مجانية",
+        "description": "صور فحص جودة حقيقية من مشترين فعليين حتى تعرف ما تتوقعه."
+      },
+      "agents": {
+        "title": "وكلاء متعددون",
+        "description": "اختر من بين Litbuy و Kakobuy و MuleBuy و USFANS والعديد من الوكلاء الآخرين."
+      }
+    },
+    "cta": {
+      "title": "مستعد للعثور على منتجك المفضل القادم؟",
+      "description": "تصفّح مجموعتنا التي تضم أكثر من 10,000 منتج من أفضل أسواق الصين.",
+      "button": "ابدأ التصفح"
+    }
+  },
+  "agentsPage": {
+    "listName": "جميع ادلة السبريدشيت للوكلاء",
+    "eyebrow": "دليل الوكلاء",
+    "heading": "جميع ادلة السبريدشيت للوكلاء",
+    "body": "استخدم هذا الدليل لمراجعة الادلة المميزة اولا ثم متابعة قائمة المنصات الكاملة عندما تريد خيارات اكثر.",
+    "featuredTitle": "ادلة مميزة",
+    "featuredDescription": "هذه هي ادلة المنصات الرئيسية المميزة في الموقع.",
+    "growthTitle": "منصات اكثر",
+    "growthDescription": "تصفح هذه الادلة الاضافية عندما تريد الذهاب ابعد من القائمة الرئيسية.",
+    "topicTitle": "ادلة المواضيع الشائعة",
+    "topicDescription": "تساعدك هذه الاختصارات على الوصول اسرع الى مسارات المواضيع الاكثر استخداما.",
+    "directoryTitle": "تصفح كل المنصات حسب الحرف",
+    "directoryDescription": "استخدم الفهرس الابجدي للانتقال مباشرة الى القائمة الكاملة للمنصات.",
+    "statsTitle": "نظرة على التغطية",
+    "totalPlatforms": "ادلة المنصات",
+    "featuredPlatforms": "الادلة المميزة",
+    "growthPlatforms": "منصات اكثر",
+    "longTailPlatforms": "ادلة اضافية",
+    "topicRoutes": "مسارات المواضيع",
+    "directoryEyebrow": "تغطية كاملة",
+    "directoryHint": "تحافظ الصفحة الرئيسية على الاختيارات الاساسية بشكل مختصر. هذا الدليل يجمع لك قائمة المنصات الكاملة في مكان واحد.",
+    "jumpTo": "انتقل الى",
+    "groupCountLabel": "دليلا",
+    "featuredBadge": "مميز",
+    "growthBadge": "اكثر",
+    "longTailBadge": "اضافي",
+    "cardSuffix": "spreadsheet، yupoo، links"
+  },
+  "helpPage": {
+    "hero": {
+      "title": "مركز المساعدة",
+      "subtitle": "اعثر على إجابات للأسئلة الشائعة حول استخدام {siteName}"
+    },
+    "categoryCardCount": "{count} أسئلة",
+    "categories": {
+      "gettingStarted": {
+        "title": "البداية",
+        "q1": {
+          "question": "ما هو {siteName}؟",
+          "answer": "{siteName} هو منصة لاكتشاف المنتجات تساعدك في العثور على أفضل المنتجات من الأسواق الصينية مثل Weidian و Taobao و 1688. نقوم بتنسيق أكثر من 10,000 منتج مع معلومات تفصيلية وصور QC."
+        },
+        "q2": {
+          "question": "كيف أنشئ حساباً؟",
+          "answer": "انقر على زر \"إنشاء حساب\" في الزاوية العلوية اليمنى. يمكنك التسجيل باستخدام بريدك الإلكتروني. بعد التسجيل، يمكنك حفظ المفضلات وتتبع سجل التصفح."
+        },
+        "q3": {
+          "question": "ما هو وكيل الشراء؟",
+          "answer": "وكيل الشراء (دايقو) هو خدمة تشتري المنتجات من الأسواق الصينية نيابةً عنك وتشحنها دولياً. من الوكلاء المشهورين Litbuy و Kakobuy و MuleBuy و USFANS."
+        },
+        "q4": {
+          "question": "هل {siteName} مجاني؟",
+          "answer": "نعم! {siteName} مجاني تماماً. نحصل على عمولة صغيرة من وكلاء الشراء عند الشراء عبر روابطنا، دون أي تكلفة إضافية عليك."
+        }
+      },
+      "shoppingQc": {
+        "title": "التسوق وفحص الجودة",
+        "q1": {
+          "question": "كيف أجد المنتجات؟",
+          "answer": "يمكنك التصفح حسب التصنيف أو العلامة التجارية، أو استخدام شريط البحث بالكلمات المفتاحية، أو تجربة ميزة البحث المرئي للعثور على المنتجات بتحميل صورة."
+        },
+        "q2": {
+          "question": "ما هي صور QC؟",
+          "answer": "صور QC (فحص الجودة) هي صور حقيقية التقطها المشترون بعد استلام طلباتهم. تساعدك على رؤية جودة المنتج الفعلية قبل الشراء."
+        },
+        "q3": {
+          "question": "ما مدى دقة الأسعار؟",
+          "answer": "يتم تحويل الأسعار من اليوان الصيني (CNY) إلى العملة التي اخترتها. قد تختلف الأسعار الفعلية قليلاً بسبب تقلبات أسعار الصرف."
+        },
+        "q4": {
+          "question": "هل يمكنني مقارنة المنتجات من بائعين مختلفين؟",
+          "answer": "نعم! كل قائمة منتج تعرض المواصفات والمقاسات والألوان والأسعار المتاحة، مما يسهّل مقارنة الخيارات."
+        }
+      },
+      "agentsOrders": {
+        "title": "الوكلاء والطلبات",
+        "q1": {
+          "question": "ما الوكلاء الذين تدعمونهم؟",
+          "answer": "ندعم عدة وكلاء بما في ذلك Litbuy و Kakobuy و MuleBuy و USFANS و iTaoBuy وغيرهم الكثير. يمكنك اختيار الوكيل المفضل لديك عند النقر على زر الشراء."
+        },
+        "q2": {
+          "question": "كيف أقدم طلباً؟",
+          "answer": "اعثر على منتج يعجبك، انقر على زر \"شراء\"، اختر الوكيل المفضل لديك، وسيتم توجيهك إلى موقع الوكيل لإتمام عملية الشراء."
+        },
+        "q3": {
+          "question": "هل تتعاملون مع المدفوعات أو الشحن؟",
+          "answer": "لا. {siteName} هو منصة لاكتشاف المنتجات فقط. جميع المدفوعات والشحن وخدمة العملاء يتم التعامل معها من قبل وكيل الشراء الذي تختاره."
+        },
+        "q4": {
+          "question": "ماذا لو كان المنتج غير متوفر؟",
+          "answer": "يتم إدارة توفر المخزون من قبل البائعين الأصليين. إذا كان المنتج غير متوفر عند محاولة الطلب عبر وكيل، سيقوم الوكيل بإخطارك ومعالجة استرداد المبلغ."
+        }
+      },
+      "accountSupport": {
+        "title": "الحساب والدعم",
+        "q1": {
+          "question": "كيف أحفظ منتجاتي المفضلة؟",
+          "answer": "انقر على أيقونة القلب في أي منتج لإضافته إلى مفضلتك. تحتاج لتسجيل الدخول لاستخدام هذه الميزة."
+        },
+        "q2": {
+          "question": "هل يمكنني تغيير عملة العرض؟",
+          "answer": "نعم! استخدم محدد العملة في الشريط العلوي للتبديل بين العملات المدعومة. سيتم تحويل الأسعار تلقائياً."
+        },
+        "q3": {
+          "question": "كيف أغير اللغة؟",
+          "answer": "استخدم محدد اللغة في الشريط العلوي للتبديل بين الإنجليزية والصينية والفرنسية والألمانية والإسبانية والإيطالية والبرتغالية والعربية."
+        },
+        "q4": {
+          "question": "كيف يمكنني التواصل مع الدعم؟",
+          "answer": "يمكنك التواصل معنا عبر البريد الإلكتروني على {contactEmail} أو الانضمام إلى مجتمعاتنا على Discord و Telegram."
+        }
+      }
+    },
+    "contact": {
+      "title": "هل ما زلت بحاجة للمساعدة؟",
+      "subtitle": "فريقنا هنا لمساعدتك",
+      "email": {
+        "label": "راسلنا عبر البريد الإلكتروني"
+      },
+      "discord": {
+        "label": "Discord",
+        "description": "انضم إلى مجتمعنا"
+      },
+      "telegram": {
+        "label": "Telegram",
+        "description": "تحدث معنا"
+      }
+    }
+  },
+  "termsPage": {
+    "title": "شروط الخدمة",
+    "sections": {
+      "introduction": {
+        "title": "المقدمة والقبول",
+        "content": "مرحباً بك في {siteName} (\"نحن\" أو \"لنا\"). باستخدامك أو وصولك إلى موقعنا على {siteUrl} (\"الخدمة\")، فإنك توافق على الالتزام بشروط الخدمة هذه. إذا كنت لا توافق على هذه الشروط، يرجى عدم استخدام خدمتنا."
+      },
+      "service-description": {
+        "title": "وصف الخدمة",
+        "content": "{siteName} هو منصة لاكتشاف المنتجات وتنسيقها. نقوم بتجميع معلومات المنتجات من الأسواق الصينية (بما في ذلك Weidian و Taobao و 1688) وعرضها بتنسيق منظم. نحن لسنا وكيل شراء أو بائع أو تاجر تجزئة. لا نبيع المنتجات ولا نعالج المدفوعات ولا نتولى الشحن ولا ندير الطلبات."
+      },
+      "independent-platform": {
+        "title": "إخلاء مسؤولية المنصة المستقلة",
+        "content": "يعمل {siteName} بشكل مستقل وليس تابعاً رسمياً لأي منصة وكيل شراء (بما في ذلك على سبيل المثال لا الحصر Litbuy و Kakobuy و MuleBuy و USFANS و iTaoBuy) أو أي سوق صيني. يتم توفير الروابط إلى منصات الوكلاء الخارجية للراحة فقط."
+      },
+      "user-accounts": {
+        "title": "حسابات المستخدمين",
+        "content": "يجب أن يكون عمرك 18 عاماً على الأقل لإنشاء حساب. أنت مسؤول عن الحفاظ على سرية بيانات اعتماد حسابك وعن جميع الأنشطة التي تتم تحت حسابك. أنت توافق على تقديم معلومات دقيقة وكاملة أثناء التسجيل."
+      },
+      "affiliate-links": {
+        "title": "روابط الإحالة والإيرادات",
+        "content": "تحتوي خدمتنا على روابط إحالة لمنصات وكلاء الشراء. عند إجراء عملية شراء من خلال هذه الروابط، قد نحصل على عمولة دون أي تكلفة إضافية عليك. لا تؤثر علاقة الإحالة هذه على تنسيق منتجاتنا أو توصياتنا."
+      },
+      "product-information": {
+        "title": "دقة معلومات المنتجات",
+        "content": "بينما نسعى لتقديم معلومات دقيقة عن المنتجات والأسعار والتوفر، لا يمكننا ضمان دقة جميع القوائم. يتم تحويل أسعار المنتجات من اليوان الصيني وقد تتقلب بسبب تغيرات أسعار الصرف. قد يختلف المظهر الفعلي للمنتج عن الصور المعروضة."
+      },
+      "qc-photos": {
+        "title": "صور QC",
+        "content": "صور فحص الجودة (QC) المعروضة على منصتنا مصدرها مشترون حقيقيون. تمثل هذه الصور منتجات محددة استلمها هؤلاء المشترون وقد لا تكون مطابقة للمنتجات التي تستلمها أنت. لا نضمن أن مشترياتك ستطابق أي صور QC معروضة."
+      },
+      "intellectual-property": {
+        "title": "الملكية الفكرية",
+        "content": "جميع المحتوى على {siteName}، بما في ذلك على سبيل المثال لا الحصر النصوص والتصميم والشعارات والبرمجيات، هو ملكيتنا أو مرخص لنا. لا يجوز لك إعادة الإنتاج أو التوزيع أو إنشاء أعمال مشتقة دون إذن كتابي منا."
+      },
+      "prohibited-conduct": {
+        "title": "السلوك المحظور",
+        "content": "أنت توافق على عدم:",
+        "item1": "استخراج البيانات أو الزحف إلى موقعنا بدون إذن",
+        "item2": "التدخل في تشغيل الخدمة",
+        "item3": "استخدام الخدمة لأي غرض غير قانوني",
+        "item4": "إنشاء حسابات متعددة لإساءة استخدام الميزات",
+        "item5": "محاولة تجاوز إجراءات الأمان"
+      },
+      "limitation-of-liability": {
+        "title": "تحديد المسؤولية",
+        "content": "لا يتحمل {siteName} المسؤولية عن:",
+        "item1": "أي مشتريات تتم عبر منصات وكلاء خارجية",
+        "item2": "جودة المنتجات أو أصالتها أو حالتها",
+        "item3": "تأخيرات الشحن أو مشاكل الجمارك أو الطرود المفقودة",
+        "item4": "أي نزاعات بينك وبين وكلاء الشراء أو البائعين",
+        "footer": "الحد الأقصى لمسؤوليتنا يقتصر على المبلغ الذي دفعته لنا مباشرة (إن وُجد)."
+      },
+      "changes-to-terms": {
+        "title": "التعديلات على الشروط",
+        "content": "نحتفظ بالحق في تعديل هذه الشروط في أي وقت. سيتم نشر التعديلات على هذه الصفحة مع تاريخ \"آخر تحديث\" محدّث. استمرارك في استخدام الخدمة بعد التعديلات يعني قبولك للشروط الجديدة."
+      },
+      "contact": {
+        "title": "معلومات الاتصال",
+        "content": "للاستفسارات حول شروط الخدمة هذه، تواصل معنا على: {legalEmail}"
+      }
+    }
+  },
+  "privacyPage": {
+    "title": "سياسة الخصوصية",
+    "sections": {
+      "introduction": {
+        "title": "المقدمة",
+        "content": "يحترم {siteName} (\"نحن\" أو \"لنا\") خصوصيتك. توضح سياسة الخصوصية هذه كيفية جمعنا لمعلوماتك الشخصية واستخدامها وحمايتها عند استخدامك لموقعنا على {siteUrl}."
+      },
+      "data-we-collect": {
+        "title": "البيانات التي نجمعها",
+        "providedTitle": "المعلومات التي تقدمها",
+        "provided1": "الاسم وعنوان البريد الإلكتروني",
+        "provided2": "كلمة المرور (مخزنة بشكل مشفر)",
+        "provided3": "تفضيلات العرض (اللغة، العملة)",
+        "provided4": "المنتجات المفضلة وسجل التصفح",
+        "autoTitle": "المعلومات المجمّعة تلقائياً",
+        "auto1": "عنوان IP",
+        "auto2": "نوع المتصفح وإصداره",
+        "auto3": "معلومات الجهاز",
+        "auto4": "الصفحات التي تمت زيارتها والوقت المستغرق",
+        "auto5": "عناوين URL المُحيلة",
+        "auto6": "طوابع زمنية للزيارات"
+      },
+      "how-we-use": {
+        "title": "كيف نستخدم بياناتك",
+        "content": "نستخدم بياناتك من أجل:",
+        "item1": "تقديم الخدمة وصيانتها",
+        "item2": "إدارة حسابك وتفضيلاتك",
+        "item3": "حفظ مفضلاتك وسجل التصفح",
+        "item4": "إرسال رسائل بريد إلكتروني تتعلق بالمعاملات (التحقق من الحساب، إعادة تعيين كلمة المرور)",
+        "item5": "تحسين خدمتنا من خلال التحليلات",
+        "item6": "الرد على طلبات الدعم"
+      },
+      "cookies": {
+        "title": "ملفات تعريف الارتباط",
+        "content": "نستخدم الأنواع التالية من ملفات تعريف الارتباط:",
+        "essentialTitle": "ملفات تعريف الارتباط الأساسية",
+        "essentialContent": "مطلوبة للوظائف الأساسية مثل المصادقة وتفضيلات المستخدم. لا يمكن تعطيلها.",
+        "analyticsTitle": "ملفات تعريف الارتباط التحليلية",
+        "analyticsContent": "تساعدنا على فهم كيفية استخدام الزوار لموقعنا من خلال Google Analytics. يمكن تعطيلها عبر شريط ملفات تعريف الارتباط.",
+        "footer": "لا نستخدم ملفات تعريف الارتباط الإعلانية أو التتبعية."
+      },
+      "third-party-services": {
+        "title": "خدمات الجهات الخارجية",
+        "content": "نستخدم خدمات الجهات الخارجية التالية:",
+        "item1": "Google Analytics — لتحليل حركة المرور على الموقع",
+        "item2": "منصات وكلاء الشراء — عند النقر على روابط الشراء، يتم توجيهك إلى منصات خارجية لها سياسات خصوصية خاصة بها",
+        "footer": "ننصح بمراجعة سياسات الخصوصية لأي منصة وكيل تستخدمها."
+      },
+      "data-sharing": {
+        "title": "مشاركة البيانات",
+        "content": "لا نبيع بياناتك الشخصية. قد نشارك البيانات مع:",
+        "item1": "مزودي الخدمات الذين يساعدون في تشغيل منصتنا (الاستضافة، البريد الإلكتروني)",
+        "item2": "الجهات القانونية عند الاقتضاء بموجب القانون",
+        "footer": "لا نشارك بياناتك مع وكلاء الشراء أو بائعي المنتجات."
+      },
+      "international-transfers": {
+        "title": "نقل البيانات الدولي",
+        "content": "قد تتم معالجة بياناتك في دول خارج بلد إقامتك. نطبّق ضمانات مناسبة بما في ذلك الشروط التعاقدية النموذجية (SCCs) لحماية بياناتك أثناء عمليات النقل الدولية."
+      },
+      "data-retention": {
+        "title": "الاحتفاظ بالبيانات",
+        "item1": "بيانات الحساب: يتم الاحتفاظ بها حتى تحذف حسابك، ثم يتم إزالتها نهائياً خلال 30 يوماً",
+        "item2": "بيانات التحليلات: يتم الاحتفاظ بها لمدة 26 شهراً",
+        "item3": "سجلات الخادم: يتم الاحتفاظ بها لمدة 90 يوماً"
+      },
+      "your-rights": {
+        "title": "حقوقك (GDPR)",
+        "content": "إذا كنت في الاتحاد الأوروبي/المنطقة الاقتصادية الأوروبية، فلديك الحق في:",
+        "item1": "الوصول إلى بياناتك الشخصية",
+        "item2": "تصحيح البيانات غير الدقيقة",
+        "item3": "حذف بياناتك (\"الحق في النسيان\")",
+        "item4": "تصدير بياناتك (نقل البيانات)",
+        "item5": "الاعتراض على المعالجة",
+        "item6": "تقييد المعالجة",
+        "footer": "لممارسة هذه الحقوق، تواصل معنا على {privacyEmail}."
+      },
+      "security": {
+        "title": "الأمان",
+        "content": "نطبّق إجراءات أمان معيارية:",
+        "item1": "تشفير HTTPS/TLS لجميع الاتصالات",
+        "item2": "تجزئة كلمات المرور بـ bcrypt",
+        "item3": "تحديثات أمنية منتظمة",
+        "item4": "ضوابط الوصول والمراقبة",
+        "footer": "لا توجد طريقة نقل آمنة بنسبة 100%. بينما نسعى لحماية بياناتك، لا يمكننا ضمان أمان مطلق."
+      },
+      "changes-to-policy": {
+        "title": "التعديلات على هذه السياسة",
+        "content": "قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. سنخطرك بالتغييرات الجوهرية عبر البريد الإلكتروني أو إشعار على موقعنا. استمرارك في الاستخدام بعد التغييرات يعني القبول."
+      },
+      "contact": {
+        "title": "اتصل بنا",
+        "content": "للأسئلة المتعلقة بالخصوصية أو لممارسة حقوقك، راسلنا على: {privacyEmail}"
+      }
+    }
+  },
+  "cookiesPage": {
+    "title": "سياسة ملفات تعريف الارتباط",
+    "sections": {
+      "introduction": {
+        "title": "مقدمة",
+        "content": "توضح سياسة ملفات تعريف الارتباط هذه ما هي ملفات تعريف الارتباط، وكيف يستخدمها {siteName} (\"نحن\") على موقعنا الإلكتروني، وخياراتك بشأنها. ملفات تعريف الارتباط هي ملفات نصية صغيرة تُخزَّن على جهازك عند زيارة موقع ويب. تساعد الموقع على تذكّر تفضيلاتك وتحسين تجربة التصفح."
+      },
+      "essential-cookies": {
+        "title": "ملفات تعريف الارتباط الأساسية",
+        "content": "ملفات تعريف الارتباط الأساسية ضرورية لعمل موقعنا الأساسي. لا يمكن تعطيل هذه الملفات لأنها مطلوبة للوظائف الأساسية:",
+        "item1": "ملفات الجلسة — تحافظ على جلستك أثناء تصفح موقعنا",
+        "item2": "ملفات المصادقة — تتذكر حالة تسجيل الدخول لإبقائك متصلاً",
+        "item3": "ملفات التفضيلات — تخزّن تفضيلات اللغة والعملة"
+      },
+      "analytics-cookies": {
+        "title": "ملفات تعريف الارتباط التحليلية",
+        "content": "نستخدم ملفات تعريف الارتباط التحليلية لفهم كيفية تفاعل الزوار مع موقعنا. يساعدنا ذلك على تحسين خدماتنا وتجربة المستخدم:",
+        "item1": "_ga — ملف Google Analytics يميّز المستخدمين الفريدين (تنتهي صلاحيته بعد سنتين)",
+        "item2": "_ga_* — ملف Google Analytics يُستخدم لاستمرار حالة الجلسة (تنتهي صلاحيته بعد سنتين)",
+        "item3": "_gid — ملف Google Analytics يميّز المستخدمين (تنتهي صلاحيته بعد 24 ساعة)"
+      },
+      "marketing-cookies": {
+        "title": "ملفات تعريف الارتباط التسويقية",
+        "content": "لا نستخدم حالياً أي ملفات تعريف ارتباط تسويقية أو إعلانية. إذا قدّمناها في المستقبل، سنحدّث هذه السياسة ونطلب موافقتك قبل تعيين أي ملفات تسويقية."
+      },
+      "cookie-management": {
+        "title": "إدارة ملفات تعريف الارتباط",
+        "content": "يمكنك التحكم في ملفات تعريف الارتباط وإدارتها من خلال إعدادات متصفحك. تتيح لك معظم المتصفحات:",
+        "item1": "عرض ملفات تعريف الارتباط المخزنة وحذفها بشكل فردي",
+        "item2": "حظر ملفات تعريف الارتباط الخاصة بالأطراف الثالثة",
+        "item3": "حظر ملفات تعريف الارتباط من مواقع محددة",
+        "item4": "حذف جميع ملفات تعريف الارتباط عند إغلاق المتصفح",
+        "footer": "يرجى ملاحظة أن تعطيل ملفات تعريف الارتباط الأساسية قد يؤثر على وظائف موقعنا ويمنعك من استخدام بعض الميزات."
+      },
+      "third-party-cookies": {
+        "title": "ملفات تعريف ارتباط الأطراف الثالثة",
+        "content": "بعض ملفات تعريف الارتباط على موقعنا يتم تعيينها بواسطة خدمات أطراف ثالثة:",
+        "item1": "Google Analytics — لتحليل حركة المرور على الموقع وإحصاءات الاستخدام",
+        "item2": "منصات وكلاء الشراء — عند النقر على روابط خارجية، قد تقوم تلك المنصات بتعيين ملفاتها الخاصة",
+        "footer": "لا نتحكم في ملفات تعريف ارتباط الأطراف الثالثة. ننصحك بمراجعة سياسات ملفات تعريف الارتباط لأي خدمات أطراف ثالثة تتفاعل معها عبر موقعنا."
+      },
+      "data-retention": {
+        "title": "الاحتفاظ بالبيانات",
+        "content": "يتم الاحتفاظ بملفات تعريف الارتباط المختلفة لفترات مختلفة:",
+        "item1": "ملفات الجلسة — تُحذف تلقائياً عند إغلاق المتصفح",
+        "item2": "ملفات التفضيلات — يُحتفظ بها لمدة تصل إلى سنة واحدة",
+        "item3": "ملفات التحليلات — يُحتفظ بها لمدة تصل إلى سنتين"
+      },
+      "your-choices": {
+        "title": "خياراتك",
+        "content": "بموجب النظام الأوروبي لحماية البيانات (GDPR) وقانون خصوصية المستهلك في كاليفورنيا (CCPA)، لديك حقوق بشأن البيانات المجمعة عبر ملفات تعريف الارتباط:",
+        "item1": "يمكنك إلغاء الاشتراك في ملفات التحليلات من خلال إعدادات ملفات تعريف الارتباط لدينا",
+        "item2": "يمكنك تكوين متصفحك لرفض ملفات تعريف الارتباط غير الأساسية",
+        "item3": "يمكنك طلب معلومات حول البيانات التي جمعناها عنك",
+        "item4": "يمكنك طلب حذف البيانات المجمعة عبر ملفات تعريف الارتباط بالتواصل معنا"
+      },
+      "contact": {
+        "title": "اتصل بنا",
+        "content": "إذا كانت لديك أسئلة حول استخدامنا لملفات تعريف الارتباط، يرجى التواصل معنا على: {privacyEmail}"
+      }
+    }
+  },
+  "aboutPage": {
+    "title": "من نحن",
+    "sections": {
+      "who-we-are": {
+        "title": "من نحن",
+        "content": "{siteName} هي منصة لاكتشاف المنتجات — وليست متجرًا. نقوم بتنظيم وترتيب آلاف المنتجات من منصات التجارة الإلكترونية الصينية مثل Weidian و Taobao و 1688، مما يسهل عليك التصفح والمقارنة والعثور على ما تبحث عنه."
+      },
+      "our-mission": {
+        "title": "مهمتنا",
+        "content": "مهمتنا هي سد الفجوة بين المشترين الدوليين والسوق الصيني الواسع. نؤمن بأن الجميع يجب أن يحصلوا على منتجات عالية الجودة بأسعار عادلة، بغض النظر عن الحواجز اللغوية."
+      },
+      "how-it-works": {
+        "title": "كيف يعمل",
+        "content": "يبسط {siteName} عملية الاكتشاف إلى ثلاث خطوات بسيطة:",
+        "step1": "اكتشف — تصفح كتالوجنا المنسق بصور مفصلة وأسعار ومواصفات",
+        "step2": "انقر — عندما تجد شيئًا يعجبك، انقر للانتقال إلى المنتج على المنصة الأصلية",
+        "step3": "اشترِ — اشترِ عبر وكيل الشراء المفضل لديك (دايغو) مثل Kakobuy أو Sugargoo أو غيرهم",
+        "learnMore": "تريد معرفة المزيد عن العملية؟",
+        "learnMoreLink": "اطلع على دليلنا المفصل"
+      },
+      "affiliate-disclosure": {
+        "title": "إفصاح عن الروابط التابعة",
+        "content": "قد يحتوي {siteName} على روابط تابعة. عند النقر على روابط معينة والشراء عبر وكيل شراء، قد نحصل على عمولة صغيرة دون تكلفة إضافية عليك. يساعدنا هذا في صيانة وتحسين المنصة. نلتزم بالشفافية — علاقات الشراكة لا تؤثر أبدًا على اختيارنا للمنتجات."
+      },
+      "independence": {
+        "title": "إعلان الاستقلالية",
+        "content": "{siteName} منصة مستقلة. لسنا تابعين أو معتمدين أو مرتبطين رسميًا بأي علامة تجارية أو شركة مصنعة أو وكيل شراء أو منصة تجارة إلكترونية معروضة على موقعنا. جميع أسماء المنتجات والشعارات والعلامات التجارية هي ملك لأصحابها. دورنا هو فقط مساعدتك في اكتشاف المنتجات — جميع المعاملات تتم بينك وبين منصات الطرف الثالث."
+      }
+    }
+  },
+  "contactPage": {
+    "title": "اتصل بنا",
+    "sections": {
+      "get-in-touch": {
+        "title": "تواصل معنا",
+        "content": "يسعدنا أن نسمع منك! سواء كانت لديك أسئلة حول منصتنا أو اقتراحات للتحسين أو تحتاج إلى مساعدة، فريقنا موجود لمساعدتك. نرد عادة خلال 24-48 ساعة."
+      },
+      "email": {
+        "title": "البريد الإلكتروني",
+        "generalLabel": "الدعم العام:",
+        "generalDesc": "أسئلة حول المنصة أو قوائم المنتجات أو الاستفسارات العامة",
+        "privacyLabel": "استفسارات الخصوصية:",
+        "privacyDesc": "حماية البيانات أو طلبات GDPR أو مخاوف الخصوصية"
+      },
+      "community": {
+        "title": "المجتمع",
+        "content": "انضم إلى مجتمعنا للتواصل مع مشترين آخرين ومشاركة الاكتشافات والحصول على مساعدة من مشترين ذوي خبرة:",
+        "discord": "تحدث مع المجتمع واحصل على مساعدة فورية",
+        "telegram": "التحديثات والعروض ومناقشات المجتمع"
+      },
+      "important-note": {
+        "title": "ملاحظة مهمة",
+        "content": "{siteName} منصة لاكتشاف المنتجات — لا نعالج الطلبات أو الشحن أو المدفوعات. لأسئلة حول حالة طلبك أو تتبع الشحن أو مشاكل الدفع أو الاسترداد، يرجى التواصل مباشرة مع وكيل الشراء الخاص بك."
+      }
+    }
+  },
+  "shippingPage": {
+    "title": "دليل الشحن",
+    "sections": {
+      "introduction": {
+        "title": "مقدمة",
+        "content": "{siteName} منصة لاكتشاف المنتجات — لا نشحن المنتجات مباشرة. عند الشراء عبر وكيل شراء، يتولى هو جميع عمليات الشحن والخدمات اللوجستية. يشرح هذا الدليل كيف تعمل عملية الشحن عادة."
+      },
+      "how-shipping-works": {
+        "title": "كيف يعمل الشحن",
+        "content": "عند شراء منتجات عبر وكيل شراء، تتبع عملية الشحن عادة هذه الخطوات:",
+        "step1": "الطلب — تقدم طلبًا على منصة وكيلك، الذي يشتري المنتج من البائع الصيني نيابة عنك",
+        "step2": "التوصيل المحلي — يشحن البائع المنتج إلى مستودع وكيلك في الصين (عادة 2-5 أيام)",
+        "step3": "فحص الجودة والتجميع — يستلم الوكيل ويفحص ويصور منتجاتك. يمكنك تجميع طلبات متعددة في طرد واحد",
+        "step4": "الشحن الدولي — بمجرد رضاك عن صور QC، يشحن الوكيل الطرد إلى عنوانك"
+      },
+      "shipping-methods": {
+        "title": "طرق الشحن",
+        "content": "يقدم معظم وكلاء الشراء عدة خيارات للشحن الدولي:",
+        "method1": "EMS / ePacket — خدمة بريدية اقتصادية، عادة 10-20 يوم عمل. توازن جيد بين السعر والسرعة",
+        "method2": "DHL / FedEx / UPS — خدمات شحن سريعة، عادة 5-10 أيام عمل. أسرع لكن أغلى",
+        "method3": "الشحن البحري — خيار اقتصادي للأغراض الثقيلة، عادة 30-60 يومًا. الأفضل للطلبات الكبيرة",
+        "method4": "خطوط خاصة — مسارات شحن محسنة من الوكيل لمناطق معينة"
+      },
+      "shipping-tips": {
+        "title": "نصائح الشحن",
+        "tip1": "جمّع الطرود — ادمج طلبات متعددة في شحنة واحدة لتوفير تكاليف الشحن الدولي",
+        "tip2": "تحقق من المنتجات المحظورة — بعض المنتجات (البطاريات، السوائل، المنتجات ذات العلامات التجارية) قد تكون لها قيود شحن",
+        "tip3": "فكر في تأمين الشحن — للمنتجات القيمة، يُنصح بشراء تأمين الشحن",
+        "tip4": "صرّح بدقة — تأكد من أن وكيلك يصرح بمحتويات وقيمة الطرد بشكل صحيح"
+      },
+      "need-help": {
+        "title": "تحتاج مساعدة؟",
+        "content": "لأسئلة محددة حول أسعار الشحن أو التتبع أو مشاكل التوصيل، تواصل مباشرة مع خدمة عملاء وكيل الشراء. للأسئلة العامة، قم بزيارة",
+        "helpLink": "مركز المساعدة"
+      }
+    }
+  },
+  "returnsPage": {
+    "title": "الإرجاع والاسترداد",
+    "sections": {
+      "introduction": {
+        "title": "مقدمة",
+        "content": "{siteName} منصة لاكتشاف المنتجات — لا نبيع منتجات ولا نعالج المرتجعات. جميع المشتريات تتم عبر وكلاء شراء من أطراف ثالثة، وسياسات الإرجاع تدار بالكامل من قبل تلك المنصات."
+      },
+      "how-returns-work": {
+        "title": "كيف تعمل المرتجعات",
+        "content": "المرتجعات عند الشراء عبر وكلاء الشراء تختلف عن التسوق العادي عبر الإنترنت. هناك عادة سيناريوهان:",
+        "option1": "قبل الشحن الدولي (مرحلة QC) — إذا لم تكن راضيًا عن صور QC، يمكنك عادة طلب إرجاع إلى البائع الصيني عبر وكيلك. غالبًا ما يكون مجانيًا أو بتكلفة شحن محلية بسيطة",
+        "option2": "بعد الشحن الدولي — المرتجعات بعد الشحن الدولي عادة ما تكون أصعب بكثير وأكثر تكلفة، حيث ستحتاج إلى إعادة شحن المنتج إلى الصين"
+      },
+      "qc-photos": {
+        "title": "صور QC — أفضل حماية لك",
+        "content": "صور فحص الجودة (QC) هي أهم أداة لديك عند الشراء عبر الوكلاء. عندما تصل المنتجات إلى مستودع الوكيل، يتم التقاط صور مفصلة لمراجعتك. هذه فرصتك لفحص المنتج قبل الشحن الدولي. تحقق دائمًا بعناية من العيوب أو المقاسات الخاطئة أو المنتجات الخاطئة."
+      },
+      "refund-process": {
+        "title": "عملية الاسترداد",
+        "content": "عند الموافقة على الإرجاع، عادة ما يتم إيداع المبالغ المستردة في رصيد حساب وكيل الشراء بدلاً من طريقة الدفع الأصلية. تختلف أوقات المعالجة حسب المنصة والبائع، عادة 3-7 أيام عمل. لكل وكيل سياسات استرداد خاصة به."
+      },
+      "need-help": {
+        "title": "تحتاج مساعدة؟",
+        "content": "لأسئلة محددة حول المرتجعات أو الاسترداد أو مشاكل الطلبات، تواصل مباشرة مع خدمة عملاء وكيل الشراء. للأسئلة العامة، قم بزيارة",
+        "helpLink": "مركز المساعدة"
+      }
+    }
+  }
+}

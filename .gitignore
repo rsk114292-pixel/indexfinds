@@ -1,0 +1,103 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production
+build/
+dist/
+.next/
+out/
+
+# Env files (重要：包含敏感信息)
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+*/.env
+*/.env.*
+!.env.example
+!*/.env.example
+
+# Logs
+npm-debug.log*
+*.log
+logs.txt
+.playwright-cli/
+
+# Editor
+.vscode/
+.idea/
+.cursorrules
+.history/
+
+# Database
+*.sqlite
+*.db
+
+# Uploads
+uploads/
+
+# Migration raw data artifacts (keep SQL scripts and planning docs tracked)
+migration-artifacts/product-domain-import/dumps/
+migration-artifacts/uploads-referenced/
+
+# Coverage
+coverage/
+apps/web/test-results/
+
+# Backup files
+*.backup
+*-debug.json
+
+# Cache
+.turbo/
+.cache/
+.pnpm-store/
+
+# Ignore nul files (Windows reserved name issues)
+nul
+apps/api/nul
+apps/web/nul
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+.pytest_cache/
+
+# OS files
+.DS_Store
+**/.DS_Store
+._.DS_Store
+.AppleDouble
+.LSOverride
+**/__MACOSX/
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# 本地缓存的网页资源文件
+品牌图标/
+.vercel
+.env*.local
+
+# 计划文档和IDE工具目录
+*.PLAN.md
+*-PLAN.md
+.trae/
+
+# Claude Code local settings (contains sensitive permissions)
+.claude/settings.local.json
+
+# OG 字体文件（会导致 OG 图片生成报错）
+apps/web/public/fonts/
+
+# MCP config (contains credentials)
+.mcp.json
+
+# Local server access notes
+server-access-notes.md

@@ -1,0 +1,1348 @@
+{
+  "description": "产品分类种子数据 - 3级层级结构",
+  "version": "1.0.0",
+  "categories": [
+    {
+      "name": "服装",
+      "slug": "clothing",
+      "nameEn": "Clothing",
+      "level": 1,
+      "sortOrder": 1,
+      "aliases": ["衣服", "服饰", "穿搭", "clothes", "apparel", "garment", "wear"],
+      "children": [
+        {
+          "name": "上衣",
+          "slug": "tops",
+          "nameEn": "Tops",
+          "level": 2,
+          "sortOrder": 1,
+          "aliases": ["上装", "top", "shirt", "上半身"],
+          "children": [
+            {
+              "name": "T恤",
+              "slug": "t-shirt",
+              "nameEn": "T-Shirt",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["t恤", "短袖", "tee", "t-shirts", "短袖T恤", "圆领T", "tshirt"]
+            },
+            {
+              "name": "衬衫",
+              "slug": "shirt",
+              "nameEn": "Shirt",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["衬衣", "shirts", "dress shirt", "blouse", "正装衬衫"]
+            },
+            {
+              "name": "卫衣",
+              "slug": "hoodie",
+              "nameEn": "Hoodie",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["帽衫", "连帽衫", "hoodies", "sweatshirt", "套头衫", "pullover"]
+            },
+            {
+              "name": "毛衣",
+              "slug": "sweater",
+              "nameEn": "Sweater",
+              "level": 3,
+              "sortOrder": 4,
+              "aliases": ["针织衫", "毛线衣", "sweaters", "knit", "knitwear", "羊毛衫"]
+            },
+            {
+              "name": "Polo衫",
+              "slug": "polo",
+              "nameEn": "Polo Shirt",
+              "level": 3,
+              "sortOrder": 5,
+              "aliases": ["polo衫", "polo shirt", "翻领T恤", "保罗衫"]
+            },
+            {
+              "name": "球衣",
+              "slug": "jersey",
+              "nameEn": "Jersey",
+              "level": 3,
+              "sortOrder": 6,
+              "aliases": ["球服", "运动球衣", "jerseys", "sports jersey", "football jersey", "basketball jersey", "sports-t-shirts"]
+            },
+            {
+              "name": "背心",
+              "slug": "vest-top",
+              "nameEn": "Vest Top",
+              "level": 3,
+              "sortOrder": 7,
+              "aliases": ["吊带", "tank top", "camisole", "无袖上衣", "吊带背心"]
+            },
+            {
+              "name": "打底衫",
+              "slug": "base-layer",
+              "nameEn": "Base Layer",
+              "level": 3,
+              "sortOrder": 8,
+              "aliases": ["内搭", "打底", "base layer", "undershirt"]
+            }
+          ]
+        },
+        {
+          "name": "下装",
+          "slug": "bottoms",
+          "nameEn": "Bottoms",
+          "level": 2,
+          "sortOrder": 2,
+          "aliases": ["裤装", "bottom", "pants", "下半身"],
+          "children": [
+            {
+              "name": "长裤",
+              "slug": "pants",
+              "nameEn": "Pants",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["裤子", "trousers", "长裤子", "休闲裤"]
+            },
+            {
+              "name": "牛仔裤",
+              "slug": "jeans",
+              "nameEn": "Jeans",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["牛仔", "denim", "denim pants", "jean", "丹宁裤"]
+            },
+            {
+              "name": "短裤",
+              "slug": "shorts",
+              "nameEn": "Shorts",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["热裤", "short pants", "五分裤", "三分裤"]
+            },
+            {
+              "name": "裙子",
+              "slug": "skirt",
+              "nameEn": "Skirt",
+              "level": 3,
+              "sortOrder": 4,
+              "aliases": ["半身裙", "短裙", "长裙", "skirts", "mini skirt", "midi skirt"]
+            },
+            {
+              "name": "运动裤",
+              "slug": "sweatpants",
+              "nameEn": "Sweatpants",
+              "level": 3,
+              "sortOrder": 5,
+              "aliases": ["休闲运动裤", "joggers", "track pants", "卫裤"]
+            },
+            {
+              "name": "西裤",
+              "slug": "dress-pants",
+              "nameEn": "Dress Pants",
+              "level": 3,
+              "sortOrder": 6,
+              "aliases": ["正装裤", "suit pants", "西装裤", "商务裤"]
+            },
+            {
+              "name": "打底裤",
+              "slug": "leggings",
+              "nameEn": "Leggings",
+              "level": 3,
+              "sortOrder": 7,
+              "aliases": ["紧身裤", "瑜伽裤", "legging", "tights"]
+            }
+          ]
+        },
+        {
+          "name": "外套",
+          "slug": "outerwear",
+          "nameEn": "Outerwear",
+          "level": 2,
+          "sortOrder": 3,
+          "aliases": ["外穿", "jacket", "coat", "外衣"],
+          "children": [
+            {
+              "name": "夹克",
+              "slug": "jacket",
+              "nameEn": "Jacket",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["jackets", "茄克", "外套夹克", "飞行员夹克", "bomber"]
+            },
+            {
+              "name": "西装",
+              "slug": "blazer",
+              "nameEn": "Blazer",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["西服", "suit jacket", "正装外套", "西装外套", "suit"]
+            },
+            {
+              "name": "大衣",
+              "slug": "coat",
+              "nameEn": "Coat",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["长大衣", "overcoat", "呢大衣", "毛呢大衣"]
+            },
+            {
+              "name": "羽绒服",
+              "slug": "down-jacket",
+              "nameEn": "Down Jacket",
+              "level": 3,
+              "sortOrder": 4,
+              "aliases": ["羽绒", "puffer", "puffer jacket", "棉服", "down coat"]
+            },
+            {
+              "name": "派克大衣",
+              "slug": "parka",
+              "nameEn": "Parka",
+              "level": 3,
+              "sortOrder": 5,
+              "aliases": ["派克", "parkas", "anorak", "winter coat", "厚外套"]
+            },
+            {
+              "name": "风衣",
+              "slug": "trench-coat",
+              "nameEn": "Trench Coat",
+              "level": 3,
+              "sortOrder": 6,
+              "aliases": ["风衣外套", "trench", "防风外套"]
+            },
+            {
+              "name": "防风夹克",
+              "slug": "windbreaker",
+              "nameEn": "Windbreaker",
+              "level": 3,
+              "sortOrder": 7,
+              "aliases": ["windbreakers", "wind jacket", "shell jacket", "rain jacket", "防风衣"]
+            },
+            {
+              "name": "皮衣",
+              "slug": "leather-jacket",
+              "nameEn": "Leather Jacket",
+              "level": 3,
+              "sortOrder": 8,
+              "aliases": ["皮夹克", "leather coat", "机车皮衣", "biker jacket"]
+            },
+            {
+              "name": "牛仔外套",
+              "slug": "denim-jacket",
+              "nameEn": "Denim Jacket",
+              "level": 3,
+              "sortOrder": 9,
+              "aliases": ["牛仔夹克", "jean jacket", "丹宁外套"]
+            },
+            {
+              "name": "马甲",
+              "slug": "vest",
+              "nameEn": "Vest",
+              "level": 3,
+              "sortOrder": 10,
+              "aliases": ["背心外套", "gilet", "waistcoat", "无袖外套"]
+            },
+            {
+              "name": "开衫",
+              "slug": "cardigan",
+              "nameEn": "Cardigan",
+              "level": 3,
+              "sortOrder": 11,
+              "aliases": ["针织开衫", "毛衣开衫", "cardigans"]
+            }
+          ]
+        },
+        {
+          "name": "连衣裙",
+          "slug": "dress",
+          "nameEn": "Dress",
+          "level": 2,
+          "sortOrder": 4,
+          "aliases": ["裙装", "dresses", "长裙", "连身裙", "one-piece"],
+          "children": [
+            {
+              "name": "休闲连衣裙",
+              "slug": "casual-dress",
+              "nameEn": "Casual Dress",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["日常连衣裙", "casual dresses"]
+            },
+            {
+              "name": "正装连衣裙",
+              "slug": "formal-dress",
+              "nameEn": "Formal Dress",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["礼服", "晚礼服", "evening dress", "cocktail dress"]
+            },
+            {
+              "name": "衬衫裙",
+              "slug": "shirt-dress",
+              "nameEn": "Shirt Dress",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["衬衣裙", "shirt dresses"]
+            },
+            {
+              "name": "针织连衣裙",
+              "slug": "knit-dress",
+              "nameEn": "Knit Dress",
+              "level": 3,
+              "sortOrder": 4,
+              "aliases": ["毛衣裙", "sweater dress"]
+            }
+          ]
+        },
+        {
+          "name": "套装",
+          "slug": "sets",
+          "nameEn": "Sets",
+          "level": 2,
+          "sortOrder": 5,
+          "aliases": ["套装组合", "set", "outfit", "两件套", "三件套"],
+          "children": [
+            {
+              "name": "西装套装",
+              "slug": "suit-set",
+              "nameEn": "Suit Set",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["正装套装", "business suit", "西服套装"]
+            },
+            {
+              "name": "运动套装",
+              "slug": "tracksuit",
+              "nameEn": "Tracksuit",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["运动服套装", "sport set", "健身套装", "track-suits", "tracksuits", "track suit", "sweatsuit"]
+            },
+            {
+              "name": "休闲套装",
+              "slug": "casual-set",
+              "nameEn": "Casual Set",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["家居套装", "日常套装", "lounge set"]
+            }
+          ]
+        },
+        {
+          "name": "袜子",
+          "slug": "socks",
+          "nameEn": "Socks",
+          "level": 2,
+          "sortOrder": 6,
+          "aliases": ["袜", "长袜", "短袜", "sock", "ankle socks", "crew socks", "stockings"]
+        },
+        {
+          "name": "运动服饰",
+          "slug": "activewear",
+          "nameEn": "Activewear",
+          "level": 2,
+          "sortOrder": 7,
+          "aliases": ["sportswear", "athletic wear", "workout wear", "gym wear", "fitness wear", "运动穿搭"]
+        },
+        {
+          "name": "内衣",
+          "slug": "underwear",
+          "nameEn": "Underwear",
+          "level": 2,
+          "sortOrder": 8,
+          "aliases": ["内搭内衣", "贴身衣物", "lingerie", "briefs", "boxers", "bras", "panties"]
+        },
+        {
+          "name": "睡衣家居服",
+          "slug": "sleepwear",
+          "nameEn": "Sleepwear",
+          "level": 2,
+          "sortOrder": 9,
+          "aliases": ["睡衣", "家居服", "nightwear", "pajamas", "pyjamas", "loungewear", "homewear"]
+        },
+        {
+          "name": "泳装",
+          "slug": "swimwear",
+          "nameEn": "Swimwear",
+          "level": 2,
+          "sortOrder": 10,
+          "aliases": ["泳衣", "泳裤", "swimsuit", "bathing suit", "bikini", "swim trunks", "beachwear"]
+        }
+      ]
+    },
+    {
+      "name": "鞋靴",
+      "slug": "shoes",
+      "nameEn": "Shoes",
+      "level": 1,
+      "sortOrder": 2,
+      "aliases": ["鞋子", "鞋", "footwear", "boots", "sneakers"],
+      "children": [
+        {
+          "name": "运动鞋",
+          "slug": "sneakers",
+          "nameEn": "Sneakers",
+          "level": 2,
+          "sortOrder": 1,
+          "aliases": ["球鞋", "跑鞋", "运动休闲鞋", "athletic shoes", "trainers"],
+          "children": [
+            {
+              "name": "跑步鞋",
+              "slug": "running-shoes",
+              "nameEn": "Running Shoes",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["跑鞋", "慢跑鞋", "running", "joggers"]
+            },
+            {
+              "name": "篮球鞋",
+              "slug": "basketball-shoes",
+              "nameEn": "Basketball Shoes",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["篮球鞋", "basketball", "高帮球鞋"]
+            },
+            {
+              "name": "板鞋",
+              "slug": "skateboard-shoes",
+              "nameEn": "Skateboard Shoes",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["滑板鞋", "小白鞋", "休闲板鞋", "skate shoes"]
+            },
+            {
+              "name": "老爹鞋",
+              "slug": "chunky-sneakers",
+              "nameEn": "Chunky Sneakers",
+              "level": 3,
+              "sortOrder": 4,
+              "aliases": ["厚底运动鞋", "增高鞋", "dad shoes", "ugly sneakers"]
+            }
+          ]
+        },
+        {
+          "name": "休闲鞋",
+          "slug": "casual-shoes",
+          "nameEn": "Casual Shoes",
+          "level": 2,
+          "sortOrder": 2,
+          "aliases": ["便鞋", "日常鞋", "casual footwear"],
+          "children": [
+            {
+              "name": "帆布鞋",
+              "slug": "canvas-shoes",
+              "nameEn": "Canvas Shoes",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["帆布", "布鞋", "canvas", "plimsolls"]
+            },
+            {
+              "name": "乐福鞋",
+              "slug": "loafers",
+              "nameEn": "Loafers",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["一脚蹬", "懒人鞋", "豆豆鞋", "loafer", "slip-on"]
+            },
+            {
+              "name": "帆船鞋",
+              "slug": "boat-shoes",
+              "nameEn": "Boat Shoes",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["船鞋", "dock shoes"]
+            }
+          ]
+        },
+        {
+          "name": "皮鞋",
+          "slug": "leather-shoes",
+          "nameEn": "Leather Shoes",
+          "level": 2,
+          "sortOrder": 3,
+          "aliases": ["正装鞋", "商务鞋", "dress shoes", "formal shoes"],
+          "children": [
+            {
+              "name": "牛津鞋",
+              "slug": "oxford-shoes",
+              "nameEn": "Oxford Shoes",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["牛津", "oxford", "系带皮鞋"]
+            },
+            {
+              "name": "德比鞋",
+              "slug": "derby-shoes",
+              "nameEn": "Derby Shoes",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["德比", "derby", "开放式系带鞋"]
+            },
+            {
+              "name": "孟克鞋",
+              "slug": "monk-shoes",
+              "nameEn": "Monk Shoes",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["僧侣鞋", "搭扣皮鞋", "monk strap"]
+            },
+            {
+              "name": "布洛克鞋",
+              "slug": "brogues",
+              "nameEn": "Brogues",
+              "level": 3,
+              "sortOrder": 4,
+              "aliases": ["雕花皮鞋", "布洛克", "wingtip"]
+            }
+          ]
+        },
+        {
+          "name": "靴子",
+          "slug": "boots",
+          "nameEn": "Boots",
+          "level": 2,
+          "sortOrder": 4,
+          "aliases": ["靴", "boot", "长靴", "短靴"],
+          "children": [
+            {
+              "name": "切尔西靴",
+              "slug": "chelsea-boots",
+              "nameEn": "Chelsea Boots",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["切尔西", "chelsea", "松紧带靴"]
+            },
+            {
+              "name": "马丁靴",
+              "slug": "martin-boots",
+              "nameEn": "Martin Boots",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["马丁", "工装靴", "combat boots", "dr martens"]
+            },
+            {
+              "name": "雪地靴",
+              "slug": "snow-boots",
+              "nameEn": "Snow Boots",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["雪地", "保暖靴", "ugg", "winter boots"]
+            },
+            {
+              "name": "长靴",
+              "slug": "knee-boots",
+              "nameEn": "Knee Boots",
+              "level": 3,
+              "sortOrder": 4,
+              "aliases": ["过膝靴", "高筒靴", "knee-high boots"]
+            },
+            {
+              "name": "踝靴",
+              "slug": "ankle-boots",
+              "nameEn": "Ankle Boots",
+              "level": 3,
+              "sortOrder": 5,
+              "aliases": ["短靴", "裸靴", "booties"]
+            }
+          ]
+        },
+        {
+          "name": "凉鞋",
+          "slug": "sandals",
+          "nameEn": "Sandals",
+          "level": 2,
+          "sortOrder": 5,
+          "aliases": ["凉拖", "sandal", "summer shoes"],
+          "children": [
+            {
+              "name": "拖鞋",
+              "slug": "slippers",
+              "nameEn": "Slippers",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["人字拖", "凉拖鞋", "flip flops", "slides"]
+            },
+            {
+              "name": "罗马鞋",
+              "slug": "gladiator-sandals",
+              "nameEn": "Gladiator Sandals",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["绑带凉鞋", "罗马凉鞋", "strappy sandals"]
+            }
+          ]
+        },
+        {
+          "name": "高跟鞋",
+          "slug": "heels",
+          "nameEn": "Heels",
+          "level": 2,
+          "sortOrder": 6,
+          "aliases": ["高跟", "跟鞋", "high heels", "pumps"],
+          "children": [
+            {
+              "name": "细跟鞋",
+              "slug": "stilettos",
+              "nameEn": "Stilettos",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["细高跟", "尖头高跟", "stiletto heels"]
+            },
+            {
+              "name": "粗跟鞋",
+              "slug": "block-heels",
+              "nameEn": "Block Heels",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["方跟鞋", "粗跟", "chunky heels"]
+            },
+            {
+              "name": "坡跟鞋",
+              "slug": "wedges",
+              "nameEn": "Wedges",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["坡跟", "楔形跟", "wedge heels"]
+            },
+            {
+              "name": "猫跟鞋",
+              "slug": "kitten-heels",
+              "nameEn": "Kitten Heels",
+              "level": 3,
+              "sortOrder": 4,
+              "aliases": ["小猫跟", "低跟鞋", "kitten heel"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "箱包",
+      "slug": "bags",
+      "nameEn": "Bags",
+      "level": 1,
+      "sortOrder": 3,
+      "aliases": ["包包", "包袋", "手袋", "bag", "handbag", "purse"],
+      "children": [
+        {
+          "name": "手提包",
+          "slug": "handbags",
+          "nameEn": "Handbags",
+          "level": 2,
+          "sortOrder": 1,
+          "aliases": ["手袋", "提包", "tote", "handbag"],
+          "children": [
+            {
+              "name": "托特包",
+              "slug": "tote-bag",
+              "nameEn": "Tote Bag",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["托特", "大容量手提包", "tote", "shopping bag"]
+            },
+            {
+              "name": "波士顿包",
+              "slug": "boston-bag",
+              "nameEn": "Boston Bag",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["枕头包", "医生包", "bowling bag"]
+            },
+            {
+              "name": "菜篮子包",
+              "slug": "bucket-bag",
+              "nameEn": "Bucket Bag",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["水桶包", "束口包", "bucket"]
+            }
+          ]
+        },
+        {
+          "name": "单肩包",
+          "slug": "shoulder-bags",
+          "nameEn": "Shoulder Bags",
+          "level": 2,
+          "sortOrder": 2,
+          "aliases": ["肩包", "shoulder bag", "挎包"],
+          "children": [
+            {
+              "name": "链条包",
+              "slug": "chain-bag",
+              "nameEn": "Chain Bag",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["链条肩包", "chain shoulder bag", "翻盖包"]
+            },
+            {
+              "name": "腋下包",
+              "slug": "underarm-bag",
+              "nameEn": "Underarm Bag",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["法棍包", "baguette", "hobo bag"]
+            },
+            {
+              "name": "流浪包",
+              "slug": "hobo-bag",
+              "nameEn": "Hobo Bag",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["月牙包", "半月包", "crescent bag"]
+            }
+          ]
+        },
+        {
+          "name": "斜挎包",
+          "slug": "crossbody-bags",
+          "nameEn": "Crossbody Bags",
+          "level": 2,
+          "sortOrder": 3,
+          "aliases": ["斜跨包", "messenger bag", "crossbody"],
+          "children": [
+            {
+              "name": "邮差包",
+              "slug": "messenger-bag",
+              "nameEn": "Messenger Bag",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["邮差", "信使包", "satchel"]
+            },
+            {
+              "name": "马鞍包",
+              "slug": "saddle-bag",
+              "nameEn": "Saddle Bag",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["马鞍", "saddle", "半圆包"]
+            },
+            {
+              "name": "相机包",
+              "slug": "camera-bag",
+              "nameEn": "Camera Bag",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["相机包", "方形斜挎包", "box bag"]
+            }
+          ]
+        },
+        {
+          "name": "双肩包",
+          "slug": "backpacks",
+          "nameEn": "Backpacks",
+          "level": 2,
+          "sortOrder": 4,
+          "aliases": ["背包", "书包", "backpack", "rucksack"],
+          "children": [
+            {
+              "name": "休闲双肩包",
+              "slug": "casual-backpack",
+              "nameEn": "Casual Backpack",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["日常背包", "通勤背包", "daypack"]
+            },
+            {
+              "name": "迷你双肩包",
+              "slug": "mini-backpack",
+              "nameEn": "Mini Backpack",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["小双肩包", "mini背包"]
+            }
+          ]
+        },
+        {
+          "name": "手拿包",
+          "slug": "clutches",
+          "nameEn": "Clutches",
+          "level": 2,
+          "sortOrder": 5,
+          "aliases": ["晚宴包", "手包", "clutch", "evening bag"],
+          "children": [
+            {
+              "name": "信封包",
+              "slug": "envelope-clutch",
+              "nameEn": "Envelope Clutch",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["信封", "envelope", "信封手拿包"]
+            },
+            {
+              "name": "手腕包",
+              "slug": "wristlet",
+              "nameEn": "Wristlet",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["腕带包", "手挽包", "wrist bag"]
+            }
+          ]
+        },
+        {
+          "name": "腰包",
+          "slug": "belt-bags",
+          "nameEn": "Belt Bags",
+          "level": 2,
+          "sortOrder": 6,
+          "aliases": ["胸包", "腰带包", "fanny pack", "bum bag", "waist bag"],
+          "children": [
+            {
+              "name": "运动腰包",
+              "slug": "sport-belt-bag",
+              "nameEn": "Sport Belt Bag",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["运动胸包", "跑步腰包", "sport waist bag"]
+            },
+            {
+              "name": "时尚腰包",
+              "slug": "fashion-belt-bag",
+              "nameEn": "Fashion Belt Bag",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["潮流腰包", "时髦腰包", "fashion fanny pack"]
+            }
+          ]
+        },
+        {
+          "name": "钱包",
+          "slug": "wallets",
+          "nameEn": "Wallets",
+          "level": 2,
+          "sortOrder": 7,
+          "aliases": ["皮夹", "wallet", "purse", "卡包"],
+          "children": [
+            {
+              "name": "长款钱包",
+              "slug": "long-wallet",
+              "nameEn": "Long Wallet",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["长钱包", "手拿钱包", "continental wallet"]
+            },
+            {
+              "name": "短款钱包",
+              "slug": "short-wallet",
+              "nameEn": "Short Wallet",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["短钱包", "折叠钱包", "bifold wallet"]
+            },
+            {
+              "name": "卡包",
+              "slug": "card-holder",
+              "nameEn": "Card Holder",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["卡夹", "名片夹", "card case", "cardholder"]
+            },
+            {
+              "name": "零钱包",
+              "slug": "coin-purse",
+              "nameEn": "Coin Purse",
+              "level": 3,
+              "sortOrder": 4,
+              "aliases": ["硬币包", "小钱包", "coin pouch"]
+            }
+          ]
+        },
+        {
+          "name": "旅行箱包",
+          "slug": "travel-bags",
+          "nameEn": "Travel Bags",
+          "level": 2,
+          "sortOrder": 8,
+          "aliases": ["行李箱", "旅行包", "luggage", "travel luggage"],
+          "children": [
+            {
+              "name": "行李箱",
+              "slug": "suitcase",
+              "nameEn": "Suitcase",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["拉杆箱", "登机箱", "trolley", "carry-on"]
+            },
+            {
+              "name": "旅行袋",
+              "slug": "duffle-bag",
+              "nameEn": "Duffle Bag",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["健身包", "行李袋", "duffel", "weekender"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "配饰",
+      "slug": "accessories",
+      "nameEn": "Accessories",
+      "level": 1,
+      "sortOrder": 4,
+      "aliases": ["饰品", "配件", "accessory", "装饰品"],
+      "children": [
+        {
+          "name": "帽子",
+          "slug": "hats",
+          "nameEn": "Hats",
+          "level": 2,
+          "sortOrder": 1,
+          "aliases": ["帽", "hat", "cap", "头饰"],
+          "children": [
+            {
+              "name": "棒球帽",
+              "slug": "baseball-cap",
+              "nameEn": "Baseball Cap",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["鸭舌帽", "baseball", "cap"]
+            },
+            {
+              "name": "渔夫帽",
+              "slug": "bucket-hat",
+              "nameEn": "Bucket Hat",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["盆帽", "bucket hat", "钓鱼帽"]
+            },
+            {
+              "name": "针织帽",
+              "slug": "beanie",
+              "nameEn": "Beanie",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["毛线帽", "冷帽", "knit hat"]
+            },
+            {
+              "name": "贝雷帽",
+              "slug": "beret",
+              "nameEn": "Beret",
+              "level": 3,
+              "sortOrder": 4,
+              "aliases": ["画家帽", "法式贝雷帽"]
+            },
+            {
+              "name": "礼帽",
+              "slug": "fedora",
+              "nameEn": "Fedora",
+              "level": 3,
+              "sortOrder": 5,
+              "aliases": ["绅士帽", "宽檐帽", "trilby"]
+            }
+          ]
+        },
+        {
+          "name": "眼镜",
+          "slug": "eyewear",
+          "nameEn": "Eyewear",
+          "level": 2,
+          "sortOrder": 2,
+          "aliases": ["墨镜", "太阳镜", "glasses", "sunglasses"],
+          "children": [
+            {
+              "name": "太阳镜",
+              "slug": "sunglasses",
+              "nameEn": "Sunglasses",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["墨镜", "遮阳镜", "shades"]
+            },
+            {
+              "name": "光学眼镜",
+              "slug": "optical-glasses",
+              "nameEn": "Optical Glasses",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["近视镜", "眼镜框", "prescription glasses"]
+            }
+          ]
+        },
+        {
+          "name": "围巾",
+          "slug": "scarves",
+          "nameEn": "Scarves",
+          "level": 2,
+          "sortOrder": 3,
+          "aliases": ["丝巾", "披肩", "scarf", "shawl"],
+          "children": [
+            {
+              "name": "丝巾",
+              "slug": "silk-scarf",
+              "nameEn": "Silk Scarf",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["真丝丝巾", "方巾", "silk scarves"]
+            },
+            {
+              "name": "羊绒围巾",
+              "slug": "cashmere-scarf",
+              "nameEn": "Cashmere Scarf",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["羊毛围巾", "冬季围巾", "wool scarf"]
+            },
+            {
+              "name": "披肩",
+              "slug": "shawl",
+              "nameEn": "Shawl",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["大披肩", "斗篷", "wrap", "poncho"]
+            }
+          ]
+        },
+        {
+          "name": "腰带",
+          "slug": "belts",
+          "nameEn": "Belts",
+          "level": 2,
+          "sortOrder": 4,
+          "aliases": ["皮带", "belt", "waist belt"],
+          "children": [
+            {
+              "name": "皮带",
+              "slug": "leather-belt",
+              "nameEn": "Leather Belt",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["真皮腰带", "商务皮带", "dress belt"]
+            },
+            {
+              "name": "帆布腰带",
+              "slug": "canvas-belt",
+              "nameEn": "Canvas Belt",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["休闲腰带", "编织腰带", "web belt"]
+            }
+          ]
+        },
+        {
+          "name": "首饰",
+          "slug": "jewelry",
+          "nameEn": "Jewelry",
+          "level": 2,
+          "sortOrder": 5,
+          "aliases": ["珠宝", "饰品", "jewellery", "accessories"],
+          "children": [
+            {
+              "name": "项链",
+              "slug": "necklaces",
+              "nameEn": "Necklaces",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["吊坠", "锁骨链", "necklace", "pendant"]
+            },
+            {
+              "name": "手链",
+              "slug": "bracelets",
+              "nameEn": "Bracelets",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["手镯", "手环", "bracelet", "bangle"]
+            },
+            {
+              "name": "耳饰",
+              "slug": "earrings",
+              "nameEn": "Earrings",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["耳环", "耳钉", "耳坠", "earring"]
+            },
+            {
+              "name": "戒指",
+              "slug": "rings",
+              "nameEn": "Rings",
+              "level": 3,
+              "sortOrder": 4,
+              "aliases": ["指环", "ring", "band"]
+            },
+            {
+              "name": "胸针",
+              "slug": "brooches",
+              "nameEn": "Brooches",
+              "level": 3,
+              "sortOrder": 5,
+              "aliases": ["别针", "徽章", "brooch", "pin"]
+            }
+          ]
+        },
+        {
+          "name": "手表",
+          "slug": "watches",
+          "nameEn": "Watches",
+          "level": 2,
+          "sortOrder": 6,
+          "aliases": ["腕表", "表", "watch", "timepiece"],
+          "children": [
+            {
+              "name": "机械表",
+              "slug": "mechanical-watch",
+              "nameEn": "Mechanical Watch",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["自动机械表", "手动机械表", "automatic watch"]
+            },
+            {
+              "name": "石英表",
+              "slug": "quartz-watch",
+              "nameEn": "Quartz Watch",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["电子表", "quartz"]
+            },
+            {
+              "name": "智能手表",
+              "slug": "smartwatch",
+              "nameEn": "Smartwatch",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["智能腕表", "运动手表", "smart watch"]
+            }
+          ]
+        },
+        {
+          "name": "手套",
+          "slug": "gloves",
+          "nameEn": "Gloves",
+          "level": 2,
+          "sortOrder": 7,
+          "aliases": ["手套", "glove", "mittens"],
+          "children": [
+            {
+              "name": "皮手套",
+              "slug": "leather-gloves",
+              "nameEn": "Leather Gloves",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["真皮手套", "驾驶手套", "driving gloves"]
+            },
+            {
+              "name": "针织手套",
+              "slug": "knit-gloves",
+              "nameEn": "Knit Gloves",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["毛线手套", "冬季手套", "wool gloves"]
+            }
+          ]
+        },
+        {
+          "name": "领带",
+          "slug": "ties",
+          "nameEn": "Ties",
+          "level": 2,
+          "sortOrder": 8,
+          "aliases": ["领结", "tie", "necktie"],
+          "children": [
+            {
+              "name": "领带",
+              "slug": "necktie",
+              "nameEn": "Necktie",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["正装领带", "商务领带", "silk tie"]
+            },
+            {
+              "name": "领结",
+              "slug": "bow-tie",
+              "nameEn": "Bow Tie",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["蝴蝶结", "领花", "bowtie"]
+            }
+          ]
+        },
+        {
+          "name": "香水",
+          "slug": "perfume",
+          "nameEn": "Perfume",
+          "level": 2,
+          "sortOrder": 9,
+          "aliases": [
+            "香氛",
+            "fragrance",
+            "fragrances",
+            "perfumes",
+            "parfum",
+            "cologne",
+            "eau de parfum",
+            "eau de toilette",
+            "edp",
+            "edt",
+            "body mist"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "电子产品",
+      "slug": "electronics",
+      "nameEn": "Electronics",
+      "level": 1,
+      "sortOrder": 5,
+      "aliases": ["数码产品", "3C产品", "华强北", "电子", "digital", "tech"],
+      "children": [
+        {
+          "name": "耳机",
+          "slug": "earphones",
+          "nameEn": "Earphones",
+          "level": 2,
+          "sortOrder": 1,
+          "aliases": ["耳麦", "耳塞", "headphones", "earbuds", "headset"],
+          "children": [
+            {
+              "name": "真无线耳机",
+              "slug": "tws-earbuds",
+              "nameEn": "TWS Earbuds",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["TWS", "蓝牙耳机", "无线耳机", "airpods", "pods"]
+            },
+            {
+              "name": "头戴式耳机",
+              "slug": "over-ear-headphones",
+              "nameEn": "Over-ear Headphones",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["大耳机", "包耳式耳机", "headphones", "降噪耳机"]
+            },
+            {
+              "name": "运动耳机",
+              "slug": "sports-earphones",
+              "nameEn": "Sports Earphones",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["骨传导耳机", "颈挂式耳机", "运动蓝牙耳机"]
+            }
+          ]
+        },
+        {
+          "name": "智能手表",
+          "slug": "smartwatches",
+          "nameEn": "Smartwatches",
+          "level": 2,
+          "sortOrder": 2,
+          "aliases": ["智能腕表", "智能手环", "smart watch", "wearable"],
+          "children": [
+            {
+              "name": "运动手表",
+              "slug": "sports-watch",
+              "nameEn": "Sports Watch",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["运动腕表", "健身手表", "fitness watch"]
+            },
+            {
+              "name": "智能手环",
+              "slug": "fitness-band",
+              "nameEn": "Fitness Band",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["手环", "运动手环", "fitness tracker"]
+            }
+          ]
+        },
+        {
+          "name": "手机配件",
+          "slug": "phone-accessories",
+          "nameEn": "Phone Accessories",
+          "level": 2,
+          "sortOrder": 3,
+          "aliases": ["手机周边", "手机壳", "phone case", "mobile accessories"],
+          "children": [
+            {
+              "name": "手机壳",
+              "slug": "phone-case",
+              "nameEn": "Phone Case",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["保护壳", "手机套", "case", "cover"]
+            },
+            {
+              "name": "充电器",
+              "slug": "charger",
+              "nameEn": "Charger",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["充电头", "快充", "无线充电器", "wireless charger"]
+            },
+            {
+              "name": "数据线",
+              "slug": "cable",
+              "nameEn": "Cable",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["充电线", "type-c线", "lightning", "usb线"]
+            },
+            {
+              "name": "移动电源",
+              "slug": "power-bank",
+              "nameEn": "Power Bank",
+              "level": 3,
+              "sortOrder": 4,
+              "aliases": ["充电宝", "便携电源", "portable charger"]
+            }
+          ]
+        },
+        {
+          "name": "电脑配件",
+          "slug": "computer-accessories",
+          "nameEn": "Computer Accessories",
+          "level": 2,
+          "sortOrder": 4,
+          "aliases": ["电脑周边", "笔记本配件", "pc accessories"],
+          "children": [
+            {
+              "name": "键盘",
+              "slug": "keyboard",
+              "nameEn": "Keyboard",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["机械键盘", "无线键盘", "mechanical keyboard"]
+            },
+            {
+              "name": "鼠标",
+              "slug": "mouse",
+              "nameEn": "Mouse",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["无线鼠标", "游戏鼠标", "wireless mouse"]
+            },
+            {
+              "name": "电脑包",
+              "slug": "laptop-bag",
+              "nameEn": "Laptop Bag",
+              "level": 3,
+              "sortOrder": 3,
+              "aliases": ["笔记本包", "内胆包", "laptop sleeve"]
+            }
+          ]
+        },
+        {
+          "name": "音箱",
+          "slug": "speakers",
+          "nameEn": "Speakers",
+          "level": 2,
+          "sortOrder": 5,
+          "aliases": ["音响", "蓝牙音箱", "speaker", "bluetooth speaker"],
+          "children": [
+            {
+              "name": "便携音箱",
+              "slug": "portable-speaker",
+              "nameEn": "Portable Speaker",
+              "level": 3,
+              "sortOrder": 1,
+              "aliases": ["小音箱", "迷你音箱", "mini speaker"]
+            },
+            {
+              "name": "智能音箱",
+              "slug": "smart-speaker",
+              "nameEn": "Smart Speaker",
+              "level": 3,
+              "sortOrder": 2,
+              "aliases": ["AI音箱", "语音助手", "homepod"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

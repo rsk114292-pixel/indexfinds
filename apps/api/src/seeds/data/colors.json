@@ -1,0 +1,175 @@
+{
+  "colors": [
+    {
+      "name": "黑色",
+      "slug": "black",
+      "nameEn": "Black",
+      "hexCode": "#000000",
+      "sortOrder": 1,
+      "aliases": ["纯黑", "炭黑", "墨黑", "漆黑", "乌黑"],
+      "aliasesEn": ["jet black", "charcoal black", "ebony"]
+    },
+    {
+      "name": "白色",
+      "slug": "white",
+      "nameEn": "White",
+      "hexCode": "#FFFFFF",
+      "sortOrder": 2,
+      "aliases": ["纯白", "米白", "乳白", "象牙白", "奶白", "珍珠白", "雪白"],
+      "aliasesEn": ["pure white", "off-white", "ivory", "pearl white"]
+    },
+    {
+      "name": "灰色",
+      "slug": "gray",
+      "nameEn": "Gray",
+      "hexCode": "#808080",
+      "sortOrder": 3,
+      "aliases": ["浅灰", "深灰", "银灰", "烟灰", "铁灰", "雾灰", "炭灰"],
+      "aliasesEn": ["grey", "light gray", "dark gray", "silver gray", "charcoal"]
+    },
+    {
+      "name": "红色",
+      "slug": "red",
+      "nameEn": "Red",
+      "hexCode": "#FF0000",
+      "sortOrder": 4,
+      "aliases": ["酒红", "枣红", "砖红", "玫红", "正红", "大红", "暗红", "深红", "浅红", "中国红"],
+      "aliasesEn": ["wine red", "crimson", "scarlet", "cherry"]
+    },
+    {
+      "name": "粉色",
+      "slug": "pink",
+      "nameEn": "Pink",
+      "hexCode": "#FFC0CB",
+      "sortOrder": 5,
+      "aliases": ["粉红", "桃粉", "裸粉", "脏粉", "浅粉", "深粉", "肉粉", "蜜桃粉", "樱花粉"],
+      "aliasesEn": ["light pink", "blush", "rose", "coral pink", "salmon pink", "salmon", "fuchsia", "magenta", "hot pink"]
+    },
+    {
+      "name": "橙色",
+      "slug": "orange",
+      "nameEn": "Orange",
+      "hexCode": "#FFA500",
+      "sortOrder": 6,
+      "aliases": ["橘色", "橘红", "珊瑚橙", "南瓜色", "杏色", "蜜橙"],
+      "aliasesEn": ["tangerine", "coral", "peach", "apricot", "rust", "amber", "burnt orange"]
+    },
+    {
+      "name": "黄色",
+      "slug": "yellow",
+      "nameEn": "Yellow",
+      "hexCode": "#FFFF00",
+      "sortOrder": 7,
+      "aliases": ["鹅黄", "柠檬黄", "姜黄", "土黄", "明黄", "淡黄", "金黄", "芥末黄"],
+      "aliasesEn": ["lemon", "mustard", "canary", "cream yellow"]
+    },
+    {
+      "name": "绿色",
+      "slug": "green",
+      "nameEn": "Green",
+      "hexCode": "#008000",
+      "sortOrder": 8,
+      "aliases": ["墨绿", "军绿", "草绿", "薄荷绿", "牛油果绿", "橄榄绿", "荧光绿", "抹茶绿", "湖绿", "豆绿"],
+      "aliasesEn": ["forest green", "mint", "sage", "emerald", "lime", "avocado"]
+    },
+    {
+      "name": "蓝色",
+      "slug": "blue",
+      "nameEn": "Blue",
+      "hexCode": "#0000FF",
+      "sortOrder": 9,
+      "aliases": ["深蓝", "浅蓝", "天蓝", "藏蓝", "克莱因蓝", "宝蓝", "湖蓝", "雾霾蓝", "牛仔蓝", "海军蓝"],
+      "aliasesEn": ["sky blue", "royal blue", "cobalt", "teal", "denim", "baby blue", "turquoise", "cyan", "azure", "cerulean"]
+    },
+    {
+      "name": "紫色",
+      "slug": "purple",
+      "nameEn": "Purple",
+      "hexCode": "#800080",
+      "sortOrder": 10,
+      "aliases": ["深紫", "浅紫", "香芋紫", "葡萄紫", "薰衣草紫", "茄紫", "丁香紫", "紫罗兰"],
+      "aliasesEn": ["violet", "lavender", "plum", "grape", "lilac", "mauve", "indigo", "amethyst"]
+    },
+    {
+      "name": "棕色",
+      "slug": "brown",
+      "nameEn": "Brown",
+      "hexCode": "#8B4513",
+      "sortOrder": 11,
+      "aliases": ["咖啡色", "驼色", "焦糖色", "卡其色", "巧克力色", "栗色", "棕褐色", "可可色", "摩卡色"],
+      "aliasesEn": ["coffee", "camel", "tan", "chocolate", "chestnut", "mocha", "caramel", "copper", "cocoa", "umber"]
+    },
+    {
+      "name": "米色",
+      "slug": "beige",
+      "nameEn": "Beige",
+      "hexCode": "#F5F5DC",
+      "sortOrder": 12,
+      "aliases": ["杏色", "裸色", "奶茶色", "燕麦色", "沙色", "浅卡其"],
+      "aliasesEn": ["nude", "sand", "oatmeal", "ecru", "taupe", "cream"]
+    },
+    {
+      "name": "金色",
+      "slug": "gold",
+      "nameEn": "Gold",
+      "hexCode": "#FFD700",
+      "sortOrder": 13,
+      "aliases": ["香槟金", "玫瑰金", "土豪金", "古铜金", "亮金"],
+      "aliasesEn": ["champagne", "rose gold", "bronze", "metallic gold"]
+    },
+    {
+      "name": "银色",
+      "slug": "silver",
+      "nameEn": "Silver",
+      "hexCode": "#C0C0C0",
+      "sortOrder": 14,
+      "aliases": ["银白", "金属银", "亮银", "太空银"],
+      "aliasesEn": ["metallic silver", "chrome", "platinum"]
+    },
+    {
+      "name": "透明",
+      "slug": "transparent",
+      "nameEn": "Transparent",
+      "hexCode": null,
+      "sortOrder": 15,
+      "aliases": ["无色", "透明色", "水晶", "清透"],
+      "aliasesEn": ["clear", "crystal", "see-through"]
+    },
+    {
+      "name": "藏青色",
+      "slug": "navy",
+      "nameEn": "Navy",
+      "hexCode": "#000080",
+      "sortOrder": 16,
+      "aliases": ["深藏青", "海军蓝", "深蓝色"],
+      "aliasesEn": ["navy blue", "dark navy", "midnight blue"]
+    },
+    {
+      "name": "酒红色",
+      "slug": "burgundy",
+      "nameEn": "Burgundy",
+      "hexCode": "#800020",
+      "sortOrder": 17,
+      "aliases": ["勃艮第红", "枣红色", "深酒红"],
+      "aliasesEn": ["wine", "maroon", "oxblood"]
+    },
+    {
+      "name": "军绿色",
+      "slug": "army-green",
+      "nameEn": "Army Green",
+      "hexCode": "#4B5320",
+      "sortOrder": 18,
+      "aliases": ["工装绿", "橄榄绿", "迷彩绿"],
+      "aliasesEn": ["olive drab", "military green", "khaki green", "olive", "khaki"]
+    },
+    {
+      "name": "多色",
+      "slug": "multicolor",
+      "nameEn": "Multicolor",
+      "hexCode": null,
+      "sortOrder": 19,
+      "aliases": ["多色", "彩色", "扎染", "拼色", "彩虹", "渐变", "撞色"],
+      "aliasesEn": ["multi", "colorful", "tie-dye", "patchwork", "rainbow", "mixed colors", "color block"]
+    }
+  ]
+}

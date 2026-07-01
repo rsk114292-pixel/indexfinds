@@ -1,0 +1,6018 @@
+{
+  "version": 2,
+  "source": "live brands export from brands table",
+  "generatedAt": "2026-04-17T09:27:32.123Z",
+  "brandCount": 233,
+  "brands": [
+    {
+      "name": "A Bathing Ape",
+      "slug": "a-bathing-ape",
+      "aliases": [
+        "A BATHING APE",
+        "ABathingApe",
+        "BAPE",
+        "aba"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "abathingape",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.951Z"
+      }
+    },
+    {
+      "name": "About:Blank",
+      "slug": "about-blank",
+      "aliases": [
+        "About Blank",
+        "ab"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "aboutblank",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.087Z"
+      }
+    },
+    {
+      "name": "Acne Studios",
+      "slug": "acne-studios",
+      "aliases": [
+        "Acne",
+        "艾克妮"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "acnestudios",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.962Z"
+      }
+    },
+    {
+      "name": "Adidas",
+      "slug": "adidas",
+      "aliases": [
+        "ADIDAS"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "adidas",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.936Z"
+      }
+    },
+    {
+      "name": "Adidas Originals",
+      "slug": "adidas-originals",
+      "aliases": [
+        "Originals",
+        "Trefoil",
+        "Three Stripes Originals"
+      ],
+      "tier": 2,
+      "brandType": "child",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "adidasoriginals",
+      "parentSlug": "adidas",
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.091Z"
+      }
+    },
+    {
+      "name": "Adidas Yeezy",
+      "slug": "adidas-yeezy",
+      "aliases": [
+        "Yeezy",
+        "adidasyeezy"
+      ],
+      "tier": 2,
+      "brandType": "child",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "adidasyeezy",
+      "parentSlug": "adidas",
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.092Z"
+      }
+    },
+    {
+      "name": "Aimé Leon Dore",
+      "slug": "aim-leon-dore",
+      "aliases": [
+        "ALD",
+        "Aime Leon Dore",
+        "aimleondore"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "aimleondore",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.971Z"
+      }
+    },
+    {
+      "name": "Air Jordan",
+      "slug": "air-jordan",
+      "aliases": [
+        "Jordan",
+        "AJ",
+        "Jumpman",
+        "23",
+        "Jordan Brand",
+        "MJ"
+      ],
+      "tier": 1,
+      "brandType": "child",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "airjordan",
+      "parentSlug": "nike",
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.089Z"
+      }
+    },
+    {
+      "name": "Alexander McQueen",
+      "slug": "alexander-mcqueen",
+      "aliases": [
+        "McQueen",
+        "AMQ",
+        "am"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "alexandermcqueen",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "shoes",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.999Z"
+      }
+    },
+    {
+      "name": "Alexander Wang",
+      "slug": "alexander-wang",
+      "aliases": [
+        "ALEXANDER WANG"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "alexanderwang",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.042Z"
+      }
+    },
+    {
+      "name": "Alo",
+      "slug": "alo",
+      "aliases": [
+        "Alo Yoga",
+        "ay"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "alo",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "activewear",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.968Z"
+      }
+    },
+    {
+      "name": "AMI Paris",
+      "slug": "ami-paris",
+      "aliases": [
+        "AMI",
+        "AMI-PARIS",
+        "ami paris",
+        "amiparis"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "amiparis",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:24.954Z"
+      }
+    },
+    {
+      "name": "Amiri",
+      "slug": "amiri",
+      "aliases": [
+        "AMIRI"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "amiri",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "shoes",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.952Z"
+      }
+    },
+    {
+      "name": "Anti Social Social Club",
+      "slug": "anti-social-social-club",
+      "aliases": [
+        "ASSC",
+        "asc"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "antisocialsocialclub",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.960Z"
+      }
+    },
+    {
+      "name": "Apple",
+      "slug": "apple",
+      "aliases": [
+        "苹果",
+        "iPhone",
+        "AirPods",
+        "Apple Watch"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "apple",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "electronics"
+        ],
+        "seededAt": "2026-04-16T13:02:25.034Z"
+      }
+    },
+    {
+      "name": "Arc'teryx",
+      "slug": "arcteryx",
+      "aliases": [
+        "Arcteryx",
+        "Arc teryx"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "arcteryx",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "outerwear",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.009Z"
+      }
+    },
+    {
+      "name": "Armani Exchange",
+      "slug": "armani-exchange",
+      "aliases": [
+        "A|X",
+        "Armani X",
+        "AX Armani"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "armaniexchange",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.984Z"
+      }
+    },
+    {
+      "name": "Arte",
+      "slug": "arte-antwerp",
+      "aliases": [
+        "Arte Antwerp",
+        "ARTE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "arte",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.056Z"
+      }
+    },
+    {
+      "name": "ASICS",
+      "slug": "asics",
+      "aliases": [
+        "ASICS"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "asics",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.939Z"
+      }
+    },
+    {
+      "name": "Audemars Piguet",
+      "slug": "audemars-piguet",
+      "aliases": [
+        "AP",
+        "Audemars"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "audemarspiguet",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.050Z"
+      }
+    },
+    {
+      "name": "Autry",
+      "slug": "autry",
+      "aliases": [
+        "AUTRY"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "autry",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.012Z"
+      }
+    },
+    {
+      "name": "Balenciaga",
+      "slug": "balenciaga",
+      "aliases": [
+        "Balenciega",
+        "Balanciaga",
+        "Lenciaga",
+        "LENCIGA"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "balenciaga",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "shoes",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.992Z"
+      }
+    },
+    {
+      "name": "Balmain",
+      "slug": "balmain",
+      "aliases": [
+        "BALMAIN"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "balmain",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.970Z"
+      }
+    },
+    {
+      "name": "B.B. Simon",
+      "slug": "bb-simon",
+      "aliases": [
+        "BB Simon",
+        "B.B. Simon Belt",
+        "bs"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "bbsimon",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:25.085Z"
+      }
+    },
+    {
+      "name": "Beats",
+      "slug": "beats",
+      "aliases": [
+        "Beats by Dre",
+        "BEATS"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "beats",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "electronics"
+        ],
+        "seededAt": "2026-04-16T13:02:25.047Z"
+      }
+    },
+    {
+      "name": "Birkenstock",
+      "slug": "birkenstock",
+      "aliases": [
+        "BIRKENSTOCK"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "birkenstock",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.006Z"
+      }
+    },
+    {
+      "name": "Bose",
+      "slug": "bose",
+      "aliases": [
+        "BOSE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "bose",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "electronics"
+        ],
+        "seededAt": "2026-04-16T13:02:25.076Z"
+      }
+    },
+    {
+      "name": "Bottega Veneta",
+      "slug": "bottega-veneta",
+      "aliases": [
+        "BV",
+        "Bottega"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "bottegaveneta",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags"
+        ],
+        "seededAt": "2026-04-16T13:02:24.999Z"
+      }
+    },
+    {
+      "name": "Breitling",
+      "slug": "breitling",
+      "aliases": [
+        "BREITLING"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "breitling",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.026Z"
+      }
+    },
+    {
+      "name": "Broken Planet",
+      "slug": "broken-planet",
+      "aliases": [
+        "BROKEN PLANET"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "brokenplanet",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.974Z"
+      }
+    },
+    {
+      "name": "Brooks",
+      "slug": "brooks",
+      "aliases": [
+        "BROOKS"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "brooks",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.070Z"
+      }
+    },
+    {
+      "name": "Burberry",
+      "slug": "burberry",
+      "aliases": [
+        "BURBERRY"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "burberry",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.992Z"
+      }
+    },
+    {
+      "name": "Bvlgari",
+      "slug": "bvlgari",
+      "aliases": [
+        "Bulgari"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "bvlgari",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "jewelry",
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.030Z"
+      }
+    },
+    {
+      "name": "Byredo",
+      "slug": "byredo",
+      "aliases": [
+        "BYREDO"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "byredo",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "beauty",
+          "fragrance"
+        ],
+        "seededAt": "2026-04-16T13:02:25.080Z"
+      }
+    },
+    {
+      "name": "Calvin Klein",
+      "slug": "calvin-klein",
+      "aliases": [
+        "CK",
+        "calvinklein",
+        "Calvin Klein Jeans",
+        "ck one"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "calvinklein",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "underwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.959Z"
+      }
+    },
+    {
+      "name": "Canada Goose",
+      "slug": "canada-goose",
+      "aliases": [
+        "CG",
+        "Goose"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "canadagoose",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "outerwear",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.003Z"
+      }
+    },
+    {
+      "name": "Carhartt",
+      "slug": "carhartt",
+      "aliases": [
+        "CARHARTT"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "carhartt",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "workwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.055Z"
+      }
+    },
+    {
+      "name": "Carhartt Work In Progress",
+      "slug": "carhartt-work-in-progress",
+      "aliases": [
+        "Carhartt WIP",
+        "cwip"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "carharttworkinprogress",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.982Z"
+      }
+    },
+    {
+      "name": "Carrera",
+      "slug": "carrera",
+      "aliases": [
+        "CARRERA"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "carrera",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "eyewear",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:25.042Z"
+      }
+    },
+    {
+      "name": "Cartier",
+      "slug": "cartier",
+      "aliases": [
+        "Cartie"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "cartier",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "jewelry",
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.021Z"
+      }
+    },
+    {
+      "name": "Casablanca",
+      "slug": "casablanca",
+      "aliases": [
+        "Casa Blanca"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "casablanca",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.956Z"
+      }
+    },
+    {
+      "name": "Casio",
+      "slug": "casio",
+      "aliases": [
+        "CASIO",
+        "G-SHOCK",
+        "G SHOCK"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "casio",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.033Z"
+      }
+    },
+    {
+      "name": "Castore",
+      "slug": "castore",
+      "aliases": [
+        "CASTORE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "castore",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.980Z"
+      }
+    },
+    {
+      "name": "Celine",
+      "slug": "celine",
+      "aliases": [
+        "CELINE",
+        "Celin"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "celine",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.994Z"
+      }
+    },
+    {
+      "name": "Champion",
+      "slug": "champion",
+      "aliases": [
+        "CHAMPION"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "champion",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.078Z"
+      }
+    },
+    {
+      "name": "Chanel",
+      "slug": "chanel",
+      "aliases": [
+        "CHANEL",
+        "CC"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "chanel",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.993Z"
+      }
+    },
+    {
+      "name": "Chloé",
+      "slug": "chloe",
+      "aliases": [
+        "Chloe",
+        "chlo"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "chlo",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "bags",
+          "clothing",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.988Z"
+      }
+    },
+    {
+      "name": "Chopard",
+      "slug": "chopard",
+      "aliases": [
+        "Chophard"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "chopard",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "jewelry",
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.031Z"
+      }
+    },
+    {
+      "name": "Christian Louboutin",
+      "slug": "christian-louboutin",
+      "aliases": [
+        "Louboutin",
+        "CL"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "christianlouboutin",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.000Z"
+      }
+    },
+    {
+      "name": "Chrome Hearts",
+      "slug": "chrome-hearts",
+      "aliases": [
+        "CHROME HEARTS",
+        "ChromeHearts",
+        "CH"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "chromehearts",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "accessories",
+          "jewelry",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.952Z"
+      }
+    },
+    {
+      "name": "Coach",
+      "slug": "coach",
+      "aliases": [
+        "COACH"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "coach",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "bags",
+          "accessories",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:25.001Z"
+      }
+    },
+    {
+      "name": "Cole Buxton",
+      "slug": "cole-buxton",
+      "aliases": [
+        "COLE BUXTON"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "colebuxton",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.972Z"
+      }
+    },
+    {
+      "name": "Comme des Garçons",
+      "slug": "comme-des-garcons",
+      "aliases": [
+        "CDG",
+        "Comme des Garcons",
+        "commedesgarons"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "commedesgarons",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.929Z"
+      }
+    },
+    {
+      "name": "Comme des Garçons Play",
+      "slug": "comme-des-garcons-play",
+      "aliases": [
+        "Play Comme des Garçons",
+        "playcommedesgarons",
+        "cdgp",
+        "commedesgaronsplay",
+        "pcdg"
+      ],
+      "tier": 2,
+      "brandType": "child",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "commedesgaronsplay",
+      "parentSlug": "comme-des-garcons",
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.096Z"
+      }
+    },
+    {
+      "name": "Converse",
+      "slug": "converse",
+      "aliases": [
+        "CONVERSE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "converse",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.007Z"
+      }
+    },
+    {
+      "name": "Corteiz",
+      "slug": "corteiz",
+      "aliases": [
+        "Crtz",
+        "CORTEIZ",
+        "CORTEZ"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "corteiz",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.947Z"
+      }
+    },
+    {
+      "name": "C.P. Company",
+      "slug": "cp-company",
+      "aliases": [
+        "CP Company",
+        "C.P. Company"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "cpcompany",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "outerwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.983Z"
+      }
+    },
+    {
+      "name": "Creed",
+      "slug": "creed",
+      "aliases": [
+        "CREED"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "creed",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "fragrance",
+          "beauty"
+        ],
+        "seededAt": "2026-04-16T13:02:25.039Z"
+      }
+    },
+    {
+      "name": "Crocs",
+      "slug": "crocs",
+      "aliases": [
+        "CROCS"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "crocs",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.005Z"
+      }
+    },
+    {
+      "name": "Denim Tears",
+      "slug": "denim-tears",
+      "aliases": [
+        "DENIM TEARS",
+        "dnimtears"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "denimtears",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.981Z"
+      }
+    },
+    {
+      "name": "Descente",
+      "slug": "descente",
+      "aliases": [
+        "DESCENTE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "descente",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "activewear",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.062Z"
+      }
+    },
+    {
+      "name": "Design",
+      "slug": "design",
+      "aliases": [
+        "design"
+      ],
+      "tier": 3,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "design",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": "Fallback brand for products where AI cannot identify the brand",
+      "metadata": {
+        "aiSource": "system-default"
+      }
+    },
+    {
+      "name": "Dickies",
+      "slug": "dickies",
+      "aliases": [
+        "DICKIES"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "dickies",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "workwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.060Z"
+      }
+    },
+    {
+      "name": "Diesel",
+      "slug": "diesel",
+      "aliases": [
+        "DIESEL"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "diesel",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "denim"
+        ],
+        "seededAt": "2026-04-16T13:02:24.968Z"
+      }
+    },
+    {
+      "name": "Dior",
+      "slug": "dior",
+      "aliases": [
+        "DIOR",
+        "Christian Dior"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "dior",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.991Z"
+      }
+    },
+    {
+      "name": "Diptyque",
+      "slug": "diptyque",
+      "aliases": [
+        "DIPTYQUE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "diptyque",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "fragrance",
+          "beauty"
+        ],
+        "seededAt": "2026-04-16T13:02:25.086Z"
+      }
+    },
+    {
+      "name": "DITA",
+      "slug": "dita",
+      "aliases": [
+        "Dita"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "dita",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "eyewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.032Z"
+      }
+    },
+    {
+      "name": "Dolce & Gabbana",
+      "slug": "dolce-gabbana",
+      "aliases": [
+        "D&G",
+        "DG",
+        "Dolce Gabbana",
+        "DG Girls"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "dolcegabbana",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.998Z"
+      }
+    },
+    {
+      "name": "Dr. Martens",
+      "slug": "dr-martens",
+      "aliases": [
+        "Dr Martens",
+        "DOC MARTENS"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "drmartens",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "boots"
+        ],
+        "seededAt": "2026-04-16T13:02:25.079Z"
+      }
+    },
+    {
+      "name": "Drew House",
+      "slug": "drew-house",
+      "aliases": [
+        "DREW HOUSE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "drewhouse",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.974Z"
+      }
+    },
+    {
+      "name": "Dsquared2",
+      "slug": "dsquared2",
+      "aliases": [
+        "DSQUARED2",
+        "DSquared"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "dsquared2",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.958Z"
+      }
+    },
+    {
+      "name": "Dyson",
+      "slug": "dyson",
+      "aliases": [
+        "戴森",
+        "吹风机",
+        "吸尘器"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "dyson",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "electronics"
+        ],
+        "seededAt": "2026-04-16T13:02:25.034Z"
+      }
+    },
+    {
+      "name": "Emporio Armani",
+      "slug": "emporio-armani",
+      "aliases": [
+        "EA",
+        "EMPORIO ARMANI",
+        "EA7",
+        "Emporio",
+        "Armani EA"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "emporioarmani",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:24.984Z"
+      }
+    },
+    {
+      "name": "Enfants Riches Déprimés",
+      "slug": "enfants-riches-deprimes",
+      "aliases": [
+        "Enfants Riches Deprimes",
+        "ERD",
+        "enfantsrichesdprims"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "enfantsrichesdprims",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "luxury",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.975Z"
+      }
+    },
+    {
+      "name": "Ethika",
+      "slug": "ethika",
+      "aliases": [
+        "ETHIKA"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "ethika",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "underwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.051Z"
+      }
+    },
+    {
+      "name": "Evisu",
+      "slug": "evisu",
+      "aliases": [
+        "EVISU"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "evisu",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "denim"
+        ],
+        "seededAt": "2026-04-16T13:02:24.965Z"
+      }
+    },
+    {
+      "name": "Fear of God",
+      "slug": "fear-of-god",
+      "aliases": [
+        "FOG",
+        "Fear of God"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "fearofgod",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.955Z"
+      }
+    },
+    {
+      "name": "Fear of God Essentials",
+      "slug": "fear-of-god-essentials",
+      "aliases": [
+        "Essentials",
+        "FOG Essentials",
+        "foge"
+      ],
+      "tier": 2,
+      "brandType": "line",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "fearofgodessentials",
+      "parentSlug": "fear-of-god",
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.094Z"
+      }
+    },
+    {
+      "name": "Fendi",
+      "slug": "fendi",
+      "aliases": [
+        "FENDI"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "fendi",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.995Z"
+      }
+    },
+    {
+      "name": "Fila",
+      "slug": "fila",
+      "aliases": [
+        "FILA"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "fila",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.064Z"
+      }
+    },
+    {
+      "name": "Franck Muller",
+      "slug": "franck-muller",
+      "aliases": [
+        "FRANCK MULLER"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "franckmuller",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.045Z"
+      }
+    },
+    {
+      "name": "Fred Perry",
+      "slug": "fred-perry",
+      "aliases": [
+        "FRED PERRY"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "fredperry",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.046Z"
+      }
+    },
+    {
+      "name": "Gallery Dept",
+      "slug": "gallery-dept",
+      "aliases": [
+        "GALLERY DEPT",
+        "GalleryDept",
+        "GD"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "gallerydept",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.950Z"
+      }
+    },
+    {
+      "name": "Ganni",
+      "slug": "ganni",
+      "aliases": [
+        "GANNI"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "ganni",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:25.043Z"
+      }
+    },
+    {
+      "name": "GAP",
+      "slug": "gap",
+      "aliases": [
+        "Gap",
+        "GapKids",
+        "GapBody"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "gap",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.978Z"
+      }
+    },
+    {
+      "name": "GCDS",
+      "slug": "gcds",
+      "aliases": [
+        "God Can't Destroy Streetwear"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "gcds",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.048Z"
+      }
+    },
+    {
+      "name": "Gildan",
+      "slug": "gildan",
+      "aliases": [
+        "GILDAN"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "gildan",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.051Z"
+      }
+    },
+    {
+      "name": "Giorgio Armani",
+      "slug": "giorgio-armani",
+      "aliases": [
+        "GIORGIO ARMANI",
+        "Armani Jeans",
+        "Armani"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "giorgioarmani",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.053Z"
+      }
+    },
+    {
+      "name": "Givenchy",
+      "slug": "givenchy",
+      "aliases": [
+        "Givenchi",
+        "Givency"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "givenchy",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.998Z"
+      }
+    },
+    {
+      "name": "Golden Goose",
+      "slug": "golden-goose",
+      "aliases": [
+        "GGDB",
+        "GoldenGoose"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "goldengoose",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.000Z"
+      }
+    },
+    {
+      "name": "Goorin Bros",
+      "slug": "goorin-bros",
+      "aliases": [
+        "GOORIN BROS",
+        "Goorin Bros."
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "goorinbros",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:25.054Z"
+      }
+    },
+    {
+      "name": "Goyard",
+      "slug": "goyard",
+      "aliases": [
+        "Goyard Paris",
+        "Goyarde",
+        "Goyardine"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "goyard",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags"
+        ],
+        "seededAt": "2026-04-16T13:02:25.001Z"
+      }
+    },
+    {
+      "name": "Gucci",
+      "slug": "gucci",
+      "aliases": [
+        "GUCCI"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "gucci",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.991Z"
+      }
+    },
+    {
+      "name": "Gymshark",
+      "slug": "gymshark",
+      "aliases": [
+        "GYMSHARK"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "gymshark",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "activewear",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.967Z"
+      }
+    },
+    {
+      "name": "Haculla",
+      "slug": "haculla",
+      "aliases": [
+        "HACULLA"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "haculla",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.088Z"
+      }
+    },
+    {
+      "name": "Hellstar",
+      "slug": "hellstar",
+      "aliases": [
+        "HELLSTAR",
+        "Hell Star",
+        "Helstar",
+        "Hellstar Studios"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "hellstar",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.946Z"
+      }
+    },
+    {
+      "name": "Hermès",
+      "slug": "hermes",
+      "aliases": [
+        "Hermes",
+        "HERMÈS",
+        "herms"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "herms",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:24.994Z"
+      }
+    },
+    {
+      "name": "Hogan",
+      "slug": "hogan",
+      "aliases": [
+        "HOGAN"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "hogan",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:25.018Z"
+      }
+    },
+    {
+      "name": "Hoka",
+      "slug": "hoka",
+      "aliases": [
+        "HOKA",
+        "Hoka One One"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "hoka",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.010Z"
+      }
+    },
+    {
+      "name": "Hollister",
+      "slug": "hollister",
+      "aliases": [
+        "HOLLISTER",
+        "Hollister Co"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "hollister",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.068Z"
+      }
+    },
+    {
+      "name": "Hoodrich",
+      "slug": "hoodrich",
+      "aliases": [
+        "HOODRICH"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "hoodrich",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.056Z"
+      }
+    },
+    {
+      "name": "Hublot",
+      "slug": "hublot",
+      "aliases": [
+        "HUBLOT"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "hublot",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.029Z"
+      }
+    },
+    {
+      "name": "Hugo Boss",
+      "slug": "hugo-boss",
+      "aliases": [
+        "BOSS",
+        "HUGO BOSS",
+        "Hugo"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "hugoboss",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:24.961Z"
+      }
+    },
+    {
+      "name": "Human Made",
+      "slug": "human-made",
+      "aliases": [
+        "HUMAN MADE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "humanmade",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.964Z"
+      }
+    },
+    {
+      "name": "Hummel",
+      "slug": "hummel",
+      "aliases": [
+        "HUMMEL"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "hummel",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.047Z"
+      }
+    },
+    {
+      "name": "IH NOM UH NIT",
+      "slug": "ih-nom-uh-nit",
+      "aliases": [
+        "Ih Nom Uh Nit",
+        "inun"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "ihnomuhnit",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.976Z"
+      }
+    },
+    {
+      "name": "Issey Miyake",
+      "slug": "issey-miyake",
+      "aliases": [
+        "ISSEY MIYAKE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "isseymiyake",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.076Z"
+      }
+    },
+    {
+      "name": "IWC",
+      "slug": "iwc",
+      "aliases": [
+        "IWC Schaffhausen",
+        "is"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "iwc",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.057Z"
+      }
+    },
+    {
+      "name": "Jacquemus",
+      "slug": "jacquemus",
+      "aliases": [
+        "JACQUEMUS"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "jacquemus",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "bags",
+          "clothing",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.988Z"
+      }
+    },
+    {
+      "name": "JBL",
+      "slug": "jbl",
+      "aliases": [
+        "Jbl",
+        "JBL音箱"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "jbl",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "electronics"
+        ],
+        "seededAt": "2026-04-16T13:02:25.035Z"
+      }
+    },
+    {
+      "name": "Jil Sander",
+      "slug": "jil-sander",
+      "aliases": [
+        "JIL SANDER"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "jilsander",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.079Z"
+      }
+    },
+    {
+      "name": "Jimmy Choo",
+      "slug": "jimmy-choo",
+      "aliases": [
+        "JIMMY CHOO"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "jimmychoo",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.052Z"
+      }
+    },
+    {
+      "name": "JNCO",
+      "slug": "jnco",
+      "aliases": [
+        "JNCO Jeans"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "jnco",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "denim"
+        ],
+        "seededAt": "2026-04-16T13:02:25.067Z"
+      }
+    },
+    {
+      "name": "Joma",
+      "slug": "joma",
+      "aliases": [
+        "JOMA"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "joma",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "activewear",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.077Z"
+      }
+    },
+    {
+      "name": "Kappa",
+      "slug": "kappa",
+      "aliases": [
+        "KAPPA"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "kappa",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.979Z"
+      }
+    },
+    {
+      "name": "Kenzo",
+      "slug": "kenzo",
+      "aliases": [
+        "KENZO",
+        "Kenzo Paris",
+        "Kenzo tiger"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "kenzo",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.966Z"
+      }
+    },
+    {
+      "name": "Kith",
+      "slug": "kith",
+      "aliases": [
+        "KITH"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "kith",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:24.973Z"
+      }
+    },
+    {
+      "name": "Lacoste",
+      "slug": "lacoste",
+      "aliases": [
+        "LACOSTE",
+        "lacoste polo"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "lacoste",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:24.954Z"
+      }
+    },
+    {
+      "name": "Lancôme",
+      "slug": "lancome",
+      "aliases": [
+        "Lancome",
+        "lancme"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "lancme",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "beauty",
+          "fragrance"
+        ],
+        "seededAt": "2026-04-16T13:02:25.074Z"
+      }
+    },
+    {
+      "name": "Lanvin",
+      "slug": "lanvin",
+      "aliases": [
+        "LANVIN"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "lanvin",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "shoes",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.003Z"
+      }
+    },
+    {
+      "name": "Le Coq Sportif",
+      "slug": "le-coq-sportif",
+      "aliases": [
+        "LE COQ SPORTIF",
+        "Coq Sportif",
+        "LCS"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "lecoqsportif",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.065Z"
+      }
+    },
+    {
+      "name": "Lee",
+      "slug": "lee",
+      "aliases": [
+        "LEE",
+        "Lee Cooper"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "lee",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "denim"
+        ],
+        "seededAt": "2026-04-16T13:02:25.045Z"
+      }
+    },
+    {
+      "name": "LEGO",
+      "slug": "lego",
+      "aliases": [
+        "Lego"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "lego",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "lifestyle",
+          "collectibles"
+        ],
+        "seededAt": "2026-04-16T13:02:25.049Z"
+      }
+    },
+    {
+      "name": "Levi's",
+      "slug": "levis",
+      "aliases": [
+        "Levis",
+        "LEVI'S",
+        "Levi Strauss"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "levis",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "denim"
+        ],
+        "seededAt": "2026-04-16T13:02:25.059Z"
+      }
+    },
+    {
+      "name": "Loewe",
+      "slug": "loewe",
+      "aliases": [
+        "LOEWE",
+        "Loewee",
+        "Lowe"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "loewe",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.996Z"
+      }
+    },
+    {
+      "name": "Longchamp",
+      "slug": "longchamp",
+      "aliases": [
+        "LONGCHAMP",
+        "Longchamp Paris"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "longchamp",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "bags",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:25.061Z"
+      }
+    },
+    {
+      "name": "Longines",
+      "slug": "longines",
+      "aliases": [
+        "LONGINES"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "longines",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.027Z"
+      }
+    },
+    {
+      "name": "Loro Piana",
+      "slug": "loro-piana",
+      "aliases": [
+        "LoroPiana"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "loropiana",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.970Z"
+      }
+    },
+    {
+      "name": "Louis Vuitton",
+      "slug": "louis-vuitton",
+      "aliases": [
+        "LV",
+        "louisvuitton"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "louisvuitton",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.990Z"
+      }
+    },
+    {
+      "name": "Lululemon",
+      "slug": "lululemon",
+      "aliases": [
+        "lululemon",
+        "Lulu"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "lululemon",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "activewear",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.966Z"
+      }
+    },
+    {
+      "name": "Maison Francis Kurkdjian",
+      "slug": "maison-francis-kurkdjian",
+      "aliases": [
+        "MFK",
+        "Maison Francis Kurkdjian Paris"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "maisonfranciskurkdjian",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "fragrance",
+          "beauty"
+        ],
+        "seededAt": "2026-04-16T13:02:25.063Z"
+      }
+    },
+    {
+      "name": "Maison Kitsuné",
+      "slug": "maison-kitsune",
+      "aliases": [
+        "Maison Kitsune",
+        "Kitsune",
+        "maisonkitsun"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "maisonkitsun",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:25.058Z"
+      }
+    },
+    {
+      "name": "Maison Margiela",
+      "slug": "maison-margiela",
+      "aliases": [
+        "MM6",
+        "Margiela",
+        "MMM"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "maisonmargiela",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "shoes",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.953Z"
+      }
+    },
+    {
+      "name": "Maison Mihara Yasuhiro",
+      "slug": "maison-mihara-yasuhiro",
+      "aliases": [
+        "Mihara Yasuhiro",
+        "MMY"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "maisonmiharayasuhiro",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.081Z"
+      }
+    },
+    {
+      "name": "Marcelo Burlon County of Milan",
+      "slug": "marcelo-burlon-county-of-milan",
+      "aliases": [
+        "Marcelo Burlon",
+        "County of Milan",
+        "mbcom"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "marceloburloncountyofmilan",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.976Z"
+      }
+    },
+    {
+      "name": "Mardi Mercredi",
+      "slug": "mardi-mercredi",
+      "aliases": [
+        "Mardi",
+        "Mard"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "mardimercredi",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.985Z"
+      }
+    },
+    {
+      "name": "Marithé François Girbaud",
+      "slug": "marithe-francois-girbaud",
+      "aliases": [
+        "Marithe Francois Girbaud",
+        "MFG",
+        "marithefranoisgirbaud",
+        "marithfranoisgirbaud"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "marithfranoisgirbaud",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "denim"
+        ],
+        "seededAt": "2026-04-16T13:02:24.977Z"
+      }
+    },
+    {
+      "name": "Marni",
+      "slug": "marni",
+      "aliases": [
+        "MARNI"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "marni",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.063Z"
+      }
+    },
+    {
+      "name": "Matin Kim",
+      "slug": "matin-kim",
+      "aliases": [
+        "MATIN KIM"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "matinkim",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:25.054Z"
+      }
+    },
+    {
+      "name": "MCM",
+      "slug": "mcm",
+      "aliases": [
+        "MCM Worldwide"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "mcm",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "bags",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:24.989Z"
+      }
+    },
+    {
+      "name": "Medicom Toy",
+      "slug": "medicom-toy",
+      "aliases": [
+        "MEDICOM TOY",
+        "mt"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "medicomtoy",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "collectibles",
+          "lifestyle"
+        ],
+        "seededAt": "2026-04-16T13:02:25.069Z"
+      }
+    },
+    {
+      "name": "Michael Kors",
+      "slug": "michael-kors",
+      "aliases": [
+        "MK",
+        "MICHAEL KORS"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "michaelkors",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "bags",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:25.071Z"
+      }
+    },
+    {
+      "name": "Missoni",
+      "slug": "missoni",
+      "aliases": [
+        "MISSONI"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "missoni",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.082Z"
+      }
+    },
+    {
+      "name": "Mitchell & Ness",
+      "slug": "mitchell-ness",
+      "aliases": [
+        "Mitchell and Ness"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "mitchellness",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "accessories",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.021Z"
+      }
+    },
+    {
+      "name": "Miu Miu",
+      "slug": "miu-miu",
+      "aliases": [
+        "miumiu",
+        "Miu Miu Wander"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "miumiu",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.999Z"
+      }
+    },
+    {
+      "name": "Mizuno",
+      "slug": "mizuno",
+      "aliases": [
+        "MIZUNO"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "mizuno",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.044Z"
+      }
+    },
+    {
+      "name": "MM6 Maison Margiela",
+      "slug": "mm6-maison-margiela",
+      "aliases": [
+        "MM6"
+      ],
+      "tier": 2,
+      "brandType": "line",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "mm6maisonmargiela",
+      "parentSlug": "maison-margiela",
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.097Z"
+      }
+    },
+    {
+      "name": "Moncler",
+      "slug": "moncler",
+      "aliases": [
+        "MONCLER"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "moncler",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "outerwear",
+          "luxury",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.004Z"
+      }
+    },
+    {
+      "name": "Moncler Genius",
+      "slug": "moncler-genius",
+      "aliases": [
+        "Moncler Genius"
+      ],
+      "tier": 2,
+      "brandType": "line",
+      "displayMode": "inherit_parent",
+      "governanceStatus": "approved",
+      "canonicalKey": "monclergenius",
+      "parentSlug": "moncler",
+      "isIndependent": false,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "outerwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.095Z"
+      }
+    },
+    {
+      "name": "Moose Knuckles",
+      "slug": "moose-knuckles",
+      "aliases": [
+        "MOOSE KNUCKLES"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "mooseknuckles",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "outerwear",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.978Z"
+      }
+    },
+    {
+      "name": "Moschino",
+      "slug": "moschino",
+      "aliases": [
+        "Moschino Milano",
+        "Love Moschino",
+        "Franco Moschino"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "moschino",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.969Z"
+      }
+    },
+    {
+      "name": "Movado",
+      "slug": "movado",
+      "aliases": [
+        "MOVADO"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "movado",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.083Z"
+      }
+    },
+    {
+      "name": "Needles",
+      "slug": "needles",
+      "aliases": [
+        "NEEDLES"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "needles",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.083Z"
+      }
+    },
+    {
+      "name": "New Balance",
+      "slug": "new-balance",
+      "aliases": [
+        "NEW BALANCE",
+        "NewBalance",
+        "NB"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "newbalance",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.937Z"
+      }
+    },
+    {
+      "name": "New Era",
+      "slug": "new-era",
+      "aliases": [
+        "NEW ERA",
+        "ne"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "newera",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:25.006Z"
+      }
+    },
+    {
+      "name": "Nike",
+      "slug": "nike",
+      "aliases": [
+        "NIKE",
+        "Nike Sportswear"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "nike",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.934Z"
+      }
+    },
+    {
+      "name": "Nike SB",
+      "slug": "nike-sb",
+      "aliases": [
+        "SB",
+        "Nike Skateboarding",
+        "Dunk SB"
+      ],
+      "tier": 2,
+      "brandType": "child",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "nikesb",
+      "parentSlug": "nike",
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.090Z"
+      }
+    },
+    {
+      "name": "NOAH",
+      "slug": "noah",
+      "aliases": [
+        "Noah NYC",
+        "NOAH"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "noah",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.060Z"
+      }
+    },
+    {
+      "name": "NOCTA",
+      "slug": "nocta",
+      "aliases": [
+        "Nike x NOCTA"
+      ],
+      "tier": 2,
+      "brandType": "line",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "nocta",
+      "parentSlug": "nike",
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.093Z"
+      }
+    },
+    {
+      "name": "Oakley",
+      "slug": "oakley",
+      "aliases": [
+        "OAKLEY"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "oakley",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "accessories",
+          "eyewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.018Z"
+      }
+    },
+    {
+      "name": "Off-White",
+      "slug": "off-white",
+      "aliases": [
+        "OFF-WHITE",
+        "off white",
+        "offwhite"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "offwhite",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:24.949Z"
+      }
+    },
+    {
+      "name": "Omega",
+      "slug": "omega",
+      "aliases": [
+        "Omegawatch"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "omega",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.025Z"
+      }
+    },
+    {
+      "name": "On",
+      "slug": "on-running",
+      "aliases": [
+        "On Running",
+        "ON",
+        "Cloudmonster",
+        "Cloud",
+        "Cloudnova"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "on",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.008Z"
+      }
+    },
+    {
+      "name": "Onitsuka Tiger",
+      "slug": "onitsuka-tiger",
+      "aliases": [
+        "ONITSUKA TIGER",
+        "Onitsuka",
+        "Tiger"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "onitsukatiger",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.062Z"
+      }
+    },
+    {
+      "name": "Palace",
+      "slug": "palace",
+      "aliases": [
+        "PALACE",
+        "Palace Skateboards"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "palace",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.963Z"
+      }
+    },
+    {
+      "name": "Palm Angels",
+      "slug": "palm-angels",
+      "aliases": [
+        "棕榈天使"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "palmangels",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.944Z"
+      }
+    },
+    {
+      "name": "Patagonia",
+      "slug": "patagonia",
+      "aliases": [
+        "Patagucci"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "patagonia",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "outerwear",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.961Z"
+      }
+    },
+    {
+      "name": "Patek Philippe",
+      "slug": "patek-philippe",
+      "aliases": [
+        "PP",
+        "Patek"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "patekphilippe",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.026Z"
+      }
+    },
+    {
+      "name": "Penhaligon's",
+      "slug": "penhaligons",
+      "aliases": [
+        "Penhaligons"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "penhaligons",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "fragrance",
+          "beauty"
+        ],
+        "seededAt": "2026-04-16T13:02:25.069Z"
+      }
+    },
+    {
+      "name": "Philipp Plein",
+      "slug": "philipp-plein",
+      "aliases": [
+        "PHILIPP PLEIN",
+        "PhilippPlein",
+        "PP"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "philippplein",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.957Z"
+      }
+    },
+    {
+      "name": "Pinko",
+      "slug": "pinko",
+      "aliases": [
+        "PINKO"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "pinko",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.084Z"
+      }
+    },
+    {
+      "name": "Polo Ralph Lauren",
+      "slug": "polo-ralph-lauren",
+      "aliases": [
+        "Polo",
+        "PRL",
+        "Polo RL"
+      ],
+      "tier": 2,
+      "brandType": "child",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "poloralphlauren",
+      "parentSlug": "ralph-lauren",
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.094Z"
+      }
+    },
+    {
+      "name": "Pop Mart",
+      "slug": "pop-mart",
+      "aliases": [
+        "POPMART",
+        "POP MART",
+        "pm"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "popmart",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "collectibles",
+          "lifestyle"
+        ],
+        "seededAt": "2026-04-16T13:02:25.037Z"
+      }
+    },
+    {
+      "name": "Prada",
+      "slug": "prada",
+      "aliases": [
+        "Prada Milano"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "prada",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.993Z"
+      }
+    },
+    {
+      "name": "Premiata",
+      "slug": "premiata",
+      "aliases": [
+        "PREMIATA"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "premiata",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.081Z"
+      }
+    },
+    {
+      "name": "Puma",
+      "slug": "puma",
+      "aliases": [
+        "PUMA",
+        "Puma Cat"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "puma",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.941Z"
+      }
+    },
+    {
+      "name": "Purple Brand",
+      "slug": "purple-brand",
+      "aliases": [
+        "Purple"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "purplebrand",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "denim"
+        ],
+        "seededAt": "2026-04-16T13:02:24.981Z"
+      }
+    },
+    {
+      "name": "Ralph Lauren",
+      "slug": "ralph-lauren",
+      "aliases": [
+        "RALPH LAUREN",
+        "RalphLauren",
+        "RL",
+        "Polo by Ralph Lauren",
+        "pbrl"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "ralphlauren",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:24.953Z"
+      }
+    },
+    {
+      "name": "Ray-Ban",
+      "slug": "ray-ban",
+      "aliases": [
+        "ray ban",
+        "rayban"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "rayban",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "eyewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.031Z"
+      }
+    },
+    {
+      "name": "Reebok",
+      "slug": "reebok",
+      "aliases": [
+        "REEBOK"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "reebok",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.017Z"
+      }
+    },
+    {
+      "name": "Represent",
+      "slug": "represent",
+      "aliases": [
+        "REPRESENT"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "represent",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.960Z"
+      }
+    },
+    {
+      "name": "Rest & Recreation",
+      "slug": "rest-recreation",
+      "aliases": [
+        "Rest and Recreation"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "restrecreation",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.040Z"
+      }
+    },
+    {
+      "name": "Revenge",
+      "slug": "revenge",
+      "aliases": [
+        "REVENGE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "revenge",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.088Z"
+      }
+    },
+    {
+      "name": "Rhude",
+      "slug": "rhude",
+      "aliases": [
+        "RHUDE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "rhude",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.955Z"
+      }
+    },
+    {
+      "name": "Richard Mille",
+      "slug": "richard-mille",
+      "aliases": [
+        "RICHARD MILLE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "richardmille",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.050Z"
+      }
+    },
+    {
+      "name": "Rick Owens",
+      "slug": "rick-owens",
+      "aliases": [
+        "RICK OWENS"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "rickowens",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "shoes",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.002Z"
+      }
+    },
+    {
+      "name": "Rick Owens DRKSHDW",
+      "slug": "rick-owens-drkshdw",
+      "aliases": [
+        "DRKSHDW",
+        "rod"
+      ],
+      "tier": 2,
+      "brandType": "line",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "rickowensdrkshdw",
+      "parentSlug": "rick-owens",
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.097Z"
+      }
+    },
+    {
+      "name": "Rimowa",
+      "slug": "rimowa",
+      "aliases": [
+        "RIMOWA",
+        "Rimova"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "rimowa",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "bags",
+          "travel"
+        ],
+        "seededAt": "2026-04-16T13:02:25.080Z"
+      }
+    },
+    {
+      "name": "Roger Vivier",
+      "slug": "roger-vivier",
+      "aliases": [
+        "ROGER VIVIER",
+        "rv"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "rogervivier",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.072Z"
+      }
+    },
+    {
+      "name": "Roja Parfums",
+      "slug": "roja-parfums",
+      "aliases": [
+        "Roja",
+        "ROJA PARFUMS"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "rojaparfums",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "fragrance",
+          "beauty"
+        ],
+        "seededAt": "2026-04-16T13:02:25.058Z"
+      }
+    },
+    {
+      "name": "Rolex",
+      "slug": "rolex",
+      "aliases": [
+        "Rollex"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "rolex",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.023Z"
+      }
+    },
+    {
+      "name": "Saint Laurent",
+      "slug": "saint-laurent",
+      "aliases": [
+        "YSL",
+        "Yves Saint Laurent",
+        "SL"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "saintlaurent",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.997Z"
+      }
+    },
+    {
+      "name": "Salomon",
+      "slug": "salomon",
+      "aliases": [
+        "SALOMON"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "salomon",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "activewear",
+          "outerwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.017Z"
+      }
+    },
+    {
+      "name": "Salvatore Ferragamo",
+      "slug": "salvatore-ferragamo",
+      "aliases": [
+        "Ferragamo"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "salvatoreferragamo",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "bags",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.987Z"
+      }
+    },
+    {
+      "name": "Samsung",
+      "slug": "samsung",
+      "aliases": [
+        "三星",
+        "Galaxy"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "samsung",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "electronics"
+        ],
+        "seededAt": "2026-04-16T13:02:25.036Z"
+      }
+    },
+    {
+      "name": "Saucony",
+      "slug": "saucony",
+      "aliases": [
+        "SAUCONY"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "saucony",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.013Z"
+      }
+    },
+    {
+      "name": "SKIMS",
+      "slug": "skims",
+      "aliases": [
+        "Skims"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "skims",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "underwear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.049Z"
+      }
+    },
+    {
+      "name": "Stanley",
+      "slug": "stanley",
+      "aliases": [
+        "STANLEY"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "stanley",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "lifestyle",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:25.037Z"
+      }
+    },
+    {
+      "name": "Stone Island",
+      "slug": "stone-island",
+      "aliases": [
+        "STONE ISLAND",
+        "StoneIsland",
+        "SI"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "stoneisland",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "outerwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.943Z"
+      }
+    },
+    {
+      "name": "Stussy",
+      "slug": "stussy",
+      "aliases": [
+        "斯图西",
+        "stüssy"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "stussy",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.949Z"
+      }
+    },
+    {
+      "name": "Supreme",
+      "slug": "supreme",
+      "aliases": [
+        "SUPREME"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "supreme",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:24.948Z"
+      }
+    },
+    {
+      "name": "Swarovski",
+      "slug": "swarovski",
+      "aliases": [
+        "SWAROVSKI"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "swarovski",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "jewelry"
+        ],
+        "seededAt": "2026-04-16T13:02:25.032Z"
+      }
+    },
+    {
+      "name": "Telfar",
+      "slug": "telfar",
+      "aliases": [
+        "TELFAR"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "telfar",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.052Z"
+      }
+    },
+    {
+      "name": "The North Face",
+      "slug": "the-north-face",
+      "aliases": [
+        "THE NORTH FACE",
+        "TheNorthFace",
+        "TNF"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "thenorthface",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "outerwear",
+          "clothing",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:24.942Z"
+      }
+    },
+    {
+      "name": "The Row",
+      "slug": "the-row",
+      "aliases": [
+        "THE ROW"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "therow",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.065Z"
+      }
+    },
+    {
+      "name": "Thom Browne",
+      "slug": "thom-browne",
+      "aliases": [
+        "TB",
+        "汤姆布朗",
+        "四杠"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "thombrowne",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "luxury"
+        ],
+        "seededAt": "2026-04-16T13:02:24.986Z"
+      }
+    },
+    {
+      "name": "Tiffany & Co.",
+      "slug": "tiffany-co",
+      "aliases": [
+        "Tiffany",
+        "Tiffany and Co"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "tiffanyco",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "jewelry"
+        ],
+        "seededAt": "2026-04-16T13:02:25.028Z"
+      }
+    },
+    {
+      "name": "Timberland",
+      "slug": "timberland",
+      "aliases": [
+        "Timbs",
+        "TBL"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "timberland",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "boots"
+        ],
+        "seededAt": "2026-04-16T13:02:25.011Z"
+      }
+    },
+    {
+      "name": "Tod's",
+      "slug": "tods",
+      "aliases": [
+        "Tods",
+        "Tod"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "tods",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.044Z"
+      }
+    },
+    {
+      "name": "Tom Ford",
+      "slug": "tom-ford",
+      "aliases": [
+        "TOM FORD",
+        "TF"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "tomford",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "eyewear",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.002Z"
+      }
+    },
+    {
+      "name": "Tommy Hilfiger",
+      "slug": "tommy-hilfiger",
+      "aliases": [
+        "Tommy",
+        "TH",
+        "tommyhilfiger"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "tommyhilfiger",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:24.962Z"
+      }
+    },
+    {
+      "name": "Tory Burch",
+      "slug": "tory-burch",
+      "aliases": [
+        "toryburch",
+        "TB"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "toryburch",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "bags",
+          "shoes",
+          "accessories"
+        ],
+        "seededAt": "2026-04-16T13:02:24.987Z"
+      }
+    },
+    {
+      "name": "Trapstar",
+      "slug": "trapstar",
+      "aliases": [
+        "TRAPSTAR"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "trapstar",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.945Z"
+      }
+    },
+    {
+      "name": "UGG",
+      "slug": "ugg",
+      "aliases": [
+        "Ugg"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "ugg",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.004Z"
+      }
+    },
+    {
+      "name": "UMA WANG",
+      "slug": "uma-wang",
+      "aliases": [
+        "Uma Wang"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "umawang",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.066Z"
+      }
+    },
+    {
+      "name": "Umbro",
+      "slug": "umbro",
+      "aliases": [
+        "UMBRO"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "umbro",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.010Z"
+      }
+    },
+    {
+      "name": "Under Armour",
+      "slug": "under-armour",
+      "aliases": [
+        "UA",
+        "Under Armour",
+        "Under Armor"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "underarmour",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "activewear"
+        ],
+        "seededAt": "2026-04-16T13:02:25.005Z"
+      }
+    },
+    {
+      "name": "Vacheron Constantin",
+      "slug": "vacheron-constantin",
+      "aliases": [
+        "Vacheron"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "vacheronconstantin",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "watches"
+        ],
+        "seededAt": "2026-04-16T13:02:25.029Z"
+      }
+    },
+    {
+      "name": "Valentino",
+      "slug": "valentino",
+      "aliases": [
+        "Valentino Garavani"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "valentino",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:24.995Z"
+      }
+    },
+    {
+      "name": "Van Cleef & Arpels",
+      "slug": "van-cleef-arpels",
+      "aliases": [
+        "VCA",
+        "Van Cleef"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "vancleefarpels",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "jewelry"
+        ],
+        "seededAt": "2026-04-16T13:02:25.024Z"
+      }
+    },
+    {
+      "name": "Vans",
+      "slug": "vans",
+      "aliases": [
+        "VANS"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "vans",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.009Z"
+      }
+    },
+    {
+      "name": "VEJA",
+      "slug": "veja",
+      "aliases": [
+        "Veja"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "veja",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes"
+        ],
+        "seededAt": "2026-04-16T13:02:25.012Z"
+      }
+    },
+    {
+      "name": "Versace",
+      "slug": "versace",
+      "aliases": [
+        "VERSACE",
+        "Versache",
+        "Versaci"
+      ],
+      "tier": 1,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "versace",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "bags",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:24.996Z"
+      }
+    },
+    {
+      "name": "Vetements",
+      "slug": "vetements",
+      "aliases": [
+        "韦特萌"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "vetements",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.958Z"
+      }
+    },
+    {
+      "name": "Vivienne Westwood",
+      "slug": "vivienne-westwood",
+      "aliases": [
+        "Westwood",
+        "VW",
+        "Orb"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "viviennewestwood",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "accessories",
+          "jewelry"
+        ],
+        "seededAt": "2026-04-16T13:02:24.986Z"
+      }
+    },
+    {
+      "name": "Vivienne Westwood Red Label",
+      "slug": "vivienne-westwood-red-label",
+      "aliases": [
+        "Red Label",
+        "vwrl"
+      ],
+      "tier": 2,
+      "brandType": "line",
+      "displayMode": "inherit_parent",
+      "governanceStatus": "approved",
+      "canonicalKey": "viviennewestwoodredlabel",
+      "parentSlug": "vivienne-westwood",
+      "isIndependent": false,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.095Z"
+      }
+    },
+    {
+      "name": "Vlone",
+      "slug": "vlone",
+      "aliases": [
+        "VLONE"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "vlone",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing",
+          "streetwear"
+        ],
+        "seededAt": "2026-04-16T13:02:24.964Z"
+      }
+    },
+    {
+      "name": "Xerjoff",
+      "slug": "xerjoff",
+      "aliases": [
+        "XERJOFF"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "xerjoff",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "fragrance",
+          "beauty"
+        ],
+        "seededAt": "2026-04-16T13:02:25.074Z"
+      }
+    },
+    {
+      "name": "Xiaomi",
+      "slug": "xiaomi",
+      "aliases": [
+        "MI",
+        "小米",
+        "红米",
+        "Redmi"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "xiaomi",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "electronics"
+        ],
+        "seededAt": "2026-04-16T13:02:25.075Z"
+      }
+    },
+    {
+      "name": "Y-3",
+      "slug": "y-3",
+      "aliases": [
+        "Adidas Y-3",
+        "Y3",
+        "adidas y3"
+      ],
+      "tier": 2,
+      "brandType": "child",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "y3",
+      "parentSlug": "adidas",
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "shoes",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.092Z"
+      }
+    },
+    {
+      "name": "Yohji Yamamoto",
+      "slug": "yohji-yamamoto",
+      "aliases": [
+        "YOHJI YAMAMOTO"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "yohjiyamamoto",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.067Z"
+      }
+    },
+    {
+      "name": "Zara",
+      "slug": "zara",
+      "aliases": [
+        "ZARA",
+        "Zara Home",
+        "Zara Man",
+        "Zara Woman"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "zara",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.070Z"
+      }
+    },
+    {
+      "name": "Zegna",
+      "slug": "zegna",
+      "aliases": [
+        "Ermenegildo Zegna"
+      ],
+      "tier": 2,
+      "brandType": "canonical",
+      "displayMode": "independent",
+      "governanceStatus": "approved",
+      "canonicalKey": "zegna",
+      "parentSlug": null,
+      "isIndependent": true,
+      "isFeatured": false,
+      "featuredSort": 0,
+      "description": null,
+      "metadata": {
+        "seedSource": "brands-cold-start-v2",
+        "groups": [
+          "luxury",
+          "clothing"
+        ],
+        "seededAt": "2026-04-16T13:02:25.041Z"
+      }
+    }
+  ]
+}

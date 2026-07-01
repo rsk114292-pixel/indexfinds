@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+.env
+.env.*
+!.env.example
+*.md
+.git
+test
+*.spec.ts
+.eslintrc.*
+.prettierrc

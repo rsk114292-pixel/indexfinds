@@ -1,0 +1,320 @@
+###
+# Brand API 测试文件
+# 使用方法：安装 VS Code 的 "REST Client" 插件，然后点击每个请求上方的 "Send Request"
+###
+
+### 变量定义
+@baseUrl = http://localhost:4100
+@brandId = {{createBrand.response.body.id}}
+
+### 测试 1: 检查服务器是否运行
+GET {{baseUrl}}
+
+### 测试 2: 获取品牌列表（初始为空）
+GET {{baseUrl}}/brands
+
+### 测试 3: 创建品牌 - Nike
+# @name createBrand
+POST {{baseUrl}}/brands
+Content-Type: application/json
+
+{
+  "name": "Nike",
+  "slug": "nike",
+  "aliases": ["耐克", "NIKE官方", "nike旗舰店"],
+  "tier": "A",
+  "description": "全球知名运动品牌"
+}
+
+### 测试 4: 创建品牌 - Adidas
+POST {{baseUrl}}/brands
+Content-Type: application/json
+
+{
+  "name": "Adidas",
+  "slug": "adidas",
+  "aliases": ["阿迪达斯", "阿迪"],
+  "tier": "A",
+  "description": "德国运动品牌"
+}
+
+### 测试 5: 创建品牌 - Uniqlo
+POST {{baseUrl}}/brands
+Content-Type: application/json
+
+{
+  "name": "Uniqlo",
+  "slug": "uniqlo",
+  "aliases": ["优衣库", "UNIQLO官方"],
+  "tier": "B",
+  "description": "日本快时尚品牌"
+}
+
+### 测试 6: 再次获取品牌列表（应该有 3 个品牌）
+GET {{baseUrl}}/brands
+
+### 测试 7: 按层级筛选（只看 A 级品牌）
+GET {{baseUrl}}/brands?tier=A
+
+### 测试 8: 搜索品牌（通过别名"耐克"搜索）
+GET {{baseUrl}}/brands?search=耐克
+
+### 测试 9: 搜索品牌（通过别名"优衣库"搜索）
+GET {{baseUrl}}/brands?search=优衣库
+
+### 测试 10: 获取单个品牌详情
+# 注意：把下面的 {BRAND_ID} 替换为实际的品牌 ID
+# 或者使用变量：{{brandId}}（如果先执行了 createBrand）
+GET {{baseUrl}}/brands/{{brandId}}
+
+### 测试 11: 更新品牌（修改层级）
+# 注意：把 {BRAND_ID} 替换为实际的品牌 ID
+PATCH {{baseUrl}}/brands/{{brandId}}
+Content-Type: application/json
+
+{
+  "tier": "B",
+  "description": "全球知名运动品牌（已更新）"
+}
+
+### 测试 12: 更新品牌（添加别名）
+PATCH {{baseUrl}}/brands/{{brandId}}
+Content-Type: application/json
+
+{
+  "aliases": ["耐克", "NIKE官方", "nike旗舰店", "Nike中国"]
+}
+
+### 测试 13: 软删除品牌
+# 注意：把 {BRAND_ID} 替换为实际的品牌 ID
+DELETE {{baseUrl}}/brands/{{brandId}}
+
+### 测试 14: 验证软删除（品牌应该还在，但 status 变为 inactive）
+GET {{baseUrl}}/brands/{{brandId}}
+
+### 测试 15: 获取活跃品牌列表
+GET {{baseUrl}}/brands?status=active
+
+### 测试 16: 获取已删除品牌列表
+GET {{baseUrl}}/brands?status=inactive
+
+###
+# 高级测试：品牌合并功能
+###
+
+### 测试 17: 创建重复品牌（用于测试合并）
+POST {{baseUrl}}/brands
+Content-Type: application/json
+
+{
+  "name": "Nike Official",
+  "slug": "nike-official",
+  "aliases": ["Nike旗舰"],
+  "tier": "A"
+}
+
+### 测试 18: 合并品牌
+# 把 {SOURCE_BRAND_ID} 替换为 "Nike Official" 的 ID
+# 把 {TARGET_BRAND_ID} 替换为 "Nike" 的 ID
+# 这会把 "Nike Official" 合并到 "Nike"
+POST {{baseUrl}}/brands/{SOURCE_BRAND_ID}/merge/{TARGET_BRAND_ID}
+
+### 测试 19: 验证合并结果（源品牌的别名应该被合并到目标品牌）
+GET {{baseUrl}}/brands/{TARGET_BRAND_ID}
+
+###
+# 错误处理测试
+###
+
+### 测试 20: 创建重复 slug（应该返回 409 错误）
+POST {{baseUrl}}/brands
+Content-Type: application/json
+
+{
+  "name": "Nike Duplicate",
+  "slug": "nike",
+  "tier": "A"
+}
+
+### 测试 21: 获取不存在的品牌（应该返回 404 错误）
+GET {{baseUrl}}/brands/00000000-0000-0000-0000-000000000000
+
+### 测试 22: 创建品牌缺少必填字段（应该返回 400 错误）
+POST {{baseUrl}}/brands
+Content-Type: application/json
+
+{
+  "tier": "A"
+}
+
+###
+# 性能测试：批量创建品牌
+###
+
+### 测试 23: 创建品牌 - Zara
+POST {{baseUrl}}/brands
+Content-Type: application/json
+
+{
+  "name": "Zara",
+  "slug": "zara",
+  "aliases": ["飒拉"],
+  "tier": "B"
+}
+
+### 测试 24: 创建品牌 - H&M
+POST {{baseUrl}}/brands
+Content-Type: application/json
+
+{
+  "name": "H&M",
+  "slug": "hm",
+  "aliases": ["HM"],
+  "tier": "B"
+}
+
+### 测试 25: 创建品牌 - Supreme
+POST {{baseUrl}}/brands
+Content-Type: application/json
+
+{
+  "name": "Supreme",
+  "slug": "supreme",
+  "tier": "A"
+}
+
+### 测试 26: 获取所有品牌（应该有多个）
+GET {{baseUrl}}/brands
+
+### 测试 27: 组合筛选（A 级 + 活跃状态）
+GET {{baseUrl}}/brands?tier=A&status=active
+
+###
+###
+### ========================================
+### 微店导入功能测试
+### ========================================
+###
+
+### 变量定义
+@categoryId = 替换为实际的分类ID
+
+### 测试 28: 从微店导入商品（完整流程 - 通过 URL）
+# @name importFromWeidian
+POST {{baseUrl}}/products/import-from-weidian
+Content-Type: application/json
+
+{
+  "url": "https://weidian.com/item.html?itemID=6900807244",
+  "slug": "nike-air-max-90-black-test",
+  "primaryCategoryId": "{{categoryId}}",
+  "title": "Nike Air Max 90 Black",
+  "description": "经典复古跑鞋，黑色配色",
+  "aiAttributes": {
+    "colors": ["黑色", "白色"],
+    "materials": ["皮革", "网布"],
+    "gender": "unisex",
+    "styles": ["复古", "运动"]
+  },
+  "status": "draft"
+}
+
+### 测试 29: 从微店导入商品（通过 itemId + 指定品牌）
+POST {{baseUrl}}/products/import-from-weidian
+Content-Type: application/json
+
+{
+  "itemId": "6900807244",
+  "brandId": "{{brandId}}",
+  "slug": "test-product-with-brand",
+  "primaryCategoryId": "{{categoryId}}",
+  "status": "draft"
+}
+
+### 测试 30: 从微店导入商品（自动创建品牌）
+POST {{baseUrl}}/products/import-from-weidian
+Content-Type: application/json
+
+{
+  "url": "https://weidian.com/item.html?itemID=6900807244",
+  "brandName": "Test Brand Auto Create",
+  "slug": "test-auto-brand-creation",
+  "primaryCategoryId": "{{categoryId}}",
+  "status": "draft"
+}
+
+### 测试 31: 从微店导入商品（强制刷新缓存）
+POST {{baseUrl}}/products/import-from-weidian
+Content-Type: application/json
+
+{
+  "itemId": "6900807244",
+  "slug": "test-force-refresh",
+  "primaryCategoryId": "{{categoryId}}",
+  "forceRefresh": true,
+  "status": "draft"
+}
+
+### 测试 32: 从微店导入商品（多副分类）
+POST {{baseUrl}}/products/import-from-weidian
+Content-Type: application/json
+
+{
+  "itemId": "6900807244",
+  "slug": "test-multiple-categories",
+  "primaryCategoryId": "{{categoryId}}",
+  "secondaryCategoryIds": ["副分类ID1", "副分类ID2"],
+  "status": "active",
+  "isFeatured": true
+}
+
+### 测试 33: 查看导入的商品详情
+GET {{baseUrl}}/products/{{importFromWeidian.response.body.product.id}}
+
+### 测试 34: 查看导入商品的 SKU 列表
+GET {{baseUrl}}/products/{{importFromWeidian.response.body.product.id}}/skus
+
+### 测试 35: 获取所有商品列表（查看导入结果）
+GET {{baseUrl}}/products
+
+###
+### 错误处理测试
+###
+
+### 测试 36: 导入失败 - 缺少 slug
+POST {{baseUrl}}/products/import-from-weidian
+Content-Type: application/json
+
+{
+  "itemId": "6900807244",
+  "primaryCategoryId": "{{categoryId}}"
+}
+
+### 测试 37: 导入失败 - 缺少分类 ID
+POST {{baseUrl}}/products/import-from-weidian
+Content-Type: application/json
+
+{
+  "itemId": "6900807244",
+  "slug": "test-missing-category"
+}
+
+### 测试 38: 导入失败 - slug 重复
+POST {{baseUrl}}/products/import-from-weidian
+Content-Type: application/json
+
+{
+  "itemId": "6900807244",
+  "slug": "nike-air-max-90-black-test",
+  "primaryCategoryId": "{{categoryId}}"
+}
+
+### 测试 39: 导入失败 - 无效的 URL
+POST {{baseUrl}}/products/import-from-weidian
+Content-Type: application/json
+
+{
+  "url": "https://invalid-url.com",
+  "slug": "test-invalid-url",
+  "primaryCategoryId": "{{categoryId}}"
+}

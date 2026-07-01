@@ -1,0 +1,19 @@
+# FastAPI Web 框架
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+
+# CLIP 模型
+sentence-transformers==2.3.1
+torch>=2.0.0,<3.0.0
+
+# 图片处理
+pillow==10.2.0
+
+# HTTP 请求（用于从 URL 获取图片）
+requests==2.31.0
+
+# FastAPI 文件上传支持
+python-multipart==0.0.6
+
+# 速率限制
+slowapi==0.1.9
