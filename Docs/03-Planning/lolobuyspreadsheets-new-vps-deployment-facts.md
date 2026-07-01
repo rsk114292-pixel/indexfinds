@@ -151,8 +151,35 @@ Deploy Key 事实：
 - GitHub SSH auth 返回 `Hi cpf1236/lolobuyspreadsheets.com! You've successfully authenticated, but GitHub does not provide shell access.`
 - `git ls-remote` 能读取 `HEAD`。
 - `/opt/lolobuyspreadsheets/app/repo` 已从一次性 `git archive` 目录切换为正式 Git clone。
-- 当前 clone revision：`ca3db66e05d073b5c1ba3860f42991caf5344ffe`。
+- 当前 clone revision：`07949c3 fix: expose redis password to prod healthcheck`。
 - clone 后未发现 `.env`、`.env.local`、`.env.production`。
+
+## 当前 VPS 基础服务状态
+
+截至 2026-07-01，Phase 14 已启动并验证以下基础服务：
+
+| 服务 | 状态 | 端口绑定 |
+| --- | --- | --- |
+| Postgres | healthy | `127.0.0.1:5432->5432/tcp` |
+| Redis | healthy | `127.0.0.1:6379->6379/tcp` |
+| Meilisearch | healthy | `127.0.0.1:7700->7700/tcp` |
+
+未启动：
+
+- API
+- embedding service
+
+未执行：
+
+- baseline migration
+- 产品域导入
+- uploads 解压
+- URL rewrite
+- post-import safety cleanup
+- validation SQL
+- Meilisearch 产品索引 rebuild
+- DNS 切换
+- Vercel 生产部署
 
 后续 VPS 拉取更新命令：
 
