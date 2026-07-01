@@ -4,7 +4,7 @@
 
 ## 目标
 
-在购买新 VPS 前，把生产部署所需的规格、目录、环境变量、secret、数据上传路径、首次部署顺序、DNS 切换和 smoke test 固化成可执行清单。
+在新 VPS 首次部署前，把生产部署所需的规格、目录、环境变量、secret、数据上传路径、首次部署顺序、DNS 切换和 smoke test 固化成可执行清单。
 
 成功标准：
 
@@ -18,7 +18,7 @@
 - Phase 11 只做部署前准备，不连接任何服务器。
 - 源项目 `/Volumes/1T/test/11/findsspreadsheet.com` 继续只读。
 - 新项目工作目录是 `/Volumes/1T/lolobuyspreadsheets.com`。
-- 新 VPS 尚未购买，本文中的服务器路径和域名是部署目标设计，不代表已经存在。
+- 新 VPS 已购买，实际身份记录见 `Docs/03-Planning/lolobuyspreadsheets-new-vps-deployment-facts.md`；本文中的服务器路径和命令仍需首次连接后确认。
 - 首版继续使用现有普通外部商品图片 URL；只重写旧 `api.findsindex.com/uploads/...` 到新站 uploads URL。
 - 首版必须开启视觉搜索，因此新 VPS 需要运行 embedding service，并保留 `VISUAL_SEARCH_UPLOAD_ENABLED=true`。
 - 部署拓扑沿用旧项目形态：前端 `apps/web` 部署到 Vercel；新 VPS 只运行 API、Postgres、Redis、Meilisearch、embedding service、uploads 和反代。
@@ -673,7 +673,7 @@ Web：
 
 ## Phase 11 完成后下一步
 
-购买 VPS 后，先不要直接切 DNS。建议下一阶段是 Phase 12：
+VPS 已购买后，先不要直接切 DNS。建议下一阶段是 Phase 12：
 
 1. 在新 VPS 创建目录、API env 和生产 compose。
 2. 空库跑 baseline migration。

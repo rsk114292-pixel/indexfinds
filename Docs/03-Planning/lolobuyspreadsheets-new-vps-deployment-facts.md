@@ -1,0 +1,185 @@
+# LoloBuySpreadsheets 新 VPS 部署事实表
+
+日期：2026-07-01
+
+## 目标
+
+把 LoloBuySpreadsheets 新生产 VPS 的身份信息和部署边界单独记录，避免后续和旧项目、其他项目、旧 VPS、旧 SSH key 或旧部署配置混淆。
+
+成功标准：
+
+1. 能明确识别这台机器只属于 `lolobuyspreadsheets.com`。
+2. 能明确区分新 VPS、Vercel Web、旧项目和本地开发环境。
+3. 不记录真实 password、token、private key 内容、旧服务器 IP 或旧部署 secret。
+
+## 已确认的新 VPS 身份
+
+| 项目 | 值 |
+| --- | --- |
+| 项目 | LoloBuySpreadsheets |
+| 仓库 | `https://github.com/cpf1236/lolobuyspreadsheets.com` |
+| 新项目本地目录 | `/Volumes/1T/lolobuyspreadsheets.com` |
+| 云厂商 | 腾讯云轻量应用服务器 |
+| 实例名称 | `lolobuyspreadsheets.com` |
+| 实例 ID | `lhins-4y93v9pn` |
+| 公网 IPv4 | `43.165.1.148` |
+| 地域 | 法兰克福 |
+| 可用区 | 法兰克福二区 |
+| 操作系统 | Ubuntu 24.04 LTS |
+| CPU | 4 核 |
+| 内存 | 8 GB |
+| 系统盘 | 120 GB SSD 云硬盘 |
+| 公网带宽 | 200 Mbps 峰值带宽 |
+| 到期时间 | 2026-08-01 17:12:54 |
+
+## SSH 登录事实
+
+腾讯云 SSH 密钥名称：
+
+```text
+lolobuyprod
+```
+
+本机新生成的 SSH 私钥路径：
+
+```text
+/Users/chenpeifeng/.ssh/lolobuy-prod-2026-07
+```
+
+本机公钥路径：
+
+```text
+/Users/chenpeifeng/.ssh/lolobuy-prod-2026-07.pub
+```
+
+SSH key fingerprint：
+
+```text
+SHA256:DyQcYm1n7XjZ5guvHldXMkTLe0Kfih7ZhI3A60jPqiw
+```
+
+SSH key comment：
+
+```text
+lolobuy-prod-2026-07
+```
+
+后续连接命令模板：
+
+```bash
+ssh -i /Users/chenpeifeng/.ssh/lolobuy-prod-2026-07 ubuntu@43.165.1.148
+```
+
+说明：
+
+- 腾讯云控制台里的密钥名称是 `lolobuyprod`。
+- 本机私钥文件名保留为 `lolobuy-prod-2026-07`。
+- 两者名字不一致没有问题；真正匹配关系由公钥内容和私钥决定。
+- 不把私钥内容写进 Git、文档、聊天记录或服务器文件。
+
+## 部署拓扑
+
+首版生产拓扑沿用旧项目形态，但所有资源必须是新项目专用：
+
+| 层 | 部署位置 | 说明 |
+| --- | --- | --- |
+| Web 前端 | Vercel | `apps/web`，Root Directory 使用 `apps/web` |
+| API 后端 | 新 VPS | Node API，公网通过反代暴露 |
+| Postgres | 新 VPS | 新数据库，不连接旧生产 DB |
+| Redis | 新 VPS | 新 Redis，不复用旧实例 |
+| Meilisearch | 新 VPS | 新 Meilisearch，首次导入后全量 rebuild |
+| embedding service | 新 VPS | 首版必须启用视觉搜索 |
+| uploads | 新 VPS | 首版使用 VPS 本地 volume |
+| 反代/TLS | 新 VPS | 只为 API/uploads 服务，不复制旧 Caddy 生产配置 |
+
+生产 `COMPOSE_PROJECT_NAME`：
+
+```text
+lolobuyspreadsheets
+```
+
+建议 VPS 项目根目录：
+
+```text
+/opt/lolobuyspreadsheets
+```
+
+## Artifact 上传路径
+
+产品域 dump 目标路径：
+
+```text
+/opt/lolobuyspreadsheets/imports/product-domain/lolobuy-product-domain-data.sql
+```
+
+referenced uploads tar 目标路径：
+
+```text
+/opt/lolobuyspreadsheets/imports/uploads/referenced-uploads.tar
+```
+
+uploads volume 目标路径：
+
+```text
+/opt/lolobuyspreadsheets/data/uploads
+```
+
+API 容器内挂载点：
+
+```text
+/app/uploads
+```
+
+## 后续执行边界
+
+首次连接新 VPS 前，只做文档和本地准备。
+
+拿到连接权限后的第一步必须是只读检查：
+
+```bash
+hostname
+lsb_release -a
+uname -a
+df -h
+free -h
+```
+
+首次部署顺序仍按 Phase 11/Phase 10 runbook 执行：
+
+1. 初始化新 VPS 目录和基础依赖。
+2. 准备新的生产 `.env`、新 DB、新 Redis、新 Meilisearch、新 `COMPOSE_PROJECT_NAME`。
+3. 启动 Postgres、Redis、Meilisearch、embedding service、API。
+4. 空库执行 baseline migration。
+5. 上传并导入产品域 dump。
+6. 解压 `referenced-uploads.tar` 到 uploads volume。
+7. 执行 upload URL rewrite。
+8. 执行 post-import safety cleanup。
+9. 执行 validation SQL。
+10. 全量 rebuild Meilisearch。
+11. 跑 API、普通搜索、视觉搜索 smoke test。
+12. Vercel 配置 Web 生产环境变量。
+13. 通过临时域名或 hosts 验证后再切 DNS。
+
+## 禁止项
+
+- 不记录或复制腾讯云控制台密码、VNC 密码、OrcaTerm 免密信息。
+- 不复制旧 VPS IP。
+- 不复制旧 SSH alias。
+- 不复制旧 SSH key path。
+- 不复制旧私钥、公钥、known_hosts 绑定。
+- 不复制旧 GitHub Actions secrets。
+- 不复制旧 Caddy 生产配置。
+- 不连接旧生产 DB。
+- 不运行旧项目 migration、seed、reset、cleanup、delete。
+- 不导入 users、favorites、browsing、referral、session、search、click、traffic、points、job 数据。
+- 不 bulk copy 旧 `settings`。
+- 不把新 VPS 和旧项目放进同一个 Docker Compose project。
+
+## 关联文档
+
+- `Docs/03-Planning/lolobuyspreadsheets-phase-11-new-vps-preparation.md`
+- `Docs/03-Planning/lolobuyspreadsheets-phase-10-new-vps-import-runbook.md`
+- `migration-artifacts/product-domain-import/README.md`
+- `migration-artifacts/product-domain-import/sql/10-rewrite-upload-urls.sql`
+- `migration-artifacts/product-domain-import/sql/20-post-import-validation.sql`
+- `migration-artifacts/product-domain-import/sql/30-post-import-safety-cleanup.sql`
