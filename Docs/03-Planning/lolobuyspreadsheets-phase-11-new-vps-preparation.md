@@ -232,7 +232,7 @@ HF_CACHE_HOST_PATH=/opt/lolobuyspreadsheets/data/hf-cache
 生产 compose 补齐前必须复核：
 
 - API 容器监听端口与 `PORT=4101` 一致。
-- API healthcheck 使用真实监听端口。当前 `apps/api/Dockerfile` 里 `EXPOSE 4000` 与 healthcheck `http://localhost:4100/health` 和应用默认 `4101` 不一致，Phase 12 创建生产 compose 或修 Dockerfile 时必须处理。
+- API healthcheck 使用真实监听端口。当前 `apps/api/Dockerfile` 已显式设置 `PORT=4101`、`EXPOSE 4101`，healthcheck 也走同一个 `PORT`；Phase 12 创建生产 compose 时仍需确认没有被 compose 覆盖成其他端口。
 - Web build 阶段能拿到 `NEXT_PUBLIC_API_URL`、`NEXT_PUBLIC_APP_URL`、`NEXT_PUBLIC_SITE_URL` 等 build-time env。
 
 ## 必须新生成的 secret 清单

@@ -52,11 +52,12 @@ RUN mkdir -p /app/uploads \
     && chmod +x /app/scripts/ops/start-prod.sh
 
 ENV NODE_ENV=production
+ENV PORT=4101
 ENV UPLOADS_PATH=/app/uploads
-EXPOSE 4000
+EXPOSE 4101
 
 # 健康检查
 HEALTHCHECK --interval=15s --timeout=5s --start-period=60s --retries=5 \
-    CMD wget -qO- http://localhost:4100/health || exit 1
+    CMD wget -qO- http://localhost:${PORT}/health || exit 1
 
 CMD ["/app/scripts/ops/start-prod.sh"]
