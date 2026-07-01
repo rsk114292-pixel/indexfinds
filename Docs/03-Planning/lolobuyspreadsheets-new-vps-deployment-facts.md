@@ -264,10 +264,29 @@ Phase 18 smoke test：
 | 视觉搜索 UI | 弹窗正常出现，上传 input 可用 |
 | Vercel runtime error logs | 最近 15 分钟无 error logs |
 
-尚未绑定：
+Phase 19 主域名切换状态：
 
-- `lolobuyspreadsheets.com`
-- `www.lolobuyspreadsheets.com`
+| 项 | 值 |
+| --- | --- |
+| 主域 | `https://lolobuyspreadsheets.com` |
+| www | `https://www.lolobuyspreadsheets.com` |
+| Vercel 域名状态 | 两者均为 `Valid Configuration` |
+| Cloudflare root DNS | `CNAME @ -> bfa45b384b6b1498.vercel-dns-016.com`, DNS only |
+| Cloudflare www DNS | `CNAME www -> bfa45b384b6b1498.vercel-dns-016.com`, DNS only |
+| Cloudflare api DNS | `A api -> 43.165.1.148`, DNS only |
+
+Phase 19 smoke test：
+
+| 检查项 | 结果 |
+| --- | --- |
+| 主域首页 | 正常渲染，H1 `Discover Products from China` |
+| www 首页 | 正常渲染，H1 `Discover Products from China` |
+| 主域搜索 | `q=nike`, `15866 products found` |
+| 图片加载 | 首页 65 张坏图 0，搜索页 20 张坏图 0 |
+| 视觉搜索 UI | 弹窗正常出现，上传 input `accept=image/*` 可用 |
+| API health | `status=ok`, `database=ok` |
+| 视觉搜索 API | `available=true`, `coverage=100` |
+| Vercel runtime error logs | 最近 30 分钟无 error/fatal logs |
 
 后续 VPS 拉取更新命令：
 
@@ -334,6 +353,7 @@ free -h
 - `Docs/03-Planning/lolobuyspreadsheets-phase-11-new-vps-preparation.md`
 - `Docs/03-Planning/lolobuyspreadsheets-phase-10-new-vps-import-runbook.md`
 - `Docs/03-Planning/lolobuyspreadsheets-phase-18-vercel-frontend-deployment-report.md`
+- `Docs/03-Planning/lolobuyspreadsheets-phase-19-main-domain-cutover-report.md`
 - `migration-artifacts/product-domain-import/README.md`
 - `migration-artifacts/product-domain-import/sql/10-rewrite-upload-urls.sql`
 - `migration-artifacts/product-domain-import/sql/20-post-import-validation.sql`

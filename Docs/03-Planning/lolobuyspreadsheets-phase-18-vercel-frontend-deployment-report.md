@@ -97,19 +97,19 @@ Vercel 默认识别后，已手动固定关键构建命令，避免同时存在 
 | 视觉搜索 UI | 弹窗正常出现，上传 input `accept=image/*` 可用 |
 | Vercel runtime error logs | 最近 15 分钟无 error logs |
 
-## 尚未执行
+## 后续状态
 
-- 未绑定 `lolobuyspreadsheets.com` 主域到 Vercel。
-- 未绑定 `www.lolobuyspreadsheets.com` 到 Vercel。
-- 未调整 Cloudflare root/www DNS 到新的 Vercel 项目。
+- Phase 19 已绑定 `lolobuyspreadsheets.com` 主域到 Vercel。
+- Phase 19 已绑定 `www.lolobuyspreadsheets.com` 到 Vercel。
+- Phase 19 已调整 Cloudflare root/www DNS 到新的 Vercel 项目。
 - 未重新开启 `api.lolobuyspreadsheets.com` 的 Cloudflare orange proxy。
 
 ## 下一步建议
 
-1. 在 Vercel 项目里绑定 `lolobuyspreadsheets.com` 和 `www.lolobuyspreadsheets.com`。
-2. 按 Vercel 提示更新 Cloudflare root/www DNS。
-3. 等 DNS 验证通过后，跑主域 smoke test。
-4. 主域通过后，再决定是否为 `api.lolobuyspreadsheets.com` 开 Cloudflare orange proxy。
+1. 观察 Vercel runtime logs、API logs、Caddy logs。
+2. 确认 Search Console / analytics 需要的域名所有权和站点地图配置。
+3. 如需统一主域和 `www`，单独做 redirect 变更。
+4. 如需为 `api.lolobuyspreadsheets.com` 开 Cloudflare orange proxy，先验证上传、CORS、body size、timeout、cache bypass。
 
 ## 禁止项
 
