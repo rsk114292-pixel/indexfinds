@@ -165,7 +165,7 @@ Deploy Key 事实：
 | Meilisearch | healthy | `127.0.0.1:7700->7700/tcp` |
 | embedding service | healthy | `127.0.0.1:8001->8001/tcp` |
 | API | healthy | `127.0.0.1:4101->4101/tcp` |
-| Caddy | active | `*:80` |
+| Caddy | active | `*:80`, `*:443` |
 
 已执行：
 
@@ -198,17 +198,26 @@ Phase 16 关键结果：
 
 未执行：
 
-- API HTTPS/TLS
-- DNS 切换
 - Vercel 生产部署
 
 Phase 17 反代状态：
 
 - Caddy 已安装：`2.6.2`。
-- 当前 `/etc/caddy/Caddyfile` 为 DNS 切换前 HTTP-only 验证配置。
-- `Host: api.lolobuyspreadsheets.com` 会反代到 `127.0.0.1:4101`。
-- 非目标 Host 返回 `404 not found`。
-- `api.lolobuyspreadsheets.com` 尚未解析到 `43.165.1.148`，因此暂不启用自动 HTTPS。
+- `api.lolobuyspreadsheets.com` 已解析到 `43.165.1.148`。
+- 当前 `/etc/caddy/Caddyfile` 为生产 HTTPS 配置。
+- Let’s Encrypt 证书已签发成功。
+- HTTP 会自动跳转到 HTTPS。
+- API 生产入口为 `https://api.lolobuyspreadsheets.com`。
+- API 仍反代到 `127.0.0.1:4101`，Postgres、Redis、Meilisearch、embedding service 未公网暴露。
+
+Phase 17 HTTPS smoke test：
+
+| 检查项 | 结果 |
+| --- | --- |
+| API health | `status=ok`, `database=ok` |
+| 普通搜索 | `q=nike`, `total=2` |
+| 视觉搜索状态 | `available=true`, `coverage=100` |
+| uploads 静态文件 | `HTTP/2 200` |
 
 后续 VPS 拉取更新命令：
 

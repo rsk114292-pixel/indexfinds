@@ -184,3 +184,57 @@ curl https://api.lolobuyspreadsheets.com/visual-search/status
 3. 验证 API HTTPS、uploads、普通搜索、视觉搜索。
 4. 再创建/配置 Vercel `apps/web` 生产项目。
 5. Vercel 预览和生产部署通过后，再切主域 `lolobuyspreadsheets.com` 和 `www.lolobuyspreadsheets.com`。
+
+## DNS 切换后 HTTPS 激活结果
+
+执行时间：2026-07-01
+
+DNS-over-HTTPS 验证：
+
+```text
+api.lolobuyspreadsheets.com A 43.165.1.148
+TTL 300
+```
+
+说明：
+
+- `api` 记录已从 Cloudflare 橙云代理改为灰云 DNS-only。
+- 主域 `lolobuyspreadsheets.com` 和 `www.lolobuyspreadsheets.com` 未切换，仍等待 Vercel 部署阶段处理。
+
+VPS 上已备份旧 HTTP-only 配置：
+
+```text
+/etc/caddy/Caddyfile.phase17-http-only
+```
+
+当前 `/etc/caddy/Caddyfile`：
+
+```caddyfile
+api.lolobuyspreadsheets.com {
+	reverse_proxy 127.0.0.1:4101
+}
+```
+
+验证结果：
+
+| 项 | 结果 |
+| --- | --- |
+| `caddy validate` | `Valid configuration` |
+| `systemctl is-active caddy` | `active` |
+| Let’s Encrypt | `certificate obtained successfully` |
+| HTTP -> HTTPS | enabled by Caddy |
+
+公网 HTTPS smoke test：
+
+| 检查项 | 结果 |
+| --- | --- |
+| `GET /health` | `status=ok`, `database=ok` |
+| `GET /products/search?q=nike&limit=2` | `total=2`, `data_len=2` |
+| `GET /visual-search/status` | `available=true`, `coverage=100` |
+| `HEAD /uploads/1f78867ff4e0b29503dac58c7b502a4f.png` | `HTTP/2 200`, `content-type=image/png` |
+
+结论：
+
+- API 生产 HTTPS 入口已启用。
+- API 仍通过 Caddy 反代到 `127.0.0.1:4101`，未公开容器内部数据服务端口。
+- 下一步可以进入 Vercel `apps/web` 生产项目配置与预览部署。
