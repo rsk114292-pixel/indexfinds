@@ -71,7 +71,17 @@
 
    验证：`products/skus/brands/category/platforms/product_image_embeddings/product_text_embeddings` 等业务表存在，`vector` extension 存在。
 
-3. 导入产品域 dump
+3. 清理新 API 自动创建的默认平台数据
+
+   如果 API 已经启动过，应用可能已自动创建默认 `platforms` 记录。产品域 dump 也包含 `platforms`，因此导入前需要确认并清空新库默认平台数据，避免 `UQ_platforms_key` 冲突。
+
+   ```sql
+   TRUNCATE TABLE platforms RESTART IDENTITY CASCADE;
+   ```
+
+   只允许在新 VPS、新 DB、产品域导入前执行。执行前必须确认 `products/skus/brands` 仍为空，且运行/用户/收藏/浏览/推荐/搜索/点击/积分/job 表未导入旧数据。
+
+4. 导入产品域 dump
 
    ```bash
    psql "$NEW_PRODUCTION_DATABASE_URL" \
@@ -81,7 +91,7 @@
 
    验证：导入无错误，COPY sections 完成。
 
-4. 解压 referenced uploads
+5. 解压 referenced uploads
 
    ```bash
    mkdir -p apps/api/uploads
@@ -90,7 +100,7 @@
 
    验证：uploads 文件数与 manifest 对齐；已知 4 个旧品牌 Logo 缺失，需要后续替换、清空或恢复。
 
-5. 重写旧 uploads 域名
+6. 重写旧 uploads 域名
 
    ```bash
    psql "$NEW_PRODUCTION_DATABASE_URL" \
@@ -101,7 +111,7 @@
 
    验证：`api.findsindex.com/uploads/` 残留为 0。
 
-6. 执行 post-import 安全清理
+7. 执行 post-import 安全清理
 
    ```bash
    psql "$NEW_PRODUCTION_DATABASE_URL" \
@@ -117,7 +127,7 @@
    - `settings.tracking_enabled=false`
    - `localhost:4100/uploads/` 残留为 0
 
-7. 运行导入后校验
+8. 运行导入后校验
 
    ```bash
    psql "$NEW_PRODUCTION_DATABASE_URL" \
@@ -127,13 +137,13 @@
 
    验证：行数、外键孤儿、embedding vector 类型、旧 uploads 残留全部通过。
 
-8. 重建 Meilisearch
+9. 重建 Meilisearch
    - 使用新 Meilisearch 和新 API 环境变量。
    - 全量同步 active products。
 
    验证：Meilisearch document count 与 active products 接近；`isIndexing=false`。
 
-9. Smoke test
+10. Smoke test
    - API `/health`
    - Web 首页
    - 普通搜索 `/en/search?q=nike`
@@ -143,7 +153,7 @@
    - by-product 视觉搜索
    - 图片上传视觉搜索
 
-10. 选择性重建安全 settings
+11. 选择性重建安全 settings
     - 新站自己的平台 invite/ref code
     - 新站自己的 GA/GTM
     - 新站自己的 AI/search/security key

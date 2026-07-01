@@ -151,12 +151,12 @@ Deploy Key 事实：
 - GitHub SSH auth 返回 `Hi cpf1236/lolobuyspreadsheets.com! You've successfully authenticated, but GitHub does not provide shell access.`
 - `git ls-remote` 能读取 `HEAD`。
 - `/opt/lolobuyspreadsheets/app/repo` 已从一次性 `git archive` 目录切换为正式 Git clone。
-- 当前 clone revision：`892521a fix: pin embedding numpy below 2`。
+- 当前 clone revision：`c1d35e5 docs: record phase 15 api baseline deployment`。
 - clone 后未发现 `.env`、`.env.local`、`.env.production`。
 
 ## 当前 VPS 服务状态
 
-截至 2026-07-01，Phase 15 已启动并验证以下服务：
+截至 2026-07-01，Phase 16 已启动并验证以下服务：
 
 | 服务 | 状态 | 端口绑定 |
 | --- | --- | --- |
@@ -170,15 +170,32 @@ Deploy Key 事实：
 
 - baseline migration
 - `settings` 默认 key 安全重建
-
-未执行：
-
 - 产品域导入
 - uploads 解压
 - URL rewrite
 - post-import safety cleanup
 - validation SQL
 - Meilisearch 产品索引 rebuild
+
+Phase 16 关键结果：
+
+| 项 | 值 |
+| --- | ---: |
+| `products` | 331776 |
+| active products | 331770 |
+| draft products | 6 |
+| `skus` | 1672709 |
+| `product_image_embeddings` | 331776 |
+| `product_text_embeddings` | 331776 |
+| Meilisearch documents | 331770 |
+| Meilisearch `isIndexing` | false |
+| uploads files | 881 |
+| old uploads URL residues | 0 |
+| `platforms.inviteCode` non-empty | 0 |
+| imported `users` | 0 |
+
+未执行：
+
 - DNS 切换
 - Vercel 生产部署
 
