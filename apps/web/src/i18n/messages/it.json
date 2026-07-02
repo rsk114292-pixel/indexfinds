@@ -395,11 +395,11 @@
   },
   "home": {
     "hero": {
-      "discover": "Scopri ",
-      "products": "Prodotti",
+      "discover": "LoloBuy ",
+      "products": "Spreadsheet Finds",
       "fromChina": " dalla Cina",
-      "descLine1": "Sfoglia, cerca e trova prodotti cinesi autentici con facilità.",
-      "descLine2": "Catalogo SKU completo, foto QC reali e integrazione daigou.",
+      "descLine1": "Sfoglia finds Weidian, Taobao e 1688 in un LoloBuy spreadsheet ricercabile.",
+      "descLine2": "Controlla foto QC, dettagli SKU, prezzi e link prodotto prima di acquistare.",
       "featureAI": "IA integrata",
       "featureVisualSearch": "Ricerca visiva",
       "featureProducts": "{count}+ Prodotti",
@@ -861,10 +861,10 @@
     "imageSearch": "Ricerca immagine"
   },
   "metadata": {
-    "homeTitle": "{siteName} | Selezioni Spreadsheet di Kakobuy, CNFans e ACBuy",
-    "homeDescription": "{siteName} ti aiuta a scoprire prodotti da Weidian, Taobao e 1688 con foto QC, dettagli SKU e navigazione in stile spreadsheet per Kakobuy, CNFans, ACBuy e altri.",
-    "homeOgTitle": "{siteName} | Selezioni Spreadsheet di Kakobuy, CNFans e ACBuy",
-    "homeOgDescription": "{siteName} ti aiuta a scoprire prodotti da Weidian, Taobao e 1688 con foto QC, dettagli SKU e navigazione in stile spreadsheet per Kakobuy, CNFans, ACBuy e altri.",
+    "homeTitle": "{siteName} | LoloBuy Spreadsheet Finds e foto QC",
+    "homeDescription": "{siteName} ti aiuta a esplorare LoloBuy spreadsheet finds per Weidian, Taobao e 1688 con foto QC, dettagli SKU e percorsi utili per ricerche lolobuyspreadsheet.",
+    "homeOgTitle": "{siteName} | LoloBuy Spreadsheet Finds e foto QC",
+    "homeOgDescription": "{siteName} ti aiuta a esplorare LoloBuy spreadsheet finds per Weidian, Taobao e 1688 con foto QC, dettagli SKU e percorsi utili per ricerche lolobuyspreadsheet.",
     "productNotFound": "Prodotto non trovato",
     "productFallbackDescription": "Acquista {title} da venditori cinesi affidabili su {siteName}. Migliori prezzi, foto QC e ordini daigou facili.",
     "searchTitle": "Ricerca: {query}",

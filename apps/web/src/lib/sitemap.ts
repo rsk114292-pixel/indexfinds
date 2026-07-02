@@ -1,5 +1,4 @@
 import { API_BASE_URL } from '@/lib/constants';
-import { ALL_PLATFORM_LANDING_PAGES, PLATFORM_LANDING_INTENTS } from '@/lib/platform-landings';
 import { getSiteUrl } from '@/lib/site-config';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
 
@@ -117,27 +116,6 @@ export async function getSitemapEntriesByChunk(id: number): Promise<SitemapEntry
         lastModified: now,
         changeFrequency: 'weekly',
         priority: 0.8,
-      }),
-      ...ALL_PLATFORM_LANDING_PAGES.flatMap((page) =>
-        multiLocaleEntries(`/${page.slug}`, {
-          lastModified: now,
-          changeFrequency: 'weekly',
-          priority: 0.8,
-        }),
-      ),
-      ...ALL_PLATFORM_LANDING_PAGES.flatMap((page) =>
-        PLATFORM_LANDING_INTENTS.flatMap((intent) =>
-          multiLocaleEntries(`/${page.slug}/${intent.slug}`, {
-            lastModified: now,
-            changeFrequency: 'weekly',
-            priority: 0.7,
-          }),
-        ),
-      ),
-      ...multiLocaleEntries('/agents', {
-        lastModified: now,
-        changeFrequency: 'weekly',
-        priority: 0.7,
       }),
       ...multiLocaleEntries('/how-it-works', {
         lastModified: now,

@@ -99,14 +99,6 @@ function createTranslator(namespace: string, locale = 'en') {
       const dict: Record<string, string> = {
         productsTitle: 'All products',
         productsDescription: 'Browse all products',
-        agentsTitle:
-          locale === 'fr'
-            ? 'Tous les guides spreadsheet des agents'
-            : 'All agent spreadsheet guides',
-        agentsDescription:
-          locale === 'fr'
-            ? 'Parcourez tous les guides spreadsheet des agents'
-            : 'Browse every purchasing-agent spreadsheet guide',
         productFallbackDescription:
           locale === 'zh'
             ? `在 Findsindex 购买 ${title}`
@@ -218,24 +210,6 @@ describe('SEO guards', () => {
     expect(metadata.alternates?.canonical).toBe(`${SITE_URL}/pt/products`);
     expect(metadata.alternates?.languages?.zh).toBe(`${SITE_URL}/zh/products`);
     expect(metadata.openGraph?.locale).toBe('pt_BR');
-    expect(metadata.robots).toEqual({
-      index: true,
-      follow: true,
-      googleBot: defaultGoogleBot,
-    });
-  });
-
-  it('agents directory metadata stays localized and avoids duplicate site names', async () => {
-    const { generateMetadata } = await import('../[locale]/(shop)/agents/page');
-    const metadata = await generateMetadata({
-      params: Promise.resolve({ locale: 'fr' }),
-    });
-
-    expect(metadata.title).toBe('Tous les guides spreadsheet des agents');
-    expect(metadata.description).toBe('Parcourez tous les guides spreadsheet des agents');
-    expect(metadata.alternates?.canonical).toBe(`${SITE_URL}/fr/agents`);
-    expect(metadata.alternates?.languages?.en).toBe(`${SITE_URL}/en/agents`);
-    expect(metadata.openGraph?.locale).toBe('fr_FR');
     expect(metadata.robots).toEqual({
       index: true,
       follow: true,

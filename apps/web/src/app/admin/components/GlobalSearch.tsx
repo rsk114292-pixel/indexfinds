@@ -63,7 +63,6 @@ const adminPages = [
   { path: '/admin/categories', label: '分类管理', icon: <AppstoreOutlined />, keywords: ['分类', 'categories', '类目'] },
   { path: '/admin/brands', label: '品牌管理', icon: <TagsOutlined />, keywords: ['品牌', 'brands'] },
   { path: '/admin/analytics/search', label: '搜索分析', icon: <BarChartOutlined />, keywords: ['搜索分析', 'analytics', '分析'] },
-  { path: '/admin/analytics/seo', label: 'SEO 落地页', icon: <BarChartOutlined />, keywords: ['seo', '落地页', 'platform landing', 'topic'] },
   { path: '/admin/analytics/clicks', label: '点击追踪', icon: <BarChartOutlined />, keywords: ['点击', 'clicks', '追踪'] },
   { path: '/admin/analytics/referrals', label: '推荐码分析', icon: <BarChartOutlined />, keywords: ['推荐', 'referrals', '推荐码'] },
   { path: '/admin/analytics/vectors', label: '向量管理', icon: <BarChartOutlined />, keywords: ['向量', 'vectors', 'embedding'] },

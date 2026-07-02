@@ -395,11 +395,11 @@
   },
   "home": {
     "hero": {
-      "discover": "发现",
-      "products": "优质商品",
+      "discover": "LoloBuy ",
+      "products": "Spreadsheet 精选",
       "fromChina": "来自中国",
-      "descLine1": "轻松浏览、搜索和发现正品中国商品。",
-      "descLine2": "完整 SKU 展示、真实质检照片、代购一键下单。",
+      "descLine1": "在一个可搜索的 LoloBuy spreadsheet 中浏览微店、淘宝和 1688 精选。",
+      "descLine2": "下单前查看 QC 实拍、SKU 细节、价格和商品链接。",
       "featureAI": "AI 驱动",
       "featureVisualSearch": "以图搜图",
       "featureProducts": "{count}+ 商品",
@@ -861,10 +861,10 @@
     "imageSearch": "以图搜图"
   },
   "metadata": {
-    "homeTitle": "{siteName} | Kakobuy、CNFans、ACBuy Spreadsheet 精选",
-    "homeDescription": "{siteName} 帮助你通过 Kakobuy、CNFans、ACBuy 等平台，以 spreadsheet 风格浏览微店、淘宝和 1688 商品，查看 QC 实拍、SKU 细节和商品链接。",
-    "homeOgTitle": "{siteName} | Kakobuy、CNFans、ACBuy Spreadsheet 精选",
-    "homeOgDescription": "{siteName} 帮助你通过 Kakobuy、CNFans、ACBuy 等平台，以 spreadsheet 风格浏览微店、淘宝和 1688 商品，查看 QC 实拍、SKU 细节和商品链接。",
+    "homeTitle": "{siteName} | LoloBuy Spreadsheet 精选与 QC 实拍",
+    "homeDescription": "{siteName} 帮助你浏览 LoloBuy spreadsheet 精选，覆盖微店、淘宝和 1688 商品，提供 QC 实拍、SKU 细节，并承接 lolobuyspreadsheet 搜索需求。",
+    "homeOgTitle": "{siteName} | LoloBuy Spreadsheet 精选与 QC 实拍",
+    "homeOgDescription": "{siteName} 帮助你浏览 LoloBuy spreadsheet 精选，覆盖微店、淘宝和 1688 商品，提供 QC 实拍、SKU 细节，并承接 lolobuyspreadsheet 搜索需求。",
     "productNotFound": "商品未找到",
     "productFallbackDescription": "在 {siteName} 购买 {title}，来自可信中国卖家。最优价格、质检照片、便捷代购。",
     "searchTitle": "搜索：{query}",

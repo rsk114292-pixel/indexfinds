@@ -395,11 +395,11 @@
   },
   "home": {
     "hero": {
-      "discover": "Découvrez des ",
-      "products": "Produits",
+      "discover": "LoloBuy ",
+      "products": "Spreadsheet Finds",
       "fromChina": " de Chine",
-      "descLine1": "Parcourez, recherchez et trouvez des produits chinois authentiques facilement.",
-      "descLine2": "Affichage complet des SKU, vraies photos QC et intégration daigou.",
+      "descLine1": "Parcourez les finds Weidian, Taobao et 1688 dans une LoloBuy spreadsheet recherchable.",
+      "descLine2": "Consultez les photos QC, les details SKU, les prix et les liens produit avant d'acheter.",
       "featureAI": "IA intégrée",
       "featureVisualSearch": "Recherche visuelle",
       "featureProducts": "{count}+ Produits",
@@ -861,10 +861,10 @@
     "imageSearch": "Recherche image"
   },
   "metadata": {
-    "homeTitle": "{siteName} | Selections Spreadsheet Kakobuy, CNFans et ACBuy",
-    "homeDescription": "{siteName} vous aide a decouvrir des produits de Weidian, Taobao et 1688 avec photos QC, details SKU et navigation spreadsheet pour Kakobuy, CNFans, ACBuy et plus encore.",
-    "homeOgTitle": "{siteName} | Selections Spreadsheet Kakobuy, CNFans et ACBuy",
-    "homeOgDescription": "{siteName} vous aide a decouvrir des produits de Weidian, Taobao et 1688 avec photos QC, details SKU et navigation spreadsheet pour Kakobuy, CNFans, ACBuy et plus encore.",
+    "homeTitle": "{siteName} | LoloBuy Spreadsheet Finds et photos QC",
+    "homeDescription": "{siteName} vous aide a parcourir les finds LoloBuy spreadsheet pour Weidian, Taobao et 1688 avec photos QC, details SKU et routes utiles pour les recherches lolobuyspreadsheet.",
+    "homeOgTitle": "{siteName} | LoloBuy Spreadsheet Finds et photos QC",
+    "homeOgDescription": "{siteName} vous aide a parcourir les finds LoloBuy spreadsheet pour Weidian, Taobao et 1688 avec photos QC, details SKU et routes utiles pour les recherches lolobuyspreadsheet.",
     "productNotFound": "Produit introuvable",
     "productFallbackDescription": "Achetez {title} auprès de vendeurs chinois de confiance sur {siteName}. Meilleurs prix, photos QC et commande daigou facile.",
     "searchTitle": "Recherche : {query}",

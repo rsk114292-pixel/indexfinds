@@ -395,11 +395,11 @@
   },
   "home": {
     "hero": {
-      "discover": "اكتشف ",
-      "products": "المنتجات",
+      "discover": "LoloBuy ",
+      "products": "Spreadsheet Finds",
       "fromChina": " من الصين",
-      "descLine1": "تصفّح وابحث واعثر على المنتجات الصينية الأصلية بسهولة.",
-      "descLine2": "عرض كامل للمواصفات، صور فحص جودة حقيقية، وتكامل مع دايقو.",
+      "descLine1": "تصفح مختارات Weidian وTaobao و1688 في LoloBuy spreadsheet قابلة للبحث.",
+      "descLine2": "راجع صور QC وتفاصيل SKU والأسعار وروابط المنتجات قبل الشراء.",
       "featureAI": "مدعوم بالذكاء الاصطناعي",
       "featureVisualSearch": "البحث بالصور",
       "featureProducts": "{count}+ منتج",
@@ -861,10 +861,10 @@
     "imageSearch": "البحث بالصور"
   },
   "metadata": {
-    "homeTitle": "{siteName} | مختارات Kakobuy وCNFans وACBuy spreadsheet",
-    "homeDescription": "يساعدك {siteName} على اكتشاف منتجات من Weidian وTaobao و1688 مع صور QC وتفاصيل SKU وتصفح بنمط spreadsheet لـ Kakobuy وCNFans وACBuy وغير ذلك.",
-    "homeOgTitle": "{siteName} | مختارات Kakobuy وCNFans وACBuy spreadsheet",
-    "homeOgDescription": "يساعدك {siteName} على اكتشاف منتجات من Weidian وTaobao و1688 مع صور QC وتفاصيل SKU وتصفح بنمط spreadsheet لـ Kakobuy وCNFans وACBuy وغير ذلك.",
+    "homeTitle": "{siteName} | LoloBuy Spreadsheet Finds وصور QC",
+    "homeDescription": "يساعدك {siteName} على تصفح LoloBuy spreadsheet finds لمنتجات Weidian وTaobao و1688 مع صور QC وتفاصيل SKU ومسارات مفيدة لبحث lolobuyspreadsheet.",
+    "homeOgTitle": "{siteName} | LoloBuy Spreadsheet Finds وصور QC",
+    "homeOgDescription": "يساعدك {siteName} على تصفح LoloBuy spreadsheet finds لمنتجات Weidian وTaobao و1688 مع صور QC وتفاصيل SKU ومسارات مفيدة لبحث lolobuyspreadsheet.",
     "productNotFound": "المنتج غير موجود",
     "productFallbackDescription": "تسوّق {title} من بائعين صينيين موثوقين على {siteName}. أفضل الأسعار وصور فحص الجودة وطلب دايقو سهل.",
     "searchTitle": "بحث: {query}",

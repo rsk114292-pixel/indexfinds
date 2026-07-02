@@ -395,11 +395,11 @@
   },
   "home": {
     "hero": {
-      "discover": "Discover ",
-      "products": "Products",
+      "discover": "LoloBuy ",
+      "products": "Spreadsheet Finds",
       "fromChina": " from China",
-      "descLine1": "Browse, search, and find authentic Chinese products with ease.",
-      "descLine2": "Complete SKU display, real QC photos, and daigou integration.",
+      "descLine1": "Browse Weidian, Taobao and 1688 finds in one searchable LoloBuy spreadsheet.",
+      "descLine2": "See QC photos, SKU details, prices and product links before you buy.",
       "featureAI": "AI-Powered",
       "featureVisualSearch": "Visual Search",
       "featureProducts": "{count}+ Products",
@@ -861,10 +861,10 @@
     "imageSearch": "Image Search"
   },
   "metadata": {
-    "homeTitle": "{siteName} | Kakobuy, CNFans & ACBuy Spreadsheet Finds",
-    "homeDescription": "{siteName} helps you discover products from Weidian, Taobao and 1688 with QC photos, SKU details, and spreadsheet-style browsing for Kakobuy, CNFans, ACBuy and more.",
-    "homeOgTitle": "{siteName} | Kakobuy, CNFans & ACBuy Spreadsheet Finds",
-    "homeOgDescription": "{siteName} helps you discover products from Weidian, Taobao and 1688 with QC photos, SKU details, and spreadsheet-style browsing for Kakobuy, CNFans, ACBuy and more.",
+    "homeTitle": "{siteName} | LoloBuy Spreadsheet Finds & QC Photos",
+    "homeDescription": "{siteName} helps you browse LoloBuy spreadsheet finds for Weidian, Taobao and 1688 products with QC photos, SKU details and routes for lolobuyspreadsheet searches.",
+    "homeOgTitle": "{siteName} | LoloBuy Spreadsheet Finds & QC Photos",
+    "homeOgDescription": "{siteName} helps you browse LoloBuy spreadsheet finds for Weidian, Taobao and 1688 products with QC photos, SKU details and routes for lolobuyspreadsheet searches.",
     "productNotFound": "Product Not Found",
     "productFallbackDescription": "Shop {title} from trusted Chinese sellers on {siteName}. Best prices, QC photos, and easy daigou ordering.",
     "searchTitle": "Search: {query}",

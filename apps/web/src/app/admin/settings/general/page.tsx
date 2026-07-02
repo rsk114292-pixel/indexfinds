@@ -24,7 +24,6 @@ const HIDDEN_KEYS = [
   'loongbuy_base_url', 'loongbuy_invitecode',          // → 平台配置页（遗留数据）
   'exchange_rate_last_sync',                            // 内部记录，不展示
   'tracking_gtm_id', 'tracking_ga_id', 'tracking_enabled', // → 追踪与分析页
-  'seo_gsc_snapshot',                                   // → SEO 落地页盘点页
 ];
 
 export default function GeneralSettingsPage() {

@@ -80,7 +80,6 @@ export const adminMenuItems = [
     label: '数据分析',
     children: [
       { key: '/admin/analytics/search', label: '搜索分析', icon: <SearchOutlined /> },
-      { key: '/admin/analytics/seo', label: 'SEO 落地页', icon: <SearchOutlined /> },
       { key: '/admin/analytics/clicks', label: '点击追踪', icon: <LinkOutlined /> },
       { key: '/admin/analytics/traffic', label: '流量来源', icon: <BarChartOutlined /> },
       { key: '/admin/analytics/traffic-defense', label: '流量防御', icon: <StopOutlined /> },
@@ -136,7 +135,6 @@ export const breadcrumbLabelMap: Record<string, string> = {
   withdrawals: '提现管理',
   analytics: '数据分析',
   search: '搜索分析',
-  seo: 'SEO 落地页',
   clicks: '点击追踪',
   traffic: '流量来源',
   'traffic-defense': '流量防御',

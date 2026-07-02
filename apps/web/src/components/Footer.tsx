@@ -3,7 +3,6 @@ import { APP_NAME } from '@/lib/constants';
 import { getTranslations } from 'next-intl/server';
 import CurrencyDisclaimer from './CurrencyDisclaimer';
 import FooterSocialLinks from './FooterSocialLinks';
-import TopPlatformLandingLinks from './seo/TopPlatformLandingLinks';
 
 export default async function Footer() {
   const t = await getTranslations('footer');
@@ -48,10 +47,6 @@ export default async function Footer() {
   return (
     <footer className="bg-secondary text-white mt-auto">
       <div className="container mx-auto px-4 py-12">
-        <div className="mb-10">
-          <TopPlatformLandingLinks variant="footer" />
-        </div>
-
         {/* Links grid */}
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4 mb-10">
           {footerLinks.map((section) => (

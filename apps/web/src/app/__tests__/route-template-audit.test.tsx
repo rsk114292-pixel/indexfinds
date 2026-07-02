@@ -314,18 +314,6 @@ describe('route template audit', () => {
     expect(mockNotFound).toHaveBeenCalled();
   });
 
-  it('invalid platform routes fail closed with notFound', async () => {
-    const pageModule = await import('../[locale]/(shop)/[platformSlug]/page');
-
-    await expect(
-      pageModule.default({
-        params: Promise.resolve({ locale: 'en', platformSlug: 'totally-invalid-route' }),
-      }),
-    ).rejects.toThrow('NEXT_NOT_FOUND');
-
-    expect(mockNotFound).toHaveBeenCalled();
-  });
-
   it('brand and category list routes emit canonical item-list URLs', async () => {
     mockFetch.mockResolvedValueOnce(
       mockJsonResponse({ data: [{ name: 'Nike', slug: 'nike' }] }),

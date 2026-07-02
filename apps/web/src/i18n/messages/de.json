@@ -395,11 +395,11 @@
   },
   "home": {
     "hero": {
-      "discover": "Entdecken Sie ",
-      "products": "Produkte",
+      "discover": "LoloBuy ",
+      "products": "Spreadsheet Finds",
       "fromChina": " aus China",
-      "descLine1": "Durchsuchen und finden Sie authentische chinesische Produkte mit Leichtigkeit.",
-      "descLine2": "Vollständige SKU-Anzeige, echte QC-Fotos und Daigou-Integration.",
+      "descLine1": "Durchsuche Weidian-, Taobao- und 1688-Finds in einer suchbaren LoloBuy spreadsheet.",
+      "descLine2": "Prufe QC-Fotos, SKU-Details, Preise und Produktlinks vor dem Kauf.",
       "featureAI": "KI-gestützt",
       "featureVisualSearch": "Bildersuche",
       "featureProducts": "{count}+ Produkte",
@@ -861,10 +861,10 @@
     "imageSearch": "Bildersuche"
   },
   "metadata": {
-    "homeTitle": "{siteName} | Kakobuy, CNFans und ACBuy Spreadsheet-Auswahl",
-    "homeDescription": "{siteName} hilft dir, Produkte von Weidian, Taobao und 1688 mit QC-Fotos, SKU-Details und spreadsheet-style Browsing fur Kakobuy, CNFans, ACBuy und mehr zu entdecken.",
-    "homeOgTitle": "{siteName} | Kakobuy, CNFans und ACBuy Spreadsheet-Auswahl",
-    "homeOgDescription": "{siteName} hilft dir, Produkte von Weidian, Taobao und 1688 mit QC-Fotos, SKU-Details und spreadsheet-style Browsing fur Kakobuy, CNFans, ACBuy und mehr zu entdecken.",
+    "homeTitle": "{siteName} | LoloBuy Spreadsheet Finds und QC-Fotos",
+    "homeDescription": "{siteName} hilft dir, LoloBuy spreadsheet finds fur Weidian, Taobao und 1688 mit QC-Fotos, SKU-Details und Routen fur lolobuyspreadsheet-Suchen zu durchsuchen.",
+    "homeOgTitle": "{siteName} | LoloBuy Spreadsheet Finds und QC-Fotos",
+    "homeOgDescription": "{siteName} hilft dir, LoloBuy spreadsheet finds fur Weidian, Taobao und 1688 mit QC-Fotos, SKU-Details und Routen fur lolobuyspreadsheet-Suchen zu durchsuchen.",
     "productNotFound": "Produkt nicht gefunden",
     "productFallbackDescription": "Kaufen Sie {title} von vertrauenswürdigen chinesischen Verkäufern auf {siteName}. Beste Preise, QC-Fotos und einfache Daigou-Bestellung.",
     "searchTitle": "Suche: {query}",
