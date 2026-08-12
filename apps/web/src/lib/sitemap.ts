@@ -1,6 +1,7 @@
 import { API_BASE_URL } from '@/lib/constants';
 import { getSiteUrl } from '@/lib/site-config';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
+import { AGENT_PLATFORMS } from '@/lib/agent-platforms';
 
 export type SitemapEntry = {
   url: string;
@@ -117,6 +118,23 @@ export async function getSitemapEntriesByChunk(id: number): Promise<SitemapEntry
         changeFrequency: 'weekly',
         priority: 0.8,
       }),
+      ...multiLocaleEntries('/agents', {
+        lastModified: now,
+        changeFrequency: 'monthly',
+        priority: 0.8,
+      }),
+      ...multiLocaleEntries('/agents/compare', {
+        lastModified: now,
+        changeFrequency: 'monthly',
+        priority: 0.8,
+      }),
+      ...AGENT_PLATFORMS.flatMap((agent) =>
+        multiLocaleEntries(`/agents/${agent.key}`, {
+          lastModified: now,
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        }),
+      ),
       ...multiLocaleEntries('/how-it-works', {
         lastModified: now,
         changeFrequency: 'monthly',

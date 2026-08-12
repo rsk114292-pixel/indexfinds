@@ -10,6 +10,18 @@ export interface PlatformTranslation {
 
 export type PlatformTranslations = Record<string, PlatformTranslation>;
 
+export interface PlatformComparisonData {
+  serviceFee?: string;
+  shippingCoverage?: string;
+  freeStorageDays?: number;
+  qcService?: string;
+  paymentMethods?: string;
+  returnPolicy?: string;
+  shippingBaseFeeUsd?: number;
+  shippingRatePerKgUsd?: number;
+  dataUpdatedAt?: string;
+}
+
 export interface Platform {
   id: string;
   key: string;
@@ -18,6 +30,9 @@ export interface Platform {
   translations?: PlatformTranslations | null;
   logoUrl?: string;
   isActive: boolean;
+  baseUrl?: string;
+  updatedAt?: string;
+  comparisonData?: PlatformComparisonData | null;
 }
 
 function getLocaleCandidates(locale: string): string[] {

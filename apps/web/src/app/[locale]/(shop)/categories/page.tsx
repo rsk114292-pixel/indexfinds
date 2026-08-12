@@ -38,8 +38,21 @@ export async function generateMetadata({
       siteName: getSiteName(),
       type: 'website',
       locale: getOgLocale(locale),
+      images: [
+        {
+          url: `${SITE_URL}/${locale}/share-image`,
+          width: 1200,
+          height: 630,
+          alt: `${getSiteName()} category directory`,
+        },
+      ],
     },
-    twitter: { card: 'summary', title, description },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${SITE_URL}/${locale}/share-image`],
+    },
     alternates: generateAlternates('/categories', locale),
     robots: { index: true, follow: true },
   };

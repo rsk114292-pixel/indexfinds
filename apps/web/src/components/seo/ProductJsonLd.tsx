@@ -3,7 +3,7 @@
  * 用于生成 Google Rich Snippets（价格、库存、评分等）
  *
  * 效果示例：
- * Nike Air Max 90 - ¥299 - Findsindex
+ * Nike Air Max 90 - ¥299 - IndexFinds
  * ★★★★☆ (4.5) · In Stock · 128 reviews
  */
 import { getLocalizedName } from '@/lib/utils';

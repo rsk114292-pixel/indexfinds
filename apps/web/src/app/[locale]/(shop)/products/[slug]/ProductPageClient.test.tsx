@@ -48,7 +48,7 @@ jest.mock('@/i18n/navigation', () => ({
 
 jest.mock('@/components/FavoriteButton', () => () => null);
 jest.mock('@/hooks/useShareUrl', () => ({
-  useShareUrl: () => 'https://lolobuyspreadsheets.com/en/products/test-product',
+  useShareUrl: () => 'https://indexfinds.com/en/products/test-product',
 }));
 jest.mock('@/components/share/ShareModal', () => ({
   ShareModal: () => null,

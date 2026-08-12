@@ -23,6 +23,12 @@ interface HotSearchItem {
   count: number;
 }
 
+interface PublicStats {
+  totalProducts: number;
+  totalBrands: number;
+  totalCategories: number;
+}
+
 async function fetchHomeData<T>(path: string, revalidate = 60): Promise<T | null> {
   return fetchServerApiJson<T>(path, {
     next: { revalidate },
@@ -76,6 +82,7 @@ export default async function HomePage() {
     initialFeaturedBrands,
     initialCategories,
     initialNewestProducts,
+    initialStats,
   ] = await Promise.all([
     fetchHomeData<HotSearchItem[]>('/products/hot-searches?limit=6', 300),
     fetchHomeData<ApiListResponse<Brand>>(
@@ -87,6 +94,7 @@ export default async function HomePage() {
       `/products?sortBy=newest&limit=${HOME_SHOWCASE_LIMIT}`,
       30,
     ),
+    fetchHomeData<PublicStats>('/public/stats', 60),
   ]);
 
   return (
@@ -96,6 +104,7 @@ export default async function HomePage() {
       initialFeaturedBrands={initialFeaturedBrands ?? undefined}
       initialCategories={initialCategories ?? undefined}
       initialNewestProducts={initialNewestProducts ?? undefined}
+      initialStats={initialStats ?? undefined}
     />
   );
 }

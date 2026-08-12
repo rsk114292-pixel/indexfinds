@@ -1,27 +1,39 @@
-'use client';
+"use client";
 
-import { useState, useMemo } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
-import Image from 'next/image';
-import { Link } from '@/i18n/navigation';
-import useSWR from 'swr';
-import { ChevronRight } from 'lucide-react';
-import { fetcher } from '@/lib/api';
-import { getImageReferrerPolicy, getProductCardThumbnail } from '@/lib/image-utils';
-import { getLocalizedName } from '@/lib/utils';
-import { SkeletonBlock } from '@/components/mobile/ui/MobileSkeleton';
-import type { Category } from '@/types';
+import { useState, useMemo } from "react";
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import useSWR from "swr";
+import { ChevronRight } from "lucide-react";
+import { fetcher } from "@/lib/api";
+import {
+  getImageReferrerPolicy,
+  getProductCardThumbnail,
+} from "@/lib/image-utils";
+import { getLocalizedName } from "@/lib/utils";
+import { SkeletonBlock } from "@/components/mobile/ui/MobileSkeleton";
+import type { Category } from "@/types";
+import ImageWithFallback from "@/components/ui/ImageWithFallback";
 
 type CategoriesResponse = Category[] | { data: Category[] };
 
-function normalizeCategories(data: CategoriesResponse | undefined): Category[] | undefined {
+function normalizeCategories(
+  data: CategoriesResponse | undefined,
+): Category[] | undefined {
   if (!data) return undefined;
   if (Array.isArray(data)) return data;
-  if (Array.isArray((data as { data?: unknown }).data)) return (data as { data: Category[] }).data;
+  if (Array.isArray((data as { data?: unknown }).data))
+    return (data as { data: Category[] }).data;
   return undefined;
 }
 
-const CATEGORY_PRIORITY = ['clothing', 'shoes', 'bags', 'accessories', 'electronics'];
+const CATEGORY_PRIORITY = [
+  "clothing",
+  "shoes",
+  "bags",
+  "accessories",
+  "electronics",
+];
 
 /**
  * 移动端分类列表页 — 左右分栏布局
@@ -36,32 +48,45 @@ const CATEGORY_PRIORITY = ['clothing', 'shoes', 'bags', 'accessories', 'electron
  * └──────────┴────────────────┘
  */
 export default function MobileCategoryList() {
-  const t = useTranslations('categories');
-  const tc = useTranslations('common');
+  const t = useTranslations("categories");
+  const tc = useTranslations("common");
   const locale = useLocale();
 
-  const { data, isLoading } = useSWR<CategoriesResponse>('/categories', fetcher, {
-    revalidateOnFocus: false,
-    dedupingInterval: 60000,
-  });
+  const { data, isLoading } = useSWR<CategoriesResponse>(
+    "/categories",
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      dedupingInterval: 60000,
+    },
+  );
 
   const categories = useMemo(() => {
     const raw = normalizeCategories(data);
     if (!raw) return [];
     const priorityMap = new Map(CATEGORY_PRIORITY.map((slug, i) => [slug, i]));
     return [...raw].sort(
-      (a, b) => (priorityMap.get(a.slug) ?? 999) - (priorityMap.get(b.slug) ?? 999),
+      (a, b) =>
+        (priorityMap.get(a.slug) ?? 999) - (priorityMap.get(b.slug) ?? 999),
     );
   }, [data]);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const activeCategory = categories[activeIndex] || null;
 
-  if (isLoading) return <MobileCategoryListSkeleton />;
-  if (categories.length === 0) return null;
+  if (isLoading) return <MobileCategoryListSkeleton title={t("title")} />;
+  if (categories.length === 0) {
+    return (
+      <div className="min-h-dvh bg-background px-4 py-16">
+        <h1 className="text-xl font-bold text-foreground">{t("title")}</h1>
+        <p className="mt-2 text-sm text-muted">{t("noCategories")}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-[calc(100dvh-theme(spacing.12)-theme(spacing.14))] bg-background">
+      <h1 className="sr-only">{t("title")}</h1>
       {/* 左侧一级分类 */}
       <aside className="w-[88px] shrink-0 overflow-y-auto bg-gray-50 border-r border-border">
         {categories.map((cat, idx) => (
@@ -71,8 +96,8 @@ export default function MobileCategoryList() {
             onClick={() => setActiveIndex(idx)}
             className={`w-full text-left rtl:text-right px-3 py-3.5 text-[13px] leading-tight transition-colors duration-150 ${
               idx === activeIndex
-                ? 'bg-white text-primary font-semibold border-l-[3px] border-primary rtl:border-l-0 rtl:border-r-[3px]'
-                : 'text-foreground border-l-[3px] border-transparent active:bg-gray-100 rtl:border-l-0 rtl:border-r-[3px]'
+                ? "bg-white text-primary font-semibold border-l-[3px] border-primary rtl:border-l-0 rtl:border-r-[3px]"
+                : "text-foreground border-l-[3px] border-transparent active:bg-gray-100 rtl:border-l-0 rtl:border-r-[3px]"
             }`}
           >
             {getLocalizedName(cat, locale)}
@@ -81,15 +106,15 @@ export default function MobileCategoryList() {
       </aside>
 
       {/* 右侧子分类内容 */}
-      <main className="flex-1 overflow-y-auto p-4">
+      <div className="flex-1 overflow-y-auto p-4">
         {activeCategory && (
           <SubcategoryGrid
             category={activeCategory}
-            viewAllLabel={tc('viewAll')}
-            emptyLabel={t('noCategories')}
+            viewAllLabel={tc("viewAll")}
+            emptyLabel={t("noCategories")}
           />
         )}
-      </main>
+      </div>
     </div>
   );
 }
@@ -113,9 +138,11 @@ function SubcategoryGrid({
       {/* 分类标题行 */}
       <Link
         href={`/categories/${category.slug}`}
-        className="flex items-center justify-between mb-4"
+        className="mb-4 flex min-h-11 items-center justify-between"
       >
-        <h2 className="text-base font-semibold text-foreground">{getLocalizedName(category, locale)}</h2>
+        <h2 className="text-base font-semibold text-foreground">
+          {getLocalizedName(category, locale)}
+        </h2>
         <div className="flex items-center gap-0.5 text-xs text-primary font-medium">
           <span>{viewAllLabel}</span>
           <ChevronRight className="w-3.5 h-3.5" />
@@ -150,14 +177,16 @@ function SubcategoryItem({ category }: { category: Category }) {
     >
       <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 border border-border">
         {coverImage ? (
-          <Image
+          <ImageWithFallback
             src={getProductCardThumbnail(coverImage)}
             alt={localName}
             width={64}
             height={64}
             className="object-cover w-full h-full"
             loading="lazy"
-            referrerPolicy={getImageReferrerPolicy(getProductCardThumbnail(coverImage))}
+            referrerPolicy={getImageReferrerPolicy(
+              getProductCardThumbnail(coverImage),
+            )}
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20" />
@@ -172,9 +201,10 @@ function SubcategoryItem({ category }: { category: Category }) {
 
 /* ─── 骨架屏 ─── */
 
-function MobileCategoryListSkeleton() {
+function MobileCategoryListSkeleton({ title }: { title: string }) {
   return (
     <div className="flex min-h-[calc(100dvh-theme(spacing.12)-theme(spacing.14))] bg-background">
+      <h1 className="sr-only">{title}</h1>
       <aside className="w-[88px] shrink-0 bg-gray-50 border-r border-border">
         {Array.from({ length: 8 }, (_, i) => (
           <div key={i} className="px-3 py-3.5">
@@ -182,7 +212,7 @@ function MobileCategoryListSkeleton() {
           </div>
         ))}
       </aside>
-      <main className="flex-1 p-4">
+      <div className="flex-1 p-4">
         <SkeletonBlock className="h-5 w-24 mb-4" />
         <div className="grid grid-cols-3 gap-3">
           {Array.from({ length: 9 }, (_, i) => (
@@ -192,7 +222,7 @@ function MobileCategoryListSkeleton() {
             </div>
           ))}
         </div>
-      </main>
+      </div>
     </div>
   );
 }

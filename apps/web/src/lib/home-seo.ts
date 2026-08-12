@@ -30,14 +30,15 @@ const homeSeoMessagesByLocale = {
 } satisfies Record<Locale, HomeSeoMessages>;
 
 export const HOME_KEYWORDS = [
-  'LoloBuySpreadsheets',
-  'lolobuyspreadsheet',
-  'lolobuy spreadsheet',
-  'lolobuy spreadsheets',
-  'lolobuy spreadsheet finds',
+  'IndexFinds',
+  'indexfinds',
+  'index finds',
+  'China product finder',
+  'China shopping finds',
+  'curated China products',
   'spreadsheet finds',
   'weidian finds',
-  'lolo buy spreadsheet',
+  'weidian products',
   'kakobuy spreadsheet',
   'cnfans spreadsheet',
   'acbuy spreadsheet',

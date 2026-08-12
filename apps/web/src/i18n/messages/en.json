@@ -65,7 +65,17 @@
     "settings": "Settings",
     "language": "Language",
     "noPlatformSelected": "Select Agent",
-    "menu": "Menu"
+    "menu": "Menu",
+    "agents": "Agents",
+    "chooseAgent": "Choose your buying agent",
+    "agentsAvailable": "{count} supported agents",
+    "platformSearch": "Search agents...",
+    "recentAgents": "Recent",
+    "allAgents": "All agents",
+    "searchResults": "Search results",
+    "noAgentResults": "No matching agents",
+    "viewAgentGuides": "View all agent guides",
+    "buyThrough": "Buy through"
   },
   "drawer": {
     "menu": "Menu",
@@ -78,7 +88,6 @@
     "helpCenter": "Help Center",
     "blog": "Blog",
     "referralProgram": "Referral Program",
-    "discord": "Discord",
     "telegram": "Telegram",
     "language": "Language",
     "currency": "Currency",
@@ -121,6 +130,8 @@
   },
   "search": {
     "placeholder": "Search products, brands or categories...",
+    "quickFilters": "Quick filters",
+    "filterBy": "Filter by {value}",
     "searching": "Searching...",
     "noResults": "No results found",
     "hotSearches": "Hot Searches",
@@ -147,6 +158,13 @@
     "photoSearch": "Photo Search",
     "photoSearchDesc": "Upload a photo to find similar products",
     "recentSearches": "Recent",
+    "modeKeyword": "Keyword",
+    "modeLink": "Product link",
+    "modeImage": "Image",
+    "linkPlaceholder": "Paste a Weidian, Taobao, 1688 or Yupoo product link",
+    "invalidProductLink": "Enter a product link containing a recognizable product ID.",
+    "findFromLink": "Find product",
+    "linkSearchDesc": "Paste a supported product link. IndexFinds extracts its product ID and searches the current catalog.",
     "requestProduct": {
       "title": "Didn't find the right product?",
       "description": "Submit a sourcing request and our team can review it for future listing.",
@@ -286,6 +304,20 @@
     "previousImage": "Previous image",
     "nextImage": "Next image",
     "hot": "Hot",
+    "agentReady": "{count} agents",
+    "qcPhotosCount": "{count} QC photos",
+    "viewCount": "{count} views",
+    "viewDetails": "View details",
+    "buyWithAgent": "Buy with agent",
+    "imageUnavailable": "Image unavailable",
+    "fromPrice": "From {price}",
+    "originalSource": "Original source: {source}",
+    "viewsValue": "{count} views",
+    "salesValue": "{count} sales",
+    "updatedValue": "Updated {date}",
+    "sourceMissing": "Source link unavailable",
+    "sourceStatusUnverified": "Source availability not yet verified",
+    "reportProduct": "Report a product issue",
     "shareRewards": {
       "eyebrow": "Share & earn",
       "title": "Share this product and earn +1 point",
@@ -395,15 +427,22 @@
   },
   "home": {
     "hero": {
-      "discover": "LoloBuy ",
-      "products": "Spreadsheet Finds",
+      "discover": "Find the Best ",
+      "headlinePrimary": "Find Chinese products.",
+      "headlineSecondary": "Compare buying agents.",
+      "products": "Products",
       "fromChina": " from China",
-      "descLine1": "Browse Weidian, Taobao and 1688 finds in one searchable LoloBuy spreadsheet.",
-      "descLine2": "See QC photos, SKU details, prices and product links before you buy.",
+      "descLine1": "Explore curated products from Weidian, Taobao and 1688—all in one place.",
+      "descLine2": "Compare prices, review QC photos and SKU details, then choose how to buy.",
       "featureAI": "AI-Powered",
       "featureVisualSearch": "Visual Search",
-      "featureProducts": "{count}+ Products",
-      "featureBrands": "{count}+ Brands"
+      "featureProducts": "{count} Products",
+      "featureBrands": "{count} Brands",
+      "eyebrow": "Independent product discovery for global shoppers",
+      "agentPrompt": "Choose where you want to buy",
+      "browseProducts": "Browse products",
+      "compareAgents": "Compare agents",
+      "imageSearch": "Image search"
     },
     "howItWorks": {
       "title": "How It Works",
@@ -416,6 +455,13 @@
       "chooseDesc": "Pick the best option and get the purchase link.",
       "receiveTitle": "Receive",
       "receiveDesc": "Order through your agent and get it delivered worldwide."
+    },
+    "trust": {
+      "title": "You stay in control of the purchase",
+      "body": "IndexFinds helps you discover and compare products. We do not sell goods or process payments; your selected buying agent handles the order and delivery.",
+      "independent": "Independent product index",
+      "redirects": "Clear redirects to your chosen agent",
+      "agentChoice": "Your agent, your final decision"
     },
     "featuredBrands": {
       "title": "Featured Brands"
@@ -458,6 +504,75 @@
       "progressCaption": "New members can unlock cash-out fast with a few quick actions."
     }
   },
+  "agents": {
+    "eyebrow": "Buying agent directory",
+    "title": "Choose the buying agent that works for you",
+    "subtitle": "Explore {count} supported agents, compare the workflow, and save your preferred platform for faster product transfers.",
+    "searchPlaceholder": "Search buying agents...",
+    "supportedTitle": "Supported buying agents",
+    "supportedDesc": "Each guide explains how to move from discovery to the agent website.",
+    "officialLogos": "Official visual identity",
+    "cardDescription": "Use {name} as your preferred buying route.",
+    "openGuide": "Open guide",
+    "noResults": "No matching buying agents",
+    "allGuides": "All agent guides",
+    "guideEyebrow": "IndexFinds agent guide",
+    "guideTitle": "How to use {name}",
+    "guideSubtitle": "Discover products on IndexFinds, review the available details, and continue through {name} when you are ready to purchase.",
+    "selectedAgent": "Selected as your agent",
+    "useAsAgent": "Use {name} as my agent",
+    "officialWebsite": "Official website",
+    "howToTitle": "Buy with {name} in four steps",
+    "howToSubtitle": "IndexFinds handles discovery; your chosen agent handles checkout and delivery.",
+    "stepSearchTitle": "Find a product",
+    "stepSearchBody": "Search by keyword, brand, category, or product image.",
+    "stepReviewTitle": "Review the details",
+    "stepReviewBody": "Check prices, options, seller information, and QC media when available.",
+    "stepChooseTitle": "Choose {name}",
+    "stepChooseBody": "Set the platform as your preferred agent before opening a purchase link.",
+    "stepContinueTitle": "Continue securely",
+    "stepContinueBody": "Complete the order, payment, warehouse, and shipping steps on the agent website.",
+    "disclosureTitle": "Independent discovery service",
+    "disclosureBody": "IndexFinds is not the agent and does not process your payment. Always confirm the final price and service terms on the official agent website.",
+    "browseProducts": "Browse products",
+    "compareAgents": "Compare agents",
+    "matchEyebrow": "Agent route helper",
+    "matchTitle": "Narrow down your buying-agent options",
+    "matchSubtitle": "Choose a destination, parcel weight, and priority. We will surface a few options to review using available platform data and a general shipping estimate.",
+    "matchPriority": "What matters most?",
+    "matchBudget": "Shipping estimate",
+    "matchStorage": "Free storage",
+    "matchQc": "QC service",
+    "matchPayment": "Payment options",
+    "optionsToReview": "Options to review",
+    "configuredFields": "{count} details configured",
+    "reviewMatchesNotice": "A planning shortlist, not an official ranking or endorsement.",
+    "compareEyebrow": "Side-by-side agent comparison",
+    "compareTitle": "Compare buying agents before you choose",
+    "compareSubtitle": "Select up to three agents and keep official links, guides, and your preferred route in one place.",
+    "chooseToCompare": "Choose agents to compare",
+    "selectedCount": "{count} of {max} selected",
+    "clearComparison": "Clear",
+    "comparisonField": "Compare",
+    "preferredAgent": "Preferred agent",
+    "preferred": "Preferred",
+    "setPreferred": "Set as preferred",
+    "visitOfficial": "Visit website",
+    "indexFindsGuide": "IndexFinds guide",
+    "serviceFees": "Service fees",
+    "shippingCoverage": "Shipping coverage",
+    "warehouseQc": "Warehouse & QC",
+    "paymentMethods": "Payment methods",
+    "returnPolicy": "Return policy",
+    "dataUpdated": "Data updated",
+    "freeStorageDaysValue": "{count} days free storage",
+    "notConfigured": "Not configured",
+    "confirmOfficial": "Confirm on official site",
+    "variesByRoute": "Varies by route and destination",
+    "noAgentSelected": "Select at least one agent to start comparing.",
+    "comparisonNoticeTitle": "Check current terms before buying",
+    "comparisonNoticeBody": "Fees, supported destinations, warehouse periods, and QC services can change. IndexFinds does not rank agents or guarantee their services; confirm the latest terms on each official website."
+  },
   "brands": {
     "title": "Brands",
     "discoverCount": "Discover {count} brands from our collection",
@@ -474,7 +589,10 @@
     "popular": "Popular",
     "productCount": "{count} products",
     "noProducts": "No products found for this brand",
-    "noProductsDesc": "Try removing some filters or check back later"
+    "noProductsDesc": "Try removing some filters or check back later",
+    "collectionGrowingTitle": "Our brand catalog is growing",
+    "collectionGrowingDesc": "We are adding verified brands and products continuously. Browse the latest product finds while the full brand index expands.",
+    "exploreProducts": "Explore products"
   },
   "categories": {
     "title": "Browse Categories",
@@ -818,7 +936,37 @@
     "noPlatforms": "No platforms available",
     "rememberChoice": "Remember my choice for future purchases",
     "continueTo": "Continue to {platform}",
-    "platformFallback": "Platform"
+    "platformFallback": "Platform",
+    "purchaseOptions": "Purchase options",
+    "productPrice": "Product price before agent fees",
+    "compareAgents": "Compare agents",
+    "preferredAgent": "Preferred buying agent",
+    "chooseAgent": "Choose an agent",
+    "changeAgent": "Change",
+    "openingAgent": "Opening agent...",
+    "chooseAgentToBuy": "Choose agent to buy",
+    "finalPriceNotice": "Agent fees, domestic delivery, international shipping, and taxes are confirmed on the agent website."
+  },
+  "shippingEstimator": {
+    "title": "Estimate international shipping",
+    "subtitle": "Enter a destination and estimated parcel weight.",
+    "estimated": "Estimate",
+    "destination": "Destination",
+    "weight": "Parcel weight",
+    "agent": "Buying agent",
+    "configuredRate": "Uses configured agent rates",
+    "generalRate": "Uses a general route estimate",
+    "notice": "Planning estimate only. Volumetric weight, duties, restricted items, and final agent charges are not included.",
+    "compareAgents": "Compare agent terms",
+    "destinations": {
+      "US": "United States",
+      "GB": "United Kingdom",
+      "DE": "Germany",
+      "FR": "France",
+      "CA": "Canada",
+      "AU": "Australia",
+      "OTHER": "Other destination"
+    }
   },
   "visualSearch": {
     "title": "Visual Search",
@@ -861,10 +1009,10 @@
     "imageSearch": "Image Search"
   },
   "metadata": {
-    "homeTitle": "{siteName} | LoloBuy Spreadsheet Finds & QC Photos",
-    "homeDescription": "{siteName} helps you browse LoloBuy spreadsheet finds for Weidian, Taobao and 1688 products with QC photos, SKU details and routes for lolobuyspreadsheet searches.",
-    "homeOgTitle": "{siteName} | LoloBuy Spreadsheet Finds & QC Photos",
-    "homeOgDescription": "{siteName} helps you browse LoloBuy spreadsheet finds for Weidian, Taobao and 1688 products with QC photos, SKU details and routes for lolobuyspreadsheet searches.",
+    "homeTitle": "{siteName} | Discover the Best Products from China",
+    "homeDescription": "Explore curated products from China, compare prices, browse trusted sellers and discover the latest finds with {siteName}.",
+    "homeOgTitle": "{siteName} | Discover the Best Products from China",
+    "homeOgDescription": "Explore curated products from China, compare prices, browse trusted sellers and discover the latest finds with {siteName}.",
     "productNotFound": "Product Not Found",
     "productFallbackDescription": "Shop {title} from trusted Chinese sellers on {siteName}. Best prices, QC photos, and easy daigou ordering.",
     "searchTitle": "Search: {query}",
@@ -901,8 +1049,8 @@
     "returnsDescription": "Understand the returns and refund process when buying through purchasing agents. Learn about QC photos and how to handle issues.",
     "productsTitle": "All Products",
     "productsDescription": "Browse all products on {siteName}. Discover curated finds from Weidian, Taobao and 1688 with QC photos, SKU details and price comparisons.",
-    "agentsTitle": "All Agent Spreadsheet Guides",
-    "agentsDescription": "Browse every purchasing-agent spreadsheet guide on {siteName}. Compare featured platforms, full directories and popular topic routes in one place."
+    "agentsTitle": "All Purchasing Agent Guides",
+    "agentsDescription": "Browse purchasing-agent guides on {siteName}. Compare featured platforms, the full directory and popular shopping routes in one place."
   },
   "products": {
     "allProducts": "All Products",
@@ -917,6 +1065,9 @@
     "accept": "Accept",
     "reject": "Decline"
   },
+  "whatsappHelp": {
+    "label": "Need help buying from China?"
+  },
   "share": {
     "title": "Share",
     "whatsapp": "WhatsApp",
@@ -925,12 +1076,10 @@
     "reddit": "Reddit",
     "email": "Email",
     "pinterest": "Pinterest",
-    "discord": "Discord",
     "tiktok": "TikTok",
     "copyLink": "Copy Link",
     "copied": "Copied!",
     "copyFailed": "Copy failed",
-    "copiedForDiscord": "Link copied! Paste in Discord",
     "copiedForTiktok": "Link copied! Paste in TikTok",
     "claimed": "Claimed",
     "showQrCode": "QR Code",
@@ -952,7 +1101,7 @@
       "step1": {
         "label": "Search",
         "title": "Search & Discover",
-        "description": "Browse 10,000+ products by brand, category, or use visual search to find exactly what you're looking for."
+        "description": "Browse the current catalog by brand or category, or use visual search to find exactly what you're looking for."
       },
       "step2": {
         "label": "Compare",
@@ -962,7 +1111,7 @@
       "step3": {
         "label": "Choose",
         "title": "Choose Your Agent",
-        "description": "Click the buy button and choose from multiple purchasing agents like Litbuy, Kakobuy, MuleBuy, and more."
+        "description": "Click the buy button and choose from supported purchasing agents such as Loongbuy, Kakobuy, Superbuy, and CSSBuy."
       },
       "step4": {
         "label": "Receive",
@@ -973,7 +1122,7 @@
     "features": {
       "title": "Why {siteName}?",
       "products": {
-        "title": "10,000+ Products",
+        "title": "A Growing Product Catalog",
         "description": "A massive curated collection of products from Weidian, Taobao, and 1688."
       },
       "updates": {
@@ -986,19 +1135,19 @@
       },
       "agents": {
         "title": "Multiple Agents",
-        "description": "Choose from Litbuy, Kakobuy, MuleBuy, USFANS, and many more agents."
+        "description": "Choose from current platforms such as Loongbuy, Kakobuy, Superbuy, CSSBuy, and more."
       }
     },
     "cta": {
       "title": "Ready to find your next favorite item?",
-      "description": "Browse our collection of 10,000+ products from China's best marketplaces.",
+      "description": "Browse our current collection of products from Chinese marketplaces.",
       "button": "Start Browsing"
     }
   },
   "agentsPage": {
-    "listName": "All agent spreadsheet guides",
+    "listName": "All purchasing agent guides",
     "eyebrow": "Agent Directory",
-    "heading": "All agent spreadsheet guides",
+    "heading": "All purchasing agent guides",
     "body": "Use this directory to review the featured guides first, then move through the full platform list when you want more options.",
     "featuredTitle": "Featured guides",
     "featuredDescription": "These are the main platform guides highlighted across the site.",
@@ -1021,7 +1170,7 @@
     "featuredBadge": "Featured",
     "growthBadge": "More",
     "longTailBadge": "Extra",
-    "cardSuffix": "spreadsheet, yupoo, links"
+    "cardSuffix": "guide, official site, shopping route"
   },
   "helpPage": {
     "hero": {
@@ -1034,7 +1183,7 @@
         "title": "Getting Started",
         "q1": {
           "question": "What is {siteName}?",
-          "answer": "{siteName} is a product discovery platform that helps you find the best products from Chinese marketplaces like Weidian, Taobao, and 1688. We curate over 10,000 products with detailed information and QC photos."
+          "answer": "{siteName} is a product discovery platform that helps you explore products from Chinese marketplaces such as Weidian, Taobao, and 1688. Catalog size and available product details change as listings are reviewed and updated."
         },
         "q2": {
           "question": "How do I create an account?",
@@ -1042,7 +1191,7 @@
         },
         "q3": {
           "question": "What is a purchasing agent?",
-          "answer": "A purchasing agent (daigou) is a service that buys products from Chinese marketplaces on your behalf and ships them internationally. Popular agents include Litbuy, Kakobuy, MuleBuy, and USFANS."
+          "answer": "A purchasing agent (daigou) is a service that buys products from Chinese marketplaces on your behalf and ships them internationally. Current options are listed in our purchasing-agent directory."
         },
         "q4": {
           "question": "Is {siteName} free to use?",
@@ -1072,7 +1221,7 @@
         "title": "Agents & Orders",
         "q1": {
           "question": "Which agents do you support?",
-          "answer": "We support multiple agents including Litbuy, Kakobuy, MuleBuy, USFANS, iTaoBuy, and many more. You can choose your preferred agent when clicking the buy button."
+          "answer": "We support the purchasing agents shown in our live directory. You can compare them and choose your preferred platform before using the buy button."
         },
         "q2": {
           "question": "How do I place an order?",
@@ -1103,7 +1252,7 @@
         },
         "q4": {
           "question": "How can I contact support?",
-          "answer": "You can reach us via email at {contactEmail} or join our Discord and Telegram communities."
+          "answer": "You can reach us via email at {contactEmail} or join our Telegram community."
         }
       }
     },
@@ -1113,9 +1262,9 @@
       "email": {
         "label": "Email Us"
       },
-      "discord": {
-        "label": "Discord",
-        "description": "Join our community"
+      "whatsapp": {
+        "label": "WhatsApp",
+        "description": "Get buying help"
       },
       "telegram": {
         "label": "Telegram",
@@ -1136,7 +1285,7 @@
       },
       "independent-platform": {
         "title": "Independent Platform Disclaimer",
-        "content": "{siteName} operates independently and is not officially affiliated with any purchasing agent platform (including but not limited to Litbuy, Kakobuy, MuleBuy, USFANS, iTaoBuy) or any Chinese marketplace. Links to third-party agent platforms are provided for convenience only."
+        "content": "{siteName} operates independently and is not officially affiliated with the purchasing-agent platforms in our directory or with any Chinese marketplace. Links to third-party platforms are provided for convenience only."
       },
       "user-accounts": {
         "title": "User Accounts",
@@ -1390,7 +1539,7 @@
       "community": {
         "title": "Community",
         "content": "Join our community to connect with other shoppers, share finds, and get help from experienced buyers:",
-        "discord": "Chat with the community and get real-time help",
+        "whatsapp": "Get help buying from China",
         "telegram": "Updates, deals, and community discussions"
       },
       "important-note": {

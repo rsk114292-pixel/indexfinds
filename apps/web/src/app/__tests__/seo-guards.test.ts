@@ -101,13 +101,13 @@ function createTranslator(namespace: string, locale = 'en') {
         productsDescription: 'Browse all products',
         productFallbackDescription:
           locale === 'zh'
-            ? `在 Findsindex 购买 ${title}`
-            : `Shop ${title} from Findsindex`,
+            ? `在 IndexFinds 购买 ${title}`
+            : `Shop ${title} from IndexFinds`,
         brandTitle: locale === 'fr' ? `${name} - Acheter des produits` : `${name} - Shop Products`,
         brandFallbackDescription:
           locale === 'fr'
-            ? `Parcourez les produits ${name} sur Findsindex`
-            : `Browse ${name} products on Findsindex`,
+            ? `Parcourez les produits ${name} sur IndexFinds`
+            : `Browse ${name} products on IndexFinds`,
         searchDefaultTitle: 'Search',
         searchDefaultDescription: 'Search products',
         searchTitle: `Search: ${query}`,

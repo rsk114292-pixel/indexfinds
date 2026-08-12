@@ -2,9 +2,28 @@ import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4100';
 const apiHostname =
   process.env.NEXT_PUBLIC_API_HOSTNAME ||
-  new URL(process.env.NEXT_PUBLIC_API_URL || 'https://api.example.com').hostname;
+  new URL(apiUrl).hostname;
+const apiOrigin = new URL(apiUrl).origin;
+const isDevelopment = process.env.NODE_ENV !== 'production';
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data:",
+  `connect-src 'self' ${apiOrigin}${isDevelopment ? ' ws: wss:' : ''} https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com`,
+  "worker-src 'self' blob:",
+  "manifest-src 'self'",
+  "media-src 'self' https:",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+  ...(isDevelopment ? [] : ['upgrade-insecure-requests']),
+].join('; ');
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -12,7 +31,6 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: false,
   },
   async rewrites() {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4100';
     return [
       {
         source: '/api/:path*',
@@ -25,6 +43,7 @@ const nextConfig: NextConfig = {
       {
         source: '/(.*)',
         headers: [
+          { key: 'Content-Security-Policy', value: contentSecurityPolicy },
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
@@ -60,10 +79,6 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.discordapp.com',
       },
     ],
     dangerouslyAllowSVG: true,

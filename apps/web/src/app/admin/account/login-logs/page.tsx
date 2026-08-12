@@ -35,7 +35,7 @@ interface LoginLog {
   userId?: string;
   email?: string;
   eventType: 'login' | 'logout' | 'failed' | 'oauth';
-  provider: 'email' | 'google' | 'discord' | 'apple';
+  provider: string;
   ipAddress?: string;
   geoLocation?: string;
   userAgent?: string;
@@ -84,7 +84,7 @@ const getProviderTag = (provider: string) => {
     case 'google':
       return <Tag color="red">Google</Tag>;
     case 'discord':
-      return <Tag color="purple">Discord</Tag>;
+      return <Tag color="default">Legacy OAuth</Tag>;
     case 'apple':
       return <Tag color="default">Apple</Tag>;
     default:

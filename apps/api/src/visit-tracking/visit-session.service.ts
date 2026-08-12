@@ -627,7 +627,7 @@ export class VisitSessionService {
     try {
       const url = new URL(
         landingPage || '/',
-        'https://lolobuyspreadsheets.com',
+        'https://indexfinds.com',
       );
       const fromValues = url.searchParams.getAll('from');
       if (fromValues.length === 0) {

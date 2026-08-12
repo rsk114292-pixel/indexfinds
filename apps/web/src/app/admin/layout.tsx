@@ -16,6 +16,7 @@ import { getSiteName } from '@/lib/site-config';
 import AdminBreadcrumb from './components/AdminBreadcrumb';
 import GlobalSearch from './components/GlobalSearch';
 import { useAdminAuthReady } from './useAdminAuthReady';
+import AntdProvider from '@/components/AntdProvider';
 
 const { Header, Sider, Content } = Layout;
 
@@ -27,7 +28,7 @@ function AdminFullscreenSpinner() {
   );
 }
 
-export default function AdminLayout({
+function AdminLayoutContent({
   children,
 }: {
   children: React.ReactNode;
@@ -188,5 +189,17 @@ export default function AdminLayout({
         </Content>
       </Layout>
     </Layout>
+  );
+}
+
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <AntdProvider>
+      <AdminLayoutContent>{children}</AdminLayoutContent>
+    </AntdProvider>
   );
 }

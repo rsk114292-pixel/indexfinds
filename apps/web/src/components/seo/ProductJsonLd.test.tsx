@@ -110,11 +110,11 @@ describe('ProductJsonLd', () => {
       <ProductJsonLd
         product={{ slug: 'fallback-product', title: 'Fallback Product' }}
         locale="fr"
-        fallbackDescription="Achetez Fallback Product sur Findsindex"
+        fallbackDescription="Achetez Fallback Product sur IndexFinds"
       />,
     );
     const jsonLd = getJsonLd(container);
 
-    expect(jsonLd.description).toBe('Achetez Fallback Product sur Findsindex');
+    expect(jsonLd.description).toBe('Achetez Fallback Product sur IndexFinds');
   });
 });

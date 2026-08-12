@@ -3,7 +3,6 @@
  */
 
 import { existsSync } from 'node:fs';
-import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 const mockNotFound = jest.fn();
@@ -12,12 +11,16 @@ const mockPermanentRedirect = jest.fn();
 const mockHeaders = jest.fn();
 const mockGetTranslations = jest.fn();
 const mockFetch = jest.fn();
-const mockHomePageClient = jest.fn((_props: unknown) => null);
-const mockProductsPageClient = jest.fn((_props: unknown) => null);
-const mockBrandPageClient = jest.fn((_props: unknown) => null);
-const mockCategoryPageClient = jest.fn((_props: unknown) => null);
-const mockProductPageClient = jest.fn((_props: unknown) => null);
-const mockItemListJsonLd = jest.fn((_props: unknown) => null);
+const renderNull = (props: unknown) => {
+  void props;
+  return null;
+};
+const mockHomePageClient = jest.fn(renderNull);
+const mockProductsPageClient = jest.fn(renderNull);
+const mockBrandPageClient = jest.fn(renderNull);
+const mockCategoryPageClient = jest.fn(renderNull);
+const mockProductPageClient = jest.fn(renderNull);
+const mockItemListJsonLd = jest.fn(renderNull);
 
 global.fetch = mockFetch as typeof fetch;
 
@@ -136,7 +139,7 @@ function createHeaders(userAgent = 'Mozilla/5.0') {
   };
 }
 
-function createTranslator(namespace: string, locale = 'en') {
+function createTranslator(namespace: string) {
   if (namespace === 'metadata') {
     return (key: string, values?: { name?: string; title?: string; siteName?: string; query?: string }) => {
       const name = values?.name || '';
@@ -151,13 +154,13 @@ function createTranslator(namespace: string, locale = 'en') {
         productsTitle: 'All Products',
         productsDescription: 'Browse all products',
         brandTitle: `${name} - Shop Products`,
-        brandFallbackDescription: `Browse ${name} products on Findsindex`,
+        brandFallbackDescription: `Browse ${name} products on IndexFinds`,
         brandNotFound: 'Brand not found',
         categoryTitle: `${name} - Shop Category`,
-        categoryDescription: `Browse ${name} on Findsindex`,
+        categoryDescription: `Browse ${name} on IndexFinds`,
         categoryNotFound: 'Category not found',
         productNotFound: 'Product not found',
-        productFallbackDescription: `Shop ${title} from Findsindex`,
+        productFallbackDescription: `Shop ${title} from IndexFinds`,
         searchTitle: `Search: ${query}`,
         searchDescription: `Results for ${query}`,
         searchDefaultTitle: 'Search',
@@ -195,14 +198,14 @@ function mockJsonResponse(data: unknown, ok = true) {
 beforeEach(() => {
   jest.resetModules();
   jest.clearAllMocks();
-  process.env.NEXT_PUBLIC_SITE_URL = 'https://lolobuyspreadsheets.com';
-  process.env.NEXT_PUBLIC_SITE_NAME = 'Findsindex';
-  process.env.NEXT_PUBLIC_API_URL = 'https://api.lolobuyspreadsheets.com';
-  process.env.NEXT_PUBLIC_API_HOSTNAME = 'api.lolobuyspreadsheets.com';
+  process.env.NEXT_PUBLIC_SITE_URL = 'https://indexfinds.com';
+  process.env.NEXT_PUBLIC_SITE_NAME = 'IndexFinds';
+  process.env.NEXT_PUBLIC_API_URL = 'https://api.indexfinds.com';
+  process.env.NEXT_PUBLIC_API_HOSTNAME = 'api.indexfinds.com';
   mockHeaders.mockReturnValue(createHeaders());
   mockGetTranslations.mockImplementation(
-    async ({ namespace, locale }: { namespace: string; locale?: string }) =>
-      createTranslator(namespace, locale),
+    async ({ namespace }: { namespace: string; locale?: string }) =>
+      createTranslator(namespace),
   );
 });
 
@@ -328,7 +331,7 @@ describe('route template audit', () => {
     expect(mockItemListJsonLd).toHaveBeenCalledWith(
       expect.objectContaining({
         name: 'Brands',
-        items: [{ name: 'Nike', url: 'https://lolobuyspreadsheets.com/en/brands/nike' }],
+        items: [{ name: 'Nike', url: 'https://indexfinds.com/en/brands/nike' }],
       }),
     );
 
@@ -346,7 +349,7 @@ describe('route template audit', () => {
     expect(mockItemListJsonLd).toHaveBeenCalledWith(
       expect.objectContaining({
         name: 'Categories',
-        items: [{ name: 'Shoes', url: 'https://lolobuyspreadsheets.com/en/categories/shoes' }],
+        items: [{ name: 'Shoes', url: 'https://indexfinds.com/en/categories/shoes' }],
       }),
     );
   });

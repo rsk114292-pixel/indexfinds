@@ -8,35 +8,35 @@
  * - 移动端：lg:hidden → MobileProductList（sticky 排序栏 + 筛选 Sheet + 无限滚动）
  * - 两套 SSR 都输出 HTML，CSS 即时隐藏不可见的一套，零闪烁
  */
-'use client';
+"use client";
 
-import { useMemo, Suspense, useState } from 'react';
-import dynamic from 'next/dynamic';
-import { useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import useSWR from 'swr';
-import { Share2 } from 'lucide-react';
-import { Spinner } from '@/components/ui/Spinner';
-import { Empty } from '@/components/ui/Empty';
-import { Alert } from '@/components/ui/Alert';
-import { SkeletonCard } from '@/components/ui/Skeleton';
-import { ShareModal } from '@/components/share/ShareModal';
-import { fetcher } from '@/lib/api';
-import type { ApiListResponse, Product } from '@/types';
-import { computeHotThreshold } from '@/lib/utils';
-import MobileProductList from './components/mobile/MobileProductList';
-import { useLgUp } from '@/hooks/useLgUp';
-import type { FacetsData } from '@/components/filters/types';
-import { usePathname } from '@/i18n/navigation';
-import { buildReturnTo } from '@/lib/return-to';
-import { useReturnScrollRestoration } from '@/hooks/useReturnScrollRestoration';
+import { useMemo, Suspense, useState } from "react";
+import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import useSWR from "swr";
+import { Share2 } from "lucide-react";
+import { Spinner } from "@/components/ui/Spinner";
+import { Empty } from "@/components/ui/Empty";
+import { Alert } from "@/components/ui/Alert";
+import { SkeletonCard } from "@/components/ui/Skeleton";
+import { fetcher } from "@/lib/api";
+import type { ApiListResponse, Product } from "@/types";
+import { computeHotThreshold } from "@/lib/utils";
+import MobileProductList from "./components/mobile/MobileProductList";
+import { useLgUp } from "@/hooks/useLgUp";
+import type { FacetsData } from "@/components/filters/types";
+import { usePathname } from "@/i18n/navigation";
+import { buildReturnTo } from "@/lib/return-to";
+import { useReturnScrollRestoration } from "@/hooks/useReturnScrollRestoration";
+import LazyShareModal from "@/components/share/LazyShareModal";
 import {
   DEFAULT_DESKTOP_PRODUCT_LIMIT,
   DESKTOP_PRODUCT_GRID_CLASS,
   DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS,
   DESKTOP_PRODUCT_SIDEBAR_CLASS,
   DESKTOP_PRODUCT_SKELETON_COUNT,
-} from '@/lib/product-list-layout';
+} from "@/lib/product-list-layout";
 interface ProductsPageClientProps {
   initialProductsData?: ApiListResponse<Product> | null;
   initialFacetsData?: FacetsData | null;
@@ -46,16 +46,20 @@ interface ProductsPageClientProps {
  * Phase 4.6 性能优化：
  * PC 端专用组件使用 dynamic import，移动端不加载这些 JS 模块
  */
-const FilterSidebar = dynamic(() => import('@/components/filters').then(m => ({ default: m.FilterSidebar })));
-const ActiveFilters = dynamic(() => import('@/components/ActiveFilters'));
-const ProductCard = dynamic(() => import('@/components/ProductCard'));
-const Pagination = dynamic(() => import('@/components/Pagination'));
-const SortSelect = dynamic(() => import('@/components/SortSelect'));
+const FilterSidebar = dynamic(() =>
+  import("@/components/filters").then((m) => ({ default: m.FilterSidebar })),
+);
+const ActiveFilters = dynamic(() => import("@/components/ActiveFilters"));
+const ProductCard = dynamic(() => import("@/components/ProductCard"));
+const Pagination = dynamic(() => import("@/components/Pagination"));
+const SortSelect = dynamic(() => import("@/components/SortSelect"));
 
 // 页面加载状态
 function PageLoading() {
   return (
-    <div className={`${DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS} flex justify-center py-8`}>
+    <div
+      className={`${DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS} flex justify-center py-8`}
+    >
       <Spinner size="lg" />
     </div>
   );
@@ -68,57 +72,63 @@ function ProductsContent({
 }: ProductsPageClientProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const t = useTranslations('products');
-  const tc = useTranslations('common');
-  const tShare = useTranslations('share');
+  const t = useTranslations("products");
+  const tc = useTranslations("common");
+  const tShare = useTranslations("share");
   const lgUp = useLgUp();
   const enabledDesktop = lgUp === true;
   const enabledMobile = lgUp === false;
   const [shareModalOpen, setShareModalOpen] = useState(false);
 
   // 获取查询参数
-  const page = Number(searchParams.get('page')) || 1;
-  const limit = Number(searchParams.get('limit')) || DEFAULT_DESKTOP_PRODUCT_LIMIT;
-  const brands = searchParams.get('brands');
-  const minPrice = searchParams.get('minPrice');
-  const maxPrice = searchParams.get('maxPrice');
-  const sortBy = searchParams.get('sortBy') || 'popular';
-  const colors = searchParams.get('colors');
-  const genders = searchParams.get('genders');
-  const styles = searchParams.get('styles');
-  const occasions = searchParams.get('occasions');
-  const seasons = searchParams.get('seasons');
-  const categories = searchParams.get('categories');
+  const page = Number(searchParams.get("page")) || 1;
+  const limit =
+    Number(searchParams.get("limit")) || DEFAULT_DESKTOP_PRODUCT_LIMIT;
+  const brands = searchParams.get("brands");
+  const minPrice = searchParams.get("minPrice");
+  const maxPrice = searchParams.get("maxPrice");
+  const sortBy = searchParams.get("sortBy") || "popular";
+  const colors = searchParams.get("colors");
+  const genders = searchParams.get("genders");
+  const styles = searchParams.get("styles");
+  const occasions = searchParams.get("occasions");
+  const seasons = searchParams.get("seasons");
+  const categories = searchParams.get("categories");
 
   // 构建 API 查询参数
   const queryParams = new URLSearchParams();
-  queryParams.set('page', String(page));
-  queryParams.set('limit', String(limit));
-  queryParams.set('sortBy', sortBy);
-  if (brands) queryParams.set('brands', brands);
-  if (minPrice) queryParams.set('minPrice', minPrice);
-  if (maxPrice) queryParams.set('maxPrice', maxPrice);
-  if (colors) queryParams.set('colors', colors);
-  if (genders) queryParams.set('genders', genders);
-  if (styles) queryParams.set('styles', styles);
-  if (occasions) queryParams.set('occasions', occasions);
-  if (seasons) queryParams.set('seasons', seasons);
-  if (categories) queryParams.set('categories', categories);
+  queryParams.set("page", String(page));
+  queryParams.set("limit", String(limit));
+  queryParams.set("sortBy", sortBy);
+  if (brands) queryParams.set("brands", brands);
+  if (minPrice) queryParams.set("minPrice", minPrice);
+  if (maxPrice) queryParams.set("maxPrice", maxPrice);
+  if (colors) queryParams.set("colors", colors);
+  if (genders) queryParams.set("genders", genders);
+  if (styles) queryParams.set("styles", styles);
+  if (occasions) queryParams.set("occasions", occasions);
+  if (seasons) queryParams.set("seasons", seasons);
+  if (categories) queryParams.set("categories", categories);
 
   // 获取商品列表
   const productsKey =
-    enabledDesktop || initialProductsData ? `/products?${queryParams.toString()}` : null;
-  const { data: productsData, error: productsError, isLoading } = useSWR<ApiListResponse<Product>>(
-    productsKey,
-    fetcher,
-    {
-      fallbackData: initialProductsData ?? undefined,
-      revalidateOnMount: initialProductsData ? false : undefined,
-    }
-  );
+    enabledDesktop || initialProductsData
+      ? `/products?${queryParams.toString()}`
+      : null;
+  const {
+    data: productsData,
+    error: productsError,
+    isLoading,
+  } = useSWR<ApiListResponse<Product>>(productsKey, fetcher, {
+    fallbackData: initialProductsData ?? undefined,
+    revalidateOnMount: initialProductsData ? false : undefined,
+  });
 
   // 获取筛选器 facets（PC 和移动端共享）
-  const facetsKey = enabledDesktop || enabledMobile || initialFacetsData ? '/products/facets' : null;
+  const facetsKey =
+    enabledDesktop || enabledMobile || initialFacetsData
+      ? "/products/facets"
+      : null;
   const { data: facetsData } = useSWR<FacetsData>(facetsKey, fetcher, {
     fallbackData: initialFacetsData ?? undefined,
     revalidateOnMount: initialFacetsData ? false : undefined,
@@ -134,13 +144,16 @@ function ProductsContent({
         price: {
           min: Number(product.priceMin) || 0,
           max: Number(product.priceMax) || 0,
-          currency: product.currency || 'CNY',
+          currency: product.currency || "CNY",
         },
       })),
     [productsData?.data],
   );
   const total = productsData?.meta?.total || 0;
-  const returnTo = useMemo(() => buildReturnTo(pathname, searchParams), [pathname, searchParams]);
+  const returnTo = useMemo(
+    () => buildReturnTo(pathname, searchParams),
+    [pathname, searchParams],
+  );
   useReturnScrollRestoration(enabledDesktop && !isLoading);
 
   // Hot badge 阈值：取当前页 popularityScore 前 20%
@@ -154,7 +167,7 @@ function ProductsContent({
       <div className={`${DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS} py-8`}>
         <Alert
           type="error"
-          title={t('errorLoading')}
+          title={t("errorLoading")}
           description={productsError.message}
         />
       </div>
@@ -168,9 +181,11 @@ function ProductsContent({
         <div className={`${DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS} py-6`}>
           {/* 页面标题 */}
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-foreground mb-2">{t('allProducts')}</h2>
+            <h1 className="text-2xl font-bold text-foreground mb-2">
+              {t("allProducts")}
+            </h1>
             <p className="text-muted" aria-live="polite">
-              {isLoading ? tc('loading') : t('productCount', { count: total })}
+              {isLoading ? tc("loading") : t("productCount", { count: total })}
             </p>
           </div>
 
@@ -180,10 +195,10 @@ function ProductsContent({
             <div className={DESKTOP_PRODUCT_SIDEBAR_CLASS}>
               <FilterSidebar
                 categories={facetsData?.categories || []}
-                brands={(facetsData?.brands || []).map(b => ({
+                brands={(facetsData?.brands || []).map((b) => ({
                   label: b.name,
                   value: b.slug,
-                  count: b.count
+                  count: b.count,
                 }))}
                 colors={facetsData?.colors || []}
                 genders={facetsData?.genders || []}
@@ -207,7 +222,7 @@ function ProductsContent({
                     className="inline-flex h-10 items-center gap-2 rounded-md border border-border bg-white px-3 text-sm font-medium text-foreground transition-colors duration-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
                   >
                     <Share2 className="h-4 w-4" />
-                    <span>{tShare('title')}</span>
+                    <span>{tShare("title")}</span>
                   </button>
                   <SortSelect />
                 </div>
@@ -216,9 +231,11 @@ function ProductsContent({
               {/* 商品列表 */}
               {isLoading ? (
                 <div className={DESKTOP_PRODUCT_GRID_CLASS}>
-                  {Array.from({ length: DESKTOP_PRODUCT_SKELETON_COUNT }).map((_, i) => (
-                    <SkeletonCard key={i} />
-                  ))}
+                  {Array.from({ length: DESKTOP_PRODUCT_SKELETON_COUNT }).map(
+                    (_, i) => (
+                      <SkeletonCard key={i} />
+                    ),
+                  )}
                 </div>
               ) : products.length > 0 ? (
                 <>
@@ -227,7 +244,10 @@ function ProductsContent({
                       <ProductCard
                         key={product.id}
                         product={product}
-                        isHot={product.isFeatured || (product.popularityScore ?? 0) >= hotThreshold}
+                        isHot={
+                          product.isFeatured ||
+                          (product.popularityScore ?? 0) >= hotThreshold
+                        }
                         returnTo={returnTo}
                       />
                     ))}
@@ -240,8 +260,8 @@ function ProductsContent({
                 </>
               ) : (
                 <Empty
-                  title={t('noProducts')}
-                  description={t('noProductsDesc')}
+                  title={t("noProducts")}
+                  description={t("noProductsDesc")}
                 />
               )}
             </div>
@@ -254,13 +274,15 @@ function ProductsContent({
         <MobileProductList facetsData={facetsData} enabled={enabledMobile} />
       </div>
 
-      <ShareModal
-        open={shareModalOpen}
-        onClose={() => setShareModalOpen(false)}
-        title={t('allProducts')}
-        url={typeof window !== 'undefined' ? window.location.href : ''}
-        campaign="referral_page_share"
-      />
+      {shareModalOpen ? (
+        <LazyShareModal
+          open
+          onClose={() => setShareModalOpen(false)}
+          title={t("allProducts")}
+          url={typeof window !== "undefined" ? window.location.href : ""}
+          campaign="referral_page_share"
+        />
+      ) : null}
     </>
   );
 }

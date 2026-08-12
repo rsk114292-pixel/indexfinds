@@ -55,9 +55,12 @@ export async function generateMetadata({
   }
 
   // 构建标题
-  const title = product.brand?.name
-    ? `${product.brand.name} ${product.title}`
-    : product.title;
+  const brandName = product.brand?.name?.trim();
+  const productTitle = product.title.trim();
+  const title =
+    brandName && !productTitle.toLocaleLowerCase().startsWith(brandName.toLocaleLowerCase())
+      ? `${brandName} ${productTitle}`
+      : productTitle;
 
   // 构建描述（仅在截断时追加省略号）
   const descriptionRaw = product.description

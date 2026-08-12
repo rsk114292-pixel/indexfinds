@@ -168,13 +168,19 @@ export function MobileInlineSKU({
                             : 'border-border active:scale-95'
                         }`}
                       >
+                        <span className="absolute inset-0 flex items-center justify-center bg-slate-50 text-xs font-semibold text-slate-400">
+                          {index + 1}
+                        </span>
                         <Image
                           src={getProductDetailThumbnail(image)}
                           alt={t('styleN', { n: index + 1 })}
                           fill
-                          className="object-cover"
+                          className="z-10 bg-white object-cover"
                           sizes="56px"
                           referrerPolicy={getImageReferrerPolicy(getProductDetailThumbnail(image))}
+                          onError={(event) => {
+                            event.currentTarget.style.display = 'none';
+                          }}
                         />
                       </button>
                     ))
@@ -189,14 +195,22 @@ export function MobileInlineSKU({
                         }`}
                       >
                         {option.image ? (
-                          <Image
-                            src={getProductDetailThumbnail(option.image)}
-                            alt={option.value}
-                            fill
-                            className="object-cover"
-                            sizes="56px"
-                            referrerPolicy={getImageReferrerPolicy(getProductDetailThumbnail(option.image))}
-                          />
+                          <>
+                            <span className="absolute inset-0 flex items-center justify-center bg-slate-50 px-1 text-center text-[10px] font-semibold text-slate-400">
+                              {option.value}
+                            </span>
+                            <Image
+                              src={getProductDetailThumbnail(option.image)}
+                              alt={option.value}
+                              fill
+                              className="z-10 bg-white object-cover"
+                              sizes="56px"
+                              referrerPolicy={getImageReferrerPolicy(getProductDetailThumbnail(option.image))}
+                              onError={(event) => {
+                                event.currentTarget.style.display = 'none';
+                              }}
+                            />
+                          </>
                         ) : (
                           <span className="flex items-center justify-center h-full text-xs text-muted">
                             {option.value}

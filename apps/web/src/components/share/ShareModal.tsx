@@ -1,7 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Modal } from 'antd';
 import { Share2 } from 'lucide-react';
 import useSWR from 'swr';
 import { useLgUp } from '@/hooks/useLgUp';
@@ -14,6 +13,7 @@ import ShareRewardsHint from '@/components/rewards/ShareRewardsHint';
 import { useShareUrl } from '@/hooks/useShareUrl';
 import { fetcher } from '@/lib/api';
 import { useAuthStore } from '@/stores/useAuthStore';
+import { Dialog } from '@/components/ui/Dialog';
 
 interface ShareRewardStatus {
   claimedChannels: string[];
@@ -21,7 +21,7 @@ interface ShareRewardStatus {
   dailyLimit: number;
 }
 
-interface ShareModalProps {
+export interface ShareModalProps {
   open: boolean;
   onClose: () => void;
   title: string;
@@ -113,17 +113,14 @@ export function ShareModal({
   // 桌面端：antd Modal
   if (lgUp) {
     return (
-      <Modal
+      <Dialog
         open={open}
-        onCancel={onClose}
+        onClose={onClose}
         title={t('title')}
-        footer={null}
-        width={480}
-        centered
-        destroyOnHidden
+        panelClassName="max-w-[480px]"
       >
         {content}
-      </Modal>
+      </Dialog>
     );
   }
 

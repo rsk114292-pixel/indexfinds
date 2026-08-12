@@ -33,9 +33,11 @@ const mockFetch = jest.fn();
 global.fetch = mockFetch;
 
 import { generateStaticParams } from './page';
+import { __resetServerApiFallbackCacheForTests } from '@/lib/server-api-fetch';
 
 beforeEach(() => {
   jest.clearAllMocks();
+  __resetServerApiFallbackCacheForTests();
 });
 
 describe('generateStaticParams', () => {

@@ -5,7 +5,28 @@ type NextFetchOptions = RequestInit & {
     revalidate?: number | false;
     tags?: string[];
   };
+  /** Hard deadline for the upstream request. */
+  timeoutMs?: number;
+  /** Maximum age of the last successful response used when upstream fails. */
+  staleIfErrorMs?: number;
 };
+
+interface FallbackCacheEntry {
+  storedAt: number;
+  value: unknown;
+}
+
+const DEFAULT_TIMEOUT_MS = 4_500;
+const DEFAULT_STALE_IF_ERROR_MS = 15 * 60 * 1000;
+const MAX_FALLBACK_ENTRIES = 120;
+
+const fallbackCache = (() => {
+  const sharedGlobal = globalThis as typeof globalThis & {
+    __indexfindsServerApiFallbackCache?: Map<string, FallbackCacheEntry>;
+  };
+  sharedGlobal.__indexfindsServerApiFallbackCache ??= new Map();
+  return sharedGlobal.__indexfindsServerApiFallbackCache;
+})();
 
 function isBuildPhase() {
   return process.env.NEXT_PHASE === 'phase-production-build';
@@ -48,6 +69,77 @@ export function buildServerTrackingHeaders(input?: {
   return headers;
 }
 
+function canUseSharedFallback(url: string, init: RequestInit) {
+  const method = (init.method || 'GET').toUpperCase();
+  if (method !== 'GET' || init.cache === 'no-store') return false;
+
+  const headerNames = new Set<string>();
+  const headers = init.headers;
+  if (Array.isArray(headers)) {
+    headers.forEach(([name]) => headerNames.add(name.toLowerCase()));
+  } else if (headers && typeof (headers as Headers).forEach === 'function') {
+    (headers as Headers).forEach((_value, name) => headerNames.add(name.toLowerCase()));
+  } else if (headers) {
+    Object.keys(headers).forEach((name) => headerNames.add(name.toLowerCase()));
+  }
+
+  return ![
+    'authorization',
+    'cookie',
+    'x-visit-id',
+    'x-api-key',
+  ].some((name) => headerNames.has(name)) && url.startsWith(API_BASE_URL);
+}
+
+function readFallback<T>(key: string, maxAgeMs: number): T | null {
+  const entry = fallbackCache.get(key);
+  if (!entry) return null;
+  if (Date.now() - entry.storedAt > maxAgeMs) {
+    fallbackCache.delete(key);
+    return null;
+  }
+  return entry.value as T;
+}
+
+function writeFallback(key: string, value: unknown) {
+  fallbackCache.delete(key);
+  fallbackCache.set(key, { storedAt: Date.now(), value });
+
+  while (fallbackCache.size > MAX_FALLBACK_ENTRIES) {
+    const oldestKey = fallbackCache.keys().next().value as string | undefined;
+    if (!oldestKey) break;
+    fallbackCache.delete(oldestKey);
+  }
+}
+
+function createDeadlineSignal(signal: AbortSignal | null | undefined, timeoutMs: number) {
+  const controller = new AbortController();
+  const abortFromUpstream = () => controller.abort(signal?.reason);
+
+  if (signal?.aborted) {
+    abortFromUpstream();
+  } else {
+    signal?.addEventListener('abort', abortFromUpstream, { once: true });
+  }
+
+  const timer = setTimeout(
+    () => controller.abort(new DOMException('Upstream request timed out', 'TimeoutError')),
+    Math.max(1, timeoutMs),
+  );
+
+  return {
+    signal: controller.signal,
+    cleanup: () => {
+      clearTimeout(timer);
+      signal?.removeEventListener('abort', abortFromUpstream);
+    },
+  };
+}
+
+export function __resetServerApiFallbackCacheForTests() {
+  fallbackCache.clear();
+}
+
 export async function fetchServerApiJson<T>(
   input: string,
   init?: NextFetchOptions,
@@ -58,15 +150,31 @@ export async function fetchServerApiJson<T>(
     return null;
   }
 
+  const {
+    timeoutMs = DEFAULT_TIMEOUT_MS,
+    staleIfErrorMs = DEFAULT_STALE_IF_ERROR_MS,
+    ...requestInit
+  } = init || {};
+  const fallbackEnabled =
+    staleIfErrorMs > 0 && canUseSharedFallback(url, requestInit);
+  const deadline = createDeadlineSignal(requestInit.signal, timeoutMs);
+
   try {
-    const response = await fetch(url, init);
+    const response = await fetch(url, {
+      ...requestInit,
+      signal: deadline.signal,
+    });
 
     if (!response.ok) {
-      return null;
+      return fallbackEnabled ? readFallback<T>(url, staleIfErrorMs) : null;
     }
 
-    return (await response.json()) as T;
+    const value = (await response.json()) as T;
+    if (fallbackEnabled) writeFallback(url, value);
+    return value;
   } catch {
-    return null;
+    return fallbackEnabled ? readFallback<T>(url, staleIfErrorMs) : null;
+  } finally {
+    deadline.cleanup();
   }
 }

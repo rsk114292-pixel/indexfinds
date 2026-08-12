@@ -1,30 +1,40 @@
-'use client';
+"use client";
 
-import type { ReactNode } from 'react';
-import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
-import { useRouter, Link } from '@/i18n/navigation';
-import { useTranslations, useLocale } from 'next-intl';
-import { ArrowLeft, Share2, Search, ChevronLeft, ChevronRight, Play, X } from 'lucide-react';
-import MobileSearchOverlay from '@/components/mobile/MobileSearchOverlay';
-import MobileImageSwiper from './MobileImageSwiper';
-import MobileSKUSheet from './MobileSKUSheet';
-import MobileBuyBar from './MobileBuyBar';
-import { MobileDescription } from './MobileDescription';
-import { MobileInlineSKU } from './MobileInlineSKU';
-import PlatformSelectModal from '../PlatformSelectModal';
-import ProductRecommendations from '@/components/product/recommendations/ProductRecommendations';
-import dynamic from 'next/dynamic';
+import type { ReactNode } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { useRouter, Link } from "@/i18n/navigation";
+import { useTranslations, useLocale } from "next-intl";
+import {
+  ArrowLeft,
+  Share2,
+  Search,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  X,
+} from "lucide-react";
+import MobileSearchOverlay from "@/components/mobile/MobileSearchOverlay";
+import MobileImageSwiper from "./MobileImageSwiper";
+import MobileSKUSheet from "./MobileSKUSheet";
+import MobileBuyBar from "./MobileBuyBar";
+import { MobileDescription } from "./MobileDescription";
+import { MobileInlineSKU } from "./MobileInlineSKU";
+import PlatformSelectModal from "../PlatformSelectModal";
+import ProductRecommendations from "@/components/product/recommendations/ProductRecommendations";
+import dynamic from "next/dynamic";
 
-const ColorVariants = dynamic(() => import('../ColorVariants'));
-import FindSimilarButton from '@/components/product/recommendations/FindSimilarButton';
-import ProductShareEarnCard from '@/components/rewards/ProductShareEarnCard';
-import { formatPrice, convertPrice, getLocalizedName } from '@/lib/utils';
-import { useCurrencyStore } from '@/stores/useCurrencyStore';
-import { useBuyProduct } from '@/hooks/useBuyProduct';
-import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
-import { parseSkuAttributes } from '@/lib/sku-utils';
-import { getImageVariant, getProductDetailThumbnail } from '@/lib/image-utils';
-import type { Product, SKU } from '@/types';
+const ColorVariants = dynamic(() => import("../ColorVariants"));
+import FindSimilarButton from "@/components/product/recommendations/FindSimilarButton";
+import ProductShareEarnCard from "@/components/rewards/ProductShareEarnCard";
+import ProductSourceMeta from "@/components/product/ProductSourceMeta";
+import ShippingEstimator from "@/components/product/ShippingEstimator";
+import { formatPrice, convertPrice, getLocalizedName } from "@/lib/utils";
+import { useCurrencyStore } from "@/stores/useCurrencyStore";
+import { useBuyProduct } from "@/hooks/useBuyProduct";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+import { parseSkuAttributes } from "@/lib/sku-utils";
+import { getImageVariant, getProductDetailThumbnail } from "@/lib/image-utils";
+import type { Product, SKU } from "@/types";
 
 const VIDEO_PREVIEW_PLACEHOLDER =
   "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><rect width='240' height='240' rx='28' fill='%23eef2f7'/><circle cx='120' cy='120' r='42' fill='white' fill-opacity='0.96'/><path d='M109 98l35 22-35 22z' fill='%231f2937'/></svg>";
@@ -68,14 +78,16 @@ export default function MobileProductDetail({
   onReferralActionComplete,
 }: MobileProductDetailProps) {
   const router = useRouter();
-  const t = useTranslations('product');
-  const tc = useTranslations('common');
+  const t = useTranslations("product");
+  const tc = useTranslations("common");
   const locale = useLocale();
   const { currency: displayCurrency, rates } = useCurrencyStore();
 
   // State
   const [selectedSku, setSelectedSku] = useState<SKU | null>(null);
-  const [selectedAttributes, setSelectedAttributes] = useState<Record<string, string>>({});
+  const [selectedAttributes, setSelectedAttributes] = useState<
+    Record<string, string>
+  >({});
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [skuSheetOpen, setSkuSheetOpen] = useState(false);
   const [platformModalOpen, setPlatformModalOpen] = useState(false);
@@ -89,7 +101,8 @@ export default function MobileProductDetail({
 
   // 根据选择的属性匹配 SKU
   const matchedSku = useMemo(() => {
-    if (!product?.skus || Object.keys(selectedAttributes).length === 0) return null;
+    if (!product?.skus || Object.keys(selectedAttributes).length === 0)
+      return null;
     return product.skus.find((sku) => {
       const attrs = parseSkuAttributes(sku.attributes);
       if (Object.keys(attrs).length === 0) return false;
@@ -117,8 +130,8 @@ export default function MobileProductDetail({
         setHeaderOpacity(opacity);
       }
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [enabled]);
 
   const normalizedQcMedia = useMemo(
@@ -129,17 +142,19 @@ export default function MobileProductDetail({
         .sort((a, b) => a.sortOrder - b.sortOrder)
         .map((media) => ({
           ...media,
-          type: media.type === 'video' ? 'video' : 'image',
+          type: media.type === "video" ? "video" : "image",
           previewUrl:
-            media.type === 'video'
+            media.type === "video"
               ? media.posterUrl
                 ? getImageVariant(media.posterUrl, 320)
                 : VIDEO_PREVIEW_PLACEHOLDER
               : getImageVariant(media.url, 320),
           modalUrl:
-            media.type === 'video' ? media.url : getImageVariant(media.url, 1200),
+            media.type === "video"
+              ? media.url
+              : getImageVariant(media.url, 1200),
           thumbnailUrl:
-            media.type === 'video'
+            media.type === "video"
               ? media.posterUrl
                 ? getProductDetailThumbnail(media.posterUrl)
                 : VIDEO_PREVIEW_PLACEHOLDER
@@ -152,20 +167,24 @@ export default function MobileProductDetail({
     if (qcPreviewIndex === null) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         setQcPreviewIndex(null);
         return;
       }
 
       if (normalizedQcMedia.length <= 1) return;
 
-      if (event.key === 'ArrowLeft') {
+      if (event.key === "ArrowLeft") {
         setQcPreviewIndex((prev) =>
-          prev === null ? 0 : prev === 0 ? normalizedQcMedia.length - 1 : prev - 1,
+          prev === null
+            ? 0
+            : prev === 0
+              ? normalizedQcMedia.length - 1
+              : prev - 1,
         );
       }
 
-      if (event.key === 'ArrowRight') {
+      if (event.key === "ArrowRight") {
         setQcPreviewIndex((prev) =>
           prev === null
             ? 0
@@ -176,21 +195,24 @@ export default function MobileProductDetail({
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [qcPreviewIndex, normalizedQcMedia.length]);
 
   useEffect(() => {
     if (qcPreviewIndex === null) return;
     const activeThumbnail = qcThumbnailRefs.current[qcPreviewIndex];
-    if (!activeThumbnail || typeof activeThumbnail.scrollIntoView !== 'function') {
+    if (
+      !activeThumbnail ||
+      typeof activeThumbnail.scrollIntoView !== "function"
+    ) {
       return;
     }
 
     activeThumbnail.scrollIntoView({
-      block: 'nearest',
-      inline: 'center',
-      behavior: 'smooth',
+      block: "nearest",
+      inline: "center",
+      behavior: "smooth",
     });
   }, [qcPreviewIndex]);
 
@@ -213,18 +235,25 @@ export default function MobileProductDetail({
     const nextIndex =
       qcPreviewIndex === normalizedQcMedia.length - 1 ? 0 : qcPreviewIndex + 1;
 
-    [normalizedQcMedia[previousIndex]?.modalUrl, normalizedQcMedia[nextIndex]?.modalUrl]
+    [
+      normalizedQcMedia[previousIndex]?.modalUrl,
+      normalizedQcMedia[nextIndex]?.modalUrl,
+    ]
       .filter((url): url is string => Boolean(url))
       .forEach((url) => {
-        if (url.endsWith('.mp4') || url.endsWith('.webm') || url.endsWith('.mov')) {
-          const video = document.createElement('video');
-          video.preload = 'metadata';
+        if (
+          url.endsWith(".mp4") ||
+          url.endsWith(".webm") ||
+          url.endsWith(".mov")
+        ) {
+          const video = document.createElement("video");
+          video.preload = "metadata";
           video.src = url;
           return;
         }
 
         const image = new window.Image();
-        image.decoding = 'async';
+        image.decoding = "async";
         image.src = url;
       });
   }, [qcPreviewIndex, normalizedQcMedia]);
@@ -237,11 +266,7 @@ export default function MobileProductDetail({
 
   const showNextQcPreview = () => {
     setQcPreviewIndex((prev) =>
-      prev === null
-        ? 0
-        : prev === normalizedQcMedia.length - 1
-          ? 0
-          : prev + 1,
+      prev === null ? 0 : prev === normalizedQcMedia.length - 1 ? 0 : prev + 1,
     );
   };
 
@@ -277,11 +302,16 @@ export default function MobileProductDetail({
   // 计算价格
   const currentPrice = selectedSku
     ? parseFloat(String(selectedSku.price))
-    : product.priceMin ?? 0;
-  const currency = product.currency || 'CNY';
+    : (product.priceMin ?? 0);
+  const currency = product.currency || "CNY";
   const isConverted = displayCurrency !== currency;
-  const approx = isConverted ? '≈ ' : '';
-  const converted = convertPrice(currentPrice, currency, displayCurrency, rates);
+  const approx = isConverted ? "≈ " : "";
+  const converted = convertPrice(
+    currentPrice,
+    currency,
+    displayCurrency,
+    rates,
+  );
   const priceMax = product.priceMax ?? 0;
   const convertedMax = convertPrice(priceMax, currency, displayCurrency, rates);
 
@@ -289,7 +319,7 @@ export default function MobileProductDetail({
 
   const { buyWithPlatform, loading: buyLoading } = useBuyProduct({
     productId: product.id,
-    buttonVariant: 'mobile_buy_bar',
+    buttonVariant: "mobile_buy_bar",
     onSuccess: onReferralActionComplete,
   });
 
@@ -301,7 +331,7 @@ export default function MobileProductDetail({
     [buyWithPlatform],
   );
   const handleBack = useCallback(() => {
-    if (typeof window !== 'undefined' && window.history.length > 1) {
+    if (typeof window !== "undefined" && window.history.length > 1) {
       router.back();
       return;
     }
@@ -311,7 +341,7 @@ export default function MobileProductDetail({
       return;
     }
 
-    router.push('/products');
+    router.push("/products");
   }, [returnHref, router]);
 
   // 处理属性变更
@@ -326,18 +356,18 @@ export default function MobileProductDetail({
     <>
       {/* 透明渐变顶栏 — 覆盖在图片上，z-30 覆盖 Layout 的 MobileHeader (z-20) */}
       <div
-        className={`fixed inset-x-0 top-0 z-30 pt-[env(safe-area-inset-top)] transition-shadow duration-200 ${headerOpacity > 0.8 ? 'shadow-[0_1px_0_rgba(0,0,0,0.06)]' : ''}`}
+        className={`fixed inset-x-0 top-0 z-30 pt-[env(safe-area-inset-top)] transition-shadow duration-200 ${headerOpacity > 0.8 ? "shadow-[0_1px_0_rgba(0,0,0,0.06)]" : ""}`}
         style={{ backgroundColor: `rgba(255,255,255,${headerOpacity})` }}
       >
         <div className="flex h-12 items-center px-2">
           {/* 返回按钮 */}
           <button
-            aria-label={tc('goBack')}
+            aria-label={tc("goBack")}
             onClick={handleBack}
-            className={`flex h-9 w-9 items-center justify-center rounded-full active:scale-95 transition-all duration-150 ${headerOpacity < 0.5 ? 'bg-black/30' : 'bg-transparent'}`}
+            className={`flex h-11 w-11 items-center justify-center rounded-full active:scale-95 transition-all duration-150 ${headerOpacity < 0.5 ? "bg-black/30" : "bg-transparent"}`}
           >
             <ArrowLeft
-              className={`h-5 w-5 transition-colors duration-150 ${headerOpacity < 0.5 ? 'text-white' : 'text-foreground'}`}
+              className={`h-5 w-5 transition-colors duration-150 ${headerOpacity < 0.5 ? "text-white" : "text-foreground"}`}
             />
           </button>
 
@@ -355,21 +385,21 @@ export default function MobileProductDetail({
             <button
               aria-label="Search"
               onClick={() => setSearchOpen(true)}
-              className={`flex h-9 w-9 items-center justify-center rounded-full active:scale-95 transition-all duration-150 ${headerOpacity < 0.5 ? 'bg-black/30' : 'bg-transparent'}`}
+              className={`flex h-11 w-11 items-center justify-center rounded-full active:scale-95 transition-all duration-150 ${headerOpacity < 0.5 ? "bg-black/30" : "bg-transparent"}`}
             >
               <Search
-                className={`h-5 w-5 transition-colors duration-150 ${headerOpacity < 0.5 ? 'text-white' : 'text-foreground'}`}
+                className={`h-5 w-5 transition-colors duration-150 ${headerOpacity < 0.5 ? "text-white" : "text-foreground"}`}
               />
             </button>
 
             {/* 分享 */}
             <button
-              aria-label={t('share')}
+              aria-label={t("share")}
               onClick={() => onShareOpen?.()}
-              className={`flex h-9 w-9 items-center justify-center rounded-full active:scale-95 transition-all duration-150 ${headerOpacity < 0.5 ? 'bg-black/30' : 'bg-transparent'}`}
+              className={`flex h-11 w-11 items-center justify-center rounded-full active:scale-95 transition-all duration-150 ${headerOpacity < 0.5 ? "bg-black/30" : "bg-transparent"}`}
             >
               <Share2
-                className={`h-5 w-5 transition-colors duration-150 ${headerOpacity < 0.5 ? 'text-white' : 'text-foreground'}`}
+                className={`h-5 w-5 transition-colors duration-150 ${headerOpacity < 0.5 ? "text-white" : "text-foreground"}`}
               />
             </button>
           </div>
@@ -391,7 +421,8 @@ export default function MobileProductDetail({
         <div className="px-4 pt-4 pb-3">
           <div className="flex items-baseline gap-2">
             <span className="text-2xl font-bold text-accent">
-              {approx}{formatPrice(converted, displayCurrency)}
+              {approx}
+              {formatPrice(converted, displayCurrency)}
             </span>
             {!selectedSku && convertedMax > converted && (
               <span className="text-sm text-muted">
@@ -408,14 +439,20 @@ export default function MobileProductDetail({
           </h1>
           <div className="flex flex-wrap gap-1.5">
             {product.primaryCategory && (
-              <Link href={`/categories/${product.primaryCategory.slug}`} className="active:scale-95 transition-transform">
+              <Link
+                href={`/categories/${product.primaryCategory.slug}`}
+                className="inline-flex min-h-11 items-center active:scale-95 transition-transform"
+              >
                 <span className="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-purple-100 text-purple-700">
                   {getLocalizedName(product.primaryCategory, locale)}
                 </span>
               </Link>
             )}
             {product.brand?.name ? (
-              <Link href={`/brands/${product.brand.slug}`} className="active:scale-95 transition-transform">
+              <Link
+                href={`/brands/${product.brand.slug}`}
+                className="inline-flex min-h-11 items-center active:scale-95 transition-transform"
+              >
                 <span className="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-accent/15 text-amber-700">
                   {product.brand.name}
                 </span>
@@ -429,11 +466,20 @@ export default function MobileProductDetail({
           </div>
         </div>
 
-        {activationNudge && (
-          <div className="px-4 pb-3">
-            {activationNudge}
-          </div>
-        )}
+        <div className="px-4 pb-3">
+          <ProductSourceMeta
+            sourceUrl={product.sourceUrl}
+            shopName={product.weidianShopName}
+            viewCount={product.viewCount}
+            salesCount={product.salesCount}
+            updatedAt={product.updatedAt}
+            productId={product.id}
+            productTitle={product.title}
+            compact
+          />
+        </div>
+
+        {activationNudge && <div className="px-4 pb-3">{activationNudge}</div>}
 
         <div className="px-4 pb-3">
           <ProductShareEarnCard compact onShare={() => onShareOpen?.()} />
@@ -456,7 +502,7 @@ export default function MobileProductDetail({
         {product.skus && product.skus.length > 0 && (
           <MobileInlineSKU
             skus={product.skus}
-            productImages={product.isFromSplit ? [] : (product.images || [])}
+            productImages={product.isFromSplit ? [] : product.images || []}
             selectedAttributes={selectedAttributes}
             onAttributeChange={handleAttributeChange}
             onImageSelect={setCurrentImageIndex}
@@ -465,6 +511,10 @@ export default function MobileProductDetail({
             sizeOnly={product.isFromSplit}
           />
         )}
+
+        <div className="px-4 py-4">
+          <ShippingEstimator compact />
+        </div>
 
         {/* 分隔线 */}
         <div className="h-2 bg-gray-50" />
@@ -475,18 +525,19 @@ export default function MobileProductDetail({
             <div className="mb-3 flex items-center justify-between gap-3">
               <div>
                 <h2 className="text-base font-semibold text-foreground">
-                  {t('tabQcPhotos')} <span className="text-muted">{normalizedQcMedia.length}</span>
+                  {t("tabQcPhotos")}{" "}
+                  <span className="text-muted">{normalizedQcMedia.length}</span>
                 </h2>
                 <p className="mt-1 text-xs text-muted">
-                  {tc('viewAll')} {normalizedQcMedia.length}
+                  {tc("viewAll")} {normalizedQcMedia.length}
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setQcPreviewIndex(0)}
-                className="rounded-full border border-border px-3.5 py-2 text-sm font-medium text-foreground transition-colors active:scale-[0.98]"
+                className="min-h-11 rounded-full border border-border px-3.5 py-2 text-sm font-medium text-foreground transition-colors active:scale-[0.98]"
               >
-                {tc('viewAll')}
+                {tc("viewAll")}
               </button>
             </div>
 
@@ -498,7 +549,7 @@ export default function MobileProductDetail({
                   onClick={() => setQcPreviewIndex(index)}
                   className="relative block w-[42vw] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-white shadow-sm"
                 >
-                  {media.type === 'video' ? (
+                  {media.type === "video" ? (
                     <>
                       <video
                         src={media.modalUrl}
@@ -533,7 +584,7 @@ export default function MobileProductDetail({
         {productAttributes && Object.keys(productAttributes).length > 0 && (
           <div className="px-4 py-4">
             <h2 className="text-base font-semibold text-foreground mb-3">
-              {t('productDetails')}
+              {t("productDetails")}
             </h2>
             <div className="space-y-2">
               {Object.entries(productAttributes).map(([key, value]) => (
@@ -578,9 +629,12 @@ export default function MobileProductDetail({
       {/* 底部操作栏 */}
       <MobileBuyBar
         productId={product.id}
+        price={currentPrice}
+        sourceCurrency={currency}
         disabled={!canBuy}
         loading={buyLoading}
         onOpenPlatformSelect={() => setPlatformModalOpen(true)}
+        onBuyPreferred={handlePlatformSelect}
         onFavoriteChange={onReferralActionComplete}
       />
 
@@ -620,16 +674,16 @@ export default function MobileProductDetail({
               <button
                 type="button"
                 onClick={showPreviousQcPreview}
-                className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white"
-                aria-label={t('previousImage')}
+                className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white"
+                aria-label={t("previousImage")}
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 type="button"
                 onClick={showNextQcPreview}
-                className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white"
-                aria-label={t('nextImage')}
+                className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white"
+                aria-label={t("nextImage")}
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
@@ -640,7 +694,7 @@ export default function MobileProductDetail({
             {qcPreviewIndex + 1} / {normalizedQcMedia.length}
           </div>
 
-          {normalizedQcMedia[qcPreviewIndex].type === 'video' ? (
+          {normalizedQcMedia[qcPreviewIndex].type === "video" ? (
             <video
               key={normalizedQcMedia[qcPreviewIndex].modalUrl}
               src={normalizedQcMedia[qcPreviewIndex].modalUrl}
@@ -656,7 +710,7 @@ export default function MobileProductDetail({
               onTouchStart={handleQcPreviewTouchStart}
               onTouchEnd={handleQcPreviewTouchEnd}
               className={`max-h-[72vh] max-w-[90vw] object-contain transition-opacity duration-200 ${
-                qcPreviewImageLoaded ? 'opacity-100' : 'opacity-0'
+                qcPreviewImageLoaded ? "opacity-100" : "opacity-0"
               }`}
             />
           ) : (
@@ -669,7 +723,7 @@ export default function MobileProductDetail({
               onTouchStart={handleQcPreviewTouchStart}
               onTouchEnd={handleQcPreviewTouchEnd}
               className={`max-h-[72vh] max-w-[90vw] object-contain transition-opacity duration-200 ${
-                qcPreviewImageLoaded ? 'opacity-100' : 'opacity-0'
+                qcPreviewImageLoaded ? "opacity-100" : "opacity-0"
               }`}
             />
           )}
@@ -687,12 +741,12 @@ export default function MobileProductDetail({
                     onClick={() => setQcPreviewIndex(index)}
                     className={`shrink-0 snap-start overflow-hidden rounded-xl border transition-all ${
                       qcPreviewIndex === index
-                        ? 'border-white shadow-[0_0_0_1px_rgba(255,255,255,0.65)]'
-                        : 'border-white/15 opacity-70'
+                        ? "border-white shadow-[0_0_0_1px_rgba(255,255,255,0.65)]"
+                        : "border-white/15 opacity-70"
                     }`}
                     aria-label={`QC thumbnail ${index + 1}`}
                   >
-                    {media.type === 'video' ? (
+                    {media.type === "video" ? (
                       <div className="relative">
                         <video
                           src={media.modalUrl}

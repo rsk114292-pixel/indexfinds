@@ -26,8 +26,8 @@ export function OrganizationJsonLd({ description, locale }: OrganizationJsonLdPr
     logo: `${baseUrl}/icons/apple-touch-icon.png`,
     // 社交账号上线后取消注释
     // sameAs: [
-    //   'https://twitter.com/lolobuyspreadsheets',
-    //   'https://discord.gg/lolobuyspreadsheets',
+//   'https://twitter.com/indexfinds',
+//   'https://t.me/repindexfinds',
     // ],
   };
 

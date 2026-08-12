@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test';
+import {
+  E2E_ADMIN_TOKEN,
+  apiRoutePattern,
+  stubAdminRefresh,
+} from './api-route.mjs';
 
 test.use({
   viewport: { width: 1440, height: 900 },
@@ -9,7 +14,7 @@ test.use({
 test('navigates from hot products to edit page and back to hot page', async ({
   page,
 }) => {
-  await page.addInitScript(() => {
+  await page.addInitScript((adminToken) => {
     localStorage.setItem(
       'auth-storage',
       JSON.stringify({
@@ -22,15 +27,17 @@ test('navigates from hot products to edit page and back to hot page', async ({
             role: 'admin',
             emailVerified: true,
           },
-          token: 'e2e-admin-token',
+          token: adminToken,
           isAuthenticated: true,
         },
         version: 0,
       }),
     );
-  });
+  }, E2E_ADMIN_TOKEN);
 
-  await page.route('**/api/admin/products/hot**', async (route) => {
+  await stubAdminRefresh(page);
+
+  await page.route(apiRoutePattern('/admin/products/hot(?:\\?.*)?'), async (route) => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
@@ -69,7 +76,7 @@ test('navigates from hot products to edit page and back to hot page', async ({
     });
   });
 
-  await page.route('**/api/products/product-1', async (route) => {
+  await page.route(apiRoutePattern('/products/product-1'), async (route) => {
     if (route.request().method() !== 'GET') {
       await route.continue();
       return;
@@ -100,7 +107,7 @@ test('navigates from hot products to edit page and back to hot page', async ({
     });
   });
 
-  await page.route('**/api/categories**', async (route) => {
+  await page.route(apiRoutePattern('/categories(?:\\?.*)?'), async (route) => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
@@ -108,7 +115,7 @@ test('navigates from hot products to edit page and back to hot page', async ({
     });
   });
 
-  await page.route('**/api/brands**', async (route) => {
+  await page.route(apiRoutePattern('/brands(?:\\?.*)?'), async (route) => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
@@ -123,9 +130,12 @@ test('navigates from hot products to edit page and back to hot page', async ({
   ).toBeVisible();
   await expect(page.getByRole('button', { name: /编辑/ }).first()).toBeVisible();
 
-  await page.getByRole('button', { name: /编辑/ }).first().click();
-
-  await expect(page).toHaveURL(/\/admin\/products\/product-1\?from=hot$/);
+  await Promise.all([
+    page.waitForURL(/\/admin\/products\/product-1\?from=hot$/, {
+      timeout: 20_000,
+    }),
+    page.getByRole('button', { name: /编辑/ }).first().click(),
+  ]);
   await expect(page.getByRole('heading', { name: '编辑产品' })).toBeVisible();
   await expect(page.getByRole('link', { name: '热门管理' })).toBeVisible();
 

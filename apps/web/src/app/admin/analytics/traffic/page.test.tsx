@@ -567,7 +567,7 @@ describe('TrafficAnalyticsPage', () => {
       [
         '/admin/analytics/traffic/attribution-quality/source-diagnostics',
         {
-          source: 'lolobuyspreadsheets.com',
+          source: 'indexfinds.com',
           rawCount: 55,
           visits: 44,
           uniqueVisitors: 40,
@@ -905,7 +905,7 @@ describe('TrafficAnalyticsPage', () => {
       expect.objectContaining({
         startDate: expect.any(String),
         endDate: expect.any(String),
-        source: 'lolobuyspreadsheets.com',
+        source: 'indexfinds.com',
       }),
       expect.objectContaining({ signal: expect.any(AbortSignal) }),
     );

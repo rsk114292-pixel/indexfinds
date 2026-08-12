@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import AccountSidebar from '@/components/account/AccountSidebar';
-import { useAuthStore } from '@/stores/useAuthStore';
+import AccountSidebar from "@/components/account/AccountSidebar";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 export default function AccountLayoutClient({
   children,
@@ -19,9 +19,7 @@ export default function AccountLayoutClient({
             <AccountSidebar />
           </div>
         )}
-        <main className="min-w-0 flex-1">
-          {children}
-        </main>
+        <div className="min-w-0 flex-1">{children}</div>
       </div>
     </div>
   );

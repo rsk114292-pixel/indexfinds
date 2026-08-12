@@ -1,11 +1,12 @@
 import { Link } from '@/i18n/navigation';
-import { APP_NAME } from '@/lib/constants';
 import { getTranslations } from 'next-intl/server';
 import CurrencyDisclaimer from './CurrencyDisclaimer';
 import FooterSocialLinks from './FooterSocialLinks';
+import BrandWordmark from './BrandWordmark';
 
 export default async function Footer() {
   const t = await getTranslations('footer');
+  const th = await getTranslations('header');
   const currentYear = new Date().getFullYear();
 
   const footerLinks = [
@@ -21,6 +22,7 @@ export default async function Footer() {
       links: [
         { label: t('allCategories'), href: '/categories' },
         { label: t('allBrands'), href: '/brands' },
+        { label: th('agents'), href: '/agents' },
         { label: t('newArrivals'), href: '/products?sortBy=newest' },
         { label: t('bestSellers'), href: '/products?sortBy=popular' },
       ],
@@ -75,7 +77,7 @@ export default async function Footer() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             {/* Logo + Copyright */}
             <div className="flex items-center gap-3">
-              <span className="font-bold text-primary">{APP_NAME}</span>
+              <BrandWordmark tone="light" />
               <span className="text-sm text-white/50">
                 {t('allRightsReserved', { year: currentYear })}
               </span>

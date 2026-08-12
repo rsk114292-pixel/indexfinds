@@ -1,3 +1,5 @@
+name: ${COMPOSE_PROJECT_NAME:-indexfinds}
+
 services:
   postgres:
     image: pgvector/pgvector:pg16
@@ -80,12 +82,12 @@ services:
       PYTHONUNBUFFERED: "1"
       RATE_LIMIT_SINGLE: 300/minute
       RATE_LIMIT_BATCH: 60/minute
-      CORS_ALLOWED_ORIGINS: https://lolobuyspreadsheets.com,https://www.lolobuyspreadsheets.com,https://api.lolobuyspreadsheets.com
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-https://indexfinds.com,https://www.indexfinds.com,https://api.indexfinds.com}
       HF_ENDPOINT: ${HF_ENDPOINT:-https://huggingface.co}
     ports:
       - "${EMBEDDING_SERVICE_PORT_BIND:-127.0.0.1:8001}:8001"
     volumes:
-      - ${HF_CACHE_HOST_PATH:-/opt/lolobuyspreadsheets/data/hf-cache}:/root/.cache/huggingface
+      - ${HF_CACHE_HOST_PATH:-/opt/indexfinds/data/hf-cache}:/root/.cache/huggingface
     healthcheck:
       test:
         [
@@ -103,11 +105,11 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     env_file:
-      - /opt/lolobuyspreadsheets/env/api.env
+      - ${API_ENV_FILE:-/opt/indexfinds/env/api.env}
     ports:
       - "${API_PUBLIC_PORT_BIND:-127.0.0.1:4101}:4101"
     volumes:
-      - ${UPLOADS_HOST_PATH:-/opt/lolobuyspreadsheets/data/uploads}:/app/uploads
+      - ${UPLOADS_HOST_PATH:-/opt/indexfinds/data/uploads}:/app/uploads
     depends_on:
       postgres:
         condition: service_healthy

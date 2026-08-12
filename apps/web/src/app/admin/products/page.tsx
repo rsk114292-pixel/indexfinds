@@ -372,7 +372,12 @@ function ProductListTab({
           ? `未识别店铺 (${shop.productCount})`
           : `${shop.shopName} (${shop.productCount})`,
     }));
-  }, [selectedShopIds, shopOptionsData?.data, shopOverviewData?.data]);
+  }, [
+    selectedShopIds,
+    shopOptionsData?.data,
+    shopOverviewData?.data,
+    shopOverviewData?.meta.missingProductCount,
+  ]);
   const selectedCategoryIsLeaf =
     !!batchCategoryId && leafCategoryIds.has(batchCategoryId);
 

@@ -40,7 +40,6 @@ import { Public } from './decorators/public.decorator';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { GoogleAuthGuard } from './guards/google-auth.guard';
-import { DiscordAuthGuard } from './guards/discord-auth.guard';
 import { TokenService } from './token.service';
 import { OAuthService } from './oauth.service';
 import { OAuthProvider } from './entities/user-oauth-account.entity';
@@ -412,29 +411,6 @@ export class AuthController {
   @UseGuards(GoogleAuthGuard)
   async googleCallback(@Req() req: AuthenticatedRequest, @Res() res: Response) {
     return this.handleOAuthCallback(req, res, LoginProvider.GOOGLE);
-  }
-
-  /**
-   * Discord 登录入口
-   */
-  @Public()
-  @Get('discord')
-  @UseGuards(DiscordAuthGuard)
-  async discordLogin() {
-    // Guard 会自动重定向到 Discord 授权页面
-  }
-
-  /**
-   * Discord 登录回调
-   */
-  @Public()
-  @Get('discord/callback')
-  @UseGuards(DiscordAuthGuard)
-  async discordCallback(
-    @Req() req: AuthenticatedRequest,
-    @Res() res: Response,
-  ) {
-    return this.handleOAuthCallback(req, res, LoginProvider.DISCORD);
   }
 
   /**

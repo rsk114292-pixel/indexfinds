@@ -4,12 +4,21 @@ import { SearchProductRequestPrompt } from './SearchProductRequestPrompt';
 const mockPush = jest.fn();
 const mockPost = jest.fn();
 const mockRequest = jest.fn();
-const mockMessage = {
+const mockNotice = {
   info: jest.fn(),
   success: jest.fn(),
   error: jest.fn(),
   warning: jest.fn(),
 };
+
+jest.mock('@/lib/notice', () => ({
+  notice: {
+    success: (...args: [string]) => mockNotice.success(...args),
+    error: (...args: [string]) => mockNotice.error(...args),
+    warning: (...args: [string]) => mockNotice.warning(...args),
+    info: (...args: [string]) => mockNotice.info(...args),
+  },
+}));
 
 const mockAuthState = {
   isAuthenticated: false,
@@ -137,9 +146,6 @@ jest.mock('antd', () => {
   Upload.LIST_IGNORE = Symbol('LIST_IGNORE');
 
   return {
-    App: {
-      useApp: () => ({ message: mockMessage }),
-    },
     Button,
     Input,
     InputNumber,
@@ -213,7 +219,7 @@ describe('SearchProductRequestPrompt', () => {
       });
     });
 
-    expect(mockMessage.success).toHaveBeenCalledWith('success');
+    expect(mockNotice.success).toHaveBeenCalledWith('success');
   });
 
   it('validates the reference URL before submitting', async () => {
@@ -239,7 +245,7 @@ describe('SearchProductRequestPrompt', () => {
     fireEvent.click(screen.getByRole('button', { name: 'submit' }));
 
     await waitFor(() => {
-      expect(mockMessage.warning).toHaveBeenCalledWith('referenceUrlInvalid');
+      expect(mockNotice.warning).toHaveBeenCalledWith('referenceUrlInvalid');
     });
     expect(mockPost).not.toHaveBeenCalled();
   });
@@ -265,7 +271,7 @@ describe('SearchProductRequestPrompt', () => {
     fireEvent.click(screen.getByRole('button', { name: 'submit' }));
 
     await waitFor(() => {
-      expect(mockMessage.error).toHaveBeenCalledWith('submitFailed');
+      expect(mockNotice.error).toHaveBeenCalledWith('submitFailed');
     });
   });
 });

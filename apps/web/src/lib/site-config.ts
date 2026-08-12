@@ -1,26 +1,26 @@
 /** 站点 URL（构建时从 env 读取） */
 export function getSiteUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
+  return process.env.NEXT_PUBLIC_SITE_URL || 'https://indexfinds.com';
 }
 
 /** 站点名称（SITE_NAME 优先，兼容旧 APP_NAME） */
 export function getSiteName(): string {
-  return process.env.NEXT_PUBLIC_SITE_NAME || process.env.NEXT_PUBLIC_APP_NAME || 'MySite';
+  return process.env.NEXT_PUBLIC_SITE_NAME || process.env.NEXT_PUBLIC_APP_NAME || 'IndexFinds';
 }
 
 /** 联系邮箱 */
 export function getContactEmail(): string {
-  return process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'support@example.com';
+  return process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'support@indexfinds.com';
 }
 
 /** 隐私邮箱 */
 export function getPrivacyEmail(): string {
-  return process.env.NEXT_PUBLIC_PRIVACY_EMAIL || 'privacy@example.com';
+  return process.env.NEXT_PUBLIC_PRIVACY_EMAIL || 'privacy@indexfinds.com';
 }
 
 /** 法务邮箱 */
 export function getLegalEmail(): string {
-  return process.env.NEXT_PUBLIC_LEGAL_EMAIL || 'legal@example.com';
+  return process.env.NEXT_PUBLIC_LEGAL_EMAIL || 'legal@indexfinds.com';
 }
 
 /** 主题色 CSS 变量覆盖对象（用于 <html style={...}> 注入） */

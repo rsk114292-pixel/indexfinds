@@ -3,27 +3,20 @@ import { test, expect } from '@playwright/test';
 test('navigates from product entry to mobile visual-search results shell', async ({
   page,
 }) => {
-  await page.route('**/api/products/e2e-product', async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify({
-        id: 'e2e-product',
-        title: 'Fixture Adidas Slides',
-        slug: 'fixture-adidas-slides',
-        mainImage: 'https://example.com/source.jpg',
-        images: ['https://example.com/source.jpg'],
-      }),
-    });
-  });
-
+  test.setTimeout(60_000);
   await page.route(
-    '**/api/visual-search/by-product/e2e-product?limit=50&minSimilarity=25',
+    /\/visual-search\/by-product\/e2e-product\?limit=50&minSimilarity=25/,
     async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
         body: JSON.stringify({
+          sourceProduct: {
+            id: 'e2e-product',
+            title: 'Fixture Adidas Slides',
+            slug: 'fixture-adidas-slides',
+            mainImage: 'https://example.com/source.jpg',
+          },
           total: 2,
           results: [
             {
@@ -62,9 +55,14 @@ test('navigates from product entry to mobile visual-search results shell', async
 
   await page.goto('/en/e2e/visual-search-product-flow');
 
-  await page.getByTestId('find-similar-button').click();
-
-  await expect(page).toHaveURL(/\/en\/search\/visual\?productId=e2e-product/);
+  const findSimilarButton = page.getByTestId('find-similar-button');
+  await expect(findSimilarButton).toBeEnabled();
+  await Promise.all([
+    page.waitForURL(/\/en\/search\/visual\?productId=e2e-product/, {
+      timeout: 30_000,
+    }),
+    findSimilarButton.click(),
+  ]);
   await expect(page.getByTestId('visual-search-source-panel')).toContainText(
     'Fixture Adidas Slides',
   );

@@ -25,7 +25,7 @@ describe('site-config', () => {
     it('环境变量未设置时返回 fallback', () => {
       delete process.env.NEXT_PUBLIC_SITE_URL;
       const { getSiteUrl } = loadModule();
-      expect(getSiteUrl()).toBe('https://example.com');
+      expect(getSiteUrl()).toBe('https://indexfinds.com');
     });
   });
 
@@ -48,7 +48,7 @@ describe('site-config', () => {
       delete process.env.NEXT_PUBLIC_SITE_NAME;
       delete process.env.NEXT_PUBLIC_APP_NAME;
       const { getSiteName } = loadModule();
-      expect(getSiteName()).toBe('MySite');
+      expect(getSiteName()).toBe('IndexFinds');
     });
   });
 
@@ -62,7 +62,7 @@ describe('site-config', () => {
     it('未设置时返回 fallback', () => {
       delete process.env.NEXT_PUBLIC_CONTACT_EMAIL;
       const { getContactEmail } = loadModule();
-      expect(getContactEmail()).toBe('support@example.com');
+      expect(getContactEmail()).toBe('support@indexfinds.com');
     });
   });
 

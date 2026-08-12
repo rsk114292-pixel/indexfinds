@@ -188,7 +188,7 @@ export default function SocialLinksPage() {
       <Card>
         <div className="mb-4 p-4 bg-blue-50 rounded-lg">
           <p className="text-sm text-blue-700">
-            管理网站底部和移动端显示的社交媒体链接（Discord、Telegram 等）。
+            管理网站底部和移动端显示的社交媒体链接（Telegram 等）。
           </p>
         </div>
         <Table dataSource={links} columns={columns} rowKey="id"
@@ -212,11 +212,11 @@ export default function SocialLinksPage() {
           <div className="grid grid-cols-2 gap-4">
             <Form.Item name="platform" label="平台标识"
               rules={[{ required: true, message: '请输入平台标识' }]}>
-              <Input placeholder="discord" />
+              <Input placeholder="telegram" />
             </Form.Item>
             <Form.Item name="label" label="显示名称"
               rules={[{ required: true, message: '请输入显示名称' }]}>
-              <Input placeholder="Discord" />
+              <Input placeholder="Telegram" />
             </Form.Item>
           </div>
           <Form.Item name="url" label="链接地址"
@@ -224,7 +224,7 @@ export default function SocialLinksPage() {
               { required: true, message: '请输入链接地址' },
               { type: 'url', message: '请输入有效的 URL' },
             ]}>
-            <Input placeholder="https://discord.gg/xxxxx" />
+              <Input placeholder="https://t.me/repindexfinds" />
           </Form.Item>
           <div className="grid grid-cols-2 gap-4">
             <Form.Item name="icon" label="图标"

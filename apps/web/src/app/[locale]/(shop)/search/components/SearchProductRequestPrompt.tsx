@@ -1,9 +1,10 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import { App, Button, Input, InputNumber, Modal, Upload } from 'antd';
+import { Button, Input, InputNumber, Modal, Upload } from 'antd';
 import type { UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { UploadOutlined } from '@ant-design/icons';
+import { notice } from '@/lib/notice';
 import { Search } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
@@ -47,7 +48,6 @@ export function SearchProductRequestPrompt({
   redirectPath,
 }: SearchProductRequestPromptProps) {
   const t = useTranslations('search.requestProduct');
-  const { message } = App.useApp();
   const router = useRouter();
   const lgUp = useLgUp();
   const { isAuthenticated, _hasHydrated } = useAuthStore();
@@ -84,12 +84,12 @@ export function SearchProductRequestPrompt({
   const handleOpen = useCallback(() => {
     if (!_hasHydrated) return;
     if (!isAuthenticated) {
-      message.info(t('loginFirst'));
+      notice.info(t('loginFirst'));
       router.push(`/login?redirect=${encodeURIComponent(redirectPath)}`);
       return;
     }
     setOpen(true);
-  }, [_hasHydrated, isAuthenticated, message, redirectPath, router, t]);
+  }, [_hasHydrated, isAuthenticated, redirectPath, router, t]);
 
   const handleClose = useCallback(() => {
     setOpen(false);
@@ -98,16 +98,16 @@ export function SearchProductRequestPrompt({
   const beforeUpload = useCallback<NonNullable<UploadProps['beforeUpload']>>(
     (file) => {
       if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
-        message.error(t('imageTypeError'));
+        notice.error(t('imageTypeError'));
         return Upload.LIST_IGNORE;
       }
       if (file.size / 1024 / 1024 > MAX_IMAGE_SIZE_MB) {
-        message.error(t('imageSizeError', { size: MAX_IMAGE_SIZE_MB }));
+        notice.error(t('imageSizeError', { size: MAX_IMAGE_SIZE_MB }));
         return Upload.LIST_IGNORE;
       }
       return true;
     },
-    [message, t],
+    [t],
   );
 
   const customUpload = useCallback<NonNullable<UploadProps['customRequest']>>(
@@ -129,13 +129,13 @@ export function SearchProductRequestPrompt({
         });
         onSuccess?.(data);
       } catch (error) {
-        message.error(t('imageUploadFailed'));
+        notice.error(t('imageUploadFailed'));
         onError?.(error as Error);
       } finally {
         setUploading(false);
       }
     },
-    [message, t],
+    [t],
   );
 
   const handleSubmit = useCallback(async () => {
@@ -144,22 +144,22 @@ export function SearchProductRequestPrompt({
     const trimmedReferenceUrl = referenceUrl.trim();
 
     if (!trimmedProductName) {
-      message.warning(t('productNameRequired'));
+      notice.warning(t('productNameRequired'));
       return;
     }
 
     if (!trimmedDescription && uploadedImageUrls.length === 0) {
-      message.warning(t('requireContent'));
+      notice.warning(t('requireContent'));
       return;
     }
 
     if (trimmedReferenceUrl && !isValidHttpUrl(trimmedReferenceUrl)) {
-      message.warning(t('referenceUrlInvalid'));
+      notice.warning(t('referenceUrlInvalid'));
       return;
     }
 
     if (budgetMin !== null && budgetMax !== null && budgetMin > budgetMax) {
-      message.warning(t('budgetRangeInvalid'));
+      notice.warning(t('budgetRangeInvalid'));
       return;
     }
 
@@ -178,11 +178,11 @@ export function SearchProductRequestPrompt({
         filtersSnapshot,
       });
 
-      message.success(t('success'));
+      notice.success(t('success'));
       setOpen(false);
       resetForm();
     } catch {
-      message.error(t('submitFailed'));
+      notice.error(t('submitFailed'));
     } finally {
       setSubmitting(false);
     }
@@ -191,7 +191,6 @@ export function SearchProductRequestPrompt({
     budgetMin,
     filtersSnapshot,
     locale,
-    message,
     productName,
     query,
     referenceUrl,

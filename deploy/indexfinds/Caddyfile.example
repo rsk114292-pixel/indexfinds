@@ -1,0 +1,21 @@
+{
+  email {$ACME_EMAIL}
+}
+
+# During parallel acceptance set API_HOSTNAME=api-next.indexfinds.com.
+# Change it to api.indexfinds.com only after the preview has passed.
+{$API_HOSTNAME:api-next.indexfinds.com} {
+  encode zstd gzip
+
+  reverse_proxy 127.0.0.1:4101 {
+    header_up X-Forwarded-Proto {scheme}
+    header_up X-Forwarded-Host {host}
+  }
+
+  header {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options "nosniff"
+    Referrer-Policy "strict-origin-when-cross-origin"
+    -Server
+  }
+}

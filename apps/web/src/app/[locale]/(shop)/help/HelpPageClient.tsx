@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { getContactEmail } from '@/lib/site-config';
+import { TELEGRAM_URL, WHATSAPP_HELP_URL, WHATSAPP_NUMBER } from '@/lib/support-links';
 import {
   ChevronDown,
   Rocket,
@@ -286,30 +287,34 @@ export default function HelpPageClient() {
             </div>
           </a>
 
-          {/* Discord */}
+          {/* WhatsApp */}
           <a
-            href="#"
+            href={WHATSAPP_HELP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex flex-col items-center gap-3 p-6 rounded-xl border border-border hover:border-primary/30 hover:bg-primary/5 transition-colors"
           >
-            <div className="w-10 h-10 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-green-500/10 text-green-500 flex items-center justify-center">
               <MessageCircle className="w-5 h-5" />
             </div>
             <div className="text-center">
               <p className="text-sm font-medium text-foreground">
-                {t('contact.discord.label')}
+                {t('contact.whatsapp.label')}
               </p>
               <p className="text-xs text-muted mt-1">
-                {t('contact.discord.description')}
+                {t('contact.whatsapp.description')} · {WHATSAPP_NUMBER}
               </p>
             </div>
           </a>
 
           {/* Telegram */}
           <a
-            href="#"
+            href={TELEGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex flex-col items-center gap-3 p-6 rounded-xl border border-border hover:border-primary/30 hover:bg-primary/5 transition-colors"
           >
-            <div className="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-sky-500/10 text-sky-500 flex items-center justify-center">
               <Send className="w-5 h-5" />
             </div>
             <div className="text-center">

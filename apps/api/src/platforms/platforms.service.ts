@@ -15,23 +15,220 @@ import {
   PLATFORM_TRANSLATION_LOCALES,
   PLATFORM_TRANSLATION_LOCALE_SET,
 } from './constants/platform-translation-locales';
+import {
+  DEFAULT_PLATFORM_COMPARISON_DATA,
+  hasConfiguredComparisonData,
+} from './constants/platform-comparison-defaults';
 
-// 默认平台配置
-const DEFAULT_PLATFORMS: Partial<Platform>[] = [
-  {
-    key: 'loongbuy',
-    name: 'Loongbuy',
-    description: 'Loongbuy proxy purchase platform',
+const DEFAULT_PLATFORM_LOGO_URLS: Record<string, string> = {
+  loongbuy: 'https://www.loongbuy.com/favicon.ico',
+  kakobuy: 'https://kakobuy.com/favicon.ico',
+  lovegobuy: 'https://www.lovegobuy.com/favicon.ico',
+  litbuy: 'https://litbuy.com/favicon-new.ico',
+  // Use the platform's own published brand asset as the cache source.
+  joyagoo:
+    'https://mgt.joyagoo.com/wp-content/themes/joyabuy/assets/img/joyagoo-logo.png',
+  sugargoo: 'https://www.sugargoo.com/favicon.ico',
+  rizzitgo: 'https://rizzitgo.com/favicon.png',
+  oopbuy: 'https://oopbuy.com/favicon.png',
+  superbuy:
+    'https://cdn.superbuy.com/starit-superbuy/dist/img/favicon/favicon-96x96.png',
+  usfans: 'https://www.usfans.com/favicon.png',
+  hipobuy: 'https://hipobuy.com/favicon.png',
+  boonbuy: 'https://boonbuy.com/favicon.ico',
+  cssbuy: 'https://www.cssbuy.com/favicon.ico',
+  pikobuy: 'https://www.pikobuy.com/favicon.ico',
+  // ESGOBuy publishes this wordmark from its own production bundle.
+  esgobuy: 'https://www.esgobuy.com/img/es-logo-white.DWuBym1F.svg',
+  hubbuycn: 'https://www.hubbuycn.com/favicon.ico',
+  fishgoo: 'https://www.fishgoo.com/favicon.ico',
+  mycnbox: 'https://mycnbox.com/logo.ico',
+  ootdbuy: 'https://ootdbuy.com/favicon.ico',
+  fansbuy: 'https://fansbuy.com/favicon2.ico',
+  lolobuy:
+    'https://www.lolobuy.com/loloBuyIcon.png?v=1.0.1%402026-08-03T06%3A13%3A41.845Z',
+};
+
+function createDefaultPlatform(
+  key: string,
+  name: string,
+  baseUrl: string,
+  urlTemplate: string,
+  sortOrder: number,
+): Partial<Platform> {
+  return {
+    key,
+    name,
+    description: `${name} proxy purchase platform`,
     translations: {
-      en: { description: 'Loongbuy proxy purchase platform' },
-      zh: { description: 'Loongbuy 代购平台' },
+      en: {
+        name,
+        description: `${name} proxy purchase platform`,
+      },
+      zh: {
+        name,
+        description: `${name} 代购平台`,
+      },
     },
-    baseUrl: 'https://www.loongbuy.com/product-details',
+    baseUrl,
+    logoUrl: DEFAULT_PLATFORM_LOGO_URLS[key],
     inviteCode: '',
     isActive: true,
-    sortOrder: 0,
-    urlTemplate: '{baseUrl}?invitecode={inviteCode}&weidian={weidianItemId}',
-  },
+    sortOrder,
+    urlTemplate,
+    comparisonData: DEFAULT_PLATFORM_COMPARISON_DATA[key],
+  };
+}
+
+// 默认平台配置。邀请码留空，站点管理员可在后台填写自己的推广码。
+const DEFAULT_PLATFORMS: Partial<Platform>[] = [
+  createDefaultPlatform(
+    'loongbuy',
+    'Loongbuy',
+    'https://www.loongbuy.com/product-details',
+    '{baseUrl}?invitecode={inviteCode}&weidian={weidianItemId}',
+    0,
+  ),
+  createDefaultPlatform(
+    'kakobuy',
+    'Kakobuy',
+    'https://kakobuy.com/item/details',
+    '{baseUrl}?url={encodedWeidianUrl}&affcode={inviteCode}',
+    1,
+  ),
+  createDefaultPlatform(
+    'lovegobuy',
+    'Lovegobuy',
+    'https://www.lovegobuy.com/product',
+    '{baseUrl}?id={weidianItemId}&shop_type=weidian&invite_code={inviteCode}',
+    2,
+  ),
+  createDefaultPlatform(
+    'litbuy',
+    'Litbuy',
+    'https://litbuy.com/product',
+    '{baseUrl}/2/{weidianItemId}?inviteCode={inviteCode}',
+    3,
+  ),
+  createDefaultPlatform(
+    'joyagoo',
+    'Joyagoo',
+    'https://joyagoo.com/product',
+    '{baseUrl}?id={weidianItemId}&platform=WEIDIAN&ref={inviteCode}',
+    4,
+  ),
+  createDefaultPlatform(
+    'sugargoo',
+    'Sugargoo',
+    'https://www.sugargoo.com/register',
+    'https://www.sugargoo.com/products?productLink={weidianUrl}&memberId={inviteCode}',
+    5,
+  ),
+  createDefaultPlatform(
+    'rizzitgo',
+    'RizzitGo',
+    'https://rizzitgo.com/detail-page/',
+    '{baseUrl}?goodsId={weidianItemId}&source=3&rno={inviteCode}',
+    6,
+  ),
+  createDefaultPlatform(
+    'oopbuy',
+    'Oopbuy',
+    'https://oopbuy.com/product',
+    '{baseUrl}/weidian/{weidianItemId}?inviteCode={inviteCode}',
+    7,
+  ),
+  createDefaultPlatform(
+    'superbuy',
+    'Superbuy',
+    'https://www.superbuy.com/en/page/buy/',
+    '{baseUrl}?nTag=Home-search&from=search-input&url={encodedWeidianUrl}&partnercode={inviteCode}',
+    8,
+  ),
+  createDefaultPlatform(
+    'usfans',
+    'USFans',
+    'https://www.usfans.com/product/3',
+    '{baseUrl}/{weidianItemId}?ref={inviteCode}',
+    9,
+  ),
+  createDefaultPlatform(
+    'hipobuy',
+    'Hipobuy',
+    'https://hipobuy.com/product/weidian',
+    '{baseUrl}/{weidianItemId}?inviteCode={inviteCode}',
+    10,
+  ),
+  createDefaultPlatform(
+    'boonbuy',
+    'Boonbuy',
+    'https://boonbuy.com/product/2',
+    '{baseUrl}/{weidianItemId}?inviteCode={inviteCode}',
+    11,
+  ),
+  createDefaultPlatform(
+    'cssbuy',
+    'CSSBuy',
+    'https://www.cssbuy.com',
+    '{baseUrl}/item-micro-{weidianItemId}.html?promotionCode={inviteCode}',
+    12,
+  ),
+  createDefaultPlatform(
+    'pikobuy',
+    'Pikobuy',
+    'https://www.pikobuy.com/product/detail',
+    '{baseUrl}?productUrl={weidianUrl}&invitedCode={inviteCode}',
+    13,
+  ),
+  createDefaultPlatform(
+    'esgobuy',
+    'ESGOBuy',
+    'https://www.esgobuy.com/productdetail',
+    '{baseUrl}?url={weidianUrl}&affcode={inviteCode}',
+    14,
+  ),
+  createDefaultPlatform(
+    'hubbuycn',
+    'HubbuyCN',
+    'https://www.hubbuycn.com/product/item',
+    '{baseUrl}?url={weidianUrl}&inviteCode={inviteCode}',
+    15,
+  ),
+  createDefaultPlatform(
+    'fishgoo',
+    'Fishgoo',
+    'https://www.fishgoo.com/',
+    '{baseUrl}#/product?productLink={encodedWeidianUrl}&memberId={inviteCode}',
+    16,
+  ),
+  createDefaultPlatform(
+    'mycnbox',
+    'MyCNBox',
+    'https://mycnbox.com/goodsDetail',
+    '{baseUrl}?mallType=weidian&itemId={weidianItemId}&inviteCode={inviteCode}',
+    17,
+  ),
+  createDefaultPlatform(
+    'ootdbuy',
+    'OOTDBuy',
+    'https://ootdbuy.com/goods/details',
+    '{baseUrl}?id={weidianItemId}&channel=weidian&inviteCode={inviteCode}',
+    18,
+  ),
+  createDefaultPlatform(
+    'fansbuy',
+    'Fansbuy',
+    'https://fansbuy.com',
+    '{baseUrl}/item-micro-{weidianItemId}.html?promotionCode={inviteCode}',
+    19,
+  ),
+  createDefaultPlatform(
+    'lolobuy',
+    'Lolobuy',
+    'https://www.lolobuy.com/productDetail/0',
+    '{baseUrl}?url={weidianUrl}&inviteCode={inviteCode}',
+    20,
+  ),
 ];
 
 @Injectable()
@@ -49,14 +246,61 @@ export class PlatformsService implements OnModuleInit {
   }
 
   private async ensureDefaults() {
-    for (const config of DEFAULT_PLATFORMS) {
-      const exists = await this.platformRepo.findOne({
-        where: { key: config.key },
-      });
+    const batchSize = 4;
+    for (let index = 0; index < DEFAULT_PLATFORMS.length; index += batchSize) {
+      const batch = DEFAULT_PLATFORMS.slice(index, index + batchSize);
+      await Promise.all(batch.map((config) => this.ensureDefault(config)));
+    }
+  }
+
+  private async ensureDefault(config: Partial<Platform>) {
+    const exists = await this.platformRepo.findOne({
+      where: { key: config.key },
+    });
+
+    if (
+      exists &&
+      !hasConfiguredComparisonData(exists.comparisonData) &&
+      config.comparisonData
+    ) {
+      exists.comparisonData = config.comparisonData;
+      await this.platformRepo.save(exists);
+    }
+
+    if (exists?.logoUrl || !config.logoUrl || !config.key) {
       if (!exists) {
         await this.platformRepo.save(this.platformRepo.create(config));
       }
+      return;
     }
+
+    let logoUrl: string | undefined;
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      try {
+        logoUrl = await this.normalizeLogoUrl(config.logoUrl, config.key);
+        break;
+      } catch (error) {
+        if (attempt === 3) {
+          const message =
+            error instanceof Error ? error.message : 'Unknown error';
+          this.logger.warn(
+            `Failed to cache default logo for ${config.key}: ${message}`,
+          );
+        }
+      }
+    }
+
+    if (exists) {
+      if (logoUrl) {
+        exists.logoUrl = logoUrl;
+        await this.platformRepo.save(exists);
+      }
+      return;
+    }
+
+    await this.platformRepo.save(
+      this.platformRepo.create({ ...config, logoUrl }),
+    );
   }
 
   async findAll(): Promise<Platform[]> {

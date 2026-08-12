@@ -67,4 +67,32 @@ describe('CreatePlatformDto', () => {
     );
     expect(translationErrors.length).toBeGreaterThan(0);
   });
+
+  it('passes with valid agent comparison data', async () => {
+    const dto = plainToInstance(CreatePlatformDto, {
+      ...baseDto,
+      comparisonData: {
+        serviceFee: 'Confirm the latest fee on the official site',
+        freeStorageDays: 90,
+        shippingBaseFeeUsd: 8,
+        shippingRatePerKgUsd: 12.5,
+        dataUpdatedAt: '2026-08-11',
+      },
+    });
+    const errors = await validate(dto);
+    expect(errors).toHaveLength(0);
+  });
+
+  it('rejects unsupported agent comparison fields', async () => {
+    const dto = plainToInstance(CreatePlatformDto, {
+      ...baseDto,
+      comparisonData: {
+        ranking: 1,
+      },
+    });
+    const errors = await validate(dto);
+    expect(errors.some((error) => error.property === 'comparisonData')).toBe(
+      true,
+    );
+  });
 });

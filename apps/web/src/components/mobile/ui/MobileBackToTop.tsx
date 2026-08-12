@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback, useRef, memo } from 'react';
-import { useTranslations } from 'next-intl';
-import { ChevronUp } from 'lucide-react';
+import { useState, useEffect, useCallback, useRef, memo } from "react";
+import { useTranslations } from "next-intl";
+import { ChevronUp } from "lucide-react";
 
 const SCROLL_THRESHOLD = 800;
 
@@ -14,7 +14,7 @@ const SCROLL_THRESHOLD = 800;
  * - 固定在右下角 TabBar 上方
  */
 export const MobileBackToTop = memo(function MobileBackToTop() {
-  const tc = useTranslations('common');
+  const tc = useTranslations("common");
   const [visible, setVisible] = useState(false);
   const visibleRef = useRef(false);
 
@@ -26,23 +26,23 @@ export const MobileBackToTop = memo(function MobileBackToTop() {
         setVisible(shouldShow);
       }
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
     <button
       type="button"
-      aria-label={tc('backToTop')}
+      aria-label={tc("backToTop")}
       onClick={scrollToTop}
-      className={`fixed bottom-20 right-4 rtl:left-4 rtl:right-auto z-10 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center transition-all duration-300 active:scale-90 ${
+      className={`fixed bottom-20 right-4 rtl:left-4 rtl:right-auto z-10 h-11 w-11 rounded-full bg-white shadow-lg flex items-center justify-center transition-all duration-300 active:scale-90 ${
         visible
-          ? 'opacity-100 translate-y-0 pointer-events-auto'
-          : 'opacity-0 translate-y-4 pointer-events-none'
+          ? "opacity-100 translate-y-0 pointer-events-auto"
+          : "opacity-0 translate-y-4 pointer-events-none"
       }`}
     >
       <ChevronUp className="w-5 h-5 text-gray-600" />

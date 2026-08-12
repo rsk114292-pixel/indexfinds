@@ -7,16 +7,10 @@ import '@ant-design/v5-patch-for-react-19';
  * 使用 @ant-design/nextjs-registry 解决 SSR hydration 不匹配问题
  */
 import { ConfigProvider, App } from 'antd';
-import { useEffect, useRef } from 'react';
 import { StyleProvider } from '@ant-design/cssinjs';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { getAntdTheme } from '@/lib/antd-theme';
 import { usePathname } from 'next/navigation';
-import { useTokenRefresh } from '@/hooks/useTokenRefresh';
-import { useTokenRecovery } from '@/hooks/useTokenRecovery';
-import { initSyncOnLogin } from '@/lib/sync-on-login';
-import { associateVisitWithUser } from '@/lib/visit-tracking';
-import { useAuthStore } from '@/stores/useAuthStore';
 import zhCN from 'antd/locale/zh_CN';
 import enUS from 'antd/locale/en_US';
 import frFR from 'antd/locale/fr_FR';
@@ -73,32 +67,6 @@ export default function AntdProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const { _hasHydrated, isAuthenticated, token, user } = useAuthStore();
-  const lastAssociatedUserIdRef = useRef<string | null>(null);
-
-  // 页面刷新后通过 Refresh Token 恢复 Access Token（token 不持久化到 localStorage）
-  useTokenRecovery();
-  // Token 静默刷新：在 token 过期前 2 分钟自动刷新，用户无感知
-  useTokenRefresh();
-  // 登录后自动同步浏览历史等数据
-  initSyncOnLogin();
-
-  useEffect(() => {
-    if (!_hasHydrated || !isAuthenticated || !token || !user?.id) {
-      if (!isAuthenticated) {
-        lastAssociatedUserIdRef.current = null;
-      }
-      return;
-    }
-
-    if (lastAssociatedUserIdRef.current === user.id) {
-      return;
-    }
-
-    lastAssociatedUserIdRef.current = user.id;
-    void associateVisitWithUser();
-  }, [_hasHydrated, isAuthenticated, token, user?.id]);
-
   // Derive locale from URL path instead of useLocale() to avoid requiring NextIntlClientProvider
   // This works for all routes: /en/..., /zh/..., /admin/..., /auth/...
   const pathname = usePathname();

@@ -28,7 +28,6 @@ export const SHARE_REWARD_CHANNELS = [
   'reddit',
   'email',
   'pinterest',
-  'discord',
   'tiktok',
 ] as const;
 

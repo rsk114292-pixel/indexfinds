@@ -1,26 +1,34 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter, usePathname } from '@/i18n/navigation';
-import { useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { ArrowUpDown, ChevronDown, SlidersHorizontal, List, LayoutGrid, Grid3X3, Share2 } from 'lucide-react';
-import { MobileSortSheet } from '@/components/mobile/ui/MobileSortSheet';
-import { useScrollDirection } from '@/hooks/useScrollDirection';
+import { useState } from "react";
+import { useRouter, usePathname } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import {
+  ArrowUpDown,
+  ChevronDown,
+  SlidersHorizontal,
+  List,
+  LayoutGrid,
+  Grid3X3,
+  Share2,
+} from "lucide-react";
+import { MobileSortSheet } from "@/components/mobile/ui/MobileSortSheet";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
 
-export type ViewMode = 'list' | 'grid' | 'compact';
+export type ViewMode = "list" | "grid" | "compact";
 
 const SORT_OPTIONS = [
-  { value: 'popular', tKey: 'popular' },
-  { value: 'newest', tKey: 'newest' },
-  { value: 'price_asc', tKey: 'priceAsc' },
-  { value: 'price_desc', tKey: 'priceDesc' },
+  { value: "popular", tKey: "popular" },
+  { value: "newest", tKey: "newest" },
+  { value: "price_asc", tKey: "priceAsc" },
+  { value: "price_desc", tKey: "priceDesc" },
 ] as const;
 
 const VIEW_CONFIGS: Array<{ mode: ViewMode; Icon: typeof List }> = [
-  { mode: 'list', Icon: List },
-  { mode: 'grid', Icon: LayoutGrid },
-  { mode: 'compact', Icon: Grid3X3 },
+  { mode: "list", Icon: List },
+  { mode: "grid", Icon: LayoutGrid },
+  { mode: "compact", Icon: Grid3X3 },
 ];
 
 interface MobileSortBarProps {
@@ -44,16 +52,16 @@ export default function MobileSortBar({
   filterCount = 0,
   onOpenFilter,
   onOpenShare,
-  stickyTop = '6.5rem',
-  stickyTopHidden = '3.5rem',
+  stickyTop = "6.5rem",
+  stickyTopHidden = "3.5rem",
 }: MobileSortBarProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const t = useTranslations('sort');
-  const tf = useTranslations('filter');
-  const ts = useTranslations('share');
-  const currentSort = searchParams.get('sortBy') || 'popular';
+  const t = useTranslations("sort");
+  const tf = useTranslations("filter");
+  const ts = useTranslations("share");
+  const currentSort = searchParams.get("sortBy") || "popular";
   const [sortSheetOpen, setSortSheetOpen] = useState(false);
   const { headerVisible } = useScrollDirection();
 
@@ -61,8 +69,8 @@ export default function MobileSortBar({
 
   const handleSort = (value: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set('sortBy', value);
-    params.delete('page');
+    params.set("sortBy", value);
+    params.delete("page");
     router.push(`${pathname}?${params.toString()}`);
   };
 
@@ -72,27 +80,30 @@ export default function MobileSortBar({
         className="sticky z-[15] bg-surface border-b border-border transition-[top] duration-300"
         style={{ top: headerVisible ? stickyTop : stickyTopHidden }}
       >
-        <div className="flex items-center justify-between px-3 h-11">
+        <div className="flex h-12 items-center justify-between gap-1 px-2">
           {/* Sort 按钮 */}
           <button
             type="button"
             onClick={() => setSortSheetOpen(true)}
-            className="flex items-center gap-1.5 h-9 pl-2.5 pr-2 rtl:pl-2 rtl:pr-2.5 rounded-lg text-sm text-foreground active:bg-gray-50 transition-colors duration-150"
+            className="flex h-11 min-w-0 flex-1 items-center gap-1.5 rounded-lg px-2 text-sm text-foreground active:bg-gray-50 transition-colors duration-150"
           >
             <ArrowUpDown className="w-3.5 h-3.5 text-muted" />
-            <span>
-              {t('sortBy')}: <span className="font-medium">{currentLabel ? t(currentLabel.tKey) : t('popular')}</span>
+            <span className="truncate text-left">
+              {t("sortBy")}:{" "}
+              <span className="font-medium">
+                {currentLabel ? t(currentLabel.tKey) : t("popular")}
+              </span>
             </span>
             <ChevronDown className="w-3.5 h-3.5 text-muted" />
           </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             {onOpenShare && (
               <button
                 type="button"
                 onClick={onOpenShare}
-                aria-label={ts('title')}
-                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border text-foreground active:bg-gray-50 transition-colors duration-150"
+                aria-label={ts("title")}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border text-foreground active:bg-gray-50 transition-colors duration-150"
               >
                 <Share2 className="w-3.5 h-3.5" />
               </button>
@@ -103,11 +114,12 @@ export default function MobileSortBar({
                 <button
                   key={mode}
                   type="button"
+                  aria-label={mode}
                   onClick={() => onViewChange(mode)}
-                  className={`inline-flex h-8 w-8 items-center justify-center transition-colors duration-150 first:rounded-l-lg last:rounded-r-lg rtl:first:rounded-r-lg rtl:first:rounded-l-none rtl:last:rounded-l-lg rtl:last:rounded-r-none ${
+                  className={`inline-flex h-11 w-11 items-center justify-center transition-colors duration-150 first:rounded-l-lg last:rounded-r-lg rtl:first:rounded-r-lg rtl:first:rounded-l-none rtl:last:rounded-l-lg rtl:last:rounded-r-none ${
                     viewMode === mode
-                      ? 'bg-primary text-white'
-                      : 'text-muted active:bg-gray-100'
+                      ? "bg-primary text-white"
+                      : "text-muted active:bg-gray-100"
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -120,10 +132,10 @@ export default function MobileSortBar({
               <button
                 type="button"
                 onClick={onOpenFilter}
-                className="relative flex items-center gap-1.5 h-9 px-3 rounded-lg border border-border text-sm text-foreground active:bg-gray-50 transition-colors duration-150"
+                className="relative flex h-11 w-11 items-center justify-center rounded-lg border border-border text-sm text-foreground active:bg-gray-50 transition-colors duration-150 sm:w-auto sm:gap-1.5 sm:px-3"
               >
                 <SlidersHorizontal className="w-3.5 h-3.5" />
-                {tf('filters')}
+                <span className="sr-only sm:not-sr-only">{tf("filters")}</span>
                 {filterCount > 0 && (
                   <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-medium bg-primary text-white rounded-full">
                     {filterCount}

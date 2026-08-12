@@ -31,7 +31,7 @@ describe('validateTrackingSettingValue', () => {
 
   it('leaves unrelated settings untouched', () => {
     expect(
-      validateTrackingSettingValue('site_name', 'LoloBuySpreadsheets'),
-    ).toBe('LoloBuySpreadsheets');
+      validateTrackingSettingValue('site_name', 'IndexFinds'),
+    ).toBe('IndexFinds');
   });
 });

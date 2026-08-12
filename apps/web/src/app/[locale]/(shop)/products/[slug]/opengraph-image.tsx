@@ -41,6 +41,7 @@ async function getProduct(slug: string) {
   try {
     const res = await fetch(`${API_BASE_URL}/products/slug/${slug}`, {
       next: { revalidate: 3600, tags: [getProductDetailTag(slug)] },
+      signal: AbortSignal.timeout(4500),
     });
     if (!res.ok) return null;
     return res.json();

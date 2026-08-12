@@ -63,7 +63,7 @@ function createTranslator(namespace: string, locale = 'en') {
       const title = values?.title || '';
       const dict: Record<string, string> = {
         productFallbackDescription:
-          locale === 'zh' ? `在 Findsindex 购买 ${title}` : `Shop ${title} from Findsindex`,
+          locale === 'zh' ? `在 IndexFinds 购买 ${title}` : `Shop ${title} from IndexFinds`,
       };
 
       return dict[key] || key;
@@ -123,7 +123,7 @@ describe('SEO render smoke tests', () => {
     const productSchema = scripts.find((script) => script['@type'] === 'Product');
     const breadcrumbSchema = scripts.find((script) => script['@type'] === 'BreadcrumbList');
 
-    expect(productSchema?.description).toBe('在 Findsindex 购买 示例商品');
+    expect(productSchema?.description).toBe('在 IndexFinds 购买 示例商品');
     expect(productSchema?.url).toContain('/zh/products/sample-product');
     expect(breadcrumbSchema?.itemListElement?.[0]?.name).toBe('首页');
     expect(breadcrumbSchema?.itemListElement?.[1]?.item).toContain('/zh/categories/shoes');

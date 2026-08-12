@@ -65,7 +65,17 @@
     "settings": "设置",
     "language": "语言",
     "noPlatformSelected": "选择平台",
-    "menu": "菜单"
+    "menu": "菜单",
+    "agents": "代购平台",
+    "chooseAgent": "选择代购平台",
+    "agentsAvailable": "支持 {count} 个代购平台",
+    "platformSearch": "搜索代购平台...",
+    "recentAgents": "最近使用",
+    "allAgents": "全部平台",
+    "searchResults": "搜索结果",
+    "noAgentResults": "没有匹配的平台",
+    "viewAgentGuides": "查看全部代购指南",
+    "buyThrough": "通过该平台购买"
   },
   "drawer": {
     "menu": "菜单",
@@ -78,7 +88,6 @@
     "helpCenter": "帮助中心",
     "blog": "博客",
     "referralProgram": "推荐计划",
-    "discord": "Discord",
     "telegram": "Telegram",
     "language": "语言",
     "currency": "货币",
@@ -121,6 +130,8 @@
   },
   "search": {
     "placeholder": "搜索商品、品牌或分类...",
+    "quickFilters": "快捷筛选",
+    "filterBy": "按 {value} 筛选",
     "searching": "搜索中...",
     "noResults": "无搜索结果",
     "hotSearches": "热门搜索",
@@ -147,6 +158,13 @@
     "photoSearch": "拍照搜索",
     "photoSearchDesc": "上传图片找同款",
     "recentSearches": "最近搜索",
+    "modeKeyword": "关键词",
+    "modeLink": "商品链接",
+    "modeImage": "图片",
+    "linkPlaceholder": "粘贴微店、淘宝、1688 或 Yupoo 商品链接",
+    "invalidProductLink": "请输入包含可识别商品编号的商品链接。",
+    "findFromLink": "查找商品",
+    "linkSearchDesc": "粘贴支持的商品链接，IndexFinds 会提取商品编号并在当前商品库中搜索。",
     "requestProduct": {
       "title": "没找到合适的商品？",
       "description": "提交找货需求给我们，后台可以跟进评估并安排后续上架。",
@@ -286,6 +304,20 @@
     "previousImage": "上一张图片",
     "nextImage": "下一张图片",
     "hot": "热门",
+    "agentReady": "支持 {count} 个代购平台",
+    "qcPhotosCount": "{count} 张 QC 实拍",
+    "viewCount": "{count} 次浏览",
+    "viewDetails": "查看详情",
+    "buyWithAgent": "选择代购购买",
+    "imageUnavailable": "图片暂不可用",
+    "fromPrice": "{price} 起",
+    "originalSource": "原始来源：{source}",
+    "viewsValue": "{count} 次浏览",
+    "salesValue": "{count} 件销量",
+    "updatedValue": "更新于 {date}",
+    "sourceMissing": "暂无来源链接",
+    "sourceStatusUnverified": "来源可用性尚未验证",
+    "reportProduct": "报告商品问题",
     "shareRewards": {
       "eyebrow": "分享赚分",
       "title": "分享这个商品可获得 +1 积分",
@@ -395,15 +427,22 @@
   },
   "home": {
     "hero": {
-      "discover": "LoloBuy ",
-      "products": "Spreadsheet 精选",
-      "fromChina": "来自中国",
-      "descLine1": "在一个可搜索的 LoloBuy spreadsheet 中浏览微店、淘宝和 1688 精选。",
-      "descLine2": "下单前查看 QC 实拍、SKU 细节、价格和商品链接。",
+      "discover": "发现中国 ",
+      "headlinePrimary": "发现中国商品。",
+      "headlineSecondary": "比较代购平台。",
+      "products": "优质好物",
+      "fromChina": "",
+      "descLine1": "一站浏览来自微店、淘宝和 1688 的精选商品。",
+      "descLine2": "比较价格、查看 QC 实拍与 SKU 细节，再选择合适的购买方式。",
       "featureAI": "AI 驱动",
       "featureVisualSearch": "以图搜图",
-      "featureProducts": "{count}+ 商品",
-      "featureBrands": "{count}+ 品牌"
+      "featureProducts": "{count} 件商品",
+      "featureBrands": "{count} 个品牌",
+      "eyebrow": "面向全球买家的独立商品发现平台",
+      "agentPrompt": "选择你希望使用的代购平台",
+      "browseProducts": "浏览商品",
+      "compareAgents": "比较代购",
+      "imageSearch": "以图搜图"
     },
     "howItWorks": {
       "title": "如何使用",
@@ -416,6 +455,13 @@
       "chooseDesc": "选择最佳选项，获取购买链接。",
       "receiveTitle": "收货",
       "receiveDesc": "通过代购下单，全球配送到家。"
+    },
+    "trust": {
+      "title": "购买决定始终由你掌控",
+      "body": "IndexFinds 帮助你发现和比较商品，但不直接销售商品或处理付款。订单与配送由你选择的代购平台负责。",
+      "independent": "独立商品索引",
+      "redirects": "清晰跳转至所选代购平台",
+      "agentChoice": "代购平台和最终决定都由你选择"
     },
     "featuredBrands": {
       "title": "精选品牌"
@@ -458,6 +504,75 @@
       "progressCaption": "新用户完成几个简单动作后，就能更快解锁提现。"
     }
   },
+  "agents": {
+    "eyebrow": "代购平台目录",
+    "title": "选择适合你的代购平台",
+    "subtitle": "浏览我们支持的 {count} 个代购平台，了解购买流程，并保存常用平台以便更快跳转购买。",
+    "searchPlaceholder": "搜索代购平台...",
+    "supportedTitle": "支持的代购平台",
+    "supportedDesc": "每份指南都会说明如何从商品发现进入代购平台官网。",
+    "officialLogos": "官网视觉标识",
+    "cardDescription": "将 {name} 设为你的常用购买渠道。",
+    "openGuide": "打开指南",
+    "noResults": "没有匹配的代购平台",
+    "allGuides": "全部代购指南",
+    "guideEyebrow": "IndexFinds 代购指南",
+    "guideTitle": "如何使用 {name}",
+    "guideSubtitle": "在 IndexFinds 发现商品并确认信息，准备购买时通过 {name} 继续完成下单。",
+    "selectedAgent": "已设为常用代购",
+    "useAsAgent": "将 {name} 设为常用代购",
+    "officialWebsite": "访问官网",
+    "howToTitle": "通过 {name} 购买的四个步骤",
+    "howToSubtitle": "IndexFinds 负责商品发现，代购平台负责结算与配送。",
+    "stepSearchTitle": "查找商品",
+    "stepSearchBody": "通过关键词、品牌、分类或商品图片进行搜索。",
+    "stepReviewTitle": "确认商品信息",
+    "stepReviewBody": "查看价格、规格、卖家信息，以及可用的 QC 实拍内容。",
+    "stepChooseTitle": "选择 {name}",
+    "stepChooseBody": "打开购买链接前，将该平台设置为常用代购。",
+    "stepContinueTitle": "前往平台完成购买",
+    "stepContinueBody": "在代购平台官网完成订单、付款、入库和国际配送步骤。",
+    "disclosureTitle": "独立商品发现服务",
+    "disclosureBody": "IndexFinds 不是代购平台，也不处理付款。请始终在代购平台官网确认最终价格与服务条款。",
+    "browseProducts": "浏览商品",
+    "compareAgents": "对比代购",
+    "matchEyebrow": "代购路线助手",
+    "matchTitle": "根据你的需求筛选代购平台",
+    "matchSubtitle": "选择目的地、包裹重量和关注重点。我们会结合已配置的平台资料与通用运费预估，提供几个值得进一步了解的选项。",
+    "matchPriority": "你更看重什么？",
+    "matchBudget": "预估运费",
+    "matchStorage": "免费仓储",
+    "matchQc": "验货服务",
+    "matchPayment": "支付方式",
+    "optionsToReview": "值得进一步了解的选项",
+    "configuredFields": "已配置 {count} 项资料",
+    "reviewMatchesNotice": "仅作为规划参考，不代表官方排名或背书。",
+    "compareEyebrow": "代购平台横向对比",
+    "compareTitle": "选择前先对比代购平台",
+    "compareSubtitle": "最多选择三个代购平台，在同一页面查看官网、指南并设置首选购买路线。",
+    "chooseToCompare": "选择要对比的平台",
+    "selectedCount": "已选择 {count}/{max}",
+    "clearComparison": "清空",
+    "comparisonField": "对比项目",
+    "preferredAgent": "首选代购",
+    "preferred": "当前首选",
+    "setPreferred": "设为首选",
+    "visitOfficial": "访问官网",
+    "indexFindsGuide": "IndexFinds 指南",
+    "serviceFees": "服务费",
+    "shippingCoverage": "配送范围",
+    "warehouseQc": "仓储与质检",
+    "paymentMethods": "支付方式",
+    "returnPolicy": "退货政策",
+    "dataUpdated": "资料更新时间",
+    "freeStorageDaysValue": "免费仓储 {count} 天",
+    "notConfigured": "暂未配置",
+    "confirmOfficial": "请在官网确认",
+    "variesByRoute": "因线路和目的地而异",
+    "noAgentSelected": "请至少选择一个代购平台开始对比。",
+    "comparisonNoticeTitle": "购买前请确认最新条款",
+    "comparisonNoticeBody": "费用、支持地区、仓储期限和质检服务可能变化。IndexFinds 不对代购平台进行排名或担保，请以各平台官网的最新信息为准。"
+  },
   "brands": {
     "title": "品牌",
     "discoverCount": "浏览我们收录的 {count} 个品牌",
@@ -474,7 +589,10 @@
     "popular": "热门",
     "productCount": "{count} 款商品",
     "noProducts": "该品牌暂无商品",
-    "noProductsDesc": "请尝试移除部分筛选条件或稍后再来"
+    "noProductsDesc": "请尝试移除部分筛选条件或稍后再来",
+    "collectionGrowingTitle": "品牌目录正在持续扩充",
+    "collectionGrowingDesc": "我们正在不断补充经过整理的品牌和商品。完整品牌索引扩充期间，你可以先浏览最新收录的商品。",
+    "exploreProducts": "探索全部商品"
   },
   "categories": {
     "title": "浏览分类",
@@ -818,7 +936,37 @@
     "noPlatforms": "暂无可用平台",
     "rememberChoice": "记住我的选择，下次自动使用",
     "continueTo": "前往 {platform}",
-    "platformFallback": "平台"
+    "platformFallback": "平台",
+    "purchaseOptions": "购买方式",
+    "productPrice": "未含代购费用的商品价格",
+    "compareAgents": "对比代购",
+    "preferredAgent": "首选代购平台",
+    "chooseAgent": "选择代购",
+    "changeAgent": "更换",
+    "openingAgent": "正在打开代购平台…",
+    "chooseAgentToBuy": "选择代购购买",
+    "finalPriceNotice": "代购服务费、中国境内运费、国际运费和税费以代购平台官网结算为准。"
+  },
+  "shippingEstimator": {
+    "title": "国际运费预估",
+    "subtitle": "选择目的地并输入预计包裹重量。",
+    "estimated": "估算",
+    "destination": "目的地",
+    "weight": "包裹重量",
+    "agent": "代购平台",
+    "configuredRate": "使用后台配置的平台费率",
+    "generalRate": "使用通用线路估算",
+    "notice": "仅供购买规划参考，不包含体积重、关税、敏感商品附加费和代购平台最终费用。",
+    "compareAgents": "比较代购条款",
+    "destinations": {
+      "US": "美国",
+      "GB": "英国",
+      "DE": "德国",
+      "FR": "法国",
+      "CA": "加拿大",
+      "AU": "澳大利亚",
+      "OTHER": "其他地区"
+    }
   },
   "visualSearch": {
     "title": "以图搜图",
@@ -861,10 +1009,10 @@
     "imageSearch": "以图搜图"
   },
   "metadata": {
-    "homeTitle": "{siteName} | LoloBuy Spreadsheet 精选与 QC 实拍",
-    "homeDescription": "{siteName} 帮助你浏览 LoloBuy spreadsheet 精选，覆盖微店、淘宝和 1688 商品，提供 QC 实拍、SKU 细节，并承接 lolobuyspreadsheet 搜索需求。",
-    "homeOgTitle": "{siteName} | LoloBuy Spreadsheet 精选与 QC 实拍",
-    "homeOgDescription": "{siteName} 帮助你浏览 LoloBuy spreadsheet 精选，覆盖微店、淘宝和 1688 商品，提供 QC 实拍、SKU 细节，并承接 lolobuyspreadsheet 搜索需求。",
+    "homeTitle": "{siteName} | 发现中国优质商品",
+    "homeDescription": "通过 {siteName} 浏览中国精选商品、比较价格、查看可信卖家并发现最新好物。",
+    "homeOgTitle": "{siteName} | 发现中国优质商品",
+    "homeOgDescription": "通过 {siteName} 浏览中国精选商品、比较价格、查看可信卖家并发现最新好物。",
     "productNotFound": "商品未找到",
     "productFallbackDescription": "在 {siteName} 购买 {title}，来自可信中国卖家。最优价格、质检照片、便捷代购。",
     "searchTitle": "搜索：{query}",
@@ -901,8 +1049,8 @@
     "returnsDescription": "了解通过代购平台购物的退换货和退款流程。了解QC照片以及如何处理问题。",
     "productsTitle": "全部商品",
     "productsDescription": "浏览 {siteName} 上的全部商品。查看来自微店、淘宝和 1688 的精选好物，支持 QC 实拍、SKU 细节和价格对比。",
-    "agentsTitle": "全部代购平台 Spreadsheet 指南",
-    "agentsDescription": "在 {siteName} 一次查看全部代购平台 spreadsheet 指南，涵盖主推平台、完整目录和热门主题入口。"
+    "agentsTitle": "全部代购平台指南",
+    "agentsDescription": "在 {siteName} 一次查看代购平台指南，对比主推平台、完整目录和热门购买路线。"
   },
   "products": {
     "allProducts": "全部商品",
@@ -917,6 +1065,9 @@
     "accept": "接受",
     "reject": "拒绝"
   },
+  "whatsappHelp": {
+    "label": "需要中国商品购买帮助？"
+  },
   "share": {
     "title": "分享",
     "whatsapp": "WhatsApp",
@@ -925,12 +1076,10 @@
     "reddit": "Reddit",
     "email": "邮件",
     "pinterest": "Pinterest",
-    "discord": "Discord",
     "tiktok": "TikTok",
     "copyLink": "复制链接",
     "copied": "已复制！",
     "copyFailed": "复制失败",
-    "copiedForDiscord": "链接已复制！粘贴到 Discord",
     "copiedForTiktok": "链接已复制！粘贴到 TikTok",
     "claimed": "已领取",
     "showQrCode": "二维码",
@@ -952,7 +1101,7 @@
       "step1": {
         "label": "搜索",
         "title": "搜索与发现",
-        "description": "按品牌、分类浏览超过 10,000 款商品，或使用以图搜图精准找到您想要的商品。"
+        "description": "按品牌或分类浏览当前商品目录，也可以使用以图搜图查找您想要的商品。"
       },
       "step2": {
         "label": "比较",
@@ -962,7 +1111,7 @@
       "step3": {
         "label": "选择",
         "title": "选择代购平台",
-        "description": "点击购买按钮，从 Litbuy、Kakobuy、MuleBuy 等多个代购平台中选择。"
+        "description": "点击购买按钮，可从 Loongbuy、Kakobuy、Superbuy、CSSBuy 等当前支持的平台中选择。"
       },
       "step4": {
         "label": "收货",
@@ -973,7 +1122,7 @@
     "features": {
       "title": "为什么选择 {siteName}？",
       "products": {
-        "title": "10,000+ 款商品",
+        "title": "持续更新的商品目录",
         "description": "来自微店、淘宝和 1688 的海量精选商品合集。"
       },
       "updates": {
@@ -986,19 +1135,19 @@
       },
       "agents": {
         "title": "多平台支持",
-        "description": "可选择 Litbuy、Kakobuy、MuleBuy、USFANS 等多个代购平台。"
+        "description": "可选择 Loongbuy、Kakobuy、Superbuy、CSSBuy 等当前支持的代购平台。"
       }
     },
     "cta": {
       "title": "准备好找到下一件心仪好物了吗？",
-      "description": "浏览我们收录的超过 10,000 款来自中国顶级电商平台的商品。",
+      "description": "浏览当前收录的中国电商平台商品。",
       "button": "开始浏览"
     }
   },
   "agentsPage": {
-    "listName": "全部代购平台 Spreadsheet 指南",
+    "listName": "全部代购平台指南",
     "eyebrow": "代购平台目录",
-    "heading": "全部代购平台 spreadsheet 指南",
+    "heading": "全部代购平台指南",
     "body": "你可以先浏览主推平台，再继续查看完整的平台列表，在一个页面里把全部入口看完。",
     "featuredTitle": "主推指南",
     "featuredDescription": "这些是站内重点展示的主推平台指南。",
@@ -1021,7 +1170,7 @@
     "featuredBadge": "主推",
     "growthBadge": "更多",
     "longTailBadge": "补充",
-    "cardSuffix": "spreadsheet、yupoo、links"
+    "cardSuffix": "指南、官网、购买路线"
   },
   "helpPage": {
     "hero": {
@@ -1034,7 +1183,7 @@
         "title": "入门指南",
         "q1": {
           "question": "{siteName} 是什么？",
-          "answer": "{siteName} 是一个商品发现平台，帮助您找到来自微店、淘宝和 1688 等中国电商平台的最优商品。我们收录超过 10,000 款商品，提供详细信息和 QC 质检照片。"
+          "answer": "{siteName} 是一个商品发现平台，帮助您浏览来自微店、淘宝和 1688 等中国电商平台的商品。商品数量和详情会随审核与更新持续变化。"
         },
         "q2": {
           "question": "如何创建账号？",
@@ -1042,7 +1191,7 @@
         },
         "q3": {
           "question": "什么是代购？",
-          "answer": "代购是一种代为购买的服务，帮助您从中国电商平台购买商品并进行国际配送。常用的代购平台包括 Litbuy、Kakobuy、MuleBuy 和 USFANS。"
+          "answer": "代购是一种代为购买的服务，帮助您从中国电商平台购买商品并进行国际配送。当前可选平台请以代购目录为准。"
         },
         "q4": {
           "question": "{siteName} 是否免费使用？",
@@ -1072,7 +1221,7 @@
         "title": "代购与订单",
         "q1": {
           "question": "支持哪些代购平台？",
-          "answer": "我们支持多个代购平台，包括 Litbuy、Kakobuy、MuleBuy、USFANS、iTaoBuy 等。点击购买按钮时，您可以选择您偏好的平台。"
+          "answer": "我们支持代购目录中实时展示的平台。您可以先进行对比，再在购买时选择偏好的平台。"
         },
         "q2": {
           "question": "如何下单？",
@@ -1103,7 +1252,7 @@
         },
         "q4": {
           "question": "如何联系客服？",
-          "answer": "您可以通过邮箱 {contactEmail} 联系我们，或加入我们的 Discord 和 Telegram 社区。"
+          "answer": "您可以通过邮箱 {contactEmail} 联系我们，或加入我们的 Telegram 社区。"
         }
       }
     },
@@ -1113,9 +1262,9 @@
       "email": {
         "label": "发送邮件"
       },
-      "discord": {
-        "label": "Discord",
-        "description": "加入我们的社区"
+      "whatsapp": {
+        "label": "WhatsApp",
+        "description": "获取购买帮助"
       },
       "telegram": {
         "label": "Telegram",
@@ -1136,7 +1285,7 @@
       },
       "independent-platform": {
         "title": "独立平台声明",
-        "content": "{siteName} 独立运营，与任何代购平台（包括但不限于 Litbuy、Kakobuy、MuleBuy、USFANS、iTaoBuy）或任何中国电商平台均无官方隶属关系。指向第三方代购平台的链接仅为方便用户而提供。"
+        "content": "{siteName} 独立运营，与目录中展示的代购平台或任何中国电商平台均无官方隶属关系。指向第三方平台的链接仅为方便用户而提供。"
       },
       "user-accounts": {
         "title": "用户账户",
@@ -1390,7 +1539,7 @@
       "community": {
         "title": "社区",
         "content": "加入我们的社区，与其他买家交流、分享发现并获得经验丰富的买家的帮助：",
-        "discord": "与社区交流并获取实时帮助",
+        "whatsapp": "获取中国商品购买帮助",
         "telegram": "最新动态、优惠信息和社区讨论"
       },
       "important-note": {

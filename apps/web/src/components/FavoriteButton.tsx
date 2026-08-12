@@ -2,13 +2,13 @@
 
 import { memo, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { App } from 'antd';
 import { Heart } from 'lucide-react';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { useFavoriteStore } from '@/stores/useFavoriteStore';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { buildAuthRedirectPath, buildLoginHref } from '@/lib/auth-redirect';
+import { notice } from '@/lib/notice';
 
 interface FavoriteButtonProps {
   productId: string;
@@ -40,7 +40,6 @@ function FavoriteButtonBody({
   onStatusChange,
 }: FavoriteButtonBodyProps) {
   const router = useRouter();
-  const { message } = App.useApp();
   const { isAuthenticated } = useAuthStore();
   const t = useTranslations('product');
   const [loading, setLoading] = useState(false);
@@ -60,7 +59,7 @@ function FavoriteButtonBody({
     e.stopPropagation();
 
     if (!isAuthenticated) {
-      message.warning(t('pleaseLoginFirst'));
+      notice.warning(t('pleaseLoginFirst'));
       router.push(resolvedLoginHref);
       return;
     }
@@ -69,9 +68,9 @@ function FavoriteButtonBody({
     try {
       const newStatus = await toggleFavorite(productId);
       onStatusChange?.(newStatus);
-      message.success(newStatus ? t('addedToFavorites') : t('removedFromFavorites'));
+      notice.success(newStatus ? t('addedToFavorites') : t('removedFromFavorites'));
     } catch {
-      message.error(t('failedToUpdateFavorite'));
+      notice.error(t('failedToUpdateFavorite'));
     } finally {
       setLoading(false);
     }

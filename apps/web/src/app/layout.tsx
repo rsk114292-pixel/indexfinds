@@ -1,7 +1,8 @@
 import type { Viewport } from "next";
 import { Geist, Geist_Mono, Noto_Sans_Arabic } from "next/font/google";
 import { cookies, headers } from "next/headers";
-import AntdProvider from "@/components/AntdProvider";
+import AppRuntime from "@/components/AppRuntime";
+import NoticeHost from "@/components/NoticeHost";
 import { defaultLocale, isRTL, locales } from "@/i18n/config";
 import { getSiteName, getThemeVars } from "@/lib/site-config";
 import "./globals.css";
@@ -9,8 +10,6 @@ import "./globals.css";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
   viewportFit: "cover",
   themeColor: "#FFFFFF",
 };
@@ -61,9 +60,9 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${notoArabic.variable} antialiased`}
         suppressHydrationWarning
       >
-        <AntdProvider>
-          {children}
-        </AntdProvider>
+        <AppRuntime />
+        <NoticeHost />
+        {children}
         {process.env.NODE_ENV === "production" ? (
           <script
             dangerouslySetInnerHTML={{

@@ -147,7 +147,10 @@ describe('SearchBox', () => {
     });
 
     await waitFor(() => {
-      expect(mockFetchSearchSuggestions).toHaveBeenCalledWith('ni');
+      expect(mockFetchSearchSuggestions).toHaveBeenCalledWith(
+        'ni',
+        expect.any(AbortSignal),
+      );
     });
 
     await act(async () => {

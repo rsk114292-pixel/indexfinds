@@ -84,8 +84,9 @@ jest.mock('@/hooks/useReturnScrollRestoration', () => ({
   useReturnScrollRestoration: () => {},
 }));
 
-jest.mock('@/components/share/ShareModal', () => ({
-  ShareModal: ({ open, title }: { open: boolean; title: string }) =>
+jest.mock('@/components/share/LazyShareModal', () => ({
+  __esModule: true,
+  default: ({ open, title }: { open: boolean; title: string }) =>
     open ? <div>{`Share Modal: ${title}`}</div> : null,
 }));
 

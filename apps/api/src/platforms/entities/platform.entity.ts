@@ -7,6 +7,18 @@ import {
   Index,
 } from 'typeorm';
 
+export interface PlatformComparisonData {
+  serviceFee?: string;
+  shippingCoverage?: string;
+  freeStorageDays?: number;
+  qcService?: string;
+  paymentMethods?: string;
+  returnPolicy?: string;
+  shippingBaseFeeUsd?: number;
+  shippingRatePerKgUsd?: number;
+  dataUpdatedAt?: string;
+}
+
 @Entity('platforms')
 export class Platform {
   @PrimaryGeneratedColumn('uuid')
@@ -43,6 +55,9 @@ export class Platform {
   // URL 模板，支持变量替换：{inviteCode}, {weidianItemId}, {productId}
   @Column({ nullable: true })
   urlTemplate: string;
+
+  @Column('simple-json', { nullable: true })
+  comparisonData: PlatformComparisonData | null;
 
   @CreateDateColumn()
   createdAt: Date;

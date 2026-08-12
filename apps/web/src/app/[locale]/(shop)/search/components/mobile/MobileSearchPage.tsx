@@ -1,31 +1,33 @@
-'use client';
+"use client";
 
-import { useRef, useEffect, useMemo, useState, useCallback } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import useSWR from 'swr';
-import useSWRInfinite from 'swr/infinite';
-import { Loader2, Search } from 'lucide-react';
-import { MobileProductCard } from '@/components/mobile/ui/MobileProductCard';
-import { MobileProductGridSkeleton } from '@/components/mobile/ui/MobileSkeleton';
-import { Empty } from '@/components/ui/Empty';
-import { fetcher } from '@/lib/api';
-import { recordImpressions, OutboundSource } from '@/lib/search-tracking';
-import { trackGA4Event } from '@/lib/ga-events';
-import { getSearchPreferenceParams } from '@/lib/browsing-history';
-import type { ApiListResponse, ProductListItem } from '@/types';
-import { MobileBackToTop } from '@/components/mobile/ui/MobileBackToTop';
-import MobileSearchResultsHeader from '@/components/mobile/MobileSearchResultsHeader';
-import MobileSearchSortBar from './MobileSearchSortBar';
-import { MobileSearchFilterSheet } from './MobileSearchFilterSheet';
-import { ALL_FILTER_KEYS } from '@/components/filters/constants';
-import type { FacetsData } from '@/components/filters/types';
-import { countActiveFilters } from '@/lib/filter-utils';
-import { computeHotThreshold } from '@/lib/utils';
-import { useInfiniteReturnScrollRestoration } from '@/hooks/useInfiniteReturnScrollRestoration';
-import { buildAuthRedirectPath } from '@/lib/auth-redirect';
-import { usePathname } from 'next/navigation';
-import { SearchProductRequestPrompt } from '../SearchProductRequestPrompt';
+import { useRef, useEffect, useMemo, useState, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import useSWR from "swr";
+import useSWRInfinite from "swr/infinite";
+import { Loader2, Search } from "lucide-react";
+import { MobileProductCard } from "@/components/mobile/ui/MobileProductCard";
+import { MobileProductGridSkeleton } from "@/components/mobile/ui/MobileSkeleton";
+import { Empty } from "@/components/ui/Empty";
+import { fetcher } from "@/lib/api";
+import { recordImpressions, OutboundSource } from "@/lib/search-tracking";
+import { trackGA4Event } from "@/lib/ga-events";
+import { getSearchPreferenceParams } from "@/lib/browsing-history";
+import type { ApiListResponse, ProductListItem } from "@/types";
+import { MobileBackToTop } from "@/components/mobile/ui/MobileBackToTop";
+import MobileSearchResultsHeader from "@/components/mobile/MobileSearchResultsHeader";
+import MobileSearchSortBar from "./MobileSearchSortBar";
+import { MobileSearchFilterSheet } from "./MobileSearchFilterSheet";
+import { ALL_FILTER_KEYS } from "@/components/filters/constants";
+import type { FacetsData } from "@/components/filters/types";
+import { countActiveFilters } from "@/lib/filter-utils";
+import { computeHotThreshold } from "@/lib/utils";
+import { useInfiniteReturnScrollRestoration } from "@/hooks/useInfiniteReturnScrollRestoration";
+import { buildAuthRedirectPath } from "@/lib/auth-redirect";
+import { usePathname } from "next/navigation";
+import { SearchProductRequestPrompt } from "../SearchProductRequestPrompt";
+import MobileActiveFilters from "../../../products/components/mobile/MobileActiveFilters";
+import SearchQuickFilters from "@/components/search/SearchQuickFilters";
 
 const PAGE_SIZE = 16; // D3 决策：移动端独立 limit=16
 const SEARCH_REQUEST_THRESHOLD = 50;
@@ -39,15 +41,19 @@ const SEARCH_REQUEST_THRESHOLD = 50;
  * - 搜索栏已集成到全局 MobileHeader
  * - sticky 排序栏 + 筛选 Sheet
  */
-export default function MobileSearchPage({ enabled = true }: { enabled?: boolean }) {
+export default function MobileSearchPage({
+  enabled = true,
+}: {
+  enabled?: boolean;
+}) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const t = useTranslations('search');
-  const tc = useTranslations('common');
+  const t = useTranslations("search");
+  const tc = useTranslations("common");
   const sentinelRef = useRef<HTMLDivElement>(null);
   const impressionRecordedRef = useRef<Set<string>>(new Set());
 
-  const q = searchParams.get('q') || '';
+  const q = searchParams.get("q") || "";
   const [filterOpen, setFilterOpen] = useState(false);
 
   // User preference params (from localStorage)
@@ -65,11 +71,11 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
   // Build filter query string
   const filterQs = useMemo(() => {
     const params = new URLSearchParams();
-    if (q) params.set('search', q);
-    params.set('limit', String(PAGE_SIZE));
+    if (q) params.set("search", q);
+    params.set("limit", String(PAGE_SIZE));
 
-    const sortBy = searchParams.get('sortBy') || 'popular';
-    params.set('sortBy', sortBy);
+    const sortBy = searchParams.get("sortBy") || "popular";
+    params.set("sortBy", sortBy);
 
     ALL_FILTER_KEYS.forEach((key) => {
       const val = searchParams.get(key);
@@ -78,10 +84,10 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
 
     // Personalization
     if (preferenceParams.preferredBrands) {
-      params.set('preferredBrands', preferenceParams.preferredBrands);
+      params.set("preferredBrands", preferenceParams.preferredBrands);
     }
     if (preferenceParams.preferredCategories) {
-      params.set('preferredCategories', preferenceParams.preferredCategories);
+      params.set("preferredCategories", preferenceParams.preferredCategories);
     }
 
     return params.toString();
@@ -89,7 +95,10 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
 
   // SWR Infinite for products
   const getKey = useCallback(
-    (pageIndex: number, previousPageData: ApiListResponse<ProductListItem> | null) => {
+    (
+      pageIndex: number,
+      previousPageData: ApiListResponse<ProductListItem> | null,
+    ) => {
       if (!enabled) return null;
       if (!q) return null;
       if (previousPageData && previousPageData.data.length === 0) return null;
@@ -131,7 +140,7 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
           price: {
             min: parseFloat(String(product.priceMin ?? 0)) || 0,
             max: parseFloat(String(product.priceMax ?? 0)) || 0,
-            currency: product.currency || 'CNY',
+            currency: product.currency || "CNY",
           },
         });
       }
@@ -156,9 +165,9 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
     () => computeHotThreshold(products.map((p) => p.popularityScore ?? 0)),
     [products],
   );
-  const locale = pathname?.split('/')[1] || 'en';
+  const locale = pathname?.split("/")[1] || "en";
   const redirectPath = useMemo(
-    () => buildAuthRedirectPath(pathname || '/search', searchParams),
+    () => buildAuthRedirectPath(pathname || "/search", searchParams),
     [pathname, searchParams],
   );
   const requestFiltersSnapshot = useMemo(
@@ -170,7 +179,8 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
   const isEmpty = pages?.[0]?.data?.length === 0;
   const lastPage = pages?.[pages.length - 1];
   const isNoMore = lastPage ? (lastPage.data?.length ?? 0) < PAGE_SIZE : false;
-  const isLoadingMore = isValidating && size > 1 && pages && size > pages.length;
+  const isLoadingMore =
+    isValidating && size > 1 && pages && size > pages.length;
   const shouldShowSearchRequestPrompt =
     !isLoading && (usedFallback || total <= SEARCH_REQUEST_THRESHOLD);
 
@@ -197,7 +207,7 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
 
     // GA4 for the first page
     if (!impressionRecordedRef.current.has(`ga4-${searchLogId}`)) {
-      trackGA4Event('view_search_results', {
+      trackGA4Event("view_search_results", {
         search_term: q,
         page: 1,
         results_count: total,
@@ -218,7 +228,7 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
           setSize((s) => s + 1);
         }
       },
-      { rootMargin: '200px' },
+      { rootMargin: "200px" },
     );
 
     observer.observe(sentinel);
@@ -226,7 +236,10 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
   }, [enabled, isValidating, isNoMore, error, setSize]);
 
   // Active filter count
-  const filterCount = useMemo(() => countActiveFilters(searchParams), [searchParams]);
+  const filterCount = useMemo(
+    () => countActiveFilters(searchParams),
+    [searchParams],
+  );
 
   // Facets for filter sheet
   const brands = (facetsData?.brands || []).map((b) => ({
@@ -243,10 +256,10 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
         <div className="flex flex-col items-center justify-center py-20 px-4">
           <Search className="w-16 h-16 text-gray-200 mb-4" />
           <p className="text-base font-medium text-foreground mb-1">
-            {t('enterKeyword')}
+            {t("enterKeyword")}
           </p>
           <p className="text-sm text-muted text-center">
-            {t('enterKeywordDesc')}
+            {t("enterKeywordDesc")}
           </p>
         </div>
       </div>
@@ -260,16 +273,27 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
 
       {/* Sort bar + filter */}
       {!usedFallback && (
-        <MobileSearchSortBar filterCount={filterCount} onOpenFilter={() => setFilterOpen(true)} />
+        <>
+          <MobileSearchSortBar
+            filterCount={filterCount}
+            onOpenFilter={() => setFilterOpen(true)}
+          />
+          <MobileActiveFilters />
+          <SearchQuickFilters
+            variant="mobile"
+            categories={facetsData?.categories || []}
+            brands={facetsData?.brands || []}
+          />
+        </>
       )}
 
       {/* Search result header */}
       <div className="px-4 py-2">
         {usedFallback ? (
-          <p className="text-sm text-muted">{t('popularProducts')}</p>
+          <p className="text-sm text-muted">{t("popularProducts")}</p>
         ) : (
           <p className="text-xs text-muted" aria-live="polite">
-            {isLoading ? tc('loading') : t('productsFound', { count: total })}
+            {isLoading ? tc("loading") : t("productsFound", { count: total })}
           </p>
         )}
       </div>
@@ -301,7 +325,10 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
               position={index + 1}
               page={Math.floor(index / PAGE_SIZE) + 1}
               source={OutboundSource.SEARCH}
-              isHot={product.isFeatured || (product.popularityScore ?? 0) >= hotThreshold}
+              isHot={
+                product.isFeatured ||
+                (product.popularityScore ?? 0) >= hotThreshold
+              }
             />
           ))}
         </div>
@@ -310,8 +337,8 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
       {/* Empty state */}
       {!isLoading && isEmpty && (
         <Empty
-          title={t('noProductsFor', { query: q })}
-          description={t('noProductsForDesc')}
+          title={t("noProductsFor", { query: q })}
+          description={t("noProductsForDesc")}
         />
       )}
 
@@ -320,11 +347,11 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
         {(isLoadingMore || isValidating) && !isLoading && (
           <div className="flex items-center gap-2 text-muted">
             <Loader2 className="h-4 w-4 animate-spin" />
-            <span className="text-sm">{tc('loading')}</span>
+            <span className="text-sm">{tc("loading")}</span>
           </div>
         )}
         {isNoMore && products.length > 0 && (
-          <p className="text-xs text-muted">{tc('noMore')}</p>
+          <p className="text-xs text-muted">{tc("noMore")}</p>
         )}
         {error && !isLoading && (
           <button
@@ -332,7 +359,7 @@ export default function MobileSearchPage({ enabled = true }: { enabled?: boolean
             onClick={() => setSize(size)}
             className="text-sm text-primary active:opacity-70"
           >
-            {tc('loadFailed')}
+            {tc("loadFailed")}
           </button>
         )}
       </div>

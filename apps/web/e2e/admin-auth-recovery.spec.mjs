@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { E2E_ADMIN_TOKEN, apiRoutePattern } from './api-route.mjs';
 
 test.use({
   viewport: { width: 1440, height: 900 },
@@ -36,7 +37,7 @@ async function stubRefreshThenProtectedEndpoint(page, endpointPattern, responseB
   let protectedRequestBeforeRefresh = false;
   const authHeaders = [];
 
-  await page.route('**/api/auth/refresh', async (route) => {
+  await page.route(apiRoutePattern('/auth/refresh'), async (route) => {
     refreshCallCount += 1;
     await new Promise((resolve) => setTimeout(resolve, 300));
     refreshResolved = true;
@@ -45,7 +46,7 @@ async function stubRefreshThenProtectedEndpoint(page, endpointPattern, responseB
       status: 200,
       contentType: 'application/json',
       body: JSON.stringify({
-        accessToken: 'recovered-admin-token',
+        accessToken: E2E_ADMIN_TOKEN,
         user: getRecoveringAdminStorageState().state.user,
       }),
     });
@@ -59,7 +60,7 @@ async function stubRefreshThenProtectedEndpoint(page, endpointPattern, responseB
       protectedRequestBeforeRefresh = true;
     }
 
-    if (authorization !== 'Bearer recovered-admin-token') {
+    if (authorization !== `Bearer ${E2E_ADMIN_TOKEN}`) {
       unauthorizedRequestCount += 1;
       await route.fulfill({
         status: 401,
@@ -102,7 +103,7 @@ test('hard refresh on hot products waits for token recovery before first protect
 
   const requestTracker = await stubRefreshThenProtectedEndpoint(
     page,
-    '**/api/admin/products/hot**',
+    apiRoutePattern('/admin/products/hot(?:\\?.*)?'),
     {
       data: [
         {
@@ -148,7 +149,7 @@ test('hard refresh on hot products waits for token recovery before first protect
   expect(requestTracker.authHeaders.length).toBeGreaterThan(0);
   expect(
     requestTracker.authHeaders.every(
-      (authorization) => authorization === 'Bearer recovered-admin-token',
+      (authorization) => authorization === `Bearer ${E2E_ADMIN_TOKEN}`,
     ),
   ).toBe(true);
 });
@@ -160,7 +161,7 @@ test('hard refresh on dashboard waits for token recovery before stats request', 
 
   const requestTracker = await stubRefreshThenProtectedEndpoint(
     page,
-    '**/api/admin/dashboard/stats',
+    apiRoutePattern('/admin/dashboard/stats'),
     {
       totalProducts: 128,
       totalBrands: 32,
@@ -190,7 +191,7 @@ test('hard refresh on dashboard waits for token recovery before stats request', 
   expect(requestTracker.authHeaders.length).toBeGreaterThan(0);
   expect(
     requestTracker.authHeaders.every(
-      (authorization) => authorization === 'Bearer recovered-admin-token',
+      (authorization) => authorization === `Bearer ${E2E_ADMIN_TOKEN}`,
     ),
   ).toBe(true);
 });

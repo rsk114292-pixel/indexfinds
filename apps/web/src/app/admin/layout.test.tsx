@@ -74,7 +74,12 @@ jest.mock('./route-config', () => ({
 }));
 
 jest.mock('@/lib/site-config', () => ({
-  getSiteName: () => 'Findsindex',
+  getSiteName: () => 'IndexFinds',
+}));
+
+jest.mock('@/components/AntdProvider', () => ({
+  __esModule: true,
+  default: ({ children }: { children?: React.ReactNode }) => <>{children}</>,
 }));
 
 jest.mock('./components/AdminBreadcrumb', () => ({

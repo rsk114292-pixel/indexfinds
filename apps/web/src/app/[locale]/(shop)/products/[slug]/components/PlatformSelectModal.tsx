@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Modal } from 'antd';
 import { useLocale, useTranslations } from 'next-intl';
 import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -13,6 +12,7 @@ import {
   getLocalizedPlatformName,
   getLocalizedPlatformDescription,
 } from '@/stores/usePlatformStore';
+import { Dialog } from '@/components/ui/Dialog';
 
 // Re-export store helpers for backward compatibility
 export {
@@ -60,14 +60,11 @@ export default function PlatformSelectModal({
     : undefined;
 
   return (
-    <Modal
+    <Dialog
       title={t('selectPlatform')}
       open={open}
-      onCancel={onClose}
-      footer={null}
-      width={560}
-      centered
-      destroyOnHidden
+      onClose={onClose}
+      panelClassName="max-w-xl"
     >
       {loadingPlatforms ? (
         <div className="flex justify-center py-12">
@@ -155,6 +152,6 @@ export default function PlatformSelectModal({
           )}
         </div>
       )}
-    </Modal>
+    </Dialog>
   );
 }

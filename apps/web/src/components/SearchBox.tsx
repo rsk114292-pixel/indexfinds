@@ -1,391 +1,634 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
-import { usePathname, useRouter } from '@/i18n/navigation';
-import dynamic from 'next/dynamic';
-import { AutoComplete, Input } from 'antd';
-import { Search, Clock, X } from 'lucide-react';
-import { useDebounce } from '@/hooks/useDebounce';
-import { fetchSearchSuggestions, type SearchSuggestions } from '@/lib/search';
-import { useCategoryLabelResolver } from '@/hooks/useCategoryLabelResolver';
-import type { DefaultOptionType } from 'antd/es/select';
-import { useTranslations, useLocale } from 'next-intl';
-import { getImageReferrerPolicy, getImageVariant } from '@/lib/image-utils';
+import {
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+  useRef,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type ReactNode,
+} from "react";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import dynamic from "next/dynamic";
+import { Search, Clock, Link2, X } from "lucide-react";
+import { useDebounce } from "@/hooks/useDebounce";
+import { fetchSearchSuggestions, type SearchSuggestions } from "@/lib/search";
+import { useCategoryLabelResolver } from "@/hooks/useCategoryLabelResolver";
+import { useTranslations, useLocale } from "next-intl";
+import { getImageReferrerPolicy, getImageVariant } from "@/lib/image-utils";
 import {
   getSearchHistory as loadSearchHistory,
   saveSearchHistory,
   removeSearchHistoryItem,
   clearSearchHistory,
-} from '@/lib/search-history';
-import { useSearchParams } from 'next/navigation';
-import { buildReturnTo, withReturnTo } from '@/lib/return-to';
-import { saveReturnScroll } from '@/lib/return-scroll';
-import { usePersonalizedHotSearches } from '@/hooks/usePersonalizedHotSearches';
+} from "@/lib/search-history";
+import { useSearchParams } from "next/navigation";
+import { buildReturnTo, withReturnTo } from "@/lib/return-to";
+import { saveReturnScroll } from "@/lib/return-scroll";
+import { usePersonalizedHotSearches } from "@/hooks/usePersonalizedHotSearches";
+import { extractProductLinkSearchTerm } from "@/lib/product-link";
 
-// 动态导入，禁用 SSR 以避免 hydration 不匹配
-const ImageSearchUploader = dynamic(() => import('./ImageSearchUploader'), {
-  ssr: false,
-});
+const LazyImageSearchUploader = dynamic(
+  () => import("./LazyImageSearchUploader"),
+  { ssr: false },
+);
 
 interface SearchBoxProps {
-  /** large: Hero 区域放大样式；default: header 紧凑分段搜索框 */
-  size?: 'default' | 'large';
+  size?: "default" | "large";
+  mobileCompact?: boolean;
 }
 
-export default function SearchBox({ size = 'default' }: SearchBoxProps) {
+type SearchOptionType = "brand" | "category" | "product" | "history";
+
+interface SearchOption {
+  key: string;
+  value: string;
+  label: ReactNode;
+  type: SearchOptionType;
+  slug?: string;
+}
+
+interface SearchOptionGroup {
+  key: string;
+  label: ReactNode;
+  options: SearchOption[];
+}
+
+export default function SearchBox({
+  size = "default",
+  mobileCompact = false,
+}: SearchBoxProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const t = useTranslations('search');
-  const tc = useTranslations('common');
-  const th = useTranslations('header');
+  const t = useTranslations("search");
+  const tc = useTranslations("common");
+  const th = useTranslations("header");
   const locale = useLocale();
   const { getCategoryLabel } = useCategoryLabelResolver();
-  const returnTo = useMemo(() => buildReturnTo(pathname, searchParams), [pathname, searchParams]);
-  const [searchValue, setSearchValue] = useState('');
-  const hasSearchValue = searchValue.trim().length > 0;
-  const [options, setOptions] = useState<DefaultOptionType[]>([]);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const returnTo = useMemo(
+    () => buildReturnTo(pathname, searchParams),
+    [pathname, searchParams],
+  );
+  const [searchValue, setSearchValue] = useState("");
+  const [searchMode, setSearchMode] = useState<"keyword" | "link">("keyword");
+  const [linkError, setLinkError] = useState("");
+  const [options, setOptions] = useState<SearchOptionGroup[]>([]);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const [shouldLoadHotSearches, setShouldLoadHotSearches] = useState(false);
+  const hasSearchValue = searchValue.trim().length > 0;
 
-  // 获取热搜词（个性化）
   const { items: hotSearches } = usePersonalizedHotSearches({
     enabled: shouldLoadHotSearches,
     limit: 3,
   });
 
-  // 从localStorage读取搜索历史（按用户隔离）
-  const [searchHistory, setSearchHistory] = useState<string[]>(() => loadSearchHistory());
-
-  // 防抖处理
+  const [searchHistory, setSearchHistory] = useState<string[]>(() =>
+    loadSearchHistory(),
+  );
   const debouncedSearchValue = useDebounce(searchValue, 300);
 
-  // 排名徽章颜色：#1 红、#2 橙、#3 黄，其余灰
-  const rankBadgeClass = (index: number) => {
-    const colors = [
-      'bg-red-500 text-white',
-      'bg-orange-500 text-white',
-      'bg-amber-400 text-white',
-    ];
-    return colors[index] || 'bg-gray-200 text-gray-500';
-  };
-
-  // 删除单条搜索历史
-  const removeFromHistory = useCallback((query: string) => {
-    const updated = removeSearchHistoryItem(query);
-    setSearchHistory(updated);
+  useEffect(() => {
+    const closeOnOutsidePointer = (event: PointerEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOnOutsidePointer);
+    return () =>
+      document.removeEventListener("pointerdown", closeOnOutsidePointer);
   }, []);
 
-  // 清除全部搜索历史
-  const clearAllHistory = () => {
-    clearSearchHistory();
-    setSearchHistory([]);
+  const rankBadgeClass = (index: number) => {
+    const colors = [
+      "bg-red-500 text-white",
+      "bg-orange-500 text-white",
+      "bg-amber-400 text-white",
+    ];
+    return colors[index] || "bg-gray-200 text-gray-500";
   };
 
-  // 搜索框为空时的默认选项（热搜 + 历史）
-  const defaultOptions = useMemo(() => {
-    const groups: DefaultOptionType[] = [];
+  const removeFromHistory = useCallback((query: string) => {
+    setSearchHistory(removeSearchHistoryItem(query));
+  }, []);
+
+  const clearAllHistory = useCallback(() => {
+    clearSearchHistory();
+    setSearchHistory([]);
+  }, []);
+
+  const defaultOptions = useMemo<SearchOptionGroup[]>(() => {
+    const groups: SearchOptionGroup[] = [];
     const hotKeywords = new Set<string>();
 
-    // 热搜词（排在前面）
-    if (hotSearches && hotSearches.length > 0) {
-      hotSearches.forEach(item => hotKeywords.add(item.keyword));
+    if (hotSearches?.length) {
+      hotSearches.forEach((item) => hotKeywords.add(item.keyword));
       groups.push({
-        label: <div className="font-semibold text-gray-500">{t('hotSearches')}</div>,
+        key: "hot",
+        label: <span className="font-semibold">{t("hotSearches")}</span>,
         options: hotSearches.map((item, index) => ({
           key: `hot_${item.keyword}`,
           value: item.keyword,
+          type: "history",
           label: (
             <div className="flex items-center gap-2">
               <span
-                className={`inline-flex items-center justify-center w-5 h-5 rounded text-xs font-bold ${rankBadgeClass(index)}`}
+                className={`inline-flex h-5 w-5 items-center justify-center rounded text-xs font-bold ${rankBadgeClass(index)}`}
               >
                 {index + 1}
               </span>
-              <span className={index === 0 ? 'font-semibold' : ''}>{item.keyword}</span>
+              <span className={index === 0 ? "font-semibold" : ""}>
+                {item.keyword}
+              </span>
             </div>
           ),
-          type: 'history',
         })),
       });
     }
 
-    // 搜索历史（排除已在热搜中出现的词，限制 5 条）
-    const filteredHistory = searchHistory.filter(q => !hotKeywords.has(q)).slice(0, 5);
-    if (filteredHistory.length > 0) {
+    const filteredHistory = searchHistory
+      .filter((query) => !hotKeywords.has(query))
+      .slice(0, 5);
+    if (filteredHistory.length) {
       groups.push({
+        key: "history",
         label: (
-          <div className="flex items-center justify-between">
-            <span className="font-semibold text-gray-500">{t('searchHistory')}</span>
+          <div className="flex items-center justify-between gap-4">
+            <span className="font-semibold">{t("searchHistory")}</span>
             <button
               type="button"
-              className="text-xs text-gray-400 hover:text-red-500 cursor-pointer transition-colors"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+              className="text-xs font-medium text-gray-400 transition-colors hover:text-red-500"
+              onMouseDown={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
                 clearAllHistory();
               }}
             >
-              {tc('clearAll')}
+              {tc("clearAll")}
             </button>
           </div>
         ),
-        options: filteredHistory.map(query => ({
+        options: filteredHistory.map((query) => ({
           key: `history_${query}`,
           value: query,
+          type: "history",
           label: (
-            <div className="flex items-center justify-between group/item">
-              <div className="flex items-center gap-2 min-w-0">
-                <Clock className="w-3.5 h-3.5 text-gray-300 flex-shrink-0" />
+            <div className="group/item flex items-center justify-between gap-3">
+              <div className="flex min-w-0 items-center gap-2">
+                <Clock className="h-3.5 w-3.5 shrink-0 opacity-45" />
                 <span className="truncate">{query}</span>
               </div>
               <button
                 type="button"
-                className="opacity-0 group-hover/item:opacity-100 p-0.5 text-gray-300 hover:text-red-500 cursor-pointer transition-all"
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
+                className="rounded p-0.5 opacity-0 transition-all group-hover/item:opacity-100 hover:text-red-500"
+                aria-label={`${tc("clearAll")}: ${query}`}
+                onMouseDown={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
                   removeFromHistory(query);
                 }}
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="h-3.5 w-3.5" />
               </button>
             </div>
           ),
-          type: 'history',
         })),
       });
     }
 
     return groups;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchHistory, hotSearches]);
+  }, [clearAllHistory, hotSearches, removeFromHistory, searchHistory, t, tc]);
 
-  // 格式化搜索建议为Ant Design的选项格式
-  const formatSuggestions = useCallback((data: SearchSuggestions): DefaultOptionType[] => {
-    const formatted: DefaultOptionType[] = [];
+  const formatSuggestions = useCallback(
+    (data: SearchSuggestions): SearchOptionGroup[] => {
+      const groups: SearchOptionGroup[] = [];
 
-    // 品牌建议
-    if (data.brands && data.brands.length > 0) {
-      formatted.push({
-        label: <div className="font-semibold text-gray-500">{t('brands')}</div>,
-        options: data.brands.map(brand => ({
-          value: brand.slug,
-          label: (
-            <div className="flex items-center justify-between">
-              <span className="font-medium">{brand.name}</span>
-              {brand.productCount !== undefined && (
-                <span className="text-gray-400 text-sm">{t('itemCount', { count: brand.productCount })}</span>
-              )}
-            </div>
-          ),
-          type: 'brand',
-          slug: brand.slug,
-        })),
-      });
-    }
-
-    // 分类建议
-    if (data.categories.length > 0) {
-      formatted.push({
-        label: <div className="font-semibold text-gray-500">{t('categories')}</div>,
-        options: data.categories.map(category => ({
-          value: category.slug,
-          label: (
-            <div className="flex items-center justify-between">
-              <span>
-                <strong>{getCategoryLabel(
-                  category.slug,
-                  locale === 'zh' ? (category.chineseName || category.name) : category.name,
-                )}</strong>{' '}
-                {locale === 'zh' ? (category.chineseName !== category.name ? category.name : '') : (category.chineseName || '')}
-              </span>
-              {category.productCount !== undefined && (
-                <span className="text-gray-400 text-sm">{t('productCount', { count: category.productCount })}</span>
-              )}
-            </div>
-          ),
-          type: 'category',
-          slug: category.slug,
-        })),
-      });
-    }
-
-    // 商品建议
-    if (data.products.length > 0) {
-      formatted.push({
-        label: <div className="font-semibold text-gray-500">{t('products')}</div>,
-        options: data.products.map(product => ({
-          value: product.slug,
-          label: (
-            <div className="flex items-center gap-2">
-              {product.images?.[0] && (
-                 
-                <img
-                  src={getImageVariant(product.images[0], 80)}
-                  alt={product.title}
-                  className="w-10 h-10 object-cover rounded"
-                  referrerPolicy={getImageReferrerPolicy(getImageVariant(product.images[0], 80))}
-                />
-              )}
-              <div className="flex-1">
-                <div className="font-medium">{product.title}</div>
-                <div className="text-sm text-gray-500">{product.chineseTitle}</div>
+      if (data.brands?.length) {
+        groups.push({
+          key: "brands",
+          label: <span className="font-semibold">{t("brands")}</span>,
+          options: data.brands.map((brand) => ({
+            key: `brand_${brand.slug}`,
+            value: brand.slug,
+            slug: brand.slug,
+            type: "brand",
+            label: (
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-medium">{brand.name}</span>
+                {brand.productCount !== undefined ? (
+                  <span className="text-xs opacity-55">
+                    {t("itemCount", { count: brand.productCount })}
+                  </span>
+                ) : null}
               </div>
-            </div>
-          ),
-          type: 'product',
-          slug: product.slug,
-        })),
-      });
-    }
+            ),
+          })),
+        });
+      }
 
-    return formatted;
-  }, [getCategoryLabel, locale, t]);
+      if (data.categories?.length) {
+        groups.push({
+          key: "categories",
+          label: <span className="font-semibold">{t("categories")}</span>,
+          options: data.categories.map((category) => ({
+            key: `category_${category.slug}`,
+            value: category.slug,
+            slug: category.slug,
+            type: "category",
+            label: (
+              <div className="flex items-center justify-between gap-3">
+                <span>
+                  <strong>
+                    {getCategoryLabel(
+                      category.slug,
+                      locale === "zh"
+                        ? category.chineseName || category.name
+                        : category.name,
+                    )}
+                  </strong>{" "}
+                  {locale === "zh"
+                    ? category.chineseName !== category.name
+                      ? category.name
+                      : ""
+                    : category.chineseName || ""}
+                </span>
+                {category.productCount !== undefined ? (
+                  <span className="text-xs opacity-55">
+                    {t("productCount", { count: category.productCount })}
+                  </span>
+                ) : null}
+              </div>
+            ),
+          })),
+        });
+      }
 
-  // 当防抖后的搜索词变化时，获取建议
+      if (data.products?.length) {
+        groups.push({
+          key: "products",
+          label: <span className="font-semibold">{t("products")}</span>,
+          options: data.products.map((product) => ({
+            key: `product_${product.slug}`,
+            value: product.slug,
+            slug: product.slug,
+            type: "product",
+            label: (
+              <div className="flex items-center gap-2">
+                {product.images?.[0] ? (
+                  <img
+                    src={getImageVariant(product.images[0], 80)}
+                    alt=""
+                    className="h-10 w-10 rounded object-cover"
+                    referrerPolicy={getImageReferrerPolicy(
+                      getImageVariant(product.images[0], 80),
+                    )}
+                  />
+                ) : null}
+                <div className="min-w-0 flex-1">
+                  <div className="truncate font-medium">{product.title}</div>
+                  {product.chineseTitle ? (
+                    <div className="truncate text-xs opacity-55">
+                      {product.chineseTitle}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            ),
+          })),
+        });
+      }
+
+      return groups;
+    },
+    [getCategoryLabel, locale, t],
+  );
+
   useEffect(() => {
     const controller = new AbortController();
 
     const loadSuggestions = async () => {
+      if (searchMode === "link") {
+        setOptions((current) => (current.length ? [] : current));
+        setLoading(false);
+        return;
+      }
+
       if (!debouncedSearchValue || debouncedSearchValue.length < 2) {
-        if (!debouncedSearchValue) {
-          setOptions(prev => (prev === defaultOptions ? prev : defaultOptions));
-        } else {
-          setOptions(prev => (prev.length === 0 ? prev : []));
-        }
+        setOptions((current) => (current.length ? [] : current));
+        setActiveIndex(-1);
         return;
       }
 
       setLoading(true);
       try {
-        const data = await fetchSearchSuggestions(debouncedSearchValue);
+        const data = await fetchSearchSuggestions(
+          debouncedSearchValue,
+          controller.signal,
+        );
         if (controller.signal.aborted) return;
-        const formattedOptions = formatSuggestions(data);
-        setOptions(formattedOptions);
+        setOptions(formatSuggestions(data));
+        setActiveIndex(-1);
       } catch {
-        if (controller.signal.aborted) return;
-        setOptions(prev => (prev.length === 0 ? prev : []));
+        if (!controller.signal.aborted) setOptions([]);
       } finally {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
+        if (!controller.signal.aborted) setLoading(false);
       }
     };
 
-    loadSuggestions();
+    void loadSuggestions();
     return () => controller.abort();
-  }, [debouncedSearchValue, defaultOptions, formatSuggestions]);
+  }, [debouncedSearchValue, formatSuggestions, searchMode]);
 
-  // 选择建议项
-  const handleSelect = (value: string, option: DefaultOptionType) => {
-    const type = option.type as string;
-    const slug = option.slug as string;
+  const displayedOptions =
+    searchMode === "keyword" && !debouncedSearchValue
+      ? defaultOptions
+      : options;
 
-    switch (type) {
-      case 'brand':
-        // 跳转到搜索页面，按品牌筛选
-        router.push(`/search?q=${encodeURIComponent(slug)}&brands=${slug}`);
-        break;
-      case 'category':
-        router.push(`/categories/${slug}`);
-        break;
-      case 'product':
-        saveReturnScroll(returnTo);
-        router.push(withReturnTo(`/products/${slug}`, returnTo));
-        break;
-      case 'history':
-        // 从历史记录搜索
-        handleSearch(value);
-        return;
-      default:
-        // 默认执行搜索
-        handleSearch(value);
-    }
-
-    setSearchValue('');
-    setOptions([]);
-  };
-
-  // 保存搜索历史
-  const saveToHistory = (query: string) => {
-    const updated = saveSearchHistory(query);
-    setSearchHistory(updated);
-  };
-
-  // 执行搜索（按回车或点击搜索按钮）
-  const handleSearch = (value: string) => {
-    if (value.trim()) {
-      saveToHistory(value.trim());
-      router.push(`/search?q=${encodeURIComponent(value)}`);
-      setSearchValue('');
-      setOptions([]);
-    }
-  };
-
-  const autoComplete = (
-    <AutoComplete
-      value={searchValue}
-      options={options}
-      onSelect={handleSelect}
-      onSearch={setSearchValue}
-      onChange={setSearchValue}
-      notFoundContent={loading ? t('searching') : debouncedSearchValue.length >= 2 ? t('noResults') : null}
-      rootClassName={size === 'default' ? 'header-search-autocomplete' : 'hero-search-autocomplete'}
-      classNames={{
-        popup: {
-          root:
-            size === 'large'
-              ? 'search-suggestions-dropdown hero-search-suggestions-dropdown'
-              : 'search-suggestions-dropdown',
-        },
-      }}
-      style={{ width: '100%' }}
-      listHeight={400}
-    >
-      <Input
-        size={size === 'large' ? 'large' : 'middle'}
-        placeholder={t('placeholder')}
-        prefix={<Search className="w-4 h-4 text-gray-400" />}
-        className={size === 'large' ? 'hero-search-input' : ''}
-        onFocus={() => setShouldLoadHotSearches(true)}
-        onKeyDown={(e) => {
-          // 按 Enter 时直接执行搜索，阻止 AutoComplete 的默认选择行为
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            e.stopPropagation();
-            handleSearch(searchValue);
-          }
-        }}
-      />
-    </AutoComplete>
+  const flattenedOptions = useMemo(
+    () => displayedOptions.flatMap((group) => group.options),
+    [displayedOptions],
   );
 
-  if (size === 'large') {
-    return (
-      <div className="hero-command-bar relative overflow-visible rounded-[30px] p-[1.5px] md:rounded-full">
-        <div aria-hidden className="hero-command-ambient" />
-        <div aria-hidden className="hero-command-rim" />
-        <div className="hero-command-bar-panel flex flex-col gap-2 overflow-hidden rounded-[28px] p-2 md:flex-row md:items-stretch md:rounded-full">
-          <div className="hero-command-input min-w-0 flex-1 rounded-[22px] md:rounded-full">
-            {autoComplete}
-          </div>
+  const saveToHistory = (query: string) => {
+    setSearchHistory(saveSearchHistory(query));
+  };
 
-          <div className="flex shrink-0 items-center gap-2 md:pr-1">
+  const handleSearch = useCallback(
+    (value: string) => {
+      const trimmed = value.trim();
+      if (!trimmed) return;
+
+      if (searchMode === "link") {
+        const productTerm = extractProductLinkSearchTerm(trimmed);
+        if (!productTerm) {
+          setLinkError(t("invalidProductLink"));
+          return;
+        }
+        router.push(`/search?q=${encodeURIComponent(productTerm)}&source=link`);
+      } else {
+        saveToHistory(trimmed);
+        router.push(`/search?q=${encodeURIComponent(trimmed)}`);
+      }
+
+      setLinkError("");
+      setSearchValue("");
+      setOptions([]);
+      setOpen(false);
+    },
+    [router, searchMode, t],
+  );
+
+  const handleSelect = useCallback(
+    (option: SearchOption) => {
+      const slug = option.slug || option.value;
+      switch (option.type) {
+        case "brand":
+          router.push(`/search?q=${encodeURIComponent(slug)}&brands=${slug}`);
+          break;
+        case "category":
+          router.push(`/categories/${slug}`);
+          break;
+        case "product":
+          saveReturnScroll(returnTo);
+          router.push(withReturnTo(`/products/${slug}`, returnTo));
+          break;
+        default:
+          handleSearch(option.value);
+          return;
+      }
+      setSearchValue("");
+      setOptions([]);
+      setOpen(false);
+    },
+    [handleSearch, returnTo, router],
+  );
+
+  const handleInputKeyDown = (event: ReactKeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Escape") {
+      setOpen(false);
+      setActiveIndex(-1);
+      return;
+    }
+    if (event.key === "ArrowDown" && flattenedOptions.length) {
+      event.preventDefault();
+      setOpen(true);
+      setActiveIndex((current) => (current + 1) % flattenedOptions.length);
+      return;
+    }
+    if (event.key === "ArrowUp" && flattenedOptions.length) {
+      event.preventDefault();
+      setOpen(true);
+      setActiveIndex((current) =>
+        current <= 0 ? flattenedOptions.length - 1 : current - 1,
+      );
+      return;
+    }
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (open && activeIndex >= 0 && flattenedOptions[activeIndex]) {
+        handleSelect(flattenedOptions[activeIndex]);
+      } else {
+        handleSearch(searchValue);
+      }
+    }
+  };
+
+  const showSuggestions =
+    open &&
+    searchMode === "keyword" &&
+    (displayedOptions.length > 0 ||
+      loading ||
+      debouncedSearchValue.length >= 2);
+  const darkSuggestions = size === "large";
+
+  const searchInput = (
+    <div ref={rootRef} className="relative w-full">
+      <div className="relative flex min-h-11 items-center">
+        {searchMode === "link" ? (
+          <Link2 className="pointer-events-none absolute left-4 h-4 w-4 text-white/55 rtl:left-auto rtl:right-4" />
+        ) : (
+          <Search className="pointer-events-none absolute left-4 h-4 w-4 text-white/55 rtl:left-auto rtl:right-4" />
+        )}
+        <input
+          value={searchValue}
+          onChange={(event) => {
+            setSearchValue(event.target.value);
+            setLinkError("");
+            setOpen(true);
+          }}
+          onFocus={() => {
+            setShouldLoadHotSearches(true);
+            setOpen(true);
+          }}
+          onKeyDown={handleInputKeyDown}
+          placeholder={
+            searchMode === "link" ? t("linkPlaceholder") : t("placeholder")
+          }
+          role="combobox"
+          aria-autocomplete="list"
+          aria-expanded={showSuggestions}
+          aria-controls="search-suggestions"
+          aria-activedescendant={
+            activeIndex >= 0 ? `search-option-${activeIndex}` : undefined
+          }
+          className="h-11 w-full rounded-full border-0 bg-transparent py-2 pl-11 pr-4 text-sm font-medium text-white outline-none placeholder:text-white/45 rtl:pl-4 rtl:pr-11"
+        />
+      </div>
+
+      {showSuggestions ? (
+        <div
+          id="search-suggestions"
+          role="listbox"
+          className={`absolute inset-x-0 top-[calc(100%+0.5rem)] z-[85] max-h-[400px] overflow-y-auto overscroll-contain rounded-2xl border p-2 text-left shadow-2xl rtl:text-right ${
+            darkSuggestions
+              ? "border-white/10 bg-[#11182e] text-slate-100"
+              : "border-gray-100 bg-white text-foreground"
+          }`}
+        >
+          {loading ? (
+            <p className="px-3 py-6 text-center text-sm opacity-60">
+              {t("searching")}
+            </p>
+          ) : displayedOptions.length === 0 ? (
+            <p className="px-3 py-6 text-center text-sm opacity-60">
+              {t("noResults")}
+            </p>
+          ) : (
+            displayedOptions.map((group) => (
+              <section key={group.key} className="mb-2 last:mb-0">
+                <div className="px-3 pb-1.5 pt-2 text-xs uppercase tracking-[0.08em] opacity-55">
+                  {group.label}
+                </div>
+                <div>
+                  {group.options.map((option) => {
+                    const index = flattenedOptions.findIndex(
+                      (candidate) => candidate.key === option.key,
+                    );
+                    return (
+                      <button
+                        key={option.key}
+                        id={`search-option-${index}`}
+                        type="button"
+                        role="option"
+                        aria-selected={activeIndex === index}
+                        onMouseEnter={() => setActiveIndex(index)}
+                        onMouseDown={(event) => event.preventDefault()}
+                        onClick={() => handleSelect(option)}
+                        className={`block w-full rounded-xl px-3 py-2.5 text-sm transition-colors ${
+                          activeIndex === index
+                            ? darkSuggestions
+                              ? "bg-white/10"
+                              : "bg-gray-100"
+                            : darkSuggestions
+                              ? "hover:bg-white/[0.07]"
+                              : "hover:bg-gray-50"
+                        }`}
+                      >
+                        {option.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
+            ))
+          )}
+        </div>
+      ) : null}
+    </div>
+  );
+
+  if (size === "large") {
+    return (
+      <div>
+        {!mobileCompact ? (
+          <div className="mb-2 flex justify-center gap-1 rounded-full p-1">
             <button
               type="button"
-              onClick={() => handleSearch(searchValue)}
-              className="hero-command-search inline-flex h-11 min-w-[96px] items-center justify-center rounded-full px-5 text-sm font-semibold"
-              disabled={!hasSearchValue}
+              onClick={() => {
+                setSearchMode("keyword");
+                setSearchValue("");
+                setLinkError("");
+              }}
+              className={`inline-flex h-11 items-center gap-2 rounded-full px-4 text-xs font-semibold transition-colors ${
+                searchMode === "keyword"
+                  ? "bg-white/12 text-white"
+                  : "text-white/60 hover:bg-white/[0.06] hover:text-white"
+              }`}
             >
-              {th('search')}
+              <Search className="h-3.5 w-3.5" />
+              {t("modeKeyword")}
             </button>
-            <ImageSearchUploader
-              variant="icon"
-              className="hero-command-camera h-11 w-11 rounded-full text-white/80 shadow-none"
-            />
+            <button
+              type="button"
+              onClick={() => {
+                setSearchMode("link");
+                setSearchValue("");
+                setOptions([]);
+                setLinkError("");
+              }}
+              className={`inline-flex h-11 items-center gap-2 rounded-full px-4 text-xs font-semibold transition-colors ${
+                searchMode === "link"
+                  ? "bg-white/12 text-white"
+                  : "text-white/60 hover:bg-white/[0.06] hover:text-white"
+              }`}
+            >
+              <Link2 className="h-3.5 w-3.5" />
+              {t("modeLink")}
+            </button>
+            <LazyImageSearchUploader variant="tab" />
+          </div>
+        ) : null}
+
+        <div className="hero-command-bar relative overflow-visible rounded-[30px] p-[1.5px] md:rounded-full">
+          <div aria-hidden className="hero-command-ambient" />
+          <div aria-hidden className="hero-command-rim" />
+          <div className="hero-command-bar-panel flex flex-col gap-2 overflow-visible rounded-[28px] p-2 md:flex-row md:items-stretch md:rounded-full">
+            <div className="hero-command-input min-w-0 flex-1 rounded-[22px] md:rounded-full">
+              {searchInput}
+            </div>
+            <div className="flex shrink-0 items-center gap-2 md:pr-1">
+              <button
+                type="button"
+                onClick={() => handleSearch(searchValue)}
+                className="hero-command-search inline-flex h-11 min-w-[96px] items-center justify-center rounded-full px-5 text-sm font-semibold"
+                disabled={!hasSearchValue}
+              >
+                {searchMode === "link" ? t("findFromLink") : th("search")}
+              </button>
+            </div>
           </div>
         </div>
+        {linkError ? (
+          <p className="mt-2 text-center text-xs font-medium text-red-300">
+            {linkError}
+          </p>
+        ) : null}
+        {mobileCompact ? (
+          <div className="mt-2 flex items-center justify-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => {
+                setSearchMode((current) =>
+                  current === "link" ? "keyword" : "link",
+                );
+                setSearchValue("");
+                setOptions([]);
+                setLinkError("");
+              }}
+              className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-3 text-[11px] font-semibold text-white/65 transition-colors hover:bg-white/[0.06] hover:text-white"
+            >
+              {searchMode === "link" ? (
+                <Search className="h-3.5 w-3.5" aria-hidden="true" />
+              ) : (
+                <Link2 className="h-3.5 w-3.5" aria-hidden="true" />
+              )}
+              {searchMode === "link" ? t("modeKeyword") : t("modeLink")}
+            </button>
+            <LazyImageSearchUploader variant="tab" />
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -393,20 +636,21 @@ export default function SearchBox({ size = 'default' }: SearchBoxProps) {
   return (
     <div className="header-command-bar flex w-full items-center gap-2 rounded-[26px] px-2 py-1.5">
       <div className="header-command-input min-w-0 flex-1 rounded-[22px]">
-        {autoComplete}
+        {searchInput}
       </div>
-
       <button
         type="button"
         onClick={() => handleSearch(searchValue)}
         disabled={!hasSearchValue}
-        className="header-command-search inline-flex h-10 min-w-[72px] xl:min-w-[84px] items-center justify-center rounded-[20px] px-3.5 xl:px-4 text-sm font-semibold"
+        className="header-command-search inline-flex h-10 min-w-[72px] items-center justify-center rounded-[20px] px-3.5 text-sm font-semibold xl:min-w-[84px] xl:px-4"
       >
-        {th('search')}
+        {th("search")}
       </button>
-
-      <div className="hidden xl:block" onMouseDown={(e) => e.stopPropagation()}>
-        <ImageSearchUploader
+      <div
+        className="hidden xl:block"
+        onMouseDown={(event) => event.stopPropagation()}
+      >
+        <LazyImageSearchUploader
           variant="icon"
           className="header-command-camera h-10 w-10 rounded-[20px] p-0"
         />

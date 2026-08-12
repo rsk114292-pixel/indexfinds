@@ -9,7 +9,6 @@ export type ShareChannel =
   | 'reddit'
   | 'email'
   | 'pinterest'
-  | 'discord'
   | 'tiktok'
   | 'copy';
 
@@ -25,7 +24,6 @@ const UTM_CONFIG: Record<ShareChannel, { source: string; medium: string }> = {
   reddit: { source: 'reddit', medium: 'social' },
   email: { source: 'email', medium: 'email' },
   pinterest: { source: 'pinterest', medium: 'social' },
-  discord: { source: 'discord', medium: 'social' },
   tiktok: { source: 'tiktok', medium: 'social' },
   copy: { source: 'copy_link', medium: 'referral' },
 };

@@ -150,11 +150,8 @@ async function seed() {
         primaryCategoryId: '11111111-1111-1111-1111-111111111111', // Clothing
         priceMin: 99.0,
         priceMax: 129.0,
-        mainImage: 'https://si.geilicdn.com/open1708516832-main.jpg',
-        images: JSON.stringify([
-          'https://si.geilicdn.com/open1708516832-1.jpg',
-          'https://si.geilicdn.com/open1708516832-2.jpg',
-        ]),
+        mainImage: '/images/product-placeholder.svg',
+        images: JSON.stringify([]),
         aiAttributes: JSON.stringify({
           colors: ['White', 'Black', 'Gray'],
           styles: ['Casual', 'Street'],
@@ -165,7 +162,7 @@ async function seed() {
         sourceUrl: 'https://weidian.com/item.html?itemID=7569577612',
         status: 'active',
         isFeatured: true,
-        viewCount: 120,
+        viewCount: 0,
       },
       {
         id: 'bbbb2222-2222-2222-2222-222222222222',
@@ -182,11 +179,8 @@ async function seed() {
         primaryCategoryId: '22222222-2222-2222-2222-222222222222', // Shoes
         priceMin: 599.0,
         priceMax: 799.0,
-        mainImage: 'https://si.geilicdn.com/adidas-main.jpg',
-        images: JSON.stringify([
-          'https://si.geilicdn.com/adidas-1.jpg',
-          'https://si.geilicdn.com/adidas-2.jpg',
-        ]),
+        mainImage: '/images/product-placeholder.svg',
+        images: JSON.stringify([]),
         aiAttributes: JSON.stringify({
           colors: ['Black', 'White'],
           styles: ['Sports', 'Running'],
@@ -197,7 +191,7 @@ async function seed() {
         sourceUrl: 'https://weidian.com/item.html?itemID=7613410521',
         status: 'active',
         isFeatured: false,
-        viewCount: 85,
+        viewCount: 0,
       },
     ];
 
@@ -214,7 +208,10 @@ async function seed() {
           description = EXCLUDED.description,
           "priceMin" = EXCLUDED."priceMin",
           "priceMax" = EXCLUDED."priceMax",
-          "isFeatured" = EXCLUDED."isFeatured"`,
+          "mainImage" = EXCLUDED."mainImage",
+          images = EXCLUDED.images,
+          "isFeatured" = EXCLUDED."isFeatured",
+          "viewCount" = EXCLUDED."viewCount"`,
         [
           product.id,
           product.title,
@@ -256,7 +253,7 @@ async function seed() {
         skuKey: '颜色=White;尺码=M',
         price: 99.0,
         stock: 50,
-        image: 'https://si.geilicdn.com/white-m.jpg',
+        image: '/images/product-placeholder.svg',
         status: 'available',
       },
       {
@@ -269,7 +266,7 @@ async function seed() {
         skuKey: '颜色=White;尺码=L',
         price: 99.0,
         stock: 30,
-        image: 'https://si.geilicdn.com/white-l.jpg',
+        image: '/images/product-placeholder.svg',
         status: 'available',
       },
       {
@@ -282,7 +279,7 @@ async function seed() {
         skuKey: '颜色=Black;尺码=M',
         price: 109.0,
         stock: 45,
-        image: 'https://si.geilicdn.com/black-m.jpg',
+        image: '/images/product-placeholder.svg',
         status: 'available',
       },
       // Adidas Sneakers SKUs
@@ -296,7 +293,7 @@ async function seed() {
         skuKey: '颜色=Black;尺码=40',
         price: 599.0,
         stock: 15,
-        image: 'https://si.geilicdn.com/adidas-black-40.jpg',
+        image: '/images/product-placeholder.svg',
         status: 'available',
       },
     ];
@@ -310,6 +307,7 @@ async function seed() {
         ON CONFLICT ("skuCode") DO UPDATE SET
           price = EXCLUDED.price,
           stock = EXCLUDED.stock,
+          image = EXCLUDED.image,
           status = EXCLUDED.status`,
         [
           sku.id,

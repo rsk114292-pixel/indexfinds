@@ -259,12 +259,18 @@ function ImageOptionGrid({
             title={t("styleN", { n: index + 1 })}
             aria-label={t("styleN", { n: index + 1 })}
           >
+            <span className="absolute inset-0 flex items-center justify-center bg-slate-50 text-xs font-semibold text-slate-400">
+              {index + 1}
+            </span>
             <Image
               src={getImageVariant(image, 80)}
               alt={t("styleN", { n: index + 1 })}
               fill
-              className="object-cover"
+              className="z-10 bg-white object-cover"
               referrerPolicy={getImageReferrerPolicy(getImageVariant(image, 80))}
+              onError={(event) => {
+                event.currentTarget.style.display = "none";
+              }}
             />
           </button>
         ))}
@@ -297,13 +303,21 @@ function ImageOptionGrid({
           aria-label={option.value}
         >
           {option.image ? (
-            <Image
-              src={getImageVariant(option.image, 80)}
-              alt={option.value}
-              fill
-              className="object-cover"
-              referrerPolicy={getImageReferrerPolicy(getImageVariant(option.image, 80))}
-            />
+            <>
+              <span className="absolute inset-0 flex items-center justify-center bg-slate-50 px-1 text-center text-[10px] font-semibold text-slate-400">
+                {option.value}
+              </span>
+              <Image
+                src={getImageVariant(option.image, 80)}
+                alt={option.value}
+                fill
+                className="z-10 bg-white object-cover"
+                referrerPolicy={getImageReferrerPolicy(getImageVariant(option.image, 80))}
+                onError={(event) => {
+                  event.currentTarget.style.display = "none";
+                }}
+              />
+            </>
           ) : (
             <span className="flex items-center justify-center h-full text-xs text-gray-500">
               {option.value}

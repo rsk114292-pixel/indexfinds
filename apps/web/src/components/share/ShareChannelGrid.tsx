@@ -2,10 +2,10 @@
 
 import { useTranslations } from 'next-intl';
 import { Check, Mail } from 'lucide-react';
-import { App } from 'antd';
 import { SocialIcon } from '@/lib/social-icons';
 import { appendUTMParams } from '@/lib/utm';
 import { SHARE_CHANNELS, buildShareUrl, type ChannelConfig } from './share-channels';
+import { notice } from '@/lib/notice';
 
 interface ShareChannelGridProps {
   url: string;
@@ -25,7 +25,6 @@ export function ShareChannelGrid({
   onShareSuccess,
 }: ShareChannelGridProps) {
   const t = useTranslations('share');
-  const { message } = App.useApp();
   const claimedSet = new Set(claimedChannels);
 
   const handleChannelClick = async (channel: ChannelConfig) => {
@@ -39,12 +38,12 @@ export function ShareChannelGrid({
     if (channel.action === 'copy') {
       try {
         await navigator.clipboard.writeText(trackedUrl);
-        message.success(t(channel.copyToastKey || 'copied'));
+        notice.success(t(channel.copyToastKey || 'copied'));
         if (!isClaimed) {
           onShareSuccess?.(channel.id);
         }
       } catch {
-        message.error(t('copyFailed'));
+        notice.error(t('copyFailed'));
       }
       return;
     }

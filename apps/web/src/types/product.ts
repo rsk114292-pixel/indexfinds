@@ -109,11 +109,19 @@ export interface ProductListItem {
   price: Price;
   mainImage: string;
   secondImage?: string;  // 第二张图（桌面端 hover 切换用）
+  images?: string[];
   popularityScore?: number;  // 热门分数（Hot badge 用）
   isFeatured?: boolean;  // 推荐商品（自动带 Hot 标）
   brand?: BrandSimple | null;  // 品牌关联
   aiBrandName?: string;  // AI 识别的原始品牌名
   primaryCategory?: CategorySimple;  // 可选，visual search 等场景可能没有
+  qcPhotoCount?: number;
+  viewCount?: number;
+  salesCount?: number;
+  weidianShopName?: string;
+  sourceUrl?: string;
+  createdAt?: string;
+  updatedAt?: string;
   /** @deprecated Use price.min instead */
   priceMin?: number;
   /** @deprecated Use price.max instead */

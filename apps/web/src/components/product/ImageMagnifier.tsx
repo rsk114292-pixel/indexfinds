@@ -10,7 +10,14 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
-import { getFullResolutionUrl, getImageReferrerPolicy, getProductDetailThumbnail } from "@/lib/image-utils";
+import {
+  getFullResolutionUrl,
+  getImageReferrerPolicy,
+  getProductDetailThumbnail,
+} from "@/lib/image-utils";
+import ImageWithFallback, {
+  PRODUCT_IMAGE_FALLBACK,
+} from "@/components/ui/ImageWithFallback";
 
 interface ImageMagnifierProps {
   images: string[];
@@ -27,19 +34,26 @@ export default function ImageMagnifier({
   alt,
   mainImageUrl,
 }: ImageMagnifierProps) {
-  const t = useTranslations('product');
+  const t = useTranslations("product");
   const [isHovering, setIsHovering] = useState(false);
   const [lensRect, setLensRect] = useState({ x: 0, y: 0, width: 0, height: 0 });
-  const [magnifierBg, setMagnifierBg] = useState({ x: 0, y: 0, width: 0, height: 0 });
-  const [imageNaturalSize, setImageNaturalSize] = useState<{ width: number; height: number } | null>(
-    null
-  );
+  const [magnifierBg, setMagnifierBg] = useState({
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0,
+  });
+  const [imageNaturalSize, setImageNaturalSize] = useState<{
+    width: number;
+    height: number;
+  } | null>(null);
   const [showFullscreen, setShowFullscreen] = useState(false);
   const [fullscreenZoom, setFullscreenZoom] = useState(1);
   const [fullscreenOffset, setFullscreenOffset] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [isDesktop, setIsDesktop] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
   const imageContainerRef = useRef<HTMLDivElement>(null);
   useBodyScrollLock(showFullscreen);
 
@@ -55,15 +69,23 @@ export default function ImageMagnifier({
   const ZOOM_LEVEL = 2.5;
   const MAGNIFIER_SIZE = 400;
 
-  const currentImage = images[currentIndex] || mainImageUrl;
+  const currentImage =
+    images[currentIndex] || mainImageUrl || PRODUCT_IMAGE_FALLBACK;
+  const displayedImage = imageFailed ? PRODUCT_IMAGE_FALLBACK : currentImage;
 
   useEffect(() => {
+    setImageFailed(false);
     setImageNaturalSize(null);
     setLensRect({ x: 0, y: 0, width: 0, height: 0 });
     setMagnifierBg({ x: 0, y: 0, width: 0, height: 0 });
   }, [currentImage]);
 
-  const showMagnifier = isDesktop && isHovering && lensRect.width > 0 && lensRect.height > 0;
+  const showMagnifier =
+    !imageFailed &&
+    isDesktop &&
+    isHovering &&
+    lensRect.width > 0 &&
+    lensRect.height > 0;
 
   // 处理鼠标移动（桌面端放大镜）
   const handleMouseMove = useCallback(
@@ -86,7 +108,7 @@ export default function ImageMagnifier({
 
       const scale = Math.min(
         innerWidth / imageNaturalSize.width,
-        innerHeight / imageNaturalSize.height
+        innerHeight / imageNaturalSize.height,
       );
 
       const displayWidth = imageNaturalSize.width * scale;
@@ -113,8 +135,14 @@ export default function ImageMagnifier({
       const lensWidth = Math.min(MAGNIFIER_SIZE / ZOOM_LEVEL, displayWidth);
       const lensHeight = Math.min(MAGNIFIER_SIZE / ZOOM_LEVEL, displayHeight);
 
-      const lensXInImage = Math.max(0, Math.min(relX - lensWidth / 2, displayWidth - lensWidth));
-      const lensYInImage = Math.max(0, Math.min(relY - lensHeight / 2, displayHeight - lensHeight));
+      const lensXInImage = Math.max(
+        0,
+        Math.min(relX - lensWidth / 2, displayWidth - lensWidth),
+      );
+      const lensYInImage = Math.max(
+        0,
+        Math.min(relY - lensHeight / 2, displayHeight - lensHeight),
+      );
 
       const lensX = imageOffsetX + lensXInImage;
       const lensY = imageOffsetY + lensYInImage;
@@ -131,7 +159,7 @@ export default function ImageMagnifier({
       setLensRect({ x: lensX, y: lensY, width: lensWidth, height: lensHeight });
       setMagnifierBg({ x: bgX, y: bgY, width: bgWidth, height: bgHeight });
     },
-    [isDesktop, imageNaturalSize]
+    [isDesktop, imageNaturalSize],
   );
 
   const handleMouseEnter = () => {
@@ -187,7 +215,10 @@ export default function ImageMagnifier({
     setIsDragging(true);
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
     const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
-    setDragStart({ x: clientX - fullscreenOffset.x, y: clientY - fullscreenOffset.y });
+    setDragStart({
+      x: clientX - fullscreenOffset.x,
+      y: clientY - fullscreenOffset.y,
+    });
   };
 
   const handleDragMove = (e: React.MouseEvent | React.TouchEvent) => {
@@ -214,10 +245,14 @@ export default function ImageMagnifier({
           closeFullscreen();
           break;
         case "ArrowLeft":
-          onIndexChange(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
+          onIndexChange(
+            currentIndex === 0 ? images.length - 1 : currentIndex - 1,
+          );
           break;
         case "ArrowRight":
-          onIndexChange(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
+          onIndexChange(
+            currentIndex === images.length - 1 ? 0 : currentIndex + 1,
+          );
           break;
         case "+":
         case "=":
@@ -251,22 +286,29 @@ export default function ImageMagnifier({
         <div className="relative">
           <div
             ref={imageContainerRef}
-            className="relative aspect-square max-h-[70vh] lg:max-h-none bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 cursor-zoom-in group p-4"
+            className={`relative aspect-square max-h-[70vh] lg:max-h-none bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group p-4 ${
+              imageFailed ? "cursor-default" : "cursor-zoom-in"
+            }`}
             onMouseMove={handleMouseMove}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            onClick={openFullscreen}
+            onClick={imageFailed ? undefined : openFullscreen}
           >
             <Image
-              src={currentImage}
+              src={displayedImage}
               alt={alt}
               fill
               className="object-contain"
               priority
-              referrerPolicy={getImageReferrerPolicy(currentImage)}
+              unoptimized={imageFailed}
+              referrerPolicy={getImageReferrerPolicy(displayedImage)}
+              onError={() => setImageFailed(true)}
               onLoad={(e) => {
                 const img = e.currentTarget as HTMLImageElement;
-                setImageNaturalSize({ width: img.naturalWidth, height: img.naturalHeight });
+                setImageNaturalSize({
+                  width: img.naturalWidth,
+                  height: img.naturalHeight,
+                });
               }}
             />
 
@@ -288,14 +330,14 @@ export default function ImageMagnifier({
                 <button
                   onClick={handlePrevImage}
                   className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 cursor-pointer"
-                  aria-label={t('previousImage')}
+                  aria-label={t("previousImage")}
                 >
                   <ChevronLeft className="w-5 h-5 text-gray-700" />
                 </button>
                 <button
                   onClick={handleNextImage}
                   className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 cursor-pointer"
-                  aria-label={t('nextImage')}
+                  aria-label={t("nextImage")}
                 >
                   <ChevronRight className="w-5 h-5 text-gray-700" />
                 </button>
@@ -323,11 +365,11 @@ export default function ImageMagnifier({
           }`}
         >
           <img
-            src={currentImage}
+            src={displayedImage}
             alt=""
             aria-hidden="true"
             className="absolute max-w-none select-none pointer-events-none"
-            referrerPolicy={getImageReferrerPolicy(currentImage)}
+            referrerPolicy={getImageReferrerPolicy(displayedImage)}
             draggable={false}
             style={{
               width: `${magnifierBg.width}px`,
@@ -351,13 +393,15 @@ export default function ImageMagnifier({
                   : "border-gray-200 hover:border-gray-300"
               }`}
             >
-              <Image
+              <ImageWithFallback
                 src={getProductDetailThumbnail(getFullResolutionUrl(image))}
                 alt={`${alt} ${index + 1}`}
                 fill
-                className="object-contain p-1"
+                className="z-10 bg-white object-contain p-1"
                 loading="lazy"
-                referrerPolicy={getImageReferrerPolicy(getProductDetailThumbnail(getFullResolutionUrl(image)))}
+                referrerPolicy={getImageReferrerPolicy(
+                  getProductDetailThumbnail(getFullResolutionUrl(image)),
+                )}
               />
             </button>
           ))}
@@ -428,13 +472,15 @@ export default function ImageMagnifier({
                 maxHeight: "90vh",
               }}
             >
-              { }
+              {}
               <img
-                src={getFullResolutionUrl(currentImage)}
+                src={getFullResolutionUrl(displayedImage)}
                 alt={alt}
                 className="max-w-[90vw] max-h-[90vh] object-contain select-none"
                 draggable={false}
-                referrerPolicy={getImageReferrerPolicy(getFullResolutionUrl(currentImage))}
+                referrerPolicy={getImageReferrerPolicy(
+                  getFullResolutionUrl(displayedImage),
+                )}
               />
             </div>
           </div>
@@ -445,24 +491,28 @@ export default function ImageMagnifier({
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  onIndexChange(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
+                  onIndexChange(
+                    currentIndex === 0 ? images.length - 1 : currentIndex - 1,
+                  );
                   setFullscreenZoom(1);
                   setFullscreenOffset({ x: 0, y: 0 });
                 }}
                 className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors z-10 cursor-pointer"
-                aria-label={t('previousImage')}
+                aria-label={t("previousImage")}
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  onIndexChange(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
+                  onIndexChange(
+                    currentIndex === images.length - 1 ? 0 : currentIndex + 1,
+                  );
                   setFullscreenZoom(1);
                   setFullscreenOffset({ x: 0, y: 0 });
                 }}
                 className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors z-10 cursor-pointer"
-                aria-label={t('nextImage')}
+                aria-label={t("nextImage")}
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
@@ -487,12 +537,14 @@ export default function ImageMagnifier({
                       : "border-transparent opacity-60 hover:opacity-100"
                   }`}
                 >
-                  { }
-                  <img
+                  <ImageWithFallback
                     src={getProductDetailThumbnail(getFullResolutionUrl(image))}
                     alt={`${alt} ${index + 1}`}
-                    className="w-full h-full object-cover"
-                    referrerPolicy={getImageReferrerPolicy(getProductDetailThumbnail(getFullResolutionUrl(image)))}
+                    fill
+                    className="object-cover"
+                    referrerPolicy={getImageReferrerPolicy(
+                      getProductDetailThumbnail(getFullResolutionUrl(image)),
+                    )}
                   />
                 </button>
               ))}

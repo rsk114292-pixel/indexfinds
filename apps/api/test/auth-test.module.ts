@@ -26,7 +26,6 @@ import { EmailService } from '../src/email/email.service';
 // Strategies
 import { JwtStrategy } from '../src/auth/strategies/jwt.strategy';
 import { GoogleStrategy } from '../src/auth/strategies/google.strategy';
-import { DiscordStrategy } from '../src/auth/strategies/discord.strategy';
 
 // Guards
 import { JwtAuthGuard } from '../src/auth/guards/jwt-auth.guard';
@@ -96,7 +95,6 @@ import { CacheModule } from '@nestjs/cache-manager';
     AccountLockService,
     JwtStrategy,
     GoogleStrategy,
-    DiscordStrategy,
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,

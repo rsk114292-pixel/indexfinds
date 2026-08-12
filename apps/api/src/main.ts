@@ -204,9 +204,9 @@ async function bootstrap() {
   // Swagger/OpenAPI 文档（仅开发/测试环境）
   if (process.env.NODE_ENV !== 'production') {
     const config = new DocumentBuilder()
-      .setTitle(`${process.env.SITE_NAME || 'LoloBuySpreadsheets'} API`)
+      .setTitle(`${process.env.SITE_NAME || 'IndexFinds'} API`)
       .setDescription(
-        `${process.env.SITE_NAME || 'LoloBuySpreadsheets'} 商品搜索与发现平台 API 文档`,
+        `${process.env.SITE_NAME || 'IndexFinds'} 商品搜索与发现平台 API 文档`,
       )
       .setVersion('1.0')
       .addBearerAuth()

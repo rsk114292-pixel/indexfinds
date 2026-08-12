@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { getTranslations } from 'next-intl/server';
 import AccountLayoutClient from './AccountLayoutClient';
+import AntdProvider from '@/components/AntdProvider';
 
 type AccountLayoutProps = {
   children: React.ReactNode;
@@ -45,5 +46,9 @@ export async function generateMetadata({
 }
 
 export default function AccountLayout({ children }: AccountLayoutProps) {
-  return <AccountLayoutClient>{children}</AccountLayoutClient>;
+  return (
+    <AntdProvider>
+      <AccountLayoutClient>{children}</AccountLayoutClient>
+    </AntdProvider>
+  );
 }

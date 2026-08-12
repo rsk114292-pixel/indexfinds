@@ -36,7 +36,7 @@ export function resolveSafeReturnTo(rawFrom?: string | null): string | null {
   }
 
   try {
-    const url = new URL(rawFrom, 'https://lolobuyspreadsheets.com');
+    const url = new URL(rawFrom, 'https://indexfinds.com');
     if (url.searchParams.has('from')) {
       return null;
     }

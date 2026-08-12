@@ -8,7 +8,6 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { GoogleStrategy } from './strategies/google.strategy';
-import { DiscordStrategy } from './strategies/discord.strategy';
 import { TokenService } from './token.service';
 import { LoginLogService } from './login-log.service';
 import { AccountLockService } from './account-lock.service';
@@ -62,7 +61,6 @@ import { REDIS_CONFIG } from './auth.constants';
     JwtStrategy,
     // OAuth 策略仅在配置了 clientID 时加载
     ...(process.env.GOOGLE_CLIENT_ID ? [GoogleStrategy] : []),
-    ...(process.env.DISCORD_CLIENT_ID ? [DiscordStrategy] : []),
     TokenService,
     LoginLogService,
     AccountLockService,

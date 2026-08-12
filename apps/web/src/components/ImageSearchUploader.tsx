@@ -3,7 +3,7 @@ import { API_BASE_URL } from '@/lib/constants';
 
 import { useState, useCallback, useEffect } from 'react';
 import { usePathname, useRouter } from '@/i18n/navigation';
-import { Modal, Upload, App } from 'antd';
+import { Modal, Upload } from 'antd';
 import { Camera, X, Inbox, Clipboard, Scissors } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Spinner } from '@/components/ui/Spinner';
@@ -18,6 +18,7 @@ import { getImageReferrerPolicy, getImageVariant } from '@/lib/image-utils';
 import { useCurrencyStore } from '@/stores/useCurrencyStore';
 import { buildReturnTo, withReturnTo } from '@/lib/return-to';
 import { saveReturnScroll } from '@/lib/return-scroll';
+import { notice } from '@/lib/notice';
 
 
 interface VisualSearchResult {
@@ -37,23 +38,30 @@ interface VisualSearchResult {
 
 interface ImageSearchUploaderProps {
   /** 按钮样式变体 */
-  variant?: 'icon' | 'button' | 'text' | 'inline';
+  variant?: 'icon' | 'button' | 'text' | 'inline' | 'tab';
   /** 自定义类名 */
   className?: string;
+  /** Open immediately when mounted by the lightweight launcher. */
+  initiallyOpen?: boolean;
+  /** Render only the dialog body; the launcher owns the trigger. */
+  hideTrigger?: boolean;
+  onClose?: () => void;
 }
 
 export default function ImageSearchUploader({
   variant = 'icon',
   className = '',
+  initiallyOpen = false,
+  hideTrigger = false,
+  onClose,
 }: ImageSearchUploaderProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { message } = App.useApp();
   const t = useTranslations('visualSearch');
   const { currency: displayCurrency, rates } = useCurrencyStore();
   const returnTo = buildReturnTo(pathname, searchParams);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(initiallyOpen);
 
   /** 打开 Modal 前先 blur 当前焦点元素，避免 SearchBox 下拉框浮在 Modal 之上 */
   const openModal = useCallback(() => {
@@ -74,13 +82,13 @@ export default function ImageSearchUploader({
   const processImage = useCallback(async (file: File) => {
     // 验证文件类型
     if (!file.type.startsWith('image/')) {
-      message.error(t('invalidFileType'));
+      notice.error(t('invalidFileType'));
       return;
     }
 
     // 验证文件大小
     if (file.size > 5 * 1024 * 1024) {
-      message.error(t('fileTooLarge'));
+      notice.error(t('fileTooLarge'));
       return;
     }
 
@@ -115,7 +123,7 @@ export default function ImageSearchUploader({
       setResults(data.results || []);
 
       if (data.results?.length === 0) {
-        message.info(t('noSimilarProducts'));
+        notice.info(t('noSimilarProducts'));
       }
     } catch (err: unknown) {
       const errMessage = err instanceof Error ? err.message : '';
@@ -123,11 +131,11 @@ export default function ImageSearchUploader({
         ? t('networkError')
         : (errMessage || t('searchError'));
       setError(errorMsg);
-      message.error(errorMsg);
+      notice.error(errorMsg);
     } finally {
       setLoading(false);
     }
-  }, [message, t]);
+  }, [t]);
 
   /**
    * 用 base64 图片搜索（裁剪后使用）
@@ -163,7 +171,7 @@ export default function ImageSearchUploader({
       setResults(data.results || []);
 
       if (data.results?.length === 0) {
-        message.info(t('noSimilarProducts'));
+        notice.info(t('noSimilarProducts'));
       }
     } catch (err: unknown) {
       const errMessage = err instanceof Error ? err.message : '';
@@ -171,11 +179,11 @@ export default function ImageSearchUploader({
         ? t('networkError')
         : (errMessage || t('searchError'));
       setError(errorMsg);
-      message.error(errorMsg);
+      notice.error(errorMsg);
     } finally {
       setLoading(false);
     }
-  }, [message, t]);
+  }, [t]);
 
   /**
    * 裁剪完成后重新搜索
@@ -259,6 +267,7 @@ export default function ImageSearchUploader({
   const handleClose = () => {
     setIsModalOpen(false);
     resetSearch();
+    onClose?.();
   };
 
   /**
@@ -294,6 +303,17 @@ export default function ImageSearchUploader({
    */
   const renderTrigger = () => {
     switch (variant) {
+      case 'tab':
+        return (
+          <button
+            type="button"
+            onClick={openModal}
+            className={`inline-flex h-9 items-center gap-2 rounded-full px-4 text-xs font-semibold text-white/65 transition-colors hover:bg-white/10 hover:text-white ${className}`}
+          >
+            <Camera className="h-3.5 w-3.5" />
+            {t('imageSearch')}
+          </button>
+        );
       case 'button':
         return (
           <Button
@@ -350,7 +370,7 @@ export default function ImageSearchUploader({
 
   return (
     <>
-      {renderTrigger()}
+      {!hideTrigger && renderTrigger()}
 
       <Modal
         title={

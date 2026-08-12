@@ -3,7 +3,7 @@
  * 用于 Google 搜索结果显示面包屑导航
  *
  * 效果示例：
- * Findsindex > Sneakers > Nike > Air Max 90
+ * IndexFinds > Sneakers > Nike > Air Max 90
  */
 
 import { getSiteUrl } from '@/lib/site-config';

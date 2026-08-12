@@ -65,7 +65,17 @@
     "settings": "Ajustes",
     "language": "Idioma",
     "noPlatformSelected": "Seleccionar agente",
-    "menu": "Menú"
+    "menu": "Menú",
+    "agents": "Agentes",
+    "chooseAgent": "Elige tu agente de compra",
+    "agentsAvailable": "{count} agentes compatibles",
+    "platformSearch": "Buscar agentes...",
+    "recentAgents": "Recientes",
+    "allAgents": "Todos los agentes",
+    "searchResults": "Resultados",
+    "noAgentResults": "No hay agentes coincidentes",
+    "viewAgentGuides": "Ver todas las guías",
+    "buyThrough": "Comprar mediante"
   },
   "drawer": {
     "menu": "Menú",
@@ -78,7 +88,6 @@
     "helpCenter": "Centro de ayuda",
     "blog": "Blog",
     "referralProgram": "Programa de referidos",
-    "discord": "Discord",
     "telegram": "Telegram",
     "language": "Idioma",
     "currency": "Moneda",
@@ -121,6 +130,8 @@
   },
   "search": {
     "placeholder": "Buscar productos, marcas o categorías...",
+    "quickFilters": "Filtros rápidos",
+    "filterBy": "Filtrar por {value}",
     "searching": "Buscando...",
     "noResults": "No se encontraron resultados",
     "hotSearches": "Búsquedas populares",
@@ -147,6 +158,13 @@
     "photoSearch": "Buscar por foto",
     "photoSearchDesc": "Sube una foto para encontrar productos similares",
     "recentSearches": "Recientes",
+    "modeKeyword": "Palabra clave",
+    "modeLink": "Enlace de producto",
+    "modeImage": "Imagen",
+    "linkPlaceholder": "Pega un enlace de Weidian, Taobao, 1688 o Yupoo",
+    "invalidProductLink": "Introduce un enlace con un ID de producto reconocible.",
+    "findFromLink": "Buscar producto",
+    "linkSearchDesc": "Pega un enlace compatible. IndexFinds extrae el ID y busca en el catálogo.",
     "requestProduct": {
       "title": "¿No encontraste el producto adecuado?",
       "description": "Envía una solicitud de búsqueda y nuestro equipo podrá revisarla para una futura publicación.",
@@ -286,6 +304,20 @@
     "previousImage": "Imagen anterior",
     "nextImage": "Siguiente imagen",
     "hot": "Popular",
+    "agentReady": "{count} agentes",
+    "qcPhotosCount": "{count} fotos QC",
+    "viewCount": "{count} vistas",
+    "viewDetails": "Ver detalles",
+    "buyWithAgent": "Comprar con agente",
+    "imageUnavailable": "Imagen no disponible",
+    "fromPrice": "Desde {price}",
+    "originalSource": "Fuente original: {source}",
+    "viewsValue": "{count} visualizaciones",
+    "salesValue": "{count} ventas",
+    "updatedValue": "Actualizado el {date}",
+    "sourceMissing": "Enlace de origen no disponible",
+    "sourceStatusUnverified": "Disponibilidad de la fuente aún no verificada",
+    "reportProduct": "Informar de un problema del producto",
     "shareRewards": {
       "eyebrow": "Compartir y ganar",
       "title": "Comparte este producto y gana +1 punto",
@@ -395,15 +427,22 @@
   },
   "home": {
     "hero": {
-      "discover": "LoloBuy ",
-      "products": "Spreadsheet Finds",
+      "discover": "Descubre los mejores ",
+      "headlinePrimary": "Encuentra productos chinos.",
+      "headlineSecondary": "Compara agentes de compra.",
+      "products": "productos",
       "fromChina": " de China",
-      "descLine1": "Explora finds de Weidian, Taobao y 1688 en una LoloBuy spreadsheet con busqueda.",
-      "descLine2": "Revisa fotos QC, detalles SKU, precios y enlaces de producto antes de comprar.",
+      "descLine1": "Explora productos seleccionados de Weidian, Taobao y 1688 en un solo lugar.",
+      "descLine2": "Compara precios, fotos QC y detalles SKU antes de elegir cómo comprar.",
       "featureAI": "IA integrada",
       "featureVisualSearch": "Búsqueda visual",
-      "featureProducts": "{count}+ Productos",
-      "featureBrands": "{count}+ Marcas"
+      "featureProducts": "{count} Productos",
+      "featureBrands": "{count} Marcas",
+      "eyebrow": "Descubrimiento independiente de productos para compradores globales",
+      "agentPrompt": "Elige dónde comprar",
+      "browseProducts": "Ver productos",
+      "compareAgents": "Comparar agentes",
+      "imageSearch": "Buscar por imagen"
     },
     "howItWorks": {
       "title": "Cómo funciona",
@@ -416,6 +455,13 @@
       "chooseDesc": "Elige la mejor opción y obtén el enlace de compra.",
       "receiveTitle": "Recibir",
       "receiveDesc": "Ordena a través de tu agente y recíbelo en cualquier parte del mundo."
+    },
+    "trust": {
+      "title": "Tú mantienes el control de la compra",
+      "body": "IndexFinds te ayuda a descubrir y comparar. No vendemos productos ni procesamos pagos.",
+      "independent": "Índice de productos independiente",
+      "redirects": "Redirecciones claras a tu agente",
+      "agentChoice": "Tu agente, tu decisión"
     },
     "featuredBrands": {
       "title": "Marcas destacadas"
@@ -458,6 +504,75 @@
       "progressCaption": "Los nuevos miembros pueden desbloquear el retiro rápido con unas pocas acciones simples."
     }
   },
+  "agents": {
+    "eyebrow": "Directorio de agentes de compra",
+    "title": "Elige el agente de compra que más te convenga",
+    "subtitle": "Explora {count} agentes compatibles y guarda tu plataforma preferida.",
+    "searchPlaceholder": "Buscar agentes...",
+    "supportedTitle": "Agentes de compra compatibles",
+    "supportedDesc": "Cada guía explica cómo pasar del descubrimiento al sitio del agente.",
+    "officialLogos": "Identidad visual oficial",
+    "cardDescription": "Usa {name} como tu ruta de compra preferida.",
+    "openGuide": "Abrir guía",
+    "noResults": "No hay agentes coincidentes",
+    "allGuides": "Todas las guías",
+    "guideEyebrow": "Guía de agente IndexFinds",
+    "guideTitle": "Cómo usar {name}",
+    "guideSubtitle": "Descubre productos en IndexFinds y continúa mediante {name} para comprar.",
+    "selectedAgent": "Agente seleccionado",
+    "useAsAgent": "Usar {name}",
+    "officialWebsite": "Sitio oficial",
+    "howToTitle": "Compra con {name} en cuatro pasos",
+    "howToSubtitle": "IndexFinds gestiona el descubrimiento; tu agente, el pedido y la entrega.",
+    "stepSearchTitle": "Encuentra un producto",
+    "stepSearchBody": "Busca por palabra, marca, categoría o imagen.",
+    "stepReviewTitle": "Revisa los detalles",
+    "stepReviewBody": "Comprueba precios, opciones, vendedor y material QC disponible.",
+    "stepChooseTitle": "Elige {name}",
+    "stepChooseBody": "Configura la plataforma como tu agente preferido.",
+    "stepContinueTitle": "Continúa de forma segura",
+    "stepContinueBody": "Completa pedido, pago y envío en el sitio del agente.",
+    "disclosureTitle": "Servicio independiente de descubrimiento",
+    "disclosureBody": "IndexFinds no es el agente ni procesa pagos. Confirma las condiciones en el sitio oficial.",
+    "browseProducts": "Ver productos",
+    "compareAgents": "Comparar agentes",
+    "matchEyebrow": "Asistente de rutas",
+    "matchTitle": "Reduce tus opciones de agente de compras",
+    "matchSubtitle": "Elige destino, peso y prioridad. Mostraremos opciones según los datos disponibles y una estimación general del envío.",
+    "matchPriority": "¿Qué importa más?",
+    "matchBudget": "Envío estimado",
+    "matchStorage": "Almacenamiento gratis",
+    "matchQc": "Control de calidad",
+    "matchPayment": "Formas de pago",
+    "optionsToReview": "Opciones para revisar",
+    "configuredFields": "{count} datos configurados",
+    "reviewMatchesNotice": "Una lista orientativa, no una clasificación ni recomendación oficial.",
+    "compareEyebrow": "Comparación de agentes",
+    "compareTitle": "Compara agentes antes de elegir",
+    "compareSubtitle": "Selecciona hasta tres agentes y consulta enlaces oficiales, guías y tu preferencia en un solo lugar.",
+    "chooseToCompare": "Elegir agentes para comparar",
+    "selectedCount": "{count} de {max} seleccionados",
+    "clearComparison": "Limpiar",
+    "comparisonField": "Comparar",
+    "preferredAgent": "Agente preferido",
+    "preferred": "Preferido",
+    "setPreferred": "Marcar como preferido",
+    "visitOfficial": "Visitar sitio",
+    "indexFindsGuide": "Guía de IndexFinds",
+    "serviceFees": "Tarifas de servicio",
+    "shippingCoverage": "Cobertura de envío",
+    "warehouseQc": "Almacén y QC",
+    "paymentMethods": "Métodos de pago",
+    "returnPolicy": "Política de devoluciones",
+    "dataUpdated": "Datos actualizados",
+    "freeStorageDaysValue": "{count} días de almacenamiento gratis",
+    "notConfigured": "Sin configurar",
+    "confirmOfficial": "Confirmar en el sitio oficial",
+    "variesByRoute": "Varía según ruta y destino",
+    "noAgentSelected": "Selecciona al menos un agente para comparar.",
+    "comparisonNoticeTitle": "Comprueba las condiciones actuales",
+    "comparisonNoticeBody": "Las tarifas, destinos, almacenamiento y servicios QC pueden cambiar. IndexFinds no clasifica ni garantiza agentes; consulta sus sitios oficiales."
+  },
   "brands": {
     "title": "Marcas",
     "discoverCount": "Descubre {count} marcas de nuestra colección",
@@ -474,7 +589,10 @@
     "popular": "Popular",
     "productCount": "{count} productos",
     "noProducts": "No se encontraron productos para esta marca",
-    "noProductsDesc": "Intenta eliminar algunos filtros o vuelve más tarde"
+    "noProductsDesc": "Intenta eliminar algunos filtros o vuelve más tarde",
+    "collectionGrowingTitle": "Nuestro catálogo de marcas está creciendo",
+    "collectionGrowingDesc": "Añadimos continuamente marcas y productos verificados. Explora los últimos hallazgos.",
+    "exploreProducts": "Explorar productos"
   },
   "categories": {
     "title": "Explorar categorías",
@@ -818,7 +936,37 @@
     "noPlatforms": "No hay plataformas disponibles",
     "rememberChoice": "Recordar mi elección para futuras compras",
     "continueTo": "Continuar a {platform}",
-    "platformFallback": "Plataforma"
+    "platformFallback": "Plataforma",
+    "purchaseOptions": "Opciones de compra",
+    "productPrice": "Precio antes de las tarifas del agente",
+    "compareAgents": "Comparar agentes",
+    "preferredAgent": "Agente de compra preferido",
+    "chooseAgent": "Elegir agente",
+    "changeAgent": "Cambiar",
+    "openingAgent": "Abriendo agente…",
+    "chooseAgentToBuy": "Elegir agente para comprar",
+    "finalPriceNotice": "Las tarifas, envíos e impuestos se confirman en el sitio web del agente."
+  },
+  "shippingEstimator": {
+    "title": "Estimar el envío internacional",
+    "subtitle": "Indica el destino y el peso estimado del paquete.",
+    "estimated": "Estimación",
+    "destination": "Destino",
+    "weight": "Peso del paquete",
+    "agent": "Agente de compra",
+    "configuredRate": "Tarifas configuradas del agente",
+    "generalRate": "Estimación general de la ruta",
+    "notice": "Solo es una estimación orientativa. No incluye peso volumétrico, aranceles, artículos restringidos ni cargos finales.",
+    "compareAgents": "Comparar condiciones",
+    "destinations": {
+      "US": "Estados Unidos",
+      "GB": "Reino Unido",
+      "DE": "Alemania",
+      "FR": "Francia",
+      "CA": "Canadá",
+      "AU": "Australia",
+      "OTHER": "Otro destino"
+    }
   },
   "visualSearch": {
     "title": "Búsqueda visual",
@@ -861,10 +1009,10 @@
     "imageSearch": "Búsqueda imagen"
   },
   "metadata": {
-    "homeTitle": "{siteName} | LoloBuy Spreadsheet Finds y fotos QC",
-    "homeDescription": "{siteName} te ayuda a explorar LoloBuy spreadsheet finds para Weidian, Taobao y 1688 con fotos QC, detalles SKU y rutas utiles para busquedas lolobuyspreadsheet.",
-    "homeOgTitle": "{siteName} | LoloBuy Spreadsheet Finds y fotos QC",
-    "homeOgDescription": "{siteName} te ayuda a explorar LoloBuy spreadsheet finds para Weidian, Taobao y 1688 con fotos QC, detalles SKU y rutas utiles para busquedas lolobuyspreadsheet.",
+    "homeTitle": "{siteName} | Descubre los mejores productos de China",
+    "homeDescription": "Explora productos seleccionados de China, compara precios y encuentra vendedores de confianza con {siteName}.",
+    "homeOgTitle": "{siteName} | Descubre los mejores productos de China",
+    "homeOgDescription": "Explora productos seleccionados de China, compara precios y encuentra vendedores de confianza con {siteName}.",
     "productNotFound": "Producto no encontrado",
     "productFallbackDescription": "Compra {title} de vendedores chinos confiables en {siteName}. Mejores precios, fotos QC y pedidos daigou fáciles.",
     "searchTitle": "Búsqueda: {query}",
@@ -901,8 +1049,8 @@
     "returnsDescription": "Entiende el proceso de devoluciones y reembolsos al comprar a través de agentes de compra. Fotos QC y cómo manejar problemas.",
     "productsTitle": "Todos los productos",
     "productsDescription": "Explora todos los productos en {siteName}. Descubre finds de Weidian, Taobao y 1688 con fotos QC, detalles SKU y comparacion de precios.",
-    "agentsTitle": "Todas las guias spreadsheet de agentes",
-    "agentsDescription": "Explora en {siteName} todas las guias spreadsheet de agentes de compra con plataformas destacadas, directorio completo y rutas populares."
+    "agentsTitle": "Todas las guías de agentes de compra",
+    "agentsDescription": "Explora en {siteName} las guías de agentes, las plataformas destacadas, el directorio completo y las rutas de compra populares."
   },
   "products": {
     "allProducts": "Todos los productos",
@@ -917,6 +1065,9 @@
     "accept": "Aceptar",
     "reject": "Rechazar"
   },
+  "whatsappHelp": {
+    "label": "¿Necesitas ayuda para comprar en China?"
+  },
   "share": {
     "title": "Compartir",
     "whatsapp": "WhatsApp",
@@ -925,12 +1076,10 @@
     "reddit": "Reddit",
     "email": "Correo",
     "pinterest": "Pinterest",
-    "discord": "Discord",
     "tiktok": "TikTok",
     "copyLink": "Copiar enlace",
     "copied": "¡Copiado!",
     "copyFailed": "Error al copiar",
-    "copiedForDiscord": "¡Enlace copiado! Pega en Discord",
     "copiedForTiktok": "¡Enlace copiado! Pega en TikTok",
     "claimed": "Obtenido",
     "showQrCode": "Código QR",
@@ -962,7 +1111,7 @@
       "step3": {
         "label": "Elegir",
         "title": "Elige tu agente",
-        "description": "Haz clic en el botón de compra y elige entre múltiples agentes de compra como Litbuy, Kakobuy, MuleBuy y más."
+        "description": "Haz clic en el botón de compra y elige una de las plataformas compatibles que aparecen en el directorio actual."
       },
       "step4": {
         "label": "Recibir",
@@ -986,7 +1135,7 @@
       },
       "agents": {
         "title": "Múltiples agentes",
-        "description": "Elige entre Litbuy, Kakobuy, MuleBuy, USFANS y muchos más agentes."
+        "description": "Elige entre las plataformas que aparecen en el directorio de agentes actual."
       }
     },
     "cta": {
@@ -996,9 +1145,9 @@
     }
   },
   "agentsPage": {
-    "listName": "Todas las guias spreadsheet de agentes",
+    "listName": "Todas las guías de agentes de compra",
     "eyebrow": "Directorio de agentes",
-    "heading": "Todas las guias spreadsheet de agentes",
+    "heading": "Todas las guías de agentes de compra",
     "body": "Usa este directorio para revisar primero las guias destacadas y luego recorrer la lista completa de plataformas cuando quieras mas opciones.",
     "featuredTitle": "Guias destacadas",
     "featuredDescription": "Estas son las principales guias de plataformas destacadas en el sitio.",
@@ -1021,7 +1170,7 @@
     "featuredBadge": "Top",
     "growthBadge": "Mas",
     "longTailBadge": "Extra",
-    "cardSuffix": "spreadsheet, yupoo, links"
+    "cardSuffix": "guía, sitio oficial, ruta de compra"
   },
   "helpPage": {
     "hero": {
@@ -1042,7 +1191,7 @@
         },
         "q3": {
           "question": "¿Qué es un agente de compras?",
-          "answer": "Un agente de compras (daigou) es un servicio que compra productos de mercados chinos en tu nombre y los envía internacionalmente. Los agentes populares incluyen Litbuy, Kakobuy, MuleBuy y USFANS."
+          "answer": "Un agente de compras (daigou) compra productos de mercados chinos en tu nombre y los envía internacionalmente. Las opciones actuales aparecen en el directorio de agentes."
         },
         "q4": {
           "question": "¿{siteName} es gratuito?",
@@ -1072,7 +1221,7 @@
         "title": "Agentes y pedidos",
         "q1": {
           "question": "¿Qué agentes admiten?",
-          "answer": "Admitimos múltiples agentes, incluidos Litbuy, Kakobuy, MuleBuy, USFANS, iTaoBuy y muchos más. Puedes elegir tu agente preferido al hacer clic en el botón de compra."
+          "answer": "Admitimos las plataformas que aparecen en el directorio de agentes actual. Puedes compararlas y elegir tu plataforma preferida antes de comprar."
         },
         "q2": {
           "question": "¿Cómo hago un pedido?",
@@ -1103,7 +1252,7 @@
         },
         "q4": {
           "question": "¿Cómo puedo contactar con soporte?",
-          "answer": "Puedes contactarnos por correo electrónico a {contactEmail} o unirte a nuestras comunidades de Discord y Telegram."
+          "answer": "Puedes contactarnos por correo electrónico a {contactEmail} o unirte a nuestra comunidad de Telegram."
         }
       }
     },
@@ -1113,9 +1262,9 @@
       "email": {
         "label": "Envíanos un correo"
       },
-      "discord": {
-        "label": "Discord",
-        "description": "Únete a nuestra comunidad"
+      "whatsapp": {
+        "label": "WhatsApp",
+        "description": "Obtén ayuda con tus compras"
       },
       "telegram": {
         "label": "Telegram",
@@ -1136,7 +1285,7 @@
       },
       "independent-platform": {
         "title": "Descargo de responsabilidad de plataforma independiente",
-        "content": "{siteName} opera de forma independiente y no está afiliado oficialmente a ninguna plataforma de agentes de compra (incluyendo, entre otros, Litbuy, Kakobuy, MuleBuy, USFANS, iTaoBuy) ni a ningún mercado chino. Los enlaces a plataformas de agentes de terceros se proporcionan solo por conveniencia."
+        "content": "{siteName} opera de forma independiente y no está afiliado oficialmente a las plataformas del directorio ni a ningún mercado chino. Los enlaces a plataformas de terceros se proporcionan solo por conveniencia."
       },
       "user-accounts": {
         "title": "Cuentas de usuario",
@@ -1390,7 +1539,7 @@
       "community": {
         "title": "Comunidad",
         "content": "Únete a nuestra comunidad para conectar con otros compradores, compartir hallazgos y obtener ayuda de compradores experimentados:",
-        "discord": "Chatea con la comunidad y obtén ayuda en tiempo real",
+        "whatsapp": "Obtén ayuda para comprar en China",
         "telegram": "Actualizaciones, ofertas y discusiones comunitarias"
       },
       "important-note": {

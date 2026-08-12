@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useMemo, useCallback, useRef } from 'react';
-import { useTranslations } from 'next-intl';
-import { Star } from 'lucide-react';
-import useSWR from 'swr';
-import { Link } from '@/i18n/navigation';
-import { fetcher } from '@/lib/api';
-import { SkeletonBlock } from '@/components/mobile/ui/MobileSkeleton';
-import BrandLogo from '@/components/brands/BrandLogo';
-import type { Brand, ApiListResponse } from '@/types';
+import { useMemo, useCallback, useRef } from "react";
+import { useTranslations } from "next-intl";
+import { Star } from "lucide-react";
+import useSWR from "swr";
+import { Link } from "@/i18n/navigation";
+import { fetcher } from "@/lib/api";
+import { SkeletonBlock } from "@/components/mobile/ui/MobileSkeleton";
+import BrandLogo from "@/components/brands/BrandLogo";
+import type { Brand, ApiListResponse } from "@/types";
 
-const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 /**
  * 移动端品牌列表页
@@ -28,11 +28,11 @@ const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
  * └───────────────────────┘
  */
 export default function MobileBrandList() {
-  const t = useTranslations('brands');
+  const t = useTranslations("brands");
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const { data: brandsData, isLoading } = useSWR<ApiListResponse<Brand>>(
-    '/brands?status=active&hasProducts=true&limit=0',
+    "/brands?status=active&hasProducts=true&limit=0",
     fetcher,
     { revalidateOnFocus: false, dedupingInterval: 60000 },
   );
@@ -41,11 +41,23 @@ export default function MobileBrandList() {
 
   // 精选品牌（单独请求，确保拿全）
   const { data: featuredData } = useSWR<ApiListResponse<Brand>>(
-    '/brands?status=active&isFeatured=true&limit=50',
+    "/brands?status=active&isFeatured=true&limit=50",
     fetcher,
     { revalidateOnFocus: false, dedupingInterval: 60000 },
   );
-  const featuredBrands = featuredData?.data || [];
+  const featuredBrands = useMemo(
+    () => featuredData?.data || [],
+    [featuredData?.data],
+  );
+  const spotlightBrands = useMemo(
+    () =>
+      featuredBrands.length > 0
+        ? featuredBrands
+        : [...brands]
+            .sort((a, b) => (b.productCount ?? 0) - (a.productCount ?? 0))
+            .slice(0, 8),
+    [brands, featuredBrands],
+  );
 
   // 按字母分组
   const brandsByLetter = useMemo(() => {
@@ -53,14 +65,14 @@ export default function MobileBrandList() {
     ALPHABET.forEach((letter) => {
       grouped[letter] = [];
     });
-    grouped['#'] = [];
+    grouped["#"] = [];
 
     brands.forEach((brand) => {
       const firstChar = brand.name.charAt(0).toUpperCase();
       if (ALPHABET.includes(firstChar)) {
         grouped[firstChar].push(brand);
       } else {
-        grouped['#'].push(brand);
+        grouped["#"].push(brand);
       }
     });
 
@@ -74,7 +86,7 @@ export default function MobileBrandList() {
   // 有品牌的字母
   const activeLetters = useMemo(() => {
     const letters: string[] = [];
-    [...ALPHABET, '#'].forEach((letter) => {
+    [...ALPHABET, "#"].forEach((letter) => {
       if (brandsByLetter[letter]?.length > 0) {
         letters.push(letter);
       }
@@ -86,60 +98,80 @@ export default function MobileBrandList() {
   const scrollToLetter = useCallback((letter: string) => {
     const el = document.getElementById(`mobile-letter-${letter}`);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, []);
 
-  if (isLoading) return <MobileBrandListSkeleton />;
-  if (brands.length === 0) return null;
+  if (isLoading) return <MobileBrandListSkeleton title={t("title")} />;
+  if (brands.length === 0) {
+    return (
+      <div className="min-h-dvh bg-background px-4 pb-20 pt-16">
+        <h1 className="text-xl font-bold text-foreground">{t("title")}</h1>
+        <p className="mt-2 text-sm text-muted">{t("noBrands")}</p>
+      </div>
+    );
+  }
 
   return (
-    <div ref={scrollContainerRef} className="min-h-dvh bg-background relative">
+    <div
+      ref={scrollContainerRef}
+      className="min-h-dvh bg-background relative pt-11"
+    >
+      <div className="px-4 pb-1 pt-4">
+        <h1 className="text-xl font-bold text-foreground">{t("title")}</h1>
+        <p className="mt-1 text-xs text-muted">
+          {t("brandCount", { count: brands.length })}
+        </p>
+      </div>
       {/* 热门品牌横滑 */}
-          {featuredBrands.length > 0 && (
-            <section className="py-4">
-              <div className="flex items-center gap-1.5 px-4 mb-3">
-                <Star className="w-4 h-4 text-primary" />
-                <h2 className="text-sm font-semibold text-foreground">
-                  {t('featuredBrands')}
-                </h2>
+      {spotlightBrands.length > 0 && (
+        <section className="py-4">
+          <div className="flex items-center gap-1.5 px-4 mb-3">
+            <Star className="w-4 h-4 text-primary" />
+            <h2 className="text-sm font-semibold text-foreground">
+              {t("featuredBrands")}
+            </h2>
+          </div>
+          <div className="flex gap-3 overflow-x-auto px-4 pb-2 scrollbar-hide">
+            {spotlightBrands.map((brand) => (
+              <MobileFeaturedBrandItem key={brand.id} brand={brand} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* A-Z 品牌列表 */}
+      <section className="px-4 pb-20">
+        {[...ALPHABET, "#"].map((letter) => {
+          const letterBrands = brandsByLetter[letter];
+          if (letterBrands.length === 0) return null;
+
+          return (
+            <div
+              key={letter}
+              id={`mobile-letter-${letter}`}
+              className="scroll-mt-24"
+            >
+              {/* 字母分隔 */}
+              <div className="flex items-center gap-2 py-2 sticky top-[6.5rem] z-[5] bg-background">
+                <span className="text-sm font-bold text-primary w-6 text-center">
+                  {letter}
+                </span>
+                <div className="flex-1 h-px bg-border" />
               </div>
-              <div className="flex gap-3 overflow-x-auto px-4 pb-2 scrollbar-hide">
-                {featuredBrands.map((brand) => (
-                  <MobileFeaturedBrandItem key={brand.id} brand={brand} />
+
+              {/* 品牌列表 */}
+              <div className="space-y-1.5 pl-1 rtl:pr-1 rtl:pl-0">
+                {letterBrands.map((brand) => (
+                  <MobileBrandItem key={brand.id} brand={brand} />
                 ))}
               </div>
-            </section>
-          )}
+            </div>
+          );
+        })}
+      </section>
 
-          {/* A-Z 品牌列表 */}
-          <section className="px-4 pb-20">
-            {[...ALPHABET, '#'].map((letter) => {
-              const letterBrands = brandsByLetter[letter];
-              if (letterBrands.length === 0) return null;
-
-              return (
-                <div key={letter} id={`mobile-letter-${letter}`} className="scroll-mt-24">
-                  {/* 字母分隔 */}
-                  <div className="flex items-center gap-2 py-2 sticky top-[6.5rem] z-[5] bg-background">
-                    <span className="text-sm font-bold text-primary w-6 text-center">
-                      {letter}
-                    </span>
-                    <div className="flex-1 h-px bg-border" />
-                  </div>
-
-                  {/* 品牌列表 */}
-                  <div className="space-y-1.5 pl-1 rtl:pr-1 rtl:pl-0">
-                    {letterBrands.map((brand) => (
-                      <MobileBrandItem key={brand.id} brand={brand} />
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </section>
-
-          {/* 右侧字母快捷栏 */}
+      {/* 右侧字母快捷栏 */}
       {/* 右侧字母快捷栏 */}
       <AlphabetSidebar
         activeLetters={activeLetters}
@@ -152,7 +184,7 @@ export default function MobileBrandList() {
 /* ─── 品牌项 ─── */
 
 function MobileBrandItem({ brand }: { brand: Brand }) {
-  const t = useTranslations('brands');
+  const t = useTranslations("brands");
   return (
     <Link
       href={`/brands/${brand.slug}`}
@@ -165,7 +197,7 @@ function MobileBrandItem({ brand }: { brand: Brand }) {
         </h4>
         {(brand.productCount ?? 0) > 0 && (
           <p className="text-xs text-muted">
-            {t('productCount', { count: brand.productCount ?? 0 })}
+            {t("productCount", { count: brand.productCount ?? 0 })}
           </p>
         )}
       </div>
@@ -198,11 +230,11 @@ function AlphabetSidebar({
   activeLetters: string[];
   onSelect: (letter: string) => void;
 }) {
-  const allLetters = [...ALPHABET, '#'];
+  const allLetters = [...ALPHABET, "#"];
   const activeSet = new Set(activeLetters);
 
   return (
-    <div className="fixed right-0.5 rtl:left-0.5 rtl:right-auto top-1/2 -translate-y-1/2 z-20 flex flex-col items-center py-1">
+    <div className="fixed inset-x-0 top-[6.5rem] z-20 flex h-11 items-center overflow-x-auto border-y border-border bg-surface/95 px-1 shadow-sm backdrop-blur-sm scrollbar-hide">
       {allLetters.map((letter) => {
         const isActive = activeSet.has(letter);
         return (
@@ -211,10 +243,10 @@ function AlphabetSidebar({
             type="button"
             disabled={!isActive}
             onClick={() => onSelect(letter)}
-            className={`w-5 h-[18px] flex items-center justify-center text-[10px] font-medium rounded-sm transition-colors ${
+            className={`flex h-11 min-w-11 items-center justify-center rounded-lg text-xs font-semibold transition-colors ${
               isActive
-                ? 'text-primary active:bg-primary active:text-white'
-                : 'text-gray-300'
+                ? "text-primary active:bg-primary active:text-white"
+                : "text-gray-300"
             }`}
           >
             {letter}
@@ -227,9 +259,13 @@ function AlphabetSidebar({
 
 /* ─── 骨架屏 ─── */
 
-function MobileBrandListSkeleton() {
+function MobileBrandListSkeleton({ title }: { title: string }) {
   return (
-    <div className="min-h-dvh bg-background">
+    <div className="min-h-dvh bg-background pb-20 pt-11">
+      <div className="px-4 pb-1 pt-4">
+        <h1 className="text-xl font-bold text-foreground">{title}</h1>
+        <SkeletonBlock className="mt-2 h-3 w-28" />
+      </div>
       {/* 热门品牌骨架 */}
       <div className="py-4">
         <div className="px-4 mb-3">
@@ -246,7 +282,7 @@ function MobileBrandListSkeleton() {
       </div>
       {/* 品牌列表骨架 */}
       <div className="px-4 space-y-4">
-        {['A', 'B', 'C', 'D'].map((letter) => (
+        {["A", "B", "C", "D"].map((letter) => (
           <div key={letter}>
             <SkeletonBlock className="h-4 w-6 mb-2" />
             <div className="space-y-2 pl-1 rtl:pr-1 rtl:pl-0">

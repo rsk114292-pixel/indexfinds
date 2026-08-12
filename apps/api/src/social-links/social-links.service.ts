@@ -5,22 +5,14 @@ import { SocialLink } from './entities/social-link.entity';
 import { CreateSocialLinkDto } from './dto/create-social-link.dto';
 import { UpdateSocialLinkDto } from './dto/update-social-link.dto';
 
-const DEFAULT_LINKS = [
-  {
-    platform: 'discord',
-    label: 'Discord',
-    url: 'https://discord.gg/',
-    icon: 'discord',
-    sortOrder: 0,
-  },
-  {
-    platform: 'telegram',
-    label: 'Telegram',
-    url: 'https://t.me/',
-    icon: 'telegram',
-    sortOrder: 1,
-  },
-];
+const TELEGRAM_LINK = {
+  platform: 'telegram',
+  label: 'Telegram',
+  url: 'https://t.me/repindexfinds',
+  icon: 'telegram',
+  sortOrder: 0,
+  isActive: true,
+};
 
 @Injectable()
 export class SocialLinksService implements OnModuleInit {
@@ -71,10 +63,28 @@ export class SocialLinksService implements OnModuleInit {
   }
 
   private async ensureDefaults() {
-    const count = await this.repo.count();
-    if (count > 0) return;
-    for (const data of DEFAULT_LINKS) {
-      await this.repo.save(this.repo.create(data));
+    const links = await this.repo.find();
+    const discordLinks = links.filter(
+      (link) => link.platform.toLowerCase() === 'discord',
+    );
+    if (discordLinks.length > 0) {
+      await this.repo.remove(discordLinks);
+    }
+
+    const telegramLinks = links.filter(
+      (link) => link.platform.toLowerCase() === 'telegram',
+    );
+    const [telegram, ...duplicates] = telegramLinks;
+
+    if (duplicates.length > 0) {
+      await this.repo.remove(duplicates);
+    }
+
+    if (telegram) {
+      Object.assign(telegram, TELEGRAM_LINK);
+      await this.repo.save(telegram);
+    } else {
+      await this.repo.save(this.repo.create(TELEGRAM_LINK));
     }
   }
 }

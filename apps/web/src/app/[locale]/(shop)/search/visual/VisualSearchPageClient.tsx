@@ -14,8 +14,9 @@ import { API_BASE_URL } from '@/lib/constants';
 
 import { Suspense, useState, useEffect, useCallback, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Upload, App } from 'antd';
+import { Upload } from 'antd';
 import { useTranslations } from 'next-intl';
+import { notice } from '@/lib/notice';
 import useSWR from 'swr';
 import type { RcFile } from 'antd/es/upload';
 import { Camera, X, RefreshCw, Inbox, Clipboard, Scissors, SlidersHorizontal, ChevronDown, Check } from 'lucide-react';
@@ -127,7 +128,6 @@ function ProductBasedVisualSearch({ productId }: { productId: string }) {
 /* ================================================================== */
 
 function DesktopVisualSearch() {
-  const { message } = App.useApp();
   const t = useTranslations('visualSearch');
   const [loading, setLoading] = useState(false);
   const [searchImage, setSearchImage] = useState<string | null>(null);
@@ -170,17 +170,17 @@ function DesktopVisualSearch() {
       setResults(newResults);
       sessionStorage.setItem('visualSearchImage', imageDataUrl);
       sessionStorage.setItem('visualSearchResults', JSON.stringify(newResults));
-      if (newResults.length === 0) message.info(t('noSimilarProducts'));
+      if (newResults.length === 0) notice.info(t('noSimilarProducts'));
     } catch (err: unknown) {
-      message.error(err instanceof Error ? err.message : t('searchError'));
+      notice.error(err instanceof Error ? err.message : t('searchError'));
     } finally {
       setLoading(false);
     }
-  }, [message, t]);
+  }, [t]);
 
   const processImage = useCallback(async (file: File) => {
-    if (!file.type.startsWith('image/')) { message.error(t('invalidFileType')); return; }
-    if (file.size > 5 * 1024 * 1024) { message.error(t('fileTooLarge')); return; }
+    if (!file.type.startsWith('image/')) { notice.error(t('invalidFileType')); return; }
+    if (file.size > 5 * 1024 * 1024) { notice.error(t('fileTooLarge')); return; }
     const reader = new FileReader();
     reader.onload = (e) => {
       const imageDataUrl = e.target?.result as string;
@@ -188,7 +188,7 @@ function DesktopVisualSearch() {
       performSearch(imageDataUrl);
     };
     reader.readAsDataURL(file);
-  }, [performSearch, message, t]);
+  }, [performSearch, t]);
 
   const handlePaste = useCallback((e: ClipboardEvent) => {
     if (loading) return;

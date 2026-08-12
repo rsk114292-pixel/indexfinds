@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { headers } from 'next/headers';
 import { ReactNode } from 'react';
+import AntdProvider from '@/components/AntdProvider';
 
 type AuthLayoutProps = {
   children: ReactNode;
@@ -42,5 +43,5 @@ export async function generateMetadata({
 }
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
-  return <>{children}</>;
+  return <AntdProvider>{children}</AntdProvider>;
 }

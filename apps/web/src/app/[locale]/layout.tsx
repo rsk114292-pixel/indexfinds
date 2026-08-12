@@ -7,6 +7,7 @@ import { OrganizationJsonLd } from '@/components/seo';
 import { VisitTracker } from '@/components/VisitTracker';
 import ConditionalGA from '@/components/ConditionalGA';
 import CookieConsent, { CookieConsentProvider } from '@/components/CookieConsent';
+import WhatsAppHelp from '@/components/WhatsAppHelp';
 import type { Metadata } from 'next';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
 import { getSiteUrl, getSiteName } from '@/lib/site-config';
@@ -105,6 +106,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <VisitTracker />
         <ConditionalGA initialConfig={trackingConfig} />
         <CookieConsent />
+        <WhatsAppHelp />
         {children}
       </CookieConsentProvider>
     </NextIntlClientProvider>

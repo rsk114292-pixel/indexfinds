@@ -41,6 +41,12 @@ export function MobileSheet({
 
   useBodyScrollLock(open);
 
+  useEffect(() => {
+    if (!open) return;
+    document.body.classList.add('mobile-sheet-open');
+    return () => document.body.classList.remove('mobile-sheet-open');
+  }, [open]);
+
   // 保存并恢复焦点 + ESC 关闭 + 焦点陷阱
   useEffect(() => {
     if (!open) return;

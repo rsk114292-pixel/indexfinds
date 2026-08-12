@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test';
+import {
+  E2E_ADMIN_TOKEN,
+  apiRoutePattern,
+  stubAdminRefresh,
+} from './api-route.mjs';
 
 test.use({
   viewport: { width: 1440, height: 900 },
@@ -7,7 +12,7 @@ test.use({
 });
 
 function seedAdminSession(page) {
-  return page.addInitScript(() => {
+  return page.addInitScript((adminToken) => {
     localStorage.setItem(
       'auth-storage',
       JSON.stringify({
@@ -20,24 +25,25 @@ function seedAdminSession(page) {
             role: 'admin',
             emailVerified: true,
           },
-          token: 'e2e-admin-token',
+          token: adminToken,
           isAuthenticated: true,
         },
         version: 0,
       }),
     );
-  });
+  }, E2E_ADMIN_TOKEN);
 }
 
 test('auto batch keeps progressing after leaving the batch page', async ({
   page,
 }) => {
   await seedAdminSession(page);
+  await stubAdminRefresh(page);
 
   let listCallCount = 0;
   const submittedPayloads = [];
 
-  await page.route('**/api/products/sku-split/prefetch', async (route) => {
+  await page.route(apiRoutePattern('/products/sku-split/prefetch'), async (route) => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
@@ -49,7 +55,7 @@ test('auto batch keeps progressing after leaving the batch page', async ({
     });
   });
 
-  await page.route('**/api/products/sku-split/preview', async (route) => {
+  await page.route(apiRoutePattern('/products/sku-split/preview'), async (route) => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
@@ -82,7 +88,7 @@ test('auto batch keeps progressing after leaving the batch page', async ({
     });
   });
 
-  await page.route('**/api/products/sku-split/batch/auto', async (route) => {
+  await page.route(apiRoutePattern('/products/sku-split/batch/auto'), async (route) => {
     submittedPayloads.push(route.request().postDataJSON());
     await route.fulfill({
       status: 201,
@@ -96,7 +102,7 @@ test('auto batch keeps progressing after leaving the batch page', async ({
     });
   });
 
-  await page.route('**/api/products/sku-split?page=*', async (route) => {
+  await page.route(apiRoutePattern('/products/sku-split\\?page=.*'), async (route) => {
     listCallCount += 1;
     const status = listCallCount >= 2 ? 'completed' : 'processing';
     await route.fulfill({
@@ -133,7 +139,7 @@ test('auto batch keeps progressing after leaving the batch page', async ({
     });
   });
 
-  await page.route('**/api/admin/products/hot**', async (route) => {
+  await page.route(apiRoutePattern('/admin/products/hot(?:\\?.*)?'), async (route) => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
@@ -162,7 +168,7 @@ test('auto batch keeps progressing after leaving the batch page', async ({
   await page.getByRole('button', { name: '全部自动' }).click();
 
   await expect(page).toHaveURL(/\/admin\/products\/sku-split$/);
-  await expect(page.getByText('后台自动')).toBeVisible();
+  await expect(page.getByText('后台自动', { exact: true })).toBeVisible();
 
   expect(submittedPayloads).toHaveLength(1);
   expect(submittedPayloads[0]).toEqual({

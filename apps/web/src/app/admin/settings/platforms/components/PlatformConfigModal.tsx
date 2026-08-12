@@ -1,7 +1,7 @@
 'use client';
 
 import type { Dispatch, FocusEvent, SetStateAction } from 'react';
-import { Button, Form, Input, Modal, Switch, Tabs, Tag, Upload } from 'antd';
+import { Button, Form, Input, InputNumber, Modal, Switch, Tabs, Tag, Upload } from 'antd';
 import type { FormInstance, UploadProps } from 'antd';
 import {
   LoadingOutlined,
@@ -33,6 +33,17 @@ interface PlatformFormValues {
   sortOrder?: number;
   urlTemplate?: string;
   isActive: boolean;
+  comparisonData?: {
+    serviceFee?: string;
+    shippingCoverage?: string;
+    freeStorageDays?: number;
+    qcService?: string;
+    paymentMethods?: string;
+    returnPolicy?: string;
+    shippingBaseFeeUsd?: number;
+    shippingRatePerKgUsd?: number;
+    dataUpdatedAt?: string;
+  };
 }
 
 interface PlatformPreset {
@@ -199,6 +210,42 @@ export function PlatformConfigModal({
         >
           <Input.TextArea rows={2} placeholder="平台描述..." />
         </Form.Item>
+
+        <div className="mb-4 rounded-lg border border-orange-100 bg-orange-50/60 p-4">
+          <div className="mb-1 text-sm font-semibold text-gray-800">代购对比与运费估算</div>
+          <p className="mb-4 text-xs leading-5 text-gray-500">
+            这里的内容会展示在前台代购对比页。费用和政策变化后，请同步更新资料日期。
+          </p>
+          <div className="grid grid-cols-1 gap-x-4 md:grid-cols-2">
+            <Form.Item name={['comparisonData', 'serviceFee']} label="服务费说明">
+              <Input placeholder="例如：请在官网确认最新服务费" />
+            </Form.Item>
+            <Form.Item name={['comparisonData', 'shippingCoverage']} label="配送范围">
+              <Input placeholder="例如：美国、英国、欧盟、加拿大" />
+            </Form.Item>
+            <Form.Item name={['comparisonData', 'freeStorageDays']} label="免费仓储天数">
+              <InputNumber min={0} max={3650} precision={0} className="w-full" placeholder="例如：90" />
+            </Form.Item>
+            <Form.Item name={['comparisonData', 'qcService']} label="QC 服务">
+              <Input placeholder="例如：提供基础 QC 图片" />
+            </Form.Item>
+            <Form.Item name={['comparisonData', 'paymentMethods']} label="支付方式">
+              <Input placeholder="例如：信用卡、PayPal" />
+            </Form.Item>
+            <Form.Item name={['comparisonData', 'returnPolicy']} label="退货政策摘要">
+              <Input placeholder="例如：入库后按卖家政策申请" />
+            </Form.Item>
+            <Form.Item name={['comparisonData', 'shippingBaseFeeUsd']} label="运费基础价（USD）">
+              <InputNumber min={0} precision={2} step={0.5} className="w-full" placeholder="例如：8.00" />
+            </Form.Item>
+            <Form.Item name={['comparisonData', 'shippingRatePerKgUsd']} label="每公斤估算价（USD）">
+              <InputNumber min={0.01} precision={2} step={0.5} className="w-full" placeholder="例如：12.00" />
+            </Form.Item>
+          </div>
+          <Form.Item name={['comparisonData', 'dataUpdatedAt']} label="资料更新时间" className="mb-0">
+            <Input type="date" />
+          </Form.Item>
+        </div>
 
         <div className="mb-4 rounded-lg border border-gray-200 bg-gray-50 p-3">
           <div className="mb-3 text-sm font-medium text-gray-700">

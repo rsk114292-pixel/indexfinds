@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Gift, Share2, Sparkles } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-import { Button } from '@/components/ui/Button';
+import { Gift, Share2, Sparkles } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Button } from "@/components/ui/Button";
 
 interface ProductShareEarnCardProps {
   onShare: () => void;
@@ -13,8 +13,8 @@ export default function ProductShareEarnCard({
   onShare,
   compact = false,
 }: ProductShareEarnCardProps) {
-  const t = useTranslations('product.shareRewards');
-  const body = t('body').trim();
+  const t = useTranslations("product.shareRewards");
+  const body = t("body").trim();
 
   if (compact) {
     return (
@@ -26,21 +26,23 @@ export default function ProductShareEarnCard({
             </div>
             <div className="min-w-0">
               <h3 className="text-sm font-semibold leading-5 text-[#231912]">
-                {t('title')}
+                {t("title")}
               </h3>
               {body ? (
-                <p className="mt-0.5 text-xs leading-5 text-stone-500">{body}</p>
+                <p className="mt-0.5 text-xs leading-5 text-stone-500">
+                  {body}
+                </p>
               ) : null}
             </div>
           </div>
 
           <Button
-            size="sm"
+            size="md"
             icon={<Share2 className="h-4 w-4" />}
             onClick={onShare}
-            className="shrink-0"
+            className="min-h-11 shrink-0"
           >
-            {t('cta')}
+            {t("cta")}
           </Button>
         </div>
       </div>
@@ -56,7 +58,7 @@ export default function ProductShareEarnCard({
         <div className="min-w-0">
           <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">
             <Gift className="h-3.5 w-3.5" />
-            {t('eyebrow')}
+            {t("eyebrow")}
           </div>
           <div className="mt-3 flex items-start gap-3">
             <div className="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#fff2e6] text-primary shadow-sm">
@@ -64,7 +66,7 @@ export default function ProductShareEarnCard({
             </div>
             <div className="min-w-0">
               <h3 className="text-base font-semibold leading-6 text-[#231912] sm:text-[1.05rem]">
-                {t('title')}
+                {t("title")}
               </h3>
               {body ? (
                 <p className="mt-1 text-sm leading-6 text-stone-600">{body}</p>
@@ -76,7 +78,7 @@ export default function ProductShareEarnCard({
         <div className="flex flex-col items-start gap-3 md:items-end">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#ebc8ab] bg-white px-3 py-2 text-sm font-semibold text-primary shadow-sm">
             <Sparkles className="h-4 w-4" />
-            {t('pill')}
+            {t("pill")}
           </span>
           <Button
             size="lg"
@@ -84,7 +86,7 @@ export default function ProductShareEarnCard({
             onClick={onShare}
             className="min-w-[152px]"
           >
-            {t('cta')}
+            {t("cta")}
           </Button>
         </div>
       </div>

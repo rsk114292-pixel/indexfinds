@@ -13,18 +13,13 @@
  */
 
 import { Suspense, useState, useEffect, useRef, useMemo } from "react";
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { Search } from "lucide-react";
 import useSWR from "swr";
 import { Empty } from "@/components/ui/Empty";
 import { SkeletonCard } from "@/components/ui/Skeleton";
 import { Alert } from "@/components/ui/Alert";
-import ActiveFilters from "@/components/ActiveFilters";
-import FilterDrawer from "@/components/FilterDrawer";
-import { FilterSidebar } from "@/components/filters";
-import Pagination from "@/components/Pagination";
-import ProductCard from "@/components/ProductCard";
-import SortSelect from "@/components/SortSelect";
 import { fetcher } from "@/lib/api";
 import { recordImpressions, OutboundSource } from "@/lib/search-tracking";
 import { trackGA4Event } from "@/lib/ga-events";
@@ -32,10 +27,8 @@ import { getSearchPreferenceParams } from "@/lib/browsing-history";
 import { computeHotThreshold } from "@/lib/utils";
 import type { ApiListResponse, Product } from "@/types";
 import type { FacetsData } from "@/components/filters/types";
-import MobileSearchPage from "./components/mobile/MobileSearchPage";
 import { useLgUp } from "@/hooks/useLgUp";
 import { useReturnScrollRestoration } from "@/hooks/useReturnScrollRestoration";
-import { SearchProductRequestPrompt } from "./components/SearchProductRequestPrompt";
 import {
   DEFAULT_DESKTOP_PRODUCT_LIMIT,
   DESKTOP_PRODUCT_GRID_CLASS,
@@ -44,6 +37,31 @@ import {
   DESKTOP_PRODUCT_SKELETON_COUNT,
 } from "@/lib/product-list-layout";
 const SEARCH_REQUEST_THRESHOLD = 50;
+
+const ActiveFilters = dynamic(() => import("@/components/ActiveFilters"));
+const FilterDrawer = dynamic(() => import("@/components/FilterDrawer"));
+const FilterSidebar = dynamic(() =>
+  import("@/components/filters").then((module) => ({
+    default: module.FilterSidebar,
+  })),
+);
+const Pagination = dynamic(() => import("@/components/Pagination"));
+const ProductCard = dynamic(() => import("@/components/ProductCard"));
+const SortSelect = dynamic(() => import("@/components/SortSelect"));
+const MobileSearchPage = dynamic(
+  () => import("./components/mobile/MobileSearchPage"),
+);
+const SearchQuickFilters = dynamic(
+  () => import("@/components/search/SearchQuickFilters"),
+);
+
+const SearchProductRequestPrompt = dynamic(
+  () =>
+    import("./components/SearchProductRequestPrompt").then((module) => ({
+      default: module.SearchProductRequestPrompt,
+    })),
+  { ssr: false },
+);
 
 interface SearchPageClientProps {
   initialBrands?: string | null;
@@ -137,9 +155,11 @@ function DesktopSearchFallback() {
         <div className="flex-1">
           <DesktopToolbarFallback />
           <div className={DESKTOP_PRODUCT_GRID_CLASS}>
-            {Array.from({ length: DESKTOP_PRODUCT_SKELETON_COUNT }).map((_, i) => (
-              <SkeletonCard key={i} />
-            ))}
+            {Array.from({ length: DESKTOP_PRODUCT_SKELETON_COUNT }).map(
+              (_, i) => (
+                <SkeletonCard key={i} />
+              ),
+            )}
           </div>
         </div>
       </div>
@@ -212,7 +232,7 @@ function DesktopSearchContent({
   initialStyles: string | null;
   pathname: string;
 }) {
-  const t = useTranslations('search');
+  const t = useTranslations("search");
   const [preferenceParams, setPreferenceParams] = useState<{
     preferredBrands?: string;
     preferredCategories?: string;
@@ -241,7 +261,8 @@ function DesktopSearchContent({
 
     if (q) params.set("q", q);
     if (page > 1) params.set("page", String(page));
-    if (limit !== DEFAULT_DESKTOP_PRODUCT_LIMIT) params.set("limit", String(limit));
+    if (limit !== DEFAULT_DESKTOP_PRODUCT_LIMIT)
+      params.set("limit", String(limit));
     if (brands) params.set("brands", brands);
     if (minPrice) params.set("minPrice", minPrice);
     if (maxPrice) params.set("maxPrice", maxPrice);
@@ -287,7 +308,10 @@ function DesktopSearchContent({
     queryParams.set("preferredBrands", preferenceParams.preferredBrands);
   }
   if (preferenceParams.preferredCategories) {
-    queryParams.set("preferredCategories", preferenceParams.preferredCategories);
+    queryParams.set(
+      "preferredCategories",
+      preferenceParams.preferredCategories,
+    );
   }
 
   const { data: productsData, error: productsError } = useSWR<
@@ -309,22 +333,20 @@ function DesktopSearchContent({
     const impressionKey = `${searchLogId}-${page}`;
     if (impressionRecordedRef.current === impressionKey) return;
 
-    const impressions = productsData.data.map(
-      (product, index: number) => ({
-        productId: product.id,
-        position: (page - 1) * limit + index + 1,
-      }),
-    );
+    const impressions = productsData.data.map((product, index: number) => ({
+      productId: product.id,
+      position: (page - 1) * limit + index + 1,
+    }));
 
     recordImpressions(searchLogId, impressions, page);
     impressionRecordedRef.current = impressionKey;
 
-    trackGA4Event('view_search_results', {
+    trackGA4Event("view_search_results", {
       search_term: q,
       page,
       results_count: productsData.meta?.total || 0,
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, searchLogId, productsData?.data, page, limit]);
 
   const { data: facetsData } = useSWR<FacetsData>(
@@ -354,42 +376,39 @@ function DesktopSearchContent({
   const usedFallback = productsData?.meta?.usedFallback === true;
   const shouldShowSearchRequestPrompt =
     usedFallback || total <= SEARCH_REQUEST_THRESHOLD;
-  const locale = pathname.split('/')[1] || 'en';
-  const requestFiltersSnapshot = useMemo(
-    () => {
-      const snapshot: Record<string, string> = {
-        q,
-        page: String(page),
-        limit: String(limit),
-      };
-
-      if (brands) snapshot.brands = brands;
-      if (minPrice) snapshot.minPrice = minPrice;
-      if (maxPrice) snapshot.maxPrice = maxPrice;
-      if (sortBy) snapshot.sortBy = sortBy;
-      if (colors) snapshot.colors = colors;
-      if (genders) snapshot.genders = genders;
-      if (styles) snapshot.styles = styles;
-      if (seasons) snapshot.seasons = seasons;
-      if (categories) snapshot.categories = categories;
-
-      return snapshot;
-    },
-    [
-      brands,
-      categories,
-      colors,
-      genders,
-      limit,
-      maxPrice,
-      minPrice,
-      page,
+  const locale = pathname.split("/")[1] || "en";
+  const requestFiltersSnapshot = useMemo(() => {
+    const snapshot: Record<string, string> = {
       q,
-      seasons,
-      sortBy,
-      styles,
-    ],
-  );
+      page: String(page),
+      limit: String(limit),
+    };
+
+    if (brands) snapshot.brands = brands;
+    if (minPrice) snapshot.minPrice = minPrice;
+    if (maxPrice) snapshot.maxPrice = maxPrice;
+    if (sortBy) snapshot.sortBy = sortBy;
+    if (colors) snapshot.colors = colors;
+    if (genders) snapshot.genders = genders;
+    if (styles) snapshot.styles = styles;
+    if (seasons) snapshot.seasons = seasons;
+    if (categories) snapshot.categories = categories;
+
+    return snapshot;
+  }, [
+    brands,
+    categories,
+    colors,
+    genders,
+    limit,
+    maxPrice,
+    minPrice,
+    page,
+    q,
+    seasons,
+    sortBy,
+    styles,
+  ]);
   useReturnScrollRestoration(enabled && !!productsData, returnTo);
 
   const hotThreshold = useMemo(
@@ -402,8 +421,8 @@ function DesktopSearchContent({
       <div className={`${DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS} py-16`}>
         <Empty
           icon={<Search className="w-16 h-16" />}
-          title={t('enterKeyword')}
-          description={t('enterKeywordDesc')}
+          title={t("enterKeyword")}
+          description={t("enterKeywordDesc")}
         />
       </div>
     );
@@ -414,7 +433,7 @@ function DesktopSearchContent({
       <div className={`${DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS} py-8`}>
         <Alert
           type="error"
-          title={t('searchError')}
+          title={t("searchError")}
           description={productsError.message}
         />
       </div>
@@ -443,9 +462,11 @@ function DesktopSearchContent({
               </div>
             </div>
             <div className={DESKTOP_PRODUCT_GRID_CLASS}>
-              {Array.from({ length: DESKTOP_PRODUCT_SKELETON_COUNT }).map((_, i) => (
-                <SkeletonCard key={i} />
-              ))}
+              {Array.from({ length: DESKTOP_PRODUCT_SKELETON_COUNT }).map(
+                (_, i) => (
+                  <SkeletonCard key={i} />
+                ),
+              )}
             </div>
           </div>
         </div>
@@ -459,45 +480,53 @@ function DesktopSearchContent({
         {usedFallback ? (
           <>
             <h2 className="text-2xl font-bold text-foreground mb-2">
-              {t('noResultsFor', { query: q })}
+              {t("noResultsFor", { query: q })}
             </h2>
-            <p className="text-muted">{t('noResultsForDesc')}</p>
+            <p className="text-muted">{t("noResultsForDesc")}</p>
           </>
         ) : (
           <>
             <h2 className="text-2xl font-bold text-foreground mb-2">
-              {t('resultsFor', { query: q })}
+              {t("resultsFor", { query: q })}
             </h2>
-            <p className="text-muted">{t('productsFound', { count: total })}</p>
+            <p className="text-muted">{t("productsFound", { count: total })}</p>
           </>
         )}
       </div>
 
       <div className="flex gap-6">
-        {!usedFallback && <div className={DESKTOP_PRODUCT_SIDEBAR_CLASS}>
-          <FilterSidebar
-            categories={facetsData?.categories || []}
-            brands={(facetsData?.brands || []).map((b) => ({
-              label: b.name,
-              value: b.slug,
-              count: b.count,
-            }))}
-            colors={facetsData?.colors || []}
-            genders={facetsData?.genders || []}
-            styles={facetsData?.styles || []}
-            occasions={facetsData?.occasions || []}
-            seasons={facetsData?.seasons || []}
-            priceRange={facetsData?.priceRange || { min: 0, max: 100000 }}
-          />
-        </div>}
+        {!usedFallback && (
+          <div className={DESKTOP_PRODUCT_SIDEBAR_CLASS}>
+            <FilterSidebar
+              categories={facetsData?.categories || []}
+              brands={(facetsData?.brands || []).map((b) => ({
+                label: b.name,
+                value: b.slug,
+                count: b.count,
+              }))}
+              colors={facetsData?.colors || []}
+              genders={facetsData?.genders || []}
+              styles={facetsData?.styles || []}
+              occasions={facetsData?.occasions || []}
+              seasons={facetsData?.seasons || []}
+              priceRange={facetsData?.priceRange || { min: 0, max: 100000 }}
+            />
+          </div>
+        )}
 
         <div className="flex-1">
           {!usedFallback && (
             <Suspense fallback={<DesktopToolbarFallback />}>
-              <div className="flex items-center mb-4">
-                <ActiveFilters className="flex-1" />
-                <div className="ml-auto rtl:mr-auto rtl:ml-0">
-                  <SortSelect />
+              <div className="mb-4 space-y-3">
+                <SearchQuickFilters
+                  categories={facetsData?.categories || []}
+                  brands={facetsData?.brands || []}
+                />
+                <div className="flex items-center rounded-xl border border-border/70 bg-white px-3 py-2 shadow-sm">
+                  <ActiveFilters className="flex-1" />
+                  <div className="ml-auto rtl:mr-auto rtl:ml-0">
+                    <SortSelect />
+                  </div>
                 </div>
               </div>
             </Suspense>
@@ -505,7 +534,7 @@ function DesktopSearchContent({
 
           {usedFallback && products.length > 0 && (
             <div className="mb-4 pb-4 border-b border-border">
-              <p className="text-muted text-base">{t('popularProducts')}</p>
+              <p className="text-muted text-base">{t("popularProducts")}</p>
             </div>
           )}
 
@@ -532,7 +561,10 @@ function DesktopSearchContent({
                     position={(page - 1) * limit + index + 1}
                     page={page}
                     source={OutboundSource.SEARCH}
-                    isHot={product.isFeatured || (product.popularityScore ?? 0) >= hotThreshold}
+                    isHot={
+                      product.isFeatured ||
+                      (product.popularityScore ?? 0) >= hotThreshold
+                    }
                   />
                 ))}
               </div>
@@ -545,8 +577,8 @@ function DesktopSearchContent({
             </>
           ) : (
             <Empty
-              title={t('noProductsFor', { query: q })}
-              description={t('noProductsForDesc')}
+              title={t("noProductsFor", { query: q })}
+              description={t("noProductsForDesc")}
             />
           )}
         </div>

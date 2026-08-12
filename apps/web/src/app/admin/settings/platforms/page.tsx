@@ -27,6 +27,18 @@ import { EmptyState } from '../../components/EmptyState';
 import { readSessionCache, writeSessionCache } from '@/lib/session-cache';
 import PlatformLogoBadge from '@/components/platforms/PlatformLogoBadge';
 
+interface PlatformComparisonData {
+  serviceFee?: string;
+  shippingCoverage?: string;
+  freeStorageDays?: number;
+  qcService?: string;
+  paymentMethods?: string;
+  returnPolicy?: string;
+  shippingBaseFeeUsd?: number;
+  shippingRatePerKgUsd?: number;
+  dataUpdatedAt?: string;
+}
+
 interface Platform {
   id: string;
   key: string;
@@ -41,6 +53,7 @@ interface Platform {
   urlTemplate: string | null;
   createdAt: string;
   updatedAt: string;
+  comparisonData: PlatformComparisonData | null;
 }
 
 interface PlatformFormValues {
@@ -54,6 +67,7 @@ interface PlatformFormValues {
   sortOrder?: number;
   urlTemplate?: string;
   isActive: boolean;
+  comparisonData?: PlatformComparisonData;
 }
 
 const TRANSLATION_LOCALES = [
@@ -198,11 +212,11 @@ const PRESET_PLATFORMS: Record<string, Omit<PlatformFormValues, 'key' | 'isActiv
     urlTemplate: '{baseUrl}?invitecode={inviteCode}&weidian={weidianItemId}',
   },
   lolobuy: {
-    name: 'LoloBuy',
+    name: 'Lolobuy',
     baseUrl: 'https://www.lolobuy.com/productDetail/0',
-    description: 'LoloBuy 代购平台',
-    translations: createPresetTranslations('LoloBuy', 'LoloBuy 代购平台'),
-    logoUrl: 'https://www.lolobuy.com/favicon.ico',
+    description: 'Lolobuy 代购平台',
+    translations: createPresetTranslations('Lolobuy', 'Lolobuy 代购平台'),
+    logoUrl: 'https://www.lolobuy.com/loloBuyIcon.png',
     urlTemplate: '{baseUrl}?url={weidianUrl}&inviteCode={inviteCode}',
   },
   lovegobuy: {
@@ -218,7 +232,7 @@ const PRESET_PLATFORMS: Record<string, Omit<PlatformFormValues, 'key' | 'isActiv
     baseUrl: 'https://kakobuy.com/item/details',
     description: 'Kakobuy 代购平台',
     translations: createPresetTranslations('Kakobuy', 'Kakobuy 代购平台'),
-    logoUrl: 'https://www.kakobuy.com/favicon.ico',
+    logoUrl: 'https://kakobuy.com/favicon.ico',
     urlTemplate: '{baseUrl}?url={encodedWeidianUrl}&affcode={inviteCode}',
   },
   usfans: {
@@ -226,7 +240,7 @@ const PRESET_PLATFORMS: Record<string, Omit<PlatformFormValues, 'key' | 'isActiv
     baseUrl: 'https://www.usfans.com/product/3',
     description: 'USFans 代购平台',
     translations: createPresetTranslations('USFans', 'USFans 代购平台'),
-    logoUrl: 'https://www.usfans.com/favicon.ico',
+    logoUrl: 'https://www.usfans.com/favicon.png',
     urlTemplate: '{baseUrl}/{weidianItemId}?ref={inviteCode}',
   },
   oopbuy: {
@@ -234,7 +248,7 @@ const PRESET_PLATFORMS: Record<string, Omit<PlatformFormValues, 'key' | 'isActiv
     baseUrl: 'https://oopbuy.com/product',
     description: 'Oopbuy 代购平台',
     translations: createPresetTranslations('Oopbuy', 'Oopbuy 代购平台'),
-    logoUrl: 'https://oopbuy.com/favicon.ico',
+    logoUrl: 'https://oopbuy.com/favicon.png',
     urlTemplate: '{baseUrl}/weidian/{weidianItemId}?inviteCode={inviteCode}',
   },
   allchinabuy: {
@@ -250,7 +264,7 @@ const PRESET_PLATFORMS: Record<string, Omit<PlatformFormValues, 'key' | 'isActiv
     baseUrl: 'https://joyagoo.com/product',
     description: 'Joyagoo 代购平台',
     translations: createPresetTranslations('Joyagoo', 'Joyagoo 代购平台'),
-    logoUrl: 'https://joyagoo.com/favicon.ico',
+    logoUrl: 'https://mgt.joyagoo.com/wp-content/themes/joyabuy/assets/img/joyagoo-logo.png',
     urlTemplate: '{baseUrl}?id={weidianItemId}&platform=WEIDIAN&ref={inviteCode}',
   },
   orientdig: {
@@ -270,7 +284,7 @@ const PRESET_PLATFORMS: Record<string, Omit<PlatformFormValues, 'key' | 'isActiv
       'Superbuy 代购平台 - 老牌代购服务商',
       'Superbuy proxy purchase platform - established service provider',
     ),
-    logoUrl: 'https://www.superbuy.com/favicon.ico',
+    logoUrl: 'https://cdn.superbuy.com/starit-superbuy/dist/img/favicon/favicon-96x96.png',
     urlTemplate: '{baseUrl}?nTag=Home-search&from=search-input&url={encodedWeidianUrl}&partnercode={inviteCode}',
   },
   sugargoo: {
@@ -279,7 +293,7 @@ const PRESET_PLATFORMS: Record<string, Omit<PlatformFormValues, 'key' | 'isActiv
     description: 'Sugargoo 代购平台',
     translations: createPresetTranslations('Sugargoo', 'Sugargoo 代购平台'),
     logoUrl: 'https://www.sugargoo.com/favicon.ico',
-    urlTemplate: '{baseUrl}?redirect=/products?productLink={weidianUrl}%26memberId={inviteCode}',
+    urlTemplate: 'https://www.sugargoo.com/products?productLink={weidianUrl}&memberId={inviteCode}',
   },
   acbuy: {
     name: 'ACBuy',
@@ -294,8 +308,96 @@ const PRESET_PLATFORMS: Record<string, Omit<PlatformFormValues, 'key' | 'isActiv
     baseUrl: 'https://litbuy.com/product',
     description: 'Litbuy 代购平台',
     translations: createPresetTranslations('Litbuy', 'Litbuy 代购平台'),
-    logoUrl: 'https://litbuy.com/favicon.ico',
-    urlTemplate: '{baseUrl}/weidian/{weidianItemId}?inviteCode={inviteCode}',
+    logoUrl: 'https://litbuy.com/favicon-new.ico',
+    urlTemplate: '{baseUrl}/2/{weidianItemId}?inviteCode={inviteCode}',
+  },
+  rizzitgo: {
+    name: 'RizzitGo',
+    baseUrl: 'https://rizzitgo.com/detail-page/',
+    description: 'RizzitGo 代购平台',
+    translations: createPresetTranslations('RizzitGo', 'RizzitGo 代购平台'),
+    logoUrl: 'https://rizzitgo.com/favicon.png',
+    urlTemplate: '{baseUrl}?goodsId={weidianItemId}&source=3&rno={inviteCode}',
+  },
+  hipobuy: {
+    name: 'Hipobuy',
+    baseUrl: 'https://hipobuy.com/product/weidian',
+    description: 'Hipobuy 代购平台',
+    translations: createPresetTranslations('Hipobuy', 'Hipobuy 代购平台'),
+    logoUrl: 'https://hipobuy.com/favicon.png',
+    urlTemplate: '{baseUrl}/{weidianItemId}?inviteCode={inviteCode}',
+  },
+  boonbuy: {
+    name: 'Boonbuy',
+    baseUrl: 'https://boonbuy.com/product/2',
+    description: 'Boonbuy 代购平台',
+    translations: createPresetTranslations('Boonbuy', 'Boonbuy 代购平台'),
+    logoUrl: 'https://boonbuy.com/favicon.ico',
+    urlTemplate: '{baseUrl}/{weidianItemId}?inviteCode={inviteCode}',
+  },
+  cssbuy: {
+    name: 'CSSBuy',
+    baseUrl: 'https://www.cssbuy.com',
+    description: 'CSSBuy 代购平台',
+    translations: createPresetTranslations('CSSBuy', 'CSSBuy 代购平台'),
+    logoUrl: 'https://www.cssbuy.com/favicon.ico',
+    urlTemplate: '{baseUrl}/item-micro-{weidianItemId}.html?promotionCode={inviteCode}',
+  },
+  pikobuy: {
+    name: 'Pikobuy',
+    baseUrl: 'https://www.pikobuy.com/product/detail',
+    description: 'Pikobuy 代购平台',
+    translations: createPresetTranslations('Pikobuy', 'Pikobuy 代购平台'),
+    logoUrl: 'https://www.pikobuy.com/favicon.ico',
+    urlTemplate: '{baseUrl}?productUrl={weidianUrl}&invitedCode={inviteCode}',
+  },
+  esgobuy: {
+    name: 'ESGOBuy',
+    baseUrl: 'https://www.esgobuy.com/productdetail',
+    description: 'ESGOBuy 代购平台',
+    translations: createPresetTranslations('ESGOBuy', 'ESGOBuy 代购平台'),
+    logoUrl: 'https://www.esgobuy.com/img/es-logo-white.DWuBym1F.svg',
+    urlTemplate: '{baseUrl}?url={weidianUrl}&affcode={inviteCode}',
+  },
+  hubbuycn: {
+    name: 'HubbuyCN',
+    baseUrl: 'https://www.hubbuycn.com/product/item',
+    description: 'HubbuyCN 代购平台',
+    translations: createPresetTranslations('HubbuyCN', 'HubbuyCN 代购平台'),
+    logoUrl: 'https://www.hubbuycn.com/favicon.ico',
+    urlTemplate: '{baseUrl}?url={weidianUrl}&inviteCode={inviteCode}',
+  },
+  fishgoo: {
+    name: 'Fishgoo',
+    baseUrl: 'https://www.fishgoo.com/',
+    description: 'Fishgoo 代购平台',
+    translations: createPresetTranslations('Fishgoo', 'Fishgoo 代购平台'),
+    logoUrl: 'https://www.fishgoo.com/favicon.ico',
+    urlTemplate: '{baseUrl}#/product?productLink={encodedWeidianUrl}&memberId={inviteCode}',
+  },
+  mycnbox: {
+    name: 'MyCNBox',
+    baseUrl: 'https://mycnbox.com/goodsDetail',
+    description: 'MyCNBox 代购平台',
+    translations: createPresetTranslations('MyCNBox', 'MyCNBox 代购平台'),
+    logoUrl: 'https://mycnbox.com/logo.ico',
+    urlTemplate: '{baseUrl}?mallType=weidian&itemId={weidianItemId}&inviteCode={inviteCode}',
+  },
+  ootdbuy: {
+    name: 'OOTDBuy',
+    baseUrl: 'https://ootdbuy.com/goods/details',
+    description: 'OOTDBuy 代购平台',
+    translations: createPresetTranslations('OOTDBuy', 'OOTDBuy 代购平台'),
+    logoUrl: 'https://ootdbuy.com/favicon.ico',
+    urlTemplate: '{baseUrl}?id={weidianItemId}&channel=weidian&inviteCode={inviteCode}',
+  },
+  fansbuy: {
+    name: 'Fansbuy',
+    baseUrl: 'https://fansbuy.com',
+    description: 'Fansbuy 代购平台',
+    translations: createPresetTranslations('Fansbuy', 'Fansbuy 代购平台'),
+    logoUrl: 'https://fansbuy.com/favicon2.ico',
+    urlTemplate: '{baseUrl}/item-micro-{weidianItemId}.html?promotionCode={inviteCode}',
   },
 };
 
@@ -342,6 +444,27 @@ export default function PlatformConfigPage() {
       {} as Record<string, { name?: string; description?: string }>,
     );
 
+    return Object.keys(cleaned).length > 0 ? cleaned : undefined;
+  };
+
+  const sanitizeComparisonData = (
+    comparisonData?: PlatformComparisonData,
+  ): PlatformComparisonData | undefined => {
+    if (!comparisonData) return undefined;
+    const cleaned = Object.entries(comparisonData).reduce(
+      (acc, [key, value]) => {
+        if (typeof value === 'string') {
+          const normalized = value.trim();
+          if (normalized) acc[key as keyof PlatformComparisonData] = normalized as never;
+          return acc;
+        }
+        if (typeof value === 'number' && Number.isFinite(value)) {
+          acc[key as keyof PlatformComparisonData] = value as never;
+        }
+        return acc;
+      },
+      {} as PlatformComparisonData,
+    );
     return Object.keys(cleaned).length > 0 ? cleaned : undefined;
   };
 
@@ -424,6 +547,7 @@ export default function PlatformConfigPage() {
       sortOrder: platform.sortOrder,
       urlTemplate: platform.urlTemplate || '',
       isActive: platform.isActive,
+      comparisonData: platform.comparisonData || undefined,
     });
     setLogoPreview(platform.logoUrl || '');
     setModalOpen(true);
@@ -673,6 +797,7 @@ export default function PlatformConfigPage() {
         ...values,
         description: fallbackDescription,
         translations,
+        comparisonData: sanitizeComparisonData(values.comparisonData),
       };
 
       if (payload.logoUrl && isRemoteLogoUrl(payload.logoUrl)) {
@@ -795,6 +920,17 @@ export default function PlatformConfigPage() {
           return <Tag color="error">缺少英文描述</Tag>;
         }
         return <Tag color="warning">待补英文描述</Tag>;
+      },
+    },
+    {
+      title: '对比资料',
+      key: 'comparisonStatus',
+      width: 120,
+      render: (_: unknown, record: Platform) => {
+        const count = Object.values(record.comparisonData || {}).filter(
+          (value) => value !== undefined && value !== null && value !== '',
+        ).length;
+        return count > 0 ? <Tag color="processing">已配置 {count} 项</Tag> : <Tag>未配置</Tag>;
       },
     },
     {

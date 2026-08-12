@@ -338,7 +338,7 @@ export class AdminTrafficController {
     return this.visitSessionService.getSourceQualityDiagnostics(
       start,
       end,
-      source || 'lolobuyspreadsheets.com',
+      source || 'indexfinds.com',
       this.parseScope(scope),
     );
   }

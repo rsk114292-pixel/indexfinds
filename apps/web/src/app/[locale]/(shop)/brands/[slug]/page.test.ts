@@ -40,9 +40,11 @@ const mockFetch = jest.fn();
 global.fetch = mockFetch;
 
 import BrandPage, { generateStaticParams } from './page';
+import { __resetServerApiFallbackCacheForTests } from '@/lib/server-api-fetch';
 
 beforeEach(() => {
   jest.clearAllMocks();
+  __resetServerApiFallbackCacheForTests();
 });
 
 describe('BrandPage merged brand redirect', () => {

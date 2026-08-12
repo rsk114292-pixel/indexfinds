@@ -10,7 +10,7 @@
 
 import { useState, useMemo, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-import { Search, Star, X } from 'lucide-react';
+import { ArrowRight, Search, Sparkles, Star, X } from 'lucide-react';
 import useSWR from 'swr';
 import { Alert } from '@/components/ui/Alert';
 import { Empty } from '@/components/ui/Empty';
@@ -19,6 +19,10 @@ import FeaturedBrandCard from '@/components/brands/FeaturedBrandCard';
 import BrandCard from '@/components/brands/BrandCard';
 import type { Brand, ApiListResponse } from '@/types';
 import MobileBrandList from './components/mobile/MobileBrandList';
+import ProductCard from '@/components/ProductCard';
+import { Link } from '@/i18n/navigation';
+import { OutboundSource } from '@/lib/search-tracking';
+import type { ProductListItem } from '@/types';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
@@ -43,7 +47,27 @@ export default function BrandsPageClient() {
     fetcher,
     { revalidateOnFocus: false, dedupingInterval: 60000 },
   );
-  const featuredBrands = featuredData?.data || [];
+  const featuredBrands = useMemo(
+    () => featuredData?.data || [],
+    [featuredData?.data],
+  );
+  const spotlightBrands = useMemo(
+    () =>
+      featuredBrands.length > 0
+        ? featuredBrands
+        : [...brands]
+            .sort((a, b) => (b.productCount ?? 0) - (a.productCount ?? 0))
+            .slice(0, 6),
+    [brands, featuredBrands],
+  );
+  const isColdStart = brands.length < 12;
+
+  const { data: discoveryProductsData } = useSWR<ApiListResponse<ProductListItem>>(
+    isColdStart ? '/products?sortBy=popular&limit=4' : null,
+    fetcher,
+    { revalidateOnFocus: false, dedupingInterval: 60000 },
+  );
+  const discoveryProducts = discoveryProductsData?.data || [];
 
   // 按字母分组（全部品牌）
   const brandsByLetter = useMemo(() => {
@@ -82,6 +106,10 @@ export default function BrandsPageClient() {
     });
     return letters;
   }, [brands]);
+  const displayedLetters = useMemo(
+    () => [...ALPHABET, '#'].filter((letter) => activeLetters.has(letter)),
+    [activeLetters],
+  );
 
   // 搜索过滤
   const filteredBrands = useMemo(() => {
@@ -212,22 +240,13 @@ export default function BrandsPageClient() {
                 {/* === 字母导航横条 === */}
                 <div className="mb-8 sticky top-0 z-10 bg-background/95 backdrop-blur-sm -mx-4 px-4 py-3 border-b border-border">
                   <div className="flex items-center gap-0.5 flex-wrap">
-                    {[...ALPHABET, '#'].map((letter) => {
-                      const isActive = activeLetters.has(letter);
+                    {displayedLetters.map((letter) => {
                       return (
                         <button
                           key={letter}
                           type="button"
-                          disabled={!isActive}
                           onClick={() => scrollToLetter(letter)}
-                          className={`
-                            w-8 h-8 text-xs font-semibold rounded-md transition-colors duration-200
-                            ${
-                              isActive
-                                ? 'text-foreground hover:bg-primary hover:text-white cursor-pointer'
-                                : 'text-gray-300 cursor-default'
-                            }
-                          `}
+                          className="h-8 min-w-8 rounded-md px-2 text-xs font-semibold text-foreground transition-colors hover:bg-primary hover:text-white"
                         >
                           {letter}
                         </button>
@@ -237,7 +256,7 @@ export default function BrandsPageClient() {
                 </div>
 
                 {/* === Featured Brands === */}
-                {featuredBrands.length > 0 && (
+                {spotlightBrands.length > 0 && (
                   <section className="mb-12">
                     <div className="flex items-center gap-2 mb-5">
                       <Star className="w-5 h-5 text-primary" />
@@ -246,10 +265,48 @@ export default function BrandsPageClient() {
                       </h2>
                     </div>
                     <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-                      {featuredBrands.map((brand) => (
+                      {spotlightBrands.map((brand) => (
                         <FeaturedBrandCard key={brand.id} brand={brand} />
                       ))}
                     </div>
+                  </section>
+                )}
+
+                {isColdStart && (
+                  <section className="mb-12 overflow-hidden rounded-2xl border border-border bg-white">
+                    <div className="grid items-center gap-6 bg-secondary px-6 py-7 text-white md:grid-cols-[1fr_auto]">
+                      <div>
+                        <span className="mb-2 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+                          <Sparkles className="h-3.5 w-3.5" />
+                          IndexFinds
+                        </span>
+                        <h2 className="text-xl font-bold">
+                          {t('collectionGrowingTitle')}
+                        </h2>
+                        <p className="mt-2 max-w-2xl text-sm leading-6 text-white/60">
+                          {t('collectionGrowingDesc')}
+                        </p>
+                      </div>
+                      <Link
+                        href="/products"
+                        className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-primary px-5 text-sm font-semibold text-white"
+                      >
+                        {t('exploreProducts')}
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </div>
+                    {discoveryProducts.length > 0 && (
+                      <div className="grid grid-cols-2 gap-4 p-5 lg:grid-cols-4">
+                        {discoveryProducts.map((product, index) => (
+                          <ProductCard
+                            key={product.id}
+                            product={product}
+                            source={OutboundSource.DIRECT}
+                            position={index + 1}
+                          />
+                        ))}
+                      </div>
+                    )}
                   </section>
                 )}
 
@@ -265,7 +322,7 @@ export default function BrandsPageClient() {
                   </div>
 
                   <div className="space-y-8">
-                    {[...ALPHABET, '#'].map((letter) => {
+                    {displayedLetters.map((letter) => {
                       const letterBrands = brandsByLetter[letter];
                       if (letterBrands.length === 0) return null;
 

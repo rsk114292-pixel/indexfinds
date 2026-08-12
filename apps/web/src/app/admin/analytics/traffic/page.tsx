@@ -1058,7 +1058,7 @@ export default function TrafficAnalyticsPage() {
   const [attributionOverview, setAttributionOverview] =
     useState<AttributionQualityOverview | null>(null);
   const [directBreakdown, setDirectBreakdown] = useState<DirectBreakdown[]>([]);
-  const [findsSpreadsheetDiagnostics, setLoloBuySpreadsheetsDiagnostics] =
+  const [findsSpreadsheetDiagnostics, setIndexFindsDiagnostics] =
     useState<SourceQualityDiagnostics | null>(null);
   const [behaviorFunnelOverview, setBehaviorFunnelOverview] =
     useState<TrafficBehaviorFunnelOverview | null>(null);
@@ -1277,7 +1277,7 @@ export default function TrafficAnalyticsPage() {
     setDirectBreakdown(
       Array.isArray(cached.directBreakdown) ? cached.directBreakdown : [],
     );
-    setLoloBuySpreadsheetsDiagnostics(cached.findsSpreadsheetDiagnostics || null);
+    setIndexFindsDiagnostics(cached.findsSpreadsheetDiagnostics || null);
     setBehaviorFunnelOverview(cached.behaviorFunnelOverview || null);
     setReconciliationOverview(cached.reconciliationOverview);
     setLoading(false);
@@ -1331,7 +1331,7 @@ export default function TrafficAnalyticsPage() {
         ),
         optionalDiagnostic(
           (signal) =>
-            get<SourceQualityDiagnostics>('/admin/analytics/traffic/attribution-quality/source-diagnostics', { ...scopeParams, source: 'lolobuyspreadsheets.com' }, { signal }),
+            get<SourceQualityDiagnostics>('/admin/analytics/traffic/attribution-quality/source-diagnostics', { ...scopeParams, source: 'indexfinds.com' }, { signal }),
           null as SourceQualityDiagnostics | null,
         ),
         optionalDiagnostic(
@@ -1357,7 +1357,7 @@ export default function TrafficAnalyticsPage() {
       setDirectBreakdown(
         Array.isArray(directBreakdownData) ? directBreakdownData : [],
       );
-      setLoloBuySpreadsheetsDiagnostics(findsSpreadsheetDiagnosticsData || null);
+      setIndexFindsDiagnostics(findsSpreadsheetDiagnosticsData || null);
       setBehaviorFunnelOverview(behaviorFunnelOverviewData || null);
       setReconciliationOverview(reconciliationData);
       writeSessionCache(cacheKey, {

@@ -1,4 +1,8 @@
 import { test, expect } from '@playwright/test';
+import {
+  E2E_ADMIN_TOKEN,
+  stubAdminRefresh,
+} from './api-route.mjs';
 
 test.use({
   viewport: { width: 1440, height: 900 },
@@ -9,7 +13,7 @@ test.use({
 test('renders first-party traffic diagnostics in admin traffic dashboard', async ({
   page,
 }) => {
-  await page.addInitScript(() => {
+  await page.addInitScript((adminToken) => {
     localStorage.setItem(
       'auth-storage',
       JSON.stringify({
@@ -22,17 +26,19 @@ test('renders first-party traffic diagnostics in admin traffic dashboard', async
             role: 'admin',
             emailVerified: true,
           },
-          token: 'e2e-admin-token',
+          token: adminToken,
           isAuthenticated: true,
         },
         version: 0,
       }),
     );
-  });
+  }, E2E_ADMIN_TOKEN);
+
+  await stubAdminRefresh(page);
 
   const trafficResponses = new Map([
     [
-      '**/api/admin/analytics/traffic/overview**',
+      '**/admin/analytics/traffic/overview**',
       {
         total: 120,
         totalChange: 20,
@@ -40,6 +46,23 @@ test('renders first-party traffic diagnostics in admin traffic dashboard', async
         uniqueSessionsChange: 15,
         uniqueVisitors: 65,
         uniqueVisitorsChange: 10,
+        totalOutboundVisits: 12,
+        totalOutboundVisitsChange: 5,
+        outboundVisitRate: 15,
+        highIntentVisitors: 18,
+        highIntentVisitorsChange: 12,
+        highIntentVisitorRate: 22.5,
+        activatedUsers: 12,
+        activatedUsersChange: 9,
+        activatedUserRate: 15,
+        effectiveNewUsers: 4,
+        effectiveNewUsersChange: 20,
+        effectiveNewUserRate: 5,
+        effectiveUsers: 4,
+        effectiveUsersChange: 20,
+        effectiveUserRate: 5,
+        suspiciousVisitRecords: 3,
+        suspiciousVisitRate: 2.5,
         topChannel: 'referral',
         topSource: 'telegram',
         period: {
@@ -55,42 +78,73 @@ test('renders first-party traffic diagnostics in admin traffic dashboard', async
       },
     ],
     [
-      '**/api/admin/analytics/traffic/by-channel**',
+      '**/admin/analytics/traffic/engagement/overview**',
+      {
+        totalVisits: 120,
+        measuredVisits: 80,
+        measurementCoverageRate: 66.67,
+        avgActiveDurationMs: 18000,
+        medianActiveDurationMs: 12000,
+        shortStayVisits: 10,
+        shortStayRate: 12.5,
+        engaged10sVisits: 52,
+        engaged10sRate: 65,
+        engaged30sVisits: 24,
+        engaged30sRate: 30,
+        avgActiveBeforeOutboundMs: 15000,
+      },
+    ],
+    [
+      '**/admin/analytics/traffic/by-channel**',
       [{ channel: 'referral', count: 80, percentage: 66.67 }],
     ],
     [
-      '**/api/admin/analytics/traffic/by-source**',
-      [{ source: 'telegram', count: 40, outboundClicks: 12, conversionRate: 30 }],
+      '**/admin/analytics/traffic/by-source**',
+      [{ source: 'telegram', rawCount: 50, count: 40, uniqueVisitors: 32, suspiciousVisits: 3, suspiciousRate: 7.5, outboundVisits: 12, outboundClicks: 12, outboundRate: 30, effectiveUsers: 4, effectiveUserRate: 10, measuredVisits: 30, avgActiveDurationMs: 18000, shortStayRate: 12.5, engaged10sRate: 65, engaged30sRate: 30, avgActiveBeforeOutboundMs: 15000 }],
     ],
     [
-      '**/api/admin/analytics/traffic/by-campaign**',
+      '**/admin/analytics/traffic/by-campaign**',
       [
         {
           campaign: 'referral_invite',
           source: 'telegram',
           medium: 'social',
+          rawCount: 50,
           count: 40,
+          uniqueVisitors: 32,
+          suspiciousVisits: 3,
+          suspiciousRate: 7.5,
+          outboundVisits: 12,
           outboundClicks: 12,
-          conversionRate: 30,
+          outboundRate: 30,
+          effectiveUsers: 4,
+          effectiveUserRate: 10,
         },
       ],
     ],
     [
-      '**/api/admin/analytics/traffic/by-landing-page**',
+      '**/admin/analytics/traffic/by-landing-page**',
       [
         {
           landingPage: '/en/products/test',
+          rawCount: 50,
           count: 40,
+          uniqueVisitors: 32,
+          suspiciousVisits: 3,
+          suspiciousRate: 7.5,
+          outboundVisits: 12,
           outboundClicks: 12,
-          conversionRate: 30,
+          outboundRate: 30,
+          effectiveUsers: 4,
+          effectiveUserRate: 10,
         },
       ],
     ],
-    ['**/api/admin/analytics/traffic/trends**', [{ period: '2026-03-29', count: 20 }]],
-    ['**/api/admin/analytics/traffic/geo**', [{ country: 'US', count: 30, percentage: 25 }]],
-    ['**/api/admin/analytics/traffic/devices**', [{ deviceType: 'mobile', count: 70, percentage: 58.33 }]],
+    ['**/admin/analytics/traffic/trends**', [{ period: '2026-03-29', count: 20 }]],
+    ['**/admin/analytics/traffic/geo**', [{ country: 'US', count: 30, percentage: 25 }]],
+    ['**/admin/analytics/traffic/devices**', [{ deviceType: 'mobile', count: 70, percentage: 58.33 }]],
     [
-      '**/api/admin/analytics/traffic/capture-diagnostics/overview**',
+      '**/admin/analytics/traffic/capture-diagnostics/overview**',
       {
         totalVisits: 120,
         consentAccepted: 90,
@@ -111,11 +165,12 @@ test('renders first-party traffic diagnostics in admin traffic dashboard', async
       },
     ],
     [
-      '**/api/admin/analytics/traffic/reconciliation/overview**',
+      '**/admin/analytics/traffic/reconciliation/overview**',
       {
         referralClicks: 150,
         landingVisits: 120,
         firstPartyVisits: 110,
+        unmatchedFirstPartyVisits: 0,
         gaCaptures: 88,
         clickToLandingRate: 80,
         landingToFirstPartyRate: 91.67,
@@ -123,7 +178,7 @@ test('renders first-party traffic diagnostics in admin traffic dashboard', async
       },
     ],
     [
-      '**/api/admin/analytics/traffic/capture-diagnostics/breakdown**',
+      '**/admin/analytics/traffic/capture-diagnostics/breakdown**',
       [
         {
           dimension: 'source',
@@ -148,7 +203,7 @@ test('renders first-party traffic diagnostics in admin traffic dashboard', async
       ],
     ],
     [
-      '**/api/admin/analytics/traffic/capture-diagnostics/loss-breakdown**',
+      '**/admin/analytics/traffic/capture-diagnostics/loss-breakdown**',
       [
         { reason: 'captured', count: 60, percentage: 50 },
         { reason: 'consent_pending', count: 20, percentage: 16.67 },
@@ -156,6 +211,10 @@ test('renders first-party traffic diagnostics in admin traffic dashboard', async
         { reason: 'ga_failed:script_load_timeout', count: 8, percentage: 6.67 },
       ],
     ],
+    ['**/admin/analytics/traffic/attribution-quality/overview**', null],
+    ['**/admin/analytics/traffic/attribution-quality/direct-breakdown**', []],
+    ['**/admin/analytics/traffic/attribution-quality/source-diagnostics**', null],
+    ['**/admin/analytics/traffic/behavior-funnel/overview**', null],
   ]);
 
   for (const [pattern, body] of trafficResponses.entries()) {
@@ -171,22 +230,17 @@ test('renders first-party traffic diagnostics in admin traffic dashboard', async
   await page.goto('/admin/analytics/traffic');
 
   await expect(page.getByRole('heading', { name: '流量来源分析' })).toBeVisible();
-  await expect(page.getByText('本页展示的是首方流量数据')).toBeVisible();
-  await expect(page.getByText('运营解读')).toBeVisible();
-  await expect(page.getByText(/35 次内置浏览器访问/)).toBeVisible();
+  await expect(page.getByText('先看经营结果，再看原因')).toBeVisible();
+  await expect(
+    page.getByText(/默认排除内部 channel 与已登录 admin \/ super_admin/),
+  ).toBeVisible();
   await expect(page.getByRole('button', { name: '查看指标口径' })).toBeVisible();
+  await expect(page.getByText('全部去重访问')).toBeVisible();
+  await expect(page.locator('td', { hasText: 'Telegram' }).first()).toBeVisible();
+
+  await page.getByRole('button', { name: '采集对账' }).click();
+  await expect(page.getByText('采集速览')).toBeVisible();
+  await expect(page.getByText(/35 次访问来自内置浏览器/)).toBeVisible();
   await expect(page.getByText('推荐短链点击')).toBeVisible();
   await expect(page.getByText('150')).toBeVisible();
-  await expect(page.getByText('整体 GA 捕获率')).toBeVisible();
-  await expect(page.locator('.ant-statistic-content-value', { hasText: '50%' }).first()).toBeVisible();
-  await expect(page.getByText('可追踪捕获率')).toBeVisible();
-  await expect(page.locator('.ant-statistic-content-value', { hasText: '75%' }).first()).toBeVisible();
-  await expect(page.getByText('首次页面浏览已发出')).toBeVisible();
-  await expect(page.getByText('GA4 捕获 / 丢失原因', { exact: true })).toBeVisible();
-  await expect(page.getByText('推荐流量捕获分布', { exact: true })).toBeVisible();
-  await expect(page.locator('td', { hasText: 'Telegram' }).first()).toBeVisible();
-  await expect(page.getByText('已捕获')).toBeVisible();
-  await expect(page.getByText('未同意 / 尚未选择统计同意')).toBeVisible();
-  await expect(page.getByText('GA 已就绪但未观察到首次页面浏览')).toBeVisible();
-  await expect(page.getByText('GA 初始化失败: 脚本加载超时')).toBeVisible();
 });

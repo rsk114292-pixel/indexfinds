@@ -69,15 +69,6 @@ export const SHARE_CHANNELS: ChannelConfig[] = [
     action: 'external',
   },
   {
-    id: 'discord',
-    labelKey: 'discord',
-    iconType: 'social',
-    iconName: 'discord',
-    color: '#5865F2',
-    action: 'copy',
-    copyToastKey: 'copiedForDiscord',
-  },
-  {
     id: 'tiktok',
     labelKey: 'tiktok',
     iconType: 'social',

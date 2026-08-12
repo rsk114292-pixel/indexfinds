@@ -303,6 +303,10 @@ describe('PopularityScoreService', () => {
       };
       productRepository.createQueryBuilder.mockReturnValue(mockQb as any);
 
+      jest
+        .spyOn(Date, 'now')
+        .mockReturnValue(new Date('2026-03-10T00:00:00Z').getTime());
+
       const oldPlain = {
         id: 'old',
         viewCount: 10,

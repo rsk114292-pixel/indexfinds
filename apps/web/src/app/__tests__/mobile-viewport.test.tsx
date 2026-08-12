@@ -19,9 +19,9 @@ describe('Viewport configuration', () => {
     expect(viewport.initialScale).toBe(1);
   });
 
-  it('disables user scaling to prevent pinch-to-zoom (Android)', () => {
-    expect(viewport.maximumScale).toBe(1);
-    expect(viewport.userScalable).toBe(false);
+  it('allows user scaling for accessibility', () => {
+    expect(viewport.maximumScale).toBeUndefined();
+    expect(viewport.userScalable).toBeUndefined();
   });
 
   it('uses viewport-fit cover for notched devices', () => {

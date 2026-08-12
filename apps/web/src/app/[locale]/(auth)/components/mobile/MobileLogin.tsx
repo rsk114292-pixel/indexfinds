@@ -13,7 +13,7 @@ import { associateVisitWithUser } from '@/lib/visit-tracking';
 import { APP_NAME, API_BASE_URL } from '@/lib/constants';
 import { useTranslations } from 'next-intl';
 import { isValidEmail } from '@/lib/validators';
-import { GoogleIcon, DiscordIcon } from '@/components/icons/OAuthIcons';
+import { GoogleIcon } from '@/components/icons/OAuthIcons';
 import {
   clearPersistedAuthRedirect,
   getSafeRedirectPath,
@@ -121,17 +121,6 @@ export default function MobileLogin() {
           >
             <GoogleIcon />
             <span>Google</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              persistAuthRedirect(redirectPath, '/');
-              window.location.href = `${API_BASE_URL}/auth/discord`;
-            }}
-            className="w-full h-12 flex items-center justify-center gap-2.5 rounded-xl text-sm font-medium text-white bg-discord active:scale-[0.98] transition-all"
-          >
-            <DiscordIcon />
-            <span>Discord</span>
           </button>
         </div>
 

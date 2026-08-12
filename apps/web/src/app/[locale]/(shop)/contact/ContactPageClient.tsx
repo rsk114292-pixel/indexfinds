@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { getContactEmail, getPrivacyEmail } from '@/lib/site-config';
+import { TELEGRAM_URL, WHATSAPP_HELP_URL } from '@/lib/support-links';
 import LegalPageLayout from '@/components/legal/LegalPageLayout';
 
 const SECTIONS = [
@@ -54,10 +55,10 @@ export default function ContactPageClient() {
         <p className="text-sm text-muted leading-relaxed mb-3">{t('sections.community.content')}</p>
         <ul className="space-y-2 text-sm text-muted">
           <li>
-            <a href="#" className="text-primary hover:underline">Discord</a> — {t('sections.community.discord')}
+            <a href={WHATSAPP_HELP_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">WhatsApp</a> — {t('sections.community.whatsapp')}
           </li>
           <li>
-            <a href="#" className="text-primary hover:underline">Telegram</a> — {t('sections.community.telegram')}
+            <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Telegram</a> — {t('sections.community.telegram')}
           </li>
         </ul>
       </section>

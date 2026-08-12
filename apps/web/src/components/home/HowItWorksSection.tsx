@@ -2,7 +2,15 @@
 
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Search, SlidersHorizontal, ShoppingCart, PackageCheck } from 'lucide-react';
+import {
+  Search,
+  SlidersHorizontal,
+  ShoppingCart,
+  PackageCheck,
+  ShieldCheck,
+  ExternalLink,
+  Scale,
+} from 'lucide-react';
 import { FadeIn } from '@/components/ui/FadeIn';
 
 const STEPS = [
@@ -99,6 +107,42 @@ export default function HowItWorksSection() {
             })}
           </div>
         </div>
+
+        <FadeIn>
+          <div className="mx-auto mt-12 max-w-5xl overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+            <div className="grid gap-6 p-6 md:grid-cols-[1.25fr_1fr] md:p-8">
+              <div>
+                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <ShieldCheck className="h-5 w-5" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">
+                  {t('trust.title')}
+                </h3>
+                <p className="mt-2 max-w-xl text-sm leading-6 text-muted">
+                  {t('trust.body')}
+                </p>
+              </div>
+              <div className="grid gap-2.5 self-center">
+                {[
+                  { icon: ShieldCheck, label: t('trust.independent') },
+                  { icon: ExternalLink, label: t('trust.redirects') },
+                  { icon: Scale, label: t('trust.agentChoice') },
+                ].map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div
+                      key={item.label}
+                      className="flex items-center gap-3 rounded-xl bg-gray-50 px-4 py-3 text-sm font-medium text-foreground"
+                    >
+                      <Icon className="h-4 w-4 shrink-0 text-brand-indigo" />
+                      {item.label}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

@@ -65,7 +65,17 @@
     "settings": "الإعدادات",
     "language": "اللغة",
     "noPlatformSelected": "اختر وكيل",
-    "menu": "القائمة"
+    "menu": "القائمة",
+    "agents": "وكلاء الشراء",
+    "chooseAgent": "اختر وكيل الشراء",
+    "agentsAvailable": "{count} وكيلاً مدعوماً",
+    "platformSearch": "البحث عن وكيل...",
+    "recentAgents": "المستخدمة مؤخراً",
+    "allAgents": "جميع الوكلاء",
+    "searchResults": "نتائج البحث",
+    "noAgentResults": "لا توجد نتائج مطابقة",
+    "viewAgentGuides": "عرض جميع أدلة الوكلاء",
+    "buyThrough": "الشراء عبر"
   },
   "drawer": {
     "menu": "القائمة",
@@ -78,7 +88,6 @@
     "helpCenter": "مركز المساعدة",
     "blog": "المدونة",
     "referralProgram": "برنامج الإحالة",
-    "discord": "ديسكورد",
     "telegram": "تيليجرام",
     "language": "اللغة",
     "currency": "العملة",
@@ -121,6 +130,8 @@
   },
   "search": {
     "placeholder": "ابحث عن منتجات أو علامات تجارية أو تصنيفات...",
+    "quickFilters": "فلاتر سريعة",
+    "filterBy": "تصفية حسب {value}",
     "searching": "جارٍ البحث...",
     "noResults": "لم يتم العثور على نتائج",
     "hotSearches": "عمليات بحث رائجة",
@@ -147,6 +158,13 @@
     "photoSearch": "بحث بالصورة",
     "photoSearchDesc": "ارفع صورة للعثور على منتجات مشابهة",
     "recentSearches": "الأخيرة",
+    "modeKeyword": "كلمة مفتاحية",
+    "modeLink": "رابط المنتج",
+    "modeImage": "صورة",
+    "linkPlaceholder": "الصق رابط منتج من Weidian أو Taobao أو 1688 أو Yupoo",
+    "invalidProductLink": "أدخل رابطًا يحتوي على معرّف منتج يمكن التعرف عليه.",
+    "findFromLink": "العثور على المنتج",
+    "linkSearchDesc": "الصق رابطًا مدعومًا. يستخرج IndexFinds معرّف المنتج ويبحث في الكتالوج.",
     "requestProduct": {
       "title": "لم تجد المنتج المناسب؟",
       "description": "أرسل طلب توفير وسيراجعه فريقنا لإدراجه لاحقًا.",
@@ -286,6 +304,20 @@
     "previousImage": "الصورة السابقة",
     "nextImage": "الصورة التالية",
     "hot": "رائج",
+    "agentReady": "{count} وكيلاً",
+    "qcPhotosCount": "{count} صور فحص",
+    "viewCount": "{count} مشاهدة",
+    "viewDetails": "عرض التفاصيل",
+    "buyWithAgent": "الشراء عبر وكيل",
+    "imageUnavailable": "الصورة غير متاحة",
+    "fromPrice": "ابتداءً من {price}",
+    "originalSource": "المصدر الأصلي: {source}",
+    "viewsValue": "{count} مشاهدة",
+    "salesValue": "{count} عملية بيع",
+    "updatedValue": "تم التحديث في {date}",
+    "sourceMissing": "رابط المصدر غير متاح",
+    "sourceStatusUnverified": "لم يتم التحقق من توفر المصدر بعد",
+    "reportProduct": "الإبلاغ عن مشكلة في المنتج",
     "shareRewards": {
       "eyebrow": "شارك واكسب",
       "title": "شارك هذا المنتج واكسب +1 نقطة",
@@ -395,15 +427,22 @@
   },
   "home": {
     "hero": {
-      "discover": "LoloBuy ",
-      "products": "Spreadsheet Finds",
+      "discover": "اكتشف أفضل ",
+      "headlinePrimary": "اعثر على منتجات صينية.",
+      "headlineSecondary": "قارن بين وكلاء الشراء.",
+      "products": "المنتجات",
       "fromChina": " من الصين",
-      "descLine1": "تصفح مختارات Weidian وTaobao و1688 في LoloBuy spreadsheet قابلة للبحث.",
-      "descLine2": "راجع صور QC وتفاصيل SKU والأسعار وروابط المنتجات قبل الشراء.",
+      "descLine1": "استكشف منتجات مختارة من Weidian وTaobao و1688 في مكان واحد.",
+      "descLine2": "قارن الأسعار وصور QC وتفاصيل SKU قبل اختيار طريقة الشراء.",
       "featureAI": "مدعوم بالذكاء الاصطناعي",
       "featureVisualSearch": "البحث بالصور",
-      "featureProducts": "{count}+ منتج",
-      "featureBrands": "{count}+ علامة تجارية"
+      "featureProducts": "{count} منتج",
+      "featureBrands": "{count} علامة تجارية",
+      "eyebrow": "اكتشاف مستقل للمنتجات للمتسوقين حول العالم",
+      "agentPrompt": "اختر منصة الشراء",
+      "browseProducts": "تصفح المنتجات",
+      "compareAgents": "مقارنة الوكلاء",
+      "imageSearch": "البحث بالصورة"
     },
     "howItWorks": {
       "title": "كيف يعمل",
@@ -416,6 +455,13 @@
       "chooseDesc": "اختر الخيار الأفضل واحصل على رابط الشراء.",
       "receiveTitle": "استلم",
       "receiveDesc": "اطلب عبر وكيلك واحصل على التوصيل لأي مكان في العالم."
+    },
+    "trust": {
+      "title": "أنت المتحكم في عملية الشراء",
+      "body": "يساعدك IndexFinds على اكتشاف المنتجات ومقارنتها. نحن لا نبيع السلع ولا نعالج المدفوعات.",
+      "independent": "فهرس منتجات مستقل",
+      "redirects": "انتقال واضح إلى الوكيل المختار",
+      "agentChoice": "وكيلك وقرارك النهائي"
     },
     "featuredBrands": {
       "title": "علامات تجارية مميزة"
@@ -458,6 +504,75 @@
       "progressCaption": "يمكن للأعضاء الجدد فتح السحب بسرعة من خلال بعض الخطوات البسيطة."
     }
   },
+  "agents": {
+    "eyebrow": "دليل وكلاء الشراء",
+    "title": "اختر وكيل الشراء المناسب لك",
+    "subtitle": "تصفح {count} وكيلاً مدعوماً واحفظ منصتك المفضلة.",
+    "searchPlaceholder": "البحث عن وكيل...",
+    "supportedTitle": "وكلاء الشراء المدعومون",
+    "supportedDesc": "يوضح كل دليل الانتقال من اكتشاف المنتج إلى موقع الوكيل.",
+    "officialLogos": "هوية بصرية رسمية",
+    "cardDescription": "استخدم {name} كمسار الشراء المفضل.",
+    "openGuide": "فتح الدليل",
+    "noResults": "لا توجد نتائج مطابقة",
+    "allGuides": "جميع أدلة الوكلاء",
+    "guideEyebrow": "دليل وكيل IndexFinds",
+    "guideTitle": "كيفية استخدام {name}",
+    "guideSubtitle": "اكتشف المنتجات على IndexFinds ثم تابع عبر {name} للشراء.",
+    "selectedAgent": "تم اختيار الوكيل",
+    "useAsAgent": "استخدام {name}",
+    "officialWebsite": "الموقع الرسمي",
+    "howToTitle": "اشترِ عبر {name} في أربع خطوات",
+    "howToSubtitle": "يتولى IndexFinds الاكتشاف ويتولى الوكيل الطلب والتوصيل.",
+    "stepSearchTitle": "ابحث عن منتج",
+    "stepSearchBody": "ابحث بالكلمة أو العلامة أو الفئة أو الصورة.",
+    "stepReviewTitle": "راجع التفاصيل",
+    "stepReviewBody": "تحقق من الأسعار والخيارات والبائع وصور الفحص المتاحة.",
+    "stepChooseTitle": "اختر {name}",
+    "stepChooseBody": "عيّن المنصة كوكيل الشراء المفضل.",
+    "stepContinueTitle": "تابع بأمان",
+    "stepContinueBody": "أكمل الطلب والدفع والشحن على موقع الوكيل.",
+    "disclosureTitle": "خدمة اكتشاف مستقلة",
+    "disclosureBody": "IndexFinds ليس وكيلاً ولا يعالج المدفوعات. تحقق من الشروط في الموقع الرسمي.",
+    "browseProducts": "تصفح المنتجات",
+    "compareAgents": "مقارنة الوكلاء",
+    "matchEyebrow": "مساعد اختيار الوكيل",
+    "matchTitle": "ضيّق خيارات وكيل الشراء المناسبة لك",
+    "matchSubtitle": "اختر الوجهة ووزن الطرد والأولوية. سنعرض خيارات للمراجعة بالاعتماد على البيانات المتاحة وتقدير عام للشحن.",
+    "matchPriority": "ما الأهم بالنسبة لك؟",
+    "matchBudget": "تقدير الشحن",
+    "matchStorage": "تخزين مجاني",
+    "matchQc": "فحص الجودة",
+    "matchPayment": "طرق الدفع",
+    "optionsToReview": "خيارات للمراجعة",
+    "configuredFields": "تم إعداد {count} تفاصيل",
+    "reviewMatchesNotice": "قائمة للتخطيط فقط وليست تصنيفًا أو توصية رسمية.",
+    "compareEyebrow": "مقارنة الوكلاء جنبًا إلى جنب",
+    "compareTitle": "قارن وكلاء الشراء قبل الاختيار",
+    "compareSubtitle": "اختر حتى ثلاثة وكلاء واعرض المواقع الرسمية والأدلة وتفضيلك في مكان واحد.",
+    "chooseToCompare": "اختر وكلاء للمقارنة",
+    "selectedCount": "تم اختيار {count} من {max}",
+    "clearComparison": "مسح",
+    "comparisonField": "مقارنة",
+    "preferredAgent": "الوكيل المفضل",
+    "preferred": "مفضل",
+    "setPreferred": "تعيين كمفضل",
+    "visitOfficial": "زيارة الموقع",
+    "indexFindsGuide": "دليل IndexFinds",
+    "serviceFees": "رسوم الخدمة",
+    "shippingCoverage": "نطاق الشحن",
+    "warehouseQc": "المستودع وفحص الجودة",
+    "paymentMethods": "طرق الدفع",
+    "returnPolicy": "سياسة الإرجاع",
+    "dataUpdated": "تحديث البيانات",
+    "freeStorageDaysValue": "تخزين مجاني لمدة {count} يومًا",
+    "notConfigured": "غير مُعدّ",
+    "confirmOfficial": "تحقق في الموقع الرسمي",
+    "variesByRoute": "يختلف حسب المسار والوجهة",
+    "noAgentSelected": "اختر وكيلاً واحدًا على الأقل لبدء المقارنة.",
+    "comparisonNoticeTitle": "تحقق من الشروط الحالية",
+    "comparisonNoticeBody": "قد تتغير الرسوم والوجهات والتخزين وخدمات فحص الجودة. لا يصنف IndexFinds الوكلاء ولا يضمن خدماتهم؛ تحقق من المواقع الرسمية."
+  },
   "brands": {
     "title": "العلامات التجارية",
     "discoverCount": "اكتشف {count} علامة تجارية من مجموعتنا",
@@ -474,7 +589,10 @@
     "popular": "شائع",
     "productCount": "{count} منتج",
     "noProducts": "لم يتم العثور على منتجات لهذه العلامة التجارية",
-    "noProductsDesc": "جرّب إزالة بعض الفلاتر أو عد لاحقاً"
+    "noProductsDesc": "جرّب إزالة بعض الفلاتر أو عد لاحقاً",
+    "collectionGrowingTitle": "دليل العلامات التجارية ينمو باستمرار",
+    "collectionGrowingDesc": "نضيف علامات تجارية ومنتجات موثوقة باستمرار. تصفح أحدث المنتجات الآن.",
+    "exploreProducts": "استكشاف المنتجات"
   },
   "categories": {
     "title": "تصفّح التصنيفات",
@@ -818,7 +936,37 @@
     "noPlatforms": "لا توجد منصات متاحة",
     "rememberChoice": "تذكر اختياري للمشتريات المستقبلية",
     "continueTo": "المتابعة إلى {platform}",
-    "platformFallback": "المنصة"
+    "platformFallback": "المنصة",
+    "purchaseOptions": "خيارات الشراء",
+    "productPrice": "سعر المنتج قبل رسوم الوكيل",
+    "compareAgents": "مقارنة الوكلاء",
+    "preferredAgent": "وكيل الشراء المفضل",
+    "chooseAgent": "اختر وكيلاً",
+    "changeAgent": "تغيير",
+    "openingAgent": "جارٍ فتح الوكيل…",
+    "chooseAgentToBuy": "اختر وكيلاً للشراء",
+    "finalPriceNotice": "يتم تأكيد رسوم الوكيل والشحن والضرائب على موقع الوكيل."
+  },
+  "shippingEstimator": {
+    "title": "تقدير الشحن الدولي",
+    "subtitle": "أدخل الوجهة والوزن المتوقع للطرد.",
+    "estimated": "تقديري",
+    "destination": "الوجهة",
+    "weight": "وزن الطرد",
+    "agent": "وكيل الشراء",
+    "configuredRate": "يستخدم أسعار الوكيل المُعدّة",
+    "generalRate": "يستخدم تقديرًا عامًا للمسار",
+    "notice": "هذا تقدير للتخطيط فقط. لا يشمل الوزن الحجمي أو الجمارك أو السلع المقيدة أو الرسوم النهائية.",
+    "compareAgents": "مقارنة شروط الوكلاء",
+    "destinations": {
+      "US": "الولايات المتحدة",
+      "GB": "المملكة المتحدة",
+      "DE": "ألمانيا",
+      "FR": "فرنسا",
+      "CA": "كندا",
+      "AU": "أستراليا",
+      "OTHER": "وجهة أخرى"
+    }
   },
   "visualSearch": {
     "title": "البحث المرئي",
@@ -861,10 +1009,10 @@
     "imageSearch": "البحث بالصور"
   },
   "metadata": {
-    "homeTitle": "{siteName} | LoloBuy Spreadsheet Finds وصور QC",
-    "homeDescription": "يساعدك {siteName} على تصفح LoloBuy spreadsheet finds لمنتجات Weidian وTaobao و1688 مع صور QC وتفاصيل SKU ومسارات مفيدة لبحث lolobuyspreadsheet.",
-    "homeOgTitle": "{siteName} | LoloBuy Spreadsheet Finds وصور QC",
-    "homeOgDescription": "يساعدك {siteName} على تصفح LoloBuy spreadsheet finds لمنتجات Weidian وTaobao و1688 مع صور QC وتفاصيل SKU ومسارات مفيدة لبحث lolobuyspreadsheet.",
+    "homeTitle": "{siteName} | اكتشف أفضل المنتجات من الصين",
+    "homeDescription": "استكشف منتجات مختارة من الصين وقارن الأسعار واعثر على بائعين موثوقين مع {siteName}.",
+    "homeOgTitle": "{siteName} | اكتشف أفضل المنتجات من الصين",
+    "homeOgDescription": "استكشف منتجات مختارة من الصين وقارن الأسعار واعثر على بائعين موثوقين مع {siteName}.",
     "productNotFound": "المنتج غير موجود",
     "productFallbackDescription": "تسوّق {title} من بائعين صينيين موثوقين على {siteName}. أفضل الأسعار وصور فحص الجودة وطلب دايقو سهل.",
     "searchTitle": "بحث: {query}",
@@ -917,6 +1065,9 @@
     "accept": "قبول",
     "reject": "رفض"
   },
+  "whatsappHelp": {
+    "label": "هل تحتاج إلى مساعدة للشراء من الصين؟"
+  },
   "share": {
     "title": "مشاركة",
     "whatsapp": "واتساب",
@@ -925,12 +1076,10 @@
     "reddit": "ريديت",
     "email": "بريد إلكتروني",
     "pinterest": "بنترست",
-    "discord": "ديسكورد",
     "tiktok": "تيك توك",
     "copyLink": "نسخ الرابط",
     "copied": "تم النسخ!",
     "copyFailed": "فشل النسخ",
-    "copiedForDiscord": "تم نسخ الرابط! الصقه في ديسكورد",
     "copiedForTiktok": "تم نسخ الرابط! الصقه في تيك توك",
     "claimed": "تم التحصيل",
     "showQrCode": "رمز QR",
@@ -952,7 +1101,7 @@
       "step1": {
         "label": "ابحث",
         "title": "ابحث واكتشف",
-        "description": "تصفّح أكثر من 10,000 منتج حسب العلامة التجارية أو التصنيف، أو استخدم البحث المرئي للعثور على ما تبحث عنه بالضبط."
+        "description": "تصفّح الكتالوج الحالي حسب العلامة التجارية أو التصنيف، أو استخدم البحث المرئي للعثور على ما تبحث عنه."
       },
       "step2": {
         "label": "قارن",
@@ -962,7 +1111,7 @@
       "step3": {
         "label": "اختر",
         "title": "اختر وكيلك",
-        "description": "انقر على زر الشراء واختر من بين عدة وكلاء شراء مثل Litbuy و Kakobuy و MuleBuy وغيرهم."
+        "description": "انقر على زر الشراء واختر إحدى المنصات المدعومة في دليل الوكلاء الحالي."
       },
       "step4": {
         "label": "استلم",
@@ -973,7 +1122,7 @@
     "features": {
       "title": "لماذا {siteName}؟",
       "products": {
-        "title": "أكثر من 10,000 منتج",
+        "title": "كتالوج منتجات متجدد",
         "description": "مجموعة ضخمة منتقاة من المنتجات من Weidian و Taobao و 1688."
       },
       "updates": {
@@ -986,12 +1135,12 @@
       },
       "agents": {
         "title": "وكلاء متعددون",
-        "description": "اختر من بين Litbuy و Kakobuy و MuleBuy و USFANS والعديد من الوكلاء الآخرين."
+        "description": "اختر من بين المنصات المدرجة في دليل وكلاء الشراء الحالي."
       }
     },
     "cta": {
       "title": "مستعد للعثور على منتجك المفضل القادم؟",
-      "description": "تصفّح مجموعتنا التي تضم أكثر من 10,000 منتج من أفضل أسواق الصين.",
+      "description": "تصفّح مجموعتنا الحالية من المنتجات في الأسواق الصينية.",
       "button": "ابدأ التصفح"
     }
   },
@@ -1021,7 +1170,7 @@
     "featuredBadge": "مميز",
     "growthBadge": "اكثر",
     "longTailBadge": "اضافي",
-    "cardSuffix": "spreadsheet، yupoo، links"
+    "cardSuffix": "دليل، الموقع الرسمي، مسار الشراء"
   },
   "helpPage": {
     "hero": {
@@ -1034,7 +1183,7 @@
         "title": "البداية",
         "q1": {
           "question": "ما هو {siteName}؟",
-          "answer": "{siteName} هو منصة لاكتشاف المنتجات تساعدك في العثور على أفضل المنتجات من الأسواق الصينية مثل Weidian و Taobao و 1688. نقوم بتنسيق أكثر من 10,000 منتج مع معلومات تفصيلية وصور QC."
+          "answer": "{siteName} منصة لاكتشاف المنتجات من الأسواق الصينية مثل Weidian وTaobao و1688. يتغير حجم الكتالوج والتفاصيل المتاحة مع مراجعة القوائم وتحديثها."
         },
         "q2": {
           "question": "كيف أنشئ حساباً؟",
@@ -1042,7 +1191,7 @@
         },
         "q3": {
           "question": "ما هو وكيل الشراء؟",
-          "answer": "وكيل الشراء (دايقو) هو خدمة تشتري المنتجات من الأسواق الصينية نيابةً عنك وتشحنها دولياً. من الوكلاء المشهورين Litbuy و Kakobuy و MuleBuy و USFANS."
+          "answer": "وكيل الشراء (دايقو) خدمة تشتري المنتجات من الأسواق الصينية نيابةً عنك وتشحنها دولياً. تظهر الخيارات الحالية في دليل الوكلاء."
         },
         "q4": {
           "question": "هل {siteName} مجاني؟",
@@ -1072,7 +1221,7 @@
         "title": "الوكلاء والطلبات",
         "q1": {
           "question": "ما الوكلاء الذين تدعمونهم؟",
-          "answer": "ندعم عدة وكلاء بما في ذلك Litbuy و Kakobuy و MuleBuy و USFANS و iTaoBuy وغيرهم الكثير. يمكنك اختيار الوكيل المفضل لديك عند النقر على زر الشراء."
+          "answer": "ندعم المنصات المعروضة في دليل الوكلاء الحالي. يمكنك مقارنتها واختيار منصتك المفضلة قبل الشراء."
         },
         "q2": {
           "question": "كيف أقدم طلباً؟",
@@ -1103,7 +1252,7 @@
         },
         "q4": {
           "question": "كيف يمكنني التواصل مع الدعم؟",
-          "answer": "يمكنك التواصل معنا عبر البريد الإلكتروني على {contactEmail} أو الانضمام إلى مجتمعاتنا على Discord و Telegram."
+          "answer": "يمكنك التواصل معنا عبر البريد الإلكتروني على {contactEmail} أو الانضمام إلى مجتمعنا على Telegram."
         }
       }
     },
@@ -1113,9 +1262,9 @@
       "email": {
         "label": "راسلنا عبر البريد الإلكتروني"
       },
-      "discord": {
-        "label": "Discord",
-        "description": "انضم إلى مجتمعنا"
+      "whatsapp": {
+        "label": "واتساب",
+        "description": "احصل على مساعدة في الشراء"
       },
       "telegram": {
         "label": "Telegram",
@@ -1136,7 +1285,7 @@
       },
       "independent-platform": {
         "title": "إخلاء مسؤولية المنصة المستقلة",
-        "content": "يعمل {siteName} بشكل مستقل وليس تابعاً رسمياً لأي منصة وكيل شراء (بما في ذلك على سبيل المثال لا الحصر Litbuy و Kakobuy و MuleBuy و USFANS و iTaoBuy) أو أي سوق صيني. يتم توفير الروابط إلى منصات الوكلاء الخارجية للراحة فقط."
+        "content": "يعمل {siteName} بشكل مستقل وليس تابعاً رسمياً للمنصات المدرجة في الدليل أو لأي سوق صيني. يتم توفير الروابط إلى منصات خارجية للراحة فقط."
       },
       "user-accounts": {
         "title": "حسابات المستخدمين",
@@ -1390,7 +1539,7 @@
       "community": {
         "title": "المجتمع",
         "content": "انضم إلى مجتمعنا للتواصل مع مشترين آخرين ومشاركة الاكتشافات والحصول على مساعدة من مشترين ذوي خبرة:",
-        "discord": "تحدث مع المجتمع واحصل على مساعدة فورية",
+        "whatsapp": "احصل على مساعدة للشراء من الصين",
         "telegram": "التحديثات والعروض ومناقشات المجتمع"
       },
       "important-note": {

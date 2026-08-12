@@ -101,7 +101,7 @@ export default function SourceQualityDiagnosticsPanel({
 
   return (
     <Card
-      title={`${data?.source || 'lolobuyspreadsheets.com'} 来源质量诊断`}
+        title={`${data?.source || 'indexfinds.com'} 来源质量诊断`}
       extra={
         <span className="text-xs text-gray-400">
           外部 referral 单独评估，不归为自有导流，也不混入 Direct 问题

@@ -47,6 +47,9 @@ migration-artifacts/uploads-referenced/
 coverage/
 apps/web/test-results/
 
+# Local review and generated presentation artifacts
+outputs/
+
 # Backup files
 *.backup
 *-debug.json

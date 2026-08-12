@@ -320,7 +320,6 @@ describe('PointsService', () => {
               'reddit',
               'email',
               'pinterest',
-              'discord',
               'tiktok',
             ][index],
           },

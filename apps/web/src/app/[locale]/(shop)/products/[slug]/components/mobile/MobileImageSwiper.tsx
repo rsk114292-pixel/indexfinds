@@ -1,12 +1,16 @@
-'use client';
+"use client";
 
-import { useState, useCallback, useEffect, useRef } from 'react';
-import Image from 'next/image';
-import useEmblaCarousel from 'embla-carousel-react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { X } from 'lucide-react';
-import { getImageReferrerPolicy, getProductDetailMainImage } from '@/lib/image-utils';
-import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import { useState, useCallback, useEffect, useRef } from "react";
+import Image from "next/image";
+import useEmblaCarousel from "embla-carousel-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { X } from "lucide-react";
+import {
+  getImageReferrerPolicy,
+  getProductDetailMainImage,
+} from "@/lib/image-utils";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+import { PRODUCT_IMAGE_FALLBACK } from "@/components/ui/ImageWithFallback";
 
 interface MobileImageSwiperProps {
   images: string[];
@@ -34,9 +38,16 @@ export default function MobileImageSwiper({
   selectedIndex,
   onIndexChange,
 }: MobileImageSwiperProps) {
-  const allImages = images.length > 0 ? images : [mainImageUrl];
+  const sourceImages = (images.length > 0 ? images : [mainImageUrl]).filter(
+    Boolean,
+  );
+  const allImages =
+    sourceImages.length > 0 ? sourceImages : [PRODUCT_IMAGE_FALLBACK];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [failedImages, setFailedImages] = useState<Set<string>>(
+    () => new Set(),
+  );
   useBodyScrollLock(isFullscreen);
 
   // 主轮播
@@ -63,8 +74,10 @@ export default function MobileImageSwiper({
 
   useEffect(() => {
     if (!emblaApi) return;
-    emblaApi.on('select', onSelect);
-    return () => { emblaApi.off('select', onSelect); };
+    emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
   }, [emblaApi, onSelect]);
 
   // 外部 selectedIndex 变化时驱动轮播滚动
@@ -98,8 +111,10 @@ export default function MobileImageSwiper({
 
   useEffect(() => {
     if (!fullscreenApi) return;
-    fullscreenApi.on('select', onFullscreenSelect);
-    return () => { fullscreenApi.off('select', onFullscreenSelect); };
+    fullscreenApi.on("select", onFullscreenSelect);
+    return () => {
+      fullscreenApi.off("select", onFullscreenSelect);
+    };
   }, [fullscreenApi, onFullscreenSelect]);
 
   return (
@@ -112,17 +127,35 @@ export default function MobileImageSwiper({
               <div
                 key={index}
                 className="relative flex-[0_0_100%] min-w-0 aspect-square cursor-pointer"
-                onClick={() => setIsFullscreen(true)}
+                onClick={() => {
+                  if (!failedImages.has(img)) setIsFullscreen(true);
+                }}
               >
-                <Image
-                  src={getProductDetailMainImage(img)}
-                  alt={`${alt} - ${index + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-                  priority={index === 0}
-                  referrerPolicy={getImageReferrerPolicy(getProductDetailMainImage(img))}
-                />
+                {failedImages.has(img) ? (
+                  <Image
+                    src={PRODUCT_IMAGE_FALLBACK}
+                    alt={`${alt} - ${index + 1}`}
+                    fill
+                    className="object-contain"
+                    sizes="100vw"
+                    unoptimized
+                  />
+                ) : (
+                  <Image
+                    src={getProductDetailMainImage(img)}
+                    alt={`${alt} - ${index + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="100vw"
+                    priority={index === 0}
+                    referrerPolicy={getImageReferrerPolicy(
+                      getProductDetailMainImage(img),
+                    )}
+                    onError={() => {
+                      setFailedImages((current) => new Set(current).add(img));
+                    }}
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -136,8 +169,8 @@ export default function MobileImageSwiper({
                 key={index}
                 className={`block rounded-full transition-all duration-200 ${
                   index === currentIndex
-                    ? 'w-4 h-1.5 bg-white'
-                    : 'w-1.5 h-1.5 bg-white/50'
+                    ? "w-4 h-1.5 bg-white"
+                    : "w-1.5 h-1.5 bg-white/50"
                 }`}
               />
             ))}
@@ -166,7 +199,7 @@ export default function MobileImageSwiper({
             <div className="absolute top-0 right-0 rtl:left-0 rtl:right-auto z-10 p-4 pt-[calc(env(safe-area-inset-top)+16px)]">
               <button
                 onClick={() => setIsFullscreen(false)}
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-white/20 text-white active:bg-white/30"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/20 text-white active:bg-white/30"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -180,13 +213,29 @@ export default function MobileImageSwiper({
                     key={index}
                     className="relative flex-[0_0_100%] min-w-0 h-dvh flex items-center justify-center"
                   >
-                    <Image
-                      src={img}
-                      alt={`${alt} - ${index + 1}`}
-                      fill
-                      className="object-contain"
-                      sizes="100vw"
-                    />
+                    {failedImages.has(img) ? (
+                      <Image
+                        src={PRODUCT_IMAGE_FALLBACK}
+                        alt={`${alt} - ${index + 1}`}
+                        fill
+                        className="object-contain"
+                        sizes="100vw"
+                        unoptimized
+                      />
+                    ) : (
+                      <Image
+                        src={img}
+                        alt={`${alt} - ${index + 1}`}
+                        fill
+                        className="object-contain"
+                        sizes="100vw"
+                        onError={() => {
+                          setFailedImages((current) =>
+                            new Set(current).add(img),
+                          );
+                        }}
+                      />
+                    )}
                   </div>
                 ))}
               </div>

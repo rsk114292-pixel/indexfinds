@@ -1,31 +1,35 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { usePathname, useRouter } from '@/i18n/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Camera, Search } from 'lucide-react';
-import { useTranslations, useLocale } from 'next-intl';
-import { useDebounce } from '@/hooks/useDebounce';
-import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
-import { fetchSearchSuggestions, type SearchSuggestions } from '@/lib/search';
-import { API_BASE_URL } from '@/lib/constants';
-import type { VisualSearchResult } from '@/types';
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import { Camera, Link2, Search } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
+import { useDebounce } from "@/hooks/useDebounce";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+import { fetchSearchSuggestions, type SearchSuggestions } from "@/lib/search";
+import { API_BASE_URL } from "@/lib/constants";
+import type { VisualSearchResult } from "@/types";
 import {
   getSearchHistory as loadSearchHistory,
   saveSearchHistory,
   removeSearchHistoryItem,
   clearSearchHistory,
-} from '@/lib/search-history';
-import { useSearchParams } from 'next/navigation';
-import { buildReturnTo, withReturnTo } from '@/lib/return-to';
-import { saveReturnScroll } from '@/lib/return-scroll';
-import { usePersonalizedHotSearches } from '@/hooks/usePersonalizedHotSearches';
+} from "@/lib/search-history";
+import { useSearchParams } from "next/navigation";
+import { buildReturnTo, withReturnTo } from "@/lib/return-to";
+import { saveReturnScroll } from "@/lib/return-scroll";
+import { usePersonalizedHotSearches } from "@/hooks/usePersonalizedHotSearches";
+import { extractProductLinkSearchTerm } from "@/lib/product-link";
 
-import { MobileSearchInput } from './search/MobileSearchInput';
-import { MobileSearchHistory } from './search/MobileSearchHistory';
-import { MobileHotSearches } from './search/MobileHotSearches';
-import { MobileSearchSuggestions } from './search/MobileSearchSuggestions';
-import { MobilePhotoSearch, type VisualSortBy } from './search/MobilePhotoSearch';
+import { MobileSearchInput } from "./search/MobileSearchInput";
+import { MobileSearchHistory } from "./search/MobileSearchHistory";
+import { MobileHotSearches } from "./search/MobileHotSearches";
+import { MobileSearchSuggestions } from "./search/MobileSearchSuggestions";
+import {
+  MobilePhotoSearch,
+  type VisualSortBy,
+} from "./search/MobilePhotoSearch";
 
 interface MobileSearchOverlayProps {
   open: boolean;
@@ -37,21 +41,30 @@ interface MobileSearchOverlayProps {
 export default function MobileSearchOverlay({
   open,
   onClose,
-  initialQuery = '',
+  initialQuery = "",
   autoTriggerPhoto = false,
 }: MobileSearchOverlayProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const t = useTranslations('search');
-  const tv = useTranslations('visualSearch');
+  const t = useTranslations("search");
+  const tv = useTranslations("visualSearch");
   const locale = useLocale();
-  const returnTo = useMemo(() => buildReturnTo(pathname, searchParams), [pathname, searchParams]);
+  const returnTo = useMemo(
+    () => buildReturnTo(pathname, searchParams),
+    [pathname, searchParams],
+  );
   const inputRef = useRef<HTMLInputElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [searchValue, setSearchValue] = useState(initialQuery);
-  const [suggestions, setSuggestions] = useState<SearchSuggestions | null>(null);
+  const [searchMode, setSearchMode] = useState<"keyword" | "link" | "photo">(
+    "keyword",
+  );
+  const [linkError, setLinkError] = useState("");
+  const [suggestions, setSuggestions] = useState<SearchSuggestions | null>(
+    null,
+  );
   const [loadingSuggestions, setLoadingSuggestions] = useState(false);
 
   // 搜图状态
@@ -60,7 +73,7 @@ export default function MobileSearchOverlay({
   const [photoResults, setPhotoResults] = useState<VisualSearchResult[]>([]);
   const [photoImage, setPhotoImage] = useState<string | null>(null);
   const [photoError, setPhotoError] = useState<string | null>(null);
-  const [photoSortBy, setPhotoSortBy] = useState<VisualSortBy>('similarity');
+  const [photoSortBy, setPhotoSortBy] = useState<VisualSortBy>("similarity");
 
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
   useBodyScrollLock(open);
@@ -90,6 +103,12 @@ export default function MobileSearchOverlay({
 
   // Fetch suggestions when debounced value changes
   useEffect(() => {
+    if (searchMode !== "keyword") {
+      setSuggestions(null);
+      setLoadingSuggestions(false);
+      return;
+    }
+
     if (!debouncedValue || debouncedValue.length < 2) {
       setSuggestions(null);
       return;
@@ -110,7 +129,7 @@ export default function MobileSearchOverlay({
       });
 
     return () => controller.abort();
-  }, [debouncedValue]);
+  }, [debouncedValue, searchMode]);
 
   const saveToHistory = useCallback((query: string) => {
     const updated = saveSearchHistory(query);
@@ -131,32 +150,44 @@ export default function MobileSearchOverlay({
     (query: string) => {
       const trimmed = query.trim();
       if (!trimmed) return;
-      saveToHistory(trimmed);
-      router.push(`/search?q=${encodeURIComponent(trimmed)}`);
+
+      if (searchMode === "link") {
+        const productTerm = extractProductLinkSearchTerm(trimmed);
+        if (!productTerm) {
+          setLinkError(t("invalidProductLink"));
+          return;
+        }
+        router.push(`/search?q=${encodeURIComponent(productTerm)}&source=link`);
+      } else {
+        saveToHistory(trimmed);
+        router.push(`/search?q=${encodeURIComponent(trimmed)}`);
+      }
+
+      setLinkError("");
       onClose();
-      setSearchValue('');
+      setSearchValue("");
       setSuggestions(null);
     },
-    [router, onClose, saveToHistory],
+    [router, onClose, saveToHistory, searchMode, t],
   );
 
   const handleSuggestionSelect = useCallback(
-    (type: 'brand' | 'category' | 'product', slug: string, name?: string) => {
+    (type: "brand" | "category" | "product", slug: string, name?: string) => {
       switch (type) {
-        case 'brand':
+        case "brand":
           saveToHistory(name || slug);
           router.push(`/search?q=${encodeURIComponent(slug)}&brands=${slug}`);
           break;
-        case 'category':
+        case "category":
           router.push(`/categories/${slug}`);
           break;
-        case 'product':
+        case "product":
           saveReturnScroll(returnTo);
           router.push(withReturnTo(`/products/${slug}`, returnTo));
           break;
       }
       onClose();
-      setSearchValue('');
+      setSearchValue("");
       setSuggestions(null);
     },
     [router, onClose, returnTo, saveToHistory],
@@ -167,66 +198,75 @@ export default function MobileSearchOverlay({
   }, []);
 
   const handlePhotoSearch = useCallback(() => {
+    setSearchMode("photo");
     setPhotoMode(true);
     setTimeout(() => triggerFilePicker(), 100);
   }, [triggerFilePicker]);
 
-  const handleFileSelect = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    e.target.value = '';
+  const handleFileSelect = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      e.target.value = "";
 
-    if (!file.type.startsWith('image/')) return;
-    if (file.size > 5 * 1024 * 1024) return;
+      if (!file.type.startsWith("image/")) return;
+      if (file.size > 5 * 1024 * 1024) return;
 
-    setPhotoMode(true);
-    setPhotoLoading(true);
-    setPhotoResults([]);
-    setPhotoError(null);
+      setPhotoMode(true);
+      setPhotoLoading(true);
+      setPhotoResults([]);
+      setPhotoError(null);
 
-    const reader = new FileReader();
-    reader.onload = async (ev) => {
-      const imageDataUrl = ev.target?.result as string;
-      setPhotoImage(imageDataUrl);
-
-      try {
-        const [meta, base64] = imageDataUrl.split(',');
-        const mime = meta.match(/:(.*?);/)?.[1] || 'image/jpeg';
-        const binary = atob(base64);
-        const bytes = new Uint8Array(binary.length);
-        for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-        const blob = new Blob([bytes], { type: mime });
-        const formData = new FormData();
-        formData.append('image', blob, 'search-image.jpg');
-
-        const searchResp = await fetch(
-          `${API_BASE_URL}/visual-search/search?limit=50&minSimilarity=25`,
-          { method: 'POST', body: formData },
-        );
-
-        if (!searchResp.ok) throw new Error('Search failed');
-        const data = await searchResp.json();
-        const results = data.results || [];
-        setPhotoResults(results);
+      const reader = new FileReader();
+      reader.onload = async (ev) => {
+        const imageDataUrl = ev.target?.result as string;
+        setPhotoImage(imageDataUrl);
 
         try {
-          sessionStorage.setItem('visualSearchImage', imageDataUrl);
-          sessionStorage.setItem('visualSearchResults', JSON.stringify(results));
+          const [meta, base64] = imageDataUrl.split(",");
+          const mime = meta.match(/:(.*?);/)?.[1] || "image/jpeg";
+          const binary = atob(base64);
+          const bytes = new Uint8Array(binary.length);
+          for (let i = 0; i < binary.length; i++)
+            bytes[i] = binary.charCodeAt(i);
+          const blob = new Blob([bytes], { type: mime });
+          const formData = new FormData();
+          formData.append("image", blob, "search-image.jpg");
+
+          const searchResp = await fetch(
+            `${API_BASE_URL}/visual-search/search?limit=50&minSimilarity=25`,
+            { method: "POST", body: formData },
+          );
+
+          if (!searchResp.ok) throw new Error("Search failed");
+          const data = await searchResp.json();
+          const results = data.results || [];
+          setPhotoResults(results);
+
+          try {
+            sessionStorage.setItem("visualSearchImage", imageDataUrl);
+            sessionStorage.setItem(
+              "visualSearchResults",
+              JSON.stringify(results),
+            );
+          } catch {
+            // quota exceeded — ignore, search results are already in state
+          }
         } catch {
-          // quota exceeded — ignore, search results are already in state
+          setPhotoResults([]);
+          setPhotoError(tv("searchFailedGeneric"));
+        } finally {
+          setPhotoLoading(false);
         }
-      } catch {
-        setPhotoResults([]);
-        setPhotoError(tv('searchFailedGeneric'));
-      } finally {
-        setPhotoLoading(false);
-      }
-    };
-    reader.readAsDataURL(file);
-  }, [tv]);
+      };
+      reader.readAsDataURL(file);
+    },
+    [tv],
+  );
 
   useEffect(() => {
     if (open && autoTriggerPhoto) {
+      setSearchMode("photo");
       setPhotoMode(true);
       const timer = setTimeout(() => triggerFilePicker(), 200);
       return () => clearTimeout(timer);
@@ -235,18 +275,21 @@ export default function MobileSearchOverlay({
 
   const handleClose = useCallback(() => {
     onClose();
-    setSearchValue('');
+    setSearchValue("");
     setSuggestions(null);
     setPhotoMode(false);
     setPhotoLoading(false);
     setPhotoResults([]);
     setPhotoError(null);
     setPhotoImage(null);
+    setSearchMode("keyword");
+    setLinkError("");
   }, [onClose]);
 
   const handleClear = useCallback(() => {
-    setSearchValue('');
+    setSearchValue("");
     setSuggestions(null);
+    setLinkError("");
     inputRef.current?.focus();
   }, []);
 
@@ -260,18 +303,58 @@ export default function MobileSearchOverlay({
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.25, ease: 'easeOut' }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
         >
           <MobileSearchInput
             ref={inputRef}
             value={searchValue}
-            onChange={setSearchValue}
+            onChange={(value) => {
+              setSearchValue(value);
+              setLinkError("");
+            }}
             onSearch={handleSearch}
             onClose={handleClose}
             onClear={handleClear}
-            placeholder={t('placeholder')}
-            cancelLabel={t('cancel')}
+            placeholder={
+              searchMode === "link" ? t("linkPlaceholder") : t("placeholder")
+            }
+            cancelLabel={t("cancel")}
           />
+
+          <div className="flex gap-1 border-b border-border bg-surface px-4 pb-2">
+            {(
+              [
+                ["keyword", Search, t("modeKeyword")],
+                ["link", Link2, t("modeLink")],
+                ["photo", Camera, t("modeImage")],
+              ] as const
+            ).map(([mode, Icon, label]) => (
+              <button
+                key={mode}
+                type="button"
+                onClick={() => {
+                  if (mode === "photo") {
+                    handlePhotoSearch();
+                    return;
+                  }
+                  setSearchMode(mode);
+                  setPhotoMode(false);
+                  setSearchValue("");
+                  setSuggestions(null);
+                  setLinkError("");
+                  setTimeout(() => inputRef.current?.focus(), 0);
+                }}
+                className={`inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-full text-xs font-semibold transition-colors ${
+                  searchMode === mode
+                    ? "bg-secondary text-white"
+                    : "bg-gray-50 text-muted"
+                }`}
+              >
+                <Icon className="h-3.5 w-3.5" />
+                {label}
+              </button>
+            ))}
+          </div>
 
           {/* 隐藏的文件选择器 */}
           <input
@@ -292,8 +375,17 @@ export default function MobileSearchOverlay({
                   className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white shadow-sm transition-transform active:scale-[0.99] active:opacity-95"
                 >
                   <Search className="h-4 w-4" />
-                  <span>{t('searchFor', { query: trimmedSearchValue })}</span>
+                  <span>
+                    {searchMode === "link"
+                      ? t("findFromLink")
+                      : t("searchFor", { query: trimmedSearchValue })}
+                  </span>
                 </button>
+                {linkError && (
+                  <p className="mt-2 text-xs font-medium text-error">
+                    {linkError}
+                  </p>
+                )}
               </div>
             )}
 
@@ -312,17 +404,31 @@ export default function MobileSearchOverlay({
                 sortBy={photoSortBy}
                 onSortChange={setPhotoSortBy}
                 labels={{
-                  searching: tv('searching'),
-                  changeImage: tv('changeImage'),
-                  resultsCount: tv('resultsCount', { count: photoResults.length }),
-                  noResults: tv('noResults'),
-                  description: tv('description'),
-                  selectImage: tv('selectImage'),
-                  sortSimilarity: tv('sortBySimilarity'),
-                  sortPriceAsc: tv('sortByPriceAsc'),
-                  sortPriceDesc: tv('sortByPriceDesc'),
+                  searching: tv("searching"),
+                  changeImage: tv("changeImage"),
+                  resultsCount: tv("resultsCount", {
+                    count: photoResults.length,
+                  }),
+                  noResults: tv("noResults"),
+                  description: tv("description"),
+                  selectImage: tv("selectImage"),
+                  sortSimilarity: tv("sortBySimilarity"),
+                  sortPriceAsc: tv("sortByPriceAsc"),
+                  sortPriceDesc: tv("sortByPriceDesc"),
                 }}
               />
+            ) : searchMode === "link" && showDefaultContent ? (
+              <div className="px-4 py-5">
+                <div className="rounded-2xl border border-primary/15 bg-primary/5 p-4">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                    <Link2 className="h-4 w-4 text-primary" />
+                    {t("modeLink")}
+                  </div>
+                  <p className="mt-2 text-xs leading-5 text-muted">
+                    {t("linkSearchDesc")}
+                  </p>
+                </div>
+              </div>
             ) : showDefaultContent ? (
               <div className="px-4 py-3 space-y-5">
                 <MobileSearchHistory
@@ -330,14 +436,14 @@ export default function MobileSearchOverlay({
                   onSearch={handleSearch}
                   onRemove={removeFromHistory}
                   onClearAll={clearAllHistory}
-                  recentLabel={t('recentSearches')}
-                  clearLabel={t('clearHistory')}
+                  recentLabel={t("recentSearches")}
+                  clearLabel={t("clearHistory")}
                 />
 
                 <MobileHotSearches
                   items={hotSearches || []}
                   onSearch={handleSearch}
-                  label={t('hotSearches')}
+                  label={t("hotSearches")}
                 />
 
                 {/* Photo search entry */}
@@ -351,8 +457,12 @@ export default function MobileSearchOverlay({
                       <Camera className="w-5 h-5 text-primary" />
                     </div>
                     <div className="text-left rtl:text-right">
-                      <p className="text-sm font-medium text-foreground">{t('photoSearch')}</p>
-                      <p className="text-xs text-muted">{t('photoSearchDesc')}</p>
+                      <p className="text-sm font-medium text-foreground">
+                        {t("photoSearch")}
+                      </p>
+                      <p className="text-xs text-muted">
+                        {t("photoSearchDesc")}
+                      </p>
                     </div>
                   </button>
                 </section>
@@ -363,16 +473,22 @@ export default function MobileSearchOverlay({
                 loading={loadingSuggestions}
                 hasMinInput={debouncedValue.length >= 2}
                 locale={locale}
-                onSelectBrand={(slug, name) => handleSuggestionSelect('brand', slug, name)}
-                onSelectCategory={(slug) => handleSuggestionSelect('category', slug)}
-                onSelectProduct={(slug) => handleSuggestionSelect('product', slug)}
+                onSelectBrand={(slug, name) =>
+                  handleSuggestionSelect("brand", slug, name)
+                }
+                onSelectCategory={(slug) =>
+                  handleSuggestionSelect("category", slug)
+                }
+                onSelectProduct={(slug) =>
+                  handleSuggestionSelect("product", slug)
+                }
                 labels={{
-                  searching: t('searching'),
-                  brands: t('brands'),
-                  categories: t('categories'),
-                  products: t('products'),
-                  noResults: t('noResults'),
-                  productCount: (count: number) => t('productCount', { count }),
+                  searching: t("searching"),
+                  brands: t("brands"),
+                  categories: t("categories"),
+                  products: t("products"),
+                  noResults: t("noResults"),
+                  productCount: (count: number) => t("productCount", { count }),
                 }}
               />
             )}

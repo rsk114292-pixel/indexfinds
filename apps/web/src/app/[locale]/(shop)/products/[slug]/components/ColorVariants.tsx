@@ -85,13 +85,19 @@ export default function ColorVariants({
               }`}
               title={sibling.title}
             >
+              <span className="absolute inset-0 flex items-center justify-center bg-slate-50 text-xs font-semibold text-slate-400">
+                {(sibling.skuVariantKey || sibling.title).slice(0, 1).toUpperCase()}
+              </span>
               <Image
                 src={getProductDetailThumbnail(sibling.mainImage)}
                 alt={sibling.title}
                 fill
-                className="object-cover"
+                className="z-10 bg-white object-cover"
                 sizes="56px"
                 referrerPolicy={getImageReferrerPolicy(getProductDetailThumbnail(sibling.mainImage))}
+                onError={(event) => {
+                  event.currentTarget.style.display = 'none';
+                }}
               />
             </button>
           );
@@ -115,12 +121,18 @@ export default function ColorVariants({
               }`}
               title={sibling.title}
             >
+              <span className="absolute inset-0 flex items-center justify-center bg-slate-50 text-sm font-semibold text-slate-400">
+                {(sibling.skuVariantKey || sibling.title).slice(0, 1).toUpperCase()}
+              </span>
               <Image
                 src={getProductDetailThumbnail(sibling.mainImage)}
                 alt={sibling.title}
                 fill
-                className="object-cover"
+                className="z-10 bg-white object-cover"
                 referrerPolicy={getImageReferrerPolicy(getProductDetailThumbnail(sibling.mainImage))}
+                onError={(event) => {
+                  event.currentTarget.style.display = 'none';
+                }}
               />
             </button>
           );

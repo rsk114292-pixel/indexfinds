@@ -42,13 +42,13 @@ function parseDomainList(
 }
 
 function getConfiguredDomains() {
-  let siteHost = 'lolobuyspreadsheets.com';
+  let siteHost = 'indexfinds.com';
 
   try {
     const siteUrl =
       process.env.NEXT_PUBLIC_SITE_URL ||
       process.env.SITE_URL ||
-      'https://lolobuyspreadsheets.com';
+      'https://indexfinds.com';
     siteHost = normalizeToken(new URL(siteUrl).hostname) || siteHost;
   } catch {
     // Fall back to the production hostname when env is absent.
@@ -57,6 +57,7 @@ function getConfiguredDomains() {
   return {
     internalDomains: parseDomainList(process.env.TRAFFIC_INTERNAL_DOMAINS, [
       siteHost,
+      'indexfinds.com',
       'lolobuyspreadsheets.com',
     ]),
     ownedDomains: parseDomainList(process.env.TRAFFIC_OWNED_DOMAINS, []),
