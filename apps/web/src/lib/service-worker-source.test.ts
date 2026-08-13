@@ -15,6 +15,6 @@ describe('service worker product image handling', () => {
   });
 
   it('bumps the cache version so existing clients activate the fix', () => {
-    expect(source).toContain("const CACHE_VERSION = 'fs-v3';");
+    expect(source).toContain("const CACHE_VERSION = 'fs-v4';");
   });
 });

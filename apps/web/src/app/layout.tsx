@@ -50,6 +50,8 @@ export default async function RootLayout({
     <html lang={locale} dir={dir} style={getThemeVars()} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://si.geilicdn.com" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icons/logo.svg" type="image/svg+xml" />
         <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
         <meta name="mobile-web-app-capable" content="yes" />

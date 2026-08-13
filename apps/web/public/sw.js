@@ -8,7 +8,7 @@
  * - API 请求 (/api/*): 不缓存（含认证逻辑，SW 不应干预）
  */
 
-const CACHE_VERSION = 'fs-v3';
+const CACHE_VERSION = 'fs-v4';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 

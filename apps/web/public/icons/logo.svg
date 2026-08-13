@@ -1,3 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <image width="512" height="512" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAflBMVEVHcEzaYET2ZkD3ZT71Z0DvYDz3aED1Zj/wYTztXDdYRlXmWUDzZT/yXTj2Zj/rXzvzYDrMVTPxYTysWzHxqCzzfjvyqi7wqS3spy/0ZDvvqS3wpyzupy3npTXupy3YRiPQPRjVRiHbRx7VQBrXRBzUQBrZRyHZQx3mVC3gpUAns0NNAAAAKnRSTlMAG7X/22H/6YV2AiiWwMlK/xCkBt7//8uG8qH/YyhANl2O/6z//+XD/xlWTUiQAAABi0lEQVR4AZXQB6KjMAxF0QcyopgOI4rTe/a/wcHwNb2e9OgmgPCfgpDIRPitiOMkDdng1zJLORaWCvyaKbGqyOKXaj06J/hWlVfwGqoAmySAafEtk8e1TzLAGs6pQdyi6zKoGkjZ1MRccgmEtudPItJ/G0REvCAOgdIOPwRxE/khrY8SnI2TmXsRqLz184+G8wkwOUbnOg2sP3zo/6CclihBwIydk70GGRMbWOIEKRFHQNni4OSgQbT+eUWUlv5IJby9yE6Dksomqcl2hibkRPA650YNOEZX10cAMUdLUcFzbsamoxZRXeF07lAXqKiB17sBm+BSH491g+utw9RiSVeDOGzs/X45P55YpK/z64TNrJtCc7/dbvf741Q9b/drg43flL5fxre1eZ7w1c45XcRjmXtHfOvgnC7ivASXi87VW0QXcbz54IofiMzQY1yW5IQfOF0EcPJ/ccQPBtdDPV6vV5t8qDCueidQlpmIeEUYRdxKOg2ynBQHBz/yD5E9FALV4P1Vhz/LAHwGiyogKXbB740AAAAASUVORK5CYII=" image-rendering="auto"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">IndexFinds</title>
+  <defs>
+    <linearGradient id="indexfinds-gradient" x1="82" y1="52" x2="430" y2="462" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF825C"/>
+      <stop offset="0.52" stop-color="#F05232"/>
+      <stop offset="1" stop-color="#D83A20"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="480" height="480" rx="132" fill="url(#indexfinds-gradient)"/>
+  <circle cx="215" cy="210" r="105" fill="none" stroke="#FFFFFF" stroke-width="44"/>
+  <path d="M294 289L393 388" fill="none" stroke="#FFFFFF" stroke-width="48" stroke-linecap="round"/>
+  <circle cx="391" cy="389" r="39" fill="#7167FF" stroke="#FFFFFF" stroke-width="13"/>
 </svg>

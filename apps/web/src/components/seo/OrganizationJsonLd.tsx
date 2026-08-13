@@ -23,7 +23,7 @@ export function OrganizationJsonLd({ description, locale }: OrganizationJsonLdPr
     name: getSiteName(),
     url: baseUrl,
     description,
-    logo: `${baseUrl}/icons/apple-touch-icon.png`,
+    logo: `${baseUrl}/icons/icon-512x512.png`,
     // 社交账号上线后取消注释
     // sameAs: [
 //   'https://twitter.com/indexfinds',
