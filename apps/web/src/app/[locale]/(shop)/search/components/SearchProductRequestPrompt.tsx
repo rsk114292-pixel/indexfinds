@@ -12,6 +12,7 @@ import { useLgUp } from '@/hooks/useLgUp';
 import { MobileSheet } from '@/components/mobile/ui/MobileSheet';
 import { request, post } from '@/lib/api';
 import { useAuthStore } from '@/stores/useAuthStore';
+import { PUBLIC_AUTH_ENTRY_ENABLED } from '@/lib/features';
 
 const MAX_IMAGES = 4;
 const MAX_IMAGE_SIZE_MB = 5;
@@ -200,6 +201,13 @@ export function SearchProductRequestPrompt({
     uploadedImageUrls,
     description,
   ]);
+
+  if (
+    !PUBLIC_AUTH_ENTRY_ENABLED &&
+    (!_hasHydrated || !isAuthenticated)
+  ) {
+    return null;
+  }
 
   const content = (
     <div className="space-y-4 text-left rtl:text-right">

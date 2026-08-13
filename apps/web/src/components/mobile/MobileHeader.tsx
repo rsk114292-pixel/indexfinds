@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { useSearchParams, usePathname } from "next/navigation";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { isScrollHideHeaderPath } from "@/lib/utils";
+import { PUBLIC_AUTH_ENTRY_ENABLED } from "@/lib/features";
 import { useAuthStore } from "@/stores/useAuthStore";
 import {
   usePlatformStore,
@@ -111,7 +112,7 @@ export default function MobileHeader() {
                 className="flex h-11 min-w-11 items-center gap-1 px-2 rounded-full active:scale-95 active:bg-gray-100 transition-transform duration-150"
                 aria-label={t("platformSelect")}
               >
-                {platformHydrated && currentPlatform?.logoUrl ? (
+                {platformHydrated && currentPlatform ? (
                   <PlatformLogoBadge
                     platformKey={currentPlatform.key}
                     name={currentPlatform.name}
@@ -149,7 +150,8 @@ export default function MobileHeader() {
               </button>
 
               {/* 头像 / 登录 */}
-              {authHydrated && (
+              {authHydrated &&
+                (isAuthenticated || PUBLIC_AUTH_ENTRY_ENABLED) && (
                 <Link
                   href={isAuthenticated ? "/account" : "/login"}
                   className="flex h-11 w-11 items-center justify-center rounded-full active:scale-95 active:bg-gray-100 transition-transform duration-150"
@@ -170,7 +172,7 @@ export default function MobileHeader() {
                     <User className="h-5 w-5 text-foreground" />
                   )}
                 </Link>
-              )}
+                )}
             </div>
           </div>
         </div>

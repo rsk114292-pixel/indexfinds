@@ -161,7 +161,7 @@ describe('SearchProductRequestPrompt', () => {
     mockAuthState._hasHydrated = true;
   });
 
-  it('redirects unauthenticated users to login', () => {
+  it('hides the request entry while public authentication is disabled', () => {
     render(
       <SearchProductRequestPrompt
         query="nike shox"
@@ -170,11 +170,8 @@ describe('SearchProductRequestPrompt', () => {
       />,
     );
 
-    fireEvent.click(screen.getByRole('button', { name: 'button' }));
-
-    expect(mockPush).toHaveBeenCalledWith(
-      '/login?redirect=%2Fen%2Fsearch%3Fq%3Dnike%2Bshox',
-    );
+    expect(screen.queryByRole('button', { name: 'button' })).not.toBeInTheDocument();
+    expect(mockPush).not.toHaveBeenCalled();
   });
 
   it('submits a sourcing request for authenticated users', async () => {

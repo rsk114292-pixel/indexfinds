@@ -68,7 +68,7 @@ export default function HeroSection({
   }, [setHeroSearchVisible]);
 
   return (
-    <section className="relative min-h-[460px] md:min-h-[520px] flex flex-col justify-center overflow-hidden bg-secondary">
+    <section className="relative z-10 flex min-h-[460px] flex-col justify-center overflow-visible bg-secondary md:min-h-[520px]">
       {/* ── Mesh Gradient Background ── */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Primary orb - top right */}

@@ -25,6 +25,7 @@ import { useAuthStore } from '@/stores/useAuthStore';
 import { useCurrentPlatform } from '@/stores/usePlatformStore';
 import { useCurrencyStore } from '@/stores/useCurrencyStore';
 import { type Locale } from '@/i18n/config';
+import { PUBLIC_AUTH_ENTRY_ENABLED } from '@/lib/features';
 import { MobileDrawer } from './ui/MobileDrawer';
 import MobilePlatformSheet from './MobilePlatformSheet';
 import MobileSettingsSheet from './MobileSettingsSheet';
@@ -118,7 +119,7 @@ export default function MobileHamburgerDrawer({
                 </div>
                 <ChevronRight className="h-4 w-4 shrink-0 text-muted" />
               </Link>
-            ) : authHydrated ? (
+            ) : authHydrated && PUBLIC_AUTH_ENTRY_ENABLED ? (
               <div className="flex gap-2">
                 <Link
                   href="/login"
@@ -303,4 +304,3 @@ function DrawerSettingButton({
     </button>
   );
 }
-

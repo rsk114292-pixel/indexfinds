@@ -10,6 +10,7 @@ import { useState, useCallback } from 'react';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { useHeaderStore } from '@/stores/useHeaderStore';
 import { logout as logoutApi } from '@/lib/auth-api';
+import { PUBLIC_AUTH_ENTRY_ENABLED } from '@/lib/features';
 import { useTranslations } from 'next-intl';
 import Popover from '@/components/ui/Popover';
 
@@ -171,7 +172,7 @@ export default function Header() {
                   {tc('logout')}
                 </button>
               </Popover>
-            ) : (
+            ) : PUBLIC_AUTH_ENTRY_ENABLED ? (
               <div className="flex items-center gap-2">
                 <Link
                   href="/login"
@@ -187,7 +188,7 @@ export default function Header() {
                   {tc('signUp')}
                 </Link>
               </div>
-            )}
+            ) : null}
           </div>
         </div>
       </div>

@@ -51,6 +51,7 @@ import { LanguageSheet, CurrencySheet, LANGUAGE_LABELS } from './MobileSettingsS
 import { useReferralRewardsExperiment } from '@/lib/referral-experiment';
 import { ReferralRewardsHub } from '@/components/referral/ReferralRewardsHub';
 import { useReferralActivationVisibility } from '@/hooks/useReferralActivationVisibility';
+import { PUBLIC_AUTH_ENTRY_ENABLED } from '@/lib/features';
 
 
 /**
@@ -273,29 +274,31 @@ export default function MobileAccount() {
     return (
       <div className="min-h-dvh bg-gray-50">
         {/* ── 登录提示卡片 ── */}
-        <div className="bg-surface px-4 pt-6 pb-6">
-          <div className="flex flex-col items-center gap-3">
-            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
-              <User className="w-8 h-8 text-gray-400" />
-            </div>
-            <h1 className="text-lg font-bold text-foreground">{t('loginPromptTitle')}</h1>
-            <p className="text-sm text-muted text-center">{t('loginPromptDesc')}</p>
-            <div className="flex gap-3 w-full mt-1">
-              <Link
-                href="/login"
-                className="flex-1 rounded-xl bg-primary py-3 text-center text-sm font-semibold text-white active:bg-primary-hover transition-colors"
-              >
-                {t('loginButton')}
-              </Link>
-              <Link
-                href="/register"
-                className="flex-1 rounded-xl border border-border py-3 text-center text-sm font-semibold text-foreground active:bg-gray-50 transition-colors"
-              >
-                {t('registerButton')}
-              </Link>
+        {PUBLIC_AUTH_ENTRY_ENABLED && (
+          <div className="bg-surface px-4 pt-6 pb-6">
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
+                <User className="w-8 h-8 text-gray-400" />
+              </div>
+              <h1 className="text-lg font-bold text-foreground">{t('loginPromptTitle')}</h1>
+              <p className="text-sm text-muted text-center">{t('loginPromptDesc')}</p>
+              <div className="flex gap-3 w-full mt-1">
+                <Link
+                  href="/login"
+                  className="flex-1 rounded-xl bg-primary py-3 text-center text-sm font-semibold text-white active:bg-primary-hover transition-colors"
+                >
+                  {t('loginButton')}
+                </Link>
+                <Link
+                  href="/register"
+                  className="flex-1 rounded-xl border border-border py-3 text-center text-sm font-semibold text-foreground active:bg-gray-50 transition-colors"
+                >
+                  {t('registerButton')}
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* ── 语言 & 货币（无需登录） ── */}
         <div className="bg-surface mt-2">

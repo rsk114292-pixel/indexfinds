@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getOfficialPlatformLogo } from "@/lib/platform-logo-assets";
 import { cn } from "@/lib/utils";
 
 const PLATFORM_BADGE_STYLES: Record<
@@ -133,7 +134,9 @@ function canUseDirectLogo(logoUrl?: string): boolean {
   if (!logoUrl) return false;
   if (logoUrl.startsWith("/")) return true;
   if (logoUrl.startsWith("data:")) return true;
-  return /\/uploads\/[^/]+$/i.test(logoUrl);
+  return /^https:\/\/[^/]+(?:\/[^?#]*)?\/uploads\/[^/?#]+(?:[?#].*)?$/i.test(
+    logoUrl,
+  );
 }
 
 function getBadgeLabel(platformKey: string, name: string): string {
@@ -167,34 +170,70 @@ export default function PlatformLogoBadge({
   imageClassName = "",
   labelClassName = "",
 }: PlatformLogoBadgeProps) {
-  const [imageFailed, setImageFailed] = useState(false);
+  const [failedLogoUrls, setFailedLogoUrls] = useState<Set<string>>(
+    () => new Set(),
+  );
+  const normalizedPlatformKey = platformKey.trim().toLowerCase();
+  const officialLogo = getOfficialPlatformLogo(normalizedPlatformKey);
+  const directLogoUrl = canUseDirectLogo(logoUrl) ? logoUrl : undefined;
+  const logoCandidates = [
+    directLogoUrl ? { src: directLogoUrl } : undefined,
+    officialLogo
+      ? { src: officialLogo.src, background: officialLogo.background }
+      : undefined,
+    officialLogo
+      ? { src: officialLogo.remoteSrc, background: officialLogo.background }
+      : undefined,
+  ].filter(
+    (
+      candidate,
+    ): candidate is {
+      src: string;
+      background?: string;
+    } => Boolean(candidate?.src),
+  );
+  const logoCandidateKey = logoCandidates
+    .map((candidate) => candidate.src)
+    .join("\n");
+  const resolvedLogo = logoCandidates.find(
+    (candidate) => !failedLogoUrls.has(candidate.src),
+  );
 
   useEffect(() => {
-    setImageFailed(false);
-  }, [logoUrl]);
+    setFailedLogoUrls(new Set());
+  }, [logoCandidateKey]);
 
-  if (canUseDirectLogo(logoUrl) && !imageFailed) {
+  if (resolvedLogo) {
     return (
       <span
         className={cn(
           "overflow-hidden bg-white shadow-sm ring-1 ring-black/[0.06]",
           className,
         )}
+        style={{
+          background: resolvedLogo.background,
+        }}
         title={name}
       >
         <img
-          src={logoUrl}
+          src={resolvedLogo.src}
           alt={name}
           loading="lazy"
           decoding="async"
           className={cn("h-full w-full object-contain p-0.5", imageClassName)}
-          onError={() => setImageFailed(true)}
+          onError={() => {
+            setFailedLogoUrls((current) => {
+              const next = new Set(current);
+              next.add(resolvedLogo.src);
+              return next;
+            });
+          }}
         />
       </span>
     );
   }
 
-  const style = PLATFORM_BADGE_STYLES[platformKey] || {
+  const style = PLATFORM_BADGE_STYLES[normalizedPlatformKey] || {
     background: "linear-gradient(135deg, #f2f4f7, #dfe5ec)",
     text: "#445066",
   };
@@ -212,7 +251,9 @@ export default function PlatformLogoBadge({
       aria-label={name}
       title={name}
     >
-      <span className={labelClassName}>{getBadgeLabel(platformKey, name)}</span>
+      <span className={labelClassName}>
+        {getBadgeLabel(normalizedPlatformKey, name)}
+      </span>
     </div>
   );
 }
