@@ -3,14 +3,13 @@
  * 策略：
  * - 静态资源 (/_next/static/*): Cache First（带 hash，天然可长缓存）
  * - 图标/字体: Cache First
- * - CDN 图片 (si.geilicdn.com): Stale While Revalidate
+ * - CDN 商品图片: 浏览器直接加载，避免跨域 opaque 响应被 Service Worker 拒绝
  * - 页面导航: Network First（失败时展示 offline 页面）
  * - API 请求 (/api/*): 不缓存（含认证逻辑，SW 不应干预）
  */
 
-const CACHE_VERSION = 'fs-v2';
+const CACHE_VERSION = 'fs-v3';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
-const IMAGE_CACHE = `${CACHE_VERSION}-images`;
 const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 
 // 预缓存的核心资源
@@ -34,7 +33,7 @@ self.addEventListener('activate', (event) => {
     caches.keys()
       .then((keys) => Promise.all(
         keys
-          .filter((key) => key.startsWith('fs-') && key !== STATIC_CACHE && key !== IMAGE_CACHE && key !== PAGE_CACHE)
+          .filter((key) => key.startsWith('fs-') && key !== STATIC_CACHE && key !== PAGE_CACHE)
           .map((key) => caches.delete(key))
       ))
       .then(() => self.clients.claim())
@@ -67,9 +66,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 策略 3：CDN 商品图片 → Stale While Revalidate
+  // 策略 3：CDN 商品图片 → 浏览器原生网络路径
   if (url.hostname === 'si.geilicdn.com') {
-    event.respondWith(staleWhileRevalidate(request, IMAGE_CACHE));
+    // Opaque cross-origin image responses must stay on the native browser
+    // network path. Passing them through the service worker makes Chrome reject an
+    // otherwise valid product image response.
     return;
   }
 
@@ -97,23 +98,6 @@ async function cacheFirst(request, cacheName) {
   } catch {
     return new Response('', { status: 408 });
   }
-}
-
-/** Stale While Revalidate: 返回缓存同时后台更新 */
-async function staleWhileRevalidate(request, cacheName) {
-  const cache = await caches.open(cacheName);
-  const cached = await cache.match(request);
-
-  const fetchPromise = fetch(request)
-    .then((response) => {
-      if (response.ok) {
-        cache.put(request, response.clone());
-      }
-      return response;
-    })
-    .catch(() => cached);
-
-  return cached || fetchPromise;
 }
 
 /** Network First + Offline Fallback: 网络优先，失败时展示离线页 */
