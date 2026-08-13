@@ -6,7 +6,25 @@ import type { Product } from '@/types';
 
 jest.mock('next/dynamic', () => ({
   __esModule: true,
-  default: () => () => null,
+  default: (loader: () => Promise<unknown>) => {
+    const source = loader.toString();
+    if (source.includes('SKUSelector')) {
+      return function MockSkuSelector() {
+        return <div data-testid="desktop-sku-selector" />;
+      };
+    }
+    if (source.includes('BuyButton')) {
+      return function MockBuyButton() {
+        return <div data-testid="desktop-buy-button" />;
+      };
+    }
+    if (source.includes('ImageMagnifier')) {
+      return function MockImageMagnifier() {
+        return <div data-testid="desktop-image-magnifier" />;
+      };
+    }
+    return () => null;
+  },
 }));
 
 jest.mock('swr', () => ({
@@ -157,5 +175,26 @@ describe('ProductPageClient referral activation fetch', () => {
     render(<ProductPageClient initialProduct={product} slug={product.slug} />);
 
     expect(getActivationSwrKey()).toBe('/referral/my-activation');
+  });
+
+  it('keeps the gallery visible and places SKU choices before the non-sticky buy panel', () => {
+    (useAuthStore as unknown as jest.Mock).mockReturnValue({
+      isAuthenticated: false,
+      token: null,
+      user: null,
+    });
+
+    const { getByTestId } = render(
+      <ProductPageClient initialProduct={product} slug={product.slug} />,
+    );
+    const gallery = getByTestId('desktop-product-gallery');
+    const skuSelector = getByTestId('desktop-sku-selector');
+    const buyPanel = getByTestId('desktop-buy-panel');
+
+    expect(gallery).toHaveClass('sticky', 'top-24', 'self-start');
+    expect(buyPanel).not.toHaveClass('sticky');
+    expect(
+      skuSelector.compareDocumentPosition(buyPanel) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
   });
 });

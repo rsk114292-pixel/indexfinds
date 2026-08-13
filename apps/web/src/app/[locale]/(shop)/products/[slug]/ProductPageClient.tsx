@@ -377,15 +377,20 @@ export default function ProductPageClient({
           )}
 
           {/* 主要内容区 */}
-          <div className="mb-12 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(380px,0.9fr)]">
+          <div className="mb-12 grid items-start gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(380px,0.9fr)]">
             {/* 左侧：图片展示（带放大镜功能） */}
-            <ImageMagnifier
-              images={allImages.map((img) => getProductDetailMainImage(img))}
-              currentIndex={currentImageIndex}
-              onIndexChange={setCurrentImageIndex}
-              alt={product.title}
-              mainImageUrl={getProductDetailMainImage(product.mainImage)}
-            />
+            <div
+              className="sticky top-24 self-start"
+              data-testid="desktop-product-gallery"
+            >
+              <ImageMagnifier
+                images={allImages.map((img) => getProductDetailMainImage(img))}
+                currentIndex={currentImageIndex}
+                onIndexChange={setCurrentImageIndex}
+                alt={product.title}
+                mainImageUrl={getProductDetailMainImage(product.mainImage)}
+              />
+            </div>
 
             {/* 右侧：商品信息 */}
             <div className="space-y-6">
@@ -407,9 +412,31 @@ export default function ProductPageClient({
 
               {renderActivationNudge()}
 
+              {/* 同款配色切换（SKU 拆分产品） */}
+              {product.isFromSplit && product.productGroupId && (
+                <ColorVariants
+                  productGroupId={product.productGroupId}
+                  currentProductId={product.id}
+                />
+              )}
+
+              {/* 先选择风格和尺寸，再选择代购 */}
+              <SKUSelector
+                skus={product.skus}
+                productImages={product.isFromSplit ? [] : allImages}
+                selectedAttributes={selectedAttributes}
+                onAttributeChange={handleAttributeChange}
+                onImageSelect={setCurrentImageIndex}
+                currentImageIndex={currentImageIndex}
+                selectedSku={selectedSku}
+                hideStock={product.isFromSplit}
+                sizeOnly={product.isFromSplit}
+              />
+
               <div
                 id="buy"
-                className="sticky top-24 z-10 scroll-mt-28 rounded-2xl border border-primary/20 bg-white/95 p-4 shadow-lg shadow-primary/5 backdrop-blur-sm"
+                className="scroll-mt-28 rounded-2xl border border-primary/20 bg-white p-4 shadow-lg shadow-primary/5"
+                data-testid="desktop-buy-panel"
               >
                 <BuyButton
                   productId={product.id}
@@ -457,27 +484,6 @@ export default function ProductPageClient({
                 updatedAt={product.updatedAt}
                 productId={product.id}
                 productTitle={product.title}
-              />
-
-              {/* 同款配色切换（SKU 拆分产品） */}
-              {product.isFromSplit && product.productGroupId && (
-                <ColorVariants
-                  productGroupId={product.productGroupId}
-                  currentProductId={product.id}
-                />
-              )}
-
-              {/* SKU 选择器 */}
-              <SKUSelector
-                skus={product.skus}
-                productImages={product.isFromSplit ? [] : allImages}
-                selectedAttributes={selectedAttributes}
-                onAttributeChange={handleAttributeChange}
-                onImageSelect={setCurrentImageIndex}
-                currentImageIndex={currentImageIndex}
-                selectedSku={selectedSku}
-                hideStock={product.isFromSplit}
-                sizeOnly={product.isFromSplit}
               />
 
               <ShippingEstimator />
