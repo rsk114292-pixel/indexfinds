@@ -1,6 +1,8 @@
 import { buildSitemapIndexXml, getSitemapChunkIds } from '@/lib/sitemap';
 
-export const revalidate = 300;
+// Product totals change independently of Web deployments. Generate the index
+// at request time and let the explicit CDN header below provide the short cache.
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const ids = await getSitemapChunkIds();
