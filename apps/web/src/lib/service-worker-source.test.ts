@@ -14,7 +14,7 @@ describe('service worker product image handling', () => {
     expect(geilicdnBranch?.[1]).not.toContain('fetch(');
   });
 
-  it('bumps the cache version so existing clients activate the fix', () => {
-    expect(source).toContain("const CACHE_VERSION = 'fs-v4';");
+  it('bumps the cache version so existing clients receive current brand assets', () => {
+    expect(source).toContain("const CACHE_VERSION = 'fs-v5';");
   });
 });

@@ -104,3 +104,6 @@ apps/web/public/fonts/
 
 # Local server access notes
 server-access-notes.md
+
+.vercel
+.codex-tmp/

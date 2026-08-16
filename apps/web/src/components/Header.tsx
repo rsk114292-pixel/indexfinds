@@ -36,9 +36,15 @@ export default function Header() {
   ];
 
   return (
-    <header className="w-full bg-secondary">
+    <header
+      className={`w-full border-b transition-[background-color,border-color,box-shadow] duration-300 ${
+        heroSearchVisible
+          ? 'border-white/[0.03] bg-transparent'
+          : 'border-white/[0.06] bg-secondary/90 shadow-[0_8px_30px_rgba(2,6,23,0.22)] backdrop-blur-xl'
+      }`}
+    >
       <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between gap-2 lg:gap-3 xl:gap-5">
+        <div className="relative flex h-16 items-center justify-between gap-2 lg:gap-3 xl:gap-5">
           <div className="flex min-w-0 shrink items-center gap-2 lg:gap-3 xl:gap-4">
             {/* Logo */}
             <Link href="/" className="shrink-0" aria-label="IndexFinds">
@@ -77,19 +83,25 @@ export default function Header() {
               ))}
             </Popover>
 
-            {/* Nav links */}
-            <nav className="hidden min-w-0 items-center gap-0.5 xl:flex" aria-label={t('mainNavigation')}>
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-md px-2.5 py-2 text-sm whitespace-nowrap text-white/80 transition-colors duration-200 hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
           </div>
+
+          {/* Keep the primary navigation visually centered while the hero owns search. */}
+          <nav
+            className={`hidden min-w-0 items-center gap-1.5 xl:flex ${
+              heroSearchVisible ? 'absolute left-1/2 -translate-x-1/2' : 'shrink-0'
+            }`}
+            aria-label={t('mainNavigation')}
+          >
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-md px-3 py-2 text-sm whitespace-nowrap text-white/80 transition-colors duration-200 hover:bg-white/[0.04] hover:text-white"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
           {/* SearchBox — hidden when hero search is visible on homepage */}
           <div
@@ -103,7 +115,7 @@ export default function Header() {
           </div>
 
           {/* Right actions */}
-          <div className="flex shrink-0 items-center gap-0.5 xl:gap-1">
+          <div className="flex shrink-0 items-center gap-1.5 xl:gap-2">
             {/* Language & Currency */}
             <PlatformSelector />
             <HeaderSettingsMenu />

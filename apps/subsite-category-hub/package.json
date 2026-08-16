@@ -1,0 +1,21 @@
+{
+  "name": "indexfinds-subsite-category-hub",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --env staging",
+    "types": "wrangler types --env staging",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "pnpm typecheck && pnpm test && pnpm deploy:dry-run",
+    "deploy:dry-run": "wrangler deploy --env production --dry-run",
+    "deploy:production": "wrangler deploy --env production"
+  },
+  "devDependencies": {
+    "@types/node": "26.2.0",
+    "typescript": "7.0.2",
+    "vitest": "4.1.10",
+    "wrangler": "4.123.0"
+  }
+}

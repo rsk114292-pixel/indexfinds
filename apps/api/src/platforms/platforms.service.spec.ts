@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { BadRequestException, ConflictException } from '@nestjs/common';
-import { PlatformsService } from './platforms.service';
+import { DEFAULT_PLATFORMS, PlatformsService } from './platforms.service';
 import { Platform } from './entities/platform.entity';
 import { UploadService } from '../upload/upload.service';
 
@@ -35,6 +35,53 @@ describe('PlatformsService', () => {
 
   it('should be defined', () => {
     expect(service).toBeDefined();
+  });
+
+  it('includes every agent restored from the subsite network', () => {
+    const keys = new Set(DEFAULT_PLATFORMS.map((platform) => platform.key));
+
+    expect(DEFAULT_PLATFORMS).toHaveLength(35);
+    expect(keys.size).toBe(35);
+    expect([...keys]).toEqual(
+      expect.arrayContaining([
+        'acbuy',
+        'allchinabuy',
+        'bbdbuy',
+        'cnshopper',
+        'eastmallbuy',
+        'goatedbuy',
+        'gtbuy',
+        'hoobuy',
+        'itaobuy',
+        'kameymall',
+        'mulebuy',
+        'orientdig',
+        'parcelup',
+        'yoybuy',
+      ]),
+    );
+  });
+
+  describe('generateBuyLink()', () => {
+    it('builds a verified ACBuy Weidian product route', () => {
+      const platform = DEFAULT_PLATFORMS.find(
+        (item) => item.key === 'acbuy',
+      ) as Platform;
+
+      expect(
+        service.generateBuyLink(platform, { weidianItemId: '7488920869' }),
+      ).toBe('https://www.acbuy.com/product?id=7488920869&platform=WEIDIAN');
+    });
+
+    it('falls back to the official paste-link entry when no stable deep route is known', () => {
+      const platform = DEFAULT_PLATFORMS.find(
+        (item) => item.key === 'allchinabuy',
+      ) as Platform;
+
+      expect(
+        service.generateBuyLink(platform, { weidianItemId: '7488920869' }),
+      ).toBe('https://www.allchinabuy.com/en/page/homepage/');
+    });
   });
 
   describe('create()', () => {

@@ -56,6 +56,7 @@ import { resolveSafeReturnTo } from "@/lib/return-to";
 import { useReferralActivationVisibility } from "@/hooks/useReferralActivationVisibility";
 import { cleanProductDescription } from "@/lib/product-description";
 import { notice } from "@/lib/notice";
+import { useSubsiteAgentBridge } from "@/hooks/useSubsiteAgentBridge";
 
 // 动态导入 ImageMagnifier，禁用 SSR 避免 hydration 问题
 const ImageMagnifier = dynamic(
@@ -95,6 +96,7 @@ export default function ProductPageClient({
   const lgUp = useLgUp();
   const router = useRouter();
   const searchParams = useSearchParams();
+  useSubsiteAgentBridge(searchParams);
   const { isAuthenticated, token, user } = useAuthStore();
   const enabledMobile = lgUp === false;
   const shareUrl = useShareUrl();

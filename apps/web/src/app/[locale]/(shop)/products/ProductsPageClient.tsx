@@ -37,6 +37,7 @@ import {
   DESKTOP_PRODUCT_SIDEBAR_CLASS,
   DESKTOP_PRODUCT_SKELETON_COUNT,
 } from "@/lib/product-list-layout";
+import { useSubsiteAgentBridge } from "@/hooks/useSubsiteAgentBridge";
 interface ProductsPageClientProps {
   initialProductsData?: ApiListResponse<Product> | null;
   initialFacetsData?: FacetsData | null;
@@ -71,6 +72,7 @@ function ProductsContent({
   initialFacetsData,
 }: ProductsPageClientProps) {
   const searchParams = useSearchParams();
+  useSubsiteAgentBridge(searchParams);
   const pathname = usePathname();
   const t = useTranslations("products");
   const tc = useTranslations("common");

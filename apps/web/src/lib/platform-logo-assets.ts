@@ -94,6 +94,63 @@ export const OFFICIAL_PLATFORM_LOGOS: Readonly<
     src: "/images/agents/lolobuy.png",
     remoteSrc: "https://www.lolobuy.com/loloBuyIcon.png",
   },
+  acbuy: {
+    src: "/images/agents/acbuy.ico",
+    remoteSrc: "https://www.acbuy.com/favicon1.ico",
+  },
+  allchinabuy: {
+    src: "/images/agents/allchinabuy.ico",
+    remoteSrc: "https://www.allchinabuy.com/favicon.ico",
+  },
+  bbdbuy: {
+    src: "/images/agents/bbdbuy.ico",
+    remoteSrc: "https://www.bbdbuyeu.com/favicon.ico",
+  },
+  cnshopper: {
+    src: "/images/agents/cnshopper.png",
+    remoteSrc:
+      "https://api.cnshopper.com/storage/admin/20260323-LXIFltkjsB35tcs5.png",
+  },
+  eastmallbuy: {
+    src: "/images/agents/eastmallbuy.png",
+    remoteSrc: "https://eastmallbuy.com/web/favicon.jpg",
+  },
+  goatedbuy: {
+    src: "/images/agents/goatedbuy.svg",
+    remoteSrc: "https://goatedbuy.com/static/logo_white.svg?v=2",
+  },
+  gtbuy: {
+    src: "/images/agents/gtbuy.png",
+    remoteSrc: "https://gtbuy.com/static/favicon/64x64.png",
+  },
+  hoobuy: {
+    src: "/images/agents/hoobuy.ico",
+    remoteSrc: "https://cdn.static.hoobuy.com/favicon/favicon_64.ico",
+  },
+  itaobuy: {
+    src: "/images/agents/itaobuy.ico",
+    remoteSrc: "https://www.itaobuy.com/favicon.ico",
+  },
+  kameymall: {
+    src: "/images/agents/kameymall.png",
+    remoteSrc: "https://www.kameymall.com/favicon.ico",
+  },
+  mulebuy: {
+    src: "/images/agents/mulebuy.ico",
+    remoteSrc: "https://mulebuy.com/favicon.ico?v=20260114",
+  },
+  orientdig: {
+    src: "/images/agents/orientdig.png",
+    remoteSrc: "https://orientdig.com/site.ico",
+  },
+  parcelup: {
+    src: "/images/agents/parcelup.png",
+    remoteSrc: "https://parcelup.com/favicon.ico",
+  },
+  yoybuy: {
+    src: "/images/agents/yoybuy.ico",
+    remoteSrc: "https://img.yoybuy.com/v7/imgs/favicon.ico",
+  },
 };
 
 export function getOfficialPlatformLogo(

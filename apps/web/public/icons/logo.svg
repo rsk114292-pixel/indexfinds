@@ -1,14 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
-  <title id="title">IndexFinds</title>
+  <title id="title">IndexFinds IF monogram</title>
   <defs>
-    <linearGradient id="indexfinds-gradient" x1="82" y1="52" x2="430" y2="462" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FF825C"/>
-      <stop offset="0.52" stop-color="#F05232"/>
+    <linearGradient id="indexfinds-gradient" x1="66" y1="52" x2="452" y2="462" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF8A5C"/>
+      <stop offset="0.5" stop-color="#F05232"/>
       <stop offset="1" stop-color="#D83A20"/>
     </linearGradient>
   </defs>
   <rect x="16" y="16" width="480" height="480" rx="132" fill="url(#indexfinds-gradient)"/>
-  <circle cx="215" cy="210" r="105" fill="none" stroke="#FFFFFF" stroke-width="44"/>
-  <path d="M294 289L393 388" fill="none" stroke="#FFFFFF" stroke-width="48" stroke-linecap="round"/>
-  <circle cx="391" cy="389" r="39" fill="#7167FF" stroke="#FFFFFF" stroke-width="13"/>
+  <path d="M134 112h60v288h-60zM218 112h174v57H278v61h99v57h-99v113h-60z" fill="#FFFFFF"/>
+  <circle cx="378" cy="134" r="42" fill="#7167FF" stroke="#FFFFFF" stroke-width="13"/>
 </svg>

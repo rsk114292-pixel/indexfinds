@@ -3,7 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
+  BookOpen,
   CheckCircle2,
+  ExternalLink,
   Scale,
   Search,
   ShieldCheck,
@@ -15,6 +17,7 @@ import PlatformLogoBadge from "@/components/platforms/PlatformLogoBadge";
 import { usePlatformStore } from "@/stores/usePlatformStore";
 import { countConfiguredComparisonFields } from "@/lib/agent-recommendation";
 import AgentMatchWizard from "./AgentMatchWizard";
+import { SUBSITE_GUIDES, getSubsiteCatalogUrl } from "@/lib/subsite-guides";
 
 export default function AgentDirectoryClient() {
   const t = useTranslations("agents");
@@ -30,6 +33,15 @@ export default function AgentDirectoryClient() {
     if (!normalizedQuery) return AGENT_PLATFORMS;
     return AGENT_PLATFORMS.filter((agent) =>
       agent.name.toLowerCase().includes(normalizedQuery),
+    );
+  }, [query]);
+  const filteredGuides = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+    if (!normalizedQuery) return SUBSITE_GUIDES;
+    return SUBSITE_GUIDES.filter((guide) =>
+      [guide.title, guide.domain, guide.agentKey || ""].some((value) =>
+        value.toLowerCase().includes(normalizedQuery),
+      ),
     );
   }, [query]);
 
@@ -137,6 +149,49 @@ export default function AgentDirectoryClient() {
             {t("noResults")}
           </div>
         )}
+
+        <div className="mt-14 border-t border-border pt-10">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 className="flex items-center gap-2 text-2xl font-bold text-foreground">
+                <BookOpen className="h-5 w-5 text-primary" />
+                {t("allGuides")}
+              </h2>
+              <p className="mt-1 text-sm text-muted">{t("supportedDesc")}</p>
+            </div>
+            <span className="rounded-full border border-border bg-gray-50 px-3 py-1.5 text-xs font-semibold text-muted">
+              {filteredGuides.length} / {SUBSITE_GUIDES.length}
+            </span>
+          </div>
+
+          {filteredGuides.length > 0 ? (
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {filteredGuides.map((guide) => (
+                <a
+                  key={guide.domain}
+                  href={getSubsiteCatalogUrl(guide)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex min-w-0 items-center justify-between gap-3 rounded-xl border border-border bg-white px-4 py-3 transition-colors hover:border-primary/30 hover:bg-primary/[0.02]"
+                >
+                  <span className="min-w-0">
+                    <span className="block truncate text-sm font-bold text-foreground">
+                      {guide.title}
+                    </span>
+                    <span className="mt-0.5 block truncate text-xs text-muted">
+                      {guide.domain}
+                    </span>
+                  </span>
+                  <ExternalLink className="h-4 w-4 shrink-0 text-muted transition-colors group-hover:text-primary" />
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-dashed border-border py-12 text-center text-sm text-muted">
+              {t("noResults")}
+            </div>
+          )}
+        </div>
       </section>
     </div>
   );

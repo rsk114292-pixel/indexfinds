@@ -13,6 +13,7 @@ describe('IndexFinds brand icon assets', () => {
   it('keeps the primary logo as real vector artwork', () => {
     const svg = readFileSync(join(iconsDir, 'logo.svg'), 'utf8');
 
+    expect(svg).toContain('IF monogram');
     expect(svg).toContain('<circle');
     expect(svg).toContain('<path');
     expect(svg).not.toContain('<image');

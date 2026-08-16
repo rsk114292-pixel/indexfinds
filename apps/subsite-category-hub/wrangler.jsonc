@@ -1,0 +1,222 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "indexfinds-subsite-category-hub",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-14",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+  },
+  "env": {
+    "staging": {
+      "name": "indexfinds-subsite-category-hub-staging",
+      "workers_dev": true,
+      "observability": {
+        "enabled": true,
+        "head_sampling_rate": 1,
+      },
+    },
+    "production": {
+      "name": "indexfinds-subsite-category-hub-production",
+      "workers_dev": false,
+      "observability": {
+        "enabled": true,
+        "head_sampling_rate": 1,
+      },
+      "routes": [
+        { "pattern": "1to1reps.com/*", "zone_name": "1to1reps.com" },
+        { "pattern": "www.1to1reps.com/*", "zone_name": "1to1reps.com" },
+        { "pattern": "acbuyindex.com/*", "zone_name": "acbuyindex.com" },
+        { "pattern": "www.acbuyindex.com/*", "zone_name": "acbuyindex.com" },
+        {
+          "pattern": "allchinabuyfinder.com/*",
+          "zone_name": "allchinabuyfinder.com",
+        },
+        {
+          "pattern": "www.allchinabuyfinder.com/*",
+          "zone_name": "allchinabuyfinder.com",
+        },
+        {
+          "pattern": "allchinabuyindex.com/*",
+          "zone_name": "allchinabuyindex.com",
+        },
+        {
+          "pattern": "www.allchinabuyindex.com/*",
+          "zone_name": "allchinabuyindex.com",
+        },
+        { "pattern": "bbdbuyeufinds.com/*", "zone_name": "bbdbuyeufinds.com" },
+        {
+          "pattern": "www.bbdbuyeufinds.com/*",
+          "zone_name": "bbdbuyeufinds.com",
+        },
+        { "pattern": "bbdbuyeus.com/*", "zone_name": "bbdbuyeus.com" },
+        { "pattern": "www.bbdbuyeus.com/*", "zone_name": "bbdbuyeus.com" },
+        { "pattern": "bbdbuyeusheet.com/*", "zone_name": "bbdbuyeusheet.com" },
+        {
+          "pattern": "www.bbdbuyeusheet.com/*",
+          "zone_name": "bbdbuyeusheet.com",
+        },
+        { "pattern": "boonbuyfind.net/*", "zone_name": "boonbuyfind.net" },
+        { "pattern": "www.boonbuyfind.net/*", "zone_name": "boonbuyfind.net" },
+        { "pattern": "boonbuyindex.com/*", "zone_name": "boonbuyindex.com" },
+        {
+          "pattern": "www.boonbuyindex.com/*",
+          "zone_name": "boonbuyindex.com",
+        },
+        {
+          "pattern": "cnshopperindex.com/*",
+          "zone_name": "cnshopperindex.com",
+        },
+        {
+          "pattern": "www.cnshopperindex.com/*",
+          "zone_name": "cnshopperindex.com",
+        },
+        { "pattern": "cssbuycatalog.com/*", "zone_name": "cssbuycatalog.com" },
+        {
+          "pattern": "www.cssbuycatalog.com/*",
+          "zone_name": "cssbuycatalog.com",
+        },
+        { "pattern": "cssbuyindex.com/*", "zone_name": "cssbuyindex.com" },
+        { "pattern": "www.cssbuyindex.com/*", "zone_name": "cssbuyindex.com" },
+        { "pattern": "cssbuyitems.com/*", "zone_name": "cssbuyitems.com" },
+        { "pattern": "www.cssbuyitems.com/*", "zone_name": "cssbuyitems.com" },
+        {
+          "pattern": "eastmallbuyindex.com/*",
+          "zone_name": "eastmallbuyindex.com",
+        },
+        {
+          "pattern": "www.eastmallbuyindex.com/*",
+          "zone_name": "eastmallbuyindex.com",
+        },
+        { "pattern": "fishgooindex.com/*", "zone_name": "fishgooindex.com" },
+        {
+          "pattern": "www.fishgooindex.com/*",
+          "zone_name": "fishgooindex.com",
+        },
+        {
+          "pattern": "goatedbuyindex.com/*",
+          "zone_name": "goatedbuyindex.com",
+        },
+        {
+          "pattern": "www.goatedbuyindex.com/*",
+          "zone_name": "goatedbuyindex.com",
+        },
+        { "pattern": "gtbuyindex.com/*", "zone_name": "gtbuyindex.com" },
+        { "pattern": "www.gtbuyindex.com/*", "zone_name": "gtbuyindex.com" },
+        { "pattern": "hipobuyindex.com/*", "zone_name": "hipobuyindex.com" },
+        {
+          "pattern": "www.hipobuyindex.com/*",
+          "zone_name": "hipobuyindex.com",
+        },
+        { "pattern": "hoobuyindex.net/*", "zone_name": "hoobuyindex.net" },
+        { "pattern": "www.hoobuyindex.net/*", "zone_name": "hoobuyindex.net" },
+        { "pattern": "itaobuyindex.com/*", "zone_name": "itaobuyindex.com" },
+        {
+          "pattern": "www.itaobuyindex.com/*",
+          "zone_name": "itaobuyindex.com",
+        },
+        { "pattern": "joyabuyfinds.com/*", "zone_name": "joyabuyfinds.com" },
+        {
+          "pattern": "www.joyabuyfinds.com/*",
+          "zone_name": "joyabuyfinds.com",
+        },
+        { "pattern": "joyagooindex.com/*", "zone_name": "joyagooindex.com" },
+        {
+          "pattern": "www.joyagooindex.com/*",
+          "zone_name": "joyagooindex.com",
+        },
+        { "pattern": "kakobuyindex.net/*", "zone_name": "kakobuyindex.net" },
+        {
+          "pattern": "www.kakobuyindex.net/*",
+          "zone_name": "kakobuyindex.net",
+        },
+        { "pattern": "kakobuyitems.com/*", "zone_name": "kakobuyitems.com" },
+        {
+          "pattern": "www.kakobuyitems.com/*",
+          "zone_name": "kakobuyitems.com",
+        },
+        {
+          "pattern": "kameymallindex.com/*",
+          "zone_name": "kameymallindex.com",
+        },
+        {
+          "pattern": "www.kameymallindex.com/*",
+          "zone_name": "kameymallindex.com",
+        },
+        { "pattern": "litbuyindex.com/*", "zone_name": "litbuyindex.com" },
+        { "pattern": "www.litbuyindex.com/*", "zone_name": "litbuyindex.com" },
+        { "pattern": "litbuyitems.com/*", "zone_name": "litbuyitems.com" },
+        { "pattern": "www.litbuyitems.com/*", "zone_name": "litbuyitems.com" },
+        {
+          "pattern": "litbuyproducts.com/*",
+          "zone_name": "litbuyproducts.com",
+        },
+        {
+          "pattern": "www.litbuyproducts.com/*",
+          "zone_name": "litbuyproducts.com",
+        },
+        { "pattern": "loongbuys.net/*", "zone_name": "loongbuys.net" },
+        { "pattern": "www.loongbuys.net/*", "zone_name": "loongbuys.net" },
+        {
+          "pattern": "lovegobuyindex.com/*",
+          "zone_name": "lovegobuyindex.com",
+        },
+        {
+          "pattern": "www.lovegobuyindex.com/*",
+          "zone_name": "lovegobuyindex.com",
+        },
+        { "pattern": "mulebuyindex.net/*", "zone_name": "mulebuyindex.net" },
+        {
+          "pattern": "www.mulebuyindex.net/*",
+          "zone_name": "mulebuyindex.net",
+        },
+        { "pattern": "mulebuyitems.com/*", "zone_name": "mulebuyitems.com" },
+        {
+          "pattern": "www.mulebuyitems.com/*",
+          "zone_name": "mulebuyitems.com",
+        },
+        { "pattern": "oopbuyindex.net/*", "zone_name": "oopbuyindex.net" },
+        { "pattern": "www.oopbuyindex.net/*", "zone_name": "oopbuyindex.net" },
+        {
+          "pattern": "orientdigindex.com/*",
+          "zone_name": "orientdigindex.com",
+        },
+        {
+          "pattern": "www.orientdigindex.com/*",
+          "zone_name": "orientdigindex.com",
+        },
+        { "pattern": "parcelupindex.com/*", "zone_name": "parcelupindex.com" },
+        {
+          "pattern": "www.parcelupindex.com/*",
+          "zone_name": "parcelupindex.com",
+        },
+        { "pattern": "sugargooindex.net/*", "zone_name": "sugargooindex.net" },
+        {
+          "pattern": "www.sugargooindex.net/*",
+          "zone_name": "sugargooindex.net",
+        },
+        { "pattern": "superbuydeals.com/*", "zone_name": "superbuydeals.com" },
+        {
+          "pattern": "www.superbuydeals.com/*",
+          "zone_name": "superbuydeals.com",
+        },
+        { "pattern": "superbuyindex.com/*", "zone_name": "superbuyindex.com" },
+        {
+          "pattern": "www.superbuyindex.com/*",
+          "zone_name": "superbuyindex.com",
+        },
+        { "pattern": "superbuyitems.com/*", "zone_name": "superbuyitems.com" },
+        {
+          "pattern": "www.superbuyitems.com/*",
+          "zone_name": "superbuyitems.com",
+        },
+        { "pattern": "usfansindex.net/*", "zone_name": "usfansindex.net" },
+        { "pattern": "www.usfansindex.net/*", "zone_name": "usfansindex.net" },
+        { "pattern": "yoybuyindex.com/*", "zone_name": "yoybuyindex.com" },
+        { "pattern": "www.yoybuyindex.com/*", "zone_name": "yoybuyindex.com" },
+      ],
+    },
+  },
+}

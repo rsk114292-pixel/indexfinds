@@ -25,7 +25,7 @@ export default function ShopLayout({
     <div className="flex min-h-dvh flex-col">
       <SkipToContent />
       {/* PC 端顶栏 — 仅 lg 以上显示 */}
-      <div className="hidden lg:sticky lg:top-0 lg:z-50 lg:block">
+      <div className="hidden lg:sticky lg:top-0 lg:z-50 lg:block lg:bg-[#030712]">
         <Header />
       </div>
 

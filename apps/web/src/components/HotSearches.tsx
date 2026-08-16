@@ -17,6 +17,15 @@ interface HotSearchesProps {
   initialSearches?: HotSearch[];
 }
 
+export function isMeaningfulHotSearch(keyword: string): boolean {
+  const normalized = keyword.trim();
+  return (
+    normalized.length >= 2 &&
+    !/^\d+$/.test(normalized) &&
+    !/^(test|testing|undefined|null|demo)$/i.test(normalized)
+  );
+}
+
 export default function HotSearches({
   limit = 10,
   className = "",
@@ -53,7 +62,11 @@ export default function HotSearches({
     fetchHotSearches();
   }, [initialSearches, limit, source]);
 
-  if (loading || searches.length === 0) {
+  const visibleSearches = searches
+    .filter((item) => isMeaningfulHotSearch(item.keyword))
+    .slice(0, limit);
+
+  if (loading || visibleSearches.length === 0) {
     return null;
   }
 
@@ -64,7 +77,7 @@ export default function HotSearches({
         {t("hotSearches")}
       </h2>
       <div className="flex flex-wrap gap-2">
-        {searches.map((item, index) => (
+        {visibleSearches.map((item, index) => (
           <Link
             key={item.keyword}
             href={`/search?q=${encodeURIComponent(item.keyword)}`}

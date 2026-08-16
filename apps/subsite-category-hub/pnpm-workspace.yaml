@@ -1,0 +1,5 @@
+minimumReleaseAgeExclude:
+  - '@cloudflare/workers-types@5.20260814.1'
+  - '@types/node@26.2.0'
+  - miniflare@5.20260811.1-alpha
+  - wrangler@4.123.0

@@ -7,7 +7,7 @@ const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = path.resolve(SCRIPT_DIR, "../public/images/agents");
 
 // Keep these sources on the platforms' own domains. The UI serves local copies
-// so opening the agent picker never depends on 21 third-party requests.
+// so opening the agent picker never depends on third-party requests.
 const LOGO_SOURCES = {
   loongbuy: {
     source: "https://www.loongbuy.com/favicon.ico",
@@ -95,6 +95,63 @@ const LOGO_SOURCES = {
     source: "https://www.lolobuy.com/loloBuyIcon.png",
     filename: "lolobuy.png",
   },
+  acbuy: {
+    source: "https://www.acbuy.com/favicon1.ico",
+    filename: "acbuy.ico",
+  },
+  allchinabuy: {
+    source: "https://www.allchinabuy.com/favicon.ico",
+    filename: "allchinabuy.ico",
+  },
+  bbdbuy: {
+    source: "https://www.bbdbuyeu.com/favicon.ico",
+    filename: "bbdbuy.ico",
+  },
+  cnshopper: {
+    source:
+      "https://api.cnshopper.com/storage/admin/20260323-LXIFltkjsB35tcs5.png",
+    filename: "cnshopper.png",
+  },
+  eastmallbuy: {
+    source: "https://eastmallbuy.com/web/favicon.jpg",
+    filename: "eastmallbuy.png",
+  },
+  goatedbuy: {
+    source: "https://goatedbuy.com/static/logo_white.svg?v=2",
+    filename: "goatedbuy.svg",
+  },
+  gtbuy: {
+    source: "https://gtbuy.com/static/favicon/64x64.png",
+    filename: "gtbuy.png",
+  },
+  hoobuy: {
+    source: "https://cdn.static.hoobuy.com/favicon/favicon_64.ico",
+    filename: "hoobuy.ico",
+  },
+  itaobuy: {
+    source: "https://www.itaobuy.com/favicon.ico",
+    filename: "itaobuy.ico",
+  },
+  kameymall: {
+    source: "https://www.kameymall.com/favicon.ico",
+    filename: "kameymall.png",
+  },
+  mulebuy: {
+    source: "https://mulebuy.com/favicon.ico?v=20260114",
+    filename: "mulebuy.ico",
+  },
+  orientdig: {
+    source: "https://orientdig.com/site.ico",
+    filename: "orientdig.png",
+  },
+  parcelup: {
+    source: "https://parcelup.com/favicon.ico",
+    filename: "parcelup.png",
+  },
+  yoybuy: {
+    source: "https://img.yoybuy.com/v7/imgs/favicon.ico",
+    filename: "yoybuy.ico",
+  },
 };
 
 function detectExtension(bytes) {
@@ -104,6 +161,9 @@ function detectExtension(bytes) {
   if (bytes.subarray(0, 4).equals(Buffer.from("00000100", "hex"))) {
     return ".ico";
   }
+  if (bytes.subarray(0, 3).equals(Buffer.from("ffd8ff", "hex"))) {
+    return ".jpg";
+  }
   if (bytes.subarray(0, 512).toString("utf8").includes("<svg")) {
     return ".svg";
   }
@@ -112,7 +172,22 @@ function detectExtension(bytes) {
 
 await mkdir(OUTPUT_DIR, { recursive: true });
 
-for (const [platformKey, { source, filename }] of Object.entries(LOGO_SOURCES)) {
+const requestedPlatformKeys = new Set(process.argv.slice(2));
+const logoEntries = Object.entries(LOGO_SOURCES).filter(
+  ([platformKey]) =>
+    requestedPlatformKeys.size === 0 || requestedPlatformKeys.has(platformKey),
+);
+
+if (
+  requestedPlatformKeys.size > 0 &&
+  logoEntries.length !== requestedPlatformKeys.size
+) {
+  const knownKeys = new Set(Object.keys(LOGO_SOURCES));
+  const unknownKeys = [...requestedPlatformKeys].filter((key) => !knownKeys.has(key));
+  throw new Error(`Unknown platform key(s): ${unknownKeys.join(", ")}`);
+}
+
+for (const [platformKey, { source, filename }] of logoEntries) {
   const response = await fetch(source, {
     headers: {
       Accept: "image/avif,image/webp,image/svg+xml,image/png,image/*,*/*;q=0.8",
@@ -139,6 +214,15 @@ for (const [platformKey, { source, filename }] of Object.entries(LOGO_SOURCES)) 
       .extract({ left: 480, top: 0, width: 640, height: 320 })
       .png()
       .toBuffer();
+  } else if (platformKey === "cnshopper") {
+    // The official square brand asset has substantial white padding. Trim it
+    // so the official mark remains legible inside the compact agent badge.
+    bytes = await sharp(bytes)
+      .extract({ left: 280, top: 746, width: 1740, height: 961 })
+      .png()
+      .toBuffer();
+  } else if (detectedExtension === ".jpg" && path.extname(filename) === ".png") {
+    bytes = await sharp(bytes).png().toBuffer();
   } else if (path.extname(filename) !== detectedExtension) {
     throw new Error(
       `${platformKey}: expected ${path.extname(filename)}, received ${detectedExtension}`,

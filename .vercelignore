@@ -1,0 +1,23 @@
+# Deploy only the IndexFinds web workspace from this monorepo.
+/migration-artifacts/
+/.pnpm-store/
+apps/api/
+apps/subsite-category-hub/
+apps/web/node_modules/
+apps/web/.next/
+apps/web/test-results/
+apps/web/tsconfig.tsbuildinfo
+/deploy/
+/Docs/
+/design/
+/embedding-service/
+/outputs/
+/perf/
+/scripts/
+/品牌图标/
+/uploads/
+/coverage/
+*.log
+*.env*
+/.git/
+/.vercel/

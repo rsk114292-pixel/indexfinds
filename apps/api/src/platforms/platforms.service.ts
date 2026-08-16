@@ -47,6 +47,21 @@ const DEFAULT_PLATFORM_LOGO_URLS: Record<string, string> = {
   fansbuy: 'https://fansbuy.com/favicon2.ico',
   lolobuy:
     'https://www.lolobuy.com/loloBuyIcon.png?v=1.0.1%402026-08-03T06%3A13%3A41.845Z',
+  acbuy: 'https://www.acbuy.com/favicon1.ico',
+  allchinabuy: 'https://www.allchinabuy.com/favicon.ico',
+  bbdbuy: 'https://www.bbdbuyeu.com/favicon.ico',
+  cnshopper:
+    'https://api.cnshopper.com/storage/admin/20260323-LXIFltkjsB35tcs5.png',
+  eastmallbuy: 'https://eastmallbuy.com/web/favicon.jpg',
+  goatedbuy: 'https://goatedbuy.com/static/logo_white.svg?v=2',
+  gtbuy: 'https://gtbuy.com/static/favicon/64x64.png',
+  hoobuy: 'https://cdn.static.hoobuy.com/favicon/favicon_64.ico',
+  itaobuy: 'https://www.itaobuy.com/favicon.ico',
+  kameymall: 'https://www.kameymall.com/favicon.ico',
+  mulebuy: 'https://mulebuy.com/favicon.ico?v=20260114',
+  orientdig: 'https://orientdig.com/site.ico',
+  parcelup: 'https://parcelup.com/favicon.ico',
+  yoybuy: 'https://img.yoybuy.com/v7/imgs/favicon.ico',
 };
 
 function createDefaultPlatform(
@@ -81,7 +96,7 @@ function createDefaultPlatform(
 }
 
 // 默认平台配置。邀请码留空，站点管理员可在后台填写自己的推广码。
-const DEFAULT_PLATFORMS: Partial<Platform>[] = [
+export const DEFAULT_PLATFORMS: Partial<Platform>[] = [
   createDefaultPlatform(
     'loongbuy',
     'Loongbuy',
@@ -228,6 +243,104 @@ const DEFAULT_PLATFORMS: Partial<Platform>[] = [
     'https://www.lolobuy.com/productDetail/0',
     '{baseUrl}?url={weidianUrl}&inviteCode={inviteCode}',
     20,
+  ),
+  createDefaultPlatform(
+    'acbuy',
+    'ACBuy',
+    'https://www.acbuy.com/product',
+    '{baseUrl}?id={weidianItemId}&platform=WEIDIAN',
+    21,
+  ),
+  createDefaultPlatform(
+    'allchinabuy',
+    'AllChinaBuy',
+    'https://www.allchinabuy.com/en/page/homepage/',
+    '{baseUrl}',
+    22,
+  ),
+  createDefaultPlatform(
+    'bbdbuy',
+    'BBDBuyEU',
+    'https://www.bbdbuyeu.com/',
+    '{baseUrl}',
+    23,
+  ),
+  createDefaultPlatform(
+    'cnshopper',
+    'CNShopper',
+    'https://cnshopper.com/goods/detail',
+    '{baseUrl}?keyword={weidianItemId}&platform=weidian',
+    24,
+  ),
+  createDefaultPlatform(
+    'eastmallbuy',
+    'EastMallBuy',
+    'https://www.eastmallbuy.com/item',
+    '{baseUrl}?tid={weidianItemId}&tp=micro',
+    25,
+  ),
+  createDefaultPlatform(
+    'goatedbuy',
+    'GoatedBuy',
+    'https://goatedbuy.com/',
+    '{baseUrl}',
+    26,
+  ),
+  createDefaultPlatform(
+    'gtbuy',
+    'GTBuy',
+    'https://www.gtbuy.com/',
+    '{baseUrl}',
+    27,
+  ),
+  createDefaultPlatform(
+    'hoobuy',
+    'HooBuy',
+    'https://hoobuy.com/',
+    '{baseUrl}',
+    28,
+  ),
+  createDefaultPlatform(
+    'itaobuy',
+    'iTaoBuy',
+    'https://www.itaobuy.com/manual-input',
+    '{baseUrl}?url={encodedWeidianUrl}',
+    29,
+  ),
+  createDefaultPlatform(
+    'kameymall',
+    'KameyMall',
+    'https://www.kameymall.com/',
+    '{baseUrl}',
+    30,
+  ),
+  createDefaultPlatform(
+    'mulebuy',
+    'MuleBuy',
+    'https://mulebuy.com/',
+    '{baseUrl}',
+    31,
+  ),
+  createDefaultPlatform(
+    'orientdig',
+    'OrientDig',
+    'https://orientdig.com/',
+    '{baseUrl}',
+    32,
+  ),
+  createDefaultPlatform(
+    'parcelup',
+    'Parcel Up',
+    'https://parcelup.com/',
+    '{baseUrl}',
+    33,
+  ),
+  createDefaultPlatform(
+    'yoybuy',
+    'YoyBuy',
+    'https://www.yoybuy.com/',
+    '{baseUrl}',
+    34,
   ),
 ];
 

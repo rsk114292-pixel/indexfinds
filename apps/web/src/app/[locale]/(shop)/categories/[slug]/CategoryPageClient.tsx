@@ -26,6 +26,7 @@ import { getLocalizedName, computeHotThreshold } from '@/lib/utils';
 import { OutboundSource } from '@/lib/search-tracking';
 import { useLgUp } from '@/hooks/useLgUp';
 import { useReturnScrollRestoration } from '@/hooks/useReturnScrollRestoration';
+import { useSubsiteAgentBridge } from '@/hooks/useSubsiteAgentBridge';
 import type { ApiListResponse, Product, Category } from '@/types';
 import {
   DEFAULT_DESKTOP_PRODUCT_LIMIT,
@@ -46,6 +47,7 @@ export default function CategoryPageClient({ slug, initialCategory }: CategoryPa
   const tCommon = useTranslations('common');
   const locale = useLocale();
   const searchParams = useSearchParams();
+  useSubsiteAgentBridge(searchParams);
   const lgUp = useLgUp();
   const enabledDesktop = lgUp === true;
   const enabledMobile = lgUp === false;

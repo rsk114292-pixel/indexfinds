@@ -21,7 +21,6 @@ import type {
   Category,
   ProductListItem,
 } from "@/types";
-import HomeRewardsBanner from "@/components/rewards/HomeRewardsBanner";
 
 interface HotSearchItem {
   keyword: string;
@@ -100,11 +99,6 @@ export default function HomePageClient({
 
   return (
     <>
-      <section className="hidden lg:block bg-secondary">
-        <div className="container mx-auto px-4 pt-3 pb-1">
-          <HomeRewardsBanner />
-        </div>
-      </section>
       <HeroSection
         initialHotSearches={initialHotSearches}
         stats={initialStats}

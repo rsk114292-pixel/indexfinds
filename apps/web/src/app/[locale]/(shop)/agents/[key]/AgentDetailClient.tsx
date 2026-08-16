@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import {
   ArrowLeft,
   ArrowRight,
+  BookOpen,
   Check,
   ExternalLink,
   PackageSearch,
@@ -17,6 +18,10 @@ import type { AgentPlatformDefinition } from "@/lib/agent-platforms";
 import PlatformLogoBadge from "@/components/platforms/PlatformLogoBadge";
 import { usePlatformStore } from "@/stores/usePlatformStore";
 import { rememberRecentPlatform } from "@/lib/platform-recents";
+import {
+  getSubsiteCatalogUrl,
+  getSubsiteGuidesForAgent,
+} from "@/lib/subsite-guides";
 
 export default function AgentDetailClient({
   agent,
@@ -28,6 +33,7 @@ export default function AgentDetailClient({
     usePlatformStore();
   const platform = platforms.find((item) => item.key === agent.key);
   const selected = platformKey === agent.key;
+  const relatedGuides = getSubsiteGuidesForAgent(agent.key);
 
   useEffect(() => {
     if (platforms.length === 0) void fetchPlatforms();
@@ -154,6 +160,36 @@ export default function AgentDetailClient({
             })}
           </div>
 
+          {relatedGuides.length > 0 ? (
+            <div className="mt-8 rounded-2xl border border-border bg-white p-6 md:p-8">
+              <h2 className="flex items-center gap-2 text-xl font-bold text-foreground">
+                <BookOpen className="h-5 w-5 text-primary" />
+                {t("allGuides")}
+              </h2>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {relatedGuides.map((guide) => (
+                  <a
+                    key={guide.domain}
+                    href={getSubsiteCatalogUrl(guide)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex min-w-0 items-center justify-between gap-3 rounded-xl border border-border px-4 py-3 hover:border-primary/30"
+                  >
+                    <span className="min-w-0">
+                      <span className="block truncate text-sm font-bold text-foreground">
+                        {guide.title}
+                      </span>
+                      <span className="block truncate text-xs text-muted">
+                        {guide.domain}
+                      </span>
+                    </span>
+                    <ExternalLink className="h-4 w-4 shrink-0 text-muted transition-colors group-hover:text-primary" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
           <div className="mt-8 grid gap-5 rounded-2xl border border-border bg-gray-50 p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8">
             <div className="flex gap-4">
               <ShieldCheck className="mt-0.5 h-6 w-6 shrink-0 text-brand-indigo" />
@@ -167,7 +203,7 @@ export default function AgentDetailClient({
               </div>
             </div>
             <Link
-              href="/products"
+              href={`/products?agent=${encodeURIComponent(agent.key)}`}
               className="inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-secondary px-5 text-sm font-semibold text-white"
             >
               {t("browseProducts")}
