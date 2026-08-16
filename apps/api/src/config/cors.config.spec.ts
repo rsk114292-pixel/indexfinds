@@ -4,7 +4,7 @@ describe('isAllowedCorsOrigin', () => {
   const productionPolicy = {
     isProduction: true,
     allowedOrigins: ['https://indexfinds.com', 'https://www.indexfinds.com'],
-    vercelPreviewProject: 'indexfinds-web',
+    vercelPreviewProject: 'indexfinds',
     vercelPreviewOwner: 'rsk114292-3255s-projects',
   };
 
@@ -21,13 +21,13 @@ describe('isAllowedCorsOrigin', () => {
   it('allows only previews owned by the configured Vercel project and team', () => {
     expect(
       isAllowedCorsOrigin(
-        'https://indexfinds-web-git-feature-rsk114292-3255s-projects.vercel.app',
+        'https://indexfinds-git-feature-rsk114292-3255s-projects.vercel.app',
         productionPolicy,
       ),
     ).toBe(true);
     expect(
       isAllowedCorsOrigin(
-        'https://indexfinds-web-abc123-rsk114292-3255s-projects.vercel.app',
+        'https://indexfinds-c16yagv73-rsk114292-3255s-projects.vercel.app',
         productionPolicy,
       ),
     ).toBe(true);
@@ -36,19 +36,19 @@ describe('isAllowedCorsOrigin', () => {
   it('rejects lookalike, insecure, and other-team preview origins', () => {
     expect(
       isAllowedCorsOrigin(
-        'https://indexfinds-web-abc123-attacker-projects.vercel.app',
+        'https://indexfinds-c16yagv73-attacker-projects.vercel.app',
         productionPolicy,
       ),
     ).toBe(false);
     expect(
       isAllowedCorsOrigin(
-        'https://indexfinds-web-abc123-rsk114292-3255s-projects.vercel.app.evil.test',
+        'https://indexfinds-c16yagv73-rsk114292-3255s-projects.vercel.app.evil.test',
         productionPolicy,
       ),
     ).toBe(false);
     expect(
       isAllowedCorsOrigin(
-        'http://indexfinds-web-abc123-rsk114292-3255s-projects.vercel.app',
+        'http://indexfinds-c16yagv73-rsk114292-3255s-projects.vercel.app',
         productionPolicy,
       ),
     ).toBe(false);
