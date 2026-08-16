@@ -12,7 +12,9 @@ export type SitemapEntry = {
 };
 
 const SITE_URL = getSiteUrl();
-const PRODUCTS_PER_SITEMAP = 5000;
+// Each product expands to eight localized URLs with hreflang alternates.
+// Keep chunks comfortably below the 50 MB uncompressed sitemap limit.
+export const PRODUCTS_PER_SITEMAP = 4000;
 const LOCALES = ['en', 'zh', 'fr', 'de', 'es', 'it', 'pt', 'ar'] as const;
 
 function buildLocaleAlternates(path: string): Record<string, string> {
@@ -23,7 +25,10 @@ function buildLocaleAlternates(path: string): Record<string, string> {
   return languages;
 }
 
-async function fetchJson<T>(url: string, revalidate: number): Promise<T | null> {
+async function fetchJson<T>(
+  url: string,
+  revalidate: number,
+): Promise<T | null> {
   return fetchServerApiJson<T>(url, {
     next: { revalidate },
   });
@@ -32,7 +37,7 @@ async function fetchJson<T>(url: string, revalidate: number): Promise<T | null> 
 export async function getProductTotal(): Promise<number> {
   const data = await fetchJson<{ total?: number }>(
     `${API_BASE_URL}/products/slugs?page=1&limit=1`,
-    3600,
+    300,
   );
   return data?.total || 0;
 }
@@ -43,7 +48,7 @@ export async function getProductSlugsPage(
 ): Promise<string[]> {
   const data = await fetchJson<{ slugs?: string[] }>(
     `${API_BASE_URL}/products/slugs?page=${page}&limit=${limit}`,
-    3600,
+    300,
   );
   return data?.slugs || [];
 }
@@ -89,7 +94,9 @@ export async function getSitemapChunkIds(): Promise<number[]> {
   return Array.from({ length: productChunks + 1 }, (_, index) => index);
 }
 
-export async function getSitemapEntriesByChunk(id: number): Promise<SitemapEntry[]> {
+export async function getSitemapEntriesByChunk(
+  id: number,
+): Promise<SitemapEntry[]> {
   if (id === 0) {
     const [categorySlugs, brandSlugs] = await Promise.all([
       getAllCategorySlugs(),
@@ -247,8 +254,10 @@ export function buildUrlSetXml(entries: SitemapEntry[]): string {
     })
     .join('');
 
-  return `<?xml version="1.0" encoding="UTF-8"?>` +
-    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${body}</urlset>`;
+  return (
+    `<?xml version="1.0" encoding="UTF-8"?>` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${body}</urlset>`
+  );
 }
 
 export function buildSitemapIndexXml(ids: number[]): string {
@@ -261,6 +270,8 @@ export function buildSitemapIndexXml(ids: number[]): string {
     })
     .join('');
 
-  return `<?xml version="1.0" encoding="UTF-8"?>` +
-    `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${body}</sitemapindex>`;
+  return (
+    `<?xml version="1.0" encoding="UTF-8"?>` +
+    `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${body}</sitemapindex>`
+  );
 }

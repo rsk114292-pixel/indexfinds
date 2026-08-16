@@ -603,6 +603,54 @@ describe('ProductsService', () => {
 
   // ===== clearProductListCache fallback =====
   describe('clearProductListCache fallback (unknown store type)', () => {
+    it('should clear Redis keys through the Keyv-wrapped store client', async () => {
+      const scanIterator = jest.fn().mockImplementation(async function* ({
+        MATCH,
+      }: {
+        MATCH: string;
+      }) {
+        if (MATCH === '*products*') {
+          yield [
+            'keyv:/products?page=1',
+            'keyv:/products/slugs?page=1&limit=5000',
+          ];
+        }
+        if (MATCH === '*public:stats:*') {
+          yield ['keyv:public:stats:v1'];
+        }
+      });
+      const unlink = jest.fn().mockResolvedValue(1);
+      cacheManager.stores = [
+        {
+          store: {
+            client: { scanIterator, unlink },
+          },
+        },
+      ];
+
+      const product = {
+        id: 'prod-1',
+        slug: 'old',
+        primaryCategoryId: 'cat-1',
+        images: [],
+        secondaryCategories: [],
+      };
+      productRepository.findOne.mockResolvedValue({ ...product });
+      productRepository.save.mockImplementation((p: any) => Promise.resolve(p));
+
+      await service.update('prod-1', { title: 'Trigger cache clear' } as any);
+
+      expect(scanIterator).toHaveBeenCalledWith({
+        MATCH: '*products*',
+        COUNT: 100,
+      });
+      expect(unlink).toHaveBeenCalledWith([
+        'keyv:/products?page=1',
+        'keyv:/products/slugs?page=1&limit=5000',
+      ]);
+      expect(unlink).toHaveBeenCalledWith(['keyv:public:stats:v1']);
+    });
+
     it('should NOT call cacheManager.clear() when store type is unknown', async () => {
       // 替换为无法识别的 store 类型（既非 Redis 也非 Map）
       cacheManager.stores = [{ store: 'unknown-store-type' }];

@@ -241,7 +241,7 @@ export class ProductsController {
   @Public()
   @Get('slugs')
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(1296000000) // 缓存15天（新商品发布时主动刷新）
+  @CacheTTL(300000) // 缓存5分钟；即使主动失效失败也不会长期遗漏新商品
   getAllSlugs(@Query('page') page?: string, @Query('limit') limit?: string) {
     const p = page ? parseInt(page, 10) : undefined;
     const l = limit ? parseInt(limit, 10) : undefined;

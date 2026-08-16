@@ -5,6 +5,7 @@
 import {
   buildUrlSetXml,
   getSitemapEntriesByChunk,
+  getSitemapChunkIds,
 } from './sitemap';
 import { getSiteUrl } from './site-config';
 
@@ -18,6 +19,15 @@ beforeEach(() => {
 });
 
 describe('sitemap', () => {
+  it('keeps localized product chunks below the sitemap size limit', async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ total: 8001 }),
+    });
+
+    await expect(getSitemapChunkIds()).resolves.toEqual([0, 1, 2, 3]);
+  });
+
   it('adds locale alternates to generated entries', async () => {
     mockFetch
       .mockResolvedValueOnce({

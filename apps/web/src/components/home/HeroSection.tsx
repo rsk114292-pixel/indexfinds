@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { Sparkles, Camera, Package, Crown, ShieldCheck } from "lucide-react";
+import { Sparkles, Camera, Crown, ShieldCheck } from "lucide-react";
 import SearchBox from "@/components/SearchBox";
 import PlatformSelector from "@/components/PlatformSelector";
 import HotSearches from "@/components/HotSearches";
@@ -33,7 +33,6 @@ export default function HeroSection({
   const capabilityItems = [
     { icon: Sparkles, label: t("hero.featureAI") },
     { icon: Camera, label: t("hero.featureVisualSearch") },
-    { icon: Package, label: t("hero.browseProducts") },
     { icon: Crown, label: t("hero.compareAgents") },
   ];
 
@@ -53,7 +52,7 @@ export default function HeroSection({
 
   return (
     <section
-      className="relative z-10 flex min-h-[calc(100svh-64px)] flex-col justify-center overflow-visible"
+      className="home-hero-shell relative z-10 flex min-h-[calc(100svh-64px)] flex-col justify-center overflow-visible"
       style={{
         background:
           "radial-gradient(ellipse at 16% 84%, rgba(37, 99, 235, 0.26) 0%, transparent 42%), radial-gradient(ellipse at 84% 12%, rgba(126, 52, 176, 0.3) 0%, transparent 43%), linear-gradient(145deg, #030712 0%, #080d28 48%, #1b0d32 100%)",
@@ -85,10 +84,15 @@ export default function HeroSection({
         <StarField />
       </div>
 
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-[#080b20]/45"
+      />
+
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 py-12 md:py-16 lg:py-20">
+      <div className="home-hero-content relative z-10 container mx-auto px-4 py-10 sm:py-12 md:py-14 lg:py-16">
         <FadeIn direction="down" duration={0.45}>
-          <div className="mb-6 flex justify-center">
+          <div className="home-hero-eyebrow mb-4 flex justify-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-xs font-semibold text-white/75 backdrop-blur-sm">
               <ShieldCheck className="h-3.5 w-3.5 text-primary" />
               {t("hero.eyebrow")}
@@ -98,7 +102,7 @@ export default function HeroSection({
 
         {/* Headline */}
         <FadeIn direction="down" duration={0.6}>
-          <h1 className="mb-6 text-center text-4xl font-bold leading-[1.02] tracking-[-0.05em] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[82px]">
+          <h1 className="home-hero-headline mx-auto mb-5 max-w-[1280px] text-center text-4xl font-bold leading-[1.03] tracking-[-0.05em] sm:text-5xl md:text-6xl lg:text-[68px] xl:text-[78px]">
             <span className="text-white">{t("hero.headlinePrimary")}</span>
             <br />
             <span
@@ -114,7 +118,7 @@ export default function HeroSection({
         </FadeIn>
 
         <FadeIn direction="up" duration={0.5} delay={0.15}>
-          <p className="mx-auto mb-10 max-w-3xl text-center text-sm leading-relaxed text-white/60 sm:text-base md:text-lg">
+          <p className="home-hero-description mx-auto mb-8 max-w-3xl text-center text-sm leading-relaxed text-white/72 sm:text-base md:text-lg">
             {t("hero.descLine1")}
             <br className="hidden md:block" />
             {t("hero.descLine2")}
@@ -125,7 +129,7 @@ export default function HeroSection({
         <FadeIn direction="up" duration={0.5} delay={0.25}>
           <div
             ref={searchRef}
-            className="relative mx-auto mb-5 w-full max-w-[1080px]"
+            className="relative mx-auto mb-4 w-full max-w-[1080px]"
           >
             <div
               aria-hidden
@@ -140,7 +144,7 @@ export default function HeroSection({
         </FadeIn>
 
         <FadeIn direction="up" duration={0.35} delay={0.3}>
-          <div className="mx-auto mb-5 flex max-w-[960px] flex-wrap justify-center gap-2">
+          <div className="home-hero-capabilities mx-auto mb-4 flex max-w-[960px] flex-wrap justify-center gap-2">
             {capabilityItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -157,7 +161,7 @@ export default function HeroSection({
         </FadeIn>
 
         <FadeIn direction="up" duration={0.35} delay={0.34}>
-          <div className="mx-auto mb-6 flex max-w-[960px] items-center justify-center gap-3">
+          <div className="home-hero-agent mx-auto mb-5 flex max-w-[960px] items-center justify-center gap-3">
             <span className="hidden text-xs font-medium text-white/45 sm:inline">
               {t("hero.agentPrompt")}
             </span>

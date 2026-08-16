@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { get } from '@/lib/api';
+import { AGENT_PLATFORMS } from '@/lib/agent-platforms';
 import { syncPreferenceToServer } from '@/lib/sync-preferences';
 
 export interface PlatformTranslation {
@@ -34,6 +35,20 @@ export interface Platform {
   updatedAt?: string;
   comparisonData?: PlatformComparisonData | null;
 }
+
+/**
+ * Keep the agent selector usable when the public API is temporarily
+ * unavailable (for example, on a protected Vercel preview whose origin is not
+ * in the API CORS allowlist). Successful API responses still replace these
+ * entries with the managed platform records.
+ */
+export const FALLBACK_PLATFORMS: Platform[] = AGENT_PLATFORMS.map((platform) => ({
+  id: `fallback:${platform.key}`,
+  key: platform.key,
+  name: platform.name,
+  isActive: true,
+  baseUrl: platform.officialUrl,
+}));
 
 function getLocaleCandidates(locale: string): string[] {
   const normalized = (locale || '').toLowerCase();
@@ -91,7 +106,7 @@ export const usePlatformStore = create<PlatformState>()(
   persist(
     (set) => ({
       platformKey: null,
-      platforms: [],
+      platforms: FALLBACK_PLATFORMS,
       _hasHydrated: false,
 
       setPlatform: (key) => {
@@ -104,9 +119,21 @@ export const usePlatformStore = create<PlatformState>()(
       fetchPlatforms: async () => {
         try {
           const data = await get<Platform[]>('/platforms/active');
-          set({ platforms: data });
-        } catch {
-          // keep empty list on failure
+          if (data.length > 0) {
+            set({ platforms: data });
+            return;
+          }
+
+          console.warn(
+            '[Platforms] Managed platform directory is empty; using bundled agent directory.',
+          );
+          set({ platforms: FALLBACK_PLATFORMS });
+        } catch (error) {
+          console.warn(
+            '[Platforms] Unable to refresh managed platforms; using bundled agent directory.',
+            error,
+          );
+          set({ platforms: FALLBACK_PLATFORMS });
         }
       },
 

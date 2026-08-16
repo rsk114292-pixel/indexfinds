@@ -1,6 +1,14 @@
 'use client';
 
-import { useEffect, useId, useRef, type ReactNode } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react';
 import { cn } from '@/lib/utils';
 
 interface TriggerProps {
@@ -36,7 +44,55 @@ export default function Popover({
   panelRole = 'dialog',
 }: PopoverProps) {
   const rootRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const panelId = useId();
+  const [side, setSide] = useState<'top' | 'bottom'>('bottom');
+  const [panelMaxHeight, setPanelMaxHeight] = useState<number | null>(null);
+
+  const updateSide = useCallback(() => {
+    if (!open || !rootRef.current || !panelRef.current) return;
+
+    const rootRect = rootRef.current.getBoundingClientRect();
+    const panelRect = panelRef.current.getBoundingClientRect();
+    const gap = 8;
+    const viewportPadding = 12;
+    const topHeader = Array.from(document.querySelectorAll('header'))
+      .map((header) => header.getBoundingClientRect())
+      .find((rect) => rect.top <= 0 && rect.bottom > 0);
+    const topInset = topHeader
+      ? Math.ceil(topHeader.bottom) + viewportPadding
+      : viewportPadding;
+    const availableBelow =
+      window.innerHeight - rootRect.bottom - gap - viewportPadding;
+    const availableAbove = rootRect.top - gap - topInset;
+    const nextSide =
+      panelRect.height > availableBelow && availableAbove > availableBelow
+        ? 'top'
+        : 'bottom';
+
+    setSide(nextSide);
+    setPanelMaxHeight(
+      Math.max(
+        160,
+        Math.floor(nextSide === 'top' ? availableAbove : availableBelow),
+      ),
+    );
+  }, [open]);
+
+  useLayoutEffect(() => {
+    if (!open) return;
+
+    updateSide();
+    const frame = window.requestAnimationFrame(updateSide);
+    window.addEventListener('resize', updateSide);
+    window.addEventListener('scroll', updateSide, true);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('resize', updateSide);
+      window.removeEventListener('scroll', updateSide, true);
+    };
+  }, [open, updateSide]);
 
   useEffect(() => {
     if (!open) return;
@@ -71,10 +127,18 @@ export default function Popover({
       })}
       {open ? (
         <div
+          ref={panelRef}
           id={panelId}
           role={panelRole}
+          data-side={side}
+          style={
+            panelMaxHeight ? { maxHeight: `${panelMaxHeight}px` } : undefined
+          }
           className={cn(
-            'absolute top-[calc(100%+0.5rem)] z-[70] rounded-2xl border border-black/5 bg-white text-foreground shadow-[0_18px_50px_rgba(15,23,42,0.18)]',
+            'absolute z-[70] max-h-[calc(100svh-1rem)] overflow-y-auto overscroll-contain rounded-2xl border border-black/5 bg-white text-foreground shadow-[0_18px_50px_rgba(15,23,42,0.18)]',
+            side === 'top'
+              ? 'bottom-[calc(100%+0.5rem)]'
+              : 'top-[calc(100%+0.5rem)]',
             ALIGN_CLASS[align],
             panelClassName,
           )}

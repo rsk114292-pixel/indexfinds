@@ -12,6 +12,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
+import { isAllowedCorsOrigin } from './config/cors.config';
 import { applyDnsResultOrder } from './network/dns-default-order';
 
 /**
@@ -177,24 +178,23 @@ async function bootstrap() {
   // CORS配置（支持 HttpOnly Cookie 跨域）
   const corsOrigin = process.env.CORS_ORIGIN;
   const isProduction = process.env.NODE_ENV === 'production';
+  const allowedOrigins = corsOrigin
+    ? corsOrigin.split(',').map((origin) => origin.trim())
+    : [];
   app.enableCors({
     origin: (
       origin: string | undefined,
       callback: (error: Error | null, allow?: boolean) => void,
     ) => {
-      // 允许无 origin 的请求（如服务端请求）
-      if (!origin) return callback(null, true);
-      // 仅开发环境允许 localhost（生产环境必须走 CORS_ORIGIN 白名单）
-      if (!isProduction) {
-        if (/^http:\/\/localhost:\d+$/.test(origin))
-          return callback(null, true);
-        if (/^http:\/\/127\.0\.0\.1:\d+$/.test(origin))
-          return callback(null, true);
-      }
-      // 从 CORS_ORIGIN 环境变量读取白名单
-      if (corsOrigin) {
-        const allowedOrigins = corsOrigin.split(',').map((o) => o.trim());
-        if (allowedOrigins.includes(origin)) return callback(null, true);
+      if (
+        isAllowedCorsOrigin(origin, {
+          isProduction,
+          allowedOrigins,
+          vercelPreviewProject: process.env.CORS_VERCEL_PREVIEW_PROJECT,
+          vercelPreviewOwner: process.env.CORS_VERCEL_PREVIEW_OWNER,
+        })
+      ) {
+        return callback(null, true);
       }
       return callback(new Error('Not allowed by CORS'), false);
     },

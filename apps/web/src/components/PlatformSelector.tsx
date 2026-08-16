@@ -121,7 +121,7 @@ export default function PlatformSelector({
         />
       </label>
 
-      <div className="max-h-[430px] space-y-4 overflow-y-auto overscroll-contain pr-1">
+      <div className="max-h-[min(430px,calc(100svh-28rem))] space-y-4 overflow-y-auto overscroll-contain pr-1">
         {recentPlatforms.length > 0 && (
           <section>
             <h3 className="mb-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted">
@@ -169,7 +169,7 @@ export default function PlatformSelector({
         if (!nextOpen) setQuery('');
       }}
       align={variant === 'hero' ? 'center' : 'end'}
-      panelClassName="p-1"
+      panelClassName="p-1 !overflow-hidden"
       trigger={({ controls, expanded, toggle }) => (
         <button
           type="button"

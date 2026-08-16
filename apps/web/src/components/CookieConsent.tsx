@@ -188,26 +188,26 @@ export default function CookieConsent() {
       data-testid="cookie-consent"
       data-consent-variant="default"
       className={cn(
-        "fixed left-0 right-0 z-50 border-t border-border bg-surface/95 backdrop-blur-sm lg:bottom-0",
+        "fixed left-3 right-3 z-50 rounded-2xl border border-border bg-surface/95 shadow-[0_18px_50px_rgba(15,23,42,0.16)] backdrop-blur-md sm:left-auto sm:right-5 sm:w-[420px]",
         isProductDetail
-          ? "bottom-[calc(env(safe-area-inset-bottom)+60px)]"
-          : "bottom-[calc(env(safe-area-inset-bottom)+56px)]",
+          ? "bottom-[calc(env(safe-area-inset-bottom)+68px)] lg:bottom-5"
+          : "bottom-[calc(env(safe-area-inset-bottom)+64px)] lg:bottom-5",
       )}
     >
-      <div className="container mx-auto flex items-center justify-between gap-2 px-3 py-2 sm:gap-4 sm:px-4">
-        <p className="line-clamp-2 text-[11px] leading-4 text-muted sm:text-sm">
+      <div className="flex items-center justify-between gap-3 px-3 py-3 sm:px-4">
+        <p className="line-clamp-3 text-[11px] leading-4 text-muted sm:text-xs sm:leading-5">
           {t("message")}
         </p>
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <button
             onClick={reject}
-            className="min-h-11 rounded-md px-3 py-2 text-xs text-muted transition-colors hover:text-foreground sm:text-sm cursor-pointer"
+            className="min-h-10 rounded-lg px-2.5 py-2 text-xs text-muted transition-colors hover:bg-gray-50 hover:text-foreground cursor-pointer"
           >
             {t("reject")}
           </button>
           <button
             onClick={accept}
-            className="min-h-11 rounded-md bg-primary px-3 py-2 text-xs text-white transition-colors hover:bg-primary-hover sm:text-sm cursor-pointer"
+            className="min-h-10 rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-primary-hover cursor-pointer"
           >
             {t("accept")}
           </button>

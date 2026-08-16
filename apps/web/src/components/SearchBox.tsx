@@ -588,7 +588,7 @@ export default function SearchBox({
             <div className="hero-command-input min-w-0 flex-1 rounded-[22px] md:rounded-full">
               {searchInput}
             </div>
-            <div className="flex shrink-0 items-center gap-2 md:pr-1">
+            <div className="flex shrink-0 items-center justify-end gap-2 pr-1">
               <button
                 type="button"
                 onClick={() => handleSearch(searchValue)}

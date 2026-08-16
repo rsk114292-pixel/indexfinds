@@ -494,6 +494,7 @@ export class ProductsService {
     await this.productQueryService.invalidateProductDetailCacheBySlug(
       savedProduct.slug,
     );
+    await this.clearProductListCache();
     await this.triggerFrontendRevalidate(savedProduct.slug);
 
     return savedProduct;
@@ -767,25 +768,31 @@ export class ProductsService {
   // 清除产品及关联模块（品牌/分类）的缓存
   // 产品增删会影响品牌和分类的 productCount，需要一并清除
   private async clearProductListCache(): Promise<void> {
-    const patterns = ['*products*', '*brands*', '*categories*'];
+    const patterns = [
+      '*products*',
+      '*brands*',
+      '*categories*',
+      '*public:stats:*',
+    ];
     try {
       const keyvStore = (this.cacheManager as any).stores?.[0];
+      const redisClient = keyvStore?.client ?? keyvStore?.store?.client;
 
       // KeyvRedis: 通过底层 Redis client 使用 SCAN 精确删除
-      if (keyvStore?.client?.scanIterator) {
-        const client = keyvStore.client;
+      if (redisClient?.scanIterator) {
         let totalCleared = 0;
         for (const pattern of patterns) {
-          const keysToDelete: string[] = [];
-          for await (const key of client.scanIterator({
+          for await (const scannedKeys of redisClient.scanIterator({
             MATCH: pattern,
             COUNT: 100,
           })) {
-            keysToDelete.push(key);
-          }
-          if (keysToDelete.length > 0) {
-            await client.unlink(keysToDelete);
-            totalCleared += keysToDelete.length;
+            const keys = Array.isArray(scannedKeys)
+              ? scannedKeys
+              : [scannedKeys];
+            if (keys.length > 0) {
+              await redisClient.unlink(keys);
+              totalCleared += keys.length;
+            }
           }
         }
         if (totalCleared > 0) {

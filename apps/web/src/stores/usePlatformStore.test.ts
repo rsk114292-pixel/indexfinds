@@ -1,8 +1,10 @@
 import {
+  FALLBACK_PLATFORMS,
   getLocalizedPlatformName,
   getLocalizedPlatformDescription,
   type Platform,
 } from './usePlatformStore';
+import { AGENT_PLATFORMS } from '@/lib/agent-platforms';
 
 function createPlatform(overrides: Partial<Platform> = {}): Platform {
   return {
@@ -17,6 +19,17 @@ function createPlatform(overrides: Partial<Platform> = {}): Platform {
 }
 
 describe('usePlatformStore i18n helpers', () => {
+  it('为 API 或 CORS 故障提供完整的本地代理目录', () => {
+    expect(FALLBACK_PLATFORMS).toHaveLength(35);
+    expect(FALLBACK_PLATFORMS.map((platform) => platform.key)).toEqual(
+      AGENT_PLATFORMS.map((platform) => platform.key),
+    );
+    expect(new Set(FALLBACK_PLATFORMS.map((platform) => platform.id)).size).toBe(
+      FALLBACK_PLATFORMS.length,
+    );
+    expect(FALLBACK_PLATFORMS.every((platform) => platform.isActive)).toBe(true);
+  });
+
   it('优先返回当前 locale 的名称翻译', () => {
     const platform = createPlatform({
       translations: {

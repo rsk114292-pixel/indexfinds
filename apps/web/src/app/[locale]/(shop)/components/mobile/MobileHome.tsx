@@ -78,14 +78,15 @@ export default function MobileHome({
           <div className="absolute -right-12 -top-16 h-44 w-44 rounded-full bg-[#7C3AED]/25 blur-3xl" />
           <div className="absolute -bottom-20 -left-12 h-40 w-40 rounded-full bg-[#2563EB]/25 blur-3xl" />
           <StarField compact />
-          <div className="relative">
-            <h1 className="max-w-[360px] text-[38px] font-extrabold leading-[1.01] tracking-[-0.05em]">
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-[#080b20]/45" />
+          <div className="relative w-full py-2">
+            <h1 className="max-w-[360px] text-[clamp(2.15rem,10vw,2.65rem)] font-extrabold leading-[1.02] tracking-[-0.05em]">
               <span className="block">{t("hero.headlinePrimary")}</span>
               <span className="mt-1 block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 {t("hero.headlineSecondary")}
               </span>
             </h1>
-            <p className="mt-5 max-w-sm text-sm leading-6 text-white/65">
+            <p className="mt-5 max-w-sm text-sm leading-6 text-white/72">
               {t("hero.descLine1")} {t("hero.descLine2")}
             </p>
             <div className="mt-6">

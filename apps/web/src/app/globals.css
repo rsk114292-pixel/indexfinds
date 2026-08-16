@@ -474,6 +474,34 @@ body {
     opacity 0.2s ease;
 }
 
+@media (min-width: 1024px) and (max-height: 800px) {
+  .home-hero-content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .home-hero-eyebrow {
+    margin-bottom: 0.75rem;
+  }
+
+  .home-hero-headline {
+    margin-bottom: 1rem;
+    font-size: clamp(3.5rem, 5.4vw, 4.5rem);
+  }
+
+  .home-hero-description {
+    margin-bottom: 1.25rem;
+  }
+
+  .home-hero-capabilities {
+    margin-bottom: 0.75rem;
+  }
+
+  .home-hero-agent {
+    margin-bottom: 1rem;
+  }
+}
+
 .hero-command-ambient {
   position: absolute;
   inset: -54px -120px -120px -120px;
