@@ -41,7 +41,7 @@ docker compose --env-file "$COMPOSE_ENV" -f "$COMPOSE_FILE" \
 
 test -s "$plain_file" || { echo 'pg_dump produced an empty file' >&2; exit 1; }
 docker compose --env-file "$COMPOSE_ENV" -f "$COMPOSE_FILE" \
-  exec -T postgres pg_restore --list - < "$plain_file" >/dev/null
+  exec -T postgres pg_restore --list < "$plain_file" >/dev/null
 
 age --recipient "$AGE_RECIPIENT" --output "$encrypted_file" "$plain_file"
 test -s "$encrypted_file" || { echo 'age produced an empty file' >&2; exit 1; }

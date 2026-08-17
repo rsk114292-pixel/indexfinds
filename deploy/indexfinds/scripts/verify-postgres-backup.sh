@@ -39,6 +39,6 @@ age --decrypt --identity "$AGE_IDENTITY" --output "$plain_file" "$encrypted_file
 
 cd "$APP_DIR"
 docker compose --env-file "$COMPOSE_ENV" -f "$COMPOSE_FILE" \
-  exec -T postgres pg_restore --list - < "$plain_file" >/dev/null
+  exec -T postgres pg_restore --list < "$plain_file" >/dev/null
 
 echo "Remote backup decrypted and catalog verified: $latest"
