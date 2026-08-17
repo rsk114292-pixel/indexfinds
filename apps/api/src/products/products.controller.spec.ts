@@ -4,11 +4,15 @@ describe('ProductsController', () => {
   let controller: ProductsController;
   let productsService: {
     search: jest.Mock;
+    findActiveBySourceProductId: jest.Mock;
   };
 
   beforeEach(() => {
     productsService = {
       search: jest.fn().mockResolvedValue([{ id: 'product-1' }]),
+      findActiveBySourceProductId: jest
+        .fn()
+        .mockResolvedValue({ id: 'product-1', slug: 'split-product' }),
     };
 
     controller = new ProductsController(
@@ -36,5 +40,14 @@ describe('ProductsController', () => {
 
     expect(productsService.search).not.toHaveBeenCalled();
     expect(result).toEqual({ query: '', total: 0, data: [] });
+  });
+
+  it('resolves public product links through the source product id route', async () => {
+    await expect(
+      controller.findBySourceProductId('7831607056'),
+    ).resolves.toEqual({ id: 'product-1', slug: 'split-product' });
+    expect(productsService.findActiveBySourceProductId).toHaveBeenCalledWith(
+      '7831607056',
+    );
   });
 });

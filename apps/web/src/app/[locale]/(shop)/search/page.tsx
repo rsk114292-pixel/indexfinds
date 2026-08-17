@@ -10,6 +10,7 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import {
   buildServerTrackingHeaders,
@@ -20,6 +21,7 @@ import type { FacetsData } from '@/components/filters/types';
 import { DEFAULT_DESKTOP_PRODUCT_LIMIT } from '@/lib/product-list-layout';
 import SearchLoadingShell from './SearchLoadingShell';
 import SearchPageClient from './SearchPageClient';
+import { resolveSourceProductRedirectHref } from './source-product-redirect';
 
 function getSearchParamValue(
   value: string | string[] | undefined,
@@ -86,6 +88,21 @@ async function SearchPageContent({
   const { locale } = await params;
   const resolvedSearchParams = (await searchParams) ?? {};
   const q = getSearchParamValue(resolvedSearchParams.q) ?? '';
+  const source = getSearchParamValue(resolvedSearchParams.source);
+
+  const sourceProductRedirectHref = await resolveSourceProductRedirectHref(
+    { locale, query: q, source },
+    (sourceProductId) =>
+      fetchServerApiJson<{ id: string; slug: string }>(
+        `/products/source/${encodeURIComponent(sourceProductId)}`,
+        { cache: 'no-store', staleIfErrorMs: 0 },
+      ),
+  );
+
+  if (sourceProductRedirectHref) {
+    redirect(sourceProductRedirectHref);
+  }
+
   const page = Number(getSearchParamValue(resolvedSearchParams.page) ?? '1') || 1;
   const limit =
     Number(getSearchParamValue(resolvedSearchParams.limit) ?? String(DEFAULT_DESKTOP_PRODUCT_LIMIT)) ||

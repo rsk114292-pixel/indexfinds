@@ -9,6 +9,7 @@ import { usePathname, useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { buildAuthRedirectPath, buildLoginHref } from '@/lib/auth-redirect';
 import { notice } from '@/lib/notice';
+import { PUBLIC_AUTH_ENTRY_ENABLED } from '@/lib/features';
 
 interface FavoriteButtonProps {
   productId: string;
@@ -40,7 +41,7 @@ function FavoriteButtonBody({
   onStatusChange,
 }: FavoriteButtonBodyProps) {
   const router = useRouter();
-  const { isAuthenticated } = useAuthStore();
+  const { _hasHydrated, isAuthenticated } = useAuthStore();
   const t = useTranslations('product');
   const [loading, setLoading] = useState(false);
 
@@ -75,6 +76,10 @@ function FavoriteButtonBody({
       setLoading(false);
     }
   };
+
+  if (!PUBLIC_AUTH_ENTRY_ENABLED && (!_hasHydrated || !isAuthenticated)) {
+    return null;
+  }
 
   if (variant === 'icon') {
     return (

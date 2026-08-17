@@ -86,4 +86,44 @@ describe('ProductDetailService', () => {
       expect.any(Number),
     );
   });
+
+  it('resolves an active split product by its source product id', async () => {
+    productRepository.findOne.mockResolvedValue({
+      id: 'product-1',
+      slug: 'split-product',
+    });
+
+    await expect(
+      service.findActiveBySourceProductId(' 7831607056 '),
+    ).resolves.toEqual({ id: 'product-1', slug: 'split-product' });
+    expect(productRepository.findOne).toHaveBeenCalledWith({
+      where: [
+        {
+          weidianItemId: '7831607056',
+          status: ProductStatus.ACTIVE,
+        },
+        {
+          splitSourceWeidianId: '7831607056',
+          status: ProductStatus.ACTIVE,
+        },
+      ],
+      select: ['id', 'slug'],
+      order: { createdAt: 'DESC' },
+    });
+  });
+
+  it('does not query the database for an invalid source product id', async () => {
+    await expect(
+      service.findActiveBySourceProductId('not-a-product-id'),
+    ).rejects.toBeInstanceOf(NotFoundException);
+    expect(productRepository.findOne).not.toHaveBeenCalled();
+  });
+
+  it('does not expose an inactive or missing source product', async () => {
+    productRepository.findOne.mockResolvedValue(null);
+
+    await expect(
+      service.findActiveBySourceProductId('7831607056'),
+    ).rejects.toBeInstanceOf(NotFoundException);
+  });
 });

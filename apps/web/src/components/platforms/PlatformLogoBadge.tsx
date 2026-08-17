@@ -177,10 +177,10 @@ export default function PlatformLogoBadge({
   const officialLogo = getOfficialPlatformLogo(normalizedPlatformKey);
   const directLogoUrl = canUseDirectLogo(logoUrl) ? logoUrl : undefined;
   const logoCandidates = [
-    directLogoUrl ? { src: directLogoUrl } : undefined,
     officialLogo
       ? { src: officialLogo.src, background: officialLogo.background }
       : undefined,
+    directLogoUrl ? { src: directLogoUrl } : undefined,
     officialLogo
       ? { src: officialLogo.remoteSrc, background: officialLogo.background }
       : undefined,
