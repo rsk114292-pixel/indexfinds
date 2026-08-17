@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import { Alert } from "@/components/ui/Alert";
 import { useTranslations } from "next-intl";
 import {
   isInvalidAttribute,
@@ -44,11 +43,9 @@ export default function SKUSelector({
 
   // 从 SKU 数据中提取所有属性选项
   const attributeOptions = useMemo(() => {
-    if (!skus || skus.length === 0) return {};
-
     const options: Record<string, AttributeOption[]> = {};
 
-    skus.forEach((sku) => {
+    (skus || []).forEach((sku) => {
       const attrs = parseSkuAttributes(sku.attributes);
       if (Object.keys(attrs).length > 0) {
         Object.entries(attrs).forEach(([key, value]) => {
@@ -93,7 +90,7 @@ export default function SKUSelector({
       (key) => !isSizeAttributeName(key)
     );
 
-    if (!hasNonSizeAttr && productImages && productImages.length > 1) {
+    if (!sizeOnly && !hasNonSizeAttr && productImages && productImages.length > 1) {
       filteredOptions[t("style")] = productImages.map((img, index) => ({
         value: t("styleN", { n: index + 1 }),
         image: img,
@@ -103,14 +100,10 @@ export default function SKUSelector({
     return filteredOptions;
   }, [productImages, sizeOnly, skus, t]);
 
+  // 单一款式商品可能只有一个无属性 SKU，用户无需做任何选择。
+  // 此时不应将正常的单款商品误报为 “SKU information not available”。
   if (Object.keys(attributeOptions).length === 0) {
-    return (
-      <Alert
-        type="warning"
-        title={t("skuNotAvailable")}
-        description={t("contactSeller")}
-      />
-    );
+    return null;
   }
 
   // 排序后的属性条目

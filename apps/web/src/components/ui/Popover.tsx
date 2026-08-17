@@ -12,7 +12,7 @@ import {
 import { cn } from '@/lib/utils';
 
 interface TriggerProps {
-  controls: string;
+  controls?: string;
   expanded: boolean;
   toggle: () => void;
   close: () => void;
@@ -120,7 +120,7 @@ export default function Popover({
   return (
     <div ref={rootRef} className="relative">
       {trigger({
-        controls: panelId,
+        controls: open ? panelId : undefined,
         expanded: open,
         toggle: () => onOpenChange(!open),
         close: () => onOpenChange(false),

@@ -10,7 +10,7 @@ export default function CurrencyDisclaimer() {
   if (currency === 'CNY') return null;
 
   return (
-    <p className="text-xs text-white/40">
+    <p className="text-xs text-white/60">
       {t('approximateNotice', { currency })}
     </p>
   );

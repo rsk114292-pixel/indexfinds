@@ -3,7 +3,7 @@
 /* === Design System CSS Variables === */
 :root {
   /* Accessible action colors. Keep the brighter orange for decorative accents. */
-  --color-primary: #d83a20;
+  --color-primary: #d4381f;
   --color-primary-hover: #b92c15;
   --color-brand-orange: #ff5a3c;
   --color-secondary: #11162b;
