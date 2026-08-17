@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSiteName } from '@/lib/site-config';
 import { buildReferralTrackingHeaders } from '@/lib/referral-tracking-signature';
+import { hasAnalyticsConsent } from '@/lib/analytics-consent';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4101';
 const TRUSTED_VISITOR_COOKIE = 'mf_vid';
@@ -89,7 +90,13 @@ export async function GET(
   const redirect = getSafeRedirect(req.nextUrl.searchParams.get('redirect'));
 
   // 提取 UTM 参数用于透传
-  const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  const utmKeys = [
+    'utm_source',
+    'utm_medium',
+    'utm_campaign',
+    'utm_term',
+    'utm_content',
+  ];
   const utmParams = new URLSearchParams();
   for (const key of utmKeys) {
     const value = req.nextUrl.searchParams.get(key);
@@ -111,7 +118,8 @@ export async function GET(
   let sessionId = req.cookies.get('session_id')?.value;
   const isNewSession = !sessionId;
   if (!sessionId) {
-    sessionId = 'sess_' + crypto.randomUUID().replace(/-/g, '').substring(0, 16);
+    sessionId =
+      'sess_' + crypto.randomUUID().replace(/-/g, '').substring(0, 16);
   }
 
   try {
@@ -141,7 +149,10 @@ export async function GET(
     utmParams.forEach((value, key) => redirectUrl.searchParams.set(key, value));
     const response = NextResponse.redirect(redirectUrl, 302);
 
-    if (!req.cookies.get(TRUSTED_VISITOR_COOKIE)?.value) {
+    if (
+      hasAnalyticsConsent(req.cookies.get('cookie_consent')?.value) &&
+      !req.cookies.get(TRUSTED_VISITOR_COOKIE)?.value
+    ) {
       response.cookies.set(
         TRUSTED_VISITOR_COOKIE,
         'vid_' + crypto.randomUUID().replace(/-/g, '').substring(0, 24),
@@ -153,6 +164,11 @@ export async function GET(
           path: '/',
         },
       );
+    } else if (
+      !hasAnalyticsConsent(req.cookies.get('cookie_consent')?.value) &&
+      req.cookies.get(TRUSTED_VISITOR_COOKIE)?.value
+    ) {
+      response.cookies.delete(TRUSTED_VISITOR_COOKIE);
     }
 
     // 在同域响应上设置归因 cookie

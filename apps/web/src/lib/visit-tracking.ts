@@ -18,6 +18,7 @@ import {
   getAnalyticsDiagnostics,
 } from './analytics-diagnostics';
 import { buildApiUrl } from './constants';
+import { canUseAnalyticsTracking } from './analytics-consent';
 
 const VISIT_RECORDED_KEY = 'visit_session_recorded_id';
 const VISIT_RECORD_TIMEOUT_MS = 800;
@@ -59,25 +60,23 @@ interface VisitData {
 let diagnosticsSyncTimeoutId: number | null = null;
 let diagnosticsSyncInFlight = false;
 let lastDiagnosticsSyncStartedAt = 0;
-let inFlightVisitRecord:
-  | {
-      visitId: string;
-      promise: Promise<boolean>;
-    }
-  | null = null;
-let engagementTracker:
-  | {
-      sessionId: string;
-      visitId: string;
-      lastTickAt: number;
-      isVisible: boolean;
-      activeDurationMs: number;
-      milestoneTimeoutIds: number[];
-      recordedMilestones: Set<number>;
-      intervalId: number;
-      started: boolean;
-    }
-  | null = null;
+let inFlightVisitRecord: {
+  visitId: string;
+  promise: Promise<boolean>;
+} | null = null;
+let engagementTracker: {
+  sessionId: string;
+  visitId: string;
+  lastTickAt: number;
+  isVisible: boolean;
+  activeDurationMs: number;
+  milestoneTimeoutIds: number[];
+  recordedMilestones: Set<number>;
+  intervalId: number;
+  handleVisibilityChange: () => void;
+  handlePageHide: () => void;
+  started: boolean;
+} | null = null;
 
 function buildCampaignKey(params: URLSearchParams): string {
   return [
@@ -128,6 +127,8 @@ async function waitForVisitRecord(
 export async function recordVisitSession(
   consentStatus: ConsentStatus = 'pending',
 ): Promise<boolean> {
+  if (consentStatus !== 'accepted') return false;
+
   const { params, browserContextInfo, campaignKey } = getCurrentVisitContext();
   const deviceId = getOrCreateDeviceId();
   const visitId = getOrCreateVisitId({
@@ -203,6 +204,7 @@ export async function ensureVisitSessionRecorded(
   timeoutMs = VISIT_RECORD_TIMEOUT_MS,
 ): Promise<boolean> {
   if (typeof window === 'undefined') return false;
+  if (consentStatus !== 'accepted') return false;
 
   const { campaignKey, browserContextInfo } = getCurrentVisitContext();
   const visitId = getOrCreateVisitId({
@@ -237,6 +239,9 @@ export async function syncVisitDiagnostics(
   providedSessionId?: string,
   providedVisitId?: string,
 ): Promise<void> {
+  const diagnostics = getAnalyticsDiagnostics();
+  if (diagnostics.consentStatus !== 'accepted') return;
+
   const now = Date.now();
   const elapsedMs = now - lastDiagnosticsSyncStartedAt;
 
@@ -262,8 +267,6 @@ export async function syncVisitDiagnostics(
       browserContext: browserContextInfo.browserContext,
     });
   if (!sessionId) return;
-
-  const diagnostics = getAnalyticsDiagnostics();
 
   diagnosticsSyncInFlight = true;
   lastDiagnosticsSyncStartedAt = now;
@@ -433,21 +436,6 @@ export function startVisitEngagementTracking(): void {
   if (engagementTracker?.started) return;
 
   const { sessionId, visitId } = getCurrentEngagementIdentity();
-  engagementTracker = {
-    sessionId,
-    visitId,
-    lastTickAt: Date.now(),
-    isVisible: document.visibilityState === 'visible',
-    activeDurationMs: 0,
-    milestoneTimeoutIds: [],
-    recordedMilestones: new Set<number>(),
-    intervalId: window.setInterval(() => {
-      flushVisitEngagement('heartbeat');
-    }, ENGAGEMENT_HEARTBEAT_MS),
-    started: true,
-  };
-  scheduleEngagementMilestones();
-
   const handleVisibilityChange = () => {
     if (!engagementTracker) return;
 
@@ -470,8 +458,38 @@ export function startVisitEngagementTracking(): void {
     clearEngagementMilestoneTimers();
   };
 
+  engagementTracker = {
+    sessionId,
+    visitId,
+    lastTickAt: Date.now(),
+    isVisible: document.visibilityState === 'visible',
+    activeDurationMs: 0,
+    milestoneTimeoutIds: [],
+    recordedMilestones: new Set<number>(),
+    intervalId: window.setInterval(() => {
+      flushVisitEngagement('heartbeat');
+    }, ENGAGEMENT_HEARTBEAT_MS),
+    handleVisibilityChange,
+    handlePageHide,
+    started: true,
+  };
+  scheduleEngagementMilestones();
+
   document.addEventListener('visibilitychange', handleVisibilityChange);
   window.addEventListener('pagehide', handlePageHide);
+}
+
+export function stopVisitEngagementTracking(): void {
+  if (!engagementTracker || typeof window === 'undefined') return;
+
+  window.clearInterval(engagementTracker.intervalId);
+  clearEngagementMilestoneTimers();
+  document.removeEventListener(
+    'visibilitychange',
+    engagementTracker.handleVisibilityChange,
+  );
+  window.removeEventListener('pagehide', engagementTracker.handlePageHide);
+  engagementTracker = null;
 }
 
 /**
@@ -479,6 +497,8 @@ export function startVisitEngagementTracking(): void {
  * 调用位置: 登录成功的回调中
  */
 export async function associateVisitWithUser(): Promise<void> {
+  if (!canUseAnalyticsTracking()) return;
+
   const sessionId = getOrCreateDeviceId();
   if (!sessionId) return;
 

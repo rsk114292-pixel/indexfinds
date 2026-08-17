@@ -2,7 +2,6 @@ import { appendReferralInviteUTMParams, type ShareChannel } from './utm';
 
 // 推荐码相关工具函数
 
-
 /**
  * 生成分享链接
  */
@@ -23,7 +22,10 @@ export function generateTrackedShareUrl(
   redirect?: string,
   channel?: ShareChannel,
 ): string {
-  return appendReferralInviteUTMParams(generateShareUrl(code, redirect), channel);
+  return appendReferralInviteUTMParams(
+    generateShareUrl(code, redirect),
+    channel,
+  );
 }
 
 /**
@@ -69,6 +71,25 @@ function setCookie(name: string, value: string, maxAgeSec: number): void {
   document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${maxAgeSec}; SameSite=Lax`;
 }
 
+function deleteCookie(name: string): void {
+  if (typeof document === 'undefined') return;
+  document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax`;
+}
+
+export function clearAnalyticsTrackingIdentifiers(): void {
+  deleteCookie(SESSION_COOKIE_NAME);
+  deleteCookie(VISIT_COOKIE_NAME);
+
+  if (typeof localStorage !== 'undefined') {
+    localStorage.removeItem(SESSION_COOKIE_NAME);
+  }
+  if (typeof sessionStorage !== 'undefined') {
+    sessionStorage.removeItem(VISIT_META_STORAGE_KEY);
+    sessionStorage.removeItem('visit_session_recorded_id');
+    sessionStorage.removeItem('analytics_diagnostics_v1');
+  }
+}
+
 /**
  * 获取或创建 Session ID
  * 优先级: Cookie > localStorage > 新建
@@ -97,7 +118,8 @@ export function getOrCreateSessionId(): string {
   }
 
   // 3. 都没有，新建
-  const sessionId = 'sess_' + crypto.randomUUID().replace(/-/g, '').substring(0, 16);
+  const sessionId =
+    'sess_' + crypto.randomUUID().replace(/-/g, '').substring(0, 16);
   if (isBrowser) setCookie(SESSION_COOKIE_NAME, sessionId, 365 * 24 * 60 * 60);
   if (hasStorage) localStorage.setItem(SESSION_COOKIE_NAME, sessionId);
   return sessionId;

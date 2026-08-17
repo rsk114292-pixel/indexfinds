@@ -7,6 +7,7 @@ import {
   getGuardedCatalogDetailRoute,
   guardedCatalogSlugExists,
 } from '@/lib/catalog-route-guard';
+import { hasAnalyticsConsent } from '@/lib/analytics-consent';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4101';
 const TRUSTED_VISITOR_COOKIE = 'mf_vid';
@@ -36,7 +37,9 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.redirect(legacyHostRedirectUrl, 308);
   }
 
-  const guardedCatalogRoute = getGuardedCatalogDetailRoute(request.nextUrl.pathname);
+  const guardedCatalogRoute = getGuardedCatalogDetailRoute(
+    request.nextUrl.pathname,
+  );
   if (
     guardedCatalogRoute &&
     (request.method === 'GET' || request.method === 'HEAD') &&
@@ -63,17 +66,22 @@ export default async function middleware(request: NextRequest) {
   // Forward pathname for hreflang generation in [locale]/layout.tsx
   response.headers.set('x-pathname', request.nextUrl.pathname);
 
-  let trustedVisitorId = request.cookies.get(TRUSTED_VISITOR_COOKIE)?.value;
-  if (!trustedVisitorId) {
-    trustedVisitorId =
-      'vid_' + crypto.randomUUID().replace(/-/g, '').substring(0, 24);
-    response.cookies.set(TRUSTED_VISITOR_COOKIE, trustedVisitorId, {
-      maxAge: 365 * 24 * 60 * 60,
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
-    });
+  const analyticsConsent = request.cookies.get('cookie_consent')?.value;
+  const trustedVisitorId = request.cookies.get(TRUSTED_VISITOR_COOKIE)?.value;
+  if (hasAnalyticsConsent(analyticsConsent) && !trustedVisitorId) {
+    response.cookies.set(
+      TRUSTED_VISITOR_COOKIE,
+      'vid_' + crypto.randomUUID().replace(/-/g, '').substring(0, 24),
+      {
+        maxAge: 365 * 24 * 60 * 60,
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+      },
+    );
+  } else if (!hasAnalyticsConsent(analyticsConsent) && trustedVisitorId) {
+    response.cookies.delete(TRUSTED_VISITOR_COOKIE);
   }
 
   // --- ?ref=CODE referral tracking ---
@@ -89,7 +97,8 @@ export default async function middleware(request: NextRequest) {
     let sessionId = request.cookies.get('session_id')?.value;
     const isNewSession = !sessionId;
     if (!sessionId) {
-      sessionId = 'sess_' + crypto.randomUUID().replace(/-/g, '').substring(0, 16);
+      sessionId =
+        'sess_' + crypto.randomUUID().replace(/-/g, '').substring(0, 16);
     }
 
     try {

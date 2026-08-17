@@ -37,11 +37,7 @@ describe('visit engagement tracking', () => {
       configurable: true,
       value: 'visible',
     });
-    window.history.replaceState(
-      {},
-      '',
-      '/en/products/test?utm_source=google',
-    );
+    window.history.replaceState({}, '', '/en/products/test?utm_source=google');
     Object.defineProperty(navigator, 'sendBeacon', {
       configurable: true,
       value: jest.fn(() => true),
@@ -108,11 +104,7 @@ describe('visit diagnostics sync', () => {
     jest.useFakeTimers();
     jest.setSystemTime(new Date('2026-05-21T10:00:00.000Z'));
     jest.resetModules();
-    window.history.replaceState(
-      {},
-      '',
-      '/en/products/test?utm_source=google',
-    );
+    window.history.replaceState({}, '', '/en/products/test?utm_source=google');
     global.fetch = jest.fn(() =>
       Promise.resolve({ ok: true } as Response),
     ) as jest.Mock;
@@ -144,6 +136,24 @@ describe('visit diagnostics sync', () => {
       'http://localhost:4101/visit-sessions/diagnostics',
       expect.objectContaining({ method: 'PATCH' }),
     );
+  });
+
+  it('does not create or send visit data before consent', async () => {
+    const diagnosticsModule = await import('./analytics-diagnostics');
+    jest.mocked(diagnosticsModule.getAnalyticsDiagnostics).mockReturnValue({
+      consentStatus: 'rejected',
+      gaStatus: 'disabled',
+    });
+    const referralModule = await import('./referral');
+    const { recordVisitSession, syncVisitDiagnostics } =
+      await import('./visit-tracking');
+
+    await expect(recordVisitSession('rejected')).resolves.toBe(false);
+    await syncVisitDiagnostics();
+
+    expect(referralModule.getOrCreateDeviceId).not.toHaveBeenCalled();
+    expect(referralModule.getOrCreateVisitId).not.toHaveBeenCalled();
+    expect(global.fetch).not.toHaveBeenCalled();
   });
 });
 

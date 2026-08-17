@@ -32,6 +32,64 @@ This runbook deploys the new application without replacing the site currently se
 
 The API container runs TypeORM baseline migrations before starting the server.
 
+## Administrator credential hardening
+
+Treat every administrator password ever pasted into chat or a ticket as
+compromised. Generate a unique 16-32 character password in a password manager;
+do not put it on a command line or in shell history. On the VPS, read the new
+password silently into an environment variable and run the compiled rotation
+script in the API container. The script preserves the existing role, resets
+lock state, and revokes every refresh session.
+
+```sh
+cd /opt/indexfinds/app
+IFS= read -r -p 'Admin email: ' ix_admin_email
+IFS= read -r -s -p 'New admin password: ' ix_admin_password
+printf '\n'
+export ADMIN_EMAIL="$ix_admin_email" ADMIN_PASSWORD="$ix_admin_password"
+docker compose --env-file /opt/indexfinds/env/compose.env \
+  -f docker-compose.prod.yml exec -T \
+  -e ADMIN_EMAIL -e ADMIN_PASSWORD api \
+  node dist/src/scripts/rotate-admin-password.js
+docker compose --env-file /opt/indexfinds/env/compose.env \
+  -f docker-compose.prod.yml restart api
+unset ADMIN_EMAIL ADMIN_PASSWORD ix_admin_email ix_admin_password
+```
+
+When the administrator has a fixed public IP, set `ADMIN_ALLOWED_IPS` in
+`/opt/indexfinds/env/api.env` before restarting the API. Verify the real client
+IP in the login audit first; a wrong value will intentionally block all
+administrator API calls. Password rotation and the allowlist are release-time
+operations and must not be applied from a preview environment.
+
+## Daily encrypted offsite database backup
+
+Before production cutover, configure a storage account that is independent from
+the VPS. The backup job requires `age` and `rclone`; the matching age private
+identity must be retained outside the server.
+
+1. Configure an rclone remote and verify that the VPS can write to it.
+2. Install `backup.env.example` as `/opt/indexfinds/env/backup.env`, replace all
+   placeholders, and set mode `0600`.
+3. Install both scripts with mode `0750`, then install the service and timer
+   from `deploy/indexfinds/systemd/` into `/etc/systemd/system/`.
+4. Run one backup manually, then enable the daily timer:
+
+   ```sh
+   systemctl daemon-reload
+   systemctl start indexfinds-postgres-backup.service
+   journalctl -u indexfinds-postgres-backup.service --no-pager
+   systemctl enable --now indexfinds-postgres-backup.timer
+   systemctl list-timers indexfinds-postgres-backup.timer
+   ```
+
+The job creates a PostgreSQL custom dump, validates its catalog, encrypts it,
+uploads the encrypted dump plus checksum, and verifies the remote copy. Local
+copies default to 7 days and remote copies to 30 days. Run
+`verify-postgres-backup.sh` with an offline/private age identity during a
+scheduled restore drill; at least monthly, restore into a temporary PostgreSQL
+database and record the result rather than relying only on `pg_restore --list`.
+
 ## 2. Preview API
 
 1. Add a DNS-only record for `api-next.indexfinds.com` pointing to the new VPS.

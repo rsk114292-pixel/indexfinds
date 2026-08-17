@@ -21,6 +21,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "seed": "ts-node -r tsconfig-paths/register src/seeds/seed.ts",
+    "admin:rotate-password": "ts-node -r tsconfig-paths/register src/scripts/rotate-admin-password.ts",
     "seed:prod": "node dist/seeds/seed.js",
     "seed:categories": "node scripts/seed/seed-categories.js",
     "seed:brands:cold-start-v2": "ts-node -r tsconfig-paths/register src/seeds/seed-brands-cold-start-v2.ts",

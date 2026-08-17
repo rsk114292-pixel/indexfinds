@@ -25,6 +25,11 @@ describe('ProductStatusService', () => {
   const mockProduct = (status: ProductStatus): Partial<Product> => ({
     id: 'test-product-id',
     title: 'Test Product',
+    description: 'A valid AI generated product description.',
+    primaryCategoryId: 'cat-1',
+    priceMin: 10,
+    priceMax: 20,
+    mainImage: 'https://cdn.example.com/product.jpg',
     status,
     slug: 'test-product',
   });
@@ -235,6 +240,19 @@ describe('ProductStatusService', () => {
           ProductStatusAction.UNPUBLISH,
         ),
       ).rejects.toThrow(BadRequestException);
+    });
+
+    it('质量门槛失败时不允许审核上架', async () => {
+      const product = {
+        ...mockProduct(ProductStatus.PENDING_REVIEW),
+        priceMin: 0,
+      };
+      productRepo.findOne.mockResolvedValue(product as Product);
+
+      await expect(service.approveProduct('test-product-id')).rejects.toThrow(
+        '商品未通过发布质量门槛',
+      );
+      expect(productRepo.save).not.toHaveBeenCalled();
     });
   });
 

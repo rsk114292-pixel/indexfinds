@@ -1,0 +1,11 @@
+[Unit]
+Description=Run IndexFinds PostgreSQL backup every day
+
+[Timer]
+OnCalendar=*-*-* 02:30:00 UTC
+RandomizedDelaySec=30m
+Persistent=true
+Unit=indexfinds-postgres-backup.service
+
+[Install]
+WantedBy=timers.target

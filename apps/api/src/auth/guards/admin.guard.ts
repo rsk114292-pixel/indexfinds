@@ -5,6 +5,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { UserRole } from '../../users/entities/user.entity';
+import { isAdminIpAllowed } from './admin-network-policy';
 
 /**
  * AdminGuard - Admin role verification
@@ -26,6 +27,10 @@ export class AdminGuard implements CanActivate {
 
     if (user.role !== UserRole.ADMIN && user.role !== UserRole.SUPER_ADMIN) {
       throw new ForbiddenException('Admin access required');
+    }
+
+    if (!isAdminIpAllowed(request.ip, process.env.ADMIN_ALLOWED_IPS)) {
+      throw new ForbiddenException('Admin access is not allowed from this IP');
     }
 
     return true;

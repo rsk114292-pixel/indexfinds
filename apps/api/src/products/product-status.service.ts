@@ -16,6 +16,7 @@ import {
   STATUS_DISPLAY_NAMES,
   ACTION_DISPLAY_NAMES,
 } from './product-status';
+import { assertProductPublicationQuality } from './product-publication-quality';
 
 @Injectable()
 export class ProductStatusService {
@@ -72,6 +73,9 @@ export class ProductStatusService {
       await this.categoriesService.ensureCanonicalLeafCategory(
         product.primaryCategoryId,
       );
+    }
+    if (nextStatus === ProductStatus.ACTIVE) {
+      assertProductPublicationQuality(product);
     }
 
     // 更新状态

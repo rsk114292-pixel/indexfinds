@@ -12,6 +12,7 @@ import { ProductBrandFact } from './entities/product-brand-fact.entity';
 import { QueryBrandCandidateDto } from './dto/query-brand-candidate.dto';
 import { ResolveBrandCandidateDto } from './dto/resolve-brand-candidate.dto';
 import { BrandMatchService } from './brand-match.service';
+import { getProductPublicationIssues } from '../products/product-publication-quality';
 
 export interface SyncProductBrandDecisionInput {
   productId: string;
@@ -520,10 +521,17 @@ export class BrandGovernanceService {
         'id',
         'status',
         'title',
+        'originalTitle',
+        'description',
+        'originalDescription',
         'slug',
         'primaryCategoryId',
         'mainImage',
         'images',
+        'priceMin',
+        'priceMax',
+        'aiBrandName',
+        'potentialMixedProduct',
       ],
     });
 
@@ -555,7 +563,19 @@ export class BrandGovernanceService {
   private shouldActivateAfterBrandBinding(
     product: Pick<
       Product,
-      'status' | 'title' | 'slug' | 'primaryCategoryId' | 'mainImage' | 'images'
+      | 'status'
+      | 'title'
+      | 'originalTitle'
+      | 'description'
+      | 'originalDescription'
+      | 'slug'
+      | 'primaryCategoryId'
+      | 'mainImage'
+      | 'images'
+      | 'priceMin'
+      | 'priceMax'
+      | 'aiBrandName'
+      | 'potentialMixedProduct'
     >,
   ): boolean {
     if (product.status !== ProductStatus.PENDING_REVIEW) {
@@ -570,11 +590,7 @@ export class BrandGovernanceService {
       return false;
     }
 
-    if (product.mainImage?.trim()) {
-      return true;
-    }
-
-    return Array.isArray(product.images) && product.images.some(Boolean);
+    return getProductPublicationIssues(product).length === 0;
   }
 
   private async syncFactsForCandidate(

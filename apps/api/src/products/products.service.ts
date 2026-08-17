@@ -52,6 +52,7 @@ import {
   ProductInteractionEventType,
 } from './entities/product-interaction-event.entity';
 import type { BatchTargetScope } from './dto/status-action.dto';
+import { assertProductPublicationQuality } from './product-publication-quality';
 
 type ProductInteractionAbuseBucket = {
   expiresAt: number;
@@ -456,6 +457,10 @@ export class ProductsService {
       secondaryCategories,
     });
 
+    if (targetStatus === ProductStatus.ACTIVE) {
+      assertProductPublicationQuality(product);
+    }
+
     const savedProduct = await this.productRepository.save(product);
     await this.brandGovernanceService.syncProductBrandDecision({
       productId: savedProduct.id,
@@ -640,6 +645,10 @@ export class ProductsService {
     // 自动同步 mainImage：images 数组更新时，始终让 mainImage = images[0]（支持拖拽排序）
     if (newImages && newImages.length > 0) {
       product.mainImage = newImages[0];
+    }
+
+    if (nextStatus === ProductStatus.ACTIVE) {
+      assertProductPublicationQuality(product);
     }
 
     const savedProduct = await this.productRepository.save(product);

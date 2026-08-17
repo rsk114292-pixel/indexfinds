@@ -1,0 +1,17 @@
+[Unit]
+Description=IndexFinds encrypted PostgreSQL offsite backup
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+EnvironmentFile=/opt/indexfinds/env/backup.env
+ExecStart=/opt/indexfinds/app/deploy/indexfinds/scripts/backup-postgres.sh
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+PrivateTmp=true
+ProtectHome=true
+NoNewPrivileges=true

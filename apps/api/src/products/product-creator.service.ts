@@ -13,6 +13,7 @@ import { ProductStatus } from './product-status';
 import { AttributesService } from '../attributes/attributes.service';
 import { AttributeValidatorService } from '../attributes/attribute-validator.service';
 import { CategoriesService } from '../categories/categories.service';
+import { assertProductPublicationQuality } from './product-publication-quality';
 
 /**
  * 创建商品所需的数据
@@ -353,6 +354,21 @@ export class ProductCreatorService {
       await this.categoriesService.ensureCanonicalLeafCategory(
         productData.primaryCategoryId,
       );
+    }
+
+    if (productData.status === ProductStatus.ACTIVE) {
+      const skuPrices = skusData
+        .map((sku) => Number(sku.price))
+        .filter((price) => Number.isFinite(price) && price > 0);
+      assertProductPublicationQuality({
+        ...productData,
+        priceMin:
+          productData.priceMin ??
+          (skuPrices.length > 0 ? Math.min(...skuPrices) : undefined),
+        priceMax:
+          productData.priceMax ??
+          (skuPrices.length > 0 ? Math.max(...skuPrices) : undefined),
+      });
     }
 
     // 创建商品

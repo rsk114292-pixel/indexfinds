@@ -1,5 +1,6 @@
 import { detectBrowserContext } from '@/lib/analytics-diagnostics';
 import { getOrCreateDeviceId, getOrCreateVisitId } from '@/lib/referral';
+import { canUseAnalyticsTracking } from '@/lib/analytics-consent';
 
 function buildCampaignKey(params: URLSearchParams): string {
   return [
@@ -15,6 +16,10 @@ export function getCurrentTrackingIdentity(): {
   deviceId: string;
   visitId: string;
 } {
+  if (!canUseAnalyticsTracking()) {
+    return { deviceId: '', visitId: '' };
+  }
+
   const params =
     typeof window !== 'undefined'
       ? new URLSearchParams(window.location.search)
@@ -35,5 +40,5 @@ export function getClientTrackingHeaders(): Record<string, string> {
   }
 
   const { visitId } = getCurrentTrackingIdentity();
-  return { 'x-visit-id': visitId };
+  return visitId ? { 'x-visit-id': visitId } : {};
 }
