@@ -38,15 +38,10 @@ COPY --from=builder /app/package.json ./
 COPY --from=builder /app/pnpm-lock.yaml ./
 COPY --from=builder /app/pnpm-workspace.yaml ./
 
-# TypeORM CLI 迁移所需文件
-COPY --from=builder /app/data-source.ts ./
-COPY --from=builder /app/tsconfig.json ./
-COPY --from=builder /app/nest-cli.json ./
 COPY --from=builder /app/scripts ./scripts
 
-# 安装生产依赖 + 迁移工具（ts-node、typescript、tsconfig-paths）
-# 使用 --prod=false 保留 devDependency 中的迁移工具
-RUN pnpm install --frozen-lockfile --prod=false \
+# 迁移使用 dist/data-source.js，仅安装生产运行依赖。
+RUN pnpm install --frozen-lockfile --prod \
     && rm -rf /root/.local/share/pnpm/store
 
 # 创建上传目录

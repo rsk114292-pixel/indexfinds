@@ -144,6 +144,14 @@ export class SkuSplitProcessor extends WorkerHost {
       };
     }
 
+    if (message.includes('变体缺少有效价格或可用 SKU')) {
+      return {
+        reasonCode: 'invalid_variant_sku',
+        actionable: true,
+        suggestedAction: '刷新源商品数据，并确认该款式仍有可购买 SKU 后重试',
+      };
+    }
+
     return {
       reasonCode: 'product_create_failed',
       actionable: false,
@@ -296,6 +304,26 @@ export class SkuSplitProcessor extends WorkerHost {
     }
 
     try {
+      const itemPrice = Number(item.price);
+      const itemSkuCount = Number(item.skuCount);
+      const attrIdNum = Number(item.attrId);
+      const sizeSkus = this.analyzerService.extractVariantSizeSkus(
+        normalizedData,
+        attrIdNum,
+        splitDimensionName,
+        itemPrice,
+      );
+
+      if (
+        !Number.isFinite(itemPrice) ||
+        itemPrice <= 0 ||
+        !Number.isFinite(itemSkuCount) ||
+        itemSkuCount <= 0 ||
+        sizeSkus.length === 0
+      ) {
+        throw new Error('变体缺少有效价格或可用 SKU');
+      }
+
       // 1. 标记为处理中
       await this.itemRepository.update(item.id, {
         status: SkuSplitItemStatus.PROCESSING,
@@ -436,14 +464,6 @@ export class SkuSplitProcessor extends WorkerHost {
       );
 
       // 8. 提取该变体的尺码 SKU 数据
-      const attrIdNum = Number(item.attrId);
-      const sizeSkus = this.analyzerService.extractVariantSizeSkus(
-        normalizedData,
-        attrIdNum,
-        splitDimensionName,
-        Number(item.price),
-      );
-
       const skuData: CreateSkuData[] = sizeSkus.map((s) => ({
         weidianSkuId: s.weidianSkuId,
         attributes: s.attributes,
@@ -466,8 +486,8 @@ export class SkuSplitProcessor extends WorkerHost {
           aiBrandName: brandName,
           primaryCategoryId: resolvedCategory.id,
           aiAttributes: aiResult.aiAttributes,
-          priceMin: item.price,
-          priceMax: item.price,
+          priceMin: itemPrice,
+          priceMax: itemPrice,
           weidianItemId: undefined,
           weidianShopId: normalizedData.shopId,
           weidianShopName: normalizedData.shopName,

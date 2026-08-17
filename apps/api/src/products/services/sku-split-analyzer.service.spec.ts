@@ -148,6 +148,29 @@ describe('SkuSplitAnalyzerService', () => {
       expect(red.price).toBe(119); // 119, 119, 129 中的最低
     });
 
+    it('过滤仍有属性图但已没有可购买 SKU 的款式', () => {
+      const data = buildNormalizedData();
+      data.skus = data.skus.filter((sku) => !sku.attrIds.includes(102));
+
+      const plan = service.analyzeSplitPlan(data);
+
+      expect(plan).not.toBeNull();
+      expect(plan!.variants.map((variant) => variant.value)).toEqual([
+        '黑色',
+        '白色',
+      ]);
+      expect(plan!.variants.every((variant) => variant.price > 0)).toBe(true);
+      expect(plan!.variants.every((variant) => variant.skuCount > 0)).toBe(
+        true,
+      );
+    });
+
+    it('所有款式都没有有效价格或可购买 SKU 时返回 null', () => {
+      const data = buildNormalizedData({ skus: [] });
+
+      expect(service.analyzeSplitPlan(data)).toBeNull();
+    });
+
     it('多颜色无属性图时按颜色维度拆分并用主图兜底', () => {
       const data = buildNormalizedData({
         mainImage: 'https://img.com/main.jpg',

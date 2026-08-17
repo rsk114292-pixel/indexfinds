@@ -52,6 +52,7 @@ const FAILURE_REASON_LABELS: Record<string, string> = {
   category_unresolved: '分类无法解析',
   ai_title_invalid: 'AI 标题不可用',
   missing_image: '缺少款式图',
+  invalid_variant_sku: '缺少有效价格或可用 SKU',
   product_create_failed: '创建商品失败',
   split_job_failed: '拆分子任务失败',
   split_job_partial_failed: '拆分子任务部分失败',
@@ -123,6 +124,13 @@ export class SkuSplitService {
         code: 'missing_image',
         actionable: true,
         suggestedAction: '补充款式图后重试',
+      };
+    }
+    if (normalized.includes('变体缺少有效价格或可用 SKU')) {
+      return {
+        code: 'invalid_variant_sku',
+        actionable: true,
+        suggestedAction: '刷新源商品数据，并确认该款式仍有可购买 SKU 后重试',
       };
     }
     if (normalized.includes('拆分任务部分失败')) {

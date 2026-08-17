@@ -219,9 +219,14 @@ describe('ProductsService', () => {
   describe('create()', () => {
     const baseDto = {
       title: 'Test Product',
+      description: 'A complete AI-generated product description.',
       primaryCategoryId: 'cat-1',
       aiBrandName: 'Nike',
       brandConfidence: 0.9,
+      priceMin: 99,
+      priceMax: 109,
+      mainImage: 'https://img.example.com/product.jpg',
+      images: ['https://img.example.com/product.jpg'],
     } as any;
 
     it('should create a product with slug and brand', async () => {
@@ -356,7 +361,12 @@ describe('ProductsService', () => {
     const existingProduct = {
       id: 'prod-1',
       slug: 'old-slug',
+      title: 'Existing Product',
+      description: 'A complete AI-generated product description.',
       primaryCategoryId: 'cat-1',
+      priceMin: 99,
+      priceMax: 109,
+      mainImage: 'img1.jpg',
       images: ['img1.jpg', 'img2.jpg'],
       secondaryCategories: [],
     };
@@ -574,6 +584,33 @@ describe('ProductsService', () => {
       ]);
     });
 
+    it('should invalidate the storefront after deleting a batch', async () => {
+      const products = [{ id: 'prod-1', slug: 'product-1' }];
+      productRepository.find.mockResolvedValue(products);
+      const originalFrontendUrl = process.env.FRONTEND_URL;
+      const originalSecret = process.env.REVALIDATE_SECRET;
+      const originalFetch = global.fetch;
+      process.env.FRONTEND_URL = 'https://indexfinds.com';
+      process.env.REVALIDATE_SECRET = 'test-revalidate-secret';
+      global.fetch = jest.fn().mockResolvedValue({ ok: true });
+
+      try {
+        await service.batchRemove(['prod-1']);
+
+        expect(global.fetch).toHaveBeenCalledWith(
+          'https://indexfinds.com/api/revalidate',
+          expect.objectContaining({
+            method: 'POST',
+            body: JSON.stringify({ all: true, path: '/', type: 'layout' }),
+          }),
+        );
+      } finally {
+        process.env.FRONTEND_URL = originalFrontendUrl;
+        process.env.REVALIDATE_SECRET = originalSecret;
+        global.fetch = originalFetch;
+      }
+    });
+
     it('should handle empty results (all IDs not found)', async () => {
       productRepository.find.mockResolvedValue([]);
 
@@ -604,7 +641,7 @@ describe('ProductsService', () => {
   // ===== clearProductListCache fallback =====
   describe('clearProductListCache fallback (unknown store type)', () => {
     it('should clear Redis keys through the Keyv-wrapped store client', async () => {
-      const scanIterator = jest.fn().mockImplementation(async function* ({
+      const scanIterator = jest.fn().mockImplementation(function* ({
         MATCH,
       }: {
         MATCH: string;

@@ -260,6 +260,35 @@ export class ProductsService {
     }
   }
 
+  private async triggerFrontendBulkRevalidate(): Promise<void> {
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3101';
+    const secret = process.env.REVALIDATE_SECRET;
+
+    if (!secret) {
+      this.logger.warn('REVALIDATE_SECRET 未配置，跳过前端批量缓存刷新');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${frontendUrl}/api/revalidate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-revalidate-secret': secret,
+        },
+        body: JSON.stringify({ all: true, path: '/', type: 'layout' }),
+        signal: AbortSignal.timeout(5000),
+      });
+
+      if (!response.ok) {
+        this.logger.warn(`前端批量 ISR 刷新失败: ${response.status}`);
+      }
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      this.logger.warn(`前端批量 ISR 刷新异常: ${message}`);
+    }
+  }
+
   constructor(
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
@@ -766,6 +795,10 @@ export class ProductsService {
         ),
       ),
     );
+
+    if (products.length > 0) {
+      await this.triggerFrontendBulkRevalidate();
+    }
 
     this.logger.log(
       `Batch delete: ${successIds.length} succeeded, ${failed.length} failed`,

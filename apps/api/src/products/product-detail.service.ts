@@ -60,13 +60,16 @@ export class ProductDetailService {
   async findBySlug(slug: string): Promise<Product> {
     const cacheKey = this.getProductDetailCacheKey(slug);
     const cached = await this.cacheManager.get<Product>(cacheKey);
-    if (cached) {
+    if (cached?.status === ProductStatus.ACTIVE) {
       return this.sortQcMedia(cached);
+    }
+    if (cached) {
+      await this.invalidateProductDetailCacheBySlug(slug);
     }
 
     const product = this.sortQcMedia(
       await this.productRepository.findOne({
-        where: { slug },
+        where: { slug, status: ProductStatus.ACTIVE },
         relations: [
           'brand',
           'primaryCategory',

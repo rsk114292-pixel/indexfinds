@@ -22,7 +22,16 @@ const mockWeidianService = {
 
 const mockAnalyzerService = {
   analyzeSplitPlan: jest.fn(),
-  extractVariantSizeSkus: jest.fn().mockReturnValue([]),
+  extractVariantSizeSkus: jest.fn().mockReturnValue([
+    {
+      weidianSkuId: 'sku-1',
+      attributes: { 尺码: 'M' },
+      skuKey: '尺码=M',
+      price: 99,
+      stock: 0,
+      image: null,
+    },
+  ]),
 };
 
 const mockSkuSplitService = {
@@ -167,6 +176,56 @@ describe('SkuSplitProcessor', () => {
         warnings: [],
       });
     };
+
+    it.each([
+      [{ price: 0 }, '价格为 0'],
+      [{ skuCount: 0 }, 'SKU 数量为 0'],
+    ])('拒绝%s的无效变体且不调用 AI', async (overrides) => {
+      const result = await (processor as any).processVariant(
+        makeItem(overrides),
+        normalizedData,
+        '颜色',
+        'group-uuid',
+        'https://weidian.com/item.html?itemID=12345',
+        '12345',
+      );
+
+      expect(result).toBeNull();
+      expect(mockAiEnhancerService.analyzeAndEnhance).not.toHaveBeenCalled();
+      expect(mockCreatorService.createProductWithSkus).not.toHaveBeenCalled();
+      expect(mockItemRepository.update).toHaveBeenCalledWith(
+        'item-1',
+        expect.objectContaining({
+          status: SkuSplitItemStatus.FAILED,
+          errorMessage: '变体缺少有效价格或可用 SKU',
+        }),
+      );
+      expect(mockSkuSplitService.appendItemLog).toHaveBeenCalledWith(
+        'item-1',
+        '待人工处理',
+        expect.objectContaining({
+          actionable: true,
+          reasonCode: 'invalid_variant_sku',
+        }),
+      );
+    });
+
+    it('源数据已变化且无法提取 SKU 时拒绝陈旧任务', async () => {
+      mockAnalyzerService.extractVariantSizeSkus.mockReturnValueOnce([]);
+
+      const result = await (processor as any).processVariant(
+        makeItem(),
+        normalizedData,
+        '颜色',
+        'group-uuid',
+        'https://weidian.com/item.html?itemID=12345',
+        '12345',
+      );
+
+      expect(result).toBeNull();
+      expect(mockAiEnhancerService.analyzeAndEnhance).not.toHaveBeenCalled();
+      expect(mockCreatorService.createProductWithSkus).not.toHaveBeenCalled();
+    });
 
     it('Redis 缓存命中时不调 CLIP', async () => {
       mockRedis.get.mockResolvedValue(JSON.stringify([0.5, 0.6, 0.7]));

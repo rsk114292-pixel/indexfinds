@@ -48,24 +48,40 @@ export class SkuSplitAnalyzerService {
     }
 
     // 为每个款式变体提取价格和尺码信息
-    const variants: SkuVariant[] = styleDimension.variants.map((v) => {
+    const variants: SkuVariant[] = styleDimension.variants.flatMap((v) => {
       const { price, sizes, skuCount } = this.extractVariantSkuInfo(
         normalizedData,
         v.id,
         styleDimension.dimensionName,
       );
 
-      return {
-        attrId: v.id,
-        value: v.value,
-        imageUrl: v.image,
-        imageSource: v.imageSource,
-        imageConfidence: v.imageConfidence,
-        price,
-        skuCount,
-        sizes,
-      };
+      if (!Number.isFinite(price) || price <= 0 || skuCount <= 0) {
+        this.logger.warn(
+          `[${normalizedData.itemId}] 跳过无有效价格或可购买 SKU 的款式: ${v.value} (${v.id})`,
+        );
+        return [];
+      }
+
+      return [
+        {
+          attrId: v.id,
+          value: v.value,
+          imageUrl: v.image,
+          imageSource: v.imageSource,
+          imageConfidence: v.imageConfidence,
+          price,
+          skuCount,
+          sizes,
+        },
+      ];
     });
+
+    if (variants.length === 0) {
+      this.logger.warn(
+        `[${normalizedData.itemId}] 所有款式都缺少有效价格或可购买 SKU，不可拆分`,
+      );
+      return null;
+    }
 
     this.logger.log(
       `[${normalizedData.itemId}] 检测到 ${variants.length} 个款式变体，维度: ${styleDimension.dimensionName}`,

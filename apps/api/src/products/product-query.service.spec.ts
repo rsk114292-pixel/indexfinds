@@ -21,6 +21,7 @@ import { ProductDetailService } from './product-detail.service';
 import { ProductPurchaseService } from './product-purchase.service';
 import { ProductCatalogQueryService } from './product-catalog-query.service';
 import { AdminProductQueryService } from './admin-product-query.service';
+import { ProductStatus } from './product-status';
 
 describe('ProductQueryService', () => {
   let service: ProductQueryService;
@@ -237,7 +238,11 @@ describe('ProductQueryService', () => {
     });
 
     it('命中缓存时直接返回缓存商品', async () => {
-      const product = { id: 'prod-1', slug: 'nike-shoes-abc' };
+      const product = {
+        id: 'prod-1',
+        slug: 'nike-shoes-abc',
+        status: ProductStatus.ACTIVE,
+      };
       cacheManager.get.mockResolvedValue(product);
 
       const result = await service.findBySlug('nike-shoes-abc');
