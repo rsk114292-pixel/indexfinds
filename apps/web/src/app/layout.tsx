@@ -1,5 +1,6 @@
 import type { Viewport } from "next";
-import { Geist, Geist_Mono, Noto_Sans_Arabic } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { cookies, headers } from "next/headers";
 import AppRuntime from "@/components/AppRuntime";
 import NoticeHost from "@/components/NoticeHost";
@@ -24,10 +25,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const notoArabic = Noto_Sans_Arabic({
+const notoArabic = localFont({
+  src: "../../node_modules/@fontsource-variable/noto-sans-arabic/files/noto-sans-arabic-arabic-wght-normal.woff2",
   variable: "--font-arabic",
-  subsets: ["arabic"],
-  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  weight: "100 900",
 });
 
 export default async function RootLayout({
