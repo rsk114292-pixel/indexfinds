@@ -312,6 +312,16 @@ describe('AdminService', () => {
         .mockImplementation(() => new FakeHotProductQueryBuilder(fixtures)),
       count: jest.fn(),
     };
+    const brandRepository = {
+      count: jest.fn(),
+    };
+    const categoryRepository = {
+      count: jest.fn(),
+    };
+    const cacheManager = {
+      get: jest.fn(),
+      set: jest.fn(),
+    };
     const productInteractionEventRepository = {
       createQueryBuilder: jest.fn(() => ({
         select: jest.fn().mockReturnThis(),
@@ -327,18 +337,48 @@ describe('AdminService', () => {
       service: new AdminService(
         productRepository as any,
         productInteractionEventRepository as any,
+        brandRepository as any,
+        categoryRepository as any,
         {} as any,
-        {} as any,
-        {} as any,
-        {
-          get: jest.fn(),
-          set: jest.fn(),
-        } as any,
+        cacheManager as any,
       ),
       productRepository,
+      brandRepository,
+      categoryRepository,
+      cacheManager,
       productInteractionEventRepository,
     };
   };
+
+  it('publishes active storefront totals and stores them under the v2 cache key', async () => {
+    const {
+      service,
+      productRepository,
+      brandRepository,
+      categoryRepository,
+      cacheManager,
+    } = createService();
+    productRepository.count.mockResolvedValue(41_575);
+    brandRepository.count.mockResolvedValue(374);
+    categoryRepository.count.mockResolvedValue(203);
+
+    await expect(service.getPublicStats()).resolves.toEqual({
+      totalProducts: 41_575,
+      totalBrands: 374,
+      totalCategories: 203,
+    });
+    expect(productRepository.count).toHaveBeenCalledWith({
+      where: { status: 'active' },
+    });
+    expect(brandRepository.count).toHaveBeenCalledWith({
+      where: { status: 'active' },
+    });
+    expect(cacheManager.set).toHaveBeenCalledWith(
+      'public:stats:v2',
+      expect.objectContaining({ totalProducts: 41_575 }),
+      3_600_000,
+    );
+  });
 
   it('returns summary counts with active products only', async () => {
     const { service } = createService();

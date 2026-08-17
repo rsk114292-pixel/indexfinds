@@ -20,6 +20,8 @@ import { Skeleton } from '@/components/ui/Skeleton';
 import { fetcher } from '@/lib/api';
 import { cn, getLocalizedName } from '@/lib/utils';
 import type { Category } from '@/types';
+import Image from 'next/image';
+import { getImageReferrerPolicy, getImageVariant } from '@/lib/image-utils';
 
 /* ─── Types ─── */
 type CategoriesResponse = Category[] | { data: Category[] };
@@ -129,11 +131,13 @@ function CategoryCard({
         {/* Background: product image or mesh gradient fallback */}
         {heroImage ? (
           <>
-            { }
-            <img
-              src={heroImage}
+            <Image
+              src={getImageVariant(heroImage, 480)}
               alt=""
-              className="absolute inset-0 w-full h-full object-cover object-[center_top] transition-transform duration-500 group-hover:scale-105"
+              fill
+              sizes="(min-width: 768px) 20vw, 45vw"
+              className="object-cover object-[center_top] transition-transform duration-500 group-hover:scale-105"
+              referrerPolicy={getImageReferrerPolicy(heroImage)}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-black/5" />
           </>

@@ -3,10 +3,11 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4100';
+const parsedApiUrl = new URL(apiUrl);
 const apiHostname =
   process.env.NEXT_PUBLIC_API_HOSTNAME ||
-  new URL(apiUrl).hostname;
-const apiOrigin = new URL(apiUrl).origin;
+  parsedApiUrl.hostname;
+const apiOrigin = parsedApiUrl.origin;
 const isDevelopment = process.env.NODE_ENV !== 'production';
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -27,6 +28,7 @@ const contentSecurityPolicy = [
 
 const nextConfig: NextConfig = {
   /* config options here */
+  poweredByHeader: false,
   eslint: {
     ignoreDuringBuilds: false,
   },
@@ -73,8 +75,9 @@ const nextConfig: NextConfig = {
         hostname: 'si.geilicdn.com',
       },
       {
-        protocol: 'https',
+        protocol: parsedApiUrl.protocol === 'http:' ? 'http' : 'https',
         hostname: apiHostname,
+        port: parsedApiUrl.port,
       },
       {
         protocol: 'https',
@@ -82,8 +85,13 @@ const nextConfig: NextConfig = {
       },
     ],
     dangerouslyAllowSVG: true,
-    // 关闭 Vercel 图片优化，使用外部 CDN 直接加载图片
-    unoptimized: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 86400,
+    // Local development may use private HTTP upload URLs. Production uses
+    // Next's responsive optimizer for uploaded logos and other oversized media.
+    unoptimized: isDevelopment,
   },
 };
 

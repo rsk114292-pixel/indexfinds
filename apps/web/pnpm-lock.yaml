@@ -103,6 +103,9 @@ importers:
       '@lhci/cli':
         specifier: ^0.15.1
         version: 0.15.1(supports-color@8.1.1)
+      '@next/eslint-plugin-next':
+        specifier: 15.5.23
+        version: 15.5.23
       '@playwright/test':
         specifier: ^1.58.2
         version: 1.58.2
@@ -127,6 +130,12 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.2.3(@types/react@19.2.9)
+      '@typescript-eslint/eslint-plugin':
+        specifier: 8.56.1
+        version: 8.56.1(@typescript-eslint/parser@8.56.1(eslint@9.39.2(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
+      '@typescript-eslint/parser':
+        specifier: 8.56.1
+        version: 8.56.1(eslint@9.39.2(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
       babel-plugin-react-compiler:
         specifier: 1.0.0
         version: 1.0.0
@@ -136,6 +145,18 @@ importers:
       eslint-config-next:
         specifier: 15.5.23
         version: 15.5.23(eslint@9.39.2(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
+      eslint-plugin-import:
+        specifier: 2.32.0
+        version: 2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.2(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
+      eslint-plugin-jsx-a11y:
+        specifier: 6.10.2
+        version: 6.10.2(eslint@9.39.2(jiti@2.6.1)(supports-color@8.1.1))
+      eslint-plugin-react:
+        specifier: 7.37.5
+        version: 7.37.5(eslint@9.39.2(jiti@2.6.1)(supports-color@8.1.1))
+      eslint-plugin-react-hooks:
+        specifier: 5.2.0
+        version: 5.2.0(eslint@9.39.2(jiti@2.6.1)(supports-color@8.1.1))
       jest:
         specifier: ^30.2.0
         version: 30.2.0(@types/node@20.19.30)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.15.10)(@types/node@20.19.30)(typescript@5.9.3))
@@ -5124,7 +5145,7 @@ snapshots:
 
   '@babel/core@7.29.7(supports-color@8.1.1)':
     dependencies:
-      '@babel/code-frame': 7.29.7
+      '@babel/code-frame': 7.29.0
       '@babel/generator': 7.29.8
       '@babel/helper-compilation-targets': 7.29.7
       '@babel/helper-module-transforms': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
@@ -6305,7 +6326,7 @@ snapshots:
 
   '@testing-library/dom@10.4.1':
     dependencies:
-      '@babel/code-frame': 7.29.0
+      '@babel/code-frame': 7.29.7
       '@babel/runtime': 7.28.6
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0

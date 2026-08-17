@@ -1,5 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import useSWR from 'swr';
 import ProductsPageClient from './ProductsPageClient';
+
+let mockSearchParams = new URLSearchParams();
 
 jest.mock('next/dynamic', () => ({
   __esModule: true,
@@ -7,7 +10,7 @@ jest.mock('next/dynamic', () => ({
 }));
 
 jest.mock('next/navigation', () => ({
-  useSearchParams: () => new URLSearchParams(),
+  useSearchParams: () => mockSearchParams,
 }));
 
 jest.mock('next-intl', () => ({
@@ -84,6 +87,10 @@ jest.mock('@/hooks/useReturnScrollRestoration', () => ({
   useReturnScrollRestoration: () => {},
 }));
 
+jest.mock('@/hooks/useSubsiteAgentBridge', () => ({
+  useSubsiteAgentBridge: () => {},
+}));
+
 jest.mock('@/components/share/LazyShareModal', () => ({
   __esModule: true,
   default: ({ open, title }: { open: boolean; title: string }) =>
@@ -93,11 +100,28 @@ jest.mock('@/components/share/LazyShareModal', () => ({
 jest.mock('./components/mobile/MobileProductList', () => () => null);
 
 describe('ProductsPageClient', () => {
+  beforeEach(() => {
+    mockSearchParams = new URLSearchParams();
+    jest.clearAllMocks();
+  });
+
   it('桌面端显示分享按钮并可打开分享弹窗', () => {
     render(<ProductsPageClient />);
 
     fireEvent.click(screen.getByRole('button', { name: 'Share' }));
 
     expect(screen.getByText('Share Modal: All Products')).toBeInTheDocument();
+  });
+
+  it('按当前分类请求 facets，避免展开全站品牌和颜色', () => {
+    mockSearchParams = new URLSearchParams('categories=earphones&page=1');
+
+    render(<ProductsPageClient />);
+
+    expect(useSWR).toHaveBeenCalledWith(
+      '/products/facets?categories=earphones',
+      expect.any(Function),
+      expect.any(Object),
+    );
   });
 });

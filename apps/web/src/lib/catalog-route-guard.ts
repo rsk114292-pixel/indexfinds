@@ -1,7 +1,11 @@
-type GuardedEntityType = 'brands' | 'categories';
+type GuardedEntityType = 'brands' | 'categories' | 'products';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4101';
-const GUARDED_ENTITY_TYPES: GuardedEntityType[] = ['brands', 'categories'];
+const GUARDED_ENTITY_TYPES: GuardedEntityType[] = [
+  'brands',
+  'categories',
+  'products',
+];
 const LOCALIZED_DETAIL_ROUTE_PATTERN = new RegExp(
   `^/(?<locale>[a-z]{2})/(?<entityType>${GUARDED_ENTITY_TYPES.join('|')})/(?<slug>[^/]+?)/?$`,
   'i',

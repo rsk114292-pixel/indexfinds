@@ -101,7 +101,7 @@ export const DEFAULT_PLATFORMS: Partial<Platform>[] = [
     'loongbuy',
     'Loongbuy',
     'https://www.loongbuy.com/product-details',
-    '{baseUrl}?invitecode={inviteCode}&weidian={weidianItemId}',
+    '{baseUrl}?url={encodedWeidianUrl}&invitecode={inviteCode}',
     0,
   ),
   createDefaultPlatform(
@@ -135,8 +135,8 @@ export const DEFAULT_PLATFORMS: Partial<Platform>[] = [
   createDefaultPlatform(
     'sugargoo',
     'Sugargoo',
-    'https://www.sugargoo.com/register',
-    'https://www.sugargoo.com/products?productLink={weidianUrl}&memberId={inviteCode}',
+    'https://www.sugargoo.com/',
+    '{baseUrl}#/home/productDetail?productLink={doubleEncodedWeidianUrl}&memberId={inviteCode}',
     5,
   ),
   createDefaultPlatform(
@@ -149,7 +149,7 @@ export const DEFAULT_PLATFORMS: Partial<Platform>[] = [
   createDefaultPlatform(
     'oopbuy',
     'Oopbuy',
-    'https://oopbuy.com/product',
+    'https://www.oopbuy.com/product',
     '{baseUrl}/weidian/{weidianItemId}?inviteCode={inviteCode}',
     7,
   ),
@@ -157,7 +157,7 @@ export const DEFAULT_PLATFORMS: Partial<Platform>[] = [
     'superbuy',
     'Superbuy',
     'https://www.superbuy.com/en/page/buy/',
-    '{baseUrl}?nTag=Home-search&from=search-input&url={encodedWeidianUrl}&partnercode={inviteCode}',
+    '{baseUrl}?from=search-input&url={encodedWeidianUrl}&partnercode={inviteCode}',
     8,
   ),
   createDefaultPlatform(
@@ -184,36 +184,36 @@ export const DEFAULT_PLATFORMS: Partial<Platform>[] = [
   createDefaultPlatform(
     'cssbuy',
     'CSSBuy',
-    'https://www.cssbuy.com',
-    '{baseUrl}/item-micro-{weidianItemId}.html?promotionCode={inviteCode}',
+    'https://www.cssbuy.com/shop/goodsDetail',
+    '{baseUrl}?type=micro&id={weidianItemId}&promotionCode={inviteCode}',
     12,
   ),
   createDefaultPlatform(
     'pikobuy',
     'Pikobuy',
     'https://www.pikobuy.com/product/detail',
-    '{baseUrl}?productUrl={weidianUrl}&invitedCode={inviteCode}',
+    '{baseUrl}?productUrl={encodedWeidianUrl}&invitedCode={inviteCode}',
     13,
   ),
   createDefaultPlatform(
     'esgobuy',
     'ESGOBuy',
     'https://www.esgobuy.com/productdetail',
-    '{baseUrl}?url={weidianUrl}&affcode={inviteCode}',
+    '{baseUrl}?url={encodedWeidianUrl}&affcode={inviteCode}',
     14,
   ),
   createDefaultPlatform(
     'hubbuycn',
     'HubbuyCN',
     'https://www.hubbuycn.com/product/item',
-    '{baseUrl}?url={weidianUrl}&inviteCode={inviteCode}',
+    '{baseUrl}?url={encodedWeidianUrl}&invitation_code={inviteCode}',
     15,
   ),
   createDefaultPlatform(
     'fishgoo',
     'Fishgoo',
     'https://www.fishgoo.com/',
-    '{baseUrl}#/product?productLink={encodedWeidianUrl}&memberId={inviteCode}',
+    '{baseUrl}#/product?productLink={doubleEncodedWeidianUrl}&memberId={inviteCode}',
     16,
   ),
   createDefaultPlatform(
@@ -241,7 +241,7 @@ export const DEFAULT_PLATFORMS: Partial<Platform>[] = [
     'lolobuy',
     'Lolobuy',
     'https://www.lolobuy.com/productDetail/0',
-    '{baseUrl}?url={weidianUrl}&inviteCode={inviteCode}',
+    '{baseUrl}?url={encodedWeidianUrl}&inviteCode={inviteCode}',
     20,
   ),
   createDefaultPlatform(
@@ -254,92 +254,92 @@ export const DEFAULT_PLATFORMS: Partial<Platform>[] = [
   createDefaultPlatform(
     'allchinabuy',
     'AllChinaBuy',
-    'https://www.allchinabuy.com/en/page/homepage/',
-    '{baseUrl}',
+    'https://www.allchinabuy.com/en/page/buy/',
+    '{baseUrl}?nTag=Home-search&from=search-input&_search=url&url={encodedWeidianUrl}&partnercode={inviteCode}',
     22,
   ),
   createDefaultPlatform(
     'bbdbuy',
     'BBDBuyEU',
-    'https://www.bbdbuyeu.com/',
-    '{baseUrl}',
+    'https://bbdbuy.com/index/item/index.html',
+    '{baseUrl}?tp=micro&tid={weidianItemId}',
     23,
   ),
   createDefaultPlatform(
     'cnshopper',
     'CNShopper',
     'https://cnshopper.com/goods/detail',
-    '{baseUrl}?keyword={weidianItemId}&platform=weidian',
+    '{baseUrl}?keyword={weidianItemId}&platform=weidian&invite_id={inviteCode}',
     24,
   ),
   createDefaultPlatform(
     'eastmallbuy',
     'EastMallBuy',
-    'https://www.eastmallbuy.com/item',
-    '{baseUrl}?tid={weidianItemId}&tp=micro',
+    'https://eastmallbuy.com/index/item/index.html',
+    '{baseUrl}?searchlang=en&url={encodedWeidianUrl}',
     25,
   ),
   createDefaultPlatform(
     'goatedbuy',
     'GoatedBuy',
-    'https://goatedbuy.com/',
-    '{baseUrl}',
+    'https://goatedbuy.com/pages/search/result',
+    '{baseUrl}?keyword={encodedWeidianUrl}',
     26,
   ),
   createDefaultPlatform(
     'gtbuy',
     'GTBuy',
-    'https://www.gtbuy.com/',
-    '{baseUrl}',
+    'https://www.gtbuy.com/product/2',
+    '{baseUrl}/{weidianItemId}?inviteCode={inviteCode}',
     27,
   ),
   createDefaultPlatform(
     'hoobuy',
     'HooBuy',
-    'https://hoobuy.com/',
-    '{baseUrl}',
+    'https://www.hoobuy.com/product/2',
+    '{baseUrl}/{weidianItemId}?inviteCode={inviteCode}',
     28,
   ),
   createDefaultPlatform(
     'itaobuy',
     'iTaoBuy',
-    'https://www.itaobuy.com/manual-input',
-    '{baseUrl}?url={encodedWeidianUrl}',
+    'https://www.itaobuy.com/product-detail',
+    '{baseUrl}?url={encodedWeidianUrl}&inviteCode={inviteCode}',
     29,
   ),
   createDefaultPlatform(
     'kameymall',
     'KameyMall',
-    'https://www.kameymall.com/',
-    '{baseUrl}',
+    'https://www.kameymall.com/purchases',
+    '{baseUrl}?url={encodedWeidianUrl}',
     30,
   ),
   createDefaultPlatform(
     'mulebuy',
     'MuleBuy',
-    'https://mulebuy.com/',
-    '{baseUrl}',
+    'https://mulebuy.com/product',
+    '{baseUrl}?id={weidianItemId}&platform=WEIDIAN&ref={inviteCode}',
     31,
   ),
   createDefaultPlatform(
     'orientdig',
     'OrientDig',
-    'https://orientdig.com/',
-    '{baseUrl}',
+    'https://orientdig.com/product',
+    '{baseUrl}?id={weidianItemId}&platform=WEIDIAN&inviteCode={inviteCode}',
     32,
   ),
   createDefaultPlatform(
     'parcelup',
     'Parcel Up',
-    'https://parcelup.com/',
-    '{baseUrl}',
+    'https://parcelup.com/order',
+    '{baseUrl}?url={encodedWeidianUrl}',
     33,
   ),
   createDefaultPlatform(
     'yoybuy',
     'YoyBuy',
-    'https://www.yoybuy.com/',
-    '{baseUrl}',
+    'https://www.yoybuy.com/en/AddUrl.html',
+    '{baseUrl}?url={encodedWeidianUrl}&remark={encodedWeidianUrl}',
     34,
   ),
 ];
@@ -371,13 +371,32 @@ export class PlatformsService implements OnModuleInit {
       where: { key: config.key },
     });
 
-    if (
-      exists &&
-      !hasConfiguredComparisonData(exists.comparisonData) &&
-      config.comparisonData
-    ) {
-      exists.comparisonData = config.comparisonData;
-      await this.platformRepo.save(exists);
+    if (exists) {
+      let shouldSave = false;
+
+      if (
+        !hasConfiguredComparisonData(exists.comparisonData) &&
+        config.comparisonData
+      ) {
+        exists.comparisonData = config.comparisonData;
+        shouldSave = true;
+      }
+
+      // Built-in platforms use application-managed product routes. Keep the
+      // administrator-owned invite code and presentation fields, but upgrade
+      // stale homepage/legacy routes whenever the API is restarted.
+      if (config.baseUrl && exists.baseUrl !== config.baseUrl) {
+        exists.baseUrl = config.baseUrl;
+        shouldSave = true;
+      }
+      if (config.urlTemplate && exists.urlTemplate !== config.urlTemplate) {
+        exists.urlTemplate = config.urlTemplate;
+        shouldSave = true;
+      }
+
+      if (shouldSave) {
+        await this.platformRepo.save(exists);
+      }
     }
 
     if (exists?.logoUrl || !config.logoUrl || !config.key) {
@@ -660,6 +679,7 @@ export class PlatformsService implements OnModuleInit {
       ? `https://weidian.com/item.html?itemID=${params.weidianItemId}`
       : '';
     const encodedWeidianUrl = encodeURIComponent(weidianUrl);
+    const doubleEncodedWeidianUrl = encodeURIComponent(encodedWeidianUrl);
 
     // 替换所有支持的变量
     url = url
@@ -668,7 +688,8 @@ export class PlatformsService implements OnModuleInit {
       .replace(/\{weidianItemId\}/g, params.weidianItemId || '')
       .replace(/\{productId\}/g, params.productId || '')
       .replace(/\{weidianUrl\}/g, weidianUrl)
-      .replace(/\{encodedWeidianUrl\}/g, encodedWeidianUrl);
+      .replace(/\{encodedWeidianUrl\}/g, encodedWeidianUrl)
+      .replace(/\{doubleEncodedWeidianUrl\}/g, doubleEncodedWeidianUrl);
 
     return url;
   }

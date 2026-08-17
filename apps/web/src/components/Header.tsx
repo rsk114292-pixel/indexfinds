@@ -10,7 +10,10 @@ import { useState, useCallback } from 'react';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { useHeaderStore } from '@/stores/useHeaderStore';
 import { logout as logoutApi } from '@/lib/auth-api';
-import { PUBLIC_AUTH_ENTRY_ENABLED } from '@/lib/features';
+import {
+  PUBLIC_AUTH_ENTRY_ENABLED,
+  PUBLIC_REGISTRATION_ENABLED,
+} from '@/lib/features';
 import { useTranslations } from 'next-intl';
 import Popover from '@/components/ui/Popover';
 
@@ -193,12 +196,14 @@ export default function Header() {
                   <LogIn className="w-4 h-4" />
                   {tc('login')}
                 </Link>
-                <Link
-                  href="/register"
-                  className="flex items-center h-10 px-4 text-sm font-medium bg-primary text-white hover:bg-primary-hover rounded-lg transition-colors duration-200"
-                >
-                  {tc('signUp')}
-                </Link>
+                {PUBLIC_REGISTRATION_ENABLED ? (
+                  <Link
+                    href="/register"
+                    className="flex items-center h-10 px-4 text-sm font-medium bg-primary text-white hover:bg-primary-hover rounded-lg transition-colors duration-200"
+                  >
+                    {tc('signUp')}
+                  </Link>
+                ) : null}
               </div>
             ) : null}
           </div>

@@ -34,7 +34,7 @@ export function MobileDescription({ description }: MobileDescriptionProps) {
       {(clamped || expanded) && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-0.5 mt-2 text-xs text-primary font-medium"
+        className="mt-2 flex items-center gap-0.5 text-xs font-semibold text-red-700"
         >
           {expanded ? (
             <>

@@ -156,6 +156,7 @@ describe('SEO guards', () => {
       template: `%s | ${getSiteName()}`,
     });
     expect(metadata.description).toBe(homeSeo.description);
+    expect(metadata.metadataBase?.href).toBe(`${SITE_URL}/`);
     expect(metadata.alternates?.canonical).toBe(`${SITE_URL}/fr/products`);
     expect(metadata.alternates?.languages?.en).toBe(`${SITE_URL}/en/products`);
     expect(metadata.alternates?.languages?.ar).toBe(`${SITE_URL}/ar/products`);

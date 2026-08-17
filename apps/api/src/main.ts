@@ -196,7 +196,9 @@ async function bootstrap() {
       ) {
         return callback(null, true);
       }
-      return callback(new Error('Not allowed by CORS'), false);
+      // Deny by omitting CORS response headers. Passing an Error here turns an
+      // ordinary browser-origin rejection into a noisy HTTP 500 in Nest logs.
+      return callback(null, false);
     },
     credentials: true,
   });

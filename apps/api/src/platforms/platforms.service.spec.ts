@@ -62,6 +62,39 @@ describe('PlatformsService', () => {
     );
   });
 
+  it('upgrades stale built-in homepage routes without replacing invite codes', async () => {
+    const storedPlatforms = new Map(
+      DEFAULT_PLATFORMS.map((platform) => [
+        platform.key,
+        {
+          id: `platform-${platform.key}`,
+          ...platform,
+          logoUrl: `/uploads/platform-${platform.key}.png`,
+          inviteCode: 'affiliate-123',
+        },
+      ]),
+    );
+    const orientDig = storedPlatforms.get('orientdig') as Platform;
+    orientDig.baseUrl = 'https://orientdig.com/';
+    orientDig.urlTemplate = '{baseUrl}';
+
+    platformRepo.findOne.mockImplementation(({ where }: any) =>
+      Promise.resolve(storedPlatforms.get(where.key)),
+    );
+
+    await service.onModuleInit();
+
+    expect(platformRepo.save).toHaveBeenCalledWith(
+      expect.objectContaining({
+        key: 'orientdig',
+        baseUrl: 'https://orientdig.com/product',
+        urlTemplate:
+          '{baseUrl}?id={weidianItemId}&platform=WEIDIAN&inviteCode={inviteCode}',
+        inviteCode: 'affiliate-123',
+      }),
+    );
+  });
+
   describe('generateBuyLink()', () => {
     it('builds a verified ACBuy Weidian product route', () => {
       const platform = DEFAULT_PLATFORMS.find(
@@ -73,14 +106,73 @@ describe('PlatformsService', () => {
       ).toBe('https://www.acbuy.com/product?id=7488920869&platform=WEIDIAN');
     });
 
-    it('falls back to the official paste-link entry when no stable deep route is known', () => {
+    it('builds an AllChinaBuy paste-link route containing the source product', () => {
       const platform = DEFAULT_PLATFORMS.find(
         (item) => item.key === 'allchinabuy',
       ) as Platform;
 
       expect(
         service.generateBuyLink(platform, { weidianItemId: '7488920869' }),
-      ).toBe('https://www.allchinabuy.com/en/page/homepage/');
+      ).toBe(
+        'https://www.allchinabuy.com/en/page/buy/?nTag=Home-search&from=search-input&_search=url&url=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D7488920869&partnercode=',
+      );
+    });
+
+    it('builds an OrientDig product route instead of its homepage', () => {
+      const platform = DEFAULT_PLATFORMS.find(
+        (item) => item.key === 'orientdig',
+      ) as Platform;
+
+      expect(
+        service.generateBuyLink(platform, { weidianItemId: '7488920869' }),
+      ).toBe(
+        'https://orientdig.com/product?id=7488920869&platform=WEIDIAN&inviteCode=',
+      );
+    });
+
+    it('double-encodes source URLs for hash-router product import pages', () => {
+      const platform = DEFAULT_PLATFORMS.find(
+        (item) => item.key === 'sugargoo',
+      ) as Platform;
+
+      expect(
+        service.generateBuyLink(platform, { weidianItemId: '7488920869' }),
+      ).toContain(
+        'productLink=https%253A%252F%252Fweidian.com%252Fitem.html%253FitemID%253D7488920869',
+      );
+    });
+
+    it.each(DEFAULT_PLATFORMS.map((platform) => [platform.key, platform]))(
+      '%s generates a product-aware route with no unresolved placeholders',
+      (_key, platform) => {
+        const url = service.generateBuyLink(platform as Platform, {
+          weidianItemId: '7488920869',
+        });
+
+        expect(url).not.toBe((platform as Platform).baseUrl);
+        expect(url).toContain('7488920869');
+        expect(url).not.toMatch(/\{[^}]+\}/);
+      },
+    );
+  });
+
+  describe('generateBuyLink() custom platforms', () => {
+    it('keeps supporting custom product templates', () => {
+      const platform = {
+        baseUrl: 'https://agent.example/items',
+        inviteCode: 'ref-1',
+        urlTemplate:
+          '{baseUrl}/{productId}?source={encodedWeidianUrl}&ref={inviteCode}',
+      } as Platform;
+
+      expect(
+        service.generateBuyLink(platform, {
+          productId: 'product-1',
+          weidianItemId: '7488920869',
+        }),
+      ).toBe(
+        'https://agent.example/items/product-1?source=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D7488920869&ref=ref-1',
+      );
     });
   });
 

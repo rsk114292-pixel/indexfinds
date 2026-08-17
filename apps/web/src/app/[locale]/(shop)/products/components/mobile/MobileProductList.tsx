@@ -10,7 +10,7 @@ import { MobileProductGridSkeleton } from "@/components/mobile/ui/MobileSkeleton
 import { Empty } from "@/components/ui/Empty";
 import { fetcher } from "@/lib/api";
 import { OutboundSource } from "@/lib/search-tracking";
-import type { ApiListResponse, ProductListItem } from "@/types";
+import type { ApiListResponse, Product, ProductListItem } from "@/types";
 import { MobileBackToTop } from "@/components/mobile/ui/MobileBackToTop";
 import dynamic from "next/dynamic";
 import type { ViewMode } from "./MobileSortBar";
@@ -39,6 +39,7 @@ const PAGE_SIZE = 20;
 interface MobileProductListProps {
   facetsData?: FacetsData;
   enabled?: boolean;
+  initialProductsData?: ApiListResponse<Product>;
 }
 
 /**
@@ -50,6 +51,7 @@ interface MobileProductListProps {
 export default function MobileProductList({
   facetsData,
   enabled = true,
+  initialProductsData,
 }: MobileProductListProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -59,6 +61,23 @@ export default function MobileProductList({
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [filterOpen, setFilterOpen] = useState(false);
   const [shareModalOpen, setShareModalOpen] = useState(false);
+  const initialMobilePage = useMemo<ApiListResponse<ProductListItem> | undefined>(
+    () =>
+      initialProductsData
+        ? {
+            ...initialProductsData,
+            data: initialProductsData.data.map((product) => ({
+              ...product,
+              price: product.price ?? {
+                min: Number(product.priceMin) || 0,
+                max: Number(product.priceMax) || 0,
+                currency: product.currency || "CNY",
+              },
+            })),
+          }
+        : undefined,
+    [initialProductsData],
+  );
 
   // 稳定的筛选参数字符串（用于 SWR key）
   const filterQs = useMemo(() => {
@@ -95,7 +114,9 @@ export default function MobileProductList({
     isLoading,
     isValidating,
   } = useSWRInfinite<ApiListResponse<ProductListItem>>(getKey, fetcher, {
+    fallbackData: initialMobilePage ? [initialMobilePage] : undefined,
     revalidateFirstPage: false,
+    revalidateOnMount: initialMobilePage ? false : undefined,
     revalidateOnFocus: false,
     dedupingInterval: 2000,
   });
@@ -223,6 +244,8 @@ export default function MobileProductList({
                 (product.popularityScore ?? 0) >= hotThreshold
               }
               returnTo={returnTo}
+              imagePriority={index < (viewMode === "compact" ? 6 : 4)}
+              headingLevel={2}
             />
           ))}
         </div>

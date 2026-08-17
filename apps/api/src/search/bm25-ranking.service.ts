@@ -67,7 +67,7 @@ export class BM25RankingService implements OnModuleInit, OnModuleDestroy {
   private readonly STATS_QUERY_TIMEOUT_MS = 5000;
   private readonly MAX_TERM_MAP_SIZE = 500_000; // termDocFrequency 条目上限
   private readonly refreshStatsEnabled =
-    process.env.BM25_REFRESH_STATS_ENABLED !== 'false';
+    process.env.BM25_REFRESH_STATS_ENABLED === 'true';
   private readonly refreshOnStartup =
     process.env.BM25_REFRESH_ON_STARTUP !== 'false';
   private refreshTimer: NodeJS.Timeout | null = null;

@@ -77,10 +77,11 @@ export default function PlatformSelector({
         key={platform.key}
         type="button"
         onClick={() => selectPlatform(platform)}
+        aria-pressed={selected}
         className={cn(
           'flex min-w-0 items-center gap-2.5 rounded-xl border px-3 py-2.5 text-left transition-colors',
           selected
-            ? 'border-primary/30 bg-primary/[0.07] text-primary'
+            ? 'border-red-300 bg-red-50 text-red-700'
             : 'border-transparent bg-gray-50/80 text-foreground hover:border-border hover:bg-white',
         )}
       >
@@ -117,6 +118,7 @@ export default function PlatformSelector({
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder={t('platformSearch')}
+          aria-label={t('platformSearch')}
           className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted"
         />
       </label>
@@ -182,7 +184,15 @@ export default function PlatformSelector({
               ? 'h-11 gap-2.5 rounded-full border border-white/10 bg-white/[0.07] px-4 text-white/85 hover:bg-white/[0.11] hover:text-white'
               : 'h-10 gap-1.5 rounded-lg px-2 text-white/75 hover:bg-white/[0.06] hover:text-white',
           )}
-          aria-label={t('platformSelect')}
+          aria-label={
+            variant === 'hero'
+              ? `${t('buyThrough')} ${
+                  currentPlatform
+                    ? getLocalizedPlatformName(currentPlatform, locale)
+                    : t('noPlatformSelected')
+                }`
+              : t('platformSelect')
+          }
         >
           {currentPlatform ? (
             <PlatformLogoBadge

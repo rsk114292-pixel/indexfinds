@@ -19,6 +19,7 @@ import {
   getSafeRedirectPath,
   persistAuthRedirect,
 } from '@/lib/auth-redirect';
+import { PUBLIC_REGISTRATION_ENABLED } from '@/lib/features';
 
 
 /**
@@ -101,12 +102,14 @@ export default function MobileLogin() {
           <h1 className="text-2xl font-bold text-foreground mt-4">
             {t('welcomeBack')}
           </h1>
-          <p className="text-sm text-muted mt-1.5">
-            {t('noAccount')}{' '}
-            <Link href={registerHref} className="font-medium text-primary">
-              {t('signUpFree')}
-            </Link>
-          </p>
+          {PUBLIC_REGISTRATION_ENABLED ? (
+            <p className="text-sm text-muted mt-1.5">
+              {t('noAccount')}{' '}
+              <Link href={registerHref} className="font-medium text-primary">
+                {t('signUpFree')}
+              </Link>
+            </p>
+          ) : null}
         </div>
 
         {/* 第三方登录 */}

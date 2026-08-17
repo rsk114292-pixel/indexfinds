@@ -8,6 +8,7 @@ import {
   guardedCatalogSlugExists,
 } from '@/lib/catalog-route-guard';
 import { hasAnalyticsConsent } from '@/lib/analytics-consent';
+import { PUBLIC_REGISTRATION_ENABLED } from '@/lib/features';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4101';
 const TRUSTED_VISITOR_COOKIE = 'mf_vid';
@@ -35,6 +36,20 @@ export default async function middleware(request: NextRequest) {
 
   if (legacyHostRedirectUrl) {
     return NextResponse.redirect(legacyHostRedirectUrl, 308);
+  }
+
+  const registrationRoute = /^\/[a-z]{2}\/register\/?$/i.test(
+    request.nextUrl.pathname,
+  );
+  if (!PUBLIC_REGISTRATION_ENABLED && registrationRoute) {
+    const locale = request.nextUrl.pathname.split('/')[1] || routing.defaultLocale;
+    const response = NextResponse.rewrite(
+      new URL(`/${locale}/_not-found`, request.url),
+      { status: 404 },
+    );
+    response.headers.set('x-robots-tag', 'noindex, nofollow');
+    response.headers.set('x-pathname', request.nextUrl.pathname);
+    return response;
   }
 
   const guardedCatalogRoute = getGuardedCatalogDetailRoute(

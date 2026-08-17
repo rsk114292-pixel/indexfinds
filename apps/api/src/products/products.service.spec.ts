@@ -653,7 +653,7 @@ describe('ProductsService', () => {
           ];
         }
         if (MATCH === '*public:stats:*') {
-          yield ['keyv:public:stats:v1'];
+          yield ['keyv:public:stats:v2'];
         }
       });
       const unlink = jest.fn().mockResolvedValue(1);
@@ -685,7 +685,7 @@ describe('ProductsService', () => {
         'keyv:/products?page=1',
         'keyv:/products/slugs?page=1&limit=5000',
       ]);
-      expect(unlink).toHaveBeenCalledWith(['keyv:public:stats:v1']);
+      expect(unlink).toHaveBeenCalledWith(['keyv:public:stats:v2']);
     });
 
     it('should NOT call cacheManager.clear() when store type is unknown', async () => {

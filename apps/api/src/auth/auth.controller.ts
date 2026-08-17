@@ -17,6 +17,7 @@ import {
   Query,
   UnauthorizedException,
   BadRequestException,
+  ForbiddenException,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -51,6 +52,7 @@ import type {
   OAuthCallbackErrorCode,
   OAuthCallbackFailureRequest,
 } from './oauth-error.util';
+import { isPublicRegistrationEnabled } from './registration.config';
 
 const REFRESH_TOKEN_COOKIE_NAME = 'refresh_token';
 
@@ -88,6 +90,10 @@ export class AuthController {
     @Req() req: ExpressRequest,
     @Res({ passthrough: true }) res: Response,
   ) {
+    if (!isPublicRegistrationEnabled()) {
+      throw new ForbiddenException('AUTH_REGISTRATION_DISABLED');
+    }
+
     const referralCookie = this.getSanitizedReferralCookie(
       req.cookies?.['mf_ref_attrib'],
     );

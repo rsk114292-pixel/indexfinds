@@ -144,12 +144,15 @@ export class AdminService {
   }
 
   async getPublicStats(): Promise<PublicStats> {
-    const cacheKey = 'public:stats:v1';
+    // Public counters must describe the storefront, not pending or disabled
+    // inventory. Bump the key so deployments do not keep the old all-status
+    // count for the previous one-hour TTL.
+    const cacheKey = 'public:stats:v2';
     const cached = await this.cacheManager.get<PublicStats>(cacheKey);
     if (cached) return cached;
 
     const [totalProducts, totalBrands, totalCategories] = await Promise.all([
-      this.productRepository.count(),
+      this.productRepository.count({ where: { status: 'active' as any } }),
       this.brandRepository.count({ where: { status: 'active' } }),
       this.categoryRepository.count(),
     ]);

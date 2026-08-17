@@ -51,7 +51,10 @@ import { LanguageSheet, CurrencySheet, LANGUAGE_LABELS } from './MobileSettingsS
 import { useReferralRewardsExperiment } from '@/lib/referral-experiment';
 import { ReferralRewardsHub } from '@/components/referral/ReferralRewardsHub';
 import { useReferralActivationVisibility } from '@/hooks/useReferralActivationVisibility';
-import { PUBLIC_AUTH_ENTRY_ENABLED } from '@/lib/features';
+import {
+  PUBLIC_AUTH_ENTRY_ENABLED,
+  PUBLIC_REGISTRATION_ENABLED,
+} from '@/lib/features';
 
 
 /**
@@ -289,12 +292,14 @@ export default function MobileAccount() {
                 >
                   {t('loginButton')}
                 </Link>
-                <Link
-                  href="/register"
-                  className="flex-1 rounded-xl border border-border py-3 text-center text-sm font-semibold text-foreground active:bg-gray-50 transition-colors"
-                >
-                  {t('registerButton')}
-                </Link>
+                {PUBLIC_REGISTRATION_ENABLED ? (
+                  <Link
+                    href="/register"
+                    className="flex-1 rounded-xl border border-border py-3 text-center text-sm font-semibold text-foreground active:bg-gray-50 transition-colors"
+                  >
+                    {t('registerButton')}
+                  </Link>
+                ) : null}
               </div>
             </div>
           </div>

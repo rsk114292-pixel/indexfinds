@@ -2,6 +2,7 @@ import {
   Injectable,
   ConflictException,
   BadRequestException,
+  ForbiddenException,
   Logger,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,6 +12,7 @@ import {
   UserOAuthAccount,
   OAuthProvider,
 } from './entities/user-oauth-account.entity';
+import { isPublicRegistrationEnabled } from './registration.config';
 
 export interface OAuthProfile {
   provider: OAuthProvider;
@@ -117,6 +119,10 @@ export class OAuthService {
     const isNewUser = !user;
 
     if (!user) {
+      if (!isPublicRegistrationEnabled()) {
+        throw new ForbiddenException('AUTH_REGISTRATION_DISABLED');
+      }
+
       const isEmailVerified = !!profile.emailVerified;
       user = this.userRepository.create({
         email:

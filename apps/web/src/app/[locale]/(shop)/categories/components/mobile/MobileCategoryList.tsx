@@ -143,7 +143,7 @@ function SubcategoryGrid({
         <h2 className="text-base font-semibold text-foreground">
           {getLocalizedName(category, locale)}
         </h2>
-        <div className="flex items-center gap-0.5 text-xs text-primary font-medium">
+            <div className="flex items-center gap-0.5 text-xs font-semibold text-red-700">
           <span>{viewAllLabel}</span>
           <ChevronRight className="w-3.5 h-3.5" />
         </div>

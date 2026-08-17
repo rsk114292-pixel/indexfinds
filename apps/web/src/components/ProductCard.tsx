@@ -54,6 +54,7 @@ interface ProductCardProps {
   source?: OutboundSource;
   isHot?: boolean;
   returnTo?: string;
+  imagePriority?: boolean;
 }
 
 interface ProductCardBodyProps extends ProductCardProps {
@@ -71,6 +72,7 @@ function ProductCardBody({
   source = OutboundSource.DIRECT,
   isHot = false,
   effectiveReturnTo,
+  imagePriority = false,
 }: ProductCardBodyProps) {
   const t = useTranslations("product");
   const locale = useLocale();
@@ -187,7 +189,9 @@ function ProductCardBody({
                   : "group-hover:scale-105 transition-transform duration-300",
               )}
               sizes={imageSizes}
-              loading="lazy"
+              loading={imagePriority ? "eager" : "lazy"}
+              priority={imagePriority}
+              fetchPriority={imagePriority ? "high" : undefined}
               referrerPolicy={getImageReferrerPolicy(mainImageSrc)}
               onError={() => {
                 setHoverImageFailed(false);
@@ -208,7 +212,7 @@ function ProductCardBody({
             )}
           </>
           {isHot && (
-            <span className="absolute top-2 left-2 rtl:right-2 rtl:left-auto z-10 inline-flex items-center gap-0.5 px-1.5 py-0.5 text-xs font-semibold rounded-full bg-red-500 text-white shadow-sm">
+            <span className="absolute top-2 left-2 rtl:right-2 rtl:left-auto z-10 inline-flex items-center gap-0.5 px-1.5 py-0.5 text-xs font-bold rounded-full bg-red-700 text-white shadow-sm">
               <Flame className="w-3 h-3" />
               {t("hot")}
             </span>

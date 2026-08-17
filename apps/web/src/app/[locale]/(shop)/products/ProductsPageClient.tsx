@@ -38,6 +38,7 @@ import {
   DESKTOP_PRODUCT_SKELETON_COUNT,
 } from "@/lib/product-list-layout";
 import { useSubsiteAgentBridge } from "@/hooks/useSubsiteAgentBridge";
+import { buildProductFacetsPath } from "@/lib/product-facets";
 interface ProductsPageClientProps {
   initialProductsData?: ApiListResponse<Product> | null;
   initialFacetsData?: FacetsData | null;
@@ -129,7 +130,7 @@ function ProductsContent({
   // 获取筛选器 facets（PC 和移动端共享）
   const facetsKey =
     enabledDesktop || enabledMobile || initialFacetsData
-      ? "/products/facets"
+      ? buildProductFacetsPath(categories)
       : null;
   const { data: facetsData } = useSWR<FacetsData>(facetsKey, fetcher, {
     fallbackData: initialFacetsData ?? undefined,
@@ -162,6 +163,10 @@ function ProductsContent({
   const hotThreshold = useMemo(
     () => computeHotThreshold(products.map((p) => p.popularityScore ?? 0)),
     [products],
+  );
+  const initialMobileProductsData = useMemo<ApiListResponse<Product> | undefined>(
+    () => (page === 1 ? initialProductsData ?? undefined : undefined),
+    [initialProductsData, page],
   );
 
   if (productsError) {
@@ -242,7 +247,7 @@ function ProductsContent({
               ) : products.length > 0 ? (
                 <>
                   <div className={DESKTOP_PRODUCT_GRID_CLASS}>
-                    {products.map((product) => (
+                    {products.map((product, index) => (
                       <ProductCard
                         key={product.id}
                         product={product}
@@ -251,6 +256,7 @@ function ProductsContent({
                           (product.popularityScore ?? 0) >= hotThreshold
                         }
                         returnTo={returnTo}
+                        imagePriority={enabledDesktop && index < 5}
                       />
                     ))}
                   </div>
@@ -273,7 +279,11 @@ function ProductsContent({
 
       {/* ── 移动端视图 ── */}
       <div className="lg:hidden">
-        <MobileProductList facetsData={facetsData} enabled={enabledMobile} />
+        <MobileProductList
+          facetsData={facetsData}
+          enabled={enabledMobile}
+          initialProductsData={initialMobileProductsData}
+        />
       </div>
 
       {shareModalOpen ? (

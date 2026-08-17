@@ -48,6 +48,10 @@ interface MobileProductCardProps {
   /** 是否显示 Hot badge */
   isHot?: boolean;
   returnTo?: string;
+  /** Eagerly fetch an above-the-fold image to improve LCP. */
+  imagePriority?: boolean;
+  /** Keep card headings in the page's semantic outline. */
+  headingLevel?: 2 | 3;
 }
 
 /**
@@ -74,6 +78,8 @@ export const MobileProductCard = memo(function MobileProductCard({
   source = OutboundSource.DIRECT,
   isHot = false,
   returnTo,
+  imagePriority = false,
+  headingLevel = 3,
 }: MobileProductCardProps) {
   const t = useTranslations("product");
   const locale = useLocale();
@@ -136,6 +142,7 @@ export const MobileProductCard = memo(function MobileProductCard({
     effectiveReturnTo,
   );
   const favoriteLoginHref = buildLoginHref(effectiveReturnTo);
+  const Heading = headingLevel === 2 ? "h2" : "h3";
 
   const handleClick = useCallback(() => {
     saveReturnScroll(effectiveReturnTo, window.scrollY, page);
@@ -191,13 +198,15 @@ export const MobileProductCard = memo(function MobileProductCard({
             fill
             className="object-cover"
             sizes="50vw"
-            loading="lazy"
+            loading={imagePriority ? "eager" : "lazy"}
+            priority={imagePriority}
+            fetchPriority={imagePriority ? "high" : undefined}
             referrerPolicy={getImageReferrerPolicy(mainImageSrc)}
             onError={() => setImageIndex((current) => current + 1)}
           />
           {/* Hot badge — 左上角 */}
           {isHot && (
-            <span className="absolute top-1.5 left-1.5 rtl:right-1.5 rtl:left-auto z-[1] inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[11px] font-semibold rounded-full bg-red-500 text-white shadow-sm">
+            <span className="absolute top-1.5 left-1.5 rtl:right-1.5 rtl:left-auto z-[1] inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[11px] font-bold rounded-full bg-red-700 text-white shadow-sm">
               <Flame className="w-3 h-3" />
               {t("hot")}
             </span>
@@ -228,9 +237,9 @@ export const MobileProductCard = memo(function MobileProductCard({
           )}
 
           {/* 标题 — 2 行截断 */}
-          <h3 className="text-[15px] font-semibold text-foreground line-clamp-2 leading-snug mb-1.5">
+          <Heading className="text-[15px] font-semibold text-foreground line-clamp-2 leading-snug mb-1.5">
             {product.title}
-          </h3>
+          </Heading>
 
           {/* 价格 */}
           <span className="block truncate text-lg font-extrabold text-primary">
@@ -268,7 +277,7 @@ export const MobileProductCard = memo(function MobileProductCard({
         href={`${detailHref}#buy`}
         prefetch={false}
         onClick={handleClick}
-        className="mt-auto flex min-h-11 items-center justify-center gap-1 border-t border-border bg-gray-50 px-3 text-xs font-semibold text-primary"
+        className="mt-auto flex min-h-11 items-center justify-center gap-1 border-t border-border bg-gray-50 px-3 text-xs font-semibold text-red-700"
       >
         {t("buyWithAgent")}
         <ArrowUpRight className="h-3.5 w-3.5" />

@@ -6,6 +6,7 @@ import { fetchServerApiJson } from '@/lib/server-api-fetch';
 import type { ApiListResponse, Product } from '@/types';
 import type { FacetsData } from '@/components/filters/types';
 import { DEFAULT_DESKTOP_PRODUCT_LIMIT } from '@/lib/product-list-layout';
+import { buildProductFacetsPath } from '@/lib/product-facets';
 import ProductsPageClient from './ProductsPageClient';
 
 const SITE_URL = getSiteUrl();
@@ -100,7 +101,7 @@ export default async function ProductsPage({
 
   const [initialProductsData, initialFacetsData] = await Promise.all([
     fetchServerApiJson<ApiListResponse<Product>>(`/products?${queryParams.toString()}`),
-    fetchServerApiJson<FacetsData>('/products/facets'),
+    fetchServerApiJson<FacetsData>(buildProductFacetsPath(categories)),
   ]);
 
   return (

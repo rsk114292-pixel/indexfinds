@@ -1,6 +1,6 @@
 import { buildUrlSetXml, getSitemapEntriesByChunk } from '@/lib/sitemap';
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export async function GET(
   _request: Request,
@@ -21,7 +21,7 @@ export async function GET(
   return new Response(xml, {
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
     },
   });
 }

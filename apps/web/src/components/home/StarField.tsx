@@ -33,6 +33,10 @@ const FAR_STARS = createStars(128, 0x1f2026);
 const NEAR_STARS = createStars(34, 0x51a7f13d, true);
 
 export default function StarField({ compact = false }: { compact?: boolean }) {
+  // Mobile uses a much smaller particle set. This keeps the same visual
+  // identity without animating more than 160 individual SVG nodes off-screen.
+  const farStars = compact ? FAR_STARS.slice(0, 48) : FAR_STARS;
+  const nearStars = compact ? NEAR_STARS.slice(0, 12) : NEAR_STARS;
   const mask = compact
     ? "radial-gradient(ellipse 82% 56% at 50% 48%, transparent 0%, rgba(0,0,0,0.18) 45%, rgba(0,0,0,0.82) 78%, black 100%)"
     : "radial-gradient(ellipse 52% 42% at 50% 48%, transparent 0%, rgba(0,0,0,0.12) 46%, rgba(0,0,0,0.78) 76%, black 100%)";
@@ -49,7 +53,7 @@ export default function StarField({ compact = false }: { compact?: boolean }) {
         preserveAspectRatio="xMidYMid slice"
       >
         <g className="star-layer star-layer-far">
-          {FAR_STARS.map((star, index) => (
+          {farStars.map((star, index) => (
             <circle
               key={`far-${index}`}
               className={
@@ -72,7 +76,7 @@ export default function StarField({ compact = false }: { compact?: boolean }) {
           ))}
         </g>
         <g className="star-layer star-layer-near">
-          {NEAR_STARS.map((star, index) => (
+          {nearStars.map((star, index) => (
             <circle
               key={`near-${index}`}
               className={`star-twinkle ${

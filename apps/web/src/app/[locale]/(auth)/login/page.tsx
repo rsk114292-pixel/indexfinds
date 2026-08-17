@@ -29,6 +29,7 @@ import {
   persistAuthRedirect,
 } from '@/lib/auth-redirect';
 import MobileLogin from '../components/mobile/MobileLogin';
+import { PUBLIC_REGISTRATION_ENABLED } from '@/lib/features';
 
 
 const GoogleIcon = () => (
@@ -157,12 +158,14 @@ export default function LoginPage() {
                 <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
                   {t('welcomeBack')}
                 </h2>
-                <p className="mt-2 text-sm text-muted">
-                  {t('noAccount')}{' '}
-                  <Link href={registerHref} className="font-medium text-primary hover:text-primary-hover transition-colors">
-                    {t('signUpFree')} <ArrowRight className="inline w-3.5 h-3.5" />
-                  </Link>
-                </p>
+                {PUBLIC_REGISTRATION_ENABLED ? (
+                  <p className="mt-2 text-sm text-muted">
+                    {t('noAccount')}{' '}
+                    <Link href={registerHref} className="font-medium text-primary hover:text-primary-hover transition-colors">
+                      {t('signUpFree')} <ArrowRight className="inline w-3.5 h-3.5" />
+                    </Link>
+                  </p>
+                ) : null}
               </div>
 
               <div className="grid grid-cols-2 gap-3 mb-6">

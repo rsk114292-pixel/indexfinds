@@ -30,8 +30,8 @@ describe('validateTrackingSettingValue', () => {
   });
 
   it('leaves unrelated settings untouched', () => {
-    expect(
-      validateTrackingSettingValue('site_name', 'IndexFinds'),
-    ).toBe('IndexFinds');
+    expect(validateTrackingSettingValue('site_name', 'IndexFinds')).toBe(
+      'IndexFinds',
+    );
   });
 });

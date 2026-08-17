@@ -37,7 +37,13 @@ export function ColorFilter({
   return (
     <div className="flex flex-col gap-2">
       {/* 流式标签布局 */}
-      <div className="flex flex-wrap gap-2">
+      <div
+        className={`flex flex-wrap gap-2 ${
+          expanded
+            ? 'max-h-72 overflow-y-auto overscroll-contain pr-1'
+            : ''
+        }`}
+      >
         {displayColors.map((color) => {
           const isSelected = selectedColors.includes(color.value);
           return (

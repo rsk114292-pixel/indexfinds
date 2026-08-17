@@ -45,11 +45,23 @@ describe('catalog-route-guard', () => {
     });
   });
 
+  it('matches localized product detail routes', () => {
+    const { getGuardedCatalogDetailRoute } = loadModule();
+
+    expect(
+      getGuardedCatalogDetailRoute('/en/products/sample-product'),
+    ).toEqual({
+      locale: 'en',
+      entityType: 'products',
+      slug: 'sample-product',
+    });
+  });
+
   it('ignores non-detail routes', () => {
     const { getGuardedCatalogDetailRoute } = loadModule();
 
     expect(getGuardedCatalogDetailRoute('/en/brands')).toBeNull();
-    expect(getGuardedCatalogDetailRoute('/en/products/sample-product')).toBeNull();
+    expect(getGuardedCatalogDetailRoute('/en/products')).toBeNull();
     expect(getGuardedCatalogDetailRoute('/robots.txt')).toBeNull();
   });
 
@@ -62,6 +74,21 @@ describe('catalog-route-guard', () => {
     ).resolves.toBe(false);
     expect(mockFetch).toHaveBeenCalledWith(
       'https://api.lolobuyspreadsheets.com/brands/slug/missing-brand',
+      expect.objectContaining({
+        cache: 'no-store',
+      }),
+    );
+  });
+
+  it('checks product slugs against the public product endpoint', async () => {
+    mockFetch.mockResolvedValueOnce({ ok: false, status: 404 });
+    const { guardedCatalogSlugExists } = loadModule();
+
+    await expect(
+      guardedCatalogSlugExists('products', 'pending-product'),
+    ).resolves.toBe(false);
+    expect(mockFetch).toHaveBeenCalledWith(
+      'https://api.lolobuyspreadsheets.com/products/slug/pending-product',
       expect.objectContaining({
         cache: 'no-store',
       }),

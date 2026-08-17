@@ -39,7 +39,10 @@ export function BrandFilter({
   }, [brands, searchText]);
 
   // 显示的品牌
-  const displayBrands = expanded ? filteredBrands : filteredBrands.slice(0, showCount);
+  const showAllResults = expanded || Boolean(searchText);
+  const displayBrands = showAllResults
+    ? filteredBrands
+    : filteredBrands.slice(0, showCount);
   const hasMore = filteredBrands.length > showCount;
 
   const handleCheckboxChange = (value: string) => {
@@ -78,7 +81,13 @@ export function BrandFilter({
       )}
 
       {/* 品牌列表 — 两列网格 */}
-      <div className="grid grid-cols-2 gap-x-2 gap-y-1">
+      <div
+        className={`grid grid-cols-2 gap-x-2 gap-y-1 ${
+          showAllResults
+            ? 'max-h-72 overflow-y-auto overscroll-contain pr-1'
+            : ''
+        }`}
+      >
         {displayBrands.map((brand) => (
           <label
             key={brand.value}

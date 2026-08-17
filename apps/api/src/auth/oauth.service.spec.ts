@@ -1,6 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { ConflictException, BadRequestException } from '@nestjs/common';
+import {
+  ConflictException,
+  BadRequestException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { OAuthService, OAuthProfile } from './oauth.service';
 import { User } from '../users/entities/user.entity';
 import {
@@ -9,6 +13,7 @@ import {
 } from './entities/user-oauth-account.entity';
 
 describe('OAuthService', () => {
+  const originalRegistrationFlag = process.env.PUBLIC_REGISTRATION_ENABLED;
   let service: OAuthService;
   let userRepository: any;
   let oauthAccountRepository: any;
@@ -36,6 +41,7 @@ describe('OAuthService', () => {
   };
 
   beforeEach(async () => {
+    process.env.PUBLIC_REGISTRATION_ENABLED = 'true';
     userRepository = {
       findOne: jest.fn(),
       create: jest.fn((data) => ({ id: 'user-1', ...data })),
@@ -67,12 +73,31 @@ describe('OAuthService', () => {
     service = module.get<OAuthService>(OAuthService);
   });
 
+  afterAll(() => {
+    if (originalRegistrationFlag === undefined) {
+      delete process.env.PUBLIC_REGISTRATION_ENABLED;
+    } else {
+      process.env.PUBLIC_REGISTRATION_ENABLED = originalRegistrationFlag;
+    }
+  });
+
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
 
   describe('findOrCreateUserByOAuth', () => {
     describe('UT-OAUTH-001: OAuth 新用户注册', () => {
+      it('rejects a new OAuth user when public registration is disabled', async () => {
+        process.env.PUBLIC_REGISTRATION_ENABLED = 'false';
+        oauthAccountRepository.findOne.mockResolvedValue(null);
+        userRepository.findOne.mockResolvedValue(null);
+
+        await expect(
+          service.findOrCreateUserByOAuth(mockGoogleProfile),
+        ).rejects.toThrow(ForbiddenException);
+        expect(userRepository.create).not.toHaveBeenCalled();
+      });
+
       it('should create new user and OAuth account for new Google user', async () => {
         oauthAccountRepository.findOne.mockResolvedValue(null); // No existing OAuth
         userRepository.findOne.mockResolvedValue(null); // No existing user

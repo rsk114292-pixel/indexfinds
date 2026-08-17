@@ -45,7 +45,7 @@ export default function MobileBrandScroll() {
         </h2>
         <Link
           href="/brands"
-          className="flex items-center gap-0.5 text-xs text-primary font-medium"
+          className="flex items-center gap-0.5 text-xs font-semibold text-red-700"
         >
           {tc('viewAll')}
           <ArrowRight className="h-3.5 w-3.5" />

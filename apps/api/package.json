@@ -12,7 +12,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/src/main.js",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "lint": "eslint src --fix",
     "test": "jest",
     "typecheck": "tsc -p tsconfig.build.json --noEmit",
     "test:visual-search": "jest --runInBand src/search/visual-search.controller.spec.ts src/search/visual-search.service.spec.ts src/search/visual-search-cache.interceptor.spec.ts",

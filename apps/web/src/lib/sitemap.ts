@@ -14,7 +14,7 @@ export type SitemapEntry = {
 const SITE_URL = getSiteUrl();
 // Each product expands to eight localized URLs with hreflang alternates.
 // Keep chunks comfortably below the 50 MB uncompressed sitemap limit.
-export const PRODUCTS_PER_SITEMAP = 4000;
+export const PRODUCTS_PER_SITEMAP = 2500;
 const LOCALES = ['en', 'zh', 'fr', 'de', 'es', 'it', 'pt', 'ar'] as const;
 
 function buildLocaleAlternates(path: string): Record<string, string> {
@@ -72,7 +72,6 @@ export async function getAllBrandSlugs(): Promise<string[]> {
 function multiLocaleEntries(
   path: string,
   options: {
-    lastModified: Date;
     changeFrequency: string;
     priority: number;
   },
@@ -82,7 +81,6 @@ function multiLocaleEntries(
   return LOCALES.map((locale) => ({
     url: `${SITE_URL}/${locale}${path}`,
     alternates,
-    lastModified: options.lastModified,
     changeFrequency: options.changeFrequency,
     priority: options.priority,
   }));
@@ -103,87 +101,70 @@ export async function getSitemapEntriesByChunk(
       getAllBrandSlugs(),
     ]);
 
-    const now = new Date();
     const staticPages: SitemapEntry[] = [
       ...multiLocaleEntries('', {
-        lastModified: now,
         changeFrequency: 'daily',
         priority: 1.0,
       }),
       ...multiLocaleEntries('/products', {
-        lastModified: now,
         changeFrequency: 'daily',
         priority: 0.9,
       }),
       ...multiLocaleEntries('/categories', {
-        lastModified: now,
         changeFrequency: 'weekly',
         priority: 0.8,
       }),
       ...multiLocaleEntries('/brands', {
-        lastModified: now,
         changeFrequency: 'weekly',
         priority: 0.8,
       }),
       ...multiLocaleEntries('/agents', {
-        lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.8,
       }),
       ...multiLocaleEntries('/agents/compare', {
-        lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.8,
       }),
       ...AGENT_PLATFORMS.flatMap((agent) =>
         multiLocaleEntries(`/agents/${agent.key}`, {
-          lastModified: now,
           changeFrequency: 'monthly',
           priority: 0.7,
         }),
       ),
       ...multiLocaleEntries('/how-it-works', {
-        lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.6,
       }),
       ...multiLocaleEntries('/about', {
-        lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.5,
       }),
       ...multiLocaleEntries('/contact', {
-        lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.5,
       }),
       ...multiLocaleEntries('/help', {
-        lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.5,
       }),
       ...multiLocaleEntries('/privacy', {
-        lastModified: now,
         changeFrequency: 'yearly',
         priority: 0.3,
       }),
       ...multiLocaleEntries('/terms', {
-        lastModified: now,
         changeFrequency: 'yearly',
         priority: 0.3,
       }),
       ...multiLocaleEntries('/cookies', {
-        lastModified: now,
         changeFrequency: 'yearly',
         priority: 0.3,
       }),
       ...multiLocaleEntries('/shipping', {
-        lastModified: now,
         changeFrequency: 'yearly',
         priority: 0.3,
       }),
       ...multiLocaleEntries('/returns', {
-        lastModified: now,
         changeFrequency: 'yearly',
         priority: 0.3,
       }),
@@ -191,7 +172,6 @@ export async function getSitemapEntriesByChunk(
 
     const categoryPages = categorySlugs.flatMap((slug) =>
       multiLocaleEntries(`/categories/${slug}`, {
-        lastModified: now,
         changeFrequency: 'weekly',
         priority: 0.7,
       }),
@@ -199,7 +179,6 @@ export async function getSitemapEntriesByChunk(
 
     const brandPages = brandSlugs.flatMap((slug) =>
       multiLocaleEntries(`/brands/${slug}`, {
-        lastModified: now,
         changeFrequency: 'weekly',
         priority: 0.8,
       }),
@@ -209,11 +188,8 @@ export async function getSitemapEntriesByChunk(
   }
 
   const slugs = await getProductSlugsPage(id, PRODUCTS_PER_SITEMAP);
-  const now = new Date();
-
   return slugs.flatMap((slug) =>
     multiLocaleEntries(`/products/${slug}`, {
-      lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.9,
     }),
@@ -262,12 +238,12 @@ export function buildUrlSetXml(entries: SitemapEntry[]): string {
 
 export function buildSitemapIndexXml(ids: number[]): string {
   const body = ids
-    .map((id) => {
-      const now = new Date().toISOString();
-      return `<sitemap><loc>${escapeXml(
+    .map(
+      (id) =>
+        `<sitemap><loc>${escapeXml(
         `${SITE_URL}/sitemaps/${id}`,
-      )}</loc><lastmod>${now}</lastmod></sitemap>`;
-    })
+      )}</loc></sitemap>`,
+    )
     .join('');
 
   return (

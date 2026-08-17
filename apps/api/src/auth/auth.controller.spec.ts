@@ -1,5 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UnauthorizedException, BadRequestException } from '@nestjs/common';
+import {
+  UnauthorizedException,
+  BadRequestException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { LoginLogService } from './login-log.service';
@@ -14,6 +18,7 @@ jest.mock('fs', () => ({
 import * as fs from 'fs';
 
 describe('AuthController', () => {
+  const originalRegistrationFlag = process.env.PUBLIC_REGISTRATION_ENABLED;
   let controller: AuthController;
   let authService: Record<string, jest.Mock>;
   let tokenService: Record<string, jest.Mock>;
@@ -60,6 +65,7 @@ describe('AuthController', () => {
   };
 
   beforeEach(async () => {
+    process.env.PUBLIC_REGISTRATION_ENABLED = 'true';
     authService = {
       register: jest.fn().mockResolvedValue(mockTokenResult),
       login: jest.fn().mockResolvedValue(mockTokenResult),
@@ -143,6 +149,14 @@ describe('AuthController', () => {
     controller = module.get<AuthController>(AuthController);
   });
 
+  afterAll(() => {
+    if (originalRegistrationFlag === undefined) {
+      delete process.env.PUBLIC_REGISTRATION_ENABLED;
+    } else {
+      process.env.PUBLIC_REGISTRATION_ENABLED = originalRegistrationFlag;
+    }
+  });
+
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
@@ -155,6 +169,17 @@ describe('AuthController', () => {
       password: 'StrongP@ss1',
       username: 'newuser',
     };
+
+    it('rejects new public accounts when registration is disabled', async () => {
+      process.env.PUBLIC_REGISTRATION_ENABLED = 'false';
+      const req = createMockRequest();
+      const res = createMockResponse();
+
+      await expect(
+        controller.register(registerDto, req as any, res as any),
+      ).rejects.toThrow(ForbiddenException);
+      expect(authService.register).not.toHaveBeenCalled();
+    });
 
     it('should register user, set refresh cookie, and return accessToken + user', async () => {
       const req = createMockRequest();

@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const pathWithoutLocale = pathname.replace(/^\/(en|zh|fr|de|es|it|pt|ar)/, '') || '/';
 
   return {
+    metadataBase: new URL(SITE_URL),
     title: {
       default: homeSeo.title,
       template: `%s | ${getSiteName()}`,

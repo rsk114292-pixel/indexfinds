@@ -130,6 +130,17 @@ describe('BM25RankingService', () => {
       disabledService.onModuleDestroy();
       delete process.env.BM25_REFRESH_STATS_ENABLED;
     });
+
+    it('keeps the expensive full-catalog refresh opt-in by default', () => {
+      jest.clearAllMocks();
+      delete process.env.BM25_REFRESH_STATS_ENABLED;
+
+      const defaultService = new BM25RankingService(mockDataSource as any);
+      defaultService.onModuleInit();
+
+      expect(mockDataSource.createQueryRunner).not.toHaveBeenCalled();
+      defaultService.onModuleDestroy();
+    });
   });
 
   describe('calculateRelevance', () => {

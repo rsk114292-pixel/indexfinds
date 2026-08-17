@@ -25,7 +25,7 @@ describe('sitemap', () => {
       json: async () => ({ total: 8001 }),
     });
 
-    await expect(getSitemapChunkIds()).resolves.toEqual([0, 1, 2, 3]);
+    await expect(getSitemapChunkIds()).resolves.toEqual([0, 1, 2, 3, 4]);
   });
 
   it('adds locale alternates to generated entries', async () => {

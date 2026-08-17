@@ -113,6 +113,22 @@ Create a separate Vercel project rooted at `apps/web`. Do not relink or overwrit
 
 Acceptance must cover desktop and mobile home, products, brands, categories, agent directory, comparison, product detail, login, email links and admin access.
 
+Before promoting the preview, confirm these release gates:
+
+- Keep `PUBLIC_REGISTRATION_ENABLED` and
+  `NEXT_PUBLIC_REGISTRATION_ENABLED` identical. Leave both `false` until new
+  account creation is intentionally reopened.
+- Verify a disabled or pending product slug returns an HTTP 404, not only a
+  rendered not-found screen.
+- Confirm `/public/stats` matches the active product count and that the product
+  sitemap contains only public slugs.
+- Send a real password-reset email from the production sender domain before
+  exposing the forgot-password link.
+- Review administrator login logs, use a unique password, and enable the IP
+  allowlist when the operator has a stable public IP.
+- Keep at least 20% disk space free, verify the daily R2 object and checksum,
+  and record a restore drill separately from ordinary deployment.
+
 ## 4. Final cutover
 
 1. Back up the current IndexFinds site configuration and DNS records.

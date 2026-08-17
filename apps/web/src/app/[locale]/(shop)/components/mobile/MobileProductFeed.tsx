@@ -93,7 +93,7 @@ export default function MobileProductFeed() {
         </h2>
         <Link
           href="/products"
-          className="flex items-center gap-0.5 text-xs text-primary font-medium"
+          className="flex items-center gap-0.5 text-xs text-red-700 font-semibold"
         >
           {total > 0 ? tc('viewAll') : tc('loading')}
           <ArrowRight className="h-3.5 w-3.5" />

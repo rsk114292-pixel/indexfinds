@@ -59,7 +59,7 @@ export default function MobileSearchEntry({
         <Search className="h-4.5 w-4.5 shrink-0 text-muted/90" />
         <div className="flex min-w-0 items-center gap-1.5 overflow-hidden">
           <span
-            className={`truncate text-sm ${isPlaceholder ? "text-muted" : "text-foreground"}`}
+            className={`truncate text-sm ${isPlaceholder ? "text-slate-600" : "text-foreground"}`}
           >
             {displayText}
           </span>

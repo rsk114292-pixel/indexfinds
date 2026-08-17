@@ -25,7 +25,10 @@ import { useAuthStore } from '@/stores/useAuthStore';
 import { useCurrentPlatform } from '@/stores/usePlatformStore';
 import { useCurrencyStore } from '@/stores/useCurrencyStore';
 import { type Locale } from '@/i18n/config';
-import { PUBLIC_AUTH_ENTRY_ENABLED } from '@/lib/features';
+import {
+  PUBLIC_AUTH_ENTRY_ENABLED,
+  PUBLIC_REGISTRATION_ENABLED,
+} from '@/lib/features';
 import { MobileDrawer } from './ui/MobileDrawer';
 import MobilePlatformSheet from './MobilePlatformSheet';
 import MobileSettingsSheet from './MobileSettingsSheet';
@@ -128,13 +131,15 @@ export default function MobileHamburgerDrawer({
                 >
                   {t('login')}
                 </Link>
-                <Link
-                  href="/register"
-                  onClick={onClose}
-                  className="flex-1 rounded-lg border border-gray-200 py-2.5 text-center text-sm font-medium text-foreground active:bg-gray-50 transition-colors"
-                >
-                  {t('register')}
-                </Link>
+                {PUBLIC_REGISTRATION_ENABLED ? (
+                  <Link
+                    href="/register"
+                    onClick={onClose}
+                    className="flex-1 rounded-lg border border-gray-200 py-2.5 text-center text-sm font-medium text-foreground active:bg-gray-50 transition-colors"
+                  >
+                    {t('register')}
+                  </Link>
+                ) : null}
               </div>
             ) : null}
           </div>
