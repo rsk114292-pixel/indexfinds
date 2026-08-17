@@ -68,7 +68,17 @@ Before production cutover, configure a storage account that is independent from
 the VPS. The backup job requires `age` and `rclone`; the matching age private
 identity must be retained outside the server.
 
-1. Configure an rclone remote and verify that the VPS can write to it.
+1. Configure an rclone remote and verify that the VPS can write to it. For a
+   bucket-scoped Cloudflare R2 token, run the interactive helper in a VPS
+   terminal so the secret never appears in shell history:
+
+   ```sh
+   INDEXFINDS_R2_ENDPOINT=https://ACCOUNT_ID.r2.cloudflarestorage.com \
+     deploy/indexfinds/scripts/configure-r2-credentials.sh
+   ```
+
+   The helper writes `/opt/indexfinds/env/rclone.conf` with mode `0600` and
+   verifies private read/write/delete access to `indexfinds-postgres-backups`.
 2. Install `backup.env.example` as `/opt/indexfinds/env/backup.env`, replace all
    placeholders, and set mode `0600`.
 3. Install both scripts with mode `0750`, then install the service and timer
