@@ -56,6 +56,11 @@ export default function ProductSourceMeta({
           year: "numeric",
           month: "short",
           day: "numeric",
+          // Keep the server-rendered date identical to the hydrated client.
+          // Vercel renders in UTC while a visitor's browser may use another
+          // timezone, which can otherwise move late-night timestamps forward
+          // or backward by one calendar day during hydration.
+          timeZone: "UTC",
         }).format(updatedDate)
       : null;
   const reportUrl = buildWhatsAppHelpUrl(
