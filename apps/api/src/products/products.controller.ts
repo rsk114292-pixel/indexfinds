@@ -233,6 +233,13 @@ export class ProductsController {
     return this.productsService.findBySlug(slug);
   }
 
+  @Public()
+  @Get('source/:sourceProductId')
+  @Throttle({ long: { limit: 120, ttl: 60000 } })
+  findBySourceProductId(@Param('sourceProductId') sourceProductId: string) {
+    return this.productsService.findActiveBySourceProductId(sourceProductId);
+  }
+
   /**
    * 获取已发布商品的 slugs（用于 Sitemap 生成）
    * GET /products/slugs         → 全量

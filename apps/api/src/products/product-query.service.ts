@@ -118,6 +118,12 @@ export class ProductQueryService implements OnModuleInit {
     return this.detailService.findByWeidianItemId(weidianItemId);
   }
 
+  async findActiveBySourceProductId(
+    sourceProductId: string,
+  ): Promise<Pick<Product, 'id' | 'slug'>> {
+    return this.detailService.findActiveBySourceProductId(sourceProductId);
+  }
+
   async getAllSlugs(
     page?: number,
     limit?: number,

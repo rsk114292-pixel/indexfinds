@@ -13,6 +13,8 @@ import { fetchServerApiJson } from '@/lib/server-api-fetch';
 import { getSiteUrl, getSiteName } from '@/lib/site-config';
 import { getHomeSeoCopy } from '@/lib/home-seo';
 import type { TrackingConfig } from '@/lib/tracking-config';
+import DocumentLocaleSync from '@/components/DocumentLocaleSync';
+import type { Locale } from '@/i18n/config';
 
 const SITE_URL = getSiteUrl();
 
@@ -106,6 +108,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider messages={messages}>
+      <DocumentLocaleSync locale={locale as Locale} />
       <CookieConsentProvider>
         <OrganizationJsonLd description={homeSeo.description} locale={locale} />
         <VisitTracker />

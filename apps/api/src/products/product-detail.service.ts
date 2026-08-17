@@ -96,6 +96,36 @@ export class ProductDetailService {
     });
   }
 
+  async findActiveBySourceProductId(
+    sourceProductId: string,
+  ): Promise<Pick<Product, 'id' | 'slug'>> {
+    const normalizedSourceProductId = sourceProductId.trim();
+    if (!/^\d{5,20}$/.test(normalizedSourceProductId)) {
+      throw new NotFoundException('未找到对应的已上架商品');
+    }
+
+    const product = await this.productRepository.findOne({
+      where: [
+        {
+          weidianItemId: normalizedSourceProductId,
+          status: ProductStatus.ACTIVE,
+        },
+        {
+          splitSourceWeidianId: normalizedSourceProductId,
+          status: ProductStatus.ACTIVE,
+        },
+      ],
+      select: ['id', 'slug'],
+      order: { createdAt: 'DESC' },
+    });
+
+    if (!product) {
+      throw new NotFoundException('未找到对应的已上架商品');
+    }
+
+    return { id: product.id, slug: product.slug };
+  }
+
   async getAllSlugs(
     page?: number,
     limit?: number,

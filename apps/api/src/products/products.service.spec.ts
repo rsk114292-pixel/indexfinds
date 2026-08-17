@@ -157,6 +157,7 @@ describe('ProductsService', () => {
         .fn()
         .mockResolvedValue(undefined),
       findByWeidianItemId: jest.fn(),
+      findActiveBySourceProductId: jest.fn(),
       getAllSlugs: jest.fn(),
       search: jest.fn().mockResolvedValue([]),
       generateBuyLink: jest.fn(),

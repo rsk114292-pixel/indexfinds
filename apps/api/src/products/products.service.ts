@@ -572,6 +572,14 @@ export class ProductsService {
     return this.productQueryService.findByWeidianItemId(weidianItemId);
   }
 
+  async findActiveBySourceProductId(
+    sourceProductId: string,
+  ): Promise<Pick<Product, 'id' | 'slug'>> {
+    return this.productQueryService.findActiveBySourceProductId(
+      sourceProductId,
+    );
+  }
+
   // 更新商品
   async update(
     id: string,

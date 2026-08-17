@@ -11,7 +11,7 @@ describe("PlatformLogoBadge", () => {
     );
   });
 
-  it("lets an uploaded managed logo override the bundled logo", () => {
+  it("prefers the bundled official logo over an uploaded managed logo", () => {
     render(
       <PlatformLogoBadge
         platformKey="loongbuy"
@@ -22,11 +22,11 @@ describe("PlatformLogoBadge", () => {
 
     expect(screen.getByRole("img", { name: "Loongbuy" })).toHaveAttribute(
       "src",
-      "/uploads/platform-loongbuy.webp",
+      "/images/agents/loongbuy.ico",
     );
   });
 
-  it("falls back from a missing managed logo to the bundled official logo", () => {
+  it("falls back from a missing bundled logo to the managed logo", () => {
     render(
       <PlatformLogoBadge
         platformKey="loongbuy"
@@ -39,7 +39,22 @@ describe("PlatformLogoBadge", () => {
 
     expect(screen.getByRole("img", { name: "Loongbuy" })).toHaveAttribute(
       "src",
-      "/images/agents/loongbuy.ico",
+      "/uploads/platform-loongbuy.webp",
+    );
+  });
+
+  it("uses a managed logo for a platform without a bundled asset", () => {
+    render(
+      <PlatformLogoBadge
+        platformKey="custom-platform"
+        name="Custom Platform"
+        logoUrl="/uploads/custom-platform.webp"
+      />,
+    );
+
+    expect(screen.getByRole("img", { name: "Custom Platform" })).toHaveAttribute(
+      "src",
+      "/uploads/custom-platform.webp",
     );
   });
 
