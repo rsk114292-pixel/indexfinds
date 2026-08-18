@@ -11,12 +11,14 @@ interface FeaturedBrandCardProps {
   brand: Brand;
   className?: string;
   compact?: boolean;
+  priority?: boolean;
 }
 
 export default memo(function FeaturedBrandCard({
   brand,
   className,
   compact = false,
+  priority = false,
 }: FeaturedBrandCardProps) {
   const t = useTranslations('brands');
 
@@ -36,6 +38,7 @@ export default memo(function FeaturedBrandCard({
           name={brand.name}
           logoUrl={brand.logoUrl}
           size="xl"
+          priority={priority}
           className={cn(
             'transition-transform duration-200 group-hover:scale-105',
             compact && 'shadow-sm',

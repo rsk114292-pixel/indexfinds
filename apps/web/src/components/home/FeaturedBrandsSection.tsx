@@ -70,9 +70,9 @@ export default function FeaturedBrandsSection({
         </div>
       ) : (
         <StaggerChildren className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6">
-          {brands.map((brand) => (
+          {brands.map((brand, index) => (
             <motion.div key={brand.id} variants={staggerItemVariants}>
-              <FeaturedBrandCard brand={brand} compact />
+              <FeaturedBrandCard brand={brand} compact priority={index < 6} />
             </motion.div>
           ))}
         </StaggerChildren>

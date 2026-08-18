@@ -1,9 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { Skeleton } from '@/components/ui/Skeleton';
 
 /**
  * 根据品牌名称生成稳定的渐变色
@@ -38,6 +37,7 @@ interface BrandLogoProps {
   logoUrl?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
+  priority?: boolean;
 }
 
 const sizeMap = {
@@ -47,15 +47,57 @@ const sizeMap = {
   xl: { container: 'w-16 h-16', text: 'text-2xl', imgSize: 64 },
 };
 
-export default function BrandLogo({ name, logoUrl, size = 'md', className }: BrandLogoProps) {
+function getBrandInitials(name: string): string {
+  const initials = name
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word.charAt(0))
+    .join('')
+    .toUpperCase();
+
+  return initials || '?';
+}
+
+export default function BrandLogo({
+  name,
+  logoUrl,
+  size = 'md',
+  className,
+  priority = false,
+}: BrandLogoProps) {
   const { container, text, imgSize } = sizeMap[size];
   const gradient = getBrandGradient(name);
+  const initials = getBrandInitials(name);
+  const imageRef = useRef<HTMLImageElement>(null);
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setHasError(false);
     setIsLoaded(false);
+
+    if (!logoUrl) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      const image = imageRef.current;
+      if (image?.complete && image.naturalWidth > 0) {
+        setIsLoaded(true);
+      }
+    });
+
+    const timeout = window.setTimeout(() => {
+      const image = imageRef.current;
+      if (!image?.complete || image.naturalWidth === 0) {
+        setHasError(true);
+      }
+    }, 8000);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timeout);
+    };
   }, [logoUrl]);
 
   if (logoUrl && !hasError) {
@@ -67,21 +109,30 @@ export default function BrandLogo({ name, logoUrl, size = 'md', className }: Bra
           className,
         )}
       >
-        {!isLoaded && (
-          <div className="absolute inset-0 z-10 p-1">
-            <Skeleton className="h-full w-full rounded-[10px]" />
-          </div>
-        )}
+        <div
+          aria-hidden="true"
+          className={cn(
+            'absolute inset-1 flex items-center justify-center rounded-[10px] transition-opacity duration-200',
+            isLoaded && 'opacity-0',
+          )}
+          style={{ background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})` }}
+        >
+          <span className={cn(text, 'font-bold text-white drop-shadow-sm')}>{initials}</span>
+        </div>
         <Image
+          ref={imageRef}
           src={logoUrl}
           alt={name}
           width={imgSize}
           height={imgSize}
+          priority={priority}
           className={cn(
-            'object-contain w-full h-full p-1 transition-opacity duration-200',
+            'relative z-10 object-contain w-full h-full p-1 transition-opacity duration-200',
             isLoaded ? 'opacity-100' : 'opacity-0',
           )}
-          onLoad={() => setIsLoaded(true)}
+          onLoad={(event) => {
+            if (event.currentTarget.naturalWidth > 0) setIsLoaded(true);
+          }}
           onError={() => setHasError(true)}
         />
       </div>
@@ -93,9 +144,7 @@ export default function BrandLogo({ name, logoUrl, size = 'md', className }: Bra
       className={cn(container, 'rounded-xl flex-shrink-0 flex items-center justify-center', className)}
       style={{ background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})` }}
     >
-      <span className={cn(text, 'font-bold text-white drop-shadow-sm')}>
-        {name.charAt(0).toUpperCase()}
-      </span>
+      <span className={cn(text, 'font-bold text-white drop-shadow-sm')}>{initials}</span>
     </div>
   );
 }
