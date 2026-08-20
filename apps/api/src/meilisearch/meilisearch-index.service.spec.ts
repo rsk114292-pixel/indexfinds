@@ -71,6 +71,7 @@ describe('MeilisearchIndexService', () => {
     expect(indexApi.updateSettings).toHaveBeenCalledTimes(1);
     expect(indexApi.updateSettings).toHaveBeenCalledWith(
       expect.objectContaining({
+        distinctAttribute: 'catalogCoverKey',
         filterableAttributes: expect.arrayContaining(['productGroupId']),
       }),
     );

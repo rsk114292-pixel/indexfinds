@@ -158,14 +158,17 @@ describe('MeilisearchSyncService', () => {
       expect(doc.description).toBe('Great shoe');
     });
 
-    it('should index the catalog grouping key', async () => {
+    it('should index catalog grouping keys without collapsing image-less products', async () => {
       const doc = await service.transformProduct(mockProduct as any);
+      expect(doc.catalogCoverKey).toBe('https://img.com/1.jpg');
       expect(doc.productGroupId).toBe('group-1');
 
       const ungrouped = await service.transformProduct({
         ...mockProduct,
+        mainImage: null,
         productGroupId: null,
       } as any);
+      expect(ungrouped.catalogCoverKey).toBe('prod-1');
       expect(ungrouped.productGroupId).toBe('prod-1');
     });
 

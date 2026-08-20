@@ -134,9 +134,14 @@ export class ProductCatalogQueryService {
 
   private async getExactActiveProductCount(): Promise<number | null> {
     try {
-      return await this.productRepository.count({
-        where: { status: ProductStatus.ACTIVE },
-      });
+      const rows = await this.productRepository.manager.query(
+        `SELECT COUNT(DISTINCT COALESCE(NULLIF("mainImage", ''), id::text))::int AS count
+         FROM products
+         WHERE status = $1`,
+        [ProductStatus.ACTIVE],
+      );
+
+      return rows[0]?.count == null ? null : Number(rows[0].count);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       this.logger.warn(`Failed to load exact active product count: ${message}`);

@@ -11,6 +11,7 @@ const MAX_VALUES_PER_FACET = 5000;
 const MAX_TOTAL_HITS = 250000;
 
 const INDEX_SETTINGS: Settings = {
+  distinctAttribute: 'catalogCoverKey',
   searchableAttributes: [
     'title',
     'brandName',

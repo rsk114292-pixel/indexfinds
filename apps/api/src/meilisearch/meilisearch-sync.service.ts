@@ -15,6 +15,7 @@ import { ProductStatus } from '../products/product-status';
 
 export interface MeilisearchProduct {
   id: string;
+  catalogCoverKey: string;
   productGroupId: string;
   title: string;
   originalTitle: string;
@@ -301,6 +302,9 @@ export class MeilisearchSyncService implements OnModuleInit {
 
     return {
       id: product.id,
+      // Keep every SKU that has its own image, but collapse cards that reuse
+      // the exact same fallback cover. Products without an image stay unique.
+      catalogCoverKey: product.mainImage || product.id,
       // Ungrouped products must remain individually visible when Meilisearch
       // applies catalog-level distinct grouping.
       productGroupId: product.productGroupId || product.id,

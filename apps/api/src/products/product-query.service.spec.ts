@@ -907,15 +907,16 @@ describe('ProductQueryService', () => {
           facetDistribution: {},
           facetStats: {},
         });
-        productRepository.count.mockResolvedValue(53322);
+        productRepository.manager.query.mockResolvedValue([{ count: 57704 }]);
 
         const result = await service.findAll({ page: 1, limit: 10 } as any);
 
-        expect(productRepository.count).toHaveBeenCalledWith({
-          where: { status: ProductStatus.ACTIVE },
-        });
-        expect(result.meta.total).toBe(53322);
-        expect(result.meta.totalPages).toBe(Math.ceil(53322 / 10));
+        expect(productRepository.manager.query).toHaveBeenCalledWith(
+          expect.stringContaining('COUNT(DISTINCT'),
+          [ProductStatus.ACTIVE],
+        );
+        expect(result.meta.total).toBe(57704);
+        expect(result.meta.totalPages).toBe(Math.ceil(57704 / 10));
       });
 
       it('should pass filter, sort, facets, and pagination to Meilisearch', async () => {
