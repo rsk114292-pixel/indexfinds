@@ -907,18 +907,15 @@ describe('ProductQueryService', () => {
           facetDistribution: {},
           facetStats: {},
         });
-        productRepository.manager.query.mockResolvedValueOnce([
-          { count: 3579 },
-        ]);
+        productRepository.count.mockResolvedValue(53322);
 
         const result = await service.findAll({ page: 1, limit: 10 } as any);
 
-        expect(productRepository.manager.query).toHaveBeenCalledWith(
-          expect.stringContaining('COUNT(DISTINCT COALESCE'),
-          [ProductStatus.ACTIVE],
-        );
-        expect(result.meta.total).toBe(3579);
-        expect(result.meta.totalPages).toBe(Math.ceil(3579 / 10));
+        expect(productRepository.count).toHaveBeenCalledWith({
+          where: { status: ProductStatus.ACTIVE },
+        });
+        expect(result.meta.total).toBe(53322);
+        expect(result.meta.totalPages).toBe(Math.ceil(53322 / 10));
       });
 
       it('should pass filter, sort, facets, and pagination to Meilisearch', async () => {
@@ -1530,7 +1527,6 @@ describe('ProductQueryService', () => {
         expect(meilisearchService.search).toHaveBeenCalledWith('nike', {
           hitsPerPage: 5,
           page: 1,
-          distinct: 'productGroupId',
           filter: 'status = "active"',
         });
         expect(result).toHaveLength(1);

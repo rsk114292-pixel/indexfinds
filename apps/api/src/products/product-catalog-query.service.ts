@@ -134,14 +134,9 @@ export class ProductCatalogQueryService {
 
   private async getExactActiveProductCount(): Promise<number | null> {
     try {
-      const rows = await this.productRepository.manager.query(
-        `SELECT COUNT(DISTINCT COALESCE("productGroupId"::text, id::text))::int AS count
-         FROM products
-         WHERE status = $1`,
-        [ProductStatus.ACTIVE],
-      );
-
-      return rows[0]?.count == null ? null : Number(rows[0].count);
+      return await this.productRepository.count({
+        where: { status: ProductStatus.ACTIVE },
+      });
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       this.logger.warn(`Failed to load exact active product count: ${message}`);
@@ -540,7 +535,6 @@ export class ProductCatalogQueryService {
             this.meilisearchService.search(searchTerm, {
               hitsPerPage: limit,
               page: 1,
-              distinct: 'productGroupId',
               filter: this.buildMeilisearchFilter(
                 stage === 'primary'
                   ? context.enrichedQuery
@@ -1255,7 +1249,6 @@ export class ProductCatalogQueryService {
             facets: meiliSearchFacets,
             page,
             hitsPerPage: limit,
-            distinct: 'productGroupId',
           }),
         getHitCount: (result) => result.totalHits ?? 0,
       });
@@ -1501,7 +1494,6 @@ export class ProductCatalogQueryService {
             facets: facetAttributes,
             hitsPerPage: 0,
             page: 1,
-            distinct: 'productGroupId',
           }),
         getHitCount: (result) => result.totalHits ?? 0,
       }),
