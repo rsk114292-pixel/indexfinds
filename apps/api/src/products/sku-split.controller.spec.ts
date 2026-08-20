@@ -19,7 +19,9 @@ const mockSkuSplitService = {
 };
 
 const mockProductRepository = {
-  find: jest.fn(),
+  manager: {
+    query: jest.fn(),
+  },
 };
 
 describe('SkuSplitController', () => {
@@ -45,38 +47,27 @@ describe('SkuSplitController', () => {
           priceMin: 99,
         },
       ];
-      mockProductRepository.find.mockResolvedValue(mockSiblings);
+      mockProductRepository.manager.query.mockResolvedValue(mockSiblings);
 
       const result = await controller.getSiblings('group-uuid');
 
       expect(result).toHaveLength(1);
-      expect(mockProductRepository.find).toHaveBeenCalledWith({
-        where: {
-          productGroupId: 'group-uuid',
-          status: ProductStatus.ACTIVE,
-        },
-        select: [
-          'id',
-          'slug',
-          'title',
-          'mainImage',
-          'skuVariantKey',
-          'priceMin',
-        ],
-        order: { createdAt: 'ASC' },
-      });
+      expect(mockProductRepository.manager.query).toHaveBeenCalledWith(
+        expect.stringContaining('split_item."variantValue"'),
+        ['group-uuid', ProductStatus.ACTIVE],
+      );
     });
 
     it('无 productGroupId 返回空数组', async () => {
       const result = await controller.getSiblings('');
       expect(result).toEqual([]);
-      expect(mockProductRepository.find).not.toHaveBeenCalled();
+      expect(mockProductRepository.manager.query).not.toHaveBeenCalled();
     });
 
     it('undefined productGroupId 返回空数组', async () => {
       const result = await controller.getSiblings(undefined as any);
       expect(result).toEqual([]);
-      expect(mockProductRepository.find).not.toHaveBeenCalled();
+      expect(mockProductRepository.manager.query).not.toHaveBeenCalled();
     });
   });
 

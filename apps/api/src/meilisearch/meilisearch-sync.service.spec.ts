@@ -18,6 +18,7 @@ describe('MeilisearchSyncService', () => {
 
   const mockProduct = {
     id: 'prod-1',
+    productGroupId: 'group-1',
     title: 'Nike Air Force 1',
     originalTitle: '耐克空军一号',
     description: '<p>Great shoe</p>',
@@ -155,6 +156,17 @@ describe('MeilisearchSyncService', () => {
     it('should strip HTML from description', async () => {
       const doc = await service.transformProduct(mockProduct as any);
       expect(doc.description).toBe('Great shoe');
+    });
+
+    it('should index the catalog grouping key', async () => {
+      const doc = await service.transformProduct(mockProduct as any);
+      expect(doc.productGroupId).toBe('group-1');
+
+      const ungrouped = await service.transformProduct({
+        ...mockProduct,
+        productGroupId: null,
+      } as any);
+      expect(ungrouped.productGroupId).toBe('prod-1');
     });
 
     it('should map brand object', async () => {

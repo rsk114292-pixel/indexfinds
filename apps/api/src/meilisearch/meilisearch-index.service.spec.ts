@@ -69,6 +69,11 @@ describe('MeilisearchIndexService', () => {
       primaryKey: 'id',
     });
     expect(indexApi.updateSettings).toHaveBeenCalledTimes(1);
+    expect(indexApi.updateSettings).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterableAttributes: expect.arrayContaining(['productGroupId']),
+      }),
+    );
     expect(indexApi.updateStopWords).toHaveBeenCalledTimes(1);
     expect(indexApi.updateSynonyms).toHaveBeenCalledTimes(1);
   });

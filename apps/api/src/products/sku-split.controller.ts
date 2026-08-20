@@ -104,16 +104,22 @@ export class SkuSplitController {
       return [];
     }
 
-    const siblings = await this.productRepository.find({
-      where: {
-        productGroupId,
-        status: ProductStatus.ACTIVE,
-      },
-      select: ['id', 'slug', 'title', 'mainImage', 'skuVariantKey', 'priceMin'],
-      order: { createdAt: 'ASC' },
-    });
-
-    return siblings;
+    return this.productRepository.manager.query(
+      `SELECT p.id,
+              p.slug,
+              p.title,
+              p."mainImage",
+              p."skuVariantKey",
+              p."priceMin",
+              split_item."variantValue"
+       FROM products p
+       LEFT JOIN sku_split_items split_item
+         ON split_item."productId" = p.id
+       WHERE p."productGroupId" = $1
+         AND p.status = $2
+       ORDER BY p."createdAt" ASC`,
+      [productGroupId, ProductStatus.ACTIVE],
+    );
   }
 
   /**

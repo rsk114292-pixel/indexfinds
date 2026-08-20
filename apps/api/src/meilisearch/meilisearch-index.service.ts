@@ -26,6 +26,7 @@ const INDEX_SETTINGS: Settings = {
   ],
   filterableAttributes: [
     'status',
+    'productGroupId',
     'brandSlug',
     'allCategorySlugs',
     'colors',

@@ -15,6 +15,7 @@ import { ProductStatus } from '../products/product-status';
 
 export interface MeilisearchProduct {
   id: string;
+  productGroupId: string;
   title: string;
   originalTitle: string;
   description: string;
@@ -300,6 +301,9 @@ export class MeilisearchSyncService implements OnModuleInit {
 
     return {
       id: product.id,
+      // Ungrouped products must remain individually visible when Meilisearch
+      // applies catalog-level distinct grouping.
+      productGroupId: product.productGroupId || product.id,
       title: product.title || '',
       originalTitle: product.originalTitle || '',
       description: this.stripHtml(product.description || ''),
