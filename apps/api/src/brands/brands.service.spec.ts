@@ -691,6 +691,153 @@ describe('BrandsService', () => {
 
   // ========== downloadAndSaveLogo SSRF protection ==========
 
+  describe('safe brand logo discovery', () => {
+    it('uses the structured Wikidata P154 claim', async () => {
+      mockedAxios.get
+        .mockResolvedValueOnce({
+          data: {
+            query: {
+              pages: [
+                {
+                  title: 'Apple Inc.',
+                  pageprops: { wikibase_item: 'Q312' },
+                },
+              ],
+            },
+          },
+        } as any)
+        .mockResolvedValueOnce({
+          data: {
+            entities: {
+              Q312: {
+                descriptions: {
+                  en: { value: 'American multinational technology company' },
+                },
+                claims: {
+                  P154: [
+                    {
+                      rank: 'normal',
+                      mainsnak: {
+                        datavalue: { value: 'Apple logo black.svg' },
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        } as any);
+
+      const result = await (service as any).fetchWikidataLogoCandidates([
+        { id: 'apple-id', name: 'Apple', slug: 'apple' },
+      ]);
+
+      expect(result.get('apple-id')).toEqual({
+        imageUrl:
+          'https://commons.wikimedia.org/wiki/Special:Redirect/file/Apple%20logo%20black.svg?width=500',
+        source: 'wikidata:Q312',
+      });
+      expect(mockedAxios.get).toHaveBeenNthCalledWith(
+        1,
+        'https://en.wikipedia.org/w/api.php',
+        expect.objectContaining({
+          params: expect.objectContaining({
+            prop: 'pageprops',
+            titles: 'Apple Inc.',
+          }),
+        }),
+      );
+    });
+
+    it('does not accept an unrelated page image when P154 is absent', async () => {
+      mockedAxios.get
+        .mockResolvedValueOnce({
+          data: {
+            query: {
+              pages: [
+                {
+                  title: 'Apple Inc.',
+                  pageprops: { wikibase_item: 'Q312' },
+                  images: [{ title: 'File:Wikibooks-logo.svg' }],
+                },
+              ],
+            },
+          },
+        } as any)
+        .mockResolvedValueOnce({
+          data: {
+            entities: {
+              Q312: {
+                descriptions: {
+                  en: { value: 'American multinational technology company' },
+                },
+                claims: {},
+              },
+            },
+          },
+        } as any);
+
+      const result = await (service as any).fetchWikidataLogoCandidates([
+        { id: 'apple-id', name: 'Apple', slug: 'apple' },
+      ]);
+
+      expect(result.has('apple-id')).toBe(false);
+    });
+
+    it('rejects a place that happens to have a P154 emblem', async () => {
+      mockedAxios.get
+        .mockResolvedValueOnce({
+          data: {
+            query: {
+              pages: [
+                {
+                  title: 'Casablanca',
+                  pageprops: { wikibase_item: 'Q7903' },
+                },
+              ],
+            },
+          },
+        } as any)
+        .mockResolvedValueOnce({
+          data: {
+            entities: {
+              Q7903: {
+                descriptions: { en: { value: 'largest city in Morocco' } },
+                claims: {
+                  P154: [
+                    {
+                      rank: 'normal',
+                      mainsnak: {
+                        datavalue: { value: 'Casablanca city logo.svg' },
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        } as any);
+
+      const result = await (service as any).fetchWikidataLogoCandidates([
+        { id: 'casablanca-id', name: 'Casablanca', slug: 'casablanca' },
+      ]);
+
+      expect(result.has('casablanca-id')).toBe(false);
+    });
+
+    it('ignores og:image and prefers an explicit site icon', () => {
+      const html = [
+        '<meta property="og:image" content="/campaign-banner.jpg">',
+        '<link href="/favicon-32.png" rel="icon" sizes="32x32">',
+        '<link href="/apple-touch.png" rel="apple-touch-icon">',
+      ].join('');
+
+      expect((service as any).parseBestLogoUrl(html, 'apple.com')).toBe(
+        'https://apple.com/apple-touch.png',
+      );
+    });
+  });
+
   describe('downloadAndSaveLogo SSRF protection', () => {
     it('should call validateUrlForSSRF before downloading', async () => {
       mockedValidateUrlForSSRF.mockResolvedValue(undefined);
@@ -741,38 +888,38 @@ describe('BrandsService', () => {
 
     it('should process brands in concurrent batches', async () => {
       const brands = [
-        { id: 'b1', name: 'Nike' },
-        { id: 'b2', name: 'Adidas' },
-        { id: 'b3', name: 'Puma' },
-        { id: 'b4', name: 'Gucci' },
-        { id: 'b5', name: 'Prada' },
-        { id: 'b6', name: 'LV' },
-        { id: 'b7', name: 'Chanel' },
+        { id: 'b1', name: 'Nike', slug: 'nike' },
+        { id: 'b2', name: 'Adidas', slug: 'adidas' },
+        { id: 'b3', name: 'Puma', slug: 'puma' },
+        { id: 'b4', name: 'Gucci', slug: 'gucci' },
+        { id: 'b5', name: 'Prada', slug: 'prada' },
+        { id: 'b6', name: 'LV', slug: 'lv' },
+        { id: 'b7', name: 'Chanel', slug: 'chanel' },
       ];
       brandRepo.find.mockResolvedValue(brands);
 
-      // Mock fetchBrandLogo: 部分成功、部分未找到、部分报错
-      const fetchSpy = jest
-        .spyOn(service, 'fetchBrandLogo' as any)
-        .mockResolvedValueOnce({
-          logoUrl: 'https://logo.com/nike.png',
-          source: 'website',
-        }) // b1
-        .mockResolvedValueOnce({
-          logoUrl: 'https://logo.com/adidas.png',
-          source: 'wiki',
-        }) // b2
-        .mockResolvedValueOnce({ logoUrl: null, source: 'none' }) // b3 not found
-        .mockRejectedValueOnce(new Error('timeout')) // b4 error
-        .mockResolvedValueOnce({
-          logoUrl: 'https://logo.com/prada.png',
-          source: 'website',
-        }) // b5
-        .mockResolvedValueOnce({ logoUrl: null, source: 'none' }) // b6 not found
-        .mockResolvedValueOnce({
-          logoUrl: 'https://logo.com/chanel.png',
-          source: 'wiki',
-        }); // b7
+      const candidateSpy = jest
+        .spyOn(service as any, 'fetchWikidataLogoCandidates')
+        .mockResolvedValue(
+          new Map(
+            ['b1', 'b2', 'b5', 'b7'].map((id) => [
+              id,
+              {
+                imageUrl: `https://commons.wikimedia.org/${id}.png`,
+                source: `wikidata:${id}`,
+              },
+            ]),
+          ),
+        );
+      jest
+        .spyOn(service as any, 'downloadAndSaveLogo')
+        .mockImplementation(
+          async (_url: string, slug: string) =>
+            `https://api.test/uploads/${slug}.png`,
+        );
+      jest
+        .spyOn(service as any, 'fetchLogoFromOfficialWebsite')
+        .mockResolvedValue({ logoUrl: null, source: 'not_found' });
 
       const result = await service.backfillLogos();
 
@@ -782,27 +929,24 @@ describe('BrandsService', () => {
 
       // 验证 brandRepository.update 只对有 logoUrl 的品牌调用
       expect(brandRepo.update).toHaveBeenCalledWith('b1', {
-        logoUrl: 'https://logo.com/nike.png',
+        logoUrl: 'https://api.test/uploads/nike.png',
       });
       expect(brandRepo.update).toHaveBeenCalledWith('b2', {
-        logoUrl: 'https://logo.com/adidas.png',
+        logoUrl: 'https://api.test/uploads/adidas.png',
       });
       expect(brandRepo.update).not.toHaveBeenCalledWith(
         'b3',
         expect.anything(),
       );
       expect(brandRepo.update).toHaveBeenCalledWith('b5', {
-        logoUrl: 'https://logo.com/prada.png',
+        logoUrl: 'https://api.test/uploads/prada.png',
       });
       expect(brandRepo.update).toHaveBeenCalledWith('b7', {
-        logoUrl: 'https://logo.com/chanel.png',
+        logoUrl: 'https://api.test/uploads/chanel.png',
       });
       expect(brandRepo.update).toHaveBeenCalledTimes(4);
 
-      // 验证所有品牌都被处理（7 次 fetchBrandLogo 调用）
-      expect(fetchSpy).toHaveBeenCalledTimes(7);
-
-      fetchSpy.mockRestore();
+      expect(candidateSpy).toHaveBeenCalledTimes(1);
     });
   });
 

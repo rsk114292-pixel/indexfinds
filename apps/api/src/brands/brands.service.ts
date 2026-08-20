@@ -25,6 +25,156 @@ import { BrandMatchService } from './brand-match.service';
 import { BrandEvents, BrandUpdatedEvent } from '../shared/events/brand.events';
 import { validateUrlForSSRF } from '../common/utils/url-validator';
 
+type BrandLogoTarget = Pick<Brand, 'id' | 'name' | 'slug'>;
+
+type BrandLogoCandidate = {
+  imageUrl: string;
+  source: string;
+};
+
+const WIKIMEDIA_HEADERS = {
+  'User-Agent': 'IndexFindsBrandLogo/1.0 (https://indexfinds.com)',
+};
+
+const WIKIDATA_BRAND_DESCRIPTION_HINTS = [
+  'brand',
+  'company',
+  'corporation',
+  'manufacturer',
+  'fashion house',
+  'fashion label',
+  'design house',
+  'retailer',
+  'sportswear',
+  'footwear',
+  'watchmaker',
+  'jeweller',
+  'jeweler',
+  'luxury goods',
+  'sports team',
+  'football team',
+  'football club',
+  'basketball team',
+  'baseball team',
+  'hockey team',
+  'musical group',
+  'band',
+];
+
+const isLikelyBrandEntity = (entity: any): boolean => {
+  const description = entity?.descriptions?.en?.value?.toLowerCase() || '';
+  return WIKIDATA_BRAND_DESCRIPTION_HINTS.some((hint) =>
+    description.includes(hint),
+  );
+};
+
+const WIKIPEDIA_TITLE_OVERRIDES: Record<string, string> = {
+  apple: 'Apple Inc.',
+  'adidas yeezy': 'Yeezy',
+  yeezy: 'Yeezy',
+  'off-white': 'Off-White (company)',
+  jordan: 'Air Jordan',
+  'h&m': 'H&M',
+  ysl: 'Yves Saint Laurent (brand)',
+  'saint laurent': 'Yves Saint Laurent (brand)',
+  'the north face': 'The North Face',
+};
+
+// Only confirmed official domains belong here. Do not guess a domain from a
+// brand name: a valid but unrelated domain would produce the wrong icon.
+const OFFICIAL_BRAND_DOMAINS: Record<string, string> = {
+  nike: 'nike.com',
+  adidas: 'adidas.com',
+  'adidas y-3': 'y-3.com',
+  'adidas yeezy': 'adidas.com',
+  'adidas originals': 'adidas.com',
+  jordan: 'nike.com',
+  'air jordan': 'nike.com',
+  'new balance': 'newbalance.com',
+  puma: 'puma.com',
+  reebok: 'reebok.com',
+  converse: 'converse.com',
+  vans: 'vans.com',
+  'under armour': 'underarmour.com',
+  asics: 'asics.com',
+  apple: 'apple.com',
+  gucci: 'gucci.com',
+  'louis vuitton': 'louisvuitton.com',
+  lv: 'louisvuitton.com',
+  chanel: 'chanel.com',
+  prada: 'prada.com',
+  hermes: 'hermes.com',
+  hermès: 'hermes.com',
+  dior: 'dior.com',
+  burberry: 'burberry.com',
+  balenciaga: 'balenciaga.com',
+  'bottega veneta': 'bottegaveneta.com',
+  fendi: 'fendi.com',
+  versace: 'versace.com',
+  givenchy: 'givenchy.com',
+  valentino: 'valentino.com',
+  'saint laurent': 'ysl.com',
+  ysl: 'ysl.com',
+  celine: 'celine.com',
+  loewe: 'loewe.com',
+  'alexander mcqueen': 'alexandermcqueen.com',
+  'off-white': 'off---white.com',
+  bape: 'bape.com',
+  'a bathing ape': 'bape.com',
+  goyard: 'goyard.com',
+  'stone island': 'stoneisland.com',
+  moncler: 'moncler.com',
+  'maison margiela': 'maisonmargiela.com',
+  'palm angels': 'palmangels.com',
+  birkenstock: 'birkenstock.com',
+  'comme des garçons play': 'commedesgarcons.com',
+  crocs: 'crocs.com',
+  'golden goose': 'goldengoose.com',
+  lacoste: 'lacoste.com',
+  'christian louboutin': 'christianlouboutin.com',
+  ugg: 'ugg.com',
+  swarovski: 'swarovski.com',
+  'rick owens': 'rickowens.eu',
+  cartier: 'cartier.com',
+  timberland: 'timberland.com',
+  'loro piana': 'loropiana.com',
+  rolex: 'rolex.com',
+  kenzo: 'kenzo.com',
+  'van cleef & arpels': 'vancleefarpels.com',
+  salomon: 'salomon.com',
+  'onitsuka tiger': 'onitsukatiger.com',
+  'acne studios': 'acnestudios.com',
+  lego: 'lego.com',
+  longchamp: 'longchamp.com',
+  hoka: 'hoka.com',
+  oakley: 'oakley.com',
+  'tom ford': 'tomford.com',
+  'ray-ban': 'ray-ban.com',
+  'miu miu': 'miumiu.com',
+  hogan: 'hogan.com',
+  'salvatore ferragamo': 'ferragamo.com',
+  ferragamo: 'ferragamo.com',
+  'canada goose': 'canadagoose.com',
+  'audemars piguet': 'audemarspiguet.com',
+  "arc'teryx": 'arcteryx.com',
+  arcteryx: 'arcteryx.com',
+  zara: 'zara.com',
+  'h&m': 'hm.com',
+  uniqlo: 'uniqlo.com',
+  gap: 'gap.com',
+  'ralph lauren': 'ralphlauren.com',
+  'calvin klein': 'calvinklein.com',
+  'tommy hilfiger': 'tommy.com',
+  'michael kors': 'michaelkors.com',
+  coach: 'coach.com',
+  'kate spade': 'katespade.com',
+  supreme: 'supremenewyork.com',
+  stussy: 'stussy.com',
+  'the north face': 'thenorthface.com',
+  patagonia: 'patagonia.com',
+  carhartt: 'carhartt.com',
+};
+
 /**
  * BrandsService
  * 品牌服务主入口（Facade）
@@ -976,8 +1126,8 @@ export class BrandsService {
   /**
    * 获取品牌 Logo
    * 策略优先级：
-   * 1. 品牌官网抓取（og:image / apple-touch-icon / favicon）
-   * 2. Wikipedia API（搜索品牌页面的 logo 图片）
+   * 1. Wikidata 官方 Logo 属性（P154）
+   * 2. 已确认品牌官网的 logo / apple-touch-icon / favicon
    */
   async fetchBrandLogo(
     brandName: string,
@@ -986,257 +1136,252 @@ export class BrandsService {
       return { logoUrl: null, source: 'none' };
     }
 
-    const nameLower = brandName.toLowerCase().trim();
+    const slug = brandName
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+    const target: BrandLogoTarget = { id: 'single', name: brandName, slug };
 
-    // 知名品牌域名映射
-    const brandDomainMap: Record<string, string> = {
-      nike: 'nike.com',
-      adidas: 'adidas.com',
-      jordan: 'nike.com',
-      'new balance': 'newbalance.com',
-      puma: 'puma.com',
-      reebok: 'reebok.com',
-      converse: 'converse.com',
-      vans: 'vans.com',
-      'under armour': 'underarmour.com',
-      asics: 'asics.com',
-      gucci: 'gucci.com',
-      'louis vuitton': 'louisvuitton.com',
-      lv: 'louisvuitton.com',
-      chanel: 'chanel.com',
-      prada: 'prada.com',
-      hermes: 'hermes.com',
-      dior: 'dior.com',
-      burberry: 'burberry.com',
-      balenciaga: 'balenciaga.com',
-      'bottega veneta': 'bottegaveneta.com',
-      fendi: 'fendi.com',
-      versace: 'versace.com',
-      givenchy: 'givenchy.com',
-      valentino: 'valentino.com',
-      'saint laurent': 'ysl.com',
-      ysl: 'ysl.com',
-      celine: 'celine.com',
-      loewe: 'loewe.com',
-      'alexander mcqueen': 'alexandermcqueen.com',
-      'off-white': 'off---white.com',
-      bape: 'bape.com',
-      'a bathing ape': 'bape.com',
-      zara: 'zara.com',
-      'h&m': 'hm.com',
-      uniqlo: 'uniqlo.com',
-      gap: 'gap.com',
-      'ralph lauren': 'ralphlauren.com',
-      'calvin klein': 'calvinklein.com',
-      'tommy hilfiger': 'tommy.com',
-      'michael kors': 'michaelkors.com',
-      coach: 'coach.com',
-      'kate spade': 'katespade.com',
-      supreme: 'supremenewyork.com',
-      stussy: 'stussy.com',
-      'the north face': 'thenorthface.com',
-      patagonia: 'patagonia.com',
-      carhartt: 'carhartt.com',
-    };
-
-    // 策略1: Wikipedia API（最可靠，大多数知名品牌都有 logo）
-    try {
-      const wikiResult = await this.fetchLogoFromWikipedia(
-        brandName,
-        nameLower,
+    const candidates = await this.fetchWikidataLogoCandidates([target]);
+    const candidate = candidates.get(target.id);
+    if (candidate) {
+      const logoUrl = await this.downloadAndSaveLogo(
+        candidate.imageUrl,
+        target.slug,
       );
-      if (wikiResult) {
-        return wikiResult;
+      if (logoUrl) {
+        return { logoUrl, source: candidate.source };
       }
-    } catch (err) {
-      this.logger.debug(`Wikipedia 获取失败: ${err?.message || err}`);
     }
 
-    // 策略2: 品牌官网抓取（Wikipedia 无结果时回退，超时缩短到 5 秒）
-    const knownDomain = brandDomainMap[nameLower];
-    const candidateDomains = knownDomain
-      ? [knownDomain]
-      : [
-          `${nameLower.replace(/[^a-z0-9]/g, '')}.com`,
-          `${nameLower.replace(/\s+/g, '-')}.com`,
-        ];
+    return this.fetchLogoFromOfficialWebsite(target);
+  }
 
-    for (const domain of candidateDomains) {
+  /**
+   * Resolve structured official logo claims from Wikidata in batches.
+   * P154 is the entity's logo; unlike scanning page images it cannot select an
+   * unrelated image merely because its filename contains "logo".
+   */
+  private async fetchWikidataLogoCandidates(
+    brands: BrandLogoTarget[],
+  ): Promise<Map<string, BrandLogoCandidate>> {
+    const candidates = new Map<string, BrandLogoCandidate>();
+    const brandsById = new Map(brands.map((brand) => [brand.id, brand]));
+    const BATCH_SIZE = 40;
+
+    for (let offset = 0; offset < brands.length; offset += BATCH_SIZE) {
+      const batch = brands.slice(offset, offset + BATCH_SIZE);
+      const titleToBrandIds = new Map<string, string[]>();
+      const canonicalTitle = (value: string) =>
+        value.replace(/_/g, ' ').trim().toLowerCase();
+
+      for (const brand of batch) {
+        const nameLower = brand.name.toLowerCase().trim();
+        const title = WIKIPEDIA_TITLE_OVERRIDES[nameLower] || brand.name;
+        const key = canonicalTitle(title);
+        titleToBrandIds.set(key, [
+          ...(titleToBrandIds.get(key) || []),
+          brand.id,
+        ]);
+      }
+
       try {
-        const { data: html } = await axios.get(`https://${domain}`, {
-          timeout: 5000,
-          maxRedirects: 3,
-          headers: {
-            'User-Agent':
-              'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            Accept:
-              'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        const pageResponse = await axios.get(
+          'https://en.wikipedia.org/w/api.php',
+          {
+            params: {
+              action: 'query',
+              titles: [
+                ...new Set(
+                  batch.map((brand) => {
+                    const nameLower = brand.name.toLowerCase().trim();
+                    return WIKIPEDIA_TITLE_OVERRIDES[nameLower] || brand.name;
+                  }),
+                ),
+              ].join('|'),
+              prop: 'pageprops',
+              ppprop: 'wikibase_item',
+              redirects: 1,
+              format: 'json',
+              formatversion: 2,
+            },
+            timeout: 12000,
+            headers: WIKIMEDIA_HEADERS,
           },
-          responseType: 'text',
-        });
+        );
 
-        if (typeof html === 'string') {
-          const logoSrcUrl = this.parseBestLogoUrl(html, domain);
-          if (logoSrcUrl) {
-            const localUrl = await this.downloadAndSaveLogo(
-              logoSrcUrl,
-              nameLower,
+        const remapTitle = (from?: string, to?: string) => {
+          if (!from || !to) return;
+          const fromKey = canonicalTitle(from);
+          const ids = titleToBrandIds.get(fromKey);
+          if (!ids) return;
+          const toKey = canonicalTitle(to);
+          titleToBrandIds.set(toKey, [
+            ...(titleToBrandIds.get(toKey) || []),
+            ...ids,
+          ]);
+          if (toKey !== fromKey) titleToBrandIds.delete(fromKey);
+        };
+
+        for (const normalized of pageResponse.data?.query?.normalized || []) {
+          remapTitle(normalized.from, normalized.to);
+        }
+        for (const redirect of pageResponse.data?.query?.redirects || []) {
+          remapTitle(redirect.from, redirect.to);
+        }
+
+        const qidToBrandIds = new Map<string, string[]>();
+        for (const page of pageResponse.data?.query?.pages || []) {
+          const qid = page.pageprops?.wikibase_item;
+          const brandIds =
+            titleToBrandIds.get(canonicalTitle(page.title)) || [];
+          if (!qid || page.missing || brandIds.length === 0) continue;
+          qidToBrandIds.set(qid, [
+            ...(qidToBrandIds.get(qid) || []),
+            ...brandIds,
+          ]);
+        }
+
+        if (qidToBrandIds.size === 0) continue;
+
+        const entityResponse = await axios.get(
+          'https://www.wikidata.org/w/api.php',
+          {
+            params: {
+              action: 'wbgetentities',
+              ids: [...qidToBrandIds.keys()].join('|'),
+              props: 'claims|descriptions',
+              languages: 'en',
+              format: 'json',
+            },
+            timeout: 12000,
+            headers: WIKIMEDIA_HEADERS,
+          },
+        );
+
+        for (const [qid, entity] of Object.entries<any>(
+          entityResponse.data?.entities || {},
+        )) {
+          const claims = (entity.claims?.P154 || []).filter(
+            (claim: any) => claim.rank !== 'deprecated',
+          );
+          const preferred =
+            claims.find((claim: any) => claim.rank === 'preferred') ||
+            claims[0];
+          const fileName = preferred?.mainsnak?.datavalue?.value;
+          if (!fileName || typeof fileName !== 'string') continue;
+
+          const imageUrl = `https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodeURIComponent(
+            fileName,
+          )}?width=500`;
+          for (const brandId of qidToBrandIds.get(qid) || []) {
+            const brand = brandsById.get(brandId);
+            const hasConfirmedDomain = Boolean(
+              brand && OFFICIAL_BRAND_DOMAINS[brand.name.toLowerCase().trim()],
             );
-            if (localUrl) {
-              return { logoUrl: localUrl, source: domain };
-            }
+            if (!isLikelyBrandEntity(entity) && !hasConfirmedDomain) continue;
+            candidates.set(brandId, {
+              imageUrl,
+              source: `wikidata:${qid}`,
+            });
           }
         }
       } catch (err) {
-        this.logger.debug(`官网抓取失败 ${domain}: ${err?.message || err}`);
+        this.logger.warn(`Wikidata Logo 批次获取失败: ${err?.message || err}`);
       }
+    }
+
+    return candidates;
+  }
+
+  private async fetchLogoFromOfficialWebsite(
+    brand: BrandLogoTarget,
+  ): Promise<{ logoUrl: string | null; source: string }> {
+    const nameLower = brand.name.toLowerCase().trim();
+    const domain = OFFICIAL_BRAND_DOMAINS[nameLower];
+    if (!domain) return { logoUrl: null, source: 'not_found' };
+
+    try {
+      const { data: html } = await axios.get(`https://${domain}`, {
+        timeout: 7000,
+        maxRedirects: 3,
+        headers: {
+          'User-Agent':
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          Accept:
+            'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        },
+        responseType: 'text',
+      });
+
+      if (typeof html === 'string') {
+        const logoSrcUrl = this.parseBestLogoUrl(html, domain);
+        if (logoSrcUrl) {
+          const logoUrl = await this.downloadAndSaveLogo(
+            logoSrcUrl,
+            brand.slug,
+          );
+          if (logoUrl) return { logoUrl, source: domain };
+        }
+      }
+    } catch (err) {
+      this.logger.debug(`官网抓取失败 ${domain}: ${err?.message || err}`);
     }
 
     return { logoUrl: null, source: 'not_found' };
   }
 
   /**
-   * 从 Wikipedia 获取品牌 Logo
-   * 通过 MediaWiki API 搜索品牌页面，筛选含 "logo" 的图片文件
-   */
-  private async fetchLogoFromWikipedia(
-    brandName: string,
-    brandSlug: string,
-  ): Promise<{ logoUrl: string; source: string } | null> {
-    const wikiApi = 'https://en.wikipedia.org/w/api.php';
-
-    // Wikipedia 页面标题映射（部分品牌的 Wiki 页面标题与品牌名不同）
-    const wikiTitleMap: Record<string, string> = {
-      nike: 'Nike,_Inc.',
-      lv: 'Louis_Vuitton',
-      'h&m': 'H%26M',
-      ysl: 'Yves_Saint_Laurent_(brand)',
-      'saint laurent': 'Yves_Saint_Laurent_(brand)',
-      gap: 'Gap_Inc.',
-      'the north face': 'The_North_Face',
-    };
-
-    const nameLower = brandName.toLowerCase().trim();
-    const wikiTitle = wikiTitleMap[nameLower] || brandName.replace(/\s+/g, '_');
-
-    // Step 1: 获取页面所有图片
-    const imagesRes = await axios.get(wikiApi, {
-      params: {
-        action: 'query',
-        titles: wikiTitle,
-        prop: 'images',
-        format: 'json',
-        imlimit: 50,
-      },
-      timeout: 8000,
-    });
-
-    const pages = imagesRes.data?.query?.pages;
-    if (!pages) return null;
-
-    const pageId = Object.keys(pages)[0];
-    if (pageId === '-1') return null; // 页面不存在
-
-    const images: Array<{ title: string }> = pages[pageId].images || [];
-
-    // Step 2: 筛选含 "logo" 的图片（排除通用图标如 Commons-logo）
-    const logoImages = images.filter((img) => {
-      const t = img.title.toLowerCase();
-      return (
-        (t.includes('logo') || t.includes('monogram')) &&
-        !t.includes('commons-logo') &&
-        !t.includes('wikidata-logo') &&
-        !t.includes('wikiquote') &&
-        (t.endsWith('.svg') || t.endsWith('.png') || t.endsWith('.jpg'))
-      );
-    });
-
-    if (logoImages.length === 0) return null;
-
-    // Step 3: 获取最佳 logo 的缩略图 URL（优先 svg，其次 png）
-    const preferred =
-      logoImages.find((img) => img.title.toLowerCase().endsWith('.svg')) ||
-      logoImages[0];
-
-    const infoRes = await axios.get(wikiApi, {
-      params: {
-        action: 'query',
-        titles: preferred.title,
-        prop: 'imageinfo',
-        iiprop: 'url',
-        iiurlwidth: 500,
-        format: 'json',
-      },
-      timeout: 8000,
-    });
-
-    const infoPages = infoRes.data?.query?.pages;
-    if (!infoPages) return null;
-
-    const infoPageId = Object.keys(infoPages)[0];
-    const imageInfo = infoPages[infoPageId]?.imageinfo?.[0];
-    const thumbUrl = imageInfo?.thumburl || imageInfo?.url;
-    if (!thumbUrl) return null;
-
-    // Step 4: 下载并保存
-    const localUrl = await this.downloadAndSaveLogo(thumbUrl, brandSlug);
-    if (localUrl) {
-      return { logoUrl: localUrl, source: 'wikipedia' };
-    }
-
-    return null;
-  }
-
-  /**
-   * 从 HTML 中解析最佳 Logo 图片 URL
-   * 优先级：og:image > apple-touch-icon > 最大 favicon
+   * 从已确认的品牌官网 HTML 中解析 Logo URL。
+   * 不使用 og:image，因为它通常是活动横幅或商品宣传图。
    */
   private parseBestLogoUrl(html: string, domain: string): string | null {
     const baseUrl = `https://${domain}`;
 
     const toAbsolute = (href: string): string => {
       if (!href) return '';
+      if (href.startsWith('data:') || href.startsWith('javascript:')) return '';
       if (href.startsWith('http')) return href;
       if (href.startsWith('//')) return `https:${href}`;
       if (href.startsWith('/')) return `${baseUrl}${href}`;
       return `${baseUrl}/${href}`;
     };
 
-    // 1. og:image - 通常是高质量品牌图片
-    const ogMatch =
-      html.match(
-        /<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i,
-      ) ||
-      html.match(
-        /<meta[^>]*content=["']([^"']+)["'][^>]*property=["']og:image["']/i,
-      );
-    if (ogMatch?.[1]) {
-      return toAbsolute(ogMatch[1]);
+    const getAttribute = (tag: string, name: string): string | null => {
+      const match = tag.match(new RegExp(`${name}=["']([^"']+)["']`, 'i'));
+      return match?.[1] || null;
+    };
+
+    // Structured logo markup is explicit enough to accept.
+    const structuredTags = html.match(/<(?:meta|img)[^>]*>/gi) || [];
+    for (const tag of structuredTags) {
+      const itemProp = getAttribute(tag, 'itemprop')?.toLowerCase();
+      if (itemProp !== 'logo') continue;
+      const value = getAttribute(tag, 'content') || getAttribute(tag, 'src');
+      if (value) return toAbsolute(value);
     }
 
-    // 2. apple-touch-icon (通常 180x180)
-    const appleIconMatch = html.match(
-      /<link[^>]*rel=["']apple-touch-icon["'][^>]*href=["']([^"']+)["']/i,
-    );
-    if (appleIconMatch?.[1]) {
-      return toAbsolute(appleIconMatch[1]);
-    }
-
-    // 3. 最大尺寸的 favicon
-    const iconRegex = /<link[^>]*rel=["']icon["'][^>]*>/gi;
+    // Prefer an explicit touch icon, then the largest favicon.
+    const linkTags = html.match(/<link[^>]*>/gi) || [];
     let bestIcon: { url: string; size: number } | null = null;
-    let iconMatch: RegExpExecArray | null;
-
-    while ((iconMatch = iconRegex.exec(html)) !== null) {
-      const tag = iconMatch[0];
-      const hrefMatch = tag.match(/href=["']([^"']+)["']/i);
-      const sizesMatch = tag.match(/sizes=["'](\d+)x\d+["']/i);
-
-      if (hrefMatch?.[1]) {
-        const size = sizesMatch ? parseInt(sizesMatch[1], 10) : 16;
-        if (!bestIcon || size > bestIcon.size) {
-          bestIcon = { url: toAbsolute(hrefMatch[1]), size };
-        }
+    for (const tag of linkTags) {
+      const rel = getAttribute(tag, 'rel')?.toLowerCase() || '';
+      const href = getAttribute(tag, 'href');
+      if (
+        !href ||
+        (!rel.includes('icon') && !rel.includes('apple-touch-icon'))
+      ) {
+        continue;
+      }
+      const sizes = getAttribute(tag, 'sizes');
+      const parsedSize = sizes?.match(/(\d+)x\d+/)?.[1];
+      const size = rel.includes('apple-touch-icon')
+        ? Number(parsedSize || 180)
+        : Number(parsedSize || 16);
+      const url = toAbsolute(href);
+      if (url && (!bestIcon || size > bestIcon.size)) {
+        bestIcon = { url, size };
       }
     }
 
@@ -1312,7 +1457,8 @@ export class BrandsService {
   }> {
     const brands = await this.brandRepository.find({
       where: { status: 'active', logoUrl: IsNull() },
-      select: ['id', 'name'],
+      select: ['id', 'name', 'slug'],
+      order: { tier: 'ASC', name: 'ASC' },
     });
 
     if (brands.length === 0) {
@@ -1326,19 +1472,31 @@ export class BrandsService {
     const results: Array<{ name: string; status: string; logoUrl?: string }> =
       [];
 
-    // 每批 5 个并发，避免对外部 API 造成过大压力
-    const CONCURRENCY = 5;
+    const wikidataCandidates = await this.fetchWikidataLogoCandidates(brands);
+
+    // Downloads are bounded; Wikidata lookup itself was already batched above.
+    const CONCURRENCY = 3;
     for (let i = 0; i < brands.length; i += CONCURRENCY) {
       const batch = brands.slice(i, i + CONCURRENCY);
       await Promise.allSettled(
         batch.map(async (brand) => {
           try {
-            const { logoUrl } = await this.fetchBrandLogo(brand.name);
+            const candidate = wikidataCandidates.get(brand.id);
+            let logoUrl = candidate
+              ? await this.downloadAndSaveLogo(candidate.imageUrl, brand.slug)
+              : null;
+            let source = candidate?.source || 'not_found';
+            if (!logoUrl) {
+              const officialResult =
+                await this.fetchLogoFromOfficialWebsite(brand);
+              logoUrl = officialResult.logoUrl;
+              source = officialResult.source;
+            }
             if (logoUrl) {
               await this.brandRepository.update(brand.id, { logoUrl });
               updated++;
               results.push({ name: brand.name, status: 'ok', logoUrl });
-              this.logger.log(`✓ ${brand.name} → ${logoUrl}`);
+              this.logger.log(`✓ ${brand.name} (${source}) → ${logoUrl}`);
             } else {
               failed++;
               results.push({ name: brand.name, status: 'not_found' });
@@ -1352,6 +1510,7 @@ export class BrandsService {
       );
     }
 
+    if (updated > 0) await this.clearBrandCache();
     this.logger.log(`Logo 补全完成: ${updated} 成功, ${failed} 失败`);
     return { total: brands.length, updated, failed, results };
   }
