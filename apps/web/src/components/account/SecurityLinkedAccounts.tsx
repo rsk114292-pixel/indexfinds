@@ -11,6 +11,7 @@ import { Spinner } from '@/components/ui/Spinner';
 import { Empty } from '@/components/ui/Empty';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { getLinkedOAuthAccounts, unlinkOAuthAccount } from '@/lib/auth-api';
+import { PUBLIC_GOOGLE_AUTH_ENABLED } from '@/lib/features';
 
 interface LinkedAccount {
   provider: string;
@@ -35,7 +36,7 @@ export default function SecurityLinkedAccounts() {
   const [linkedAccounts, setLinkedAccounts] = useState<LinkedAccount[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const allProviders = ['google'];
+  const allProviders = PUBLIC_GOOGLE_AUTH_ENABLED ? ['google'] : [];
   const providerDisplayNames: Record<string, string> = { google: 'Google' };
 
   const fetchLinkedAccounts = useCallback(async () => {

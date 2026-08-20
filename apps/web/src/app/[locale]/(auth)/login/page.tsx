@@ -29,7 +29,10 @@ import {
   persistAuthRedirect,
 } from '@/lib/auth-redirect';
 import MobileLogin from '../components/mobile/MobileLogin';
-import { PUBLIC_REGISTRATION_ENABLED } from '@/lib/features';
+import {
+  PUBLIC_GOOGLE_AUTH_ENABLED,
+  PUBLIC_REGISTRATION_ENABLED,
+} from '@/lib/features';
 
 
 const GoogleIcon = () => (
@@ -168,28 +171,32 @@ export default function LoginPage() {
                 ) : null}
               </div>
 
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                <button
-                  type="button"
-                  onClick={() => {
-                    persistAuthRedirect(redirectPath, '/');
-                    window.location.href = `${API_BASE_URL}/auth/google`;
-                  }}
-                  className="h-11 min-h-[44px] flex items-center justify-center gap-2.5 rounded-lg border border-border bg-white text-sm font-medium text-foreground hover:bg-gray-50 hover:border-gray-300 active:scale-[0.98] transition-all duration-200 cursor-pointer"
-                >
-                  <GoogleIcon />
-                  <span className="hidden sm:inline">Google</span>
-                </button>
-              </div>
+              {PUBLIC_GOOGLE_AUTH_ENABLED ? (
+                <>
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        persistAuthRedirect(redirectPath, '/');
+                        window.location.href = `${API_BASE_URL}/auth/google`;
+                      }}
+                      className="h-11 min-h-[44px] flex items-center justify-center gap-2.5 rounded-lg border border-border bg-white text-sm font-medium text-foreground hover:bg-gray-50 hover:border-gray-300 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                    >
+                      <GoogleIcon />
+                      <span className="hidden sm:inline">Google</span>
+                    </button>
+                  </div>
 
-              <div className="relative my-6">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-border" />
-                </div>
-                <div className="relative flex justify-center text-xs">
-                  <span className="bg-background px-3 text-muted uppercase tracking-wider">{t('orContinueWithEmail')}</span>
-                </div>
-              </div>
+                  <div className="relative my-6">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-border" />
+                    </div>
+                    <div className="relative flex justify-center text-xs">
+                      <span className="bg-background px-3 text-muted uppercase tracking-wider">{t('orContinueWithEmail')}</span>
+                    </div>
+                  </div>
+                </>
+              ) : null}
 
               <form onSubmit={handleSubmit} noValidate className="space-y-4">
                 <Input
