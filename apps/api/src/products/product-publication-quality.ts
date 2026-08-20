@@ -23,6 +23,7 @@ export type ProductPublicationIssue = {
     | 'invalid_price_range'
     | 'missing_image'
     | 'high_risk_content'
+    | 'seller_contact_content'
     | 'mixed_product';
   message: string;
 };
@@ -35,6 +36,19 @@ const HIGH_RISK_PATTERNS = [
   /高仿|精仿|仿品|复刻|假货|山寨/,
 ];
 
+const PROHIBITED_SELLER_CONTENT_PATTERNS = [
+  /\bcontact information(?: card)?\b/i,
+  /\b(?:qr ?code )?contact card\b/i,
+  /\bcustomer service (?:headset|contact|illustration|uniform)\b/i,
+  /\b(?:product link|purchase) instructions?\b/i,
+  /\b(?:please use|purchase at) (?:the )?new link\b/i,
+  /\bpromotional (?:poster|card|graphic)\b/i,
+  /\bseller whats ?app\b/i,
+  /\brecommended agents\b/i,
+  /\bfirst sup(?:plier|lier|plet)\b/i,
+  /二维码|扫码联系|联系方式卡|联系客服|新链接购买|购买说明|购买指引|推广海报|宣传海报/,
+];
+
 function nonEmpty(value?: string | null): boolean {
   return typeof value === 'string' && value.trim().length > 0;
 }
@@ -43,6 +57,17 @@ function toFiniteNumber(value?: number | string | null): number | null {
   if (value === null || value === undefined || value === '') return null;
   const numeric = Number(value);
   return Number.isFinite(numeric) ? numeric : null;
+}
+
+export function hasProhibitedSellerContent(
+  product: Pick<ProductPublicationQualityInput, 'title' | 'originalTitle'>,
+): boolean {
+  const titleText = [product.title, product.originalTitle]
+    .filter(nonEmpty)
+    .join('\n');
+  return PROHIBITED_SELLER_CONTENT_PATTERNS.some((pattern) =>
+    pattern.test(titleText),
+  );
 }
 
 export function getProductPublicationIssues(
@@ -94,6 +119,13 @@ export function getProductPublicationIssues(
     issues.push({
       code: 'high_risk_content',
       message: '标题、描述或品牌包含 replica/fake/仿品等高风险词，需要人工复核',
+    });
+  }
+
+  if (hasProhibitedSellerContent(product)) {
+    issues.push({
+      code: 'seller_contact_content',
+      message: '标题疑似卖家联系方式、二维码、购买指引或宣传海报，需要人工复核',
     });
   }
 

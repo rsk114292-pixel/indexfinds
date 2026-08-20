@@ -375,6 +375,34 @@ describe('SkuSplitProcessor', () => {
       );
     });
 
+    it('卖家联系方式或购买指引图片创建待审核商品', async () => {
+      mockAiSuccess();
+      mockAiEnhancerService.analyzeAndEnhance.mockResolvedValue({
+        translatedTitle: 'Design Product Link Instruction Electronics',
+        translatedDescription: 'Purchase at the new link.',
+        aiConfidence: 0.95,
+        aiBrandId: null,
+        aiBrandName: 'Design',
+        aiCategorySlug: 'electronics',
+        aiAttributes: {},
+      });
+
+      await (processor as any).processVariant(
+        makeItem(),
+        normalizedData,
+        '颜色',
+        'group-uuid',
+        'https://weidian.com/item.html?itemID=12345',
+        '12345',
+      );
+
+      expect(mockCreatorService.createProductWithSkus).toHaveBeenCalledWith(
+        expect.objectContaining({ status: 'pending_review' }),
+        expect.any(Array),
+        false,
+      );
+    });
+
     it('高质量模糊命中时应自动上架', async () => {
       mockAiEnhancerService.analyzeAndEnhance.mockResolvedValue({
         translatedTitle: 'Gucci Polo and Shorts Set Black',

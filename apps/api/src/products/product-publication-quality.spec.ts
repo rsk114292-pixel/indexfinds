@@ -50,4 +50,20 @@ describe('product publication quality', () => {
       );
     },
   );
+
+  it.each([
+    'Design Contact Information Card Electronics',
+    'Design QR Code Contact Card Electronics',
+    'Design Customer Service Headset Illustration Electronics',
+    'Design Product Link Instruction Electronics',
+    'Purchase at the new link',
+    'Design First Supplet Promotional Poster Electronics',
+    '扫码联系客服',
+  ])('blocks seller contact or redirect content: %s', (title) => {
+    expect(
+      getProductPublicationIssues({ ...validProduct, title }).map(
+        (issue) => issue.code,
+      ),
+    ).toContain('seller_contact_content');
+  });
 });

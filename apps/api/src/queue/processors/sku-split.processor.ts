@@ -27,6 +27,7 @@ import { SkuSplitJobStatus } from '../../products/entities/sku-split-job.entity'
 import { ProductStatus } from '../../products/product-status';
 import type { WeidianNormalizedData } from '../../weidian/interfaces/thor-api.interface';
 import type { CreateSkuData } from '../../products/product-creator.service';
+import { hasProhibitedSellerContent } from '../../products/product-publication-quality';
 
 const AI_CONCURRENCY = 20;
 const HIGH_CONFIDENCE_FUZZY_SCORE = 180;
@@ -104,6 +105,10 @@ export class SkuSplitProcessor extends WorkerHost {
 
     if (!params.aiBrandName && this.isGenericAiTitle(params.aiTitle)) {
       reviewReasons.push('品牌缺失且标题过于泛化');
+    }
+
+    if (hasProhibitedSellerContent({ title: params.aiTitle })) {
+      reviewReasons.push('检测到卖家联系方式、购买指引或宣传海报');
     }
 
     return {
