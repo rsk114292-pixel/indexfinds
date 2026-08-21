@@ -52,6 +52,7 @@ describe('product publication quality', () => {
   );
 
   it.each([
+    'Design Unknown Product Clothing',
     'Design Contact Information Card Electronics',
     'Design QR Code Contact Card Electronics',
     'Design Customer Service Headset Illustration Electronics',

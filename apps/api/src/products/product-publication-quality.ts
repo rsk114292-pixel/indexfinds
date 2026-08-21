@@ -37,6 +37,7 @@ const HIGH_RISK_PATTERNS = [
 ];
 
 const PROHIBITED_SELLER_CONTENT_PATTERNS = [
+  /\bunknown products?\b/i,
   /\bcontact information(?: card)?\b/i,
   /\b(?:qr ?code )?contact card\b/i,
   /\bcustomer service (?:headset|contact|illustration|uniform)\b/i,
