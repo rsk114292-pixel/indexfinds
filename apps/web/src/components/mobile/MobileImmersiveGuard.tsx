@@ -50,11 +50,11 @@ export function ImmersiveMain({
   const isHeaderHidden = isHeaderHiddenPath(pathname);
   const isHomePage = /^\/[a-z]{2}\/?$/.test(pathname) || pathname === "/";
 
-  let mobilePadding = "pt-[6.5rem] pb-14";
+  let mobilePadding = "pt-[6.5rem] pb-[calc(3.5rem+env(safe-area-inset-bottom))]";
   if (isImmersive) mobilePadding = "";
-  else if (isHomePage) mobilePadding = "pt-12 pb-14";
-  else if (isSubPage) mobilePadding = "pt-12 pb-14";
-  else if (isHeaderHidden) mobilePadding = "pb-14";
+  else if (isHomePage) mobilePadding = "pt-12 pb-[calc(3.5rem+env(safe-area-inset-bottom))]";
+  else if (isSubPage) mobilePadding = "pt-12 pb-[calc(3.5rem+env(safe-area-inset-bottom))]";
+  else if (isHeaderHidden) mobilePadding = "pb-[calc(3.5rem+env(safe-area-inset-bottom))]";
 
   return (
     <main

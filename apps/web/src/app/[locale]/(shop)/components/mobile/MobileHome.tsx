@@ -46,10 +46,6 @@ export default function MobileHome({
 }: {
   initialCategories?: CategoriesResponse;
   initialHotSearches?: HotSearchItem[];
-  stats?: {
-    totalProducts: number;
-    totalBrands: number;
-  };
 }) {
   const { mutate } = useSWRConfig();
   const t = useTranslations("home");
@@ -95,7 +91,7 @@ export default function MobileHome({
               </span>
             </h1>
             <p className="mt-5 max-w-sm text-sm leading-6 text-white/72">
-              {branding?.description ||
+              {branding?.supportingLine ||
                 `${t("hero.descLine1")} ${t("hero.descLine2")}`}
             </p>
             <div className="mt-6">

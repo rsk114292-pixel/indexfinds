@@ -597,12 +597,10 @@ export default function SearchBox({
               >
                 {searchMode === "link" ? t("findFromLink") : th("search")}
               </button>
-              {!mobileCompact ? (
-                <LazyImageSearchUploader
-                  variant="icon"
-                  className="hero-command-camera h-11 w-11 shrink-0 rounded-full p-0 text-white/75 hover:text-white"
-                />
-              ) : null}
+              <LazyImageSearchUploader
+                variant="icon"
+                className="hero-command-camera h-11 w-11 shrink-0 rounded-full p-0 text-white/75 hover:text-white"
+              />
             </div>
           </div>
         </div>
@@ -632,7 +630,6 @@ export default function SearchBox({
               )}
               {searchMode === "link" ? t("modeKeyword") : t("modeLink")}
             </button>
-            <LazyImageSearchUploader variant="tab" />
           </div>
         ) : null}
       </div>

@@ -2,6 +2,7 @@ import { API_BASE_URL } from '@/lib/constants';
 import { getSiteUrl } from '@/lib/site-config';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
 import { AGENT_PLATFORMS } from '@/lib/agent-platforms';
+import type { TenantConfig } from '@/lib/tenant-config';
 
 export type SitemapEntry = {
   url: string;
@@ -16,6 +17,25 @@ const SITE_URL = getSiteUrl();
 // Keep chunks comfortably below the 50 MB uncompressed sitemap limit.
 export const PRODUCTS_PER_SITEMAP = 2500;
 const LOCALES = ['en', 'zh', 'fr', 'de', 'es', 'it', 'pt', 'ar'] as const;
+
+export interface SitemapOptions {
+  siteUrl?: string;
+  includeCatalog?: boolean;
+  staticPaths?: readonly string[];
+}
+
+export function getTenantSitemapOptions(
+  tenant: TenantConfig | null,
+): SitemapOptions | undefined {
+  if (!tenant) return undefined;
+
+  const guidePath = tenant.branding?.editorial.primaryCtaHref;
+  return {
+    siteUrl: tenant.canonicalOrigin,
+    includeCatalog: false,
+    staticPaths: ['', ...(guidePath ? [guidePath] : [])],
+  };
+}
 
 function buildLocaleAlternates(path: string): Record<string, string> {
   const languages: Record<string, string> = Object.fromEntries(
@@ -86,7 +106,11 @@ function multiLocaleEntries(
   }));
 }
 
-export async function getSitemapChunkIds(): Promise<number[]> {
+export async function getSitemapChunkIds(
+  options: SitemapOptions = {},
+): Promise<number[]> {
+  if (options.includeCatalog === false) return [0];
+
   const total = await getProductTotal();
   const productChunks = Math.max(1, Math.ceil(total / PRODUCTS_PER_SITEMAP));
   return Array.from({ length: productChunks + 1 }, (_, index) => index);
@@ -94,7 +118,23 @@ export async function getSitemapChunkIds(): Promise<number[]> {
 
 export async function getSitemapEntriesByChunk(
   id: number,
+  options: SitemapOptions = {},
 ): Promise<SitemapEntry[]> {
+  if (options.includeCatalog === false) {
+    if (id !== 0) return [];
+
+    const siteUrl = options.siteUrl || SITE_URL;
+    return (options.staticPaths || ['']).map((path, index) => ({
+      url: `${siteUrl}/en${path}`,
+      alternates: {
+        en: `${siteUrl}/en${path}`,
+        'x-default': `${siteUrl}/en${path}`,
+      },
+      changeFrequency: index === 0 ? 'daily' : 'monthly',
+      priority: index === 0 ? 1 : 0.7,
+    }));
+  }
+
   if (id === 0) {
     const [categorySlugs, brandSlugs] = await Promise.all([
       getAllCategorySlugs(),
@@ -236,12 +276,15 @@ export function buildUrlSetXml(entries: SitemapEntry[]): string {
   );
 }
 
-export function buildSitemapIndexXml(ids: number[]): string {
+export function buildSitemapIndexXml(
+  ids: number[],
+  siteUrl: string = SITE_URL,
+): string {
   const body = ids
     .map(
       (id) =>
         `<sitemap><loc>${escapeXml(
-        `${SITE_URL}/sitemaps/${id}`,
+        `${siteUrl}/sitemaps/${id}`,
       )}</loc></sitemap>`,
     )
     .join('');

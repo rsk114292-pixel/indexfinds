@@ -18,10 +18,6 @@ interface HotSearchItem {
 
 interface HeroSectionProps {
   initialHotSearches?: HotSearchItem[];
-  stats?: {
-    totalProducts: number;
-    totalBrands: number;
-  };
 }
 
 export default function HeroSection({
@@ -125,12 +121,14 @@ export default function HeroSection({
 
         <FadeIn direction="up" duration={0.5} delay={0.15}>
           <p className="home-hero-description mx-auto mb-8 max-w-3xl text-center text-sm leading-relaxed text-white/72 sm:text-base md:text-lg">
-            {branding?.description || t("hero.descLine1")}
-            <br className="hidden md:block" />
-            {" "}
-            {branding
-              ? branding.supportingLine
-              : t("hero.descLine2")}
+            {branding ? (
+              branding.supportingLine
+            ) : (
+              <>
+                {t("hero.descLine1")}
+                <br className="hidden md:block" /> {t("hero.descLine2")}
+              </>
+            )}
           </p>
         </FadeIn>
 

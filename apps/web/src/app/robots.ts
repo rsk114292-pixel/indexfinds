@@ -3,9 +3,9 @@
  * 控制搜索引擎爬虫行为
  */
 import { MetadataRoute } from 'next';
-import { getSiteUrl } from '@/lib/site-config';
+import { headers } from 'next/headers';
+import { resolveSiteIdentityFromHeaders } from '@/lib/tenant-config';
 
-const SITE_URL = getSiteUrl();
 const PRIVATE_PATHS = [
   '/api/',           // API 端点
   '/admin/',         // 管理后台
@@ -23,7 +23,7 @@ const PRIVATE_PATHS = [
   '/*?page=',        // 深度分页
 ] as const;
 
-export default function robots(): MetadataRoute.Robots {
+export function buildRobots(siteUrl: string): MetadataRoute.Robots {
   return {
     rules: [
       {
@@ -37,7 +37,15 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [...PRIVATE_PATHS],
       },
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
+    sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl,
   };
+}
+
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const identity = resolveSiteIdentityFromHeaders(
+    await headers(),
+    process.env.INDEXFINDS_LOCAL_TENANT_HOST,
+  );
+  return buildRobots(identity.siteUrl);
 }

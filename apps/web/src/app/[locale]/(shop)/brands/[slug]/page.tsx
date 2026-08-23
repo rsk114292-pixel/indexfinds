@@ -12,13 +12,15 @@ import { notFound, redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import BrandPageClient from './BrandPageClient';
 import { BreadcrumbJsonLd } from '@/components/seo';
-import { defaultGoogleBot, generateAlternates, getOgLocale } from '@/lib/seo';
+import { defaultGoogleBot, getOgLocale } from '@/lib/seo';
 import type { Brand } from '@/types';
-import { getSiteUrl, getSiteName } from '@/lib/site-config';
+import { getSiteName } from '@/lib/site-config';
+import {
+  buildSiteAlternates,
+  getRequestSiteIdentity,
+} from '@/lib/request-site-identity';
 import { locales } from '@/i18n/config';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
-
-const SITE_URL = getSiteUrl();
 
 // 构建时预生成所有品牌 × 所有 locale 的静态页面
 export async function generateStaticParams() {
@@ -49,6 +51,8 @@ export async function generateMetadata({
   try {
     const { locale, slug } = await params;
     const t = await getTranslations({ locale, namespace: 'metadata' });
+    const identity = await getRequestSiteIdentity();
+    const { siteUrl, siteName, tenant } = identity;
     const brand = await getBrand(slug);
 
     if (!brand) {
@@ -69,7 +73,7 @@ export async function generateMetadata({
     const description = brand.description
       || t('brandFallbackDescription', {
         name: brand.name,
-        siteName: getSiteName(),
+        siteName,
       });
 
     return {
@@ -78,8 +82,8 @@ export async function generateMetadata({
       openGraph: {
         title,
         description,
-        url: `${SITE_URL}/${locale}/brands/${slug}`,
-        siteName: getSiteName(),
+        url: `${siteUrl}/${locale}/brands/${slug}`,
+        siteName,
         type: 'website',
         locale: getOgLocale(locale),
         ...(brand.logoUrl && {
@@ -91,8 +95,14 @@ export async function generateMetadata({
         title,
         description,
       },
-      alternates: generateAlternates(`/brands/${slug}`, locale),
-      robots: { index: true, follow: true, googleBot: defaultGoogleBot },
+      alternates: buildSiteAlternates(identity, `/brands/${slug}`, locale),
+      robots: {
+        index: !tenant,
+        follow: true,
+        googleBot: tenant
+          ? { index: false, follow: true }
+          : defaultGoogleBot,
+      },
     };
   } catch {
     return {
@@ -109,6 +119,7 @@ interface BrandPageProps {
 export default async function BrandPage({ params }: BrandPageProps) {
   const { locale, slug } = await params;
   const brand = await getBrand(slug);
+  const { siteUrl } = await getRequestSiteIdentity();
 
   if (!brand) {
     notFound();
@@ -136,7 +147,12 @@ export default async function BrandPage({ params }: BrandPageProps) {
 
   return (
     <>
-      <BreadcrumbJsonLd locale={locale} homeName={tCommon('home')} items={breadcrumbItems} />
+      <BreadcrumbJsonLd
+        locale={locale}
+        baseUrl={siteUrl}
+        homeName={tCommon('home')}
+        items={breadcrumbItems}
+      />
       <BrandPageClient slug={slug} initialBrand={brand} />
     </>
   );

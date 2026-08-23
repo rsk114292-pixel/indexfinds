@@ -19,6 +19,7 @@ import ProductCard from '@/components/ProductCard';
 import Pagination from '@/components/Pagination';
 import SortSelect from '@/components/SortSelect';
 import { Empty } from '@/components/ui/Empty';
+import { Alert } from '@/components/ui/Alert';
 import { SkeletonCard } from '@/components/ui/Skeleton';
 import { Link } from '@/i18n/navigation';
 import { fetcher } from '@/lib/api';
@@ -40,9 +41,16 @@ import MobileCategoryDetail from './components/mobile/MobileCategoryDetail';
 interface CategoryPageClientProps {
   slug: string;
   initialCategory: Category | null;
+  initialProductsData?: ApiListResponse<Product> | null;
+  initialFacetsData?: FacetsData | null;
 }
 
-export default function CategoryPageClient({ slug, initialCategory }: CategoryPageClientProps) {
+export default function CategoryPageClient({
+  slug,
+  initialCategory,
+  initialProductsData,
+  initialFacetsData,
+}: CategoryPageClientProps) {
   const t = useTranslations('categories');
   const tCommon = useTranslations('common');
   const locale = useLocale();
@@ -64,6 +72,23 @@ export default function CategoryPageClient({ slug, initialCategory }: CategoryPa
   const styles = searchParams.get('styles');
   const seasons = searchParams.get('seasons');
   const categories = searchParams.get('categories');
+  const canUseInitialProducts =
+    page === 1 &&
+    limit === DEFAULT_DESKTOP_PRODUCT_LIMIT &&
+    sortBy === 'popular' &&
+    ![
+      brands,
+      minPrice,
+      maxPrice,
+      colors,
+      genders,
+      styles,
+      seasons,
+      categories,
+    ].some(Boolean);
+  const initialProductsForView = canUseInitialProducts
+    ? initialProductsData
+    : null;
 
   // 构建 API 查询参数
   const queryParams = new URLSearchParams();
@@ -81,16 +106,28 @@ export default function CategoryPageClient({ slug, initialCategory }: CategoryPa
   if (categories) queryParams.set('categories', categories);
 
   // 获取商品列表（仅桌面端）
-  const { data: productsData, isLoading } = useSWR<ApiListResponse<Product>>(
-    enabledDesktop ? `/products?${queryParams.toString()}` : null,
-    fetcher
-  );
+  const productsKey =
+    enabledDesktop || initialProductsForView
+      ? `/products?${queryParams.toString()}`
+      : null;
+  const {
+    data: productsData,
+    error: productsError,
+    isLoading,
+  } = useSWR<ApiListResponse<Product>>(productsKey, fetcher, {
+    fallbackData: initialProductsForView ?? undefined,
+    revalidateOnMount: initialProductsForView ? false : undefined,
+  });
 
   // 获取筛选器 facets（仅桌面端）
-  const { data: facetsData } = useSWR<FacetsData>(
-    enabledDesktop ? `/products/facets?category=${slug}` : null,
-    fetcher
-  );
+  const facetsKey =
+    enabledDesktop || enabledMobile || initialFacetsData
+      ? `/products/facets?category=${slug}`
+      : null;
+  const { data: facetsData } = useSWR<FacetsData>(facetsKey, fetcher, {
+    fallbackData: initialFacetsData ?? undefined,
+    revalidateOnMount: initialFacetsData ? false : undefined,
+  });
 
   // 转换 API 数据格式
   const products = (productsData?.data || []).map((product) => ({
@@ -116,6 +153,18 @@ export default function CategoryPageClient({ slug, initialCategory }: CategoryPa
   const breadcrumbItems = initialCategory
     ? [{ name: getLocalizedName(initialCategory, locale), slug: initialCategory.slug }]
     : [];
+
+  if (productsError && !productsData) {
+    return (
+      <div className={`${DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS} py-8`}>
+        <Alert
+          type="error"
+          title={t('errorLoading')}
+          description={productsError.message}
+        />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -238,6 +287,8 @@ export default function CategoryPageClient({ slug, initialCategory }: CategoryPa
           slug={slug}
           initialCategory={initialCategory}
           enabled={enabledMobile}
+          initialProductsData={initialProductsForView}
+          initialFacetsData={initialFacetsData}
         />
       </div>
     </>

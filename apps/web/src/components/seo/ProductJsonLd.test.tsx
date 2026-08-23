@@ -117,4 +117,21 @@ describe('ProductJsonLd', () => {
 
     expect(jsonLd.description).toBe('Achetez Fallback Product sur IndexFinds');
   });
+
+  it('uses a tenant URL and seller name when provided', () => {
+    const { container } = render(
+      <ProductJsonLd
+        product={baseProduct}
+        locale="en"
+        baseUrl="https://usfansindex.net"
+        siteName="USFans Index"
+      />,
+    );
+    const jsonLd = getJsonLd(container);
+
+    expect(jsonLd.url).toBe(
+      'https://usfansindex.net/en/products/nike-air-max-90',
+    );
+    expect(jsonLd.offers.seller.name).toBe('USFans Index');
+  });
 });

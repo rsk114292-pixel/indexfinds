@@ -41,7 +41,7 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
     >
       <div
         className={cn(
-          "overflow-hidden rounded-[28px] border border-[#eadfd3] bg-[#f7f4ef]",
+          "overflow-hidden rounded-[28px] border border-[#dbe3ee] bg-[#f4f7fb]",
           compact ? "p-5" : "p-6 sm:p-8 lg:p-10",
         )}
       >
@@ -69,12 +69,12 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
               </Link>
               <Link
                 href="/products"
-                className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#cfc5b9] bg-white px-5 py-2.5 text-sm font-bold text-[#111827] transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#cbd5e1] bg-white px-5 py-2.5 text-sm font-bold text-[#111827] transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               >
                 Browse all products
               </Link>
             </div>
-            <p className="mt-5 flex max-w-xl items-start gap-2 text-xs leading-5 text-[#766d64]">
+            <p className="mt-5 flex max-w-xl items-start gap-2 text-xs leading-5 text-[#667085]">
               <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
               <span>
                 Some outbound buying links may be referral links. Confirm current
@@ -85,7 +85,7 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
 
           <nav
             aria-label={`${tenant.title} catalog shortcuts`}
-            className="border-t border-[#ddd3c8] pt-2 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0"
+            className="border-t border-[#d7e0ea] pt-2 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0"
           >
             {directoryLinks.map((item) => {
               const Icon = item.icon;
@@ -93,9 +93,9 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group grid grid-cols-[36px_1fr_auto] items-center gap-3 border-b border-[#ddd3c8] py-4 last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  className="group grid grid-cols-[36px_1fr_auto] items-center gap-3 border-b border-[#d7e0ea] py-4 last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-primary shadow-sm ring-1 ring-[#e2d9ce]">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-primary shadow-sm ring-1 ring-[#dbe3ee]">
                     <Icon className="h-4 w-4" />
                   </span>
                   <span>
@@ -108,7 +108,7 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                       </span>
                     )}
                   </span>
-                  <ArrowRight className="h-4 w-4 text-[#8a7f73] transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+                  <ArrowRight className="h-4 w-4 text-[#7a8699] transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
                 </Link>
               );
             })}

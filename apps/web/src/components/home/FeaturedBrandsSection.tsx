@@ -45,7 +45,7 @@ export default function FeaturedBrandsSection({
   if (editorial) {
     return (
       <section className="container mx-auto px-4 py-10 md:py-14">
-        <div className="grid overflow-hidden rounded-[28px] border border-[#e5ded6] bg-[#fbfaf8] lg:grid-cols-[minmax(260px,0.72fr)_minmax(0,1.28fr)]">
+        <div className="grid overflow-hidden rounded-[28px] border border-[#dbe3ee] bg-[#f8fafc] lg:grid-cols-[minmax(260px,0.72fr)_minmax(0,1.28fr)]">
           <div className="flex flex-col justify-between bg-[#111827] p-7 text-white sm:p-9">
             <div>
               <Crown className="h-6 w-6 text-accent" />
@@ -58,7 +58,7 @@ export default function FeaturedBrandsSection({
             </div>
             <Link
               href="/brands"
-              className="mt-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-[#111827] transition-colors hover:bg-[#f3ede6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[#111827]"
+              className="mt-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-[#111827] transition-colors hover:bg-[#f1f5f9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[#111827]"
             >
               View the complete brand index
               <ArrowRight className="h-4 w-4" />
@@ -70,7 +70,7 @@ export default function FeaturedBrandsSection({
               ? Array.from({ length: 8 }).map((_, index) => (
                   <div
                     key={index}
-                    className="flex min-h-20 items-center gap-4 rounded-2xl border border-[#e5ded6] bg-white px-4 py-3"
+                    className="flex min-h-20 items-center gap-4 rounded-2xl border border-[#dbe3ee] bg-white px-4 py-3"
                   >
                     <Skeleton className="h-12 w-12 rounded-xl" />
                     <div className="space-y-2">
@@ -84,7 +84,7 @@ export default function FeaturedBrandsSection({
                     key={brand.id}
                     href={`/brands/${brand.slug}`}
                     prefetch={false}
-                    className="group grid min-h-20 grid-cols-[56px_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-[#e5ded6] bg-white px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                    className="group grid min-h-20 grid-cols-[56px_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-[#dbe3ee] bg-white px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   >
                     <BrandLogo
                       name={brand.name}
@@ -100,7 +100,7 @@ export default function FeaturedBrandsSection({
                         {brand.productCount || 0} products
                       </span>
                     </span>
-                    <ArrowRight className="h-4 w-4 text-[#9a9188] transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+                    <ArrowRight className="h-4 w-4 text-[#7a8699] transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
                   </Link>
                 ))}
           </div>

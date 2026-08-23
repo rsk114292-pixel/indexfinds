@@ -16,7 +16,7 @@ import { Link } from '@/i18n/navigation';
 import { fetcher } from '@/lib/api';
 import { getLocalizedName } from '@/lib/utils';
 import { OutboundSource } from '@/lib/search-tracking';
-import type { ApiListResponse, ProductListItem, Category } from '@/types';
+import type { ApiListResponse, Product, ProductListItem, Category } from '@/types';
 import dynamic from 'next/dynamic';
 import type { ViewMode } from '../../../../products/components/mobile/MobileSortBar';
 import { ALL_FILTER_KEYS } from '@/components/filters/constants';
@@ -45,6 +45,8 @@ interface MobileCategoryDetailProps {
   slug: string;
   initialCategory: Category | null;
   enabled?: boolean;
+  initialProductsData?: ApiListResponse<Product> | null;
+  initialFacetsData?: FacetsData | null;
 }
 
 /**
@@ -57,6 +59,8 @@ export default function MobileCategoryDetail({
   slug,
   initialCategory,
   enabled = true,
+  initialProductsData,
+  initialFacetsData,
 }: MobileCategoryDetailProps) {
   const searchParams = useSearchParams();
   const t = useTranslations('categories');
@@ -67,6 +71,26 @@ export default function MobileCategoryDetail({
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [filterOpen, setFilterOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const initialMobilePage = useMemo<ApiListResponse<ProductListItem> | undefined>(
+    () =>
+      initialProductsData
+        ? {
+            ...initialProductsData,
+            data: initialProductsData.data.slice(0, PAGE_SIZE).map(
+              (product) =>
+                ({
+                  ...product,
+                  price: {
+                    min: Number(product.priceMin) || 0,
+                    max: Number(product.priceMax) || 0,
+                    currency: product.currency || 'CNY',
+                  },
+                }) as ProductListItem,
+            ),
+          }
+        : undefined,
+    [initialProductsData],
+  );
 
   /* ─── 筛选参数 ─── */
   const filterQs = useMemo(() => {
@@ -82,8 +106,12 @@ export default function MobileCategoryDetail({
 
   /* ─── 获取 facets ─── */
   const { data: facetsData } = useSWR<FacetsData>(
-    enabled ? `/products/facets?category=${slug}` : null,
+    enabled || initialFacetsData ? `/products/facets?category=${slug}` : null,
     fetcher,
+    {
+      fallbackData: initialFacetsData ?? undefined,
+      revalidateOnMount: initialFacetsData ? false : undefined,
+    },
   );
 
   /* ─── useSWRInfinite 分页 ─── */
@@ -104,7 +132,9 @@ export default function MobileCategoryDetail({
     isLoading,
     isValidating,
   } = useSWRInfinite<ApiListResponse<ProductListItem>>(getKey, fetcher, {
+    fallbackData: initialMobilePage ? [initialMobilePage] : undefined,
     revalidateFirstPage: false,
+    revalidateOnMount: initialMobilePage ? false : undefined,
     revalidateOnFocus: false,
     dedupingInterval: 2000,
   });

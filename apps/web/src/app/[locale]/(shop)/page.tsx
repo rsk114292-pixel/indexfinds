@@ -27,12 +27,6 @@ interface HotSearchItem {
   count: number;
 }
 
-interface PublicStats {
-  totalProducts: number;
-  totalBrands: number;
-  totalCategories: number;
-}
-
 async function fetchHomeData<T>(path: string, revalidate = 60): Promise<T | null> {
   return fetchServerApiJson<T>(path, {
     next: { revalidate },
@@ -94,13 +88,17 @@ export default async function HomePage() {
   const initialViewport = /Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)
     ? 'mobile'
     : 'desktop';
+  const tenant = resolveTenantFromHeaders(
+    headersList,
+    process.env.INDEXFINDS_LOCAL_TENANT_HOST,
+  );
+  const showcaseLimit = tenant ? 12 : HOME_SHOWCASE_LIMIT;
 
   const [
     initialHotSearches,
     initialFeaturedBrands,
     initialCategories,
     initialNewestProducts,
-    initialStats,
   ] = await Promise.all([
     fetchHomeData<HotSearchItem[]>('/products/hot-searches?limit=6', 300),
     fetchHomeData<ApiListResponse<Brand>>(
@@ -109,10 +107,9 @@ export default async function HomePage() {
     ),
     fetchHomeData<Category[] | { data: Category[] }>('/categories/home', 60),
     fetchHomeData<ApiListResponse<ProductListItem>>(
-      `/products?sortBy=newest&limit=${HOME_SHOWCASE_LIMIT}`,
+      `/products?sortBy=newest&limit=${showcaseLimit}`,
       30,
     ),
-    fetchHomeData<PublicStats>('/public/stats', 60),
   ]);
 
   return (
@@ -122,7 +119,6 @@ export default async function HomePage() {
       initialFeaturedBrands={initialFeaturedBrands ?? undefined}
       initialCategories={initialCategories ?? undefined}
       initialNewestProducts={initialNewestProducts ?? undefined}
-      initialStats={initialStats ?? undefined}
     />
   );
 }

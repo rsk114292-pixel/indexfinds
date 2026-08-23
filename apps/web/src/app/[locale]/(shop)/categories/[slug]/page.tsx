@@ -8,20 +8,28 @@
  * - 客户端交互逻辑委托给 CategoryPageClient
  */
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import Image from 'next/image';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 import { Spinner } from '@/components/ui/Spinner';
 import CategoryPageClient from './CategoryPageClient';
 import { BreadcrumbJsonLd } from '@/components/seo';
 import { getLocalizedName } from '@/lib/utils';
-import { generateAlternates, defaultGoogleBot, getOgLocale } from '@/lib/seo';
-import type { Category } from '@/types';
-import { getSiteUrl, getSiteName } from '@/lib/site-config';
+import { defaultGoogleBot, getOgLocale } from '@/lib/seo';
+import type { ApiListResponse, Category, Product } from '@/types';
+import type { FacetsData } from '@/components/filters/types';
+import { getSiteName } from '@/lib/site-config';
+import {
+  buildSiteAlternates,
+  getRequestSiteIdentity,
+} from '@/lib/request-site-identity';
 import { locales } from '@/i18n/config';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
-
-const SITE_URL = getSiteUrl();
+import {
+  DEFAULT_DESKTOP_PRODUCT_LIMIT,
+  DESKTOP_PRODUCT_GRID_CLASS,
+} from '@/lib/product-list-layout';
 
 function isCategory(value: Category | { data?: Category }): value is Category {
   return (
@@ -67,6 +75,8 @@ export async function generateMetadata({
   try {
     const { locale, slug } = await params;
     const t = await getTranslations({ locale, namespace: 'metadata' });
+    const identity = await getRequestSiteIdentity();
+    const { siteUrl, siteName, tenant } = identity;
     const category = await getCategory(slug);
 
     if (!category) {
@@ -87,7 +97,7 @@ export async function generateMetadata({
     const title = t('categoryTitle', { name: localName });
     const description = t('categoryDescription', {
       name: localName,
-      siteName: getSiteName(),
+      siteName,
     });
 
     return {
@@ -96,8 +106,8 @@ export async function generateMetadata({
       openGraph: {
         title,
         description,
-        url: `${SITE_URL}/${locale}/categories/${slug}`,
-        siteName: getSiteName(),
+        url: `${siteUrl}/${locale}/categories/${slug}`,
+        siteName,
         type: 'website',
         locale: getOgLocale(locale),
       },
@@ -106,11 +116,17 @@ export async function generateMetadata({
         title,
         description,
       },
-      alternates: generateAlternates(`/categories/${slug}`, locale),
+      alternates: buildSiteAlternates(
+        identity,
+        `/categories/${slug}`,
+        locale,
+      ),
       robots: {
-        index: true,
+        index: !tenant,
         follow: true,
-        googleBot: defaultGoogleBot,
+        googleBot: tenant
+          ? { index: false, follow: true }
+          : defaultGoogleBot,
       },
     };
   } catch {
@@ -134,6 +150,52 @@ function PageLoading() {
   );
 }
 
+function NoScriptProductFallback({
+  locale,
+  category,
+  products,
+}: {
+  locale: string;
+  category: Category;
+  products: Product[];
+}) {
+  if (products.length === 0) return null;
+
+  return (
+    <noscript>
+      <section className="container mx-auto px-4 py-8">
+        <h1 className="mb-6 text-2xl font-semibold text-foreground">
+          {getLocalizedName(category, locale)}
+        </h1>
+        <div className={DESKTOP_PRODUCT_GRID_CLASS}>
+          {products.map((product) => (
+            <a
+              key={product.id}
+              href={`/${locale}/products/${product.slug}`}
+              className="overflow-hidden rounded-xl border border-border bg-surface text-foreground"
+            >
+              <div className="relative aspect-square bg-muted">
+                {product.mainImage ? (
+                  <Image
+                    src={product.mainImage}
+                    alt={product.title}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                    className="object-cover"
+                  />
+                ) : null}
+              </div>
+              <span className="block p-3 text-sm font-medium">
+                {product.title}
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    </noscript>
+  );
+}
+
 interface CategoryPageProps {
   params: Promise<{ locale: string; slug: string }>;
 }
@@ -141,10 +203,31 @@ interface CategoryPageProps {
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { locale, slug } = await params;
   const tCommon = await getTranslations({ locale, namespace: 'common' });
+  const { siteUrl } = await getRequestSiteIdentity();
   const category = await getCategory(slug);
   if (!category) {
     notFound();
   }
+
+  if (category.slug !== slug) {
+    permanentRedirect(`/${locale}/categories/${category.slug}`);
+  }
+
+  const productQuery = new URLSearchParams({
+    category: category.slug,
+    page: '1',
+    limit: String(DEFAULT_DESKTOP_PRODUCT_LIMIT),
+    sortBy: 'popular',
+  });
+
+  const [initialProductsData, initialFacetsData] = await Promise.all([
+    fetchServerApiJson<ApiListResponse<Product>>(
+      `/products?${productQuery.toString()}`,
+    ),
+    fetchServerApiJson<FacetsData>(
+      `/products/facets?category=${encodeURIComponent(category.slug)}`,
+    ),
+  ]);
 
   // 构建面包屑数据（Home 由 BreadcrumbJsonLd 组件自动添加）
   const breadcrumbItems = [
@@ -154,10 +237,26 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   return (
     <>
       {/* JSON-LD 结构化数据 */}
-      <BreadcrumbJsonLd locale={locale} homeName={tCommon('home')} items={breadcrumbItems} />
+      <BreadcrumbJsonLd
+        locale={locale}
+        baseUrl={siteUrl}
+        homeName={tCommon('home')}
+        items={breadcrumbItems}
+      />
+
+      <NoScriptProductFallback
+        locale={locale}
+        category={category}
+        products={initialProductsData?.data || []}
+      />
 
       <Suspense fallback={<PageLoading />}>
-        <CategoryPageClient slug={slug} initialCategory={category} />
+        <CategoryPageClient
+          slug={category.slug}
+          initialCategory={category}
+          initialProductsData={initialProductsData}
+          initialFacetsData={initialFacetsData}
+        />
       </Suspense>
     </>
   );

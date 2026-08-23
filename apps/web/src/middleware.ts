@@ -5,12 +5,13 @@ import { buildReferralTrackingHeaders } from '@/lib/referral-tracking-signature'
 import { getLegacyHostRedirectUrl } from '@/lib/host-redirect';
 import {
   getGuardedCatalogDetailRoute,
-  guardedCatalogSlugExists,
+  resolveGuardedCatalogSlug,
 } from '@/lib/catalog-route-guard';
 import { hasAnalyticsConsent } from '@/lib/analytics-consent';
-import { PUBLIC_REGISTRATION_ENABLED } from '@/lib/features';
+import { isDisabledPublicAuthPath } from '@/lib/features';
 import {
   isTenantLocaleIndexable,
+  isTenantPathIndexable,
   resolveTenantFromHeaders,
 } from '@/lib/tenant-config';
 
@@ -42,10 +43,7 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.redirect(legacyHostRedirectUrl, 308);
   }
 
-  const registrationRoute = /^\/[a-z]{2}\/register\/?$/i.test(
-    request.nextUrl.pathname,
-  );
-  if (!PUBLIC_REGISTRATION_ENABLED && registrationRoute) {
+  if (isDisabledPublicAuthPath(request.nextUrl.pathname)) {
     const locale = request.nextUrl.pathname.split('/')[1] || routing.defaultLocale;
     const response = NextResponse.rewrite(
       new URL(`/${locale}/_not-found`, request.url),
@@ -64,12 +62,12 @@ export default async function middleware(request: NextRequest) {
     (request.method === 'GET' || request.method === 'HEAD') &&
     !isPrefetchLikeRequest(request)
   ) {
-    const slugExists = await guardedCatalogSlugExists(
+    const slugResolution = await resolveGuardedCatalogSlug(
       guardedCatalogRoute.entityType,
       guardedCatalogRoute.slug,
     );
 
-    if (slugExists === false) {
+    if (slugResolution.exists === false) {
       const notFoundUrl = new URL(
         `/${guardedCatalogRoute.locale}/_not-found`,
         request.url,
@@ -78,6 +76,18 @@ export default async function middleware(request: NextRequest) {
       response.headers.set('x-robots-tag', 'noindex, nofollow');
       response.headers.set('x-pathname', request.nextUrl.pathname);
       return response;
+    }
+
+    if (
+      slugResolution.exists === true &&
+      slugResolution.canonicalSlug &&
+      slugResolution.canonicalSlug !== guardedCatalogRoute.slug
+    ) {
+      const canonicalUrl = request.nextUrl.clone();
+      canonicalUrl.pathname =
+        `/${guardedCatalogRoute.locale}/${guardedCatalogRoute.entityType}/` +
+        slugResolution.canonicalSlug;
+      return NextResponse.redirect(canonicalUrl, 308);
     }
   }
 
@@ -93,9 +103,16 @@ export default async function middleware(request: NextRequest) {
   if (
     tenant &&
     tenantLocale &&
-    !isTenantLocaleIndexable(tenant, tenantLocale)
+    (!isTenantLocaleIndexable(tenant, tenantLocale) ||
+      !isTenantPathIndexable(tenant, request.nextUrl.pathname))
   ) {
-    response.headers.set('x-robots-tag', 'noindex, follow');
+    const isNotFoundRewrite = /^\/[a-z]{2}\/_not-found\/?$/i.test(
+      request.nextUrl.pathname,
+    );
+    response.headers.set(
+      'x-robots-tag',
+      isNotFoundRewrite ? 'noindex, nofollow' : 'noindex, follow',
+    );
   }
 
   const analyticsConsent = request.cookies.get('cookie_consent')?.value;

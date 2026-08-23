@@ -17,6 +17,11 @@ export interface GuardedCatalogDetailRoute {
   slug: string;
 }
 
+export interface GuardedCatalogSlugResolution {
+  exists: boolean | null;
+  canonicalSlug: string | null;
+}
+
 export function getGuardedCatalogDetailRoute(
   pathname: string,
 ): GuardedCatalogDetailRoute | null {
@@ -37,10 +42,10 @@ export function getGuardedCatalogDetailRoute(
   };
 }
 
-export async function guardedCatalogSlugExists(
+export async function resolveGuardedCatalogSlug(
   entityType: GuardedEntityType,
   slug: string,
-): Promise<boolean | null> {
+): Promise<GuardedCatalogSlugResolution> {
   try {
     const response = await fetch(
       `${API_BASE_URL}/${entityType}/slug/${encodeURIComponent(slug)}`,
@@ -54,15 +59,33 @@ export async function guardedCatalogSlugExists(
     );
 
     if (response.ok) {
-      return true;
+      let canonicalSlug: string | null = null;
+      if (typeof response.json === 'function') {
+        const payload = (await response.json().catch(() => null)) as
+          | { slug?: unknown; data?: { slug?: unknown } }
+          | null;
+        const resolvedSlug = payload?.slug ?? payload?.data?.slug;
+        canonicalSlug =
+          typeof resolvedSlug === 'string' && resolvedSlug.length > 0
+            ? resolvedSlug
+            : null;
+      }
+      return { exists: true, canonicalSlug };
     }
 
     if (response.status === 404) {
-      return false;
+      return { exists: false, canonicalSlug: null };
     }
 
-    return null;
+    return { exists: null, canonicalSlug: null };
   } catch {
-    return null;
+    return { exists: null, canonicalSlug: null };
   }
+}
+
+export async function guardedCatalogSlugExists(
+  entityType: GuardedEntityType,
+  slug: string,
+): Promise<boolean | null> {
+  return (await resolveGuardedCatalogSlug(entityType, slug)).exists;
 }

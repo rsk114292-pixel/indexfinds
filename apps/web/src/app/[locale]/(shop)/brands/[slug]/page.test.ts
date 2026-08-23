@@ -34,6 +34,14 @@ jest.mock('@/lib/seo', () => ({
   generateAlternates: jest.fn(),
   getOgLocale: jest.fn(),
 }));
+jest.mock('@/lib/request-site-identity', () => ({
+  getRequestSiteIdentity: jest.fn().mockResolvedValue({
+    tenant: null,
+    siteUrl: 'https://indexfinds.com',
+    siteName: 'IndexFinds',
+  }),
+  buildSiteAlternates: jest.fn(),
+}));
 
 // Mock global fetch
 const mockFetch = jest.fn();

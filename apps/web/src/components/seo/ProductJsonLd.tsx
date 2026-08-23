@@ -33,14 +33,17 @@ interface ProductJsonLdProps {
   };
   locale?: string;
   fallbackDescription?: string;
+  baseUrl?: string;
+  siteName?: string;
 }
 
 export function ProductJsonLd({
   product,
   locale,
   fallbackDescription,
+  baseUrl = getSiteUrl(),
+  siteName = getSiteName(),
 }: ProductJsonLdProps) {
-  const baseUrl = getSiteUrl();
   const resolvedLocale = locale || 'en';
   const localizedCategoryName = product.primaryCategory
     ? getLocalizedName(product.primaryCategory, resolvedLocale)
@@ -53,7 +56,7 @@ export function ProductJsonLd({
     description:
       product.description?.replace(/<[^>]*>/g, '').slice(0, 500) ||
       fallbackDescription ||
-      `Shop ${product.title} from ${getSiteName()}`,
+      `Shop ${product.title} from ${siteName}`,
     image: product.images?.length
       ? product.images
       : product.mainImage
@@ -87,7 +90,7 @@ export function ProductJsonLd({
         itemCondition: 'https://schema.org/NewCondition',
         seller: {
           '@type': 'Organization',
-          name: getSiteName(),
+          name: siteName,
         },
       },
     }),

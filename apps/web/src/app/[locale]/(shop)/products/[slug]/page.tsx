@@ -15,16 +15,16 @@ import { ProductJsonLd, BreadcrumbJsonLd } from '@/components/seo';
 import { getLocalizedName } from '@/lib/utils';
 import {
   defaultGoogleBot,
-  generateAlternates,
   getOgLocale,
   getProductMetadataKeywords,
 } from '@/lib/seo';
 import type { Product } from '@/types';
-import { getSiteUrl, getSiteName } from '@/lib/site-config';
+import {
+  buildSiteAlternates,
+  getRequestSiteIdentity,
+} from '@/lib/request-site-identity';
 import { getProductDetailTag } from '@/lib/cache-tags';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
-
-const SITE_URL = getSiteUrl();
 
 // 动态渲染：解决 next-intl getTranslations 在 ISR 页面触发 DYNAMIC_SERVER_USAGE
 // 页面仍通过 fetch revalidate: 3600 + Vercel Edge Cache 获得缓存
@@ -48,6 +48,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
+  const identity = await getRequestSiteIdentity();
+  const { siteUrl, siteName, tenant } = identity;
   const product = await getProduct(slug);
 
   if (!product) {
@@ -68,7 +70,9 @@ export async function generateMetadata({
     : '';
   const description = descriptionRaw
     ? (descriptionRaw.length > 155 ? descriptionRaw.slice(0, 155) + '...' : descriptionRaw)
-    : t('productFallbackDescription', { title });
+    : tenant
+      ? `Explore ${title} on ${siteName}.`
+      : t('productFallbackDescription', { title });
 
   // 价格信息
   const price = product.priceMin
@@ -89,29 +93,31 @@ export async function generateMetadata({
 
     // Open Graph — images 由 opengraph-image.tsx 自动生成
     openGraph: {
-      title: `${title} | ${getSiteName()}`,
+      title: `${title} | ${siteName}`,
       description,
       type: 'website',
-      url: `${SITE_URL}/${locale}/products/${slug}`,
-      siteName: getSiteName(),
+      url: `${siteUrl}/${locale}/products/${slug}`,
+      siteName,
       locale: getOgLocale(locale),
     },
 
     // Twitter Card — 自动回退用 og:image
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | ${getSiteName()}`,
+      title: `${title} | ${siteName}`,
       description,
     },
 
     // Canonical URL + alternates
-    alternates: generateAlternates(`/products/${slug}`, locale),
+    alternates: buildSiteAlternates(identity, `/products/${slug}`, locale),
 
     // Robots 指令
     robots: {
-      index: true,
+      index: !tenant,
       follow: true,
-      googleBot: defaultGoogleBot,
+      googleBot: tenant
+        ? { index: false, follow: true }
+        : defaultGoogleBot,
     },
   };
 }
@@ -128,6 +134,7 @@ export default async function ProductPage({
     getTranslations({ locale, namespace: 'common' }),
   ]);
   const product = await getProduct(slug);
+  const { siteUrl, siteName, tenant } = await getRequestSiteIdentity();
 
   if (!product) {
     notFound();
@@ -151,7 +158,13 @@ export default async function ProductPage({
       {/* JSON-LD 结构化数据 */}
       <ProductJsonLd
         locale={locale}
-        fallbackDescription={t('productFallbackDescription', { title: product.title })}
+        baseUrl={siteUrl}
+        siteName={siteName}
+        fallbackDescription={
+          tenant
+            ? `Explore ${product.title} on ${siteName}.`
+            : t('productFallbackDescription', { title: product.title })
+        }
         product={{
           slug: product.slug,
           title: product.title,
@@ -165,7 +178,12 @@ export default async function ProductPage({
           currency: product.currency,
         }}
       />
-      <BreadcrumbJsonLd locale={locale} homeName={tCommon('home')} items={breadcrumbItems} />
+      <BreadcrumbJsonLd
+        locale={locale}
+        baseUrl={siteUrl}
+        homeName={tCommon('home')}
+        items={breadcrumbItems}
+      />
 
       {/* 客户端交互组件 */}
       <ProductPageClient initialProduct={product} slug={slug} />

@@ -1,6 +1,8 @@
 import {
   getTenantConfigByHost,
   isTenantLocaleIndexable,
+  isTenantPathIndexable,
+  resolveSiteIdentityFromHeaders,
   resolveTenantFromHeaders,
 } from "./tenant-config";
 import { SUBSITE_GUIDES } from "./subsite-guides";
@@ -30,6 +32,27 @@ describe("tenant config", () => {
       "x-forwarded-host": "superbuyitems.com, proxy.internal",
     });
     expect(resolveTenantFromHeaders(headers)?.domain).toBe("superbuyitems.com");
+  });
+
+  it("resolves tenant URLs and names from the request host", () => {
+    const identity = resolveSiteIdentityFromHeaders(
+      new Headers({ host: "usfansindex.net" }),
+    );
+
+    expect(identity.siteUrl).toBe("https://usfansindex.net");
+    expect(identity.siteName).toBe("USFans Index");
+  });
+
+  it("indexes only reviewed tenant-specific public paths", () => {
+    const usfans = getTenantConfigByHost("usfansindex.net")!;
+    const draft = getTenantConfigByHost("acbuyindex.com")!;
+
+    expect(isTenantPathIndexable(usfans, "/en")).toBe(true);
+    expect(isTenantPathIndexable(usfans, "/en/")).toBe(true);
+    expect(isTenantPathIndexable(usfans, "/en/usfans-spreadsheet")).toBe(true);
+    expect(isTenantPathIndexable(usfans, "/en/products/example")).toBe(false);
+    expect(isTenantPathIndexable(usfans, "/en/privacy")).toBe(false);
+    expect(isTenantPathIndexable(draft, "/en")).toBe(false);
   });
 
   it("does not treat the main site or an unknown host as a tenant", () => {

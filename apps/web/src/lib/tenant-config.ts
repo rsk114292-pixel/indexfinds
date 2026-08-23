@@ -5,10 +5,17 @@ import {
 import { getAgentPlatform } from "./agent-platforms";
 import { getOfficialPlatformLogo } from "./platform-logo-assets";
 import { getTenantEditorialProfile } from "./tenant-editorial-profiles";
+import { getSiteName, getSiteUrl } from "./site-config";
 
 export interface TenantConfig extends SubsiteGuideDefinition {
   canonicalOrigin: string;
   branding?: TenantBranding;
+}
+
+export interface SiteIdentity {
+  tenant: TenantConfig | null;
+  siteUrl: string;
+  siteName: string;
 }
 
 export interface TenantBranding {
@@ -194,6 +201,30 @@ export function resolveTenantFromHeaders(
   const host =
     firstForwardedHost(headers.get("x-forwarded-host")) || headers.get("host");
   return getTenantConfigByHost(host) || getTenantConfigByHost(localFallbackHost);
+}
+
+export function resolveSiteIdentityFromHeaders(
+  headers: TenantRequestHeaders,
+  localFallbackHost?: string,
+): SiteIdentity {
+  const tenant = resolveTenantFromHeaders(headers, localFallbackHost);
+
+  return {
+    tenant,
+    siteUrl: tenant?.canonicalOrigin || getSiteUrl(),
+    siteName: tenant?.branding?.siteName || getSiteName(),
+  };
+}
+
+export function isTenantPathIndexable(
+  tenant: TenantConfig,
+  pathname: string,
+): boolean {
+  if (tenant.branding?.indexing !== "ready") return false;
+
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+  const guidePath = tenant.branding?.editorial.primaryCtaHref;
+  return normalizedPath === "/en" || normalizedPath === `/en${guidePath}`;
 }
 
 export function isTenantLocaleIndexable(

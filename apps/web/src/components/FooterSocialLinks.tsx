@@ -3,10 +3,12 @@
 import useSWR from 'swr';
 import { fetcher } from '@/lib/api';
 import { SocialIcon, type SocialLink } from '@/lib/social-icons';
+import { useTenant } from '@/components/TenantProvider';
 
 export default function FooterSocialLinks() {
+  const tenant = useTenant();
   const { data: links } = useSWR<SocialLink[]>(
-    '/social-links',
+    tenant ? null : '/social-links',
     fetcher,
     { revalidateOnFocus: false },
   );

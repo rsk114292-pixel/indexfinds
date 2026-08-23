@@ -88,7 +88,7 @@ export default async function UsfansSpreadsheetPage({
   return (
     <>
       <FAQPageJsonLd items={[...FAQ_ITEMS]} />
-      <main className="bg-[#f7f4ef] text-[#111827]">
+      <main className="bg-[#f5f7fb] text-[#111827]">
         <section className="container mx-auto px-4 py-14 sm:py-18 lg:py-22">
           <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(300px,0.75fr)]">
             <div>
@@ -100,7 +100,7 @@ export default async function UsfansSpreadsheetPage({
               </h1>
             </div>
             <div className="lg:pb-2">
-              <p className="max-w-xl text-base leading-7 text-[#596174] lg:text-lg">
+              <p className="max-w-xl text-base leading-7 text-[#5c6678] lg:text-lg">
                 Search the live product index, narrow results by brand or
                 category, and review the available buying routes in one place.
               </p>
@@ -114,7 +114,7 @@ export default async function UsfansSpreadsheetPage({
                 </Link>
                 <Link
                   href="/categories"
-                  className="inline-flex min-h-11 items-center rounded-full border border-[#cfc5b9] bg-white px-5 py-2.5 text-sm font-bold text-[#111827] transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  className="inline-flex min-h-11 items-center rounded-full border border-[#c9d3e1] bg-white px-5 py-2.5 text-sm font-bold text-[#111827] transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 >
                   Browse categories
                 </Link>
@@ -124,7 +124,7 @@ export default async function UsfansSpreadsheetPage({
         </section>
 
         <section className="container mx-auto px-4 pb-14 lg:pb-20">
-          <div className="grid overflow-hidden rounded-[28px] border border-[#e2d8ce] bg-white lg:grid-cols-[minmax(260px,0.7fr)_minmax(0,1.3fr)]">
+          <div className="grid overflow-hidden rounded-[28px] border border-[#d9e1ed] bg-white lg:grid-cols-[minmax(260px,0.7fr)_minmax(0,1.3fr)]">
             <div className="bg-[#111827] p-7 text-white sm:p-9">
               <Search className="h-7 w-7 text-accent" />
               <h2 className="mt-8 text-3xl font-extrabold leading-[1.08] tracking-[-0.04em]">
@@ -152,14 +152,14 @@ export default async function UsfansSpreadsheetPage({
               ].map(([title, description]) => (
                 <div
                   key={title}
-                  className="grid grid-cols-[36px_1fr] gap-4 border-b border-[#e5ded6] py-5 first:pt-0 last:border-b-0 last:pb-0"
+                  className="grid grid-cols-[36px_1fr] gap-4 border-b border-[#e2e8f0] py-5 first:pt-0 last:border-b-0 last:pb-0"
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#f7f4ef] text-primary ring-1 ring-[#e2d8ce]">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#f3f6fb] text-primary ring-1 ring-[#d9e1ed]">
                     <Check className="h-4 w-4" />
                   </span>
                   <div>
                     <h3 className="text-base font-bold">{title}</h3>
-                    <p className="mt-1 text-sm leading-6 text-[#667085]">
+                    <p className="mt-1 text-sm leading-6 text-[#5c6678]">
                       {description}
                     </p>
                   </div>
@@ -176,14 +176,14 @@ export default async function UsfansSpreadsheetPage({
               <h2 className="mt-6 text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">
                 Choose the route that matches your search.
               </h2>
-              <p className="mt-4 max-w-xl text-sm leading-6 text-[#667085] sm:text-base sm:leading-7">
+              <p className="mt-4 max-w-xl text-sm leading-6 text-[#5c6678] sm:text-base sm:leading-7">
                 The catalog supports several entry points, so a known brand and
                 an open-ended product search do not need the same path.
               </p>
             </div>
             <nav
               aria-label="USFans product index sections"
-              className="rounded-[24px] border border-[#e2d8ce] bg-white px-5 sm:px-7"
+              className="rounded-[24px] border border-[#d9e1ed] bg-white px-5 sm:px-7"
             >
               {[
                 ['/brands', 'Brand index', 'Explore products grouped by brand.'],
@@ -193,17 +193,17 @@ export default async function UsfansSpreadsheetPage({
                 <Link
                   key={href}
                   href={href}
-                  className="group grid grid-cols-[1fr_auto] items-center gap-4 border-b border-[#e5ded6] py-5 last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  className="group grid grid-cols-[1fr_auto] items-center gap-4 border-b border-[#e2e8f0] py-5 last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 >
                   <span>
                     <span className="block text-base font-bold group-hover:text-primary">
                       {title}
                     </span>
-                    <span className="mt-1 block text-sm text-[#667085]">
+                    <span className="mt-1 block text-sm text-[#5c6678]">
                       {description}
                     </span>
                   </span>
-                  <ArrowRight className="h-4 w-4 text-[#91877c] transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+                  <ArrowRight className="h-4 w-4 text-[#7c8799] transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
                 </Link>
               ))}
             </nav>
@@ -211,14 +211,14 @@ export default async function UsfansSpreadsheetPage({
         </section>
 
         <aside className="container mx-auto px-4 pb-14 lg:pb-20" aria-labelledby="catalog-notice-title">
-          <div className="rounded-[24px] border border-[#e2d8ce] bg-white p-6 sm:p-8">
+          <div className="rounded-[24px] border border-[#d9e1ed] bg-white p-6 sm:p-8">
             <h2
               id="catalog-notice-title"
               className="text-xl font-extrabold tracking-[-0.03em] sm:text-2xl"
             >
               Catalog and referral notice
             </h2>
-            <div className="mt-4 grid gap-4 text-sm leading-6 text-[#667085] md:grid-cols-2 md:gap-8">
+            <div className="mt-4 grid gap-4 text-sm leading-6 text-[#5c6678] md:grid-cols-2 md:gap-8">
               <p>
                 Product information may come from marketplace listings and may
                 not be independently verified. Confirm the current price,
@@ -239,16 +239,16 @@ export default async function UsfansSpreadsheetPage({
             <h2 className="text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">
               USFans spreadsheet questions
             </h2>
-            <div className="mt-7 overflow-hidden rounded-[24px] border border-[#e2d8ce] bg-white px-5 sm:px-7">
+            <div className="mt-7 overflow-hidden rounded-[24px] border border-[#d9e1ed] bg-white px-5 sm:px-7">
               {FAQ_ITEMS.map((item) => (
                 <details
                   key={item.question}
-                  className="group border-b border-[#e5ded6] py-5 last:border-b-0"
+                  className="group border-b border-[#e2e8f0] py-5 last:border-b-0"
                 >
                   <summary className="cursor-pointer list-none pr-8 text-base font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
                     {item.question}
                   </summary>
-                  <p className="max-w-3xl pb-1 pt-3 text-sm leading-6 text-[#667085]">
+                  <p className="max-w-3xl pb-1 pt-3 text-sm leading-6 text-[#5c6678]">
                     {item.answer}
                   </p>
                 </details>

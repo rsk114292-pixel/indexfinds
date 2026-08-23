@@ -11,11 +11,12 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import BrandsPageClient from './BrandsPageClient';
 import { ItemListJsonLd } from '@/components/seo/ItemListJsonLd';
-import { generateAlternates, getOgLocale } from '@/lib/seo';
-import { getSiteUrl, getSiteName } from '@/lib/site-config';
+import { getOgLocale } from '@/lib/seo';
+import {
+  buildSiteAlternates,
+  getRequestSiteIdentity,
+} from '@/lib/request-site-identity';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
-
-const SITE_URL = getSiteUrl();
 
 export async function generateMetadata({
   params,
@@ -24,9 +25,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
+  const identity = await getRequestSiteIdentity();
+  const { siteUrl, siteName, tenant } = identity;
 
   const title = t('brandsTitle');
-  const description = t('brandsDescription');
+  const description = tenant
+    ? `Browse brands represented in the ${siteName} product index and continue into current catalog results.`
+    : t('brandsDescription');
 
   return {
     title,
@@ -34,16 +39,16 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${locale}/brands`,
-      siteName: getSiteName(),
+      url: `${siteUrl}/${locale}/brands`,
+      siteName,
       type: 'website',
       locale: getOgLocale(locale),
       images: [
         {
-          url: `${SITE_URL}/${locale}/share-image`,
+          url: `${siteUrl}/${locale}/share-image`,
           width: 1200,
           height: 630,
-          alt: `${getSiteName()} brand directory`,
+          alt: `${siteName} brand directory`,
         },
       ],
     },
@@ -51,10 +56,10 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title,
       description,
-      images: [`${SITE_URL}/${locale}/share-image`],
+      images: [`${siteUrl}/${locale}/share-image`],
     },
-    alternates: generateAlternates('/brands', locale),
-    robots: { index: true, follow: true },
+    alternates: buildSiteAlternates(identity, '/brands', locale),
+    robots: { index: !tenant, follow: true },
   };
 }
 
@@ -73,11 +78,12 @@ export default async function BrandsPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
+  const { siteUrl } = await getRequestSiteIdentity();
   const brands = await getBrandsList();
 
   const listItems = brands.slice(0, 100).map((brand) => ({
     name: brand.name,
-    url: `${SITE_URL}/${locale}/brands/${brand.slug}`,
+    url: `${siteUrl}/${locale}/brands/${brand.slug}`,
   }));
 
   return (

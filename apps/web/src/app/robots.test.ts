@@ -1,7 +1,9 @@
-import robots from './robots';
+import { buildRobots } from './robots';
+import { getSiteUrl } from '@/lib/site-config';
 
 describe('robots.txt', () => {
-  const rules = robots().rules as Array<{
+  const mainSiteUrl = getSiteUrl();
+  const rules = buildRobots(mainSiteUrl).rules as Array<{
     userAgent: string;
     allow?: string | string[];
     disallow?: string | string[];
@@ -47,7 +49,14 @@ describe('robots.txt', () => {
   });
 
   it('sitemap 指向正确的 URL', () => {
-    const result = robots();
+    const result = buildRobots(mainSiteUrl);
     expect(result.sitemap).toMatch(/\/sitemap\.xml$/);
+  });
+
+  it('uses the tenant host for robots and sitemap URLs', () => {
+    const result = buildRobots('https://usfansindex.net');
+
+    expect(result.host).toBe('https://usfansindex.net');
+    expect(result.sitemap).toBe('https://usfansindex.net/sitemap.xml');
   });
 });

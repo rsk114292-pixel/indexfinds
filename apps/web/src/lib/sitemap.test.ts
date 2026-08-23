@@ -4,10 +4,12 @@
 
 import {
   buildUrlSetXml,
+  getTenantSitemapOptions,
   getSitemapEntriesByChunk,
   getSitemapChunkIds,
 } from './sitemap';
 import { getSiteUrl } from './site-config';
+import { getTenantConfigByHost } from './tenant-config';
 
 const SITE_URL = getSiteUrl();
 const mockFetch = jest.fn();
@@ -46,6 +48,22 @@ describe('sitemap', () => {
     expect(zhHome?.alternates?.en).toBe(`${SITE_URL}/en`);
     expect(zhHome?.alternates?.zh).toBe(`${SITE_URL}/zh`);
     expect(zhHome?.alternates?.['x-default']).toBe(`${SITE_URL}/en`);
+  });
+
+  it('keeps tenant sitemaps limited to reviewed unique English pages', async () => {
+    const options = getTenantSitemapOptions(
+      getTenantConfigByHost('usfansindex.net'),
+    );
+
+    await expect(getSitemapChunkIds(options)).resolves.toEqual([0]);
+    const entries = await getSitemapEntriesByChunk(0, options);
+
+    expect(entries.map((entry) => entry.url)).toEqual([
+      'https://usfansindex.net/en',
+      'https://usfansindex.net/en/usfans-spreadsheet',
+    ]);
+    expect(entries.every((entry) => !entry.url.includes('/zh'))).toBe(true);
+    expect(mockFetch).not.toHaveBeenCalled();
   });
 
   it('renders xhtml hreflang links in urlset xml', () => {

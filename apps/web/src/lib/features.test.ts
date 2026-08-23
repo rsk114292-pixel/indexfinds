@@ -48,4 +48,41 @@ describe("public feature flags", () => {
 
     expect(PUBLIC_AUTH_ENTRY_ENABLED).toBe(true);
   });
+
+  it("returns 404 eligibility for every hidden public auth route", async () => {
+    const { isDisabledPublicAuthPath } = await import("./features");
+
+    for (const path of [
+      "/en/login",
+      "/en/register",
+      "/en/forgot-password",
+      "/en/reset-password",
+      "/en/verify-email",
+    ]) {
+      expect(
+        isDisabledPublicAuthPath(path, {
+          authEnabled: false,
+          registrationEnabled: false,
+        }),
+      ).toBe(true);
+    }
+    expect(isDisabledPublicAuthPath("/en/products")).toBe(false);
+  });
+
+  it("keeps registration independent from the sign-in flag", async () => {
+    const { isDisabledPublicAuthPath } = await import("./features");
+
+    expect(
+      isDisabledPublicAuthPath("/en/login", {
+        authEnabled: true,
+        registrationEnabled: false,
+      }),
+    ).toBe(false);
+    expect(
+      isDisabledPublicAuthPath("/en/register", {
+        authEnabled: true,
+        registrationEnabled: false,
+      }),
+    ).toBe(true);
+  });
 });

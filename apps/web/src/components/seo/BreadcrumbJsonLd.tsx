@@ -18,14 +18,15 @@ interface BreadcrumbJsonLdProps {
   items: BreadcrumbItem[];
   locale?: string;
   homeName?: string;
+  baseUrl?: string;
 }
 
 export function BreadcrumbJsonLd({
   items,
   locale = 'en',
   homeName = 'Home',
+  baseUrl = getSiteUrl(),
 }: BreadcrumbJsonLdProps) {
-  const baseUrl = getSiteUrl();
   const localeBase = `${baseUrl}/${locale}`;
 
   // 将相对路径转为带 locale 的绝对路径

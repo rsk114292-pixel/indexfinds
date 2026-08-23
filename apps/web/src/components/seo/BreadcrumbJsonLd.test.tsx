@@ -71,4 +71,22 @@ describe('BreadcrumbJsonLd', () => {
       `${SITE_URL}/fr/categories/sneakers`,
     );
   });
+
+  it('uses a tenant base URL when provided', () => {
+    const { container } = render(
+      <BreadcrumbJsonLd
+        locale="en"
+        baseUrl="https://usfansindex.net"
+        items={[{ name: 'Products', url: '/products' }]}
+      />,
+    );
+    const jsonLd = getJsonLd(container);
+
+    expect(jsonLd.itemListElement[0].item).toBe(
+      'https://usfansindex.net/en',
+    );
+    expect(jsonLd.itemListElement[1].item).toBe(
+      'https://usfansindex.net/en/products',
+    );
+  });
 });

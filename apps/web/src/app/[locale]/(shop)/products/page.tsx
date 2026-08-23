@@ -1,15 +1,16 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { generateAlternates, getOgLocale, defaultGoogleBot } from '@/lib/seo';
-import { getSiteName, getSiteUrl } from '@/lib/site-config';
+import { getOgLocale, defaultGoogleBot } from '@/lib/seo';
+import {
+  buildSiteAlternates,
+  getRequestSiteIdentity,
+} from '@/lib/request-site-identity';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
 import type { ApiListResponse, Product } from '@/types';
 import type { FacetsData } from '@/components/filters/types';
 import { DEFAULT_DESKTOP_PRODUCT_LIMIT } from '@/lib/product-list-layout';
 import { buildProductFacetsPath } from '@/lib/product-facets';
 import ProductsPageClient from './ProductsPageClient';
-
-const SITE_URL = getSiteUrl();
 
 function getSearchParamValue(
   value: string | string[] | undefined,
@@ -27,8 +28,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
+  const identity = await getRequestSiteIdentity();
+  const { siteUrl, siteName, tenant } = identity;
   const title = t('productsTitle');
-  const description = t('productsDescription');
+  const description = tenant
+    ? `Browse products in ${siteName} and compare visible listing details before choosing a buying route.`
+    : t('productsDescription');
 
   return {
     title,
@@ -36,16 +41,16 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${locale}/products`,
-      siteName: getSiteName(),
+      url: `${siteUrl}/${locale}/products`,
+      siteName,
       type: 'website',
       locale: getOgLocale(locale),
       images: [
         {
-          url: `${SITE_URL}/${locale}/share-image`,
+          url: `${siteUrl}/${locale}/share-image`,
           width: 1200,
           height: 630,
-          alt: `${getSiteName()} product discovery`,
+          alt: `${siteName} product discovery`,
         },
       ],
     },
@@ -53,13 +58,15 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title,
       description,
-      images: [`${SITE_URL}/${locale}/share-image`],
+      images: [`${siteUrl}/${locale}/share-image`],
     },
-    alternates: generateAlternates('/products', locale),
+    alternates: buildSiteAlternates(identity, '/products', locale),
     robots: {
-      index: true,
+      index: !tenant,
       follow: true,
-      googleBot: defaultGoogleBot,
+      googleBot: tenant
+        ? { index: false, follow: true }
+        : defaultGoogleBot,
     },
   };
 }

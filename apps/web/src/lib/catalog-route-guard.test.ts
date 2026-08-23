@@ -80,6 +80,19 @@ describe('catalog-route-guard', () => {
     );
   });
 
+  it('returns the canonical category slug for an exact legacy alias', async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      status: 200,
+      json: jest.fn().mockResolvedValue({ slug: 'hoodie' }),
+    });
+    const { resolveGuardedCatalogSlug } = loadModule();
+
+    await expect(
+      resolveGuardedCatalogSlug('categories', 'hoodies'),
+    ).resolves.toEqual({ exists: true, canonicalSlug: 'hoodie' });
+  });
+
   it('checks product slugs against the public product endpoint', async () => {
     mockFetch.mockResolvedValueOnce({ ok: false, status: 404 });
     const { guardedCatalogSlugExists } = loadModule();

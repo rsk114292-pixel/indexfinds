@@ -28,12 +28,6 @@ interface HotSearchItem {
   count: number;
 }
 
-interface PublicStats {
-  totalProducts: number;
-  totalBrands: number;
-  totalCategories: number;
-}
-
 const HeroSection = dynamic(() => import("@/components/home/HeroSection"));
 const FeaturedBrandsSection = dynamic(
   () => import("@/components/home/FeaturedBrandsSection"),
@@ -58,7 +52,6 @@ interface HomePageClientProps {
   initialFeaturedBrands?: ApiListResponse<Brand>;
   initialCategories?: Category[] | { data: Category[] };
   initialNewestProducts?: ApiListResponse<ProductListItem>;
-  initialStats?: PublicStats;
 }
 
 export default function HomePageClient({
@@ -67,7 +60,6 @@ export default function HomePageClient({
   initialFeaturedBrands,
   initialCategories,
   initialNewestProducts,
-  initialStats,
 }: HomePageClientProps) {
   const tenant = useTenant();
   const homeVariant = tenant?.branding?.editorial.homeVariant;
@@ -98,7 +90,6 @@ export default function HomePageClient({
       <MobileHome
         initialCategories={initialCategories}
         initialHotSearches={initialHotSearches}
-        stats={initialStats}
       />
     );
   }
@@ -106,10 +97,7 @@ export default function HomePageClient({
   if (homeVariant === "index") {
     return (
       <>
-        <HeroSection
-          initialHotSearches={initialHotSearches}
-          stats={initialStats}
-        />
+        <HeroSection initialHotSearches={initialHotSearches} />
         <UsfansQuickStart />
         <ProductShowcaseSection initialNewestData={initialNewestProducts} />
         <CategoriesBentoSection initialData={initialCategories} />
@@ -123,10 +111,7 @@ export default function HomePageClient({
   if (homeVariant === "catalog") {
     return (
       <>
-        <HeroSection
-          initialHotSearches={initialHotSearches}
-          stats={initialStats}
-        />
+        <HeroSection initialHotSearches={initialHotSearches} />
         <UsfansQuickStart />
         <CategoriesBentoSection initialData={initialCategories} />
         <ProductShowcaseSection initialNewestData={initialNewestProducts} />
@@ -140,10 +125,7 @@ export default function HomePageClient({
   if (homeVariant === "guide") {
     return (
       <>
-        <HeroSection
-          initialHotSearches={initialHotSearches}
-          stats={initialStats}
-        />
+        <HeroSection initialHotSearches={initialHotSearches} />
         <UsfansQuickStart />
         <HowItWorksSection />
         <FeaturedBrandsSection initialData={initialFeaturedBrands} />
@@ -156,10 +138,7 @@ export default function HomePageClient({
 
   return (
     <>
-      <HeroSection
-        initialHotSearches={initialHotSearches}
-        stats={initialStats}
-      />
+      <HeroSection initialHotSearches={initialHotSearches} />
       <FeaturedBrandsSection initialData={initialFeaturedBrands} />
       <CategoriesBentoSection initialData={initialCategories} />
       <ProductShowcaseSection initialNewestData={initialNewestProducts} />

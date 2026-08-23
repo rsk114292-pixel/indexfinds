@@ -11,11 +11,12 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import CategoriesPageClient from './CategoriesPageClient';
 import { ItemListJsonLd } from '@/components/seo/ItemListJsonLd';
-import { generateAlternates, getOgLocale } from '@/lib/seo';
-import { getSiteUrl, getSiteName } from '@/lib/site-config';
+import { getOgLocale } from '@/lib/seo';
+import {
+  buildSiteAlternates,
+  getRequestSiteIdentity,
+} from '@/lib/request-site-identity';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
-
-const SITE_URL = getSiteUrl();
 
 export async function generateMetadata({
   params,
@@ -24,9 +25,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
+  const identity = await getRequestSiteIdentity();
+  const { siteUrl, siteName, tenant } = identity;
 
   const title = t('categoriesTitle');
-  const description = t('categoriesDescription');
+  const description = tenant
+    ? `Browse product categories in the ${siteName} index and narrow the catalog before comparing listings.`
+    : t('categoriesDescription');
 
   return {
     title,
@@ -34,16 +39,16 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${locale}/categories`,
-      siteName: getSiteName(),
+      url: `${siteUrl}/${locale}/categories`,
+      siteName,
       type: 'website',
       locale: getOgLocale(locale),
       images: [
         {
-          url: `${SITE_URL}/${locale}/share-image`,
+          url: `${siteUrl}/${locale}/share-image`,
           width: 1200,
           height: 630,
-          alt: `${getSiteName()} category directory`,
+          alt: `${siteName} category directory`,
         },
       ],
     },
@@ -51,10 +56,10 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title,
       description,
-      images: [`${SITE_URL}/${locale}/share-image`],
+      images: [`${siteUrl}/${locale}/share-image`],
     },
-    alternates: generateAlternates('/categories', locale),
-    robots: { index: true, follow: true },
+    alternates: buildSiteAlternates(identity, '/categories', locale),
+    robots: { index: !tenant, follow: true },
   };
 }
 
@@ -76,11 +81,12 @@ export default async function CategoriesPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
+  const { siteUrl } = await getRequestSiteIdentity();
   const categories = await getCategoriesList();
 
   const listItems = categories.map((cat) => ({
     name: cat.name,
-    url: `${SITE_URL}/${locale}/categories/${cat.slug}`,
+    url: `${siteUrl}/${locale}/categories/${cat.slug}`,
   }));
 
   return (

@@ -12,6 +12,7 @@ import {
   Scale,
 } from 'lucide-react';
 import { FadeIn } from '@/components/ui/FadeIn';
+import { useTenant } from '@/components/TenantProvider';
 
 const STEPS = [
   {
@@ -50,6 +51,8 @@ const STEPS = [
 
 export default function HowItWorksSection() {
   const t = useTranslations('home');
+  const tenant = useTenant();
+  const siteName = tenant?.branding?.siteName;
   return (
     <section className="bg-gray-50/80">
       <div className="container mx-auto px-4 py-14 md:py-20">
@@ -119,7 +122,9 @@ export default function HowItWorksSection() {
                   {t('trust.title')}
                 </h3>
                 <p className="mt-2 max-w-xl text-sm leading-6 text-muted">
-                  {t('trust.body')}
+                  {siteName
+                    ? `${siteName} helps you discover and compare products. It does not sell goods or process payments; your selected buying agent handles the order and delivery.`
+                    : t('trust.body')}
                 </p>
               </div>
               <div className="grid gap-2.5 self-center">

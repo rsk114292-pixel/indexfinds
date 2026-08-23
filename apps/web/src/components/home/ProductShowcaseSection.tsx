@@ -18,6 +18,7 @@ import {
 } from "@/lib/home-showcase";
 import type { ApiListResponse, ProductListItem } from "@/types";
 import { OutboundSource } from "@/lib/search-tracking";
+import { useTenant } from "@/components/TenantProvider";
 
 const HOME_SHOWCASE_IMAGE_SIZES =
   "(max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, (max-width: 1536px) 20vw, 16vw";
@@ -28,21 +29,22 @@ const TABS = [
     key: "newest",
     labelKey: "showcase.newArrivals",
     icon: Clock,
-    query: `/products?sortBy=newest&limit=${HOME_SHOWCASE_LIMIT}`,
+    query: (limit: number) => `/products?sortBy=newest&limit=${limit}`,
     viewAllHref: "/products?sortBy=newest",
   },
   {
     key: "popular",
     labelKey: "showcase.popular",
     icon: TrendingUp,
-    query: `/products?sortBy=popular&limit=${HOME_SHOWCASE_LIMIT}`,
+    query: (limit: number) => `/products?sortBy=popular&limit=${limit}`,
     viewAllHref: "/products?sortBy=popular",
   },
   {
     key: "trending",
     labelKey: "showcase.trending",
     icon: Sparkles,
-    query: `/products?sortBy=popular&limit=${HOME_SHOWCASE_LIMIT}&page=2`,
+    query: (limit: number) =>
+      `/products?sortBy=popular&limit=${limit}&page=2`,
     viewAllHref: "/search?sortBy=popular",
   },
 ] as const;
@@ -59,16 +61,18 @@ function ProductGrid({
   isLoading,
   tabKey,
   noProductsText,
+  showcaseLimit,
 }: {
   products: ProductListItem[];
   isLoading: boolean;
   tabKey: string;
   noProductsText: string;
+  showcaseLimit: number;
 }) {
   if (isLoading) {
     return (
       <div className={HOME_SHOWCASE_GRID_CLASS}>
-        {Array.from({ length: HOME_SHOWCASE_LIMIT }).map((_, i) => (
+        {Array.from({ length: showcaseLimit }).map((_, i) => (
           <SkeletonCard key={i} />
         ))}
       </div>
@@ -109,13 +113,16 @@ export default function ProductShowcaseSection({
 }: ProductShowcaseSectionProps) {
   const t = useTranslations("home");
   const tc = useTranslations("common");
+  const tenant = useTenant();
+  const showcaseLimit = tenant ? 12 : HOME_SHOWCASE_LIMIT;
   const [activeTab, setActiveTab] = useState<TabKey>("newest");
   const currentTab = TABS.find((tab) => tab.key === activeTab)!;
+  const currentQuery = currentTab.query(showcaseLimit);
   const fallbackData = activeTab === "newest" ? initialNewestData : undefined;
 
   // Fetch data for the active tab
   const { data, isLoading } = useSWR<ApiListResponse<ProductListItem>>(
-    currentTab.query,
+    currentQuery,
     fetcher,
     {
       fallbackData,
@@ -186,6 +193,7 @@ export default function ProductShowcaseSection({
         isLoading={isLoading}
         tabKey={activeTab}
         noProductsText={t("showcase.noProducts")}
+        showcaseLimit={showcaseLimit}
       />
 
       {!isLoading && products.length > 0 && (
