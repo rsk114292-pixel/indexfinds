@@ -34,6 +34,35 @@ describe("tenant config", () => {
     expect(resolveTenantFromHeaders(headers)?.domain).toBe("superbuyitems.com");
   });
 
+  it("accepts a tenant proxy host only with the server-side secret", () => {
+    const previousSecret = process.env.INDEXFINDS_TENANT_PROXY_SECRET;
+    process.env.INDEXFINDS_TENANT_PROXY_SECRET = "test-proxy-secret";
+
+    try {
+      const trustedHeaders = new Headers({
+        host: "indexfinds-web.vercel.app",
+        "x-indexfinds-tenant-host": "usfansindex.net",
+        "x-indexfinds-tenant-secret": "test-proxy-secret",
+      });
+      const untrustedHeaders = new Headers({
+        host: "indexfinds.com",
+        "x-indexfinds-tenant-host": "usfansindex.net",
+        "x-indexfinds-tenant-secret": "wrong-secret",
+      });
+
+      expect(resolveTenantFromHeaders(trustedHeaders)?.domain).toBe(
+        "usfansindex.net",
+      );
+      expect(resolveTenantFromHeaders(untrustedHeaders)).toBeNull();
+    } finally {
+      if (previousSecret === undefined) {
+        delete process.env.INDEXFINDS_TENANT_PROXY_SECRET;
+      } else {
+        process.env.INDEXFINDS_TENANT_PROXY_SECRET = previousSecret;
+      }
+    }
+  });
+
   it("resolves tenant URLs and names from the request host", () => {
     const identity = resolveSiteIdentityFromHeaders(
       new Headers({ host: "usfansindex.net" }),

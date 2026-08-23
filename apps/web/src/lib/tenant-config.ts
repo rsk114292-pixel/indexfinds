@@ -198,8 +198,16 @@ export function resolveTenantFromHeaders(
   headers: TenantRequestHeaders,
   localFallbackHost?: string,
 ): TenantConfig | null {
+  const trustedProxyHost =
+    process.env.INDEXFINDS_TENANT_PROXY_SECRET &&
+    headers.get("x-indexfinds-tenant-secret") ===
+      process.env.INDEXFINDS_TENANT_PROXY_SECRET
+      ? headers.get("x-indexfinds-tenant-host")
+      : null;
   const host =
-    firstForwardedHost(headers.get("x-forwarded-host")) || headers.get("host");
+    trustedProxyHost ||
+    firstForwardedHost(headers.get("x-forwarded-host")) ||
+    headers.get("host");
   return getTenantConfigByHost(host) || getTenantConfigByHost(localFallbackHost);
 }
 
