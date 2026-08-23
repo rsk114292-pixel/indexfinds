@@ -54,6 +54,7 @@ export function useBuyProduct({
     async (platformKey: string) => {
       // Open synchronously in the click handler so mobile browsers do not block it.
       const newWindow = window.open('about:blank', '_blank');
+      if (newWindow) newWindow.opener = null;
 
       setLoading(true);
       try {

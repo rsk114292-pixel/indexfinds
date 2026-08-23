@@ -6,6 +6,7 @@ import AppRuntime from "@/components/AppRuntime";
 import NoticeHost from "@/components/NoticeHost";
 import { defaultLocale, isRTL, locales } from "@/i18n/config";
 import { getSiteName, getThemeVars } from "@/lib/site-config";
+import { resolveTenantFromHeaders } from "@/lib/tenant-config";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -39,6 +40,12 @@ export default async function RootLayout({
 }>) {
   const cookieStore = await cookies();
   const headersList = await headers();
+  const tenant = resolveTenantFromHeaders(
+    headersList,
+    process.env.INDEXFINDS_LOCAL_TENANT_HOST,
+  );
+  const branding = tenant?.branding;
+  const siteName = branding?.siteName || getSiteName();
   const pathname = headersList.get("x-pathname") || "";
   const pathLocale = pathname.split("/")[1];
   const localeFromPath = locales.includes(pathLocale as (typeof locales)[number])
@@ -52,13 +59,13 @@ export default async function RootLayout({
     <html lang={locale} dir={dir} style={getThemeVars()} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://si.geilicdn.com" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icons/logo.svg" type="image/svg+xml" />
+        <link rel="icon" href={branding?.faviconPath || "/favicon.ico"} sizes="any" />
+        {!branding && <link rel="icon" href="/icons/logo.svg" type="image/svg+xml" />}
         <link rel="manifest" href="/manifest.webmanifest" />
-        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href={branding?.logoPath || "/icons/apple-touch-icon.png"} />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content={getSiteName()} />
+        <meta name="apple-mobile-web-app-title" content={siteName} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${notoArabic.variable} antialiased`}

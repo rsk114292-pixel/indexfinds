@@ -16,10 +16,12 @@ import {
 } from '@/lib/features';
 import { useTranslations } from 'next-intl';
 import Popover from '@/components/ui/Popover';
+import { useTenant } from '@/components/TenantProvider';
 
 const SearchBox = dynamic(() => import('./SearchBox'), { ssr: false });
 
 export default function Header() {
+  const tenant = useTenant();
   const [avatarError, setAvatarError] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
@@ -50,7 +52,11 @@ export default function Header() {
         <div className="relative flex h-16 items-center justify-between gap-2 lg:gap-3 xl:gap-5">
           <div className="flex min-w-0 shrink items-center gap-2 lg:gap-3 xl:gap-4">
             {/* Logo */}
-            <Link href="/" className="shrink-0" aria-label="IndexFinds">
+            <Link
+              href="/"
+              className="shrink-0"
+              aria-label={tenant?.branding?.siteName || 'IndexFinds'}
+            >
               <BrandWordmark tone="light" />
             </Link>
 

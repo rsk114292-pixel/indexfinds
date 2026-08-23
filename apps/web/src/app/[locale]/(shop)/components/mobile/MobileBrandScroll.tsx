@@ -8,6 +8,7 @@ import BrandLogo from '@/components/brands/BrandLogo';
 import { fetcher } from '@/lib/api';
 import { SkeletonBlock } from '@/components/mobile/ui/MobileSkeleton';
 import type { Brand } from '@/types';
+import { useTenant } from '@/components/TenantProvider';
 
 interface BrandsResponse {
   data: Brand[];
@@ -24,6 +25,8 @@ interface BrandsResponse {
 export default function MobileBrandScroll() {
   const t = useTranslations('home');
   const tc = useTranslations('common');
+  const tenant = useTenant();
+  const isTenant = Boolean(tenant?.branding?.editorial);
 
   const { data, isLoading } = useSWR<BrandsResponse>(
     '/brands?status=active&isFeatured=true&limit=12',
@@ -37,11 +40,11 @@ export default function MobileBrandScroll() {
   if (!isLoading && brands.length === 0) return null;
 
   return (
-    <section className="py-4">
+    <section className={isTenant ? 'bg-[#f7f4ef] py-5' : 'py-4'}>
       {/* 标题行 */}
       <div className="flex items-center justify-between px-4 mb-3">
         <h2 className="text-base font-semibold text-foreground">
-          {t('featuredBrands.title')}
+          {isTenant ? `${tenant?.title} brand index` : t('featuredBrands.title')}
         </h2>
         <Link
           href="/brands"
@@ -56,22 +59,28 @@ export default function MobileBrandScroll() {
       <div className="flex gap-3 overflow-x-auto px-4 pb-2 scrollbar-none">
         {isLoading
           ? Array.from({ length: 6 }, (_, i) => <BrandItemSkeleton key={i} />)
-          : brands.map((brand) => <BrandItem key={brand.id} brand={brand} />)}
+          : brands.map((brand) => (
+              <BrandItem key={brand.id} brand={brand} isTenant={isTenant} />
+            ))}
       </div>
     </section>
   );
 }
 
-function BrandItem({ brand }: { brand: Brand }) {
+function BrandItem({ brand, isTenant }: { brand: Brand; isTenant: boolean }) {
   const t = useTranslations('brands');
 
   return (
     <Link
       href={`/brands/${brand.slug}`}
-      className="flex flex-col items-center justify-center gap-2 shrink-0 w-24 p-3 rounded-xl border border-border bg-surface active:scale-95 transition-transform duration-150"
+      className={
+        isTenant
+          ? 'flex w-40 shrink-0 items-center gap-3 rounded-2xl border border-[#ded4c9] bg-white p-3 text-left transition-transform duration-150 active:scale-95'
+          : 'flex w-24 shrink-0 flex-col items-center justify-center gap-2 rounded-xl border border-border bg-surface p-3 transition-transform duration-150 active:scale-95'
+      }
     >
-      <BrandLogo name={brand.name} logoUrl={brand.logoUrl} size="lg" />
-      <div className="text-center w-full min-w-0">
+      <BrandLogo name={brand.name} logoUrl={brand.logoUrl} size="md" />
+      <div className={isTenant ? 'min-w-0 flex-1 text-left' : 'w-full min-w-0 text-center'}>
         <p className="text-xs font-medium text-foreground truncate">{brand.name}</p>
         <p className="text-[10px] text-muted mt-0.5">
           {t('productCount', { count: brand.productCount || 0 })}

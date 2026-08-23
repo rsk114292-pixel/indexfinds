@@ -9,6 +9,7 @@ import HotSearches from "@/components/HotSearches";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { useHeaderStore } from "@/stores/useHeaderStore";
 import StarField from "@/components/home/StarField";
+import { useTenant } from "@/components/TenantProvider";
 
 interface HotSearchItem {
   keyword: string;
@@ -27,6 +28,8 @@ export default function HeroSection({
   initialHotSearches,
 }: HeroSectionProps) {
   const t = useTranslations("home");
+  const tenant = useTenant();
+  const branding = tenant?.branding;
   const searchRef = useRef<HTMLDivElement>(null);
   const setHeroSearchVisible = useHeaderStore((s) => s.setHeroSearchVisible);
 
@@ -95,7 +98,7 @@ export default function HeroSection({
           <div className="home-hero-eyebrow mb-4 flex justify-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-xs font-semibold text-white/75 backdrop-blur-sm">
               <ShieldCheck className="h-3.5 w-3.5 text-primary" />
-              {t("hero.eyebrow")}
+              {branding?.heroEyebrow || t("hero.eyebrow")}
             </span>
           </div>
         </FadeIn>
@@ -103,25 +106,31 @@ export default function HeroSection({
         {/* Headline */}
         <FadeIn direction="down" duration={0.6}>
           <h1 className="home-hero-headline mx-auto mb-5 max-w-[1280px] text-center text-4xl font-bold leading-[1.03] tracking-[-0.05em] sm:text-5xl md:text-6xl lg:text-[68px] xl:text-[78px]">
-            <span className="text-white">{t("hero.headlinePrimary")}</span>
-            <br />
-            <span
-              className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
+              <span className="text-white">
+                {branding?.heroPrimary || t("hero.headlinePrimary")}
+              </span>
+              <br />
+              {" "}
+              <span
+                className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
               style={{
                 backgroundSize: "200% auto",
                 animation: "shimmer 4s linear infinite",
               }}
             >
-              {t("hero.headlineSecondary")}
+              {branding?.heroSecondary || t("hero.headlineSecondary")}
             </span>
           </h1>
         </FadeIn>
 
         <FadeIn direction="up" duration={0.5} delay={0.15}>
           <p className="home-hero-description mx-auto mb-8 max-w-3xl text-center text-sm leading-relaxed text-white/72 sm:text-base md:text-lg">
-            {t("hero.descLine1")}
+            {branding?.description || t("hero.descLine1")}
             <br className="hidden md:block" />
-            {t("hero.descLine2")}
+            {" "}
+            {branding
+              ? branding.supportingLine
+              : t("hero.descLine2")}
           </p>
         </FadeIn>
 

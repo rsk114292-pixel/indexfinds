@@ -188,7 +188,7 @@ export default function CompareAgentsClient() {
                       key={agent.key}
                       href={agent.officialUrl}
                       target="_blank"
-                      rel="noopener noreferrer"
+                        rel="sponsored nofollow noopener noreferrer"
                       className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
                     >
                       {t("visitOfficial")} <ExternalLink className="h-3 w-3" />

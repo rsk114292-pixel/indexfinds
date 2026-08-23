@@ -34,4 +34,24 @@ describe('OrganizationJsonLd', () => {
     expect(organizationJsonLd.description).toBe('French home description');
     expect(websiteJsonLd.description).toBe('French home description');
   });
+
+  it('supports tenant-specific organization data', () => {
+    const { container } = render(
+      <OrganizationJsonLd
+        description="USFans catalog"
+        locale="en"
+        baseUrl="https://usfansindex.net"
+        siteName="USFans Index"
+        logoPath="/images/agents/usfans.png"
+      />,
+    );
+    const [organizationJsonLd, websiteJsonLd] = getJsonLdScripts(container);
+
+    expect(organizationJsonLd.name).toBe('USFans Index');
+    expect(organizationJsonLd.url).toBe('https://usfansindex.net');
+    expect(organizationJsonLd.logo).toBe(
+      'https://usfansindex.net/images/agents/usfans.png',
+    );
+    expect(websiteJsonLd.name).toBe('USFans Index');
+  });
 });

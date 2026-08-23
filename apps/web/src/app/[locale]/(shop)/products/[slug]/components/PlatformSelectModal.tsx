@@ -134,6 +134,10 @@ export default function PlatformSelectModal({
             })}
           </div>
 
+          <p className="rounded-lg bg-gray-50 px-3 py-2 text-xs leading-5 text-muted">
+            {t('finalPriceNotice')}
+          </p>
+
           {/* Quick-action button for preferred platform */}
           {platformKey && preferredPlatform && (
             <div className="pt-2 border-t border-border">

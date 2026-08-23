@@ -22,6 +22,7 @@ import MobileHamburgerDrawer from "./MobileHamburgerDrawer";
 import MobileSearchEntry from "./MobileSearchEntry";
 import MobileSearchOverlay from "./MobileSearchOverlay";
 import { usePersonalizedHotSearches } from "@/hooks/usePersonalizedHotSearches";
+import { useTenant } from "@/components/TenantProvider";
 
 /**
  * 移动端顶栏
@@ -32,6 +33,7 @@ import { usePersonalizedHotSearches } from "@/hooks/usePersonalizedHotSearches";
  * 安全区：pt-[env(safe-area-inset-top)]
  */
 export default function MobileHeader() {
+  const tenant = useTenant();
   const { user, isAuthenticated, _hasHydrated: authHydrated } = useAuthStore();
   const { _hasHydrated: platformHydrated } = usePlatformStore();
   const currentPlatform = useCurrentPlatform();
@@ -96,7 +98,7 @@ export default function MobileHeader() {
               </button>
               <Link
                 href="/"
-                aria-label="IndexFinds"
+                aria-label={tenant?.branding?.siteName || "IndexFinds"}
                 className="inline-flex h-11 items-center"
               >
                 <BrandWordmark tone="dark" className="scale-90 origin-left" />

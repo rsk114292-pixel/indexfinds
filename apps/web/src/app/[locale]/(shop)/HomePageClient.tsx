@@ -15,6 +15,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import MobileHome from "./components/mobile/MobileHome";
+import { useTenant } from "@/components/TenantProvider";
 import type {
   ApiListResponse,
   Brand,
@@ -47,6 +48,9 @@ const HowItWorksSection = dynamic(
   () => import("@/components/home/HowItWorksSection"),
 );
 const CtaSection = dynamic(() => import("@/components/home/CtaSection"));
+const UsfansQuickStart = dynamic(
+  () => import("@/components/home/UsfansQuickStart"),
+);
 
 interface HomePageClientProps {
   initialViewport: "desktop" | "mobile";
@@ -65,6 +69,8 @@ export default function HomePageClient({
   initialNewestProducts,
   initialStats,
 }: HomePageClientProps) {
+  const tenant = useTenant();
+  const homeVariant = tenant?.branding?.editorial.homeVariant;
   const [viewport, setViewport] = useState<"desktop" | "mobile">(
     initialViewport,
   );
@@ -94,6 +100,57 @@ export default function HomePageClient({
         initialHotSearches={initialHotSearches}
         stats={initialStats}
       />
+    );
+  }
+
+  if (homeVariant === "index") {
+    return (
+      <>
+        <HeroSection
+          initialHotSearches={initialHotSearches}
+          stats={initialStats}
+        />
+        <UsfansQuickStart />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
+        <HowItWorksSection />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (homeVariant === "catalog") {
+    return (
+      <>
+        <HeroSection
+          initialHotSearches={initialHotSearches}
+          stats={initialStats}
+        />
+        <UsfansQuickStart />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
+        <HowItWorksSection />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (homeVariant === "guide") {
+    return (
+      <>
+        <HeroSection
+          initialHotSearches={initialHotSearches}
+          stats={initialStats}
+        />
+        <UsfansQuickStart />
+        <HowItWorksSection />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <CtaSection />
+      </>
     );
   }
 

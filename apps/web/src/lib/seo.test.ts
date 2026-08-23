@@ -1,7 +1,4 @@
 import { generateAlternates, getOgLocale, getProductMetadataKeywords } from './seo';
-import { getSiteUrl } from './site-config';
-
-const SITE_URL = getSiteUrl();
 
 describe('getOgLocale', () => {
   it.each([
@@ -27,29 +24,36 @@ describe('generateAlternates', () => {
   it('should generate alternates for all 8 locales', () => {
     const result = generateAlternates('/products/nike-dunk', 'zh');
 
-    expect(result.canonical).toBe(`${SITE_URL}/zh/products/nike-dunk`);
-    expect(result.languages.en).toBe(`${SITE_URL}/en/products/nike-dunk`);
-    expect(result.languages.zh).toBe(`${SITE_URL}/zh/products/nike-dunk`);
-    expect(result.languages.fr).toBe(`${SITE_URL}/fr/products/nike-dunk`);
-    expect(result.languages.de).toBe(`${SITE_URL}/de/products/nike-dunk`);
-    expect(result.languages.es).toBe(`${SITE_URL}/es/products/nike-dunk`);
-    expect(result.languages.it).toBe(`${SITE_URL}/it/products/nike-dunk`);
-    expect(result.languages.pt).toBe(`${SITE_URL}/pt/products/nike-dunk`);
-    expect(result.languages.ar).toBe(`${SITE_URL}/ar/products/nike-dunk`);
-    expect(result.languages['x-default']).toBe(`${SITE_URL}/en/products/nike-dunk`);
+    expect(result.canonical).toBe('/zh/products/nike-dunk');
+    expect(result.languages.en).toBe('/en/products/nike-dunk');
+    expect(result.languages.zh).toBe('/zh/products/nike-dunk');
+    expect(result.languages.fr).toBe('/fr/products/nike-dunk');
+    expect(result.languages.de).toBe('/de/products/nike-dunk');
+    expect(result.languages.es).toBe('/es/products/nike-dunk');
+    expect(result.languages.it).toBe('/it/products/nike-dunk');
+    expect(result.languages.pt).toBe('/pt/products/nike-dunk');
+    expect(result.languages.ar).toBe('/ar/products/nike-dunk');
+    expect(result.languages['x-default']).toBe('/en/products/nike-dunk');
   });
 
   it('should handle empty path for homepage', () => {
     const result = generateAlternates('', 'en');
 
-    expect(result.canonical).toBe(`${SITE_URL}/en`);
-    expect(result.languages.zh).toBe(`${SITE_URL}/zh`);
-    expect(result.languages['x-default']).toBe(`${SITE_URL}/en`);
+    expect(result.canonical).toBe('/en');
+    expect(result.languages.zh).toBe('/zh');
+    expect(result.languages['x-default']).toBe('/en');
   });
 
   it('should include exactly 9 language entries (8 locales + x-default)', () => {
     const result = generateAlternates('/test', 'en');
     expect(Object.keys(result.languages)).toHaveLength(9);
+  });
+
+  it('supports a tenant-specific canonical origin', () => {
+    const result = generateAlternates('', 'en', 'https://usfansindex.net');
+
+    expect(result.canonical).toBe('https://usfansindex.net/en');
+    expect(result.languages['x-default']).toBe('https://usfansindex.net/en');
   });
 });
 

@@ -412,7 +412,7 @@
       "priceTracking": "Price Tracking",
       "priceTrackingDesc": "Track price changes and get notified on drops",
       "trustedSources": "Trusted Sources",
-      "trustedSourcesDesc": "Verified sellers and authentic products only",
+        "trustedSourcesDesc": "Marketplace listings with visible source information",
       "allRightsReserved": "All rights reserved."
     },
     "register": {
@@ -484,7 +484,7 @@
       "qcCommunity": "QC Community",
       "qcCommunityDesc": "Real quality check photos from real buyers. See exactly what you'll get before ordering — community-verified, no surprises.",
       "startDiscovering": "Start Discovering Products Now",
-      "startDiscoveringDesc": "Browse thousands of authentic Chinese products with complete details, real photos, and competitive prices.",
+        "startDiscoveringDesc": "Browse products listed on Chinese marketplaces with available details, images, and reference prices.",
       "browseProducts": "Browse Products",
       "exploreBrands": "Explore Brands"
     },
@@ -945,7 +945,7 @@
     "changeAgent": "Change",
     "openingAgent": "Opening agent...",
     "chooseAgentToBuy": "Choose agent to buy",
-    "finalPriceNotice": "Agent fees, domestic delivery, international shipping, and taxes are confirmed on the agent website."
+    "finalPriceNotice": "We may receive a referral commission from selected agent links. Confirm price, availability, fees, shipping, and taxes on the destination website."
   },
   "shippingEstimator": {
     "title": "Estimate international shipping",
@@ -1021,14 +1021,14 @@
     "searchDefaultDescription": "Search for products from Weidian, Taobao and other Chinese e-commerce platforms.",
     "categoryNotFound": "Category Not Found",
     "categoryTitle": "{name} - Shop Chinese Products",
-    "categoryDescription": "Browse {name} products from China. Find authentic items with complete SKU info, real QC photos, and easy daigou integration.",
+      "categoryDescription": "Browse {name} products listed on Chinese marketplaces. Review available SKU details, listing images, and buying routes.",
     "brandNotFound": "Brand Not Found",
     "brandTitle": "{name} - Shop Products",
-    "brandFallbackDescription": "Browse {name} products from trusted Chinese sellers. Find authentic items with QC photos and easy daigou ordering on {siteName}.",
+      "brandFallbackDescription": "Browse {name} product listings on {siteName}. Review available images, product details, and buying routes.",
     "categoriesTitle": "All Categories - Shop by Product Type",
     "categoriesDescription": "Browse all product categories on {siteName}. Find clothing, shoes, bags, accessories, and more from Weidian, Taobao & 1688.",
     "brandsTitle": "All Brands - Chinese Product Brands",
-    "brandsDescription": "Browse all brands available on {siteName}. Discover authentic Chinese products from top brands with QC photos and daigou integration.",
+      "brandsDescription": "Browse brand pages available on {siteName}. Review current product listings, available images, and buying routes.",
     "howItWorksTitle": "How It Works",
     "howItWorksDescription": "Learn how to find and buy the best Chinese products through {siteName}. From discovery to delivery in 4 simple steps.",
     "helpTitle": "Help Center",
@@ -1106,7 +1106,7 @@
       "step2": {
         "label": "Compare",
         "title": "Compare & Check QC",
-        "description": "View detailed SKU information, pricing across sellers, and authentic QC photos from real buyers."
+        "description": "View available SKU information, reference prices, listing images, and submitted QC media."
       },
       "step3": {
         "label": "Choose",
