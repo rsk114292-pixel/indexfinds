@@ -2,13 +2,19 @@
  * 常量定义
  */
 
-// API 基础 URL
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4101';
+// Server rendering calls the configured API directly. Browser requests use the
+// same-origin Next.js proxy so local previews and tenant domains do not require
+// an ever-growing CORS allowlist.
+const CONFIGURED_API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4101';
+export const API_BASE_URL = CONFIGURED_API_BASE_URL;
 
 export function buildApiUrl(path: string): string {
   if (path.startsWith('http')) return path;
 
-  const apiBase = API_BASE_URL.replace(/\/$/, '');
+  const apiBase = (
+    typeof window === 'undefined' ? API_BASE_URL : '/api'
+  ).replace(/\/$/, '');
   if (path.startsWith('/api/')) return `${apiBase}${path.slice(4)}`;
   if (path.startsWith('/')) return `${apiBase}${path}`;
   return `${apiBase}/${path}`;

@@ -15,6 +15,7 @@ import { getHomeSeoCopy } from '@/lib/home-seo';
 import type { TrackingConfig } from '@/lib/tracking-config';
 import DocumentLocaleSync from '@/components/DocumentLocaleSync';
 import type { Locale } from '@/i18n/config';
+import { resolveTenantFromHeaders } from '@/lib/tenant-config';
 
 const SITE_URL = getSiteUrl();
 
@@ -28,33 +29,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const homeSeo = getHomeSeoCopy(locale);
   // Read pathname forwarded by middleware for hreflang generation
   const headersList = await headers();
+  const localTenantHost = process.env.INDEXFINDS_LOCAL_TENANT_HOST;
+  const tenant = resolveTenantFromHeaders(headersList, localTenantHost);
+  const branding = tenant?.branding;
+  const siteUrl = tenant?.canonicalOrigin || SITE_URL;
+  const siteName = branding?.siteName || getSiteName();
+  const pageTitle = branding?.seoTitle || homeSeo.title;
+  const pageDescription = branding?.description || homeSeo.description;
   const pathname = headersList.get('x-pathname') || `/${locale}`;
   // Strip locale prefix to get the path portion
   const pathWithoutLocale = pathname.replace(/^\/(en|zh|fr|de|es|it|pt|ar)/, '') || '/';
 
   return {
-    metadataBase: new URL(SITE_URL),
+    metadataBase: new URL(siteUrl),
     title: {
-      default: homeSeo.title,
-      template: `%s | ${getSiteName()}`,
+      default: pageTitle,
+      template: `%s | ${siteName}`,
     },
-    description: homeSeo.description,
+    description: pageDescription,
     icons: {
-      icon: [
-        { url: '/favicon.ico', sizes: 'any' },
-        { url: '/icons/logo.svg', sizes: 'any', type: 'image/svg+xml' },
-        { url: '/icons/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
-        { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-        { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      ],
-      shortcut: '/favicon.ico',
-      apple: '/icons/apple-touch-icon.png',
+      icon: branding
+        ? [{ url: branding.faviconPath, sizes: 'any', type: 'image/svg+xml' }]
+        : [
+            { url: '/favicon.ico', sizes: 'any' },
+            { url: '/icons/logo.svg', sizes: 'any', type: 'image/svg+xml' },
+            { url: '/icons/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+            { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+            { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+          ],
+      shortcut: branding?.faviconPath || '/favicon.ico',
+      apple: branding?.logoPath || '/icons/apple-touch-icon.png',
     },
     openGraph: {
-      title: homeSeo.ogTitle,
-      description: homeSeo.ogDescription,
-      url: `${SITE_URL}/${locale}`,
-      siteName: getSiteName(),
+      title: branding?.seoTitle || homeSeo.ogTitle,
+      description: branding?.description || homeSeo.ogDescription,
+      url: `${siteUrl}/${locale}`,
+      siteName,
       type: 'website',
       locale: ({
         en: 'en_US',
@@ -69,29 +79,37 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: homeSeo.ogTitle,
-      description: homeSeo.ogDescription,
+      title: branding?.seoTitle || homeSeo.ogTitle,
+      description: branding?.description || homeSeo.ogDescription,
     },
     alternates: {
-      canonical: `${SITE_URL}/${locale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+      canonical: `${siteUrl}/${locale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
       languages: {
-        en: `${SITE_URL}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        zh: `${SITE_URL}/zh${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        fr: `${SITE_URL}/fr${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        de: `${SITE_URL}/de${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        es: `${SITE_URL}/es${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        it: `${SITE_URL}/it${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        pt: `${SITE_URL}/pt${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        ar: `${SITE_URL}/ar${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        'x-default': `${SITE_URL}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+        en: `${siteUrl}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+        zh: `${siteUrl}/zh${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+        fr: `${siteUrl}/fr${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+        de: `${siteUrl}/de${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+        es: `${siteUrl}/es${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+        it: `${siteUrl}/it${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+        pt: `${siteUrl}/pt${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+        ar: `${siteUrl}/ar${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+        'x-default': `${siteUrl}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
       },
     },
+    robots:
+      branding?.indexing === 'draft'
+        ? { index: false, follow: true }
+        : undefined,
   };
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   const homeSeo = getHomeSeoCopy(locale);
+  const headersList = await headers();
+  const localTenantHost = process.env.INDEXFINDS_LOCAL_TENANT_HOST;
+  const tenant = resolveTenantFromHeaders(headersList, localTenantHost);
+  const branding = tenant?.branding;
 
   // Validate locale
   if (!(routing.locales as readonly string[]).includes(locale)) {
@@ -110,7 +128,13 @@ export default async function LocaleLayout({ children, params }: Props) {
     <NextIntlClientProvider messages={messages}>
       <DocumentLocaleSync locale={locale as Locale} />
       <CookieConsentProvider>
-        <OrganizationJsonLd description={homeSeo.description} locale={locale} />
+        <OrganizationJsonLd
+          description={branding?.description || homeSeo.description}
+          locale={locale}
+          baseUrl={tenant?.canonicalOrigin}
+          siteName={branding?.siteName}
+          logoPath={branding?.logoPath}
+        />
         <VisitTracker />
         <ConditionalGA initialConfig={trackingConfig} />
         <CookieConsent />

@@ -15,6 +15,10 @@ import { getSiteUrl, getSiteName } from '@/lib/site-config';
 import { getHomeSeoCopy, HOME_KEYWORDS } from '@/lib/home-seo';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
 import type { ApiListResponse, Brand, Category, ProductListItem } from '@/types';
+import {
+  isTenantLocaleIndexable,
+  resolveTenantFromHeaders,
+} from '@/lib/tenant-config';
 
 const SITE_URL = getSiteUrl();
 
@@ -42,29 +46,43 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const homeSeo = getHomeSeoCopy(locale);
+  const headersList = await headers();
+  const localTenantHost = process.env.INDEXFINDS_LOCAL_TENANT_HOST;
+  const tenant = resolveTenantFromHeaders(headersList, localTenantHost);
+  const branding = tenant?.branding;
+  const siteUrl = tenant?.canonicalOrigin || SITE_URL;
+  const tenantHomeUrl = `${siteUrl}/en`;
+  const tenantCanIndex = tenant
+    ? isTenantLocaleIndexable(tenant, locale)
+    : false;
 
   return {
     title: {
-      absolute: homeSeo.title,
+      absolute: branding?.seoTitle || homeSeo.title,
     },
-    description: homeSeo.description,
-    keywords: [...HOME_KEYWORDS],
+    description: branding?.description || homeSeo.description,
+    keywords: branding ? undefined : [...HOME_KEYWORDS],
     openGraph: {
-      title: homeSeo.ogTitle,
-      description: homeSeo.ogDescription,
-      url: `${SITE_URL}/${locale}`,
-      siteName: getSiteName(),
+      title: branding?.seoTitle || homeSeo.ogTitle,
+      description: branding?.description || homeSeo.ogDescription,
+      url: tenant ? tenantHomeUrl : `${siteUrl}/${locale}`,
+      siteName: branding?.siteName || getSiteName(),
       type: 'website',
       locale: getOgLocale(locale),
     },
     twitter: {
       card: 'summary_large_image',
-      title: homeSeo.ogTitle,
-      description: homeSeo.ogDescription,
+      title: branding?.seoTitle || homeSeo.ogTitle,
+      description: branding?.description || homeSeo.ogDescription,
     },
-    alternates: generateAlternates('', locale),
+    alternates: tenant
+      ? {
+          canonical: tenantHomeUrl,
+          languages: { en: tenantHomeUrl, 'x-default': tenantHomeUrl },
+        }
+      : generateAlternates('', locale, siteUrl),
     robots: {
-      index: true,
+      index: tenant ? tenantCanIndex : true,
       follow: true,
     },
   };

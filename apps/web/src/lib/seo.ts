@@ -1,6 +1,3 @@
-import { getSiteUrl } from './site-config';
-
-const SITE_URL = getSiteUrl();
 const ALL_LOCALES = ['en', 'zh', 'fr', 'de', 'es', 'it', 'pt', 'ar'] as const;
 
 /**
@@ -8,13 +5,17 @@ const ALL_LOCALES = ['en', 'zh', 'fr', 'de', 'es', 'it', 'pt', 'ar'] as const;
  * @param path - 不含 locale 前缀的路径，如 '/products/nike-dunk'
  * @param currentLocale - 当前 locale
  */
-export function generateAlternates(path: string, currentLocale: string) {
+export function generateAlternates(
+  path: string,
+  currentLocale: string,
+  siteUrl = '',
+) {
   const languages: Record<string, string> = Object.fromEntries(
-    ALL_LOCALES.map((l) => [l, `${SITE_URL}/${l}${path}`]),
+    ALL_LOCALES.map((l) => [l, `${siteUrl}/${l}${path}`]),
   );
-  languages['x-default'] = `${SITE_URL}/en${path}`;
+  languages['x-default'] = `${siteUrl}/en${path}`;
   return {
-    canonical: `${SITE_URL}/${currentLocale}${path}`,
+    canonical: `${siteUrl}/${currentLocale}${path}`,
     languages,
   };
 }

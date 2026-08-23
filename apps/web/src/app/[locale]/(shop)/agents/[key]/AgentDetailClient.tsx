@@ -114,7 +114,7 @@ export default function AgentDetailClient({
               <a
                 href={agent.officialUrl}
                 target="_blank"
-                rel="noopener noreferrer"
+                  rel="sponsored nofollow noopener noreferrer"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-white/12 bg-white/[0.06] px-5 text-sm font-semibold text-white/80"
               >
                 {t("officialWebsite")}

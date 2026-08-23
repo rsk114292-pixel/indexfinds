@@ -12,6 +12,8 @@ import type { Category } from "@/types";
 import SearchBox from "@/components/SearchBox";
 import HotSearches from "@/components/HotSearches";
 import StarField from "@/components/home/StarField";
+import { useTenant } from "@/components/TenantProvider";
+import UsfansQuickStart from "@/components/home/UsfansQuickStart";
 
 type CategoriesResponse = Category[] | { data: Category[] };
 
@@ -51,6 +53,9 @@ export default function MobileHome({
 }) {
   const { mutate } = useSWRConfig();
   const t = useTranslations("home");
+  const tenant = useTenant();
+  const branding = tenant?.branding;
+  const homeVariant = branding?.editorial.homeVariant;
 
   const handleRefresh = useCallback(async () => {
     // 重新验证所有首页 SWR 数据（分类、品牌、商品推荐）
@@ -81,13 +86,17 @@ export default function MobileHome({
           <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-[#080b20]/45" />
           <div className="relative w-full py-2">
             <h1 className="max-w-[360px] text-[clamp(2.15rem,10vw,2.65rem)] font-extrabold leading-[1.02] tracking-[-0.05em]">
-              <span className="block">{t("hero.headlinePrimary")}</span>
-              <span className="mt-1 block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                {t("hero.headlineSecondary")}
+                <span className="block">
+                  {branding?.heroPrimary || t("hero.headlinePrimary")}
+                </span>
+                {" "}
+                <span className="mt-1 block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                {branding?.heroSecondary || t("hero.headlineSecondary")}
               </span>
             </h1>
             <p className="mt-5 max-w-sm text-sm leading-6 text-white/72">
-              {t("hero.descLine1")} {t("hero.descLine2")}
+              {branding?.description ||
+                `${t("hero.descLine1")} ${t("hero.descLine2")}`}
             </p>
             <div className="mt-6">
               <SearchBox size="large" mobileCompact />
@@ -102,15 +111,25 @@ export default function MobileHome({
           </div>
         </section>
 
-        {/* 分类横滑 */}
-        <MobileCategoryScroll initialData={initialCategories} />
+        {homeVariant === "catalog" && (
+          <MobileCategoryScroll initialData={initialCategories} />
+        )}
 
-        {/* 品牌横滑 */}
-        <MobileBrandScroll />
+        {homeVariant && <UsfansQuickStart compact />}
 
-        <section className="px-4 pb-3 pt-1">
-          <HomeRewardsBanner />
-        </section>
+        {homeVariant === "guide" && <MobileBrandScroll />}
+
+        {homeVariant !== "catalog" && (
+          <MobileCategoryScroll initialData={initialCategories} />
+        )}
+
+        {homeVariant !== "guide" && <MobileBrandScroll />}
+
+        {!homeVariant && (
+          <section className="px-4 pb-3 pt-1">
+            <HomeRewardsBanner />
+          </section>
+        )}
 
         {/* 分割线 */}
         <div className="h-2 bg-gray-50" />

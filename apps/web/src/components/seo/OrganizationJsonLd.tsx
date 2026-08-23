@@ -10,20 +10,28 @@ import { getSiteUrl, getSiteName } from '@/lib/site-config';
 type OrganizationJsonLdProps = {
   description: string;
   locale: string;
+  baseUrl?: string;
+  siteName?: string;
+  logoPath?: string;
 };
 
-export function OrganizationJsonLd({ description, locale }: OrganizationJsonLdProps) {
-  const baseUrl = getSiteUrl();
+export function OrganizationJsonLd({
+  description,
+  locale,
+  baseUrl = getSiteUrl(),
+  siteName = getSiteName(),
+  logoPath = '/icons/icon-512x512.png',
+}: OrganizationJsonLdProps) {
 
   // Organization 结构化数据
   const organizationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': `${baseUrl}/#organization`,
-    name: getSiteName(),
+    name: siteName,
     url: baseUrl,
     description,
-    logo: `${baseUrl}/icons/icon-512x512.png`,
+    logo: `${baseUrl}${logoPath}`,
     // 社交账号上线后取消注释
     // sameAs: [
 //   'https://twitter.com/indexfinds',
@@ -36,7 +44,7 @@ export function OrganizationJsonLd({ description, locale }: OrganizationJsonLdPr
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': `${baseUrl}/#website`,
-    name: getSiteName(),
+    name: siteName,
     url: baseUrl,
     description,
     publisher: {

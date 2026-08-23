@@ -9,6 +9,10 @@ import {
 } from '@/lib/catalog-route-guard';
 import { hasAnalyticsConsent } from '@/lib/analytics-consent';
 import { PUBLIC_REGISTRATION_ENABLED } from '@/lib/features';
+import {
+  isTenantLocaleIndexable,
+  resolveTenantFromHeaders,
+} from '@/lib/tenant-config';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4101';
 const TRUSTED_VISITOR_COOKIE = 'mf_vid';
@@ -80,6 +84,19 @@ export default async function middleware(request: NextRequest) {
   const response = intlMiddleware(request);
   // Forward pathname for hreflang generation in [locale]/layout.tsx
   response.headers.set('x-pathname', request.nextUrl.pathname);
+
+  const tenant = resolveTenantFromHeaders(
+    request.headers,
+    process.env.INDEXFINDS_LOCAL_TENANT_HOST,
+  );
+  const tenantLocale = request.nextUrl.pathname.match(/^\/([^/]+)/)?.[1];
+  if (
+    tenant &&
+    tenantLocale &&
+    !isTenantLocaleIndexable(tenant, tenantLocale)
+  ) {
+    response.headers.set('x-robots-tag', 'noindex, follow');
+  }
 
   const analyticsConsent = request.cookies.get('cookie_consent')?.value;
   const trustedVisitorId = request.cookies.get(TRUSTED_VISITOR_COOKIE)?.value;
