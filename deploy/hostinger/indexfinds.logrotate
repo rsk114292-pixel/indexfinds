@@ -1,0 +1,15 @@
+/www/wwwlogs/indexfinds.com.log /www/wwwlogs/indexfinds.com.error.log {
+    daily
+    rotate 14
+    size 100M
+    missingok
+    notifempty
+    compress
+    delaycompress
+    dateext
+    create 0640 www www
+    sharedscripts
+    postrotate
+        test ! -s /www/server/nginx/logs/nginx.pid || kill -USR1 $(cat /www/server/nginx/logs/nginx.pid)
+    endscript
+}
