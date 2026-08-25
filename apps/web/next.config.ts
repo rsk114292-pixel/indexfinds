@@ -28,6 +28,7 @@ const contentSecurityPolicy = [
 
 const nextConfig: NextConfig = {
   /* config options here */
+  output: 'standalone',
   poweredByHeader: false,
   eslint: {
     ignoreDuringBuilds: false,
