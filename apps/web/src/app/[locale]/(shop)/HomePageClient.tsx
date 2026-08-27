@@ -105,6 +105,53 @@ export default function HomePageClient({
     );
   }
 
+  if (tenant?.domain === "goatedbuyindex.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <UsfansQuickStart />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (tenant?.domain === "gtbuyindex.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <UsfansQuickStart />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (tenant?.domain === "hipobuyindex.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <UsfansQuickStart />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
+        <HowItWorksSection />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (tenant?.domain === "hoobuyindex.net") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <UsfansQuickStart />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <CtaSection />
+      </>
+    );
+  }
+
   if (homeVariant === "index") {
     return (
       <>

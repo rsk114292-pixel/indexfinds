@@ -354,7 +354,33 @@ export default function MobileHome({
           </div>
         </section>
 
-        {homeVariant === "archive" ? (
+        {tenant?.domain === "goatedbuyindex.com" ? (
+          <>
+            <UsfansQuickStart compact />
+            <MobileCategoryScroll initialData={initialCategories} />
+            <div className="h-2 bg-gray-50" />
+            <MobileProductFeed />
+          </>
+        ) : tenant?.domain === "gtbuyindex.com" ? (
+          <>
+            <UsfansQuickStart compact />
+            <div className="h-2 bg-gray-50" />
+            <MobileProductFeed />
+          </>
+        ) : tenant?.domain === "hipobuyindex.com" ? (
+          <>
+            <UsfansQuickStart compact />
+            <MobileBrandScroll />
+            <MobileCategoryScroll initialData={initialCategories} />
+          </>
+        ) : tenant?.domain === "hoobuyindex.net" ? (
+          <>
+            <div className="h-2 bg-gray-50" />
+            <MobileProductFeed />
+            <UsfansQuickStart compact />
+            <MobileCategoryScroll initialData={initialCategories} />
+          </>
+        ) : homeVariant === "archive" ? (
           <>
             <ItaobuyResearchArchive compact />
             <MobileCategoryScroll initialData={initialCategories} />
