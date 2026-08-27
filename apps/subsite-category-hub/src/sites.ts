@@ -19,6 +19,9 @@ const INDEX_RELEASED_DOMAINS = new Set([
   "cssbuyitems.com",
   "kakobuyindex.net",
   "kakobuyitems.com",
+  "litbuyindex.com",
+  "litbuyitems.com",
+  "litbuyproducts.com",
   "ydaexpress.net",
   "ydaexpress.org",
 ]);

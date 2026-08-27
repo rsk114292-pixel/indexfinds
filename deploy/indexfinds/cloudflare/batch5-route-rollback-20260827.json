@@ -1,0 +1,49 @@
+{
+  "created_at": "2026-08-27T23:16:19+08:00",
+  "purpose": "Rollback snapshot before moving the three independently reviewed LitBuy domains from their prior static Workers to an isolated multi-tenant candidate.",
+  "target_script": "indexfinds-subsite-b5-litbuy-candidate",
+  "routes": [
+    {
+      "domain": "litbuyindex.com",
+      "zone_id": "f83f1d5bfb3567392f512094a4b3b0e4",
+      "route_id": "f8fdb05645d84d6f976910484217f09f",
+      "pattern": "litbuyindex.com/*",
+      "previous_script": "litbuyindex-static-20260820"
+    },
+    {
+      "domain": "litbuyindex.com",
+      "zone_id": "f83f1d5bfb3567392f512094a4b3b0e4",
+      "route_id": "9a8eeefd4bde4e2f957a9f23a9eecef0",
+      "pattern": "www.litbuyindex.com/*",
+      "previous_script": "litbuyindex-static-20260820"
+    },
+    {
+      "domain": "litbuyitems.com",
+      "zone_id": "a3cf328ba21fae093361659936c95cc8",
+      "route_id": "cc36854b1e7d489596c9ad9dfe3238f9",
+      "pattern": "litbuyitems.com/*",
+      "previous_script": "litbuyitems-static-20260820"
+    },
+    {
+      "domain": "litbuyitems.com",
+      "zone_id": "a3cf328ba21fae093361659936c95cc8",
+      "route_id": "78791c4d02ec472a9a38cde093df498a",
+      "pattern": "www.litbuyitems.com/*",
+      "previous_script": "litbuyitems-static-20260820"
+    },
+    {
+      "domain": "litbuyproducts.com",
+      "zone_id": "d339dab0c3c11bacfa8980225d2dfc4e",
+      "route_id": "92e2df76de824c5fbe58cd18f6077043",
+      "pattern": "litbuyproducts.com/*",
+      "previous_script": "litbuyproducts-static-20260820"
+    },
+    {
+      "domain": "litbuyproducts.com",
+      "zone_id": "d339dab0c3c11bacfa8980225d2dfc4e",
+      "route_id": "7553d2d7c455485d9a3ae4eed968b40d",
+      "pattern": "www.litbuyproducts.com/*",
+      "previous_script": "litbuyproducts-static-20260820"
+    }
+  ]
+}
