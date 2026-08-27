@@ -123,6 +123,7 @@ export const MobileProductCard = memo(function MobileProductCard({
   const imageCandidates = useMemo(
     () =>
       getProductCardImageCandidates(product)
+        .slice(0, 3)
         .filter(
           (candidate) =>
             !tenant || !candidate.includes("/images/product-placeholder.svg"),

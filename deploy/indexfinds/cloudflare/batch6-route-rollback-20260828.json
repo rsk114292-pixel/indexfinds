@@ -1,0 +1,77 @@
+{
+  "created_at": "2026-08-28T03:43:22+08:00",
+  "purpose": "Rollback snapshot before moving five independently reviewed evidence-led domains from their prior static Workers to the isolated batch6 candidate.",
+  "target_script": "indexfinds-subsite-b6-evidence-candidate",
+  "routes": [
+    {
+      "domain": "loongbuys.net",
+      "zone_id": "77e9b559735b7202ee1459ee6aa7135e",
+      "route_id": "cc8c9c1c195049f2867fa56f935b17de",
+      "pattern": "loongbuys.net/*",
+      "previous_script": "loongbuys-static-20260820"
+    },
+    {
+      "domain": "loongbuys.net",
+      "zone_id": "77e9b559735b7202ee1459ee6aa7135e",
+      "route_id": "1955dae4a7604740986180154422055a",
+      "pattern": "www.loongbuys.net/*",
+      "previous_script": "loongbuys-static-20260820"
+    },
+    {
+      "domain": "lovegobuyindex.com",
+      "zone_id": "44e208f8902443220913f6bfe9bf3b33",
+      "route_id": "39942530bc1c4d9492289c9117f1d5fc",
+      "pattern": "lovegobuyindex.com/*",
+      "previous_script": "lovegobuyindex-static-20260820"
+    },
+    {
+      "domain": "lovegobuyindex.com",
+      "zone_id": "44e208f8902443220913f6bfe9bf3b33",
+      "route_id": "6171dd249772425c813e5fb8adce579b",
+      "pattern": "www.lovegobuyindex.com/*",
+      "previous_script": "lovegobuyindex-static-20260820"
+    },
+    {
+      "domain": "mulebuyindex.net",
+      "zone_id": "71abb5f328984318071c516a834f75f2",
+      "route_id": "c1059f731e7d4986bda4f78cd31bbbd3",
+      "pattern": "mulebuyindex.net/*",
+      "previous_script": "mulebuyindex-static-20260820"
+    },
+    {
+      "domain": "mulebuyindex.net",
+      "zone_id": "71abb5f328984318071c516a834f75f2",
+      "route_id": "b1666857be494e62838af9ec42c24420",
+      "pattern": "www.mulebuyindex.net/*",
+      "previous_script": "mulebuyindex-static-20260820"
+    },
+    {
+      "domain": "mulebuyitems.com",
+      "zone_id": "b7e91ff0787ae9a72ea1d41699febc6f",
+      "route_id": "00b40a0ea4c5483e819ef07655829123",
+      "pattern": "mulebuyitems.com/*",
+      "previous_script": "mulebuyitems-static-20260820"
+    },
+    {
+      "domain": "mulebuyitems.com",
+      "zone_id": "b7e91ff0787ae9a72ea1d41699febc6f",
+      "route_id": "38960bbf16cf406fa7170f377ae17e0e",
+      "pattern": "www.mulebuyitems.com/*",
+      "previous_script": "mulebuyitems-static-20260820"
+    },
+    {
+      "domain": "oopbuyindex.net",
+      "zone_id": "ceedf8011ef41ece0fcd100da930a26c",
+      "route_id": "1df6d53194e34697bb8bb7f83fa8a98d",
+      "pattern": "oopbuyindex.net/*",
+      "previous_script": "oopbuyindex-static-20260820"
+    },
+    {
+      "domain": "oopbuyindex.net",
+      "zone_id": "ceedf8011ef41ece0fcd100da930a26c",
+      "route_id": "0a751b2126484258989966a300af4fe6",
+      "pattern": "www.oopbuyindex.net/*",
+      "previous_script": "oopbuyindex-static-20260820"
+    }
+  ]
+}
