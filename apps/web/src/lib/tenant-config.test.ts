@@ -942,6 +942,8 @@ describe("tenant config", () => {
       "cssbuycatalog.com",
       "cssbuyindex.com",
       "cssbuyitems.com",
+      "kakobuyindex.net",
+      "kakobuyitems.com",
       "ydaexpress.net",
       "ydaexpress.org",
     ]);

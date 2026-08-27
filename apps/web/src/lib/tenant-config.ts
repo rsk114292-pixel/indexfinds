@@ -62,6 +62,8 @@ const INDEX_READY_TENANT_DOMAINS = new Set([
   "cssbuycatalog.com",
   "cssbuyindex.com",
   "cssbuyitems.com",
+  "kakobuyindex.net",
+  "kakobuyitems.com",
   "ydaexpress.net",
   "ydaexpress.org",
 ]);

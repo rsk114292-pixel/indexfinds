@@ -1,0 +1,35 @@
+{
+  "created_at": "2026-08-27T21:40:23+08:00",
+  "purpose": "Rollback snapshot before moving the two independently reviewed Kakobuy domains from their prior static Workers to an isolated multi-tenant candidate.",
+  "target_script": "indexfinds-subsite-b4-kakobuy-candidate",
+  "routes": [
+    {
+      "domain": "kakobuyindex.net",
+      "zone_id": "07504979785a89376df1394c08fa54b3",
+      "route_id": "a6d058222825495e860b7dd306a4f2d6",
+      "pattern": "kakobuyindex.net/*",
+      "previous_script": "kakobuyindex-static-20260821"
+    },
+    {
+      "domain": "kakobuyindex.net",
+      "zone_id": "07504979785a89376df1394c08fa54b3",
+      "route_id": "9bed0f9a425c4501888b952948690993",
+      "pattern": "www.kakobuyindex.net/*",
+      "previous_script": "kakobuyindex-static-20260821"
+    },
+    {
+      "domain": "kakobuyitems.com",
+      "zone_id": "899e13100a1ab988922c84d1ef2b13ee",
+      "route_id": "41d63f4e06fd404aa63217acbce025f8",
+      "pattern": "kakobuyitems.com/*",
+      "previous_script": "kakobuyitems-static-20260821"
+    },
+    {
+      "domain": "kakobuyitems.com",
+      "zone_id": "899e13100a1ab988922c84d1ef2b13ee",
+      "route_id": "4edb9d76445744c1b1fd48daeb20ce71",
+      "pattern": "www.kakobuyitems.com/*",
+      "previous_script": "kakobuyitems-static-20260821"
+    }
+  ]
+}
