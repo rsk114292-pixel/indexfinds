@@ -1,0 +1,41 @@
+{
+  "validatedAt": "2026-08-28T02:54:17+08:00",
+  "sourceCommit": "7eb675f",
+  "worker": "indexfinds-subsite-b5-litbuy-candidate",
+  "workerVersion": "9ebe6e05-8d37-4e41-ba6f-b0fee2090f4a",
+  "domains": [
+    "litbuyindex.com",
+    "litbuyitems.com",
+    "litbuyproducts.com"
+  ],
+  "routeState": "production-routed",
+  "origin": {
+    "webImage": "indexfinds-web:7eb675f-litbuy-release",
+    "webContainer": "indexfinds-web-7eb675f-litbuy-release",
+    "port": 3114,
+    "mainSitePortUnchanged": 3107,
+    "previousTenantPort": 3113,
+    "nginxFile": "/www/server/panel/vhost/nginx/90-indexfinds-batch1-preview-origin.conf",
+    "nginxBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-litbuy-release-20260827T183816Z"
+  },
+  "checks": {
+    "isolatedPreview": "The allowlisted Worker preview passed all 24 independently reviewed pages with noindex/nofollow and no-store headers. Titles and descriptions were unique, canonical URLs were exact, draft sitemaps were empty, and an unrelated tenant returned 404.",
+    "apexAndWww": "All three apex hosts return 200. Each www host returns one 308 redirect to the matching apex English URL.",
+    "reviewedPages": "All 24 independently reviewed English pages return 200 with exact self-canonical URLs, index/follow metadata, unique titles and descriptions, and structured data.",
+    "sitemaps": "Each sitemap index points to one tenant-local child sitemap containing exactly the eight independently reviewed URLs. Unreviewed product-list pages remain outside every sitemap.",
+    "indexingGate": "Reviewed pages do not emit an X-Robots-Tag block. The unreviewed /en/products page remains noindex and outside all three sitemaps.",
+    "robots": "The default crawler and Googlebot blocks explicitly allow the site root. Cloudflare-managed blocks for selected AI crawlers do not block Google Search, and each robots file publishes the matching canonical sitemap URL.",
+    "apiAndAssets": "Public health endpoints, the current official LitBuy favicon and an api-next.indexfinds.com optimized product image return 200 on every domain.",
+    "existingReleases": "All 16 previously released tenants remain 200 and indexable after the shared origin and route changes.",
+    "unreviewedIsolation": "EastMallBuyIndex returns 404 and was not exposed by this candidate Worker.",
+    "mainSiteIsolation": "The IndexFinds main homepage and API remain 200; its 3107 primary and 3106 standby Nginx upstream were not changed.",
+    "tests": "Targeted Web suites passed 119 tests. Tenant Worker tests passed 12 tests. Web and Worker typechecks, lint, Worker dry-run, local production build and clean Hostinger production image build passed before release.",
+    "visualAndDuplicateContent": "Desktop and mobile checks passed for all three LitBuy domains with zero console errors, no broken images and no horizontal overflow. The sites use independent query-index, item-evidence and category-catalog intents, distinct page sets, homepage ordering, copy and visual profiles."
+  },
+  "rollback": {
+    "routeAction": "Restore the six route IDs to their previous individual Workers using batch5-route-rollback-20260827.json.",
+    "workerAction": "Version ccc225a2-38f2-49da-89f5-70d98334b8cb retains the isolated pre-release noindex behavior if the candidate Worker must be reverted without changing routes.",
+    "originAction": "Restore the recorded Nginx backup to return the shared tenant origin to port 3113, validate Nginx, and reload it.",
+    "containerAction": "Keep indexfinds-web-135d004-kakobuy-release on port 3113 and the new LitBuy release container on port 3114 until the batch remains stable."
+  }
+}
