@@ -1,0 +1,38 @@
+{
+  "validatedAt": "2026-08-27T20:07:21+08:00",
+  "sourceCommit": "e84422e",
+  "worker": "indexfinds-subsite-category-hub-batch2-candidate",
+  "workerVersion": "98a0d644-6647-41a9-a774-c0aa1af1978f",
+  "domains": [
+    "bbdbuyeusheet.com",
+    "boonbuyfind.net",
+    "boonbuyindex.com",
+    "cnshopperindex.com"
+  ],
+  "routeState": "production-routed",
+  "origin": {
+    "webImage": "indexfinds-web:e84422e-batch2-release",
+    "webContainer": "indexfinds-web-e84422e-batch2-release",
+    "port": 3110,
+    "mainSitePortUnchanged": 3107,
+    "previousTenantPort": 3109,
+    "nginxBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-batch2-release-20260827T115936Z"
+  },
+  "checks": {
+    "apexAndWww": "All four apex hosts return 200. All four www hosts return a single 308 redirect to the matching apex English URL.",
+    "reviewedPages": "All 23 independently reviewed English pages return 200 with an exact self-canonical URL, index/follow metadata and at least two JSON-LD blocks.",
+    "sitemaps": "Each sitemap shard exactly matches its reviewed URL allowlist: 5 URLs for BBDbuy EU Sheet and 6 URLs for each BoonBuy Find, BoonBuy Index and CNShopper Index.",
+    "indexingGate": "The four domains no longer emit an X-Robots-Tag block. robots.txt allows crawling and the reviewed sitemap allowlists are public.",
+    "api": "The public health endpoint returns 200 on all four domains.",
+    "existingReleases": "The seven previously released tenants remain index/follow after the shared origin switch.",
+    "unreviewedIsolation": "An unrelated unreviewed tenant sample remains noindex/follow and is not exposed as an indexable page.",
+    "mainSiteIsolation": "The IndexFinds main homepage and API remain 200; the main-site Nginx upstream and hot standby were not changed.",
+    "tests": "Web tests 813/813, tenant Worker tests 12/12, typecheck, lint, Worker dry-run and the local and server production builds passed before release.",
+    "visualAndDuplicateContent": "Desktop and mobile captures passed for all four domains. Their page order, research intent, visual identity and reviewed URL sets are independently defined rather than brand-name substitutions."
+  },
+  "rollback": {
+    "workerAction": "Deploy Worker version 959b0fb4-f67a-45b9-9662-c5eb28150b1f to restore the prior draft/noindex release gate while preserving the eight routes.",
+    "originAction": "Restore the recorded Nginx backup to return the shared tenant origin to port 3109, validate Nginx, and reload it.",
+    "containerAction": "Keep indexfinds-web-5b2a04e-yda-release on port 3109 and the earlier noindex containers on ports 3108 and 3107 until the release is stable."
+  }
+}
