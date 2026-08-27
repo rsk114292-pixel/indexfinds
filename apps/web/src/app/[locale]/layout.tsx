@@ -15,7 +15,11 @@ import { getHomeSeoCopy } from '@/lib/home-seo';
 import type { TrackingConfig } from '@/lib/tracking-config';
 import DocumentLocaleSync from '@/components/DocumentLocaleSync';
 import type { Locale } from '@/i18n/config';
-import { resolveTenantFromHeaders } from '@/lib/tenant-config';
+import {
+  getTenantFaviconAttributes,
+  isTenantReleasedForIndexing,
+  resolveTenantFromHeaders,
+} from '@/lib/tenant-config';
 
 const SITE_URL = getSiteUrl();
 
@@ -36,6 +40,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const siteName = branding?.siteName || getSiteName();
   const pageTitle = branding?.seoTitle || homeSeo.title;
   const pageDescription = branding?.description || homeSeo.description;
+  const tenantFavicon = branding
+    ? getTenantFaviconAttributes(branding.faviconPath)
+    : null;
   const pathname = headersList.get('x-pathname') || `/${locale}`;
   // Strip locale prefix to get the path portion
   const pathWithoutLocale = pathname.replace(/^\/(en|zh|fr|de|es|it|pt|ar)/, '') || '/';
@@ -49,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: pageDescription,
     icons: {
       icon: branding
-        ? [{ url: branding.faviconPath, sizes: 'any', type: 'image/svg+xml' }]
+        ? [{ url: branding.faviconPath, sizes: tenantFavicon?.sizes, type: tenantFavicon?.type }]
         : [
             { url: '/favicon.ico', sizes: 'any' },
             { url: '/icons/logo.svg', sizes: 'any', type: 'image/svg+xml' },
@@ -84,20 +91,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     alternates: {
       canonical: `${siteUrl}/${locale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-      languages: {
-        en: `${siteUrl}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        zh: `${siteUrl}/zh${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        fr: `${siteUrl}/fr${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        de: `${siteUrl}/de${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        es: `${siteUrl}/es${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        it: `${siteUrl}/it${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        pt: `${siteUrl}/pt${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        ar: `${siteUrl}/ar${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-        'x-default': `${siteUrl}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-      },
+      languages: tenant
+        ? {
+            en: `${siteUrl}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+            'x-default': `${siteUrl}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+          }
+        : {
+            en: `${siteUrl}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+            zh: `${siteUrl}/zh${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+            fr: `${siteUrl}/fr${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+            de: `${siteUrl}/de${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+            es: `${siteUrl}/es${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+            it: `${siteUrl}/it${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+            pt: `${siteUrl}/pt${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+            ar: `${siteUrl}/ar${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+            'x-default': `${siteUrl}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+          },
     },
     robots:
-      branding?.indexing === 'draft'
+      tenant && !isTenantReleasedForIndexing(tenant)
         ? { index: false, follow: true }
         : undefined,
   };
@@ -134,6 +146,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           baseUrl={tenant?.canonicalOrigin}
           siteName={branding?.siteName}
           logoPath={branding?.logoPath}
+          independentSite={Boolean(tenant)}
         />
         <VisitTracker />
         <ConditionalGA initialConfig={trackingConfig} />

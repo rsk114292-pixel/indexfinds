@@ -17,6 +17,10 @@ import {
   getRequestSiteIdentity,
 } from '@/lib/request-site-identity';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
+import { getTenantResearchPage } from '@/lib/tenant-research-pages';
+import TenantResearchPage, {
+  generateMetadata as generateTenantResearchMetadata,
+} from '../[platformSlug]/page';
 
 export async function generateMetadata({
   params,
@@ -27,6 +31,12 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'metadata' });
   const identity = await getRequestSiteIdentity();
   const { siteUrl, siteName, tenant } = identity;
+
+  if (tenant && getTenantResearchPage(tenant.domain, 'categories')) {
+    return generateTenantResearchMetadata({
+      params: Promise.resolve({ locale, platformSlug: 'categories' }),
+    });
+  }
 
   const title = t('categoriesTitle');
   const description = tenant
@@ -80,8 +90,19 @@ export default async function CategoriesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const identity = await getRequestSiteIdentity();
+
+  if (
+    identity.tenant &&
+    getTenantResearchPage(identity.tenant.domain, 'categories')
+  ) {
+    return TenantResearchPage({
+      params: Promise.resolve({ locale, platformSlug: 'categories' }),
+    });
+  }
+
   const t = await getTranslations({ locale, namespace: 'metadata' });
-  const { siteUrl } = await getRequestSiteIdentity();
+  const { siteUrl } = identity;
   const categories = await getCategoriesList();
 
   const listItems = categories.map((cat) => ({

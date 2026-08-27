@@ -1,0 +1,68 @@
+{
+  "batch": 1,
+  "createdAt": "2026-08-27T01:15:00+08:00",
+  "candidateScript": "indexfinds-subsite-category-hub-batch1-candidate",
+  "previousScript": "indexfinds-subsite-category-hub-production",
+  "routes": [
+    {
+      "domain": "acbuyindex.com",
+      "zoneId": "5421cf243ed0ce284b9a2177da685eba",
+      "routeId": "6e0a600131724280bb6cd1ce8c10ef95",
+      "pattern": "acbuyindex.com/*"
+    },
+    {
+      "domain": "acbuyindex.com",
+      "zoneId": "5421cf243ed0ce284b9a2177da685eba",
+      "routeId": "8b101714eb03498bab5e1c3bbf7239f7",
+      "pattern": "www.acbuyindex.com/*"
+    },
+    {
+      "domain": "allchinabuyfinder.com",
+      "zoneId": "4fc99eea256223f0e385d2441dcc3c4b",
+      "routeId": "1e01b0f4d2954a4ab8288bea53def6d0",
+      "pattern": "allchinabuyfinder.com/*"
+    },
+    {
+      "domain": "allchinabuyfinder.com",
+      "zoneId": "4fc99eea256223f0e385d2441dcc3c4b",
+      "routeId": "5b0c3a267cbd4bcfbd7923514b59c6e2",
+      "pattern": "www.allchinabuyfinder.com/*"
+    },
+    {
+      "domain": "allchinabuyindex.com",
+      "zoneId": "3331a3793f870490ef34a409536dc869",
+      "routeId": "3db2e59bf76840939d18499b917af567",
+      "pattern": "allchinabuyindex.com/*"
+    },
+    {
+      "domain": "allchinabuyindex.com",
+      "zoneId": "3331a3793f870490ef34a409536dc869",
+      "routeId": "f8183e59e5e9496e872960be30b276a3",
+      "pattern": "www.allchinabuyindex.com/*"
+    },
+    {
+      "domain": "bbdbuyeufinds.com",
+      "zoneId": "835801754c6d265a4280bb9a78214a11",
+      "routeId": "3dde2a52c3674bca8014f823c6a20c74",
+      "pattern": "bbdbuyeufinds.com/*"
+    },
+    {
+      "domain": "bbdbuyeufinds.com",
+      "zoneId": "835801754c6d265a4280bb9a78214a11",
+      "routeId": "a62f7f15de704f18a9dc27380f9eeeda",
+      "pattern": "www.bbdbuyeufinds.com/*"
+    },
+    {
+      "domain": "bbdbuyeus.com",
+      "zoneId": "d0f91234a07e95b62346baa341e5f36d",
+      "routeId": "8647254a2f8e4fc6a732e12fbf4de74b",
+      "pattern": "bbdbuyeus.com/*"
+    },
+    {
+      "domain": "bbdbuyeus.com",
+      "zoneId": "d0f91234a07e95b62346baa341e5f36d",
+      "routeId": "bdd4f2c51e6848d989faca0ff646ba6c",
+      "pattern": "www.bbdbuyeus.com/*"
+    }
+  ]
+}

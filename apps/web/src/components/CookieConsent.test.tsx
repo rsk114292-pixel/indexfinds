@@ -91,7 +91,7 @@ describe('Cookie consent tracking integration', () => {
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
-        'http://localhost:4101/settings/tracking',
+        '/api/settings/tracking',
         expect.objectContaining({
           credentials: 'include',
           signal: expect.any(AbortSignal),

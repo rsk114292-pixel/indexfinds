@@ -3,8 +3,12 @@ import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { ArrowRight, Check, Search, SlidersHorizontal } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 import { FAQPageJsonLd } from '@/components/seo/FAQPageJsonLd';
-import { resolveTenantFromHeaders } from '@/lib/tenant-config';
+import {
+  isTenantPathIndexable,
+  resolveTenantFromHeaders,
+} from '@/lib/tenant-config';
 
 const USFANS_ORIGIN = 'https://usfansindex.net';
 const PAGE_PATH = '/en/usfans-spreadsheet';
@@ -13,17 +17,17 @@ const FAQ_ITEMS = [
   {
     question: 'What is the USFans product index?',
     answer:
-      'It is a searchable web catalog for exploring current products, brands and categories connected with the USFans buying route.',
+      'It is a research directory for locating candidate listings and preserving the source details that still need verification.',
   },
   {
     question: 'Is the USFans spreadsheet a downloadable file?',
     answer:
-      'The spreadsheet is presented as a browser-based product index, so you can search and filter current catalog information without downloading a separate file.',
+      'Here, “spreadsheet” describes a browser-based research workflow rather than a downloadable workbook. It organizes candidate listings, visible fields and open questions.',
   },
   {
     question: 'Can I compare products before choosing an agent?',
     answer:
-      'Yes. Open a product page to review the available images, product details and options, then compare the available buying routes.',
+      'Yes. First compare visible images, options and source fields. Then confirm current price, availability and service terms on the destination website before comparing routes.',
   },
   {
     question: 'Where should I start if I do not know the product name?',
@@ -32,14 +36,12 @@ const FAQ_ITEMS = [
   },
 ] as const;
 
-async function isUsfansRequest(locale: string) {
-  if (locale !== 'en') return false;
+async function getUsfansContext(locale: string) {
+  if (locale !== 'en') return null;
   const headersList = await headers();
   const localTenantHost = process.env.INDEXFINDS_LOCAL_TENANT_HOST;
-  return (
-    resolveTenantFromHeaders(headersList, localTenantHost)?.domain ===
-    'usfansindex.net'
-  );
+  const tenant = resolveTenantFromHeaders(headersList, localTenantHost);
+  return tenant?.domain === 'usfansindex.net' ? tenant : null;
 }
 
 export async function generateMetadata({
@@ -48,14 +50,16 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  if (!(await isUsfansRequest(locale))) {
+  const tenant = await getUsfansContext(locale);
+  if (!tenant) {
     return { robots: { index: false, follow: false } };
   }
 
-  const title = 'USFans Spreadsheet & Product Index | Search Products';
+  const title = 'How to Research a USFans Spreadsheet | Source-Check Guide';
   const description =
-    'Use the USFans spreadsheet and product index to search products, explore brands and categories, compare details and choose a buying route.';
+    'Use the USFans spreadsheet research workflow to preserve source context, record missing listing fields and verify current terms before choosing a buying route.';
   const url = `${USFANS_ORIGIN}${PAGE_PATH}`;
+  const canIndex = isTenantPathIndexable(tenant, PAGE_PATH);
 
   return {
     title: { absolute: title },
@@ -68,12 +72,12 @@ export async function generateMetadata({
       title,
       description,
       url,
-      siteName: 'USFans Index',
+      siteName: 'USFans',
       locale: 'en_US',
       type: 'website',
     },
     twitter: { card: 'summary', title, description },
-    robots: { index: true, follow: true },
+    robots: { index: canIndex, follow: true },
   };
 }
 
@@ -83,26 +87,32 @@ export default async function UsfansSpreadsheetPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (!(await isUsfansRequest(locale))) notFound();
+  if (!(await getUsfansContext(locale))) notFound();
 
   return (
     <>
+      <BreadcrumbJsonLd
+        locale="en"
+        homeName="USFans"
+        baseUrl={USFANS_ORIGIN}
+        items={[{ name: 'USFans spreadsheet research', url: '/usfans-spreadsheet' }]}
+      />
       <FAQPageJsonLd items={[...FAQ_ITEMS]} />
       <main className="bg-[#f5f7fb] text-[#111827]">
         <section className="container mx-auto px-4 py-14 sm:py-18 lg:py-22">
           <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(300px,0.75fr)]">
             <div>
               <p className="text-sm font-bold text-primary">
-                USFans product discovery
+                Independent USFans research workflow
               </p>
               <h1 className="mt-4 max-w-4xl text-4xl font-extrabold leading-[1.02] tracking-[-0.05em] sm:text-5xl lg:text-7xl">
-                The USFans spreadsheet, built for faster product research.
+                Build a USFans source-check record before choosing a route.
               </h1>
             </div>
             <div className="lg:pb-2">
               <p className="max-w-xl text-base leading-7 text-[#5c6678] lg:text-lg">
-                Search the live product index, narrow results by brand or
-                category, and review the available buying routes in one place.
+                Find a candidate listing, preserve its source context and mark
+                each field as visible, missing or still needing confirmation.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
@@ -128,26 +138,26 @@ export default async function UsfansSpreadsheetPage({
             <div className="bg-[#111827] p-7 text-white sm:p-9">
               <Search className="h-7 w-7 text-accent" />
               <h2 className="mt-8 text-3xl font-extrabold leading-[1.08] tracking-[-0.04em]">
-                Use the index in three focused passes.
+                Use the research record in three focused passes.
               </h2>
               <p className="mt-4 text-sm leading-6 text-white/65">
-                Begin broad, narrow the catalog, then review the product page
-                before choosing how to buy.
+                Discover a candidate, capture what the source actually shows,
+                then separate verified fields from open questions.
               </p>
             </div>
             <div className="p-6 sm:p-9">
               {[
                 [
                   'Search',
-                  'Enter a product, brand or category in the site search.',
+                  'Enter a product, brand or category to locate a candidate listing.',
                 ],
                 [
                   'Narrow',
-                  'Use category, brand and product filters to reduce the catalog.',
+                  'Keep the source URL, visible images, option labels and stated price together.',
                 ],
                 [
                   'Review',
-                  'Open the product page and check its current images, details and options.',
+                  'Confirm current price, availability, condition and service terms on the destination website.',
                 ],
               ].map(([title, description]) => (
                 <div
@@ -174,11 +184,11 @@ export default async function UsfansSpreadsheetPage({
             <div>
               <SlidersHorizontal className="h-7 w-7 text-primary" />
               <h2 className="mt-6 text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">
-                Choose the route that matches your search.
+                Separate discovery from route selection.
               </h2>
               <p className="mt-4 max-w-xl text-sm leading-6 text-[#5c6678] sm:text-base sm:leading-7">
-                The catalog supports several entry points, so a known brand and
-                an open-ended product search do not need the same path.
+                Categories and brands help locate candidates. They do not verify
+                a seller, a product claim or the current destination terms.
               </p>
             </div>
             <nav
@@ -186,9 +196,9 @@ export default async function UsfansSpreadsheetPage({
               className="rounded-[24px] border border-[#d9e1ed] bg-white px-5 sm:px-7"
             >
               {[
-                ['/brands', 'Brand index', 'Explore products grouped by brand.'],
-                ['/categories', 'Category index', 'Start with a broad product type.'],
-                ['/agents/compare', 'Buying routes', 'Compare the available agents.'],
+                ['/brands', 'Brand filter', 'Narrow the candidate set without treating a brand label as proof.'],
+                ['/categories', 'Category filter', 'Start broad, then capture the exact source listing.'],
+                ['/agents/compare', 'Route comparison', 'Compare routes only after the source record is complete.'],
               ].map(([href, title, description]) => (
                 <Link
                   key={href}

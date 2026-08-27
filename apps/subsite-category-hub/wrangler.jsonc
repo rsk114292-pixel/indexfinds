@@ -26,8 +26,6 @@
         "head_sampling_rate": 1,
       },
       "routes": [
-        { "pattern": "1to1reps.com/*", "zone_name": "1to1reps.com" },
-        { "pattern": "www.1to1reps.com/*", "zone_name": "1to1reps.com" },
         { "pattern": "acbuyindex.com/*", "zone_name": "acbuyindex.com" },
         { "pattern": "www.acbuyindex.com/*", "zone_name": "acbuyindex.com" },
         {
@@ -214,6 +212,10 @@
         },
         { "pattern": "usfansindex.net/*", "zone_name": "usfansindex.net" },
         { "pattern": "www.usfansindex.net/*", "zone_name": "usfansindex.net" },
+        { "pattern": "ydaexpress.net/*", "zone_name": "ydaexpress.net" },
+        { "pattern": "www.ydaexpress.net/*", "zone_name": "ydaexpress.net" },
+        { "pattern": "ydaexpress.org/*", "zone_name": "ydaexpress.org" },
+        { "pattern": "www.ydaexpress.org/*", "zone_name": "ydaexpress.org" },
         { "pattern": "yoybuyindex.com/*", "zone_name": "yoybuyindex.com" },
         { "pattern": "www.yoybuyindex.com/*", "zone_name": "yoybuyindex.com" },
       ],

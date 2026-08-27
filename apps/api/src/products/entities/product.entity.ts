@@ -151,6 +151,20 @@ export class Product {
   @Index()
   status: ProductStatus;
 
+  // ========== 搜索引擎收录审核 ==========
+  @Column({ type: 'boolean', default: false })
+  @Index('IDX_products_seoIndexable')
+  seoIndexable: boolean;
+
+  @Column({ type: 'timestamp', nullable: true })
+  seoReviewedAt: Date | null;
+
+  @Column({ type: 'uuid', nullable: true })
+  seoReviewedBy: string | null;
+
+  @Column({ type: 'text', nullable: true })
+  seoReviewNote: string | null;
+
   // ========== 统计与标记 ==========
   @Column({ type: 'boolean', default: false })
   isFeatured: boolean; // 是否推荐

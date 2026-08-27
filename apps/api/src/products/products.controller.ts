@@ -28,6 +28,7 @@ import {
   BatchStatusActionDto,
   BatchDeleteDto,
   BatchCategoryUpdateDto,
+  SeoIndexReviewDto,
 } from './dto/status-action.dto';
 import {
   SplitProductDto,
@@ -501,6 +502,19 @@ export class ProductsController {
   @UseGuards(JwtAuthGuard, AdminGuard)
   unpublishProduct(@Param('id') id: string) {
     return this.productsService.unpublishProduct(id);
+  }
+
+  /**
+   * 搜索收录审核：默认不收录，只有人工确认验证、去重和独有价值后才能开启。
+   */
+  @Post(':id/seo-index')
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  reviewSeoIndex(
+    @Param('id') id: string,
+    @Body() dto: SeoIndexReviewDto,
+    @CurrentUser() user?: { id: string },
+  ) {
+    return this.productsService.reviewSeoIndex(id, dto, user?.id);
   }
 
   // ===== 混合商品拆分端点 - 带 :id 参数的路由 =====

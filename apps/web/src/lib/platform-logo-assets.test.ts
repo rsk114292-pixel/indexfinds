@@ -12,7 +12,7 @@ describe("official platform logos", () => {
       const logo = getOfficialPlatformLogo(platform.key);
 
       expect(logo?.src).toMatch(
-        new RegExp(`^/images/agents/${platform.key}\\.(?:ico|png|svg)$`),
+        /^\/(?:images\/agents|tenants\/[^/]+)\/[^?#]+\.(?:ico|png|svg)$/,
       );
       expect(logo?.remoteSrc).toMatch(/^https:\/\//);
 

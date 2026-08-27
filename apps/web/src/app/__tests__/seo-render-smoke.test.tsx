@@ -12,6 +12,10 @@ jest.mock('next/navigation', () => ({
   permanentRedirect: jest.fn(),
 }));
 
+jest.mock('next/headers', () => ({
+  headers: jest.fn(async () => new Headers()),
+}));
+
 jest.mock('next-intl/server', () => ({
   getTranslations: (...args: unknown[]) => mockGetTranslations(...args),
 }));
@@ -105,6 +109,7 @@ describe('SEO render smoke tests', () => {
         title: '示例商品',
         description: '',
         currency: 'CNY',
+        seoIndexable: true,
         primaryCategory: {
           slug: 'shoes',
           name: '鞋子',

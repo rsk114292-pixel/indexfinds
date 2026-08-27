@@ -2,6 +2,7 @@ import {
   Injectable,
   NotFoundException,
   ConflictException,
+  BadRequestException,
   Logger,
   Inject,
 } from '@nestjs/common';
@@ -52,6 +53,7 @@ import {
   ProductInteractionEventType,
 } from './entities/product-interaction-event.entity';
 import type { BatchTargetScope } from './dto/status-action.dto';
+import type { SeoIndexReviewDto } from './dto/status-action.dto';
 import { assertProductPublicationQuality } from './product-publication-quality';
 
 type ProductInteractionAbuseBucket = {
@@ -679,6 +681,14 @@ export class ProductsService {
     // 更新其他字段
     Object.assign(product, productUpdates);
 
+    // 任何商品内容变更都需要重新完成搜索收录审核。
+    if (product.seoIndexable) {
+      product.seoIndexable = false;
+      product.seoReviewedAt = null;
+      product.seoReviewedBy = null;
+      product.seoReviewNote = null;
+    }
+
     // 自动同步 mainImage：images 数组更新时，始终让 mainImage = images[0]（支持拖拽排序）
     if (newImages && newImages.length > 0) {
       product.mainImage = newImages[0];
@@ -1069,6 +1079,13 @@ export class ProductsService {
       action,
       options,
     );
+    if (product.status !== ProductStatus.ACTIVE && product.seoIndexable) {
+      product.seoIndexable = false;
+      product.seoReviewedAt = null;
+      product.seoReviewedBy = null;
+      product.seoReviewNote = null;
+      await this.productRepository.save(product);
+    }
     await this.syncStatusMutation(product);
     return product;
   }
@@ -1091,6 +1108,40 @@ export class ProductsService {
 
   async unpublishProduct(id: string): Promise<Product> {
     return this.performStatusAction(id, ProductStatusAction.UNPUBLISH);
+  }
+
+  async reviewSeoIndex(
+    id: string,
+    review: SeoIndexReviewDto,
+    reviewedBy?: string,
+  ): Promise<Product> {
+    const product = await this.findOne(id);
+
+    if (review.indexable) {
+      if (product.status !== ProductStatus.ACTIVE) {
+        throw new BadRequestException('只有已上架商品可以通过搜索收录审核');
+      }
+      assertProductPublicationQuality(product);
+    }
+
+    product.seoIndexable = review.indexable;
+    product.seoReviewedAt = new Date();
+    product.seoReviewedBy = reviewedBy || null;
+    product.seoReviewNote = review.reviewNote?.trim() || null;
+
+    const savedProduct = await this.productRepository.save(product);
+    await this.clearProductListCache();
+    this.eventEmitter.emit(ProductEvents.UPDATED, {
+      productId: savedProduct.id,
+      changes: { seoIndexable: savedProduct.seoIndexable },
+      updatedAt: new Date(),
+    });
+    await this.productQueryService.invalidateProductDetailCacheBySlug(
+      savedProduct.slug,
+    );
+    await this.triggerFrontendRevalidate(savedProduct.slug);
+
+    return savedProduct;
   }
 
   async markOutOfStock(id: string): Promise<Product> {

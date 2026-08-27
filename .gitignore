@@ -107,3 +107,6 @@ server-access-notes.md
 
 .vercel
 .codex-tmp/
+
+# Retired tenant assets (kept out of future commits and source-based deploys)
+apps/web/public/tenants/1to1reps/

@@ -1,6 +1,6 @@
 # IndexFinds subsite category hub
 
-This Worker replaces stale product catalogs on the 41 in-scope guide domains
+This Worker replaces stale product catalogs on the 42 in-scope guide domains
 with one shared eight-category directory. `xiangshoe.net` is deliberately not
 included.
 
@@ -23,7 +23,7 @@ product URLs no longer expose stale listings.
 
 ## Production safety
 
-`wrangler.jsonc` contains apex and `www` routes for the 41 Cloudflare zones.
+`wrangler.jsonc` contains apex and `www` routes for the 42 Cloudflare zones.
 Running `pnpm deploy:production` will attach the Worker to those routes and
 replace the existing subsite pages. Do not run it without an approved release,
 a dry run and a rollback snapshot of the current route configuration.

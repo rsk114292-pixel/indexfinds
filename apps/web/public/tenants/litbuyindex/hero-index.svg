@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">LitBuy query index workspace</title>
+  <desc id="desc">A structured product research index with query rows, evidence fields and a review queue.</desc>
+  <rect width="1600" height="900" fill="#11100c"/>
+  <g fill="none" stroke="#3a3222" stroke-width="2">
+    <path d="M860 88v724M1036 88v724M1212 88v724M1388 88v724"/>
+    <path d="M784 206h736M784 370h736M784 534h736M784 698h736"/>
+  </g>
+  <g transform="translate(868 142)">
+    <rect width="558" height="126" rx="12" fill="#1d1a12" stroke="#ffb000" stroke-width="2"/>
+    <circle cx="48" cy="46" r="18" fill="none" stroke="#ffd400" stroke-width="5"/>
+    <path d="m61 59 18 18" stroke="#ffd400" stroke-width="5" stroke-linecap="round"/>
+    <rect x="102" y="31" width="276" height="18" rx="9" fill="#f3ead0" opacity=".86"/>
+    <rect x="102" y="66" width="194" height="12" rx="6" fill="#a89d7d" opacity=".64"/>
+    <rect x="438" y="32" width="78" height="44" rx="8" fill="#ff8a00"/>
+  </g>
+  <g transform="translate(868 322)">
+    <rect width="558" height="148" rx="12" fill="#171611" stroke="#4d442e" stroke-width="2"/>
+    <rect x="28" y="28" width="82" height="92" rx="8" fill="#272319"/>
+    <path d="M48 54h42M48 72h34M48 90h28" stroke="#ffd400" stroke-width="6" stroke-linecap="round"/>
+    <rect x="142" y="30" width="224" height="16" rx="8" fill="#fff7df" opacity=".82"/>
+    <rect x="142" y="62" width="334" height="11" rx="5.5" fill="#9f9477" opacity=".58"/>
+    <rect x="142" y="88" width="274" height="11" rx="5.5" fill="#9f9477" opacity=".42"/>
+    <circle cx="500" cy="96" r="22" fill="#ffd400"/>
+    <path d="m489 96 8 8 16-19" fill="none" stroke="#11100c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(868 506)">
+    <rect width="558" height="148" rx="12" fill="#171611" stroke="#4d442e" stroke-width="2"/>
+    <rect x="28" y="28" width="82" height="92" rx="8" fill="#272319"/>
+    <path d="M48 54h42M48 72h34M48 90h28" stroke="#ff8a00" stroke-width="6" stroke-linecap="round"/>
+    <rect x="142" y="30" width="254" height="16" rx="8" fill="#fff7df" opacity=".82"/>
+    <rect x="142" y="62" width="314" height="11" rx="5.5" fill="#9f9477" opacity=".58"/>
+    <rect x="142" y="88" width="236" height="11" rx="5.5" fill="#9f9477" opacity=".42"/>
+    <circle cx="500" cy="96" r="22" fill="#2d291d" stroke="#ff8a00" stroke-width="3"/>
+    <path d="M490 96h20" stroke="#ff8a00" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(868 690)">
+    <rect width="558" height="70" rx="12" fill="#1d1a12" stroke="#4d442e" stroke-width="2"/>
+    <rect x="28" y="25" width="128" height="18" rx="9" fill="#ffd400" opacity=".82"/>
+    <rect x="176" y="25" width="104" height="18" rx="9" fill="#ff8a00" opacity=".72"/>
+    <rect x="300" y="25" width="202" height="18" rx="9" fill="#f3ead0" opacity=".28"/>
+  </g>
+</svg>

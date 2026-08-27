@@ -3,6 +3,11 @@ import { getTranslations } from 'next-intl/server';
 import ShippingPageClient from './ShippingPageClient';
 import { generateAlternates, getOgLocale } from '@/lib/seo';
 import { getSiteUrl, getSiteName } from '@/lib/site-config';
+import { getRequestSiteIdentity } from '@/lib/request-site-identity';
+import { getTenantResearchPage } from '@/lib/tenant-research-pages';
+import TenantResearchPage, {
+  generateMetadata as generateTenantResearchMetadata,
+} from '../[platformSlug]/page';
 
 const SITE_URL = getSiteUrl();
 
@@ -12,6 +17,14 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const identity = await getRequestSiteIdentity();
+
+  if (identity.tenant && getTenantResearchPage(identity.tenant.domain, 'shipping')) {
+    return generateTenantResearchMetadata({
+      params: Promise.resolve({ locale, platformSlug: 'shipping' }),
+    });
+  }
+
   const t = await getTranslations({ locale, namespace: 'metadata' });
 
   const title = t('shippingTitle');
@@ -34,6 +47,19 @@ export async function generateMetadata({
   };
 }
 
-export default function ShippingPage() {
+export default async function ShippingPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const identity = await getRequestSiteIdentity();
+
+  if (identity.tenant && getTenantResearchPage(identity.tenant.domain, 'shipping')) {
+    return TenantResearchPage({
+      params: Promise.resolve({ locale, platformSlug: 'shipping' }),
+    });
+  }
+
   return <ShippingPageClient />;
 }

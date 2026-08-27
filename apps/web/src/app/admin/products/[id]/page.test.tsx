@@ -69,6 +69,10 @@ jest.mock('../components/ProductForm', () => ({
   ),
 }));
 
+jest.mock('../components/SeoIndexReviewPanel', () => ({
+  SeoIndexReviewPanel: () => <div>seo-index-review</div>,
+}));
+
 jest.mock('antd', () => ({
   App: {
     useApp: () => ({ message: mockMessage }),

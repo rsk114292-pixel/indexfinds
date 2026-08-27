@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Image, { type ImageProps } from "next/image";
+import { useTenant } from "@/components/TenantProvider";
 
 export const PRODUCT_IMAGE_FALLBACK = "/images/product-placeholder.svg";
+export const TENANT_PRODUCT_IMAGE_FALLBACK =
+  "/images/product-placeholder-neutral.svg";
 
 interface ImageWithFallbackProps extends ImageProps {
   fallbackSrc?: string;
@@ -12,28 +15,38 @@ interface ImageWithFallbackProps extends ImageProps {
 export default function ImageWithFallback({
   src,
   alt,
-  fallbackSrc = PRODUCT_IMAGE_FALLBACK,
+  fallbackSrc,
   onError,
   unoptimized,
   ...props
 }: ImageWithFallbackProps) {
-  const [currentSrc, setCurrentSrc] = useState(src || fallbackSrc);
+  const tenant = useTenant();
+  const resolvedFallbackSrc =
+    fallbackSrc ||
+    (tenant ? TENANT_PRODUCT_IMAGE_FALLBACK : PRODUCT_IMAGE_FALLBACK);
+  const preferredSrc =
+    tenant &&
+    typeof src === "string" &&
+    src.includes("/images/product-placeholder.svg")
+      ? resolvedFallbackSrc
+      : src || resolvedFallbackSrc;
+  const [currentSrc, setCurrentSrc] = useState(preferredSrc);
 
   useEffect(() => {
-    setCurrentSrc(src || fallbackSrc);
-  }, [fallbackSrc, src]);
+    setCurrentSrc(preferredSrc);
+  }, [preferredSrc]);
 
-  const usingFallback = currentSrc === fallbackSrc;
+  const usingFallback = currentSrc === resolvedFallbackSrc;
 
   return (
     <Image
       {...props}
       src={currentSrc}
       alt={alt}
-      unoptimized={unoptimized || undefined}
+      unoptimized={unoptimized || usingFallback || undefined}
       onError={(event) => {
         onError?.(event);
-        if (!usingFallback) setCurrentSrc(fallbackSrc);
+        if (!usingFallback) setCurrentSrc(resolvedFallbackSrc);
       }}
     />
   );

@@ -2,7 +2,10 @@ import { API_BASE_URL } from '@/lib/constants';
 import { getSiteUrl } from '@/lib/site-config';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
 import { AGENT_PLATFORMS } from '@/lib/agent-platforms';
-import type { TenantConfig } from '@/lib/tenant-config';
+import {
+  isTenantReleasedForIndexing,
+  type TenantConfig,
+} from '@/lib/tenant-config';
 
 export type SitemapEntry = {
   url: string;
@@ -29,11 +32,23 @@ export function getTenantSitemapOptions(
 ): SitemapOptions | undefined {
   if (!tenant) return undefined;
 
+  if (!isTenantReleasedForIndexing(tenant)) {
+    return {
+      siteUrl: tenant.canonicalOrigin,
+      includeCatalog: false,
+      staticPaths: [],
+    };
+  }
+
   const guidePath = tenant.branding?.editorial.primaryCtaHref;
+  const staticPaths = tenant.branding?.indexablePaths || [
+    '',
+    ...(guidePath ? [guidePath] : []),
+  ];
   return {
     siteUrl: tenant.canonicalOrigin,
     includeCatalog: false,
-    staticPaths: ['', ...(guidePath ? [guidePath] : [])],
+    staticPaths,
   };
 }
 
@@ -109,7 +124,9 @@ function multiLocaleEntries(
 export async function getSitemapChunkIds(
   options: SitemapOptions = {},
 ): Promise<number[]> {
-  if (options.includeCatalog === false) return [0];
+  if (options.includeCatalog === false) {
+    return options.staticPaths?.length === 0 ? [] : [0];
+  }
 
   const total = await getProductTotal();
   const productChunks = Math.max(1, Math.ceil(total / PRODUCTS_PER_SITEMAP));

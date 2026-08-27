@@ -78,6 +78,7 @@ export async function generateMetadata({
   const price = product.priceMin
     ? `${product.currency || 'CNY'} ${product.priceMin}`
     : '';
+  const indexable = !tenant && product.seoIndexable === true;
 
   return {
     title: `${title}${price ? ` - ${price}` : ''}`,
@@ -113,11 +114,11 @@ export async function generateMetadata({
 
     // Robots 指令
     robots: {
-      index: !tenant,
+      index: indexable,
       follow: true,
-      googleBot: tenant
-        ? { index: false, follow: true }
-        : defaultGoogleBot,
+      googleBot: indexable
+        ? defaultGoogleBot
+        : { index: false, follow: true },
     },
   };
 }
@@ -156,28 +157,28 @@ export default async function ProductPage({
   return (
     <>
       {/* JSON-LD 结构化数据 */}
-      <ProductJsonLd
-        locale={locale}
-        baseUrl={siteUrl}
-        siteName={siteName}
-        fallbackDescription={
-          tenant
-            ? `Explore ${product.title} on ${siteName}.`
-            : t('productFallbackDescription', { title: product.title })
-        }
-        product={{
-          slug: product.slug,
-          title: product.title,
-          description: product.description,
-          mainImage: product.mainImage,
-          images: product.images,
-          brand: product.brand ?? undefined,
-          primaryCategory: product.primaryCategory ?? undefined,
-          priceMin: product.priceMin ?? undefined,
-          priceMax: product.priceMax ?? undefined,
-          currency: product.currency,
-        }}
-      />
+      {!tenant && product.seoIndexable === true && (
+        <ProductJsonLd
+          locale={locale}
+          baseUrl={siteUrl}
+          siteName={siteName}
+          fallbackDescription={t('productFallbackDescription', {
+            title: product.title,
+          })}
+          product={{
+            slug: product.slug,
+            title: product.title,
+            description: product.description,
+            mainImage: product.mainImage,
+            images: product.images,
+            brand: product.brand ?? undefined,
+            primaryCategory: product.primaryCategory ?? undefined,
+            priceMin: product.priceMin ?? undefined,
+            priceMax: product.priceMax ?? undefined,
+            currency: product.currency,
+          }}
+        />
+      )}
       <BreadcrumbJsonLd
         locale={locale}
         baseUrl={siteUrl}

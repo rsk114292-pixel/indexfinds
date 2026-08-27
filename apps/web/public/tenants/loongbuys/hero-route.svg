@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">LoongBuy evidence route</title>
+  <desc id="desc">An orange evidence board connecting a product link, warehouse check, parcel measurement and shipping route.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17120e"/>
+      <stop offset="0.55" stop-color="#2a160d"/>
+      <stop offset="1" stop-color="#6a250d"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f26522"/>
+      <stop offset="1" stop-color="#ffba52"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="12"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1320" cy="168" r="220" fill="#f26522" opacity=".15" filter="url(#glow)"/>
+  <circle cx="1080" cy="710" r="280" fill="#ffba52" opacity=".08" filter="url(#glow)"/>
+  <g transform="translate(760 170)">
+    <path d="M82 274H662" fill="none" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+    <g font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">
+      <g transform="translate(80 274)">
+        <circle r="70" fill="#251710" stroke="#f26522" stroke-width="3"/>
+        <path d="M-25-12h50v39h-50zM-33-29h66v17h-66z" fill="none" stroke="#ffba52" stroke-width="6" stroke-linejoin="round"/>
+        <text y="112" fill="#fff2e5" font-size="24">LINK</text>
+      </g>
+      <g transform="translate(274 274)">
+        <circle r="70" fill="#251710" stroke="#f26522" stroke-width="3"/>
+        <path d="M-28-25h56v50h-56zM-13 0l10 10 21-25" fill="none" stroke="#ffba52" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <text y="112" fill="#fff2e5" font-size="24">QC</text>
+      </g>
+      <g transform="translate(468 274)">
+        <circle r="70" fill="#251710" stroke="#f26522" stroke-width="3"/>
+        <path d="M-31 21h62l-9-52h-44zM0-11l18-8" fill="none" stroke="#ffba52" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <text y="112" fill="#fff2e5" font-size="24">WEIGHT</text>
+      </g>
+      <g transform="translate(662 274)">
+        <circle r="70" fill="#251710" stroke="#f26522" stroke-width="3"/>
+        <path d="M-33 15c28-56 38-56 66 0M-24 7h48M0-29v58" fill="none" stroke="#ffba52" stroke-width="6" stroke-linecap="round"/>
+        <text y="112" fill="#fff2e5" font-size="24">ROUTE</text>
+      </g>
+    </g>
+    <g transform="translate(67 515)" font-family="Arial, sans-serif">
+      <rect width="610" height="92" rx="18" fill="#1f1510" stroke="#f26522" stroke-opacity=".45"/>
+      <text x="28" y="38" fill="#ffba52" font-size="20" font-weight="700">EVIDENCE NOTE</text>
+      <text x="28" y="66" fill="#ead9cd" font-size="18">Record the source and date at every handoff.</text>
+    </g>
+  </g>
+</svg>

@@ -1,5 +1,8 @@
 import { CATEGORY_LINKS, type CategoryIcon } from "./categories";
-import type { SiteDefinition } from "./sites";
+import {
+  isSiteReleasedForIndexing,
+  type SiteDefinition,
+} from "./sites";
 
 const ICON_MARKUP: Record<CategoryIcon, string> = {
   shoe: '<path d="M5 6v8c0 2 1.5 4 4 4h10c1.7 0 3-1.3 3-3v-1.5c0-1.2-.8-2.3-2-2.7l-5.8-1.9L11 5.5 8.5 9H5"/><path d="M8 14h5"/>',
@@ -73,6 +76,9 @@ export function renderDirectoryPage(site: SiteDefinition): string {
     })),
   };
   const structuredData = JSON.stringify(itemList).replace(/</g, "\\u003c");
+  const robots = isSiteReleasedForIndexing(site)
+    ? "index,follow,max-image-preview:large"
+    : "noindex,follow";
 
   return `<!doctype html>
 <html lang="en">
@@ -81,7 +87,7 @@ export function renderDirectoryPage(site: SiteDefinition): string {
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>${escapeHtml(title)} | IndexFinds</title>
   <meta name="description" content="${escapeHtml(description)}">
-  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="robots" content="${robots}">
   <link rel="canonical" href="${canonicalUrl}">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#fffdf8">
@@ -127,10 +133,16 @@ export function renderDirectoryPage(site: SiteDefinition): string {
 }
 
 export function renderRobots(site: SiteDefinition): string {
+  if (!isSiteReleasedForIndexing(site)) {
+    return "User-agent: *\nDisallow: /\n";
+  }
   return `User-agent: *\nAllow: /\nSitemap: https://${site.domain}/sitemap.xml\n`;
 }
 
 export function renderSitemap(site: SiteDefinition): string {
+  if (!isSiteReleasedForIndexing(site)) {
+    return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>';
+  }
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://${site.domain}/</loc><lastmod>2026-08-14</lastmod></url></urlset>`;
 }
 

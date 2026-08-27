@@ -37,6 +37,16 @@ const LazyImageSearchUploader = dynamic(
 interface SearchBoxProps {
   size?: "default" | "large";
   mobileCompact?: boolean;
+  theme?:
+    | "default"
+    | "emerald"
+    | "lime"
+    | "cyan"
+    | "amber"
+    | "rose"
+    | "blue"
+    | "violet"
+    | "yellow";
 }
 
 type SearchOptionType = "brand" | "category" | "product" | "history";
@@ -58,6 +68,7 @@ interface SearchOptionGroup {
 export default function SearchBox({
   size = "default",
   mobileCompact = false,
+  theme = "default",
 }: SearchBoxProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -581,7 +592,27 @@ export default function SearchBox({
           </div>
         ) : null}
 
-        <div className="hero-command-bar relative overflow-visible rounded-[30px] p-[1.5px] md:rounded-full">
+        <div
+          className={`hero-command-bar relative overflow-visible rounded-[30px] p-[1.5px] md:rounded-full ${
+            theme === "emerald"
+              ? "hero-command-bar--emerald"
+              : theme === "lime"
+                ? "hero-command-bar--lime"
+                : theme === "cyan"
+                  ? "hero-command-bar--cyan"
+                  : theme === "amber"
+                    ? "hero-command-bar--amber"
+                    : theme === "rose"
+                      ? "hero-command-bar--rose"
+                      : theme === "blue"
+                        ? "hero-command-bar--blue"
+                        : theme === "violet"
+                          ? "hero-command-bar--violet"
+                          : theme === "yellow"
+                            ? "hero-command-bar--yellow"
+                    : ""
+          }`}
+        >
           <div aria-hidden className="hero-command-ambient" />
           <div aria-hidden className="hero-command-rim" />
           <div className="hero-command-bar-panel flex flex-col gap-2 overflow-visible rounded-[28px] p-2 md:flex-row md:items-stretch md:rounded-full">

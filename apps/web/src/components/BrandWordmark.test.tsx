@@ -21,7 +21,32 @@ describe('BrandWordmark', () => {
       </TenantProvider>,
     );
 
-    expect(screen.getByText('USFans Index')).toBeInTheDocument();
+    expect(screen.getByText('USFans')).toBeInTheDocument();
     expect(screen.queryByText(/by IndexFinds/i)).not.toBeInTheDocument();
+  });
+
+  it('renders the iTaoBuy header as a text-only wordmark', () => {
+    const { container } = render(
+      <TenantProvider tenant={getTenantConfigByHost('itaobuyindex.com')}>
+        <BrandWordmark />
+      </TenantProvider>,
+    );
+
+    expect(screen.getByText('iTaoBuy')).toBeInTheDocument();
+    expect(container.querySelector('img')).not.toBeInTheDocument();
+  });
+
+  it.each([
+    ['ydaexpress.net', 'YDA Parcel Guide'],
+    ['ydaexpress.org', 'YDA Source Review'],
+  ])('renders %s as a text-only independent wordmark', (domain, label) => {
+    const { container } = render(
+      <TenantProvider tenant={getTenantConfigByHost(domain)}>
+        <BrandWordmark compact />
+      </TenantProvider>,
+    );
+
+    expect(screen.getByText(label)).toBeInTheDocument();
+    expect(container.querySelector('img')).not.toBeInTheDocument();
   });
 });

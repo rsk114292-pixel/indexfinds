@@ -3,6 +3,7 @@ import { headers } from 'next/headers';
 import { getSiteName } from '@/lib/site-config';
 import { getManifestDescription } from '@/lib/home-seo';
 import {
+  getTenantFaviconAttributes,
   resolveTenantFromHeaders,
   type TenantBranding,
 } from '@/lib/tenant-config';
@@ -13,6 +14,9 @@ export function buildManifest(
   branding?: TenantBranding,
 ): MetadataRoute.Manifest {
   const siteName = branding?.siteName || getSiteName();
+  const tenantIcon = branding
+    ? getTenantFaviconAttributes(branding.faviconPath)
+    : null;
 
   return {
     name: siteName,
@@ -28,8 +32,8 @@ export function buildManifest(
       ? [
           {
             src: branding.faviconPath,
-            sizes: 'any',
-            type: 'image/svg+xml',
+            sizes: tenantIcon?.sizes,
+            type: tenantIcon?.type,
             purpose: 'any',
           },
         ]

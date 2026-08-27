@@ -1,0 +1,51 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="90" y1="70" x2="1510" y2="930" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071522"/>
+      <stop offset="0.58" stop-color="#0A2731"/>
+      <stop offset="1" stop-color="#0D4A49"/>
+    </linearGradient>
+    <linearGradient id="card" x1="770" y1="190" x2="1430" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#123B45"/>
+      <stop offset="1" stop-color="#09232E"/>
+    </linearGradient>
+    <filter id="shadow" x="650" y="80" width="920" height="820" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="28" stdDeviation="32" flood-color="#001014" flood-opacity="0.48"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <g opacity="0.18" stroke="#73EFE4">
+    <path d="M0 152H1600M0 348H1600M0 544H1600M0 740H1600M238 0V1000M466 0V1000M694 0V1000M922 0V1000M1150 0V1000M1378 0V1000"/>
+  </g>
+  <circle cx="1378" cy="118" r="228" fill="#22CFC2" opacity="0.08"/>
+  <circle cx="1488" cy="850" r="310" fill="#73EFE4" opacity="0.06"/>
+  <g filter="url(#shadow)">
+    <rect x="724" y="138" width="714" height="700" rx="36" fill="url(#card)" stroke="#73EFE4" stroke-opacity="0.36" stroke-width="2"/>
+    <rect x="772" y="190" width="618" height="88" rx="20" fill="#071D27" stroke="#73EFE4" stroke-opacity="0.24"/>
+    <circle cx="822" cy="234" r="17" fill="#73EFE4"/>
+    <path d="M813 234L820 241L833 225" stroke="#06212A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="860" y="226" fill="#C9FFFA" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="1.4">CURRENT SOURCE</text>
+    <text x="860" y="254" fill="#83AEB1" font-family="Arial, sans-serif" font-size="15">Link reopened · destination recorded</text>
+    <g font-family="Arial, sans-serif">
+      <text x="772" y="336" fill="#73EFE4" font-size="15" font-weight="700" letter-spacing="2">LINK REVIEW</text>
+      <text x="1324" y="336" fill="#C9FFFA" font-size="22" font-weight="700" text-anchor="end">82 / 100</text>
+      <rect x="772" y="362" width="618" height="10" rx="5" fill="#061A23"/>
+      <rect x="772" y="362" width="507" height="10" rx="5" fill="#3AD9CF"/>
+      <g fill="#B9D6D7" font-size="17">
+        <text x="814" y="438">Source identity</text><text x="1340" y="438" text-anchor="end">PASS</text>
+        <text x="814" y="504">Exact option</text><text x="1340" y="504" text-anchor="end">PASS</text>
+        <text x="814" y="570">Visible evidence</text><text x="1340" y="570" text-anchor="end">REVIEW</text>
+        <text x="814" y="636">Current route</text><text x="1340" y="636" text-anchor="end">OPEN</text>
+      </g>
+      <g stroke-width="3">
+        <circle cx="786" cy="432" r="10" stroke="#73EFE4"/><path d="M781 432L785 436L792 428" stroke="#73EFE4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="786" cy="498" r="10" stroke="#73EFE4"/><path d="M781 498L785 502L792 494" stroke="#73EFE4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="786" cy="564" r="10" stroke="#FFCB6B"/>
+        <circle cx="786" cy="630" r="10" stroke="#83AEB1"/>
+      </g>
+      <path d="M772 676H1390" stroke="#73EFE4" stroke-opacity="0.18"/>
+      <text x="772" y="724" fill="#83AEB1" font-size="14" letter-spacing="1.6">NEXT CHECK</text>
+      <text x="772" y="762" fill="#E9FFFD" font-size="20" font-weight="700">Match missing QC view to the selected option</text>
+    </g>
+  </g>
+</svg>

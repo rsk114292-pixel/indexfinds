@@ -12,14 +12,14 @@ describe('search-tracking', () => {
     });
   });
 
-  it('sends impressions through the configured API origin', async () => {
+  it('sends impressions through the same-origin API proxy', async () => {
     await recordImpressions(
       '550e8400-e29b-41d4-a716-446655440000',
       [{ productId: '550e8400-e29b-41d4-a716-446655440001', position: 1 }],
       1,
     );
 
-    expect(global.fetch).toHaveBeenCalledWith('http://localhost:4101/search/tracking/impressions', {
+    expect(global.fetch).toHaveBeenCalledWith('/api/search/tracking/impressions', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -36,7 +36,7 @@ describe('search-tracking', () => {
     });
   });
 
-  it('sends search clicks through the configured API origin', async () => {
+  it('sends search clicks through the same-origin API proxy', async () => {
     await recordSearchClick({
       searchLogId: '550e8400-e29b-41d4-a716-446655440000',
       query: 'nike',
@@ -48,7 +48,7 @@ describe('search-tracking', () => {
       visitId: 'visit_test',
     });
 
-    expect(global.fetch).toHaveBeenCalledWith('http://localhost:4101/search/tracking/click', {
+    expect(global.fetch).toHaveBeenCalledWith('/api/search/tracking/click', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -65,10 +65,10 @@ describe('search-tracking', () => {
     });
   });
 
-  it('sends outbound marks through the configured API origin', async () => {
+  it('sends outbound marks through the same-origin API proxy', async () => {
     await markOutbound('550e8400-e29b-41d4-a716-446655440000');
 
-    expect(global.fetch).toHaveBeenCalledWith('http://localhost:4101/search/tracking/conversion', {
+    expect(global.fetch).toHaveBeenCalledWith('/api/search/tracking/conversion', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },

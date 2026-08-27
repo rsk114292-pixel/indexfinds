@@ -18,15 +18,8 @@ export interface SubsiteGuideDefinition {
  */
 export const SUBSITE_GUIDES: SubsiteGuideDefinition[] = [
   {
-    domain: "1to1reps.com",
-    title: "1to1Reps",
-    agentKey: null,
-    catalogPath: null,
-    productMode: "guide-only",
-  },
-  {
     domain: "acbuyindex.com",
-    title: "ACBuy Spreadsheet",
+    title: "ACBuy Index",
     agentKey: "acbuy",
     catalogPath: "/spreadsheet/",
     productMode: "agent-feed",
@@ -47,28 +40,28 @@ export const SUBSITE_GUIDES: SubsiteGuideDefinition[] = [
   },
   {
     domain: "bbdbuyeufinds.com",
-    title: "BBDBuyEU Finds",
+    title: "BBDbuy EU Finds",
     agentKey: "bbdbuy",
     catalogPath: "/spreadsheet/",
     productMode: "agent-feed",
   },
   {
     domain: "bbdbuyeus.com",
-    title: "BBDBuyEU US Guide",
+    title: "BBDbuy US Guide",
     agentKey: "bbdbuy",
     catalogPath: "/spreadsheet/",
     productMode: "agent-feed",
   },
   {
     domain: "bbdbuyeusheet.com",
-    title: "BBDBuyEU Spreadsheet",
+    title: "BBDbuy EU Sheet",
     agentKey: "bbdbuy",
     catalogPath: "/spreadsheet/",
     productMode: "agent-feed",
   },
   {
     domain: "boonbuyfind.net",
-    title: "BoonBuy Find Notes",
+    title: "BoonBuy Find",
     agentKey: "boonbuy",
     catalogPath: "/product-index-method/",
     productMode: "guide-only",
@@ -298,6 +291,20 @@ export const SUBSITE_GUIDES: SubsiteGuideDefinition[] = [
     productMode: "agent-feed",
   },
   {
+    domain: "ydaexpress.net",
+    title: "YDA Express",
+    agentKey: null,
+    catalogPath: "/",
+    productMode: "guide-only",
+  },
+  {
+    domain: "ydaexpress.org",
+    title: "YDA Express",
+    agentKey: null,
+    catalogPath: "/",
+    productMode: "guide-only",
+  },
+  {
     domain: "yoybuyindex.com",
     title: "YoyBuy Index",
     agentKey: "yoybuy",
@@ -307,11 +314,15 @@ export const SUBSITE_GUIDES: SubsiteGuideDefinition[] = [
 ];
 
 function normalizeHostname(value: string): string {
-  return value
+  const hostname = value
     .trim()
     .toLowerCase()
     .replace(/^www\./, "")
     .replace(/\.$/, "");
+
+  return hostname.endsWith(".localhost")
+    ? hostname.slice(0, -".localhost".length)
+    : hostname;
 }
 
 function hostnameFromValue(value: string | null | undefined): string | null {

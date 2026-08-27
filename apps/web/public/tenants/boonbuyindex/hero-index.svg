@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">BoonBuy query index</title>
+  <desc id="desc">An abstract research grid showing query, source, option and review fields.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#061711"/>
+      <stop offset="1" stop-color="#123f30"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#163b2d"/>
+      <stop offset="1" stop-color="#0b241b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <circle cx="1080" cy="80" r="250" fill="#35c486" opacity=".08"/>
+  <circle cx="110" cy="700" r="300" fill="#6ce0af" opacity=".05"/>
+  <g transform="translate(90 86)">
+    <rect width="1020" height="588" rx="34" fill="url(#panel)" stroke="#35c486" stroke-opacity=".48" stroke-width="2"/>
+    <rect x="42" y="42" width="936" height="76" rx="38" fill="#071c15" stroke="#6ce0af" stroke-opacity=".35"/>
+    <circle cx="86" cy="80" r="13" fill="none" stroke="#6ce0af" stroke-width="5"/>
+    <path d="m96 90 13 13" stroke="#6ce0af" stroke-width="5" stroke-linecap="round"/>
+    <rect x="132" y="69" width="420" height="22" rx="11" fill="#d8fff0" opacity=".7"/>
+    <rect x="804" y="58" width="138" height="44" rx="22" fill="#35c486"/>
+    <g font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#e8fff6">
+      <text x="52" y="166">QUERY</text>
+      <text x="300" y="166">SOURCE</text>
+      <text x="594" y="166">OPTION</text>
+      <text x="828" y="166">REVIEW</text>
+    </g>
+    <g fill="none" stroke="#76d9b3" stroke-opacity=".25">
+      <path d="M42 188h936M42 286h936M42 384h936M42 482h936"/>
+      <path d="M270 188v350M564 188v350M798 188v350"/>
+    </g>
+    <g fill="#d8fff0" opacity=".78">
+      <rect x="58" y="222" width="158" height="18" rx="9"/>
+      <rect x="316" y="222" width="186" height="18" rx="9"/>
+      <rect x="610" y="222" width="120" height="18" rx="9"/>
+      <rect x="844" y="218" width="82" height="26" rx="13" fill="#35c486"/>
+      <rect x="58" y="320" width="128" height="18" rx="9"/>
+      <rect x="316" y="320" width="212" height="18" rx="9"/>
+      <rect x="610" y="320" width="146" height="18" rx="9"/>
+      <rect x="844" y="316" width="98" height="26" rx="13" fill="#f3b967"/>
+      <rect x="58" y="418" width="176" height="18" rx="9"/>
+      <rect x="316" y="418" width="166" height="18" rx="9"/>
+      <rect x="610" y="418" width="104" height="18" rx="9"/>
+      <rect x="844" y="414" width="74" height="26" rx="13" fill="#35c486"/>
+    </g>
+  </g>
+</svg>

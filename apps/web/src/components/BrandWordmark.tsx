@@ -17,22 +17,27 @@ export default function BrandWordmark({
 }: BrandWordmarkProps) {
   const tenant = useTenant();
   const branding = tenant?.branding;
+  const textOnly = tenant?.domain === 'itaobuyindex.com';
+  const showLogo = branding?.showLogo !== false && !textOnly;
+  const showWordmark = !compact || !showLogo;
 
   if (branding) {
     return (
       <span className={cn('inline-flex items-center gap-2.5', className)}>
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-[11px] bg-white shadow-[0_7px_18px_rgba(216,74,36,0.24)] ring-1 ring-white/15">
-          <Image
-            src={branding.logoPath}
-            alt=""
-            aria-hidden="true"
-            width={32}
-            height={32}
-            priority
-            className="h-8 w-8 object-contain"
-          />
-        </span>
-        {!compact && (
+        {showLogo && (
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-[11px] bg-white shadow-[0_7px_18px_rgba(216,74,36,0.24)] ring-1 ring-white/15">
+            <Image
+              src={branding.logoPath}
+              alt=""
+              aria-hidden="true"
+              width={32}
+              height={32}
+              priority
+              className="h-8 w-8 object-contain"
+            />
+          </span>
+        )}
+        {showWordmark && (
           <span
             className={cn(
               'whitespace-nowrap text-[18px] font-extrabold leading-none tracking-[-0.035em]',

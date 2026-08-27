@@ -45,6 +45,12 @@ const CtaSection = dynamic(() => import("@/components/home/CtaSection"));
 const UsfansQuickStart = dynamic(
   () => import("@/components/home/UsfansQuickStart"),
 );
+const ItaobuyResearchArchive = dynamic(
+  () => import("@/components/home/ItaobuyResearchArchive"),
+);
+const ItaobuyOfficialPromotion = dynamic(
+  () => import("@/components/tenant/ItaobuyOfficialPromotion"),
+);
 
 interface HomePageClientProps {
   initialViewport: "desktop" | "mobile";
@@ -87,10 +93,15 @@ export default function HomePageClient({
 
   if (viewport === "mobile") {
     return (
-      <MobileHome
-        initialCategories={initialCategories}
-        initialHotSearches={initialHotSearches}
-      />
+      <>
+        {tenant?.domain === "itaobuyindex.com" && (
+          <ItaobuyOfficialPromotion />
+        )}
+        <MobileHome
+          initialCategories={initialCategories}
+          initialHotSearches={initialHotSearches}
+        />
+      </>
     );
   }
 
@@ -122,6 +133,20 @@ export default function HomePageClient({
     );
   }
 
+  if (homeVariant === "items") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <UsfansQuickStart />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
+        <HowItWorksSection />
+        <CtaSection />
+      </>
+    );
+  }
+
   if (homeVariant === "guide") {
     return (
       <>
@@ -131,6 +156,22 @@ export default function HomePageClient({
         <FeaturedBrandsSection initialData={initialFeaturedBrands} />
         <CategoriesBentoSection initialData={initialCategories} />
         <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (homeVariant === "archive") {
+    return (
+      <>
+        {tenant?.domain === "itaobuyindex.com" && (
+          <ItaobuyOfficialPromotion />
+        )}
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <ItaobuyResearchArchive />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
         <CtaSection />
       </>
     );

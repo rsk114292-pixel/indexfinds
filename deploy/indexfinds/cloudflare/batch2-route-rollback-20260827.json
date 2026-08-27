@@ -1,0 +1,63 @@
+{
+  "created_at": "2026-08-27T00:00:00+08:00",
+  "purpose": "Rollback snapshot before the approved batch 2 tenant route cutover.",
+  "target_script": "indexfinds-subsite-category-hub-batch2-candidate",
+  "routes": [
+    {
+      "domain": "bbdbuyeusheet.com",
+      "zone_id": "9de9241d4c84c20b4890156371aa1cb1",
+      "route_id": "f4ceb5268bc446ffa7618262e8042256",
+      "pattern": "bbdbuyeusheet.com/*",
+      "previous_script": "indexfinds-subsite-category-hub-production"
+    },
+    {
+      "domain": "bbdbuyeusheet.com",
+      "zone_id": "9de9241d4c84c20b4890156371aa1cb1",
+      "route_id": "ba8b77fa86234d869e61ea3be2bcfdf1",
+      "pattern": "www.bbdbuyeusheet.com/*",
+      "previous_script": "indexfinds-subsite-category-hub-production"
+    },
+    {
+      "domain": "boonbuyfind.net",
+      "zone_id": "387649a27d3c88ce4279ce14738deac8",
+      "route_id": "b8598ec6c2c24b2dbd90b9338135221a",
+      "pattern": "boonbuyfind.net/*",
+      "previous_script": "indexfinds-subsite-category-hub-production"
+    },
+    {
+      "domain": "boonbuyfind.net",
+      "zone_id": "387649a27d3c88ce4279ce14738deac8",
+      "route_id": "6ed8e0c7e9ba4947860d70495478a5d1",
+      "pattern": "www.boonbuyfind.net/*",
+      "previous_script": "indexfinds-subsite-category-hub-production"
+    },
+    {
+      "domain": "boonbuyindex.com",
+      "zone_id": "f959e06960a58bae7e7835506e66fc1e",
+      "route_id": "9fc5147a95e44ef9a48d94c23eca54a8",
+      "pattern": "boonbuyindex.com/*",
+      "previous_script": "indexfinds-subsite-category-hub-production"
+    },
+    {
+      "domain": "boonbuyindex.com",
+      "zone_id": "f959e06960a58bae7e7835506e66fc1e",
+      "route_id": "b5823d20edb24c59ad4116fdcfb0ee56",
+      "pattern": "www.boonbuyindex.com/*",
+      "previous_script": "indexfinds-subsite-category-hub-production"
+    },
+    {
+      "domain": "cnshopperindex.com",
+      "zone_id": "ee791acf386ed6b90339e8f3711d2564",
+      "route_id": "4a155100920d4a66930c4505a2fdc06b",
+      "pattern": "cnshopperindex.com/*",
+      "previous_script": "indexfinds-subsite-category-hub-production"
+    },
+    {
+      "domain": "cnshopperindex.com",
+      "zone_id": "ee791acf386ed6b90339e8f3711d2564",
+      "route_id": "83908e333ba746279a11b9bcdb073fc1",
+      "pattern": "www.cnshopperindex.com/*",
+      "previous_script": "indexfinds-subsite-category-hub-production"
+    }
+  ]
+}

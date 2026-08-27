@@ -13,6 +13,7 @@ type OrganizationJsonLdProps = {
   baseUrl?: string;
   siteName?: string;
   logoPath?: string;
+  independentSite?: boolean;
 };
 
 export function OrganizationJsonLd({
@@ -21,6 +22,7 @@ export function OrganizationJsonLd({
   baseUrl = getSiteUrl(),
   siteName = getSiteName(),
   logoPath = '/icons/icon-512x512.png',
+  independentSite = false,
 }: OrganizationJsonLdProps) {
 
   // Organization 结构化数据
@@ -47,9 +49,13 @@ export function OrganizationJsonLd({
     name: siteName,
     url: baseUrl,
     description,
-    publisher: {
-      '@id': `${baseUrl}/#organization`,
-    },
+    ...(independentSite
+      ? {}
+      : {
+          publisher: {
+            '@id': `${baseUrl}/#organization`,
+          },
+        }),
     // Sitelinks Searchbox - 让 Google 显示站内搜索框
     potentialAction: {
       '@type': 'SearchAction',
@@ -63,10 +69,12 @@ export function OrganizationJsonLd({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-      />
+      {independentSite ? null : (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}

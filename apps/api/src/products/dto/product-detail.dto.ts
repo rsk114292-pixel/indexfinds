@@ -153,6 +153,9 @@ export class ProductDetailDto {
   status: string;
 
   @Expose()
+  seoIndexable: boolean;
+
+  @Expose()
   isFeatured: boolean;
 
   @Expose()

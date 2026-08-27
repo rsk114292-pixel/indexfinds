@@ -126,4 +126,24 @@ describe('ProductDetailService', () => {
       service.findActiveBySourceProductId('7831607056'),
     ).rejects.toBeInstanceOf(NotFoundException);
   });
+
+  it('returns only manually approved product slugs for sitemaps', async () => {
+    productRepository.findAndCount.mockResolvedValue([
+      [{ slug: 'reviewed-product' }],
+      1,
+    ]);
+
+    await expect(service.getAllSlugs(1, 100)).resolves.toEqual({
+      slugs: ['reviewed-product'],
+      total: 1,
+    });
+    expect(productRepository.findAndCount).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: {
+          status: ProductStatus.ACTIVE,
+          seoIndexable: true,
+        },
+      }),
+    );
+  });
 });

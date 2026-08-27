@@ -130,7 +130,10 @@ export class ProductDetailService {
     page?: number,
     limit?: number,
   ): Promise<{ slugs: string[]; total?: number }> {
-    const where = { status: ProductStatus.ACTIVE };
+    const where = {
+      status: ProductStatus.ACTIVE,
+      seoIndexable: true,
+    };
 
     if (page !== undefined && limit !== undefined) {
       const [products, total] = await this.productRepository.findAndCount({

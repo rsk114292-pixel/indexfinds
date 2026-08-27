@@ -15,19 +15,8 @@ export interface TenantEditorialProfile {
  * stay noindex until their copy and source evidence pass editorial review.
  */
 export const TENANT_EDITORIAL_PROFILES = {
-  "1to1reps.com": {
-    heroTitle: "Organize listing research before choosing a seller.",
-    heroAccent: "Compare the evidence you can actually see.",
-    summary:
-      "Use a source-led research guide to collect listing details, note missing information and build a smaller comparison set.",
-    audience:
-      "Researchers comparing marketplace listings without a preferred buying agent.",
-    researchFocus:
-      "Source links, visible listing fields and unresolved questions that still need seller confirmation.",
-    guideTitle: "A source-first marketplace listing research guide",
-  },
   "acbuyindex.com": {
-    heroTitle: "Scan ACBuy-linked listings with a spreadsheet-first workflow.",
+    heroTitle: "Scan ACBuy-linked listings with a search-first workflow.",
     heroAccent: "Search broadly, then reduce the list.",
     summary:
       "Use queries, brands and categories to turn a large ACBuy-linked catalog into a reviewable shortlist.",
@@ -35,7 +24,7 @@ export const TENANT_EDITORIAL_PROFILES = {
       "Shoppers who know a product type or brand and want a faster first pass through ACBuy-linked listings.",
     researchFocus:
       "Query refinement, source availability and the product fields worth checking before opening an external route.",
-    guideTitle: "How to use the ACBuy spreadsheet index",
+    guideTitle: "How to use the ACBuy product index",
   },
   "allchinabuyfinder.com": {
     heroTitle: "Find AllChinaBuy-linked products by category first.",
@@ -60,7 +49,7 @@ export const TENANT_EDITORIAL_PROFILES = {
     guideTitle: "How to search the AllChinaBuy product index",
   },
   "bbdbuyeufinds.com": {
-    heroTitle: "Explore BBDBuyEU-linked finds with a European research lens.",
+    heroTitle: "Explore BBDbuy-linked finds with a European research lens.",
     heroAccent: "Shortlist products before checking final terms.",
     summary:
       "Browse current listings, compare visible product details and keep destination fees and availability separate from catalog prices.",
@@ -68,10 +57,10 @@ export const TENANT_EDITORIAL_PROFILES = {
       "European shoppers researching products before confirming destination-specific terms.",
     researchFocus:
       "Listing discovery, displayed currency context and the fees or availability that must be checked off-site.",
-    guideTitle: "A BBDBuyEU product discovery guide for Europe",
+    guideTitle: "A BBDbuy product discovery guide for Europe",
   },
   "bbdbuyeus.com": {
-    heroTitle: "Review BBDBuyEU-linked listings with US shoppers in mind.",
+    heroTitle: "Review BBDbuy-linked listings with US shoppers in mind.",
     heroAccent: "Separate product research from final landed cost.",
     summary:
       "Build a product shortlist first, then confirm destination fees, service terms and availability on the external site.",
@@ -79,18 +68,18 @@ export const TENANT_EDITORIAL_PROFILES = {
       "US shoppers comparing marketplace listings before estimating the complete buying route.",
     researchFocus:
       "Product-level evidence, destination checks and the difference between a listing price and a final purchase cost.",
-    guideTitle: "A US-focused BBDBuyEU listing research guide",
+    guideTitle: "A US-focused BBDbuy listing research guide",
   },
   "bbdbuyeusheet.com": {
-    heroTitle: "Turn the BBDBuyEU catalog into a focused shortlist.",
+    heroTitle: "Turn the BBDbuy catalog into a focused shortlist.",
     heroAccent: "Use a sheet-like research sequence.",
     summary:
-      "Search, filter and review BBDBuyEU-linked listings without treating incomplete fields as confirmed product facts.",
+      "Search, filter and review BBDbuy-linked listings without treating incomplete fields as confirmed product facts.",
     audience:
       "Researchers who prefer a repeatable spreadsheet-style pass through a large catalog.",
     researchFocus:
       "Consistent filtering, missing-field checks and source verification before an item enters a shortlist.",
-    guideTitle: "How to review the BBDBuyEU spreadsheet catalog",
+    guideTitle: "How to review the BBDbuy EU sheet directory",
   },
   "boonbuyfind.net": {
     heroTitle: "Keep BoonBuy product research focused on source details.",
@@ -225,15 +214,15 @@ export const TENANT_EDITORIAL_PROFILES = {
     guideTitle: "A product-first HooBuy comparison workflow",
   },
   "itaobuyindex.com": {
-    heroTitle: "Trace iTaoBuy-linked listings from search to source.",
-    heroAccent: "Use the index as a research archive.",
+    heroTitle: "Trace every iTaoBuy-linked find back to its source.",
+    heroAccent: "Keep the evidence trail intact.",
     summary:
-      "Search products, retain source context and revisit the original listing when a field is missing or changes.",
+      "Search the iTaoBuy spreadsheet, retain source context and revisit the original listing when a field is missing, changes or cannot be independently verified.",
     audience:
       "Researchers who need a stable trail between index results and marketplace sources.",
     researchFocus:
-      "Source traceability, update awareness and objective listing fields rather than generated sales copy.",
-    guideTitle: "An iTaoBuy source-trace research archive",
+      "Source traceability, product options, safety questions, current promo terms and dated community evidence rather than generated sales copy.",
+    guideTitle: "iTaoBuy guide: safety, promo codes and Reddit research",
   },
   "joyabuyfinds.com": {
     heroTitle: "Explore JoyaGoo-linked finds through brand and category paths.",
@@ -443,6 +432,28 @@ export const TENANT_EDITORIAL_PROFILES = {
     researchFocus:
       "Item-page evidence, option comparison and missing information that requires destination confirmation.",
     guideTitle: "A Superbuy-linked item inspection guide",
+  },
+  "ydaexpress.net": {
+    heroTitle: "Organize parcel research before arranging a handoff.",
+    heroAccent: "Keep parcel facts and route questions in one record.",
+    summary:
+      "Record the destination, declared contents, dimensions and restrictions that still need confirmation before comparing external delivery routes.",
+    audience:
+      "Researchers preparing shipment questions without a selected carrier or service route.",
+    researchFocus:
+      "Parcel facts, unresolved restrictions and the external terms that require current confirmation.",
+    guideTitle: "A parcel-first route research guide",
+  },
+  "ydaexpress.org": {
+    heroTitle: "Review shipment questions before selecting a route.",
+    heroAccent: "Separate the parcel record from current carrier terms.",
+    summary:
+      "Build a concise shipment brief, identify missing details and compare route information only after the parcel record is complete enough to use.",
+    audience:
+      "Researchers who want a structured handoff from parcel preparation to external route comparison.",
+    researchFocus:
+      "Shipment completeness, open questions and a clear boundary between recorded facts and current service terms.",
+    guideTitle: "A shipment-brief research guide",
   },
   "yoybuyindex.com": {
     heroTitle: "Search YoyBuy-linked listings with a clear review sequence.",

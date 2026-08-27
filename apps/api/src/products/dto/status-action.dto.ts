@@ -7,6 +7,11 @@ import {
   IsOptional,
   IsIn,
   IsBoolean,
+  Equals,
+  IsString,
+  MaxLength,
+  MinLength,
+  ValidateIf,
 } from 'class-validator';
 import { ProductStatusAction } from '../product-status';
 
@@ -31,6 +36,29 @@ export class StatusActionDto {
     message: `action 必须是以下值之一: ${Object.values(ProductStatusAction).join(', ')}`,
   })
   action: ProductStatusAction;
+}
+
+export class SeoIndexReviewDto {
+  @IsBoolean({ message: 'indexable 必须是布尔值' })
+  indexable: boolean;
+
+  @ValidateIf((dto: SeoIndexReviewDto) => dto.indexable)
+  @Equals(true, { message: '允许收录前必须确认商品资料已经验证' })
+  verified?: boolean;
+
+  @ValidateIf((dto: SeoIndexReviewDto) => dto.indexable)
+  @Equals(true, { message: '允许收录前必须确认重复商品已经排除' })
+  deduplicated?: boolean;
+
+  @ValidateIf((dto: SeoIndexReviewDto) => dto.indexable)
+  @Equals(true, { message: '允许收录前必须确认页面提供独有价值' })
+  uniqueValue?: boolean;
+
+  @ValidateIf((dto: SeoIndexReviewDto) => dto.indexable)
+  @IsString({ message: '允许收录时必须填写审核说明' })
+  @MinLength(10, { message: '审核说明至少需要 10 个字符' })
+  @MaxLength(1000, { message: '审核说明不能超过 1000 个字符' })
+  reviewNote?: string;
 }
 
 /**

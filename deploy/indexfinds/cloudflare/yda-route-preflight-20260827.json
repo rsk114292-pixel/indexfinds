@@ -1,0 +1,41 @@
+{
+  "created_at": "2026-08-27T00:00:00+08:00",
+  "purpose": "Pre-release snapshot for the isolated YDA Express tenant batch.",
+  "candidate_script": "indexfinds-subsite-category-hub-yda-candidate",
+  "preview_url": "https://indexfinds-subsite-category-hub-yda-candidate.rient-ig-ndex------ource-20260817.workers.dev",
+  "release_state": "preview-only",
+  "routes": [
+    {
+      "domain": "ydaexpress.net",
+      "zone_id": "44bfbd06562e2e7037bd35eafced6e95",
+      "pattern": "ydaexpress.net/*",
+      "existing_route_id": null,
+      "existing_script": null,
+      "rollback_action": "delete-created-route"
+    },
+    {
+      "domain": "ydaexpress.net",
+      "zone_id": "44bfbd06562e2e7037bd35eafced6e95",
+      "pattern": "www.ydaexpress.net/*",
+      "existing_route_id": null,
+      "existing_script": null,
+      "rollback_action": "delete-created-route"
+    },
+    {
+      "domain": "ydaexpress.org",
+      "zone_id": "84bbe9e331afecaceb3430e974ea0eab",
+      "pattern": "ydaexpress.org/*",
+      "existing_route_id": null,
+      "existing_script": null,
+      "rollback_action": "delete-created-route"
+    },
+    {
+      "domain": "ydaexpress.org",
+      "zone_id": "84bbe9e331afecaceb3430e974ea0eab",
+      "pattern": "www.ydaexpress.org/*",
+      "existing_route_id": null,
+      "existing_script": null,
+      "rollback_action": "delete-created-route"
+    }
+  ]
+}

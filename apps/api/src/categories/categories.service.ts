@@ -226,6 +226,7 @@ export class CategoriesService {
     const normalizedCompact = normalizedContext.replace(/-/g, '');
     const contextTokens = this.tokenizeForFuzzy(contextText);
     const contextTokenSet = new Set(contextTokens);
+    const parentTokenSet = new Set(this.tokenizeForFuzzy(parentSlug));
 
     let score = 0;
     const candidateTerms = [
@@ -250,9 +251,18 @@ export class CategoriesService {
       const termTokens = this.tokenizeForFuzzy(term);
       if (termTokens.length === 0) continue;
 
-      const overlap = termTokens.filter((token) => contextTokenSet.has(token));
-      if (overlap.length === termTokens.length) {
-        score = Math.max(score, 120 + termTokens.length * 10);
+      // A parent term such as "sneakers" cannot distinguish
+      // "chunky-sneakers" from its sibling leaf categories.
+      const distinguishingTokens = termTokens.filter(
+        (token) => !parentTokenSet.has(token),
+      );
+      if (distinguishingTokens.length === 0) continue;
+
+      const overlap = distinguishingTokens.filter((token) =>
+        contextTokenSet.has(token),
+      );
+      if (overlap.length === distinguishingTokens.length) {
+        score = Math.max(score, 120 + distinguishingTokens.length * 10);
       } else if (overlap.length > 0) {
         score = Math.max(score, overlap.length * 15);
       }
@@ -724,15 +734,27 @@ export class CategoriesService {
   async findBySlug(slug: string): Promise<Category> {
     await this.refreshCacheIfNeeded();
 
+    const normalizedSlug = this.normalizeCategoryTerm(slug);
+    const canonicalSlugs = await this.getCanonicalSlugSet();
+    let resolvedSlug = normalizedSlug;
+
+    if (!canonicalSlugs.has(normalizedSlug)) {
+      const match = await this.findCategoryMatchByAiSlug(normalizedSlug);
+      if (!match || match.matchType === 'fuzzy') {
+        throw new NotFoundException(`分类 slug "${slug}" 不存在`);
+      }
+      resolvedSlug = match.categorySlug;
+    }
+
     // 优先从缓存查找
-    const cached = this.categorySlugMap.get(slug);
+    const cached = this.categorySlugMap.get(resolvedSlug);
     if (cached) {
       return cached;
     }
 
     // 缓存未命中，查询数据库
     const category = await this.categoryRepository.findOne({
-      where: { slug },
+      where: { slug: resolvedSlug },
     });
 
     if (!category) {
@@ -758,6 +780,29 @@ export class CategoriesService {
       canonicalOnly: true,
       activeOnly: true,
     });
+
+    // Some AI providers return a taxonomy path instead of a bare slug.
+    // The terminal path segment is still an exact category signal.
+    const structuredSegments = slug
+      .split(/[./\\>]+/)
+      .map((segment) => this.normalizeCategoryTerm(segment))
+      .filter(Boolean);
+    if (structuredSegments.length > 1) {
+      const terminalSlug = structuredSegments.at(-1);
+      const terminalMatch = flat.find(
+        (category) => category.slug === terminalSlug,
+      );
+      if (terminalMatch) {
+        return {
+          categoryId: terminalMatch.id,
+          categorySlug: terminalMatch.slug,
+          matchType: 'exact_alias_or_name',
+          score: 300,
+          runnerUpScore: null,
+          resolvedByContext: false,
+        };
+      }
+    }
 
     // 1. 精确 slug 匹配
     const exactSlugMatch = flat.find(

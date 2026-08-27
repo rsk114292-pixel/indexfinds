@@ -31,6 +31,17 @@ jest.mock('../scripts/category-seed-utils', () => ({
         },
       ],
     },
+    {
+      name: '鞋靴',
+      slug: 'shoes',
+      children: [
+        {
+          name: '运动鞋',
+          slug: 'sneakers',
+          children: [{ name: '厚底运动鞋', slug: 'chunky-sneakers' }],
+        },
+      ],
+    },
   ]),
   collectSeedSlugs: jest.fn((nodes: any[]) => {
     const slugs: string[] = [];
@@ -125,6 +136,53 @@ describe('CategoriesService', () => {
     }).compile();
 
     service = module.get<CategoriesService>(CategoriesService);
+  });
+
+  describe('findBySlug', () => {
+    const canonicalHoodie = {
+      id: 'hoodie',
+      name: '卫衣',
+      nameEn: 'Hoodie',
+      slug: 'hoodie',
+      aliases: ['hoodies'],
+      level: 2,
+      sortOrder: 1,
+      isActive: true,
+      parent: null,
+    } as unknown as Category;
+    const legacyHoodies = {
+      id: 'hoodies',
+      name: 'Hoodies',
+      slug: 'hoodies',
+      aliases: [],
+      level: 2,
+      sortOrder: 2,
+      isActive: true,
+      parent: null,
+    } as unknown as Category;
+
+    it('resolves an exact legacy alias to its canonical category', async () => {
+      mockTreeRepository.find.mockResolvedValue([
+        canonicalHoodie,
+        legacyHoodies,
+      ]);
+
+      await expect(service.findBySlug('hoodies')).resolves.toMatchObject({
+        id: 'hoodie',
+        slug: 'hoodie',
+      });
+    });
+
+    it('rejects unknown and fuzzy legacy slugs instead of serving an empty category', async () => {
+      mockTreeRepository.find.mockResolvedValue([
+        canonicalHoodie,
+        legacyHoodies,
+      ]);
+
+      await expect(service.findBySlug('hoodiez')).rejects.toThrow(
+        NotFoundException,
+      );
+    });
   });
 
   describe('update - 循环引用检测', () => {
@@ -602,6 +660,97 @@ describe('CategoriesService', () => {
         categorySlug: 'hoodie',
         matchType: 'fuzzy',
         score: 9,
+        runnerUpScore: null,
+        resolvedByContext: false,
+      });
+    });
+
+    it.each(['tops.t-shirt', 'tops/t-shirt'])(
+      'findCategoryMatchByAiSlug should resolve structured path %s by its exact terminal slug',
+      async (input) => {
+        mockTreeRepository.find.mockResolvedValue([
+          {
+            id: 't-shirt',
+            name: 'T恤',
+            slug: 't-shirt',
+            aliases: [],
+            level: 2,
+            isActive: true,
+          },
+        ]);
+
+        await expect(service.findCategoryMatchByAiSlug(input)).resolves.toEqual(
+          {
+            categoryId: 't-shirt',
+            categorySlug: 't-shirt',
+            matchType: 'exact_alias_or_name',
+            score: 300,
+            runnerUpScore: null,
+            resolvedByContext: false,
+          },
+        );
+      },
+    );
+
+    it('findCanonicalLeafMatchForAiInput should not infer a child from only the parent term', async () => {
+      mockTreeRepository.find.mockResolvedValue([
+        {
+          id: 'sneakers',
+          name: '运动鞋',
+          nameEn: 'Sneakers',
+          slug: 'sneakers',
+          aliases: [],
+          level: 2,
+          isActive: true,
+        },
+        {
+          id: 'chunky-sneakers',
+          name: '厚底运动鞋',
+          nameEn: 'Chunky Sneakers',
+          slug: 'chunky-sneakers',
+          aliases: ['dad shoes'],
+          level: 3,
+          isActive: true,
+          parent: { id: 'sneakers' },
+        },
+      ]);
+      mockTreeRepository.findOne.mockResolvedValue({
+        id: 'sneakers',
+        name: '运动鞋',
+        slug: 'sneakers',
+        isActive: true,
+      });
+      mockTreeRepository.query.mockResolvedValue([{ id: 'child-1' }]);
+      mockTreeRepository.findDescendantsTree.mockResolvedValue({
+        id: 'sneakers',
+        name: '运动鞋',
+        slug: 'sneakers',
+        isActive: true,
+        children: [
+          {
+            id: 'chunky-sneakers',
+            name: '厚底运动鞋',
+            nameEn: 'Chunky Sneakers',
+            slug: 'chunky-sneakers',
+            aliases: ['dad shoes'],
+            level: 3,
+            sortOrder: 1,
+            isActive: true,
+            children: [],
+          },
+        ],
+      });
+
+      await expect(
+        service.findCanonicalLeafMatchForAiInput({
+          slug: 'sneakers',
+          contextText: 'Nike Low Top White Sneakers',
+        }),
+      ).resolves.toEqual({
+        categoryId: 'sneakers',
+        categorySlug: 'sneakers',
+        matchType: 'exact_slug',
+        score: 320,
         runnerUpScore: null,
         resolvedByContext: false,
       });

@@ -10,12 +10,18 @@ import {
   Search,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { FAQPageJsonLd } from "@/components/seo/FAQPageJsonLd";
-import { resolveTenantFromHeaders } from "@/lib/tenant-config";
+import ItaobuyResearchGuide from "@/components/tenant/ItaobuyResearchGuide";
+import {
+  isTenantReleasedForIndexing,
+  resolveTenantFromHeaders,
+} from "@/lib/tenant-config";
 import {
   getTenantEditorialProfile,
   type TenantEditorialProfile,
 } from "@/lib/tenant-editorial-profiles";
+import { getTenantResearchPaths } from "@/lib/tenant-research-pages";
 
 async function getGuideContext(locale: string) {
   if (locale !== "en") return null;
@@ -25,7 +31,13 @@ async function getGuideContext(locale: string) {
     headersList,
     process.env.INDEXFINDS_LOCAL_TENANT_HOST,
   );
-  if (!tenant || tenant.domain === "usfansindex.net") return null;
+  if (
+    !tenant ||
+    tenant.domain === "usfansindex.net" ||
+    getTenantResearchPaths(tenant.domain).length > 0
+  ) {
+    return null;
+  }
 
   const profile = getTenantEditorialProfile(tenant.domain);
   if (!profile) return null;
@@ -36,7 +48,38 @@ async function getGuideContext(locale: string) {
 function buildFaq(
   siteName: string,
   profile: TenantEditorialProfile,
+  domain: string,
 ) {
+  if (domain === "itaobuyindex.com") {
+    return [
+      {
+        question: "What is an iTaoBuy spreadsheet?",
+        answer:
+          "An iTaoBuy spreadsheet is a discovery list for product links, categories and source information. It does not certify a seller, product or platform.",
+      },
+      {
+        question: "Is iTaoBuy legit?",
+        answer:
+          "No independent directory can certify that. Verify the current domain, company and policy information, payment flow, support channels and recent external evidence before deciding.",
+      },
+      {
+        question: "Is iTaoBuy safe?",
+        answer:
+          "No transaction is risk-free. Protect your account, verify the domain and review product evidence, payment terms, route rules and the laws that apply to your destination.",
+      },
+      {
+        question: "How should I verify an iTaoBuy promo code?",
+        answer:
+          "Confirm the code on the current platform site or inside your account. Check its date, eligibility, minimum spend, discount cap and exclusions.",
+      },
+      {
+        question: "Should I trust iTaoBuy Reddit reviews?",
+        answer:
+          "Treat each post as one dated report. Check its order stage, route, destination, evidence, account history and later follow-up before comparing it with current terms.",
+      },
+    ];
+  }
+
   return [
     {
       question: `What is ${siteName}?`,
@@ -93,10 +136,10 @@ export async function generateMetadata({
   if (!context) return { robots: { index: false, follow: false } };
 
   const { tenant, profile } = context;
-  const title = `${profile.guideTitle} | ${tenant.title}`;
+  const title = `${profile.guideTitle} | ${tenant.branding?.siteName || tenant.title}`;
   const description = profile.summary;
   const url = `${tenant.canonicalOrigin}/en/site-guide`;
-  const canIndex = tenant.branding?.indexing === "ready";
+  const canIndex = isTenantReleasedForIndexing(tenant);
 
   return {
     title: { absolute: title },
@@ -129,8 +172,23 @@ export default async function TenantSiteGuidePage({
 
   const { tenant, profile } = context;
   const branding = tenant.branding!;
-  const faqItems = buildFaq(tenant.title, profile);
+  const faqItems = buildFaq(tenant.title, profile, tenant.domain);
   const method = buildMethod(tenant.productMode);
+
+  if (tenant.domain === "itaobuyindex.com") {
+    return (
+      <>
+        <BreadcrumbJsonLd
+          locale="en"
+          homeName={branding.siteName}
+          baseUrl={tenant.canonicalOrigin}
+          items={[{ name: profile.guideTitle, url: "/site-guide" }]}
+        />
+        <FAQPageJsonLd items={faqItems} />
+        <ItaobuyResearchGuide tenant={tenant} faqItems={faqItems} />
+      </>
+    );
+  }
 
   return (
     <>

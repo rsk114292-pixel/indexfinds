@@ -12,7 +12,7 @@ export const OFFICIAL_PLATFORM_LOGOS: Readonly<
     remoteSrc: "https://www.loongbuy.com/favicon.ico",
   },
   kakobuy: {
-    src: "/images/agents/kakobuy.ico",
+    src: "/tenants/kakobuyindex/official-app-icon.png",
     remoteSrc: "https://kakobuy.com/favicon.ico",
   },
   lovegobuy: {
@@ -58,7 +58,7 @@ export const OFFICIAL_PLATFORM_LOGOS: Readonly<
     remoteSrc: "https://boonbuy.com/favicon.ico",
   },
   cssbuy: {
-    src: "/images/agents/cssbuy.ico",
+    src: "/tenants/cssbuy/favicon-48x48.png",
     remoteSrc: "https://www.cssbuy.com/favicon.ico",
   },
   pikobuy: {

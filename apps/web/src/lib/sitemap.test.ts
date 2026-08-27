@@ -9,7 +9,11 @@ import {
   getSitemapChunkIds,
 } from './sitemap';
 import { getSiteUrl } from './site-config';
-import { getTenantConfigByHost } from './tenant-config';
+import {
+  getTenantConfigByHost,
+  isTenantReleasedForIndexing,
+} from './tenant-config';
+import { SUBSITE_GUIDES } from './subsite-guides';
 
 const SITE_URL = getSiteUrl();
 const mockFetch = jest.fn();
@@ -19,6 +23,34 @@ global.fetch = mockFetch;
 beforeEach(() => {
   jest.clearAllMocks();
 });
+
+async function expectTenantSitemap(
+  domain: string,
+  reviewedPaths: readonly string[],
+) {
+  const tenant = getTenantConfigByHost(domain);
+  expect(tenant).toBeDefined();
+
+  const released = isTenantReleasedForIndexing(tenant!);
+  const paths = released ? reviewedPaths : [];
+  const options = getTenantSitemapOptions(tenant);
+
+  expect(options).toEqual(
+    expect.objectContaining({
+      siteUrl: `https://${domain}`,
+      includeCatalog: false,
+      staticPaths: paths,
+    }),
+  );
+  await expect(getSitemapChunkIds(options)).resolves.toEqual(
+    released ? [0] : [],
+  );
+  const entries = await getSitemapEntriesByChunk(0, options);
+  expect(entries.map((entry) => entry.url)).toEqual(
+    paths.map((path) => `https://${domain}/en${path}`),
+  );
+  expect(mockFetch).not.toHaveBeenCalled();
+}
 
 describe('sitemap', () => {
   it('keeps localized product chunks below the sitemap size limit', async () => {
@@ -51,19 +83,402 @@ describe('sitemap', () => {
   });
 
   it('keeps tenant sitemaps limited to reviewed unique English pages', async () => {
+    await expectTenantSitemap('usfansindex.net', [
+      '',
+      '/usfans-spreadsheet',
+    ]);
+  });
+
+  it('publishes only the reviewed iTaoBuy home and research guide', async () => {
+    await expectTenantSitemap('itaobuyindex.com', ['', '/site-guide']);
+  });
+
+  it('publishes only the reviewed ACBuy research allowlist', async () => {
     const options = getTenantSitemapOptions(
-      getTenantConfigByHost('usfansindex.net'),
+      getTenantConfigByHost('acbuyindex.com'),
     );
 
+    expect(options).toEqual(
+      expect.objectContaining({
+        siteUrl: 'https://acbuyindex.com',
+        includeCatalog: false,
+        staticPaths: [
+          '',
+          '/directory',
+          '/platform-guide',
+          '/category-research',
+          '/safety-research',
+          '/faq',
+        ],
+      }),
+    );
     await expect(getSitemapChunkIds(options)).resolves.toEqual([0]);
-    const entries = await getSitemapEntriesByChunk(0, options);
-
-    expect(entries.map((entry) => entry.url)).toEqual([
-      'https://usfansindex.net/en',
-      'https://usfansindex.net/en/usfans-spreadsheet',
+    await expect(getSitemapEntriesByChunk(0, options)).resolves.toEqual([
+      expect.objectContaining({ url: 'https://acbuyindex.com/en' }),
+      expect.objectContaining({ url: 'https://acbuyindex.com/en/directory' }),
+      expect.objectContaining({
+        url: 'https://acbuyindex.com/en/platform-guide',
+      }),
+      expect.objectContaining({
+        url: 'https://acbuyindex.com/en/category-research',
+      }),
+      expect.objectContaining({
+        url: 'https://acbuyindex.com/en/safety-research',
+      }),
+      expect.objectContaining({ url: 'https://acbuyindex.com/en/faq' }),
     ]);
-    expect(entries.every((entry) => !entry.url.includes('/zh'))).toBe(true);
     expect(mockFetch).not.toHaveBeenCalled();
+  });
+
+  it('publishes the reviewed AllChinaBuy index record allowlist', async () => {
+    const options = getTenantSitemapOptions(
+      getTenantConfigByHost('allchinabuyindex.com'),
+    );
+
+    expect(options).toEqual(
+      expect.objectContaining({
+        siteUrl: 'https://allchinabuyindex.com',
+        includeCatalog: false,
+        staticPaths: [
+          '',
+          '/categories',
+          '/guide',
+          '/shipping-checklist',
+          '/research-log',
+          '/regions',
+          '/faq',
+        ],
+      }),
+    );
+    await expect(getSitemapChunkIds(options)).resolves.toEqual([0]);
+    await expect(getSitemapEntriesByChunk(0, options)).resolves.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ url: 'https://allchinabuyindex.com/en' }),
+        expect.objectContaining({
+          url: 'https://allchinabuyindex.com/en/categories',
+        }),
+        expect.objectContaining({
+          url: 'https://allchinabuyindex.com/en/guide',
+        }),
+        expect.objectContaining({
+          url: 'https://allchinabuyindex.com/en/shipping-checklist',
+        }),
+        expect.objectContaining({
+          url: 'https://allchinabuyindex.com/en/research-log',
+        }),
+        expect.objectContaining({
+          url: 'https://allchinabuyindex.com/en/regions',
+        }),
+        expect.objectContaining({
+          url: 'https://allchinabuyindex.com/en/faq',
+        }),
+      ]),
+    );
+    expect(mockFetch).not.toHaveBeenCalled();
+  });
+
+  it('publishes the reviewed AllChinaBuy finder allowlist', async () => {
+    const options = getTenantSitemapOptions(
+      getTenantConfigByHost('allchinabuyfinder.com'),
+    );
+
+    expect(options).toEqual(
+      expect.objectContaining({
+        siteUrl: 'https://allchinabuyfinder.com',
+        includeCatalog: false,
+        staticPaths: [
+          '',
+          '/categories',
+          '/finder-guide',
+          '/search-ideas',
+          '/product-checklist',
+          '/faq',
+        ],
+      }),
+    );
+    await expect(getSitemapChunkIds(options)).resolves.toEqual([0]);
+    await expect(getSitemapEntriesByChunk(0, options)).resolves.toHaveLength(6);
+    await expect(getSitemapEntriesByChunk(0, options)).resolves.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ url: 'https://allchinabuyfinder.com/en' }),
+        expect.objectContaining({
+          url: 'https://allchinabuyfinder.com/en/categories',
+        }),
+        expect.objectContaining({
+          url: 'https://allchinabuyfinder.com/en/finder-guide',
+        }),
+        expect.objectContaining({
+          url: 'https://allchinabuyfinder.com/en/search-ideas',
+        }),
+        expect.objectContaining({
+          url: 'https://allchinabuyfinder.com/en/product-checklist',
+        }),
+        expect.objectContaining({
+          url: 'https://allchinabuyfinder.com/en/faq',
+        }),
+      ]),
+    );
+    expect(mockFetch).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    [
+      'bbdbuyeufinds.com',
+      [
+        '',
+        '/categories',
+        '/eu-finds',
+        '/eu-guide',
+        '/qc-checklist',
+        '/shipping-planner',
+        '/faq',
+      ],
+    ],
+    [
+      'bbdbuyeus.com',
+      [
+        '',
+        '/search-guide',
+        '/order-workflow',
+        '/parcel-checklist',
+        '/us-shipping',
+        '/faq',
+      ],
+    ],
+    [
+      'bbdbuyeusheet.com',
+      ['', '/categories', '/eu-sheet', '/checklist', '/faq'],
+    ],
+  ])('publishes only the reviewed %s research paths', async (domain, paths) => {
+    await expectTenantSitemap(domain, paths);
+  });
+
+  it.each([
+    [
+      'cssbuyitems.com',
+      [
+        '',
+        '/categories',
+        '/cssbuy-score',
+        '/guide',
+        '/safety',
+        '/search-ideas',
+        '/shipping',
+        '/faq',
+      ],
+    ],
+    [
+      'cssbuyindex.com',
+      [
+        '',
+        '/categories',
+        '/cssbuy-score',
+        '/guide',
+        '/forwarding',
+        '/safety',
+        '/search-ideas',
+        '/faq',
+      ],
+    ],
+    [
+      'cssbuycatalog.com',
+      [
+        '',
+        '/categories',
+        '/spreadsheet',
+        '/guide',
+        '/forwarding',
+        '/usa',
+        '/safety',
+        '/faq',
+      ],
+    ],
+  ])('publishes only the reviewed %s research paths', async (domain, paths) => {
+    await expectTenantSitemap(domain, paths);
+  });
+
+  it.each([
+    ['kakobuyindex.net'],
+    ['kakobuyitems.com'],
+  ])('publishes only the reviewed %s research paths', async (domain) => {
+    const paths = [
+      '',
+      '/categories',
+      '/guide',
+      '/kakobuy-score',
+      '/safety',
+      '/search-ideas',
+      '/shipping',
+      '/faq',
+    ];
+    await expectTenantSitemap(domain, paths);
+  });
+
+  it.each([
+    [
+      'litbuyindex.com',
+      [
+        '',
+        '/categories',
+        '/codes-coupons',
+        '/faq',
+        '/guide',
+        '/safety',
+        '/search-ideas',
+        '/shipping',
+      ],
+    ],
+    [
+      'litbuyitems.com',
+      [
+        '',
+        '/categories',
+        '/coupons',
+        '/faq',
+        '/guide',
+        '/invitation-code',
+        '/safety',
+        '/shipping',
+      ],
+    ],
+    [
+      'litbuyproducts.com',
+      [
+        '',
+        '/coupons',
+        '/faq',
+        '/guide',
+        '/invitation-code',
+        '/safety',
+        '/shipping',
+        '/spreadsheet',
+      ],
+    ],
+  ])('publishes only the reviewed %s research paths', async (domain, paths) => {
+    await expectTenantSitemap(domain, paths);
+  });
+
+  it.each([
+    [
+      'loongbuys.net',
+      ['', '/categories', '/guide', '/reviews', '/safety', '/faq'],
+    ],
+    [
+      'lovegobuyindex.com',
+      [
+        '',
+        '/categories',
+        '/faq',
+        '/guide',
+        '/is-lovegobuy-legit',
+        '/lovegobuy-coupon-code',
+        '/lovegobuy-spreadsheet',
+        '/refund-lovegobuy-order',
+      ],
+    ],
+  ])('publishes only the reviewed %s research paths', async (domain, paths) => {
+    await expectTenantSitemap(domain, paths);
+  });
+
+  it.each([
+    ['mulebuyindex.net'],
+    ['mulebuyitems.com'],
+  ])('publishes only the reviewed %s research paths', async (domain) => {
+    const paths = [
+      '',
+      '/categories',
+      '/mulebuy-spreadsheet',
+      '/spreadsheet-checklist',
+      '/search-ideas',
+      '/buyer-safety',
+      '/shipping-weight-guide',
+      '/faq',
+    ];
+    await expectTenantSitemap(domain, paths);
+  });
+
+  it.each([
+    [
+      'cnshopperindex.com',
+      ['', '/cnshopper-products', '/category-map', '/source-checklist', '/order-handoff', '/faq'],
+    ],
+    [
+      'boonbuyindex.com',
+      ['', '/boonbuy-products', '/query-method', '/source-checklist', '/route-boundaries', '/faq'],
+    ],
+    [
+      'eastmallbuyindex.com',
+      ['', '/guide', '/categories', '/spreadsheet', '/reddit', '/legit', '/referral-code', '/faq'],
+    ],
+    [
+      'fishgooindex.com',
+      ['', '/guide', '/categories', '/fishgoo-checklist', '/search-ideas', '/shipping', '/safety', '/faq'],
+    ],
+    [
+      'oopbuyindex.net',
+      ['', '/guide', '/categories', '/oopbuy-score', '/search-ideas', '/shipping', '/safety', '/faq'],
+    ],
+    [
+      'orientdigindex.com',
+      ['', '/orientdig-spreadsheet', '/categories', '/orientdig-qc-photos-guide', '/orientdig-shoes-spreadsheet', '/orientdig-hoodies-spreadsheet', '/orientdig-bags-spreadsheet', '/orientdig-electronics-spreadsheet', '/search-ideas', '/spreadsheet-checklist', '/orient-score-methodology', '/shipping-weight-guide', '/buyer-safety', '/faq'],
+    ],
+    [
+      'parcelupindex.com',
+      ['', '/getting-started', '/fees-and-budgeting', '/shipping-and-warehouse', '/qc-checklist', '/product-index-method', '/official-sources', '/methodology', '/about-parcel-up-index'],
+    ],
+    [
+      'sugargooindex.net',
+      ['', '/sugargoo-spreadsheet', '/categories', '/sugargoo-qc-guide', '/sugargoo-shipping-guide', '/sugargoo-buying-guide', '/faq'],
+    ],
+    [
+      'superbuydeals.com',
+      ['', '/superbuy-spreadsheet', '/categories', '/spreadsheet-checklist', '/shipping-weight-guide', '/faq'],
+    ],
+    [
+      'superbuyindex.com',
+      ['', '/superbuy-spreadsheet', '/categories', '/search-ideas', '/spreadsheet-checklist', '/shipping-weight-guide', '/buyer-safety', '/faq'],
+    ],
+    [
+      'superbuyitems.com',
+      ['', '/superbuy-items', '/superbuy-product-links', '/superbuy-qc', '/superbuy-shipping', '/superbuy-review', '/categories', '/faq'],
+    ],
+    [
+      'ydaexpress.net',
+      ['', '/parcel-brief', '/warehouse-checklist', '/consolidation-planner', '/tracking-handoff', '/faq'],
+    ],
+    [
+      'ydaexpress.org',
+      ['', '/service-map', '/terms-checklist', '/shopping-agent-vs-forwarding', '/quote-evidence', '/faq'],
+    ],
+    [
+      'yoybuyindex.com',
+      ['', '/spreadsheet', '/categories', '/qc-checklist', '/search-ideas', '/shipping', '/safety', '/faq'],
+    ],
+  ])('publishes only the reviewed %s evidence paths', async (domain, paths) => {
+    await expectTenantSitemap(domain, paths);
+  });
+
+  it('keeps every unreleased tenant out of sitemap output', async () => {
+    const unreleased = SUBSITE_GUIDES.filter((guide) => {
+      const tenant = getTenantConfigByHost(guide.domain);
+      return tenant && !isTenantReleasedForIndexing(tenant);
+    });
+
+    expect(unreleased.length).toBeGreaterThan(0);
+    for (const guide of unreleased) {
+      const options = getTenantSitemapOptions(
+        getTenantConfigByHost(guide.domain),
+      );
+      expect(options).toEqual(
+        expect.objectContaining({
+          siteUrl: `https://${guide.domain}`,
+          includeCatalog: false,
+          staticPaths: [],
+        }),
+      );
+      await expect(getSitemapChunkIds(options)).resolves.toEqual([]);
+      await expect(getSitemapEntriesByChunk(0, options)).resolves.toEqual([]);
+    }
   });
 
   it('renders xhtml hreflang links in urlset xml', () => {

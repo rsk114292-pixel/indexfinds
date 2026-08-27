@@ -36,8 +36,12 @@ import { buildReturnTo, withReturnTo } from "@/lib/return-to";
 import { saveReturnScroll } from "@/lib/return-scroll";
 import { DESKTOP_PRODUCT_IMAGE_SIZES } from "@/lib/product-list-layout";
 import { post } from "@/lib/api";
-import { PRODUCT_IMAGE_FALLBACK } from "@/components/ui/ImageWithFallback";
+import {
+  PRODUCT_IMAGE_FALLBACK,
+  TENANT_PRODUCT_IMAGE_FALLBACK,
+} from "@/components/ui/ImageWithFallback";
 import { usePlatformStore } from "@/stores/usePlatformStore";
+import { useTenant } from "@/components/TenantProvider";
 import {
   getProductCardImageCandidates,
   getProductSourceLabel,
@@ -79,6 +83,7 @@ function ProductCardBody({
   const { currency: displayCurrency, rates } = useCurrencyStore();
   const isFavorited = useFavoriteStore((s) => s.favorites[product.id] ?? false);
   const agentCount = usePlatformStore((state) => state.platforms.length);
+  const tenant = useTenant();
   const [imageIndex, setImageIndex] = useState(0);
   const [hoverImageFailed, setHoverImageFailed] = useState(false);
   const priceMin = product.price?.min ?? product.priceMin;
@@ -101,10 +106,18 @@ function ProductCardBody({
     (isConverted ? "≈ " : "") +
     formatPriceRange(convertedMin, convertedMax, displayCurrency);
   const imageCandidates = useMemo(
-    () => getProductCardImageCandidates(product).map(getProductCardThumbnail),
-    [product],
+    () =>
+      getProductCardImageCandidates(product)
+        .filter(
+          (candidate) =>
+            !tenant || !candidate.includes("/images/product-placeholder.svg"),
+        )
+        .map(getProductCardThumbnail),
+    [product, tenant],
   );
-  const mainImageSrc = imageCandidates[imageIndex] || PRODUCT_IMAGE_FALLBACK;
+  const mainImageSrc =
+    imageCandidates[imageIndex] ||
+    (tenant ? TENANT_PRODUCT_IMAGE_FALLBACK : PRODUCT_IMAGE_FALLBACK);
   const secondImageSrc = imageCandidates[imageIndex + 1];
   const sourceLabel = getProductSourceLabel(product.sourceUrl);
   const originalPriceText = isConverted

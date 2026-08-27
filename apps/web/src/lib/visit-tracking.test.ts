@@ -77,7 +77,7 @@ describe('visit engagement tracking', () => {
 
     jest.advanceTimersByTime(5000);
     expect(global.fetch).toHaveBeenCalledWith(
-      'http://localhost:4101/visit-sessions/engagement',
+      '/api/visit-sessions/engagement',
       expect.objectContaining({ method: 'PATCH' }),
     );
 
@@ -133,7 +133,7 @@ describe('visit diagnostics sync', () => {
 
     expect(global.fetch).toHaveBeenCalledTimes(2);
     expect(global.fetch).toHaveBeenLastCalledWith(
-      'http://localhost:4101/visit-sessions/diagnostics',
+      '/api/visit-sessions/diagnostics',
       expect.objectContaining({ method: 'PATCH' }),
     );
   });
@@ -170,7 +170,7 @@ async function expectBeaconPayload(
 ): Promise<void> {
   const beaconMock = navigator.sendBeacon as jest.Mock;
   const [url, blob] = beaconMock.mock.calls[callIndex];
-  expect(url).toBe('http://localhost:4101/visit-sessions/engagement');
+  expect(url).toBe('/api/visit-sessions/engagement');
 
   const payload = JSON.parse(await (blob as Blob).text());
   expect(payload).toEqual(

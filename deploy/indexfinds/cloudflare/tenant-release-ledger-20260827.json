@@ -1,0 +1,34 @@
+{
+  "updatedAt": "2026-08-27T17:10:00+08:00",
+  "policy": "A branding-ready flag is not a release approval. A tenant may be indexed only after independent content, technical SEO, mobile, preview and production checks pass.",
+  "releasedForIndexing": [
+    "acbuyindex.com",
+    "allchinabuyfinder.com",
+    "allchinabuyindex.com",
+    "bbdbuyeufinds.com",
+    "bbdbuyeus.com"
+  ],
+  "batch2": {
+    "domains": [
+      "bbdbuyeusheet.com",
+      "boonbuyfind.net",
+      "boonbuyindex.com",
+      "cnshopperindex.com"
+    ],
+    "routeState": "candidate-routed",
+    "indexingState": "draft-noindex",
+    "nextGate": "Deploy and validate the new web release gate before considering any domain for indexing."
+  },
+  "yda": {
+    "domains": ["ydaexpress.net", "ydaexpress.org"],
+    "routeState": "preview-only-no-production-route",
+    "indexingState": "draft-noindex"
+  },
+  "remainingTenantCount": 31,
+  "remainingState": "independent-review-required-draft-noindex",
+  "evidence": [
+    "batch1-route-rollback-20260827.json",
+    "batch2-route-rollback-20260827.json",
+    "yda-route-preflight-20260827.json"
+  ]
+}

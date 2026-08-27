@@ -24,30 +24,21 @@ import {
   buildSiteAlternates,
   getRequestSiteIdentity,
 } from '@/lib/request-site-identity';
-import { locales } from '@/i18n/config';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
 import {
   DEFAULT_DESKTOP_PRODUCT_LIMIT,
   DESKTOP_PRODUCT_GRID_CLASS,
 } from '@/lib/product-list-layout';
 
+// Category responses depend on the request host so each branded tenant keeps
+// its own canonical, robots policy and data context. Do not let Next reuse a
+// statically generated RSC payload across domains.
+export const dynamic = 'force-dynamic';
+
 function isCategory(value: Category | { data?: Category }): value is Category {
   return (
     typeof (value as Partial<Category>).slug === 'string' &&
     typeof (value as Partial<Category>).name === 'string'
-  );
-}
-
-// 构建时预生成所有分类 × 所有 locale 的静态页面
-export async function generateStaticParams() {
-  const data = await fetchServerApiJson<{ slugs?: string[] }>('/categories/slugs');
-
-  if (!data?.slugs?.length) {
-    return [];
-  }
-
-  return locales.flatMap((locale) =>
-    data.slugs!.map((slug) => ({ locale, slug })),
   );
 }
 

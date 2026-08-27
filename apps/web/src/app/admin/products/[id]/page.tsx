@@ -5,6 +5,7 @@ import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { App, Button, Breadcrumb } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { ProductForm } from '../components/ProductForm';
+import { SeoIndexReviewPanel } from '../components/SeoIndexReviewPanel';
 import { get, post, patch } from '@/lib/api';
 import { FormSkeleton } from '../../components/PageSkeleton';
 import type { Product, ProductFormData } from '@/types';
@@ -127,6 +128,16 @@ export default function ProductEditPage() {
         onSubmit={handleSubmit}
         loading={submitting}
       />
+      {!isNew && product && (
+        <SeoIndexReviewPanel
+          product={product}
+          onReviewed={(seoIndexable) =>
+            setProduct((current) =>
+              current ? { ...current, seoIndexable } : current,
+            )
+          }
+        />
+      )}
     </div>
   );
 }

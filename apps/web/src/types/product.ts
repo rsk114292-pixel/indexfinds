@@ -65,6 +65,7 @@ export interface Product {
   currency?: string;
   originalTitle?: string;
   status?: string;
+  seoIndexable?: boolean;
   primaryCategoryId?: string;
   secondaryCategoryIds?: string[];
   hasEmbedding?: boolean;

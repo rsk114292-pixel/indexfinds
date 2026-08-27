@@ -224,6 +224,7 @@ describe('SEO guards', () => {
       json: async () => ({
         slug: 'sample-product',
         title: 'Sample Product',
+        seoIndexable: true,
         brand: { name: 'Nike' },
         primaryCategory: {
           name: '鞋子',
@@ -253,6 +254,28 @@ describe('SEO guards', () => {
       index: true,
       follow: true,
       googleBot: defaultGoogleBot,
+    });
+  });
+
+  it('keeps unreviewed product detail pages out of the index', async () => {
+    mockFetch.mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        slug: 'unreviewed-product',
+        title: 'Unreviewed Product',
+        seoIndexable: false,
+      }),
+    });
+
+    const { generateMetadata } = await import('../[locale]/(shop)/products/[slug]/page');
+    const metadata = await generateMetadata({
+      params: Promise.resolve({ locale: 'en', slug: 'unreviewed-product' }),
+    });
+
+    expect(metadata.robots).toEqual({
+      index: false,
+      follow: true,
+      googleBot: { index: false, follow: true },
     });
   });
 

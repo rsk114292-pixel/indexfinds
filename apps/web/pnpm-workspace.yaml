@@ -1,9 +1,12 @@
+packages:
+  - .
+
 allowBuilds:
   '@parcel/watcher': true
-  '@scarf/scarf': false
   '@swc/core': true
   sharp: true
-  unrs-resolver: false
+  unrs-resolver: true
+
 overrides:
   '@babel/core': 7.29.7
   js-cookie: 3.0.6

@@ -1,0 +1,21 @@
+# Temporary origin used by a Cloudflare workers.dev preview only.
+# Replace __PREVIEW_SECRET__ at installation time and keep the installed file 0600.
+server {
+    listen 80;
+    server_name 186.240.157.184 srv1890614.hstgr.cloud;
+
+    access_log off;
+
+    location / {
+        if ($http_x_indexfinds_tenant_secret != "__PREVIEW_SECRET__") {
+            return 404;
+        }
+
+        proxy_http_version 1.1;
+        proxy_set_header Host $http_x_indexfinds_tenant_host;
+        proxy_set_header X-Forwarded-Host $http_x_indexfinds_tenant_host;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_pass http://127.0.0.1:3104;
+    }
+}

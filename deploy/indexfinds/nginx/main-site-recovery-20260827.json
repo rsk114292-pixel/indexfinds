@@ -1,0 +1,26 @@
+{
+  "incident": "indexfinds.com Cloudflare 502 / origin unavailable",
+  "recoveredAt": "2026-08-27T17:01:00+08:00",
+  "origin": "srv1890614.hstgr.cloud",
+  "rootCause": "The active Nginx virtual host forwarded four web locations to 127.0.0.1:3102, where no process was listening. The healthy web container was bound to 127.0.0.1:3106. Its build also proxied same-origin API requests to an unavailable container-local port.",
+  "changes": [
+    "Changed the four web upstreams from 127.0.0.1:3102 to 127.0.0.1:3106.",
+    "Kept /api/revalidate on the Next.js web upstream.",
+    "Changed other /api/* traffic to the healthy local API upstream at 127.0.0.1:4101 with the /api prefix removed."
+  ],
+  "rollbackFiles": [
+    "/root/.indexfinds-migration/nginx-backups/indexfinds.com.conf.pre-3106-20260827T0855Z",
+    "/root/.indexfinds-migration/nginx-backups/indexfinds.com.conf.pre-api-direct-20260827T0901Z"
+  ],
+  "validation": {
+    "nginxConfig": "passed",
+    "nginxService": "active",
+    "httpsRoot": 200,
+    "httpsEnglishHome": 200,
+    "sameOriginApiHealth": 200,
+    "sameOriginProductList": 200,
+    "sampleProductPage": 200,
+    "robots": 200,
+    "sitemap": 200
+  }
+}

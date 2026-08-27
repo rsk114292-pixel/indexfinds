@@ -1,8 +1,8 @@
 /**
  * @jest-environment node
  *
- * generateStaticParams 测试
- * 验证构建时预生成分类详情页的静态参数
+ * Category route tests
+ * The response is host-specific and must stay dynamic across tenants.
  */
 
 // Mock next/navigation
@@ -43,7 +43,7 @@ jest.mock('@/lib/request-site-identity', () => ({
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
 
-import CategoryPage, { generateStaticParams } from './page';
+import CategoryPage, { dynamic } from './page';
 import { __resetServerApiFallbackCacheForTests } from '@/lib/server-api-fetch';
 import { permanentRedirect } from 'next/navigation';
 
@@ -54,37 +54,8 @@ beforeEach(() => {
   __resetServerApiFallbackCacheForTests();
 });
 
-describe('generateStaticParams', () => {
-  it('API 返回 slugs 时生成所有 locale × slug 组合', async () => {
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ slugs: ['shoes', 'jackets'] }),
-    });
-
-    const params = await generateStaticParams();
-
-    // 8 locales × 2 slugs = 16 组合
-    expect(params).toHaveLength(16);
-    expect(params).toContainEqual({ locale: 'en', slug: 'shoes' });
-    expect(params).toContainEqual({ locale: 'zh', slug: 'jackets' });
-    expect(params).toContainEqual({ locale: 'fr', slug: 'shoes' });
-  });
-
-  it('API 请求失败时返回空数组（不阻断构建）', async () => {
-    mockFetch.mockResolvedValueOnce({ ok: false });
-
-    const params = await generateStaticParams();
-
-    expect(params).toEqual([]);
-  });
-
-  it('网络异常时返回空数组（不阻断构建）', async () => {
-    mockFetch.mockRejectedValueOnce(new Error('Network error'));
-
-    const params = await generateStaticParams();
-
-    expect(params).toEqual([]);
-  });
+it('renders category responses dynamically for host-specific tenants', () => {
+  expect(dynamic).toBe('force-dynamic');
 });
 
 describe('CategoryPage', () => {

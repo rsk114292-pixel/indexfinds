@@ -9,7 +9,9 @@ import {
 } from '@/lib/catalog-route-guard';
 import { hasAnalyticsConsent } from '@/lib/analytics-consent';
 import { isDisabledPublicAuthPath } from '@/lib/features';
+import { isPublicSeoRoute } from '@/lib/public-seo-route';
 import {
+  isMainSiteHost,
   isTenantLocaleIndexable,
   isTenantPathIndexable,
   resolveTenantFromHeaders,
@@ -41,6 +43,53 @@ export default async function middleware(request: NextRequest) {
 
   if (legacyHostRedirectUrl) {
     return NextResponse.redirect(legacyHostRedirectUrl, 308);
+  }
+
+  const tenant = resolveTenantFromHeaders(
+    request.headers,
+    process.env.INDEXFINDS_LOCAL_TENANT_HOST,
+  );
+  if (!tenant && !isMainSiteHost(requestHost)) {
+    return new NextResponse('Not Found', {
+      status: 404,
+      headers: {
+        'cache-control': 'no-store',
+        'x-robots-tag': 'noindex, nofollow',
+      },
+    });
+  }
+
+  if (request.nextUrl.pathname.startsWith('/tenants/1to1reps/')) {
+    return new NextResponse('Not Found', {
+      status: 404,
+      headers: {
+        'cache-control': 'no-store',
+        'x-robots-tag': 'noindex, nofollow',
+      },
+    });
+  }
+
+  if (request.nextUrl.pathname === '/favicon.ico') {
+    const faviconPath = tenant?.branding?.faviconPath;
+
+    if (faviconPath) {
+      const faviconUrl = request.nextUrl.clone();
+      faviconUrl.pathname = faviconPath;
+      faviconUrl.search = '';
+      const response = NextResponse.rewrite(faviconUrl);
+      response.headers.set(
+        'cache-control',
+        'public, max-age=86400, stale-while-revalidate=604800',
+      );
+      return response;
+    }
+  }
+
+  // Next.js owns these host-aware SEO endpoints. Sending them through the
+  // locale middleware changes /sitemap.xml into /en/sitemap.xml and makes the
+  // crawl entry points return 404.
+  if (isPublicSeoRoute(request.nextUrl.pathname)) {
+    return NextResponse.next();
   }
 
   if (isDisabledPublicAuthPath(request.nextUrl.pathname)) {
@@ -95,10 +144,6 @@ export default async function middleware(request: NextRequest) {
   // Forward pathname for hreflang generation in [locale]/layout.tsx
   response.headers.set('x-pathname', request.nextUrl.pathname);
 
-  const tenant = resolveTenantFromHeaders(
-    request.headers,
-    process.env.INDEXFINDS_LOCAL_TENANT_HOST,
-  );
   const tenantLocale = request.nextUrl.pathname.match(/^\/([^/]+)/)?.[1];
   if (
     tenant &&
@@ -200,6 +245,11 @@ export default async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    '/favicon.ico',
+    '/robots.txt',
+    '/sitemap.xml',
+    '/sitemaps/:path*',
+    '/tenants/1to1reps/:path*',
     // Match all pathnames except:
     // - /api (backend proxy rewrite)
     // - /admin (no i18n)

@@ -4,8 +4,19 @@ export interface SiteDefinition {
   agentKey: string | null;
 }
 
+const INDEX_RELEASED_DOMAINS = new Set([
+  "acbuyindex.com",
+  "allchinabuyfinder.com",
+  "allchinabuyindex.com",
+  "bbdbuyeufinds.com",
+  "bbdbuyeus.com",
+]);
+
+export function isSiteReleasedForIndexing(site: SiteDefinition): boolean {
+  return INDEX_RELEASED_DOMAINS.has(site.domain);
+}
+
 export const SITE_DEFINITIONS = [
-  { domain: "1to1reps.com", title: "1to1Reps", agentKey: null },
   { domain: "acbuyindex.com", title: "ACBuy Spreadsheet", agentKey: "acbuy" },
   {
     domain: "allchinabuyfinder.com",
@@ -109,6 +120,8 @@ export const SITE_DEFINITIONS = [
     agentKey: "superbuy",
   },
   { domain: "usfansindex.net", title: "USFans Index", agentKey: "usfans" },
+  { domain: "ydaexpress.net", title: "YDA Express", agentKey: null },
+  { domain: "ydaexpress.org", title: "YDA Express", agentKey: null },
   { domain: "yoybuyindex.com", title: "YoyBuy Index", agentKey: "yoybuy" },
 ] as const satisfies readonly SiteDefinition[];
 

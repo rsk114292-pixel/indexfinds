@@ -1,10 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import { NotFoundException, ConflictException } from '@nestjs/common';
+import {
+  BadRequestException,
+  NotFoundException,
+  ConflictException,
+} from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { ProductsService } from './products.service';
-import { ProductStatusAction } from './product-status';
+import { ProductStatus, ProductStatusAction } from './product-status';
 import { Product } from './entities/product.entity';
 import {
   ProductInteractionEvent,
@@ -423,6 +427,30 @@ describe('ProductsService', () => {
       } as any);
 
       expect(result.mainImage).toBe('new1.jpg');
+    });
+
+    it('revokes SEO indexing approval whenever product content changes', async () => {
+      productRepository.findOne.mockResolvedValue({
+        ...existingProduct,
+        seoIndexable: true,
+        seoReviewedAt: new Date('2026-08-24T00:00:00.000Z'),
+        seoReviewedBy: '550e8400-e29b-41d4-a716-446655440000',
+        seoReviewNote: 'Previously reviewed product content.',
+      });
+      productRepository.save.mockImplementation((p: any) => Promise.resolve(p));
+
+      const result = await service.update('prod-1', {
+        title: 'Changed Product Title',
+      } as any);
+
+      expect(result).toEqual(
+        expect.objectContaining({
+          seoIndexable: false,
+          seoReviewedAt: null,
+          seoReviewedBy: null,
+          seoReviewNote: null,
+        }),
+      );
     });
 
     it('should clear SKU images when product images removed', async () => {
@@ -1094,6 +1122,117 @@ describe('ProductsService', () => {
       expect(
         productQueryService.invalidateProductDetailCacheBySlug,
       ).toHaveBeenCalledWith('test-slug');
+    });
+
+    it('revokes SEO indexing approval when a product leaves active status', async () => {
+      const product = {
+        id: 'id-1',
+        slug: 'test-slug',
+        status: ProductStatus.DRAFT,
+        seoIndexable: true,
+        seoReviewedAt: new Date('2026-08-24T00:00:00.000Z'),
+        seoReviewedBy: '550e8400-e29b-41d4-a716-446655440000',
+        seoReviewNote: 'Previously reviewed product content.',
+      } as Product;
+      productStatusService.performStatusAction.mockResolvedValue(product);
+
+      await service.performStatusAction(
+        'id-1',
+        ProductStatusAction.UNPUBLISH,
+      );
+
+      expect(productRepository.save).toHaveBeenCalledWith(
+        expect.objectContaining({
+          seoIndexable: false,
+          seoReviewedAt: null,
+          seoReviewedBy: null,
+          seoReviewNote: null,
+        }),
+      );
+    });
+
+    it('records a complete manual SEO indexing review for an active product', async () => {
+      const product = {
+        id: 'id-1',
+        slug: 'reviewed-product',
+        title: 'Reviewed Product',
+        description: 'A verified description with distinct comparison details.',
+        primaryCategoryId: 'category-1',
+        priceMin: 120,
+        mainImage: 'https://example.com/product.jpg',
+        images: ['https://example.com/product.jpg'],
+        status: ProductStatus.ACTIVE,
+        seoIndexable: false,
+      } as Product;
+      productQueryService.findOne.mockResolvedValue(product);
+
+      const result = await service.reviewSeoIndex(
+        'id-1',
+        {
+          indexable: true,
+          verified: true,
+          deduplicated: true,
+          uniqueValue: true,
+          reviewNote: 'Verified source and added a distinct comparison note.',
+        },
+        '550e8400-e29b-41d4-a716-446655440000',
+      );
+
+      expect(result.seoIndexable).toBe(true);
+      expect(result.seoReviewedAt).toEqual(expect.any(Date));
+      expect(result.seoReviewedBy).toBe(
+        '550e8400-e29b-41d4-a716-446655440000',
+      );
+      expect(result.seoReviewNote).toBe(
+        'Verified source and added a distinct comparison note.',
+      );
+      expect(productRepository.save).toHaveBeenCalledWith(product);
+      expect(
+        productQueryService.invalidateProductDetailCacheBySlug,
+      ).toHaveBeenCalledWith('reviewed-product');
+    });
+
+    it('does not allow an inactive product to pass SEO indexing review', async () => {
+      productQueryService.findOne.mockResolvedValue({
+        id: 'id-1',
+        status: ProductStatus.DRAFT,
+      } as Product);
+
+      await expect(
+        service.reviewSeoIndex('id-1', {
+          indexable: true,
+          verified: true,
+          deduplicated: true,
+          uniqueValue: true,
+          reviewNote: 'This draft has not yet passed publication review.',
+        }),
+      ).rejects.toBeInstanceOf(BadRequestException);
+      expect(productRepository.save).not.toHaveBeenCalled();
+    });
+
+    it('does not allow a zero-price product to pass SEO indexing review', async () => {
+      productQueryService.findOne.mockResolvedValue({
+        id: 'id-1',
+        slug: 'zero-price-product',
+        title: 'Zero Price Product',
+        description: 'A product description that still has an invalid price.',
+        primaryCategoryId: 'category-1',
+        priceMin: 0,
+        mainImage: 'https://example.com/product.jpg',
+        images: ['https://example.com/product.jpg'],
+        status: ProductStatus.ACTIVE,
+      } as Product);
+
+      await expect(
+        service.reviewSeoIndex('id-1', {
+          indexable: true,
+          verified: true,
+          deduplicated: true,
+          uniqueValue: true,
+          reviewNote: 'The page was reviewed but the price is invalid.',
+        }),
+      ).rejects.toBeInstanceOf(BadRequestException);
+      expect(productRepository.save).not.toHaveBeenCalled();
     });
 
     it('batchUpdatePrimaryCategory can expand by productGroupId and approve', async () => {
