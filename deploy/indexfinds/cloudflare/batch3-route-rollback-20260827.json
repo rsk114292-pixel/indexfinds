@@ -1,0 +1,49 @@
+{
+  "created_at": "2026-08-27T20:23:00+08:00",
+  "purpose": "Rollback snapshot before moving the three independently reviewed CSSBuy domains from their prior static Workers to an isolated multi-tenant candidate.",
+  "target_script": "indexfinds-subsite-b3-cssbuy-candidate",
+  "routes": [
+    {
+      "domain": "cssbuycatalog.com",
+      "zone_id": "2ded93418be7224d9826888ede6bfb39",
+      "route_id": "f23146ef94874d849cfa49f0ad9d17c5",
+      "pattern": "cssbuycatalog.com/*",
+      "previous_script": "cssbuycatalog-static-20260821"
+    },
+    {
+      "domain": "cssbuycatalog.com",
+      "zone_id": "2ded93418be7224d9826888ede6bfb39",
+      "route_id": "a0e875b37998435e83ef2ef196a7408a",
+      "pattern": "www.cssbuycatalog.com/*",
+      "previous_script": "cssbuycatalog-static-20260821"
+    },
+    {
+      "domain": "cssbuyindex.com",
+      "zone_id": "c43a67aca0999364b998c7ef2d080b6e",
+      "route_id": "a65aa2bf970b4fa1b5d64a4eb83dc5fc",
+      "pattern": "cssbuyindex.com/*",
+      "previous_script": "cssbuyindex-static-20260821"
+    },
+    {
+      "domain": "cssbuyindex.com",
+      "zone_id": "c43a67aca0999364b998c7ef2d080b6e",
+      "route_id": "4477a0e092934e4992537d11c95940bc",
+      "pattern": "www.cssbuyindex.com/*",
+      "previous_script": "cssbuyindex-static-20260821"
+    },
+    {
+      "domain": "cssbuyitems.com",
+      "zone_id": "75c96344b53ba0d011d7500d1b98fe26",
+      "route_id": "f83e5cd2f9b64fc89b589d79fd7a4d2a",
+      "pattern": "cssbuyitems.com/*",
+      "previous_script": "cssbuyitems-static-20260821"
+    },
+    {
+      "domain": "cssbuyitems.com",
+      "zone_id": "75c96344b53ba0d011d7500d1b98fe26",
+      "route_id": "2ddb9faf10c040838ed6d7a17edb3de5",
+      "pattern": "www.cssbuyitems.com/*",
+      "previous_script": "cssbuyitems-static-20260821"
+    }
+  ]
+}

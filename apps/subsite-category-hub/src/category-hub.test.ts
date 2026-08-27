@@ -124,19 +124,22 @@ describe("subsite category hub", () => {
       "boonbuyfind.net",
       "boonbuyindex.com",
       "cnshopperindex.com",
+      "cssbuycatalog.com",
+      "cssbuyindex.com",
+      "cssbuyitems.com",
       "ydaexpress.net",
       "ydaexpress.org",
     ]);
 
-    const draftSite = getSiteDefinition("cssbuyindex.com")!;
-    const page = handleRequest(new Request("https://cssbuyindex.com/"));
+    const draftSite = getSiteDefinition("eastmallbuyindex.com")!;
+    const page = handleRequest(new Request("https://eastmallbuyindex.com/"));
     expect(page.headers.get("X-Robots-Tag")).toBe("noindex, follow");
     expect(await page.text()).toContain(
       '<meta name="robots" content="noindex,follow">',
     );
     expect(
       await handleRequest(
-        new Request("https://cssbuyindex.com/robots.txt"),
+        new Request("https://eastmallbuyindex.com/robots.txt"),
       ).text(),
     ).toBe("User-agent: *\nDisallow: /\n");
     expect(
