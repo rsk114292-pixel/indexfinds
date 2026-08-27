@@ -1,0 +1,27 @@
+{
+  "validatedAt": "2026-08-27T21:40:23+08:00",
+  "purpose": "Correct the shared tenant origin build so Next.js image optimization accepts brand and product assets served by the production IndexFinds API hostname.",
+  "cause": "The previous clean tenant Web image was built without NEXT_PUBLIC_API_URL and NEXT_PUBLIC_API_HOSTNAME, so the generated Next.js remotePatterns omitted api-next.indexfinds.com and returned HTTP 400 for affected optimized images.",
+  "correction": {
+    "sourceCommit": "4449e5d",
+    "webImage": "indexfinds-web:4449e5d-api-images-fix",
+    "webContainer": "indexfinds-web-4449e5d-api-images-fix",
+    "port": 3112,
+    "nginxFile": "/www/server/panel/vhost/nginx/90-indexfinds-batch1-preview-origin.conf",
+    "nginxBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-api-images-fix-20260827T133214Z",
+    "previousTenantPort": 3111,
+    "mainSitePortUnchanged": 3107
+  },
+  "checks": {
+    "container": "The corrected container is healthy with zero restarts.",
+    "buildAllowlist": "The generated image optimizer configuration includes api-next.indexfinds.com, si.geilicdn.com and lh3.googleusercontent.com.",
+    "origin": "Tenant home, API and an affected optimized image return 200 directly through the authenticated shared origin.",
+    "production": "Affected CSSBuy brand image optimization URLs return 200 image/png on all three released CSSBuy domains.",
+    "candidate": "Both Kakobuy isolated preview sites render with zero browser console errors after the correction.",
+    "isolation": "https://indexfinds.com/en and https://api-next.indexfinds.com/health remain 200. The main-site Nginx upstream was not changed."
+  },
+  "rollback": {
+    "nginx": "Restore the recorded Nginx backup, validate the configuration, then reload Nginx.",
+    "origin": "Keep the prior port 3111 container available until the corrected origin has remained stable through the next tenant release."
+  }
+}
