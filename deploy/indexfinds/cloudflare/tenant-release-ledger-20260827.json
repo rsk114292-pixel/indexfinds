@@ -1,12 +1,14 @@
 {
-  "updatedAt": "2026-08-27T17:26:46+08:00",
+  "updatedAt": "2026-08-27T18:42:29+08:00",
   "policy": "A branding-ready flag is not a release approval. A tenant may be indexed only after independent content, technical SEO, mobile, preview and production checks pass.",
   "releasedForIndexing": [
     "acbuyindex.com",
     "allchinabuyfinder.com",
     "allchinabuyindex.com",
     "bbdbuyeufinds.com",
-    "bbdbuyeus.com"
+    "bbdbuyeus.com",
+    "ydaexpress.net",
+    "ydaexpress.org"
   ],
   "batch2": {
     "domains": [
@@ -23,14 +25,20 @@
   },
   "yda": {
     "domains": ["ydaexpress.net", "ydaexpress.org"],
-    "routeState": "preview-only-no-production-route",
-    "indexingState": "draft-noindex"
+    "routeState": "dedicated-candidate-worker-production-routed",
+    "indexingState": "ready-index",
+    "releaseGateState": "deployed-and-live-validated",
+    "liveValidation": "Both apex and www hosts resolve through the dedicated YDA Worker. English home and five reviewed research pages per domain are indexable; canonical, robots, sitemap, favicon, WebSite JSON-LD, API data and desktop/mobile rendering passed.",
+    "workerVersion": "95ba7470-7de1-418d-a46d-7b273a222d63",
+    "webCommit": "5b2a04e"
   },
   "remainingTenantCount": 31,
   "remainingState": "independent-review-required-draft-noindex",
   "evidence": [
     "batch1-route-rollback-20260827.json",
     "batch2-route-rollback-20260827.json",
-    "yda-route-preflight-20260827.json"
+    "yda-route-preflight-20260827.json",
+    "yda-route-rollback-20260827.json",
+    "yda-production-acceptance-20260827.json"
   ]
 }

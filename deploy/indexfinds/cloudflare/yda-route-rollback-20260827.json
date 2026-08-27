@@ -1,0 +1,37 @@
+{
+  "createdAt": "2026-08-27T18:42:29+08:00",
+  "worker": "indexfinds-subsite-category-hub-yda-candidate",
+  "workerVersion": "95ba7470-7de1-418d-a46d-7b273a222d63",
+  "dedicatedWorker": true,
+  "previousRouteState": "No Worker routes were attached to either YDA zone.",
+  "routes": [
+    {
+      "zoneId": "44bfbd06562e2e7037bd35eafced6e95",
+      "pattern": "ydaexpress.net/*"
+    },
+    {
+      "zoneId": "44bfbd06562e2e7037bd35eafced6e95",
+      "pattern": "www.ydaexpress.net/*"
+    },
+    {
+      "zoneId": "84bbe9e331afecaceb3430e974ea0eab",
+      "pattern": "ydaexpress.org/*"
+    },
+    {
+      "zoneId": "84bbe9e331afecaceb3430e974ea0eab",
+      "pattern": "www.ydaexpress.org/*"
+    }
+  ],
+  "rollback": {
+    "routeAction": "Delete the dedicated YDA candidate Worker to remove only these four route bindings, or remove the four bindings individually in Cloudflare.",
+    "originAction": "Restore /root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-5b2a04e-20260827-104229 and reload Nginx to return routed tenant traffic to port 3108.",
+    "indexingAction": "Revert commit 5b2a04e in a new reviewed commit and redeploy the web and YDA Worker gates if the domains must return to noindex."
+  },
+  "postReleaseChecks": {
+    "apexAndWww": "200 with www canonicalized to apex English URLs",
+    "robots": "Allows crawling and advertises the domain sitemap",
+    "sitemap": "One sitemap shard containing six independently reviewed English URLs per domain",
+    "api": "Health and products endpoints return 200",
+    "mainSite": "indexfinds.com remains on port 3107 and returns 200; registration remains 404"
+  }
+}

@@ -1,20 +1,25 @@
 {
   "validatedAt": "2026-08-27T18:27:21+08:00",
-  "releaseCommit": "7bdb50a",
+  "sourceCommit": "7bdb50a",
+  "indexingGateCommit": "5b2a04e",
   "worker": "indexfinds-subsite-category-hub-yda-candidate",
+  "workerVersion": "95ba7470-7de1-418d-a46d-7b273a222d63",
   "domains": ["ydaexpress.net", "ydaexpress.org"],
   "routeState": "production-routed",
   "origin": {
-    "webImage": "indexfinds-web:7bdb50a-yda-preview",
-    "webContainer": "indexfinds-web-7bdb50a-yda-preview",
-    "port": 3108,
+    "webImage": "indexfinds-web:5b2a04e-yda-release",
+    "webContainer": "indexfinds-web-5b2a04e-yda-release",
+    "port": 3109,
     "mainSitePortUnchanged": 3107,
-    "nginxBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-api-fix-20260827-101224"
+    "nginxBackups": [
+      "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-api-fix-20260827-101224",
+      "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-5b2a04e-20260827-104229"
+    ]
   },
   "checks": {
     "apexAndWww": "Both domains and both www hosts return 200 and canonicalize to their apex English URLs.",
     "technicalSeo": "Distinct title, description, canonical, favicon and WebSite JSON-LD validated for both domains.",
-    "indexingGate": "Production was first released as noindex/follow with an empty sitemap; index promotion requires this acceptance record and a separate gate deployment.",
+    "indexingGate": "Production was first released as noindex/follow with an empty sitemap, then promoted after acceptance. Both domains now return index/follow with six reviewed English URLs and no X-Robots-Tag block.",
     "api": "Health and product endpoints return 200 for YDA and all nine earlier routed tenants after the protected origin API proxy fix.",
     "visual": "Desktop Chrome and Pixel 5 production captures passed for both domains with different hero systems and loaded catalog data.",
     "tests": "Web tests 813/813, target tenant tests, typecheck, lint and production build passed before routing.",
@@ -22,7 +27,7 @@
   },
   "rollback": {
     "routeAction": "Remove the four YDA route bindings from indexfinds-subsite-category-hub-yda-candidate.",
-    "originAction": "Restore the recorded Nginx backup and reload Nginx.",
+    "originAction": "Restore the pre-5b2a04e Nginx backup to return the YDA origin to the validated noindex build on port 3108, then reload Nginx.",
     "webAction": "Keep indexfinds-web-72cd667-preview on port 3107 as the main-site rollback container."
   }
 }
