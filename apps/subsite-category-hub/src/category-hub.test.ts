@@ -120,6 +120,10 @@ describe("subsite category hub", () => {
       "allchinabuyindex.com",
       "bbdbuyeufinds.com",
       "bbdbuyeus.com",
+      "bbdbuyeusheet.com",
+      "boonbuyfind.net",
+      "boonbuyindex.com",
+      "cnshopperindex.com",
       "ydaexpress.net",
       "ydaexpress.org",
     ]);

@@ -10,6 +10,10 @@ const INDEX_RELEASED_DOMAINS = new Set([
   "allchinabuyindex.com",
   "bbdbuyeufinds.com",
   "bbdbuyeus.com",
+  "bbdbuyeusheet.com",
+  "boonbuyfind.net",
+  "boonbuyindex.com",
+  "cnshopperindex.com",
   "ydaexpress.net",
   "ydaexpress.org",
 ]);
