@@ -1,0 +1,39 @@
+{
+  "validatedAt": "2026-08-27T22:37:20+08:00",
+  "sourceCommit": "135d004",
+  "worker": "indexfinds-subsite-b4-kakobuy-candidate",
+  "workerVersion": "736bb194-3417-4999-b567-3c841b3903d3",
+  "domains": [
+    "kakobuyindex.net",
+    "kakobuyitems.com"
+  ],
+  "routeState": "production-routed",
+  "origin": {
+    "webImage": "indexfinds-web:135d004-kakobuy-release",
+    "webContainer": "indexfinds-web-135d004-kakobuy-release",
+    "port": 3113,
+    "mainSitePortUnchanged": 3107,
+    "previousTenantPort": 3112,
+    "nginxFile": "/www/server/panel/vhost/nginx/90-indexfinds-batch1-preview-origin.conf",
+    "nginxBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-kakobuy-release-20260827T141411Z"
+  },
+  "checks": {
+    "apexAndWww": "Both apex hosts return 200. Each www host returns one 308 redirect to the matching apex English URL.",
+    "reviewedPages": "All 16 independently reviewed English pages return 200 with exact self-canonical URLs, index/follow metadata, unique non-thin titles and descriptions, and structured data.",
+    "sitemaps": "Each sitemap exactly matches its eight-URL independently reviewed allowlist. Unreviewed product-list pages remain outside the sitemap.",
+    "indexingGate": "Reviewed pages do not emit an X-Robots-Tag block. The unreviewed /en/products page remains noindex and outside both sitemaps.",
+    "apiAndAssets": "Public health endpoints, favicon and a previously affected api-next.indexfinds.com optimized image return 200; robots.txt publishes the matching canonical sitemap URL.",
+    "existingReleases": "All 14 previously released tenants remain 200 and indexable after the shared origin switch.",
+    "unreviewedIsolation": "EastMallBuyIndex returns 404 and was not exposed by this candidate Worker.",
+    "mainSiteIsolation": "The IndexFinds main homepage and API remain 200; its 3107 primary and 3106 standby Nginx upstream were not changed.",
+    "tests": "Kakobuy candidate acceptance passed 16 pages. Targeted Web suites passed 116 tests. Tenant Worker tests passed 12 tests. Web and Worker typechecks, lint, Worker dry-run, local production build and clean Hostinger production build passed before release.",
+    "visualAndDuplicateContent": "Desktop and mobile checks passed for both Kakobuy domains with zero console errors, no broken images and no horizontal overflow. The 16 titles and descriptions are unique, and the sites use independent shortlist and item-evidence intents, page copy, homepage order and visual profiles.",
+    "networkNote": "Browser navigation aborted a few speculative React Server Component prefetches while switching test pages; user-facing requests, images, APIs and console checks remained successful."
+  },
+  "rollback": {
+    "routeAction": "Restore the four route IDs to their previous individual Workers using batch4-route-rollback-20260827.json.",
+    "workerAction": "Version 33fc4e91-7509-49ca-850d-e8110a978566 retains the isolated pre-release noindex behavior if the candidate Worker must be reverted without changing routes.",
+    "originAction": "Restore the recorded Nginx backup to return the shared tenant origin to port 3112, validate Nginx, and reload it.",
+    "containerAction": "Keep indexfinds-web-4449e5d-api-images-fix on port 3112 and the new Kakobuy release container on port 3113 until the batch remains stable."
+  }
+}
