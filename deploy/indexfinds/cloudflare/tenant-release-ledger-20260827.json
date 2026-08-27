@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-27T17:10:00+08:00",
+  "updatedAt": "2026-08-27T17:26:46+08:00",
   "policy": "A branding-ready flag is not a release approval. A tenant may be indexed only after independent content, technical SEO, mobile, preview and production checks pass.",
   "releasedForIndexing": [
     "acbuyindex.com",
@@ -17,7 +17,9 @@
     ],
     "routeState": "candidate-routed",
     "indexingState": "draft-noindex",
-    "nextGate": "Deploy and validate the new web release gate before considering any domain for indexing."
+    "releaseGateState": "deployed-and-live-validated",
+    "liveValidation": "All four domains return 200 with independent canonical URLs, noindex/follow in both HTML and X-Robots-Tag, and an empty sitemap index.",
+    "nextGate": "Complete independent content, mobile, structured-data and duplicate-content acceptance for each domain before promoting it to index/ready."
   },
   "yda": {
     "domains": ["ydaexpress.net", "ydaexpress.org"],
