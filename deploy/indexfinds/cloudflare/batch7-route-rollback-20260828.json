@@ -1,0 +1,63 @@
+{
+  "created_at": "2026-08-28T05:12:00+08:00",
+  "purpose": "Rollback snapshot before moving four independently reviewed source-evidence domains from their prior static Workers to the isolated batch7 candidate.",
+  "target_script": "indexfinds-subsite-b7-source-candidate",
+  "routes": [
+    {
+      "domain": "goatedbuyindex.com",
+      "zone_id": "32558e17a633682aa3b0a4ed145c0576",
+      "route_id": "8af44e66600f4459a2bd6a115fbe7e43",
+      "pattern": "goatedbuyindex.com/*",
+      "previous_script": "goatedbuyindex-static-20260821"
+    },
+    {
+      "domain": "goatedbuyindex.com",
+      "zone_id": "32558e17a633682aa3b0a4ed145c0576",
+      "route_id": "fa0153a6496c4749a411170cee387003",
+      "pattern": "www.goatedbuyindex.com/*",
+      "previous_script": "goatedbuyindex-static-20260821"
+    },
+    {
+      "domain": "gtbuyindex.com",
+      "zone_id": "794758b3ab00643419b607eecd017a7d",
+      "route_id": "e591ea3a5f3b4d08b9a54bfac2075893",
+      "pattern": "gtbuyindex.com/*",
+      "previous_script": "gtbuyindex-static-20260821"
+    },
+    {
+      "domain": "gtbuyindex.com",
+      "zone_id": "794758b3ab00643419b607eecd017a7d",
+      "route_id": "8f4b1d0f409d499e9c65b55d4e9de1f6",
+      "pattern": "www.gtbuyindex.com/*",
+      "previous_script": "gtbuyindex-static-20260821"
+    },
+    {
+      "domain": "hipobuyindex.com",
+      "zone_id": "ed3a6c84c62e3f8d41ef613a5e825950",
+      "route_id": "4b8e18911de040e6a3ec8ef338d1f31b",
+      "pattern": "hipobuyindex.com/*",
+      "previous_script": "hipobuyindex-static-20260821"
+    },
+    {
+      "domain": "hipobuyindex.com",
+      "zone_id": "ed3a6c84c62e3f8d41ef613a5e825950",
+      "route_id": "d5b8d066773245208b67b77e5b885acd",
+      "pattern": "www.hipobuyindex.com/*",
+      "previous_script": "hipobuyindex-static-20260821"
+    },
+    {
+      "domain": "hoobuyindex.net",
+      "zone_id": "c44b9eb40f011cc1ce8c9cf576bbfd2f",
+      "route_id": "ff6a6abdbd0a4169b136c35f73d03811",
+      "pattern": "hoobuyindex.net/*",
+      "previous_script": "hoobuyindex-static-20260821"
+    },
+    {
+      "domain": "hoobuyindex.net",
+      "zone_id": "c44b9eb40f011cc1ce8c9cf576bbfd2f",
+      "route_id": "3ba293f956754768b6b2ea2983644a7d",
+      "pattern": "www.hoobuyindex.net/*",
+      "previous_script": "hoobuyindex-static-20260821"
+    }
+  ]
+}
