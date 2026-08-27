@@ -1,0 +1,38 @@
+{
+  "validatedAt": "2026-08-27T20:49:55+08:00",
+  "sourceCommit": "4449e5d",
+  "worker": "indexfinds-subsite-b3-cssbuy-candidate",
+  "workerVersion": "61e49b13-d2f2-4bc7-807b-760cba3ee654",
+  "domains": [
+    "cssbuycatalog.com",
+    "cssbuyindex.com",
+    "cssbuyitems.com"
+  ],
+  "routeState": "production-routed",
+  "origin": {
+    "webImage": "indexfinds-web:4449e5d-cssbuy-release",
+    "webContainer": "indexfinds-web-4449e5d-cssbuy-release",
+    "port": 3111,
+    "mainSitePortUnchanged": 3107,
+    "previousTenantPort": 3110,
+    "nginxBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-cssbuy-release-20260827T124503Z"
+  },
+  "checks": {
+    "apexAndWww": "All three apex hosts return 200. Each www host returns a single 308 redirect to the matching apex English URL.",
+    "reviewedPages": "All 24 independently reviewed English pages return 200 with exact self-canonical URLs, index/follow metadata, non-thin titles and descriptions, and structured data.",
+    "sitemaps": "Each sitemap shard exactly matches its eight-URL independently reviewed allowlist. Unreviewed product-list pages remain outside the sitemap.",
+    "indexingGate": "Reviewed pages do not emit an X-Robots-Tag block. The unreviewed /en/products page remains noindex/follow on all three domains.",
+    "apiAndAssets": "The public health endpoint and favicon return 200 on all three domains. robots.txt publishes the matching canonical sitemap URL.",
+    "existingReleases": "All 11 previously released tenants remain 200 and indexable after the shared origin switch.",
+    "unreviewedIsolation": "EastMallBuyIndex remains noindex or unavailable and was not exposed by this candidate Worker.",
+    "mainSiteIsolation": "The IndexFinds main homepage and API remain 200; its 3107 primary and 3106 standby Nginx upstream were not changed.",
+    "tests": "Targeted Web suites passed 75 tests. Tenant Worker tests passed 12 tests. Web and Worker typechecks, lint, Worker dry-run, local production build and clean server production build passed before release.",
+    "visualAndDuplicateContent": "Desktop and mobile checks passed for each CSSBuy domain. The 24 titles and descriptions are unique, and each site has an independent search intent, page set, homepage order and visual profile."
+  },
+  "rollback": {
+    "routeAction": "Restore the six route IDs to their previous individual Workers using batch3-route-rollback-20260827.json.",
+    "workerAction": "Version 238eea9d-0180-46d0-ab04-0c1e04332c1c retains the isolated pre-release noindex behavior if the candidate Worker must be reverted without changing routes.",
+    "originAction": "Restore the recorded Nginx backup to return the shared tenant origin to port 3110, validate Nginx, and reload it.",
+    "containerAction": "Keep indexfinds-web-e84422e-batch2-release on port 3110 and the new CSSBuy release container on port 3111 until the batch remains stable."
+  }
+}
