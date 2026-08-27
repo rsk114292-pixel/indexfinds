@@ -935,6 +935,8 @@ describe("tenant config", () => {
       "allchinabuyindex.com",
       "bbdbuyeufinds.com",
       "bbdbuyeus.com",
+      "ydaexpress.net",
+      "ydaexpress.org",
     ]);
   });
 

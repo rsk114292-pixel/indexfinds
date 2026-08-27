@@ -10,6 +10,8 @@ const INDEX_RELEASED_DOMAINS = new Set([
   "allchinabuyindex.com",
   "bbdbuyeufinds.com",
   "bbdbuyeus.com",
+  "ydaexpress.net",
+  "ydaexpress.org",
 ]);
 
 export function isSiteReleasedForIndexing(site: SiteDefinition): boolean {

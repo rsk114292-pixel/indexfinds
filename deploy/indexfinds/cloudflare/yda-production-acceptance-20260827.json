@@ -1,0 +1,28 @@
+{
+  "validatedAt": "2026-08-27T18:27:21+08:00",
+  "releaseCommit": "7bdb50a",
+  "worker": "indexfinds-subsite-category-hub-yda-candidate",
+  "domains": ["ydaexpress.net", "ydaexpress.org"],
+  "routeState": "production-routed",
+  "origin": {
+    "webImage": "indexfinds-web:7bdb50a-yda-preview",
+    "webContainer": "indexfinds-web-7bdb50a-yda-preview",
+    "port": 3108,
+    "mainSitePortUnchanged": 3107,
+    "nginxBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-api-fix-20260827-101224"
+  },
+  "checks": {
+    "apexAndWww": "Both domains and both www hosts return 200 and canonicalize to their apex English URLs.",
+    "technicalSeo": "Distinct title, description, canonical, favicon and WebSite JSON-LD validated for both domains.",
+    "indexingGate": "Production was first released as noindex/follow with an empty sitemap; index promotion requires this acceptance record and a separate gate deployment.",
+    "api": "Health and product endpoints return 200 for YDA and all nine earlier routed tenants after the protected origin API proxy fix.",
+    "visual": "Desktop Chrome and Pixel 5 production captures passed for both domains with different hero systems and loaded catalog data.",
+    "tests": "Web tests 813/813, target tenant tests, typecheck, lint and production build passed before routing.",
+    "duplicateContent": "Tenant metadata fields are unique and YDA uses separate parcel-preparation and source-review research paths."
+  },
+  "rollback": {
+    "routeAction": "Remove the four YDA route bindings from indexfinds-subsite-category-hub-yda-candidate.",
+    "originAction": "Restore the recorded Nginx backup and reload Nginx.",
+    "webAction": "Keep indexfinds-web-72cd667-preview on port 3107 as the main-site rollback container."
+  }
+}

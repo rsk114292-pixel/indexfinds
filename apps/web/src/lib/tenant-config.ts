@@ -55,6 +55,8 @@ const INDEX_READY_TENANT_DOMAINS = new Set([
   "allchinabuyindex.com",
   "bbdbuyeufinds.com",
   "bbdbuyeus.com",
+  "ydaexpress.net",
+  "ydaexpress.org",
 ]);
 
 export function isTenantReleasedForIndexing(tenant: TenantConfig): boolean {

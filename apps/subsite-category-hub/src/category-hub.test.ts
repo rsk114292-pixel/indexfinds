@@ -120,6 +120,8 @@ describe("subsite category hub", () => {
       "allchinabuyindex.com",
       "bbdbuyeufinds.com",
       "bbdbuyeus.com",
+      "ydaexpress.net",
+      "ydaexpress.org",
     ]);
 
     const draftSite = getSiteDefinition("cssbuyindex.com")!;
