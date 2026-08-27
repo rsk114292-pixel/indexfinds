@@ -7,13 +7,16 @@
     "Changed the affected web upstreams from 127.0.0.1:3102 to 127.0.0.1:3106.",
     "Kept /api/revalidate on the Next.js web upstream.",
     "Changed other /api/* traffic to the healthy local API upstream at 127.0.0.1:4101 with the /api prefix removed.",
-    "Built commit 72cd667 as an isolated image, validated it on 127.0.0.1:3107, then switched the five main-site web/static upstream entries and the dedicated tenant preview origin to 3107."
+    "Built commit 72cd667 as an isolated image, validated it on 127.0.0.1:3107, then switched the five main-site web/static upstream entries and the dedicated tenant preview origin to 3107.",
+    "Replaced the five direct web proxy targets with an Nginx upstream that keeps 3107 primary and the verified 3106 rollback container as a hot standby.",
+    "Enabled two-attempt failover for connection errors, timeouts, and upstream 502/503/504 responses while keeping the API on 4101."
   ],
   "rollbackFiles": [
     "/root/.indexfinds-migration/nginx-backups/indexfinds.com.conf.pre-3106-20260827T0855Z",
     "/root/.indexfinds-migration/nginx-backups/indexfinds.com.conf.pre-api-direct-20260827T0901Z",
     "/root/.indexfinds-migration/nginx-backups/indexfinds.com.conf.pre-72cd667-20260827T092319Z",
-    "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-72cd667-20260827T092433Z"
+    "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-72cd667-20260827T092433Z",
+    "/root/.indexfinds-migration/nginx-backups/indexfinds.com.conf.pre-hot-standby-20260827T1115Z"
   ],
   "validation": {
     "nginxConfig": "passed",
@@ -31,6 +34,11 @@
     "registrationPage": 404,
     "reportedActiveProductTotal": 72420,
     "webImage": "indexfinds-web:72cd667-preview",
-    "webContainerHealth": "healthy"
+    "webContainerHealth": "healthy",
+    "rollbackWebPort": 3106,
+    "rollbackWebHealth": 200,
+    "nginxHotStandby": "enabled",
+    "lastObserved502At": "2026-08-27T08:55:16Z",
+    "postFailoverPublicProbes": "5/5 HTTP 200"
   }
 }
