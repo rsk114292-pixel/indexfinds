@@ -61,7 +61,11 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://si.geilicdn.com" />
         <link rel="icon" href={branding?.faviconPath || "/favicon.ico"} sizes="any" />
         {!branding && <link rel="icon" href="/icons/logo.svg" type="image/svg+xml" />}
-        <link rel="manifest" href="/manifest.webmanifest" />
+        <link
+          rel="manifest"
+          href="/manifest.webmanifest"
+          crossOrigin="use-credentials"
+        />
         <link rel="apple-touch-icon" href={branding?.logoPath || "/icons/apple-touch-icon.png"} />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />

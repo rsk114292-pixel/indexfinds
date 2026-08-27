@@ -110,11 +110,13 @@ export default function MobileHome({
             branding &&
             tenant?.domain !== "itaobuyindex.com" ? (
               <div className="mb-4 flex items-center gap-2.5 text-xs font-bold text-white/78">
-                <img
-                  src={branding.logoPath}
-                  alt={`${branding.siteName} icon`}
-                  className="h-9 w-9 rounded-xl bg-white object-contain p-1.5 shadow-lg"
-                />
+                {!tenant?.domain.startsWith("ydaexpress.") && (
+                  <img
+                    src={branding.logoPath}
+                    alt={`${branding.siteName} icon`}
+                    className="h-9 w-9 rounded-xl bg-white object-contain p-1.5 shadow-lg"
+                  />
+                )}
                 <span>{branding.heroEyebrow}</span>
               </div>
             ) : null}
@@ -276,6 +278,19 @@ export default function MobileHome({
                 <span className="text-center">02 Options</span>
                 <span className="text-right">03 Route</span>
               </div>
+            ) : tenant?.domain === "ydaexpress.net" ? (
+              <div className="mt-5 grid grid-cols-4 border-y border-[#58dfcc]/40 py-3 text-[8px] font-semibold uppercase tracking-[0.025em] text-white/78">
+                <span>Contents</span>
+                <span className="text-center">Size</span>
+                <span className="text-center">Rules</span>
+                <span className="text-right">Handoff</span>
+              </div>
+            ) : tenant?.domain === "ydaexpress.org" ? (
+              <div className="mt-5 grid grid-cols-3 gap-px overflow-hidden border border-[#ef934f]/34 bg-[#ef934f]/18 text-[8px] font-semibold uppercase tracking-[0.025em] text-white/78">
+                <span className="bg-[#211711]/78 px-2 py-3">Claim</span>
+                <span className="bg-[#211711]/78 px-2 py-3 text-center">Source</span>
+                <span className="bg-[#211711]/78 px-2 py-3 text-right">Open</span>
+              </div>
             ) : null}
             <div className="mt-6">
               <SearchBox
@@ -321,6 +336,8 @@ export default function MobileHome({
                       ? "blue"
                     : tenant?.domain === "mulebuyitems.com"
                       ? "violet"
+                    : tenant?.domain === "ydaexpress.org"
+                      ? "amber"
                     : tenantHero
                       ? "emerald"
                       : "default"

@@ -480,6 +480,32 @@ const TENANT_HERO_VISUALS: Record<string, TenantHeroVisual> = {
     mobileOverlay:
       "linear-gradient(0deg, rgba(3,31,67,0.99) 0%, rgba(3,31,67,0.93) 58%, rgba(3,31,67,0.36) 100%)",
   },
+  "ydaexpress.net": {
+    desktopPath: "/tenants/ydaexpress-net/hero-parcel.svg",
+    mobilePath: "/tenants/ydaexpress-net/hero-parcel.svg",
+    alt: "Parcel preparation board with measurement and handoff markers",
+    backgroundColor: "#041a23",
+    accentColor: "#58dfcc",
+    desktopObjectPosition: "center",
+    mobileObjectPosition: "72% center",
+    desktopOverlay:
+      "linear-gradient(90deg, rgba(4,26,35,0.99) 0%, rgba(4,26,35,0.94) 46%, rgba(4,26,35,0.52) 72%, rgba(4,26,35,0.12) 100%)",
+    mobileOverlay:
+      "linear-gradient(0deg, rgba(4,26,35,0.99) 0%, rgba(4,26,35,0.94) 62%, rgba(4,26,35,0.4) 100%)",
+  },
+  "ydaexpress.org": {
+    desktopPath: "/tenants/ydaexpress-org/hero-sources.svg",
+    mobilePath: "/tenants/ydaexpress-org/hero-sources.svg",
+    alt: "Dated source review ledger with a document verification mark",
+    backgroundColor: "#17120f",
+    accentColor: "#ef934f",
+    desktopObjectPosition: "center",
+    mobileObjectPosition: "78% center",
+    desktopOverlay:
+      "linear-gradient(270deg, rgba(23,18,15,0.99) 0%, rgba(23,18,15,0.95) 46%, rgba(23,18,15,0.55) 72%, rgba(23,18,15,0.16) 100%)",
+    mobileOverlay:
+      "linear-gradient(0deg, rgba(23,18,15,0.99) 0%, rgba(23,18,15,0.95) 62%, rgba(23,18,15,0.42) 100%)",
+  },
   "yoybuyindex.com": {
     desktopPath: "/tenants/yoybuy/hero-desktop.webp",
     mobilePath: "/tenants/yoybuy/hero-mobile.webp",

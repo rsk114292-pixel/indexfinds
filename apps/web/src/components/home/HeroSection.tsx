@@ -65,7 +65,9 @@ export default function HeroSection({
           <img
             src={tenantHero.desktopPath}
             alt={tenantHero.alt}
-            className="h-full w-full object-cover"
+            className={`h-full w-full object-cover ${
+              tenant?.domain === "ydaexpress.org" ? "scale-x-[-1]" : ""
+            }`}
             style={{ objectPosition: tenantHero.desktopObjectPosition }}
           />
         </picture>
@@ -77,21 +79,29 @@ export default function HeroSection({
 
         <div
           className={`container relative mx-auto grid min-h-[calc(100svh-64px)] items-end px-4 pb-10 pt-20 md:items-center md:py-16 ${
-            tenant?.domain === "boonbuyfind.net" ? "md:justify-items-end" : ""
+            tenant?.domain === "boonbuyfind.net" ||
+            tenant?.domain === "ydaexpress.org"
+              ? "md:justify-items-end"
+              : ""
           }`}
         >
           <div
             className={`max-w-[760px] ${
-              tenant?.domain === "boonbuyfind.net" ? "md:w-[680px]" : ""
+              tenant?.domain === "boonbuyfind.net" ||
+              tenant?.domain === "ydaexpress.org"
+                ? "md:w-[680px]"
+                : ""
             }`}
           >
             {tenant?.domain !== "itaobuyindex.com" && (
               <div className="mb-5 flex items-center gap-3 text-sm font-bold text-white/78">
-                <img
-                  src={branding.logoPath}
-                  alt={`${branding.siteName} icon`}
-                  className="h-10 w-10 rounded-xl bg-white object-contain p-1.5 shadow-[0_10px_28px_rgba(4,31,43,0.22)]"
-                />
+                {!tenant?.domain.startsWith("ydaexpress.") && (
+                  <img
+                    src={branding.logoPath}
+                    alt={`${branding.siteName} icon`}
+                    className="h-10 w-10 rounded-xl bg-white object-contain p-1.5 shadow-[0_10px_28px_rgba(4,31,43,0.22)]"
+                  />
+                )}
                 <span>{branding.heroEyebrow}</span>
               </div>
             )}
@@ -329,6 +339,19 @@ export default function HeroSection({
                 <span className="text-center">02 Option check</span>
                 <span className="text-right">03 Route</span>
               </div>
+            ) : tenant?.domain === "ydaexpress.net" ? (
+              <div className="mt-7 grid max-w-[660px] grid-cols-4 border-y border-[#58dfcc]/40 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/78">
+                <span>01 Contents</span>
+                <span className="text-center">02 Dimensions</span>
+                <span className="text-center">03 Restrictions</span>
+                <span className="text-right">04 Handoff</span>
+              </div>
+            ) : tenant?.domain === "ydaexpress.org" ? (
+              <div className="mt-7 grid max-w-[660px] grid-cols-[0.9fr_1.2fr_0.9fr] gap-px overflow-hidden border border-[#ef934f]/34 bg-[#ef934f]/18 text-[11px] font-semibold uppercase tracking-[0.075em] text-white/78">
+                <span className="bg-[#211711]/78 px-3 py-3">Published claim</span>
+                <span className="bg-[#211711]/78 px-3 py-3 text-center">Current source</span>
+                <span className="bg-[#211711]/78 px-3 py-3 text-right">Open question</span>
+              </div>
             ) : null}
             <div
               ref={searchRef}
@@ -365,7 +388,9 @@ export default function HeroSection({
                 tenant?.domain === "sugargooindex.net" ||
                 tenant?.domain === "superbuydeals.com" ||
                 tenant?.domain === "superbuyindex.com" ||
-                tenant?.domain === "superbuyitems.com"
+                tenant?.domain === "superbuyitems.com" ||
+                tenant?.domain === "ydaexpress.net" ||
+                tenant?.domain === "ydaexpress.org"
                   ? "mt-6"
                   : "mt-8"
               }`}
@@ -433,6 +458,8 @@ export default function HeroSection({
                           ? "amber"
                         : tenant?.domain === "superbuyitems.com"
                           ? "blue"
+                        : tenant?.domain === "ydaexpress.org"
+                          ? "amber"
                       : "emerald"
                 }
               />
