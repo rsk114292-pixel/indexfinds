@@ -1,0 +1,41 @@
+{
+  "validatedAt": "2026-08-28T11:54:05+08:00",
+  "sourceCommit": "b9c5bf4",
+  "worker": "indexfinds-subsite-b7-source-candidate",
+  "workerVersion": "62163544-86c7-473f-b66c-ef92a7fa1076",
+  "domains": [
+    "goatedbuyindex.com",
+    "gtbuyindex.com",
+    "hipobuyindex.com",
+    "hoobuyindex.net"
+  ],
+  "routeState": "isolated-candidate-production-routed",
+  "origin": {
+    "webImage": "indexfinds-web:b1ba61c-main-hotfix",
+    "webContainer": "indexfinds-web-b1ba61c-main-hotfix",
+    "port": 3118,
+    "previousTenantPort": 3115,
+    "mainBackupPort": 3107,
+    "nginxFile": "/www/server/panel/vhost/nginx/90-indexfinds-batch1-preview-origin.conf",
+    "nginxBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-batch7-release-20260828T033213Z"
+  },
+  "checks": {
+    "isolatedPreview": "The exact four-domain allowlist passed all 32 reviewed pages with noindex/nofollow, no-store headers and an unrelated tenant returning 404 before any route was changed.",
+    "routeGuard": "All eight apex/www route IDs matched the rollback manifest before update and were individually read back on the isolated batch7 Worker after update.",
+    "apexAndWww": "All four apex English homepages return 200. Every www host returns one 308 redirect to the matching apex English URL.",
+    "reviewedPages": "All 32 independently reviewed English pages return 200 with exact self-canonicals, index/follow metadata, 32 unique titles, 32 unique descriptions and structured data.",
+    "sitemaps": "Each sitemap index points to one tenant-local child sitemap containing exactly its eight reviewed URLs. Unreviewed product-list pages remain outside all four sitemaps.",
+    "indexingGate": "Reviewed pages do not emit a noindex response or metadata directive. The unreviewed /en/products page remains noindex and outside every sitemap.",
+    "robots": "The default crawler and Googlebot blocks allow the site root, and every robots file publishes the matching canonical sitemap URL.",
+    "apiAndAssets": "The API health endpoint, all four favicons and optimized product-image requests return 200.",
+    "existingReleases": "All 24 previously released tenants remained 200, self-canonical and indexable after the shared-origin change.",
+    "mainSiteIsolation": "The IndexFinds main homepage and API return 200. The active web container is healthy with zero restarts and no OOM event; the checked access-log window contains no public 5xx response.",
+    "visual": "Desktop and mobile production checks passed all eight viewport/domain combinations without horizontal overflow, broken images, console errors or page errors. A focused HooBuy mobile pass verified the hero, product cards and 22 lazy-loaded product images after an initial long-screenshot compositor artifact.",
+    "duplicateContent": "The highest pairwise five-word homepage shingle similarity is 0.3595, below the 0.60 release threshold. Each site uses a distinct result-scoring, research-log, source-trail or evidence-gate search intent."
+  },
+  "rollback": {
+    "routeAction": "Restore the eight exact route IDs to their previous individual Workers using batch7-route-rollback-20260828.json.",
+    "originAction": "Restore the recorded Nginx backup to return the shared tenant origin to port 3115, validate Nginx, and reload it.",
+    "containerAction": "Keep the previous batch6 tenant container on port 3115 and the main rollback container on port 3107 until batch7 remains stable."
+  }
+}
