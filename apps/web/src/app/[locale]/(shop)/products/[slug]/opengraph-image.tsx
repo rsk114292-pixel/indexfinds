@@ -27,7 +27,7 @@ function formatOgPrice(amountCNY: number, locale: string): string {
   const currency = LOCALE_CURRENCY[locale] || 'USD';
   const rate = RATES[currency] ?? 0.14;
   const converted = amountCNY * rate;
-  const prefix = currency === 'CNY' ? '' : '≈ ';
+  const prefix = currency === 'CNY' ? '' : '~ ';
   const formatted = new Intl.NumberFormat(locale === 'zh' ? 'zh-CN' : 'en-US', {
     style: 'currency',
     currency,
