@@ -179,6 +179,78 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                         icon: Search,
                       },
                     ] as const)
+                  : tenant.domain === "orientdigindex.com"
+                    ? ([
+                        {
+                          href: "/orientdig-spreadsheet",
+                          title: "Define the category evidence",
+                          description:
+                            "Record the fields that make a shoe, garment, bag or device comparable.",
+                          icon: LayoutGrid,
+                        },
+                        {
+                          href: "/orient-score-methodology",
+                          title: "Apply the Orient Score",
+                          description:
+                            "Weight source clarity, option detail and dated evidence without hiding unknowns.",
+                          icon: Scale,
+                        },
+                        {
+                          href: "/orientdig-qc-photos-guide",
+                          title: "Read QC photos as dated evidence",
+                          description:
+                            "Check whether each image supports the category fields claimed by the record.",
+                          icon: Search,
+                        },
+                      ] as const)
+                    : tenant.domain === "parcelupindex.com"
+                      ? ([
+                          {
+                            href: "/getting-started",
+                            title: "Preserve the Taobao order source",
+                            description:
+                              "Keep seller, listing, exact option and first-payment status in one record.",
+                            icon: Search,
+                          },
+                          {
+                            href: "/shipping-and-warehouse",
+                            title: "Document the warehouse handoff",
+                            description:
+                              "Attach received-item evidence before consolidation creates a new parcel stage.",
+                            icon: LayoutGrid,
+                          },
+                          {
+                            href: "/fees-and-budgeting",
+                            title: "Separate product and parcel costs",
+                            description:
+                              "Do not mix the first payment with measured international shipping inputs.",
+                            icon: Scale,
+                          },
+                        ] as const)
+                      : tenant.domain === "sugargooindex.net"
+                        ? ([
+                            {
+                              href: "/sugargoo-spreadsheet",
+                              title: "Refresh the listing and option",
+                              description:
+                                "Confirm that the source, selected variation and visible price are still current.",
+                              icon: Search,
+                            },
+                            {
+                              href: "/sugargoo-qc-guide",
+                              title: "Compare the received-item QC",
+                              description:
+                                "Use warehouse photos to test the requested option, measurements and condition.",
+                              icon: LayoutGrid,
+                            },
+                            {
+                              href: "/sugargoo-shipping-guide",
+                              title: "Plan from the measured parcel",
+                              description:
+                                "Evaluate shipping only after packed weight and dimensions are available.",
+                              icon: Scale,
+                            },
+                          ] as const)
         : ([
             {
               href: "/categories",
@@ -215,6 +287,12 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                 ? { href: "/joyagoo-score", label: "Open the candidate score" }
                 : tenant.domain === "joyagooindex.com"
                   ? { href: "/joyagoo-score", label: "Open the stage worksheet" }
+                  : tenant.domain === "orientdigindex.com"
+                    ? { href: "/orient-score-methodology", label: "Review the scoring weights" }
+                    : tenant.domain === "parcelupindex.com"
+                      ? { href: "/shipping-and-warehouse", label: "Review the warehouse handoff" }
+                      : tenant.domain === "sugargooindex.net"
+                        ? { href: "/sugargoo-qc-guide", label: "Open the QC evidence guide" }
         : { href: "/products", label: "Browse all products" };
 
   const boundaryNote =
@@ -228,6 +306,12 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
             ? "A visually relevant find is still only a candidate. Recheck the exact source, option, price and seller details before keeping it."
             : tenant.domain === "joyagooindex.com"
               ? "Evidence from one stage does not prove a later outcome. Keep listing, order, QC and parcel records dated and separate."
+              : tenant.domain === "orientdigindex.com"
+                ? "An Orient Score organizes visible evidence; it does not authenticate a brand, seller or future product condition."
+                : tenant.domain === "parcelupindex.com"
+                  ? "A listing price covers neither later parcel measurements nor current route fees. Recheck each payment stage independently."
+                  : tenant.domain === "sugargooindex.net"
+                    ? "A spreadsheet row is a research lead, not proof of stock, option accuracy, received condition or final shipping cost."
           : "Some outbound buying links may be referral links. Confirm current price, availability and service terms on the destination site.";
 
   return (

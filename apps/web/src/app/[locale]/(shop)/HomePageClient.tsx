@@ -234,6 +234,40 @@ export default function HomePageClient({
     );
   }
 
+  if (tenant?.domain === "orientdigindex.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <UsfansQuickStart />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (tenant?.domain === "parcelupindex.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <HowItWorksSection />
+        <UsfansQuickStart />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (tenant?.domain === "sugargooindex.net") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <UsfansQuickStart />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
+        <CtaSection />
+      </>
+    );
+  }
+
   if (homeVariant === "index") {
     return (
       <>

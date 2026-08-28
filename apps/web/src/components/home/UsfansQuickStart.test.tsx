@@ -28,6 +28,42 @@ describe('UsfansQuickStart', () => {
     );
   });
 
+  it.each([
+    [
+      'orientdigindex.com',
+      'Define the category evidence',
+      'Review the scoring weights',
+      '/orient-score-methodology',
+    ],
+    [
+      'parcelupindex.com',
+      'Preserve the Taobao order source',
+      'Review the warehouse handoff',
+      '/shipping-and-warehouse',
+    ],
+    [
+      'sugargooindex.net',
+      'Refresh the listing and option',
+      'Open the QC evidence guide',
+      '/sugargoo-qc-guide',
+    ],
+  ])(
+    'uses an independent research journey for %s',
+    (domain, label, secondaryLabel, href) => {
+    render(
+      <TenantProvider tenant={getTenantConfigByHost(domain)}>
+        <UsfansQuickStart />
+      </TenantProvider>,
+    );
+
+    expect(screen.getByText(label)).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: secondaryLabel })).toHaveAttribute(
+        'href',
+        href,
+      );
+    },
+  );
+
   it('uses the YoyBuy spreadsheet, QC and parcel sequence', () => {
     render(
       <TenantProvider tenant={getTenantConfigByHost('yoybuyindex.com')}>

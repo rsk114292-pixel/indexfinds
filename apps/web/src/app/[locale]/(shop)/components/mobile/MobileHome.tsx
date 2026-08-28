@@ -445,6 +445,23 @@ export default function MobileHome({
             <div className="h-2 bg-gray-50" />
             <MobileProductFeed />
           </>
+        ) : tenant?.domain === "orientdigindex.com" ? (
+          <>
+            <UsfansQuickStart compact />
+            <MobileCategoryScroll initialData={initialCategories} />
+          </>
+        ) : tenant?.domain === "parcelupindex.com" ? (
+          <>
+            <UsfansQuickStart compact />
+            <div className="h-2 bg-gray-50" />
+            <MobileProductFeed />
+          </>
+        ) : tenant?.domain === "sugargooindex.net" ? (
+          <>
+            <MobileCategoryScroll initialData={initialCategories} />
+            <UsfansQuickStart compact />
+            <MobileBrandScroll />
+          </>
         ) : (
           <>
             {homeVariant === "catalog" && (
