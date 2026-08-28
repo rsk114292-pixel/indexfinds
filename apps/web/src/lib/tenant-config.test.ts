@@ -430,6 +430,9 @@ describe("tenant config", () => {
     const kameymall = getTenantConfigByHost("kameymallindex.com")!;
     const joyafinds = getTenantConfigByHost("joyabuyfinds.com")!;
     const joyaindex = getTenantConfigByHost("joyagooindex.com")!;
+    const orientdig = getTenantConfigByHost("orientdigindex.com")!;
+    const parcelup = getTenantConfigByHost("parcelupindex.com")!;
+    const sugargoo = getTenantConfigByHost("sugargooindex.net")!;
 
     expect(isTenantPathIndexable(usfans, "/en")).toBe(true);
     expect(isTenantPathIndexable(usfans, "/en/usfans-spreadsheet")).toBe(true);
@@ -462,6 +465,12 @@ describe("tenant config", () => {
     expect(isTenantPathIndexable(joyafinds, "/en/products")).toBe(false);
     expect(isTenantPathIndexable(joyaindex, "/en/joyagoo-score")).toBe(true);
     expect(isTenantPathIndexable(joyaindex, "/zh/joyagoo-score")).toBe(false);
+    expect(isTenantPathIndexable(orientdig, "/en/orient-score-methodology")).toBe(true);
+    expect(isTenantPathIndexable(orientdig, "/en/products")).toBe(false);
+    expect(isTenantPathIndexable(parcelup, "/en/getting-started")).toBe(true);
+    expect(isTenantPathIndexable(parcelup, "/en/products")).toBe(false);
+    expect(isTenantPathIndexable(sugargoo, "/en/sugargoo-qc-guide")).toBe(true);
+    expect(isTenantPathIndexable(sugargoo, "/zh/sugargoo-qc-guide")).toBe(false);
   });
 
   it("does not treat the main site or an unknown host as a tenant", () => {
@@ -983,6 +992,9 @@ describe("tenant config", () => {
       "mulebuyindex.net",
       "mulebuyitems.com",
       "oopbuyindex.net",
+      "orientdigindex.com",
+      "parcelupindex.com",
+      "sugargooindex.net",
       "usfansindex.net",
       "ydaexpress.net",
       "ydaexpress.org",

@@ -147,21 +147,24 @@ describe("subsite category hub", () => {
       "mulebuyindex.net",
       "mulebuyitems.com",
       "oopbuyindex.net",
+      "orientdigindex.com",
+      "parcelupindex.com",
+      "sugargooindex.net",
       "usfansindex.net",
       "ydaexpress.net",
       "ydaexpress.org",
       "yoybuyindex.com",
     ]);
 
-    const draftSite = getSiteDefinition("orientdigindex.com")!;
-    const page = handleRequest(new Request("https://orientdigindex.com/"));
+    const draftSite = getSiteDefinition("superbuyindex.com")!;
+    const page = handleRequest(new Request("https://superbuyindex.com/"));
     expect(page.headers.get("X-Robots-Tag")).toBe("noindex, follow");
     expect(await page.text()).toContain(
       '<meta name="robots" content="noindex,follow">',
     );
     expect(
       await handleRequest(
-        new Request("https://orientdigindex.com/robots.txt"),
+        new Request("https://superbuyindex.com/robots.txt"),
       ).text(),
     ).toBe("User-agent: *\nDisallow: /\n");
     expect(
