@@ -110,7 +110,7 @@ describe("subsite category hub", () => {
     expect(unknown.headers.get("X-Robots-Tag")).toContain("noindex");
   });
 
-  it("keeps every tenant outside the independently released batch noindex", async () => {
+  it("releases only independently accepted tenants and rejects unknown hosts", async () => {
     const released = SITE_DEFINITIONS.filter(isSiteReleasedForIndexing).map(
       (site) => site.domain,
     );
@@ -150,28 +150,26 @@ describe("subsite category hub", () => {
       "orientdigindex.com",
       "parcelupindex.com",
       "sugargooindex.net",
+      "superbuydeals.com",
+      "superbuyindex.com",
+      "superbuyitems.com",
       "usfansindex.net",
       "ydaexpress.net",
       "ydaexpress.org",
       "yoybuyindex.com",
     ]);
 
-    const draftSite = getSiteDefinition("superbuyindex.com")!;
-    const page = handleRequest(new Request("https://superbuyindex.com/"));
-    expect(page.headers.get("X-Robots-Tag")).toBe("noindex, follow");
-    expect(await page.text()).toContain(
-      '<meta name="robots" content="noindex,follow">',
-    );
-    expect(
-      await handleRequest(
-        new Request("https://superbuyindex.com/robots.txt"),
-      ).text(),
-    ).toBe("User-agent: *\nDisallow: /\n");
-    expect(
-      await handleRequest(
-        new Request("https://cssbuyindex.com/sitemap.xml"),
-      ).text(),
-    ).not.toContain(`<loc>https://${draftSite.domain}/</loc>`);
+    const unknownSite = {
+      domain: "draft.example",
+      title: "Draft tenant",
+      agentKey: null,
+    };
+    expect(isSiteReleasedForIndexing(unknownSite)).toBe(false);
+
+    const page = handleRequest(new Request("https://draft.example/"));
+    expect(page.status).toBe(404);
+    expect(page.headers.get("X-Robots-Tag")).toContain("noindex");
+    expect(await page.text()).toContain("Unknown IndexFinds subsite");
   });
 
   it("supports local preview selection without accepting arbitrary hosts", async () => {
