@@ -50,19 +50,6 @@ async function getProduct(slug: string) {
   }
 }
 
-async function loadImage(imageUrl: string): Promise<string | null> {
-  try {
-    const res = await fetch(imageUrl, { signal: AbortSignal.timeout(5000) });
-    if (!res.ok) return null;
-    const buffer = await res.arrayBuffer();
-    const base64 = Buffer.from(buffer).toString('base64');
-    const ct = res.headers.get('content-type') || 'image/jpeg';
-    return `data:${ct};base64,${base64}`;
-  } catch {
-    return null;
-  }
-}
-
 export default async function OGImage({
   params,
 }: {
@@ -111,11 +98,6 @@ export default async function OGImage({
     ? formatOgPrice(product.priceMin, locale)
     : '';
 
-  // 加载产品主图
-  const imageDataUrl = product.mainImage
-    ? await loadImage(product.mainImage)
-    : null;
-
   return new ImageResponse(
     (
       <div
@@ -137,7 +119,7 @@ export default async function OGImage({
             gap: 48,
           }}
         >
-          {/* 左侧：产品图片 */}
+          {/* 左侧：稳定的产品预览标记。避免在请求期间下载并解码不受控的大图。 */}
           <div
             style={{
               width: 420,
@@ -151,19 +133,9 @@ export default async function OGImage({
               flexShrink: 0,
             }}
           >
-            {imageDataUrl ? (
-              <img
-                src={imageDataUrl}
-                alt=""
-                width={420}
-                height={420}
-                style={{ objectFit: 'contain' }}
-              />
-            ) : (
-              <div style={{ fontSize: 80, color: '#d1d5db', fontWeight: 600 }}>
-                {title.charAt(0) || '?'}
-              </div>
-            )}
+            <div style={{ fontSize: 80, color: '#d1d5db', fontWeight: 600 }}>
+              {title.charAt(0) || '?'}
+            </div>
           </div>
 
           {/* 右侧：产品信息 */}
