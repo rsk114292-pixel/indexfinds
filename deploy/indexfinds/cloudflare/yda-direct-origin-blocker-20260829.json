@@ -1,0 +1,31 @@
+{
+  "recordedAt": "2026-08-29T03:28:34+08:00",
+  "sourceCommit": "5a409d3",
+  "domains": [
+    "ydaexpress.net",
+    "ydaexpress.org"
+  ],
+  "currentState": {
+    "routeState": "original-dedicated-workers-restored",
+    "liveStatus": "All apex and www English URLs currently return Cloudflare 429 because the account Worker daily request quota is exhausted.",
+    "mainSiteImpact": "none",
+    "indexingDecision": "Do not treat the two YDA domains as currently production-healthy until direct-origin cutover and live revalidation pass."
+  },
+  "completedPreparation": {
+    "application": "Both YDA tenants pass the same isolated local SEO, content, sitemap, structured-data, favicon and desktop/mobile acceptance checks as the 40 released tenants.",
+    "hostinger": "HTTP-only ACME challenge vhosts were prepared and Nginx validation passed.",
+    "certificateRequests": "Private keys and CSRs were created with restricted permissions for both domains; no certificate was issued.",
+    "rollbackTest": "A temporary no-Worker route test was fully rolled back after proving that the existing Cloudflare DNS origin does not reach 186.240.157.184."
+  },
+  "blockers": [
+    "The Cloudflare credentials available to the deployment tools can manage Workers routes but return 403 for DNS and zone settings.",
+    "The server-side Cloudflare account token previously used for Origin CA issuance is inactive.",
+    "Without DNS edit permission, the apex and www records cannot be safely pointed at 186.240.157.184.",
+    "Without an active Origin CA token or manually supplied certificate, Full (strict) TLS cannot be completed at the Hostinger origin."
+  ],
+  "requiredUserAction": {
+    "preferred": "Provide or connect a Cloudflare API token scoped to DNS Edit and Origin CA certificate issuance for the ydaexpress.net and ydaexpress.org zones.",
+    "manualAlternative": "In Cloudflare, point proxied apex and www DNS records for both domains to 186.240.157.184, create Origin CA certificates covering each apex and www host, and provide the certificates for installation. Do not send an account password in chat."
+  },
+  "resumePoint": "Install both Origin CA certificates, validate direct HTTPS with Host headers, remove only the four YDA Worker routes, run the full 12-page and four-viewport YDA production audit, then update the release ledger."
+}
