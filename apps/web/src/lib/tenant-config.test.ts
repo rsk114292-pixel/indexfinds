@@ -428,6 +428,8 @@ describe("tenant config", () => {
     const eastmallbuy = getTenantConfigByHost("eastmallbuyindex.com")!;
     const fishgoo = getTenantConfigByHost("fishgooindex.com")!;
     const kameymall = getTenantConfigByHost("kameymallindex.com")!;
+    const joyafinds = getTenantConfigByHost("joyabuyfinds.com")!;
+    const joyaindex = getTenantConfigByHost("joyagooindex.com")!;
 
     expect(isTenantPathIndexable(usfans, "/en")).toBe(true);
     expect(isTenantPathIndexable(usfans, "/en/usfans-spreadsheet")).toBe(true);
@@ -456,6 +458,10 @@ describe("tenant config", () => {
     expect(isTenantPathIndexable(fishgoo, "/en/products")).toBe(false);
     expect(isTenantPathIndexable(kameymall, "/en/review")).toBe(true);
     expect(isTenantPathIndexable(kameymall, "/zh/review")).toBe(false);
+    expect(isTenantPathIndexable(joyafinds, "/en/search-ideas")).toBe(true);
+    expect(isTenantPathIndexable(joyafinds, "/en/products")).toBe(false);
+    expect(isTenantPathIndexable(joyaindex, "/en/joyagoo-score")).toBe(true);
+    expect(isTenantPathIndexable(joyaindex, "/zh/joyagoo-score")).toBe(false);
   });
 
   it("does not treat the main site or an unknown host as a tenant", () => {
@@ -964,6 +970,8 @@ describe("tenant config", () => {
       "hipobuyindex.com",
       "hoobuyindex.net",
       "itaobuyindex.com",
+      "joyabuyfinds.com",
+      "joyagooindex.com",
       "kakobuyindex.net",
       "kakobuyitems.com",
       "kameymallindex.com",

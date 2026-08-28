@@ -24,6 +24,8 @@ const INDEX_RELEASED_DOMAINS = new Set([
   "hipobuyindex.com",
   "hoobuyindex.net",
   "itaobuyindex.com",
+  "joyabuyfinds.com",
+  "joyagooindex.com",
   "kakobuyindex.net",
   "kakobuyitems.com",
   "kameymallindex.com",

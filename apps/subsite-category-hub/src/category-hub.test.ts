@@ -134,6 +134,8 @@ describe("subsite category hub", () => {
       "hipobuyindex.com",
       "hoobuyindex.net",
       "itaobuyindex.com",
+      "joyabuyfinds.com",
+      "joyagooindex.com",
       "kakobuyindex.net",
       "kakobuyitems.com",
       "kameymallindex.com",
@@ -151,15 +153,15 @@ describe("subsite category hub", () => {
       "yoybuyindex.com",
     ]);
 
-    const draftSite = getSiteDefinition("joyabuyfinds.com")!;
-    const page = handleRequest(new Request("https://joyabuyfinds.com/"));
+    const draftSite = getSiteDefinition("orientdigindex.com")!;
+    const page = handleRequest(new Request("https://orientdigindex.com/"));
     expect(page.headers.get("X-Robots-Tag")).toBe("noindex, follow");
     expect(await page.text()).toContain(
       '<meta name="robots" content="noindex,follow">',
     );
     expect(
       await handleRequest(
-        new Request("https://joyabuyfinds.com/robots.txt"),
+        new Request("https://orientdigindex.com/robots.txt"),
       ).text(),
     ).toBe("User-agent: *\nDisallow: /\n");
     expect(
