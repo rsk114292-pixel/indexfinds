@@ -358,18 +358,14 @@ export default function MobileHome({
           <>
             <UsfansQuickStart compact />
             <MobileCategoryScroll initialData={initialCategories} />
-            <div className="h-2 bg-gray-50" />
-            <MobileProductFeed />
           </>
         ) : tenant?.domain === "gtbuyindex.com" ? (
           <>
             <UsfansQuickStart compact />
-            <div className="h-2 bg-gray-50" />
-            <MobileProductFeed />
+            <MobileBrandScroll />
           </>
         ) : tenant?.domain === "hipobuyindex.com" ? (
           <>
-            <UsfansQuickStart compact />
             <MobileBrandScroll />
             <MobileCategoryScroll initialData={initialCategories} />
           </>
@@ -377,8 +373,6 @@ export default function MobileHome({
           <>
             <div className="h-2 bg-gray-50" />
             <MobileProductFeed />
-            <UsfansQuickStart compact />
-            <MobileCategoryScroll initialData={initialCategories} />
           </>
         ) : homeVariant === "archive" ? (
           <>

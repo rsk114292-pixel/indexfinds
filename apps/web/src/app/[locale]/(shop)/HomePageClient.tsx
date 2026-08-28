@@ -111,7 +111,6 @@ export default function HomePageClient({
         <HeroSection initialHotSearches={initialHotSearches} />
         <UsfansQuickStart />
         <CategoriesBentoSection initialData={initialCategories} />
-        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
         <CtaSection />
       </>
     );
@@ -122,7 +121,7 @@ export default function HomePageClient({
       <>
         <HeroSection initialHotSearches={initialHotSearches} />
         <UsfansQuickStart />
-        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
         <CtaSection />
       </>
     );
@@ -132,8 +131,8 @@ export default function HomePageClient({
     return (
       <>
         <HeroSection initialHotSearches={initialHotSearches} />
-        <UsfansQuickStart />
         <FeaturedBrandsSection initialData={initialFeaturedBrands} />
+        <CategoriesBentoSection initialData={initialCategories} />
         <HowItWorksSection />
         <CtaSection />
       </>
@@ -145,8 +144,6 @@ export default function HomePageClient({
       <>
         <HeroSection initialHotSearches={initialHotSearches} />
         <ProductShowcaseSection initialNewestData={initialNewestProducts} />
-        <UsfansQuickStart />
-        <CategoriesBentoSection initialData={initialCategories} />
         <CtaSection />
       </>
     );
