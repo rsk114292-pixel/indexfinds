@@ -21,6 +21,7 @@ const INDEX_RELEASED_DOMAINS = new Set([
   "gtbuyindex.com",
   "hipobuyindex.com",
   "hoobuyindex.net",
+  "itaobuyindex.com",
   "kakobuyindex.net",
   "kakobuyitems.com",
   "litbuyindex.com",
@@ -31,8 +32,10 @@ const INDEX_RELEASED_DOMAINS = new Set([
   "mulebuyindex.net",
   "mulebuyitems.com",
   "oopbuyindex.net",
+  "usfansindex.net",
   "ydaexpress.net",
   "ydaexpress.org",
+  "yoybuyindex.com",
 ]);
 
 export function isSiteReleasedForIndexing(site: SiteDefinition): boolean {

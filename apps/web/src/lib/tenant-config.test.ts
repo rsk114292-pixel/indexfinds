@@ -423,16 +423,22 @@ describe("tenant config", () => {
   it("indexes only production-validated tenant-specific public paths", () => {
     const usfans = getTenantConfigByHost("usfansindex.net")!;
     const itaobuy = getTenantConfigByHost("itaobuyindex.com")!;
+    const yoybuy = getTenantConfigByHost("yoybuyindex.com")!;
     const acbuy = getTenantConfigByHost("acbuyindex.com")!;
 
-    expect(isTenantPathIndexable(usfans, "/en")).toBe(false);
-    expect(isTenantPathIndexable(usfans, "/en/usfans-spreadsheet")).toBe(false);
+    expect(isTenantPathIndexable(usfans, "/en")).toBe(true);
+    expect(isTenantPathIndexable(usfans, "/en/usfans-spreadsheet")).toBe(true);
     expect(isTenantPathIndexable(usfans, "/en/products/example")).toBe(false);
     expect(isTenantPathIndexable(usfans, "/en/privacy")).toBe(false);
-    expect(isTenantPathIndexable(itaobuy, "/en")).toBe(false);
-    expect(isTenantPathIndexable(itaobuy, "/en/site-guide")).toBe(false);
+    expect(isTenantPathIndexable(itaobuy, "/en")).toBe(true);
+    expect(isTenantPathIndexable(itaobuy, "/en/site-guide")).toBe(true);
     expect(isTenantPathIndexable(itaobuy, "/en/products/example")).toBe(false);
     expect(isTenantPathIndexable(itaobuy, "/zh/site-guide")).toBe(false);
+    expect(isTenantPathIndexable(yoybuy, "/en")).toBe(true);
+    expect(isTenantPathIndexable(yoybuy, "/en/spreadsheet")).toBe(true);
+    expect(isTenantPathIndexable(yoybuy, "/en/qc-checklist")).toBe(true);
+    expect(isTenantPathIndexable(yoybuy, "/en/products/example")).toBe(false);
+    expect(isTenantPathIndexable(yoybuy, "/zh/spreadsheet")).toBe(false);
     expect(isTenantPathIndexable(acbuy, "/en")).toBe(true);
     expect(isTenantPathIndexable(acbuy, "/en/directory")).toBe(true);
     expect(isTenantPathIndexable(acbuy, "/en/platform-guide")).toBe(true);
@@ -946,6 +952,7 @@ describe("tenant config", () => {
       "gtbuyindex.com",
       "hipobuyindex.com",
       "hoobuyindex.net",
+      "itaobuyindex.com",
       "kakobuyindex.net",
       "kakobuyitems.com",
       "litbuyindex.com",
@@ -956,8 +963,10 @@ describe("tenant config", () => {
       "mulebuyindex.net",
       "mulebuyitems.com",
       "oopbuyindex.net",
+      "usfansindex.net",
       "ydaexpress.net",
       "ydaexpress.org",
+      "yoybuyindex.com",
     ]);
   });
 

@@ -131,6 +131,7 @@ describe("subsite category hub", () => {
       "gtbuyindex.com",
       "hipobuyindex.com",
       "hoobuyindex.net",
+      "itaobuyindex.com",
       "kakobuyindex.net",
       "kakobuyitems.com",
       "litbuyindex.com",
@@ -141,8 +142,10 @@ describe("subsite category hub", () => {
       "mulebuyindex.net",
       "mulebuyitems.com",
       "oopbuyindex.net",
+      "usfansindex.net",
       "ydaexpress.net",
       "ydaexpress.org",
+      "yoybuyindex.com",
     ]);
 
     const draftSite = getSiteDefinition("eastmallbuyindex.com")!;

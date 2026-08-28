@@ -66,6 +66,7 @@ const INDEX_READY_TENANT_DOMAINS = new Set([
   "gtbuyindex.com",
   "hipobuyindex.com",
   "hoobuyindex.net",
+  "itaobuyindex.com",
   "kakobuyindex.net",
   "kakobuyitems.com",
   "litbuyindex.com",
@@ -76,8 +77,10 @@ const INDEX_READY_TENANT_DOMAINS = new Set([
   "mulebuyindex.net",
   "mulebuyitems.com",
   "oopbuyindex.net",
+  "usfansindex.net",
   "ydaexpress.net",
   "ydaexpress.org",
+  "yoybuyindex.com",
 ]);
 
 export function isTenantReleasedForIndexing(tenant: TenantConfig): boolean {
