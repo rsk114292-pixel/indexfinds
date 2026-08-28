@@ -59,4 +59,12 @@ describe('robots.txt', () => {
     expect(result.host).toBe('https://usfansindex.net');
     expect(result.sitemap).toBe('https://usfansindex.net/sitemap.xml');
   });
+
+  it('blocks an unreleased tenant without advertising a sitemap', () => {
+    const result = buildRobots('https://superbuyindex.com', false);
+
+    expect(result.rules).toEqual({ userAgent: '*', disallow: '/' });
+    expect(result.host).toBeUndefined();
+    expect(result.sitemap).toBeUndefined();
+  });
 });

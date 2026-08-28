@@ -4,7 +4,10 @@
  */
 import { MetadataRoute } from 'next';
 import { headers } from 'next/headers';
-import { resolveSiteIdentityFromHeaders } from '@/lib/tenant-config';
+import {
+  isTenantReleasedForIndexing,
+  resolveSiteIdentityFromHeaders,
+} from '@/lib/tenant-config';
 
 const PRIVATE_PATHS = [
   '/api/',           // API 端点
@@ -23,7 +26,19 @@ const PRIVATE_PATHS = [
   '/*?page=',        // 深度分页
 ] as const;
 
-export function buildRobots(siteUrl: string): MetadataRoute.Robots {
+export function buildRobots(
+  siteUrl: string,
+  allowIndexing = true,
+): MetadataRoute.Robots {
+  if (!allowIndexing) {
+    return {
+      rules: {
+        userAgent: '*',
+        disallow: '/',
+      },
+    };
+  }
+
   return {
     rules: [
       {
@@ -47,5 +62,8 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     await headers(),
     process.env.INDEXFINDS_LOCAL_TENANT_HOST,
   );
-  return buildRobots(identity.siteUrl);
+  const allowIndexing =
+    !identity.tenant || isTenantReleasedForIndexing(identity.tenant);
+
+  return buildRobots(identity.siteUrl, allowIndexing);
 }

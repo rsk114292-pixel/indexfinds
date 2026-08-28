@@ -386,6 +386,23 @@ export default function MobileHome({
             <div className="h-2 bg-gray-50" />
             <MobileProductFeed />
           </>
+        ) : tenant?.domain === "superbuydeals.com" ? (
+          <>
+            <UsfansQuickStart compact />
+            <MobileCategoryScroll initialData={initialCategories} />
+          </>
+        ) : tenant?.domain === "superbuyindex.com" ? (
+          <>
+            <MobileCategoryScroll initialData={initialCategories} />
+            <UsfansQuickStart compact />
+          </>
+        ) : tenant?.domain === "superbuyitems.com" ? (
+          <>
+            <div className="h-2 bg-gray-50" />
+            <MobileProductFeed />
+            <UsfansQuickStart compact />
+            <MobileBrandScroll />
+          </>
         ) : homeVariant === "archive" ? (
           <>
             <ItaobuyResearchArchive compact />

@@ -268,6 +268,39 @@ export default function HomePageClient({
     );
   }
 
+  if (tenant?.domain === "superbuydeals.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <UsfansQuickStart />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (tenant?.domain === "superbuyindex.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <UsfansQuickStart />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (tenant?.domain === "superbuyitems.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <UsfansQuickStart />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
+        <CtaSection />
+      </>
+    );
+  }
+
   if (homeVariant === "index") {
     return (
       <>

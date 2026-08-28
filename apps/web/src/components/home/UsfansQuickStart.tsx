@@ -251,6 +251,78 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                               icon: Scale,
                             },
                           ] as const)
+                        : tenant.domain === "superbuydeals.com"
+                          ? ([
+                              {
+                                href: "/spreadsheet-checklist",
+                                title: "Capture the original offer terms",
+                                description:
+                                  "Save the source, review date, eligibility wording and visible checkout condition together.",
+                                icon: Search,
+                              },
+                              {
+                                href: "/superbuy-spreadsheet",
+                                title: "Separate offer and product evidence",
+                                description:
+                                  "Keep the promotional claim apart from the exact item, option and seller record.",
+                                icon: LayoutGrid,
+                              },
+                              {
+                                href: "/shipping-weight-guide",
+                                title: "Keep shipping outside the deal label",
+                                description:
+                                  "Treat measured parcel inputs and route charges as a later, independent cost stage.",
+                                icon: Scale,
+                              },
+                            ] as const)
+                          : tenant.domain === "superbuyindex.com"
+                            ? ([
+                                {
+                                  href: "/search-ideas",
+                                  title: "Write a repeatable query",
+                                  description:
+                                    "Record the product terms, constraints and exclusions that define the search.",
+                                  icon: Search,
+                                },
+                                {
+                                  href: "/superbuy-spreadsheet",
+                                  title: "Deduplicate source destinations",
+                                  description:
+                                    "Merge rows that resolve to the same listing while preserving distinct options and review dates.",
+                                  icon: Scale,
+                                },
+                                {
+                                  href: "/spreadsheet-checklist",
+                                  title: "Retain rows with open questions",
+                                  description:
+                                    "Keep missing source, option and seller facts visible instead of treating a ranking as verification.",
+                                  icon: LayoutGrid,
+                                },
+                              ] as const)
+                            : tenant.domain === "superbuyitems.com"
+                              ? ([
+                                  {
+                                    href: "/superbuy-items",
+                                    title: "Open the item evidence file",
+                                    description:
+                                      "Start with the product link, requested option and dated listing fields.",
+                                    icon: LayoutGrid,
+                                  },
+                                  {
+                                    href: "/superbuy-qc",
+                                    title: "Compare received-item QC",
+                                    description:
+                                      "Match warehouse photos and measurements to the option that was actually requested.",
+                                    icon: Search,
+                                  },
+                                  {
+                                    href: "/superbuy-shipping",
+                                    title: "Wait for the measured parcel",
+                                    description:
+                                      "Evaluate shipping only after packed weight and dimensions replace listing estimates.",
+                                    icon: Scale,
+                                  },
+                                ] as const)
         : ([
             {
               href: "/categories",
@@ -293,6 +365,12 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                       ? { href: "/shipping-and-warehouse", label: "Review the warehouse handoff" }
                       : tenant.domain === "sugargooindex.net"
                         ? { href: "/sugargoo-qc-guide", label: "Open the QC evidence guide" }
+                        : tenant.domain === "superbuydeals.com"
+                          ? { href: "/spreadsheet-checklist", label: "Open the offer capture checklist" }
+                          : tenant.domain === "superbuyindex.com"
+                            ? { href: "/search-ideas", label: "Open the query design guide" }
+                            : tenant.domain === "superbuyitems.com"
+                              ? { href: "/superbuy-qc", label: "Review the item QC fields" }
         : { href: "/products", label: "Browse all products" };
 
   const boundaryNote =
@@ -312,6 +390,12 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                   ? "A listing price covers neither later parcel measurements nor current route fees. Recheck each payment stage independently."
                   : tenant.domain === "sugargooindex.net"
                     ? "A spreadsheet row is a research lead, not proof of stock, option accuracy, received condition or final shipping cost."
+                    : tenant.domain === "superbuydeals.com"
+                      ? "An offer label does not prove current eligibility, exact product coverage or the final checkout result. Recheck the dated source."
+                      : tenant.domain === "superbuyindex.com"
+                        ? "A rank, brand or category match organizes candidates; it does not verify the current option, price, seller or source page."
+                        : tenant.domain === "superbuyitems.com"
+                          ? "A linked item is a research record, not proof of authenticity, availability, received condition or future parcel cost."
           : "Some outbound buying links may be referral links. Confirm current price, availability and service terms on the destination site.";
 
   return (

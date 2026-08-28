@@ -47,6 +47,24 @@ describe('UsfansQuickStart', () => {
       'Open the QC evidence guide',
       '/sugargoo-qc-guide',
     ],
+    [
+      'superbuydeals.com',
+      'Capture the original offer terms',
+      'Open the offer capture checklist',
+      '/spreadsheet-checklist',
+    ],
+    [
+      'superbuyindex.com',
+      'Write a repeatable query',
+      'Open the query design guide',
+      '/search-ideas',
+    ],
+    [
+      'superbuyitems.com',
+      'Open the item evidence file',
+      'Review the item QC fields',
+      '/superbuy-qc',
+    ],
   ])(
     'uses an independent research journey for %s',
     (domain, label, secondaryLabel, href) => {
