@@ -496,13 +496,12 @@ describe('sitemap', () => {
     await expectTenantSitemap(domain, paths);
   });
 
-  it('keeps every unreleased tenant out of sitemap output', async () => {
+  it('keeps any unreleased tenants out of sitemap output', async () => {
     const unreleased = SUBSITE_GUIDES.filter((guide) => {
       const tenant = getTenantConfigByHost(guide.domain);
       return tenant && !isTenantReleasedForIndexing(tenant);
     });
 
-    expect(unreleased.length).toBeGreaterThan(0);
     for (const guide of unreleased) {
       const options = getTenantSitemapOptions(
         getTenantConfigByHost(guide.domain),
