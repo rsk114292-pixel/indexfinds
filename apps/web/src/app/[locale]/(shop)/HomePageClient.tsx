@@ -210,6 +210,30 @@ export default function HomePageClient({
     );
   }
 
+  if (tenant?.domain === "joyabuyfinds.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <UsfansQuickStart />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (tenant?.domain === "joyagooindex.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <UsfansQuickStart />
+        <HowItWorksSection />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <CtaSection />
+      </>
+    );
+  }
+
   if (homeVariant === "index") {
     return (
       <>

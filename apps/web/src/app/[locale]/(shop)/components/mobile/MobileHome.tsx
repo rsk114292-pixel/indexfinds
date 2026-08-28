@@ -433,6 +433,18 @@ export default function MobileHome({
             <div className="h-2 bg-gray-50" />
             <MobileProductFeed />
           </>
+        ) : tenant?.domain === "joyabuyfinds.com" ? (
+          <>
+            <MobileCategoryScroll initialData={initialCategories} />
+            <UsfansQuickStart compact />
+            <MobileBrandScroll />
+          </>
+        ) : tenant?.domain === "joyagooindex.com" ? (
+          <>
+            <UsfansQuickStart compact />
+            <div className="h-2 bg-gray-50" />
+            <MobileProductFeed />
+          </>
         ) : (
           <>
             {homeVariant === "catalog" && (

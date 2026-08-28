@@ -131,6 +131,54 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                     icon: Scale,
                   },
                 ] as const)
+              : tenant.domain === "joyabuyfinds.com"
+                ? ([
+                    {
+                      href: "/search-ideas",
+                      title: "Begin with discovery cues",
+                      description:
+                        "Use a category, style phrase or image clue to form a candidate set without treating it as verified.",
+                      icon: Search,
+                    },
+                    {
+                      href: "/joyagoo-score",
+                      title: "Score the candidate source",
+                      description:
+                        "Keep the listing, intended option and missing product details together before saving a find.",
+                      icon: Scale,
+                    },
+                    {
+                      href: "/safety",
+                      title: "Separate the unknowns",
+                      description:
+                        "Record unresolved seller, payment and destination questions instead of filling them with assumptions.",
+                      icon: LayoutGrid,
+                    },
+                  ] as const)
+                : tenant.domain === "joyagooindex.com"
+                  ? ([
+                      {
+                        href: "/joyagoo-score",
+                        title: "Create the stage record",
+                        description:
+                          "Keep source, option, order state and warehouse evidence as separate dated fields.",
+                        icon: LayoutGrid,
+                      },
+                      {
+                        href: "/shipping",
+                        title: "Add measured parcel facts",
+                        description:
+                          "Use packed weight and dimensions only when the warehouse record makes them available.",
+                        icon: Scale,
+                      },
+                      {
+                        href: "/safety",
+                        title: "Keep handoff risks visible",
+                        description:
+                          "Review what changed between listing, order, QC and parcel stages before an external handoff.",
+                        icon: Search,
+                      },
+                    ] as const)
         : ([
             {
               href: "/categories",
@@ -163,6 +211,10 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
             ? { href: "/fishgoo-checklist", label: "Open the evidence checklist" }
             : tenant.domain === "kameymallindex.com"
               ? { href: "/review", label: "Compare the QC record" }
+              : tenant.domain === "joyabuyfinds.com"
+                ? { href: "/joyagoo-score", label: "Open the candidate score" }
+                : tenant.domain === "joyagooindex.com"
+                  ? { href: "/joyagoo-score", label: "Open the stage worksheet" }
         : { href: "/products", label: "Browse all products" };
 
   const boundaryNote =
@@ -172,6 +224,10 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
         ? "Broad discovery results and image matches are candidates, not confirmations. Verify the exact listing and option at the source."
         : tenant.domain === "kameymallindex.com"
           ? "Historical QC examples describe earlier records; they do not prove the condition or measurements of a current received item."
+          : tenant.domain === "joyabuyfinds.com"
+            ? "A visually relevant find is still only a candidate. Recheck the exact source, option, price and seller details before keeping it."
+            : tenant.domain === "joyagooindex.com"
+              ? "Evidence from one stage does not prove a later outcome. Keep listing, order, QC and parcel records dated and separate."
           : "Some outbound buying links may be referral links. Confirm current price, availability and service terms on the destination site.";
 
   return (

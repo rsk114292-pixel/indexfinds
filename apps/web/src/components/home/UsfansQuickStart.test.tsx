@@ -94,4 +94,38 @@ describe('UsfansQuickStart', () => {
     );
     expect(screen.queryByText('Browse all products')).not.toBeInTheDocument();
   });
+
+  it('uses the JoyaGoo Finds discovery-to-candidate sequence', () => {
+    render(
+      <TenantProvider tenant={getTenantConfigByHost('joyabuyfinds.com')}>
+        <UsfansQuickStart />
+      </TenantProvider>,
+    );
+
+    expect(screen.getByText('Begin with discovery cues')).toBeInTheDocument();
+    expect(screen.getByText('Score the candidate source')).toBeInTheDocument();
+    expect(screen.getByText('Separate the unknowns')).toBeInTheDocument();
+    expect(screen.getByText('Open the candidate score')).toHaveAttribute(
+      'href',
+      '/joyagoo-score',
+    );
+    expect(screen.queryByText('Browse all products')).not.toBeInTheDocument();
+  });
+
+  it('uses the JoyaGoo Index stage-record sequence', () => {
+    render(
+      <TenantProvider tenant={getTenantConfigByHost('joyagooindex.com')}>
+        <UsfansQuickStart />
+      </TenantProvider>,
+    );
+
+    expect(screen.getByText('Create the stage record')).toBeInTheDocument();
+    expect(screen.getByText('Add measured parcel facts')).toBeInTheDocument();
+    expect(screen.getByText('Keep handoff risks visible')).toBeInTheDocument();
+    expect(screen.getByText('Open the stage worksheet')).toHaveAttribute(
+      'href',
+      '/joyagoo-score',
+    );
+    expect(screen.queryByText('Browse all products')).not.toBeInTheDocument();
+  });
 });
