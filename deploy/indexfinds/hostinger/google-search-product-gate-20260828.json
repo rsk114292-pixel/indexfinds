@@ -1,0 +1,73 @@
+{
+  "change": "Production Google indexing gate for product pages and product sitemaps",
+  "date": "2026-08-28",
+  "origin": "186.240.157.184",
+  "source": {
+    "acceptedCommit": "50ec07c",
+    "imageRelease": "gsc-seo-20260828T0348Z",
+    "releaseMetadata": {
+      "baseCommit": "dc9689c",
+      "seoGateCommit": "72cd667",
+      "webSourceCommit": "0bf8570"
+    },
+    "runtimeHashMatchesAcceptedCommit": {
+      "apps/api/src/products/product-detail.service.ts": "0cc6f3b4c9f25de51f3fd72bc72b0d14e36caf19af7b672411b688c4b6069243",
+      "apps/web/src/app/sitemap.xml/route.ts": "b92b7a852b9a400d0a08fc2d8a03269de1dfd7403ba36bf64dbab261bed9c97a",
+      "apps/web/src/app/sitemaps/[id]/route.ts": "f9ae9f8fc36197e58e902fd13d2a6f0350d39be6a97421a8c7843dd7094e3462"
+    }
+  },
+  "release": {
+    "web": {
+      "image": "indexfinds-web:gsc-seo-20260828T0348Z",
+      "container": "indexfinds-web-gsc-seo-20260828T0348Z",
+      "activePort": 3119,
+      "backupPort": 3118
+    },
+    "api": {
+      "image": "indexfinds-api:gsc-seo-20260828T0348Z",
+      "container": "indexfinds-api-gsc-seo-20260828T0348Z",
+      "activePort": 4102,
+      "backupPort": 4101
+    }
+  },
+  "rollback": {
+    "acceptedConfig": "/root/.indexfinds-migration/nginx-backups/indexfinds.com.conf.post-gsc-acceptance-20260828T0419Z",
+    "rollbackConfig": "/root/.indexfinds-migration/nginx-backups/indexfinds.com.conf.rollback-gsc-to-prior-20260828T0419Z",
+    "rollbackWebPort": 3118,
+    "rollbackApiPort": 4101
+  },
+  "validation": {
+    "nginxConfiguration": "passed",
+    "containers": "healthy with zero restarts and no OOM kill",
+    "publicPaths": {
+      "https://indexfinds.com/": 307,
+      "https://indexfinds.com/en": 200,
+      "https://indexfinds.com/robots.txt": 200,
+      "https://indexfinds.com/sitemap.xml": 200,
+      "https://indexfinds.com/sitemaps/0": 200,
+      "https://indexfinds.com/sitemaps/1": 404,
+      "https://api-next.indexfinds.com/health": 200,
+      "https://api-next.indexfinds.com/products/slugs?page=1&limit=1": 200
+    },
+    "apiProof": {
+      "reviewedOnly": true,
+      "currentReviewedProductCount": 0
+    },
+    "sitemapProof": {
+      "declaredChunks": [0],
+      "invalidChunkStatus": 404,
+      "indexedProductLocations": 0
+    },
+    "productPageProof": {
+      "existingEnglishProduct": "noindex, follow",
+      "translatedProduct": "noindex, follow with English canonical"
+    },
+    "testSuites": {
+      "web": "127 suites / 818 tests passed",
+      "api": "129 suites / 2073 tests passed",
+      "typecheck": "web and api passed",
+      "targetedLint": "passed"
+    },
+    "postSwitch": "No public 5xx or matching upstream connection error was present in the inspected production log window."
+  }
+}
