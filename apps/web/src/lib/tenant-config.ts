@@ -470,7 +470,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     accentColor: "#6bd7c7",
     seoTitle: "YDA Express Parcel Forwarding Guide | Warehouse Checklist",
     description:
-      "Use an independent YDA Express parcel forwarding guide to prepare warehouse, consolidation, dimensions, declared contents, restrictions and tracking questions before choosing a route.",
+      "Use an independent YDA Express parcel forwarding guide to prepare warehouse, consolidation, dimensions, contents, restrictions and tracking questions before choosing a route.",
     heroEyebrow: "Independent YDA Express parcel preparation guide",
     heroPrimary: "Prepare the parcel record before comparing a route.",
     heroSecondary: "Contents. Measurements. Restrictions. Handoff.",
