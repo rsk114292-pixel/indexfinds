@@ -1,0 +1,50 @@
+{
+  "incident": "indexfinds.com Cloudflare 502 / host error",
+  "date": "2026-08-28",
+  "origin": "186.240.157.184",
+  "cause": {
+    "summary": "Distributed crawler bursts saturated dynamic product and image routes while product OpenGraph generation downloaded and decoded unbounded remote images.",
+    "evidence": [
+      "Nginx recorded bursts of upstream prematurely closed connection responses for product OpenGraph images.",
+      "The previous web container recorded ImageResponse memory access out of bounds failures.",
+      "The active and standby containers had not restarted and were not OOM-killed."
+    ]
+  },
+  "mitigations": [
+    "Grouped AhrefsBot, Amzn-SearchBot, facebookexternalhit and meta-webindexer into global crawler rate-limit keys.",
+    "Expanded the grouped hosting-provider network ranges observed in the incident.",
+    "Removed remote product-image download and base64 decoding from product OpenGraph generation.",
+    "Replaced the dynamic-font approximation glyph with an ASCII marker.",
+    "Pruned 18.98 GB of disposable Docker build cache without deleting running containers, databases or rollback images."
+  ],
+  "release": {
+    "commit": "b1ba61c",
+    "image": "indexfinds-web:b1ba61c-main-hotfix",
+    "container": "indexfinds-web-b1ba61c-main-hotfix",
+    "activePort": 3118,
+    "backupPort": 3107,
+    "previousContainer": "indexfinds-web-72cd667-preview"
+  },
+  "rollback": {
+    "preHardeningConfig": "/root/.indexfinds-migration/nginx-backups/indexfinds.com.conf.pre-502-hardening-20260828T030142Z",
+    "preReleaseConfig": "/root/.indexfinds-migration/nginx-backups/indexfinds.com.conf.pre-b1ba61c-release-20260828T031626Z"
+  },
+  "validation": {
+    "webTypecheck": "passed",
+    "webLint": "passed",
+    "webTestSuites": 126,
+    "webTests": 813,
+    "candidateOgConcurrentRequests": "20/20 HTTP 200 image/png",
+    "productionPaths": {
+      "/": 307,
+      "/en": 200,
+      "/robots.txt": 200,
+      "/sitemap.xml": 200,
+      "/en/products/gucci-short-wallet-472csd": 200,
+      "/en/products/gucci-short-wallet-472csd/opengraph-image-de0xjv": 200,
+      "/en/register": 404,
+      "https://api-next.indexfinds.com/health": 200
+    },
+    "postSwitch": "No new 5xx, upstream disconnect, ImageResponse memory error or dynamic-font error observed during acceptance window."
+  }
+}
