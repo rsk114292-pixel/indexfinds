@@ -182,4 +182,53 @@ describe('UsfansQuickStart', () => {
     );
     expect(screen.queryByText('Browse all products')).not.toBeInTheDocument();
   });
+
+  it.each([
+    [
+      'bbdbuyeusheet.com',
+      'Create the EU evidence row',
+      'Review the EU sheet fields',
+      '/checklist',
+    ],
+    [
+      'cnshopperindex.com',
+      'Map the CNShopper category fields',
+      'Review the external handoff',
+      '/order-handoff',
+    ],
+    [
+      'itaobuyindex.com',
+      'Read the iTaoBuy archive method',
+      'Read the archive method',
+      '/site-guide',
+    ],
+    [
+      'ydaexpress.net',
+      'Create the parcel brief',
+      'Check the warehouse handoff',
+      '/warehouse-checklist',
+    ],
+    [
+      'ydaexpress.org',
+      'Map the forwarding stages',
+      'Verify current forwarding terms',
+      '/terms-checklist',
+    ],
+  ])(
+    'keeps the newly differentiated workflow for %s',
+    (domain, label, secondaryLabel, href) => {
+      render(
+        <TenantProvider tenant={getTenantConfigByHost(domain)}>
+          <UsfansQuickStart />
+        </TenantProvider>,
+      );
+
+      expect(screen.getByText(label)).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: secondaryLabel })).toHaveAttribute(
+        'href',
+        href,
+      );
+      expect(screen.queryByText('Browse all products')).not.toBeInTheDocument();
+    },
+  );
 });

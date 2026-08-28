@@ -5,13 +5,198 @@ import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { useTenant } from "@/components/TenantProvider";
 
+interface TenantDirectoryLink {
+  href: string;
+  title: string;
+  description: string;
+  icon: typeof Search;
+}
+
+const TENANT_DIRECTORY_LINKS: Record<string, readonly TenantDirectoryLink[]> = {
+  "bbdbuyeusheet.com": [
+    { href: "/eu-sheet", title: "Create the EU evidence row", description: "Keep source, option, review date and EU-specific product questions in one comparable record.", icon: LayoutGrid },
+    { href: "/checklist", title: "Mark incomplete listing fields", description: "Flag missing dimensions, materials, plugs or sizing instead of filling the gaps with assumptions.", icon: Search },
+    { href: "/categories", title: "Apply category-specific checks", description: "Use different evidence columns for garments, footwear, electronics and parcel-sensitive items.", icon: Scale },
+  ],
+  "boonbuyfind.net": [
+    { href: "/search-guide", title: "Form a source-finding query", description: "Combine the product type with one useful option, material or model detail before collecting candidates.", icon: Search },
+    { href: "/product-checklist", title: "Preserve each candidate source", description: "Record the exact listing, intended variation and unresolved seller details before saving a find.", icon: LayoutGrid },
+    { href: "/platform-guide", title: "Keep route terms outside the find", description: "Treat current fees, availability and service rules as a separate destination-site verification.", icon: Scale },
+  ],
+  "boonbuyindex.com": [
+    { href: "/query-method", title: "Define the index query", description: "Write the phrase, exclusions and comparison fields that determine whether a result belongs in the set.", icon: Search },
+    { href: "/source-checklist", title: "Audit source continuity", description: "Check that the product record still leads to the expected seller, option and current listing context.", icon: LayoutGrid },
+    { href: "/route-boundaries", title: "Separate product and route evidence", description: "Do not infer payment, warehouse or delivery outcomes from an indexed listing row.", icon: Scale },
+  ],
+  "cnshopperindex.com": [
+    { href: "/category-map", title: "Map the CNShopper category fields", description: "Choose the attributes that make products in this category genuinely comparable before searching.", icon: LayoutGrid },
+    { href: "/source-checklist", title: "Review the marketplace source", description: "Keep seller identity, exact option and dated source status beside each shortlist entry.", icon: Search },
+    { href: "/order-handoff", title: "Document the external handoff", description: "Treat order, payment and warehouse events as later records rather than catalog facts.", icon: Scale },
+  ],
+  "cssbuycatalog.com": [
+    { href: "/spreadsheet", title: "Build a CSSBuy catalog row", description: "Capture source, option, visible price and review date without certifying missing product facts.", icon: LayoutGrid },
+    { href: "/forwarding", title: "Separate forwarding requirements", description: "Keep warehouse and parcel questions apart from the product discovery stage.", icon: Scale },
+    { href: "/usa", title: "Add US destination checks", description: "Review compatibility, restrictions and measured parcel inputs for the intended destination.", icon: Search },
+  ],
+  "cssbuyindex.com": [
+    { href: "/search-ideas", title: "Design a CSSBuy index query", description: "Use exact product language and exclusions to produce a smaller, reviewable candidate set.", icon: Search },
+    { href: "/cssbuy-score", title: "Score visible source evidence", description: "Weight option clarity, source continuity and dated fields while leaving unknowns visible.", icon: Scale },
+    { href: "/forwarding", title: "Keep forwarding as a later stage", description: "Wait for warehouse and parcel evidence before comparing international routes.", icon: LayoutGrid },
+  ],
+  "cssbuyitems.com": [
+    { href: "/guide", title: "Open the CSSBuy item record", description: "Begin with the product link, requested variation and the fields visible on the current source.", icon: LayoutGrid },
+    { href: "/cssbuy-score", title: "Evaluate item evidence", description: "Score completeness and recency without turning the result into an authenticity or seller claim.", icon: Search },
+    { href: "/shipping", title: "Add measured parcel facts later", description: "Use packed weight and dimensions only after the warehouse record provides them.", icon: Scale },
+  ],
+  "goatedbuyindex.com": [
+    { href: "/search-ideas", title: "Write a GoatedBuy search brief", description: "State the product, intended option and exclusion terms before opening the candidate index.", icon: Search },
+    { href: "/goatedbuy-score", title: "Score the candidate trail", description: "Compare source clarity, option detail and review date while preserving open questions.", icon: Scale },
+    { href: "/shipping", title: "Reserve shipping for measured data", description: "Do not use the listing price or product estimate as a substitute for parcel evidence.", icon: LayoutGrid },
+  ],
+  "gtbuyindex.com": [
+    { href: "/guide", title: "Define the GTBuy research row", description: "Keep query, source, selected option and unresolved fields in a repeatable record.", icon: LayoutGrid },
+    { href: "/gtbuy-score", title: "Rate record completeness", description: "Use the score to expose weak evidence, not to certify the seller or product outcome.", icon: Scale },
+    { href: "/safety", title: "Track handoff risks", description: "Verify current payment, seller and destination terms at the external source before acting.", icon: Search },
+  ],
+  "hipobuyindex.com": [
+    { href: "/search-ideas", title: "Create a HipoBuy query set", description: "Separate broad discovery language from the exact phrase used to verify a source listing.", icon: Search },
+    { href: "/hipobuy-score", title: "Review source evidence depth", description: "Compare option clarity, image context and missing fields without inventing a confidence claim.", icon: Scale },
+    { href: "/shipping", title: "Wait for parcel-stage facts", description: "Keep packed dimensions, measured weight and route rules outside the listing record.", icon: LayoutGrid },
+  ],
+  "hoobuyindex.net": [
+    { href: "/guide", title: "Preserve the Hoobuy source trail", description: "Record the listing URL, intended option and review date before continuing to another stage.", icon: LayoutGrid },
+    { href: "/hoobuy-score", title: "Expose missing evidence", description: "Use the score to surface incomplete source fields rather than imply product verification.", icon: Search },
+    { href: "/safety", title: "Check the live route boundary", description: "Confirm current seller, payment and destination terms separately from the indexed product.", icon: Scale },
+  ],
+  "itaobuyindex.com": [
+    { href: "/site-guide", title: "Read the iTaoBuy archive method", description: "Preserve a dated source record and separate visible evidence from claims that need confirmation.", icon: Search },
+    { href: "/products", title: "Search the linked product archive", description: "Use product, brand and category terms to locate a source trail without asserting current stock.", icon: LayoutGrid },
+    { href: "/agents", title: "Keep destination routes distinct", description: "Review an external route only after the product source and intended option are clear.", icon: Scale },
+  ],
+  "kakobuyindex.net": [
+    { href: "/search-ideas", title: "Design a Kakobuy index query", description: "Write the product phrase, category cues and exclusions that define a useful candidate set.", icon: Search },
+    { href: "/kakobuy-score", title: "Score source completeness", description: "Compare visible fields and review dates while keeping seller and product claims unverified.", icon: Scale },
+    { href: "/safety", title: "Record unresolved route checks", description: "Keep current payment, availability and destination questions separate from the index row.", icon: LayoutGrid },
+  ],
+  "kakobuyitems.com": [
+    { href: "/categories", title: "Choose item-specific evidence", description: "Define the option, material, measurements or model fields needed for this category.", icon: LayoutGrid },
+    { href: "/kakobuy-score", title: "Review the individual item record", description: "Use dated source details to expose incomplete options without certifying the item.", icon: Search },
+    { href: "/shipping", title: "Add warehouse measurements later", description: "Keep actual packed weight and dimensions out of the source-listing estimate.", icon: Scale },
+  ],
+  "litbuyindex.com": [
+    { href: "/search-ideas", title: "Form a LitBuy index query", description: "Use one precise product phrase and the comparison fields that matter for the intended item.", icon: Search },
+    { href: "/guide", title: "Preserve the listing evidence", description: "Record the live source, option and review date before treating a result as a candidate.", icon: LayoutGrid },
+    { href: "/shipping", title: "Separate parcel-stage research", description: "Wait for warehouse measurements before comparing a shipping route or final cost.", icon: Scale },
+  ],
+  "litbuyitems.com": [
+    { href: "/guide", title: "Define the LitBuy item file", description: "Keep exact source, requested variation and unresolved product details together.", icon: LayoutGrid },
+    { href: "/safety", title: "Review source and seller unknowns", description: "Do not convert a linked item into a claim about stock, authenticity or future condition.", icon: Search },
+    { href: "/shipping", title: "Use measured parcel evidence", description: "Compare routes only after packed weight and dimensions are available.", icon: Scale },
+  ],
+  "litbuyproducts.com": [
+    { href: "/spreadsheet", title: "Compare LitBuy product rows", description: "Normalize source, option and date fields so duplicates and missing evidence remain visible.", icon: LayoutGrid },
+    { href: "/guide", title: "Verify the product source", description: "Return to the current listing before relying on price, variation or seller details.", icon: Search },
+    { href: "/shipping", title: "Keep product and parcel costs apart", description: "Do not mix the displayed item price with later warehouse and route inputs.", icon: Scale },
+  ],
+  "loongbuys.net": [
+    { href: "/guide", title: "Start a LoongBuy source record", description: "Capture the current listing, selected option and fields that still need verification.", icon: LayoutGrid },
+    { href: "/reviews", title: "Use historical examples carefully", description: "Treat older review or QC evidence as context, never as proof of a new order outcome.", icon: Search },
+    { href: "/safety", title: "Keep route questions explicit", description: "Check current seller, payment and destination terms at the source before a handoff.", icon: Scale },
+  ],
+  "lovegobuyindex.com": [
+    { href: "/lovegobuy-spreadsheet", title: "Build the LoveGoBuy source sheet", description: "Record product URL, intended option, review date and unanswered listing questions.", icon: LayoutGrid },
+    { href: "/is-lovegobuy-legit", title: "Separate public evidence from claims", description: "Review dated business and platform signals without turning them into a guarantee.", icon: Search },
+    { href: "/refund-lovegobuy-order", title: "Check current policy wording", description: "Use the live destination terms for refund eligibility rather than an archived summary.", icon: Scale },
+  ],
+  "mulebuyindex.net": [
+    { href: "/search-ideas", title: "Write a MuleBuy search plan", description: "Define product terms, exclusions and category fields before collecting index candidates.", icon: Search },
+    { href: "/mulebuy-spreadsheet", title: "Deduplicate the source rows", description: "Keep distinct options and dates while merging records that resolve to the same listing.", icon: LayoutGrid },
+    { href: "/buyer-safety", title: "Retain unresolved buying questions", description: "Do not let ranking or popularity replace current seller, payment and source checks.", icon: Scale },
+  ],
+  "mulebuyitems.com": [
+    { href: "/categories", title: "Define MuleBuy item fields", description: "Choose category-specific option, measurement and material evidence before comparison.", icon: LayoutGrid },
+    { href: "/spreadsheet-checklist", title: "Audit the requested variation", description: "Keep the selected option and missing source fields visible in the item record.", icon: Search },
+    { href: "/shipping-weight-guide", title: "Replace estimates with measurements", description: "Use packed weight and dimensions only when warehouse evidence provides them.", icon: Scale },
+  ],
+  "oopbuyindex.net": [
+    { href: "/guide", title: "Define the Oopbuy index record", description: "Preserve query, source, intended option and review date as separate comparable fields.", icon: LayoutGrid },
+    { href: "/oopbuy-score", title: "Score evidence, not outcomes", description: "Use completeness and source continuity without certifying a seller or product condition.", icon: Search },
+    { href: "/shipping", title: "Add parcel facts after packing", description: "Keep route cost research dependent on actual weight, dimensions and current restrictions.", icon: Scale },
+  ],
+  "ydaexpress.net": [
+    { href: "/parcel-brief", title: "Create the parcel brief", description: "List the item count, declared handling needs and evidence required before consolidation.", icon: LayoutGrid },
+    { href: "/warehouse-checklist", title: "Verify the warehouse handoff", description: "Record received-item status and unresolved discrepancies before a parcel is combined.", icon: Search },
+    { href: "/consolidation-planner", title: "Plan from measured inputs", description: "Use actual weights and dimensions while keeping route quotations separately dated.", icon: Scale },
+  ],
+  "ydaexpress.org": [
+    { href: "/service-map", title: "Map the forwarding stages", description: "Separate seller purchase, warehouse receipt, consolidation and carrier handoff records.", icon: LayoutGrid },
+    { href: "/terms-checklist", title: "Check current service terms", description: "Verify prohibited items, fees and claim windows at the dated official source.", icon: Search },
+    { href: "/quote-evidence", title: "Preserve quote assumptions", description: "Keep currency, weight, dimensions, route and expiry beside every forwarding estimate.", icon: Scale },
+  ],
+};
+
+const TENANT_SECONDARY_CTAS: Record<string, { href: string; label: string }> = {
+  "bbdbuyeusheet.com": { href: "/checklist", label: "Review the EU sheet fields" },
+  "boonbuyfind.net": { href: "/product-checklist", label: "Test a discovery candidate" },
+  "boonbuyindex.com": { href: "/source-checklist", label: "Audit the source record" },
+  "cnshopperindex.com": { href: "/order-handoff", label: "Review the external handoff" },
+  "cssbuycatalog.com": { href: "/forwarding", label: "Separate forwarding inputs" },
+  "cssbuyindex.com": { href: "/cssbuy-score", label: "Open the CSSBuy evidence score" },
+  "cssbuyitems.com": { href: "/shipping", label: "Review parcel-stage fields" },
+  "goatedbuyindex.com": { href: "/goatedbuy-score", label: "Open the GoatedBuy score" },
+  "gtbuyindex.com": { href: "/gtbuy-score", label: "Review GTBuy record depth" },
+  "hipobuyindex.com": { href: "/hipobuy-score", label: "Review HipoBuy source depth" },
+  "hoobuyindex.net": { href: "/hoobuy-score", label: "Expose missing Hoobuy fields" },
+  "itaobuyindex.com": { href: "/site-guide", label: "Read the archive method" },
+  "kakobuyindex.net": { href: "/kakobuy-score", label: "Review the Kakobuy score" },
+  "kakobuyitems.com": { href: "/shipping", label: "Open warehouse measurement notes" },
+  "litbuyindex.com": { href: "/search-ideas", label: "Design the LitBuy query" },
+  "litbuyitems.com": { href: "/safety", label: "Review item unknowns" },
+  "litbuyproducts.com": { href: "/spreadsheet", label: "Compare product rows" },
+  "loongbuys.net": { href: "/reviews", label: "Read historical evidence carefully" },
+  "lovegobuyindex.com": { href: "/is-lovegobuy-legit", label: "Review dated platform evidence" },
+  "mulebuyindex.net": { href: "/mulebuy-spreadsheet", label: "Open the source sheet" },
+  "mulebuyitems.com": { href: "/spreadsheet-checklist", label: "Audit the requested option" },
+  "oopbuyindex.net": { href: "/oopbuy-score", label: "Review the Oopbuy score" },
+  "ydaexpress.net": { href: "/warehouse-checklist", label: "Check the warehouse handoff" },
+  "ydaexpress.org": { href: "/terms-checklist", label: "Verify current forwarding terms" },
+};
+
+const TENANT_BOUNDARY_NOTES: Record<string, string> = {
+  "bbdbuyeusheet.com": "A sheet row organizes visible evidence; it does not confirm EU compatibility, stock, authenticity or destination eligibility.",
+  "boonbuyfind.net": "A discovered source is only a candidate. Recheck the exact option, seller record, availability and current route terms.",
+  "boonbuyindex.com": "An index entry cannot prove later payment, warehouse or delivery outcomes; preserve those stages as separate records.",
+  "cnshopperindex.com": "Category and source fields support comparison, not a claim about seller reliability, stock or future order condition.",
+  "cssbuycatalog.com": "A catalog price excludes later warehouse measurements, forwarding choices and destination-specific charges.",
+  "cssbuyindex.com": "A CSSBuy score exposes evidence gaps; it does not authenticate a brand, seller or future received item.",
+  "cssbuyitems.com": "A linked item remains unverified until its exact option, source status and received-item evidence are checked.",
+  "goatedbuyindex.com": "A ranking or score organizes candidates only; verify the live source, option and seller before any external handoff.",
+  "gtbuyindex.com": "Record completeness is not a guarantee of product authenticity, stock, seller performance or delivery outcome.",
+  "hipobuyindex.com": "Image or text relevance does not confirm the exact item; preserve source, option and review date before comparison.",
+  "hoobuyindex.net": "Historical or indexed evidence cannot establish current availability, route terms or the condition of a later order.",
+  "itaobuyindex.com": "This is an independent research archive. Dated source evidence may become stale and must be rechecked at the live destination.",
+  "kakobuyindex.net": "A candidate score is not proof of authenticity, seller reliability, stock or future product condition.",
+  "kakobuyitems.com": "An item record cannot supply warehouse measurements or received condition before those later records exist.",
+  "litbuyindex.com": "Search relevance and coupon references do not establish current eligibility, price, stock or a successful route outcome.",
+  "litbuyitems.com": "Keep the listed option separate from the item eventually received; verify each stage with dated evidence.",
+  "litbuyproducts.com": "A normalized product row supports comparison but cannot verify the seller, authenticity or final landed cost.",
+  "loongbuys.net": "Older reviews and QC examples are historical context, not proof of a current listing or order outcome.",
+  "lovegobuyindex.com": "Business, policy and promotion evidence changes over time; use the dated official source rather than an archived claim.",
+  "mulebuyindex.net": "A spreadsheet rank cannot replace live seller, option, price and source verification.",
+  "mulebuyitems.com": "Displayed item data does not prove received condition or future parcel weight; keep those stages separate.",
+  "oopbuyindex.net": "An Oopbuy score records visible evidence only and does not certify authenticity, seller reliability or delivery.",
+  "ydaexpress.net": "A parcel plan is provisional until the warehouse provides measured weight, dimensions and received-item status.",
+  "ydaexpress.org": "Forwarding quotes and terms are time-sensitive; preserve the dated inputs and verify the current official source.",
+};
+
 export default function UsfansQuickStart({ compact = false }: { compact?: boolean }) {
   const tenant = useTenant();
   const editorial = tenant?.branding?.editorial;
   if (!editorial) return null;
 
   const directoryLinks =
-    tenant.domain === "usfansindex.net"
+    TENANT_DIRECTORY_LINKS[tenant.domain] ??
+    (tenant.domain === "usfansindex.net"
       ? ([
           {
             href: "/usfans-spreadsheet",
@@ -462,10 +647,11 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
               description: "Review the available agents before leaving the index.",
               icon: Scale,
             },
-          ] as const);
+          ] as const));
 
   const secondaryCta =
-    tenant.domain === "usfansindex.net"
+    TENANT_SECONDARY_CTAS[tenant.domain] ??
+    (tenant.domain === "usfansindex.net"
       ? { href: "/categories", label: "Review product check fields" }
       : tenant.domain === "yoybuyindex.com"
         ? { href: "/qc-checklist", label: "Open the QC checklist" }
@@ -501,10 +687,11 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                                       ? { href: "/qc-checklist", label: "Prepare the EU QC fields" }
                                       : tenant.domain === "bbdbuyeus.com"
                                         ? { href: "/parcel-checklist", label: "Review US parcel inputs" }
-        : { href: "/products", label: "Browse all products" };
+        : { href: "/products", label: "Browse all products" });
 
   const boundaryNote =
-    tenant.domain === "eastmallbuyindex.com"
+    TENANT_BOUNDARY_NOTES[tenant.domain] ??
+    (tenant.domain === "eastmallbuyindex.com"
       ? "A saved listing or referral link does not prove current price, availability or a platform outcome. Recheck the live source."
       : tenant.domain === "fishgooindex.com"
         ? "Broad discovery results and image matches are candidates, not confirmations. Verify the exact listing and option at the source."
@@ -536,7 +723,7 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                                 ? "EU sizing, plug standards, VAT treatment and import restrictions vary. Keep each destination check outside the product claim."
                                 : tenant.domain === "bbdbuyeus.com"
                                   ? "A US-bound parcel estimate needs measured weight, dimensions and current route rules; the catalog price cannot supply those facts."
-          : "Some outbound buying links may be referral links. Confirm current price, availability and service terms on the destination site.";
+          : "Some outbound buying links may be referral links. Confirm current price, availability and service terms on the destination site.");
 
   return (
     <section
