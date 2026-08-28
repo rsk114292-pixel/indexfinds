@@ -59,6 +59,78 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
               icon: Scale,
             },
           ] as const)
+        : tenant.domain === "eastmallbuyindex.com"
+          ? ([
+              {
+                href: "/spreadsheet",
+                title: "Score the shortlist",
+                description:
+                  "Keep comparable listing facts together before deciding what remains useful.",
+                icon: Scale,
+              },
+              {
+                href: "/legit",
+                title: "Separate platform evidence",
+                description:
+                  "Distinguish visible business records from claims that still need confirmation.",
+                icon: Search,
+              },
+              {
+                href: "/referral-code",
+                title: "Verify campaign terms",
+                description:
+                  "Check the live destination and eligibility instead of treating old offers as current.",
+                icon: LayoutGrid,
+              },
+            ] as const)
+          : tenant.domain === "fishgooindex.com"
+            ? ([
+                {
+                  href: "/search-ideas",
+                  title: "Choose the query mode",
+                  description:
+                    "Use exploratory terms, exact listing phrases or image cues for different jobs.",
+                  icon: Search,
+                },
+                {
+                  href: "/fishgoo-checklist",
+                  title: "Inspect visible evidence",
+                  description:
+                    "Record source fields and open questions before a discovery result becomes a candidate.",
+                  icon: LayoutGrid,
+                },
+                {
+                  href: "/shipping",
+                  title: "Separate parcel inputs",
+                  description:
+                    "Keep measured weight and dimensions apart from listing estimates.",
+                  icon: Scale,
+                },
+              ] as const)
+            : tenant.domain === "kameymallindex.com"
+              ? ([
+                  {
+                    href: "/categories",
+                    title: "Map category fields",
+                    description:
+                      "Start with the measurements, materials and option details that matter for the item type.",
+                    icon: LayoutGrid,
+                  },
+                  {
+                    href: "/review",
+                    title: "Compare historical and current QC",
+                    description:
+                      "Use older examples as context while keeping the present order review separate.",
+                    icon: Search,
+                  },
+                  {
+                    href: "/shipping",
+                    title: "Use actual parcel measurements",
+                    description:
+                      "Wait for packed dimensions and weight before evaluating a shipping route.",
+                    icon: Scale,
+                  },
+                ] as const)
         : ([
             {
               href: "/categories",
@@ -85,7 +157,22 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
       ? { href: "/categories", label: "Review product check fields" }
       : tenant.domain === "yoybuyindex.com"
         ? { href: "/qc-checklist", label: "Open the QC checklist" }
+        : tenant.domain === "eastmallbuyindex.com"
+          ? { href: "/spreadsheet", label: "Open the shortlist worksheet" }
+          : tenant.domain === "fishgooindex.com"
+            ? { href: "/fishgoo-checklist", label: "Open the evidence checklist" }
+            : tenant.domain === "kameymallindex.com"
+              ? { href: "/review", label: "Compare the QC record" }
         : { href: "/products", label: "Browse all products" };
+
+  const boundaryNote =
+    tenant.domain === "eastmallbuyindex.com"
+      ? "A saved listing or referral link does not prove current price, availability or a platform outcome. Recheck the live source."
+      : tenant.domain === "fishgooindex.com"
+        ? "Broad discovery results and image matches are candidates, not confirmations. Verify the exact listing and option at the source."
+        : tenant.domain === "kameymallindex.com"
+          ? "Historical QC examples describe earlier records; they do not prove the condition or measurements of a current received item."
+          : "Some outbound buying links may be referral links. Confirm current price, availability and service terms on the destination site.";
 
   return (
     <section
@@ -132,10 +219,7 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
             </div>
             <p className="mt-5 flex max-w-xl items-start gap-2 text-xs leading-5 text-[#667085]">
               <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
-              <span>
-                Some outbound buying links may be referral links. Confirm current
-                price, availability and service terms on the destination site.
-              </span>
+              <span>{boundaryNote}</span>
             </p>
           </div>
 

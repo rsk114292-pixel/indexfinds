@@ -413,6 +413,26 @@ export default function MobileHome({
             <div className="h-2 bg-gray-50" />
             <MobileProductFeed />
           </>
+        ) : tenant?.domain === "eastmallbuyindex.com" ? (
+          <>
+            <UsfansQuickStart compact />
+            <div className="h-2 bg-gray-50" />
+            <MobileProductFeed />
+          </>
+        ) : tenant?.domain === "fishgooindex.com" ? (
+          <>
+            <MobileCategoryScroll initialData={initialCategories} />
+            <MobileBrandScroll />
+            <UsfansQuickStart compact />
+          </>
+        ) : tenant?.domain === "kameymallindex.com" ? (
+          <>
+            <MobileBrandScroll />
+            <UsfansQuickStart compact />
+            <MobileCategoryScroll initialData={initialCategories} />
+            <div className="h-2 bg-gray-50" />
+            <MobileProductFeed />
+          </>
         ) : (
           <>
             {homeVariant === "catalog" && (

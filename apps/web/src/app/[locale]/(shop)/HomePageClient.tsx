@@ -174,6 +174,42 @@ export default function HomePageClient({
     );
   }
 
+  if (tenant?.domain === "eastmallbuyindex.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <UsfansQuickStart />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (tenant?.domain === "fishgooindex.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <UsfansQuickStart />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (tenant?.domain === "kameymallindex.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
+        <HowItWorksSection />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <UsfansQuickStart />
+        <CtaSection />
+      </>
+    );
+  }
+
   if (homeVariant === "index") {
     return (
       <>
