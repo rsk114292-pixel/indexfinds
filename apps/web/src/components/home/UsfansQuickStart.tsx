@@ -10,26 +10,82 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
   const editorial = tenant?.branding?.editorial;
   if (!editorial) return null;
 
-  const directoryLinks = [
-    {
-      href: "/categories",
-      title: "Browse by category",
-      description: "Move from broad product groups to focused results.",
-      icon: LayoutGrid,
-    },
-    {
-      href: "/brands",
-      title: "Explore the brand index",
-      description: "Open current brand pages with visible product counts.",
-      icon: Search,
-    },
-    {
-      href: "/agents/compare",
-      title: "Compare buying routes",
-      description: "Review the available agents before leaving the index.",
-      icon: Scale,
-    },
-  ] as const;
+  const directoryLinks =
+    tenant.domain === "usfansindex.net"
+      ? ([
+          {
+            href: "/usfans-spreadsheet",
+            title: "Define the source record",
+            description:
+              "Keep the listing URL, exact option and review date together.",
+            icon: Search,
+          },
+          {
+            href: "/categories",
+            title: "Set category-specific checks",
+            description:
+              "Use different evidence fields for clothing, shoes and electronics.",
+            icon: LayoutGrid,
+          },
+          {
+            href: "/brands",
+            title: "Group candidates without certifying them",
+            description:
+              "Use brand pages to narrow the set, then verify each source separately.",
+            icon: Scale,
+          },
+        ] as const)
+      : tenant.domain === "yoybuyindex.com"
+        ? ([
+            {
+              href: "/spreadsheet",
+              title: "Build the research row",
+              description:
+                "Record source, requested option, visible evidence and open questions.",
+              icon: Search,
+            },
+            {
+              href: "/qc-checklist",
+              title: "Prepare the QC handoff",
+              description:
+                "List the photos and measurements that must be checked later.",
+              icon: LayoutGrid,
+            },
+            {
+              href: "/shipping",
+              title: "Add parcel facts when measured",
+              description:
+                "Keep packed weight and dimensions separate from listing claims.",
+              icon: Scale,
+            },
+          ] as const)
+        : ([
+            {
+              href: "/categories",
+              title: "Browse by category",
+              description: "Move from broad product groups to focused results.",
+              icon: LayoutGrid,
+            },
+            {
+              href: "/brands",
+              title: "Explore the brand index",
+              description: "Open current brand pages with visible product counts.",
+              icon: Search,
+            },
+            {
+              href: "/agents/compare",
+              title: "Compare buying routes",
+              description: "Review the available agents before leaving the index.",
+              icon: Scale,
+            },
+          ] as const);
+
+  const secondaryCta =
+    tenant.domain === "usfansindex.net"
+      ? { href: "/categories", label: "Review product check fields" }
+      : tenant.domain === "yoybuyindex.com"
+        ? { href: "/qc-checklist", label: "Open the QC checklist" }
+        : { href: "/products", label: "Browse all products" };
 
   return (
     <section
@@ -68,10 +124,10 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/products"
+                href={secondaryCta.href}
                 className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#cbd5e1] bg-white px-5 py-2.5 text-sm font-bold text-[#111827] transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               >
-                Browse all products
+                {secondaryCta.label}
               </Link>
             </div>
             <p className="mt-5 flex max-w-xl items-start gap-2 text-xs leading-5 text-[#667085]">

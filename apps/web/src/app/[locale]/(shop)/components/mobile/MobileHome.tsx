@@ -216,6 +216,18 @@ export default function MobileHome({
                 <span className="text-center">Source record</span>
                 <span className="text-right">Open question</span>
               </div>
+            ) : tenant?.domain === "usfansindex.net" ? (
+              <div className="mt-5 grid grid-cols-3 gap-2 text-[8px] font-semibold uppercase tracking-[0.03em] text-white/78">
+                <span className="border-l-2 border-[#f4a340] pl-2">Source note</span>
+                <span className="border-l-2 border-white/30 pl-2">Missing field</span>
+                <span className="border-l-2 border-[#d84a24] pl-2">Route check</span>
+              </div>
+            ) : tenant?.domain === "yoybuyindex.com" ? (
+              <div className="mt-5 grid grid-cols-3 overflow-hidden border border-[#f0b45d]/34 bg-[#081321]/44 text-[8px] font-semibold uppercase tracking-[0.03em] text-white/78 backdrop-blur-sm">
+                <span className="px-2 py-3">Research row</span>
+                <span className="border-x border-white/14 px-2 py-3 text-center">QC handoff</span>
+                <span className="px-2 py-3 text-right">Parcel facts</span>
+              </div>
             ) : tenant?.domain === "allchinabuyindex.com" ? (
               <div className="mt-5 grid grid-cols-3 border-y border-white/18 py-2.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/72">
                 <span>01 Search</span>
@@ -384,6 +396,19 @@ export default function MobileHome({
           </>
         ) : homeVariant === "items" ? (
           <>
+            <UsfansQuickStart compact />
+            <div className="h-2 bg-gray-50" />
+            <MobileProductFeed />
+          </>
+        ) : tenant?.domain === "usfansindex.net" ? (
+          <>
+            <UsfansQuickStart compact />
+            <MobileBrandScroll />
+            <MobileCategoryScroll initialData={initialCategories} />
+          </>
+        ) : tenant?.domain === "yoybuyindex.com" ? (
+          <>
+            <MobileCategoryScroll initialData={initialCategories} />
             <UsfansQuickStart compact />
             <div className="h-2 bg-gray-50" />
             <MobileProductFeed />

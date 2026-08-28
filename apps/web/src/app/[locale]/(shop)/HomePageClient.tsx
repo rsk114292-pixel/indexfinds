@@ -149,6 +149,31 @@ export default function HomePageClient({
     );
   }
 
+  if (tenant?.domain === "usfansindex.net") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <UsfansQuickStart />
+        <FeaturedBrandsSection initialData={initialFeaturedBrands} />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <CtaSection />
+      </>
+    );
+  }
+
+  if (tenant?.domain === "yoybuyindex.com") {
+    return (
+      <>
+        <HeroSection initialHotSearches={initialHotSearches} />
+        <CategoriesBentoSection initialData={initialCategories} />
+        <UsfansQuickStart />
+        <ProductShowcaseSection initialNewestData={initialNewestProducts} />
+        <HowItWorksSection />
+        <CtaSection />
+      </>
+    );
+  }
+
   if (homeVariant === "index") {
     return (
       <>
