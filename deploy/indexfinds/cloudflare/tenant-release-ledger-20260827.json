@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T15:35:08+08:00",
+  "updatedAt": "2026-08-28T16:08:00+08:00",
   "policy": "A branding-ready flag is not a release approval. A tenant may be indexed only after independent content, technical SEO, mobile, preview and production checks pass.",
   "releasedForIndexing": [
     "acbuyindex.com",
@@ -14,6 +14,8 @@
     "cssbuycatalog.com",
     "cssbuyindex.com",
     "cssbuyitems.com",
+    "eastmallbuyindex.com",
+    "fishgooindex.com",
     "goatedbuyindex.com",
     "gtbuyindex.com",
     "hipobuyindex.com",
@@ -21,6 +23,7 @@
     "itaobuyindex.com",
     "kakobuyindex.net",
     "kakobuyitems.com",
+    "kameymallindex.com",
     "litbuyindex.com",
     "litbuyitems.com",
     "litbuyproducts.com",
@@ -128,6 +131,19 @@
     "workerVersion": "228c5986-2b03-40a1-8bb7-4988b477f53c",
     "webCommit": "20eadfe"
   },
+  "batch9": {
+    "domains": [
+      "eastmallbuyindex.com",
+      "fishgooindex.com",
+      "kameymallindex.com"
+    ],
+    "routeState": "isolated-candidate-production-routed",
+    "indexingState": "ready-index",
+    "releaseGateState": "deployed-and-live-validated",
+    "liveValidation": "All 24 reviewed pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, structured data and exact sitemap inclusion. Unreviewed product lists remain noindex. Desktop/mobile production checks passed and the maximum homepage similarity was 0.2660.",
+    "workerVersion": "a1458fc5-50d7-47f4-bc58-2a708b31342f",
+    "webCommit": "1903673"
+  },
   "yda": {
     "domains": ["ydaexpress.net", "ydaexpress.org"],
     "routeState": "dedicated-candidate-worker-production-routed",
@@ -137,7 +153,7 @@
     "workerVersion": "95ba7470-7de1-418d-a46d-7b273a222d63",
     "webCommit": "5b2a04e"
   },
-  "remainingTenantCount": 11,
+  "remainingTenantCount": 8,
   "remainingState": "independent-review-required-draft-noindex",
   "evidence": [
     "batch1-route-rollback-20260827.json",
@@ -156,6 +172,8 @@
     "batch7-production-acceptance-20260828.json",
     "batch8-route-rollback-20260828.json",
     "batch8-production-acceptance-20260828.json",
+    "batch9-route-rollback-20260828.json",
+    "batch9-production-acceptance-20260828.json",
     "yda-route-preflight-20260827.json",
     "yda-route-rollback-20260827.json",
     "yda-production-acceptance-20260827.json"

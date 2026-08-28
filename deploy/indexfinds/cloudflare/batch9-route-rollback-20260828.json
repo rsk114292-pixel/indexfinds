@@ -1,0 +1,49 @@
+{
+  "created_at": "2026-08-28T16:00:00+08:00",
+  "purpose": "Rollback snapshot before moving three independently reviewed discovery tenant domains from their prior Workers to the isolated batch9 candidate.",
+  "target_script": "indexfinds-subsite-b9-discovery-candidate",
+  "routes": [
+    {
+      "domain": "eastmallbuyindex.com",
+      "zone_id": "a75f07d92353933eaad97ecef43f9b1e",
+      "route_id": "52e2ad1a371a49b9ad9ed9f1d16c5116",
+      "pattern": "eastmallbuyindex.com/*",
+      "previous_script": "eastmallbuyindex-static-20260821"
+    },
+    {
+      "domain": "eastmallbuyindex.com",
+      "zone_id": "a75f07d92353933eaad97ecef43f9b1e",
+      "route_id": "30149f939967445882733e3041ec1df4",
+      "pattern": "www.eastmallbuyindex.com/*",
+      "previous_script": "eastmallbuyindex-static-20260821"
+    },
+    {
+      "domain": "fishgooindex.com",
+      "zone_id": "f40ad16261d1efbfcf7f53acd40e87e8",
+      "route_id": "0dd50a4b009e49e1a1ba384d7fabaed0",
+      "pattern": "fishgooindex.com/*",
+      "previous_script": "fishgooindex-static-20260821"
+    },
+    {
+      "domain": "fishgooindex.com",
+      "zone_id": "f40ad16261d1efbfcf7f53acd40e87e8",
+      "route_id": "9b9e85f4c2cf46789a88ae1078497729",
+      "pattern": "www.fishgooindex.com/*",
+      "previous_script": "fishgooindex-static-20260821"
+    },
+    {
+      "domain": "kameymallindex.com",
+      "zone_id": "63b7b39b1f5f08cb4a443a2a64acdd6b",
+      "route_id": "3c260ad2d57b43a5b9d20751bc5ec314",
+      "pattern": "kameymallindex.com/*",
+      "previous_script": "kameymallindex-static-20260820"
+    },
+    {
+      "domain": "kameymallindex.com",
+      "zone_id": "63b7b39b1f5f08cb4a443a2a64acdd6b",
+      "route_id": "159b22dbe2c8461eaf3c3b5097aadd2e",
+      "pattern": "www.kameymallindex.com/*",
+      "previous_script": "kameymallindex-static-20260820"
+    }
+  ]
+}

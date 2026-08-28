@@ -1,0 +1,42 @@
+{
+  "validatedAt": "2026-08-28T16:08:00+08:00",
+  "sourceCommit": "1903673",
+  "contentCommit": "da4d9bb",
+  "worker": "indexfinds-subsite-b9-discovery-candidate",
+  "workerVersion": "a1458fc5-50d7-47f4-bc58-2a708b31342f",
+  "domains": [
+    "eastmallbuyindex.com",
+    "fishgooindex.com",
+    "kameymallindex.com"
+  ],
+  "routeState": "isolated-candidate-production-routed",
+  "origin": {
+    "webImage": "indexfinds-web:batch9-final-1903673",
+    "webContainer": "indexfinds-web-batch9-final-1903673",
+    "port": 3123,
+    "previousTenantPort": 3122,
+    "mainPort": 3119,
+    "apiPort": 4102,
+    "nginxFile": "/www/server/panel/vhost/nginx/90-indexfinds-batch1-preview-origin.conf",
+    "nginxBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-batch9-final-20260828T080300Z"
+  },
+  "checks": {
+    "isolatedPreview": "The exact three-domain allowlist passed all 24 reviewed pages with noindex/nofollow and no-store response headers. Missing and unrelated tenant selections returned 404.",
+    "routeGuard": "All six apex/www route IDs matched their recorded prior Workers before update and were individually read back on the isolated batch9 Worker after update.",
+    "apexAndWww": "All three apex English homepages return 200. Every www host returns one 308 redirect to the matching apex English URL.",
+    "reviewedPages": "All 24 independently reviewed English pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, and structured data.",
+    "sitemaps": "Each tenant sitemap contains exactly eight reviewed URLs and excludes the unreviewed product directory.",
+    "indexingGate": "Reviewed pages do not emit a noindex response or metadata directive. The unreviewed /en/products page remains noindex and outside every sitemap.",
+    "robots": "The default crawler and Googlebot blocks explicitly allow the site root. Every robots file publishes the matching canonical sitemap URL.",
+    "visual": "Desktop 1440x900 and mobile 390x844 production checks passed all six viewport/domain combinations without horizontal overflow, broken images, console errors or page errors.",
+    "duplicateContent": "The highest pairwise five-word homepage shingle similarity is 0.2660, below the 0.60 release threshold. EastMallBuy, Fishgoo and KameyMall use separate search intent, content order, quick-start journeys and mobile composition.",
+    "existingReleases": "All 31 previously released tenants remained 200 after both shared-origin changes; all 34 released tenants were then verified together.",
+    "mainSiteIsolation": "The IndexFinds main homepage and API health return 200, registration remains 404, and the reviewed-product slug API returns reviewedOnly=true with zero currently approved slugs.",
+    "runtime": "The final tenant, main web and main API containers are healthy with zero restarts. No matching Nginx upstream or 502 error was present after the production release."
+  },
+  "rollback": {
+    "routeAction": "Restore the six exact route IDs to their previous individual Workers using batch9-route-rollback-20260828.json.",
+    "originAction": "Restore the recorded Nginx backup to return the shared tenant origin to port 3122, validate Nginx, and reload it.",
+    "containerAction": "Keep the independently accepted batch9 content container on port 3122 and the batch8 final container on port 3121 until batch9 remains stable."
+  }
+}
