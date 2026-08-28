@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-08-29T03:28:34+08:00",
+  "recordedAt": "2026-08-29T03:36:15+08:00",
   "sourceCommit": "5a409d3",
   "domains": [
     "ydaexpress.net",
@@ -19,13 +19,20 @@
   },
   "blockers": [
     "The Cloudflare credentials available to the deployment tools can manage Workers routes but return 403 for DNS and zone settings.",
-    "The server-side Cloudflare account token previously used for Origin CA issuance is inactive.",
+    "The dedicated server-side DNS cutover token now returns Cloudflare code 9109 (invalid access token).",
+    "The server-side Cloudflare account token previously used for Origin CA issuance is also inactive.",
     "Without DNS edit permission, the apex and www records cannot be safely pointed at 186.240.157.184.",
     "Without an active Origin CA token or manually supplied certificate, Full (strict) TLS cannot be completed at the Hostinger origin."
   ],
   "requiredUserAction": {
-    "preferred": "Provide or connect a Cloudflare API token scoped to DNS Edit and Origin CA certificate issuance for the ydaexpress.net and ydaexpress.org zones.",
+    "preferred": "If the two domains do not recover after the next Workers quota reset, provide or connect a Cloudflare API token scoped to DNS Edit and Origin CA certificate issuance for the ydaexpress.net and ydaexpress.org zones.",
     "manualAlternative": "In Cloudflare, point proxied apex and www DNS records for both domains to 186.240.157.184, create Origin CA certificates covering each apex and www host, and provide the certificates for installation. Do not send an account password in chat."
+  },
+  "automaticRecoveryCheck": {
+    "basis": "Cloudflare Workers Free provides 100,000 requests per account per day and resets the limit at 00:00 UTC.",
+    "expectedEffect": "Forty tenant domains now bypass Workers, so only the two YDA domains will consume Worker requests after reset.",
+    "scheduledCheck": "The current Codex task will recheck all four YDA apex/www URLs after the 00:00 UTC reset and continue production acceptance automatically.",
+    "automationId": "verify-yda-after-worker-reset"
   },
   "resumePoint": "Install both Origin CA certificates, validate direct HTTPS with Host headers, remove only the four YDA Worker routes, run the full 12-page and four-viewport YDA production audit, then update the release ledger."
 }
