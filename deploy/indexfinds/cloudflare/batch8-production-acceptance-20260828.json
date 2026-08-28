@@ -1,0 +1,42 @@
+{
+  "validatedAt": "2026-08-28T15:35:08+08:00",
+  "sourceCommit": "20eadfe",
+  "contentCommit": "1622425",
+  "worker": "indexfinds-subsite-b8-mature-candidate",
+  "workerVersion": "228c5986-2b03-40a1-8bb7-4988b477f53c",
+  "domains": [
+    "itaobuyindex.com",
+    "usfansindex.net",
+    "yoybuyindex.com"
+  ],
+  "routeState": "isolated-candidate-production-routed",
+  "origin": {
+    "webImage": "indexfinds-web:batch8-final-20eadfe",
+    "webContainer": "indexfinds-web-batch8-final-20eadfe",
+    "port": 3121,
+    "previousTenantPort": 3120,
+    "mainPort": 3119,
+    "apiPort": 4102,
+    "nginxFile": "/www/server/panel/vhost/nginx/90-indexfinds-batch1-preview-origin.conf",
+    "nginxBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-batch8-final-20260828T072937Z"
+  },
+  "checks": {
+    "isolatedPreview": "The exact three-domain allowlist passed all 12 reviewed pages with noindex/nofollow and no-store response headers. Missing and unrelated tenant selections returned 404.",
+    "routeGuard": "All six apex/www route IDs matched their recorded prior Workers before update and were individually read back on the isolated batch8 Worker after update.",
+    "apexAndWww": "All three apex English homepages return 200. Every www host returns one 308 redirect to the matching apex English URL.",
+    "reviewedPages": "All 12 independently reviewed English pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, and structured data.",
+    "sitemaps": "The iTaoBuy and USFans sitemaps contain exactly two reviewed URLs each; the YoyBuy sitemap contains exactly eight reviewed URLs.",
+    "indexingGate": "Reviewed pages do not emit a noindex response or metadata directive. The unreviewed /en/products page remains noindex and outside every sitemap.",
+    "robots": "The default crawler and Googlebot blocks explicitly allow the site root. Cloudflare-managed blocks for selected AI crawlers remain separate, and every robots file publishes the matching canonical sitemap URL.",
+    "visual": "Desktop 1440x900 and mobile 390x844 production checks passed all six viewport/domain combinations without horizontal overflow, broken images, console errors or page errors.",
+    "duplicateContent": "The highest pairwise five-word homepage shingle similarity is 0.3559, below the 0.60 release threshold. USFans and YoyBuy use separate content order, quick-start journeys and mobile evidence strips.",
+    "existingReleases": "All 28 previously released tenants remained 200 after the final shared-origin change; all 31 released tenants were then verified together.",
+    "mainSiteIsolation": "The IndexFinds main homepage and API health return 200, registration remains 404, and the reviewed-product slug API returns reviewedOnly=true with zero currently approved slugs.",
+    "runtime": "The final tenant, main web and main API containers are healthy with zero restarts and no OOM event. No public 5xx or matching upstream error was present after the production release timestamp."
+  },
+  "rollback": {
+    "routeAction": "Restore the six exact route IDs to their previous individual Workers using batch8-route-rollback-20260828.json.",
+    "originAction": "Restore the recorded Nginx backup to return the shared tenant origin to port 3120, validate Nginx, and reload it.",
+    "containerAction": "Keep the independently accepted batch8 content container on port 3120 and the earlier shared tenant container on port 3118 until batch8 remains stable."
+  }
+}
