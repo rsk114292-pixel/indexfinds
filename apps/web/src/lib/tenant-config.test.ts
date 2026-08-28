@@ -425,6 +425,9 @@ describe("tenant config", () => {
     const itaobuy = getTenantConfigByHost("itaobuyindex.com")!;
     const yoybuy = getTenantConfigByHost("yoybuyindex.com")!;
     const acbuy = getTenantConfigByHost("acbuyindex.com")!;
+    const eastmallbuy = getTenantConfigByHost("eastmallbuyindex.com")!;
+    const fishgoo = getTenantConfigByHost("fishgooindex.com")!;
+    const kameymall = getTenantConfigByHost("kameymallindex.com")!;
 
     expect(isTenantPathIndexable(usfans, "/en")).toBe(true);
     expect(isTenantPathIndexable(usfans, "/en/usfans-spreadsheet")).toBe(true);
@@ -447,6 +450,12 @@ describe("tenant config", () => {
     expect(isTenantPathIndexable(acbuy, "/en/faq")).toBe(true);
     expect(isTenantPathIndexable(acbuy, "/en/site-guide")).toBe(false);
     expect(isTenantPathIndexable(acbuy, "/zh/directory")).toBe(false);
+    expect(isTenantPathIndexable(eastmallbuy, "/en/spreadsheet")).toBe(true);
+    expect(isTenantPathIndexable(eastmallbuy, "/en/products")).toBe(false);
+    expect(isTenantPathIndexable(fishgoo, "/en/fishgoo-checklist")).toBe(true);
+    expect(isTenantPathIndexable(fishgoo, "/en/products")).toBe(false);
+    expect(isTenantPathIndexable(kameymall, "/en/review")).toBe(true);
+    expect(isTenantPathIndexable(kameymall, "/zh/review")).toBe(false);
   });
 
   it("does not treat the main site or an unknown host as a tenant", () => {
@@ -948,6 +957,8 @@ describe("tenant config", () => {
       "cssbuycatalog.com",
       "cssbuyindex.com",
       "cssbuyitems.com",
+      "eastmallbuyindex.com",
+      "fishgooindex.com",
       "goatedbuyindex.com",
       "gtbuyindex.com",
       "hipobuyindex.com",
@@ -955,6 +966,7 @@ describe("tenant config", () => {
       "itaobuyindex.com",
       "kakobuyindex.net",
       "kakobuyitems.com",
+      "kameymallindex.com",
       "litbuyindex.com",
       "litbuyitems.com",
       "litbuyproducts.com",
