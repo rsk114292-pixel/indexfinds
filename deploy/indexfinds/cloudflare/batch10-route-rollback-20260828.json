@@ -1,0 +1,35 @@
+{
+  "created_at": "2026-08-28T16:42:00+08:00",
+  "purpose": "Rollback snapshot before moving two independently reviewed Joya tenant domains from their prior Workers to the isolated batch10 candidate.",
+  "target_script": "indexfinds-subsite-b10-joya-candidate",
+  "routes": [
+    {
+      "domain": "joyabuyfinds.com",
+      "zone_id": "e881be88967016109bf613eaf925f000",
+      "route_id": "e892b21f2c544675b5dab6f15b36c9ac",
+      "pattern": "joyabuyfinds.com/*",
+      "previous_script": "joyabuyfinds-static-20260821"
+    },
+    {
+      "domain": "joyabuyfinds.com",
+      "zone_id": "e881be88967016109bf613eaf925f000",
+      "route_id": "3fa72af6b592402bb0e201144a4ab99c",
+      "pattern": "www.joyabuyfinds.com/*",
+      "previous_script": "joyabuyfinds-static-20260821"
+    },
+    {
+      "domain": "joyagooindex.com",
+      "zone_id": "af3bbdccaee04236168670e717e537d6",
+      "route_id": "aba7035938fd414ea45c3a7d3bdb3fc4",
+      "pattern": "joyagooindex.com/*",
+      "previous_script": "joyagooindex-static-20260821"
+    },
+    {
+      "domain": "joyagooindex.com",
+      "zone_id": "af3bbdccaee04236168670e717e537d6",
+      "route_id": "a66ccd4763b44ca6b117820e7909f761",
+      "pattern": "www.joyagooindex.com/*",
+      "previous_script": "joyagooindex-static-20260821"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "validatedAt": "2026-08-28T16:48:00+08:00",
+  "sourceCommit": "7cb3fd7",
+  "contentCommit": "de66996",
+  "worker": "indexfinds-subsite-b10-joya-candidate",
+  "workerVersion": "fe270f90-fcbf-4122-82da-796cd60ba1cc",
+  "domains": [
+    "joyabuyfinds.com",
+    "joyagooindex.com"
+  ],
+  "routeState": "isolated-candidate-production-routed",
+  "origin": {
+    "webImage": "indexfinds-web:batch10-final-7cb3fd7",
+    "webContainer": "indexfinds-web-batch10-final-7cb3fd7",
+    "port": 3125,
+    "previousTenantPort": 3124,
+    "mainPort": 3119,
+    "apiPort": 4102,
+    "nginxFile": "/www/server/panel/vhost/nginx/90-indexfinds-batch1-preview-origin.conf",
+    "nginxBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-batch10-final-20260828T084000Z"
+  },
+  "checks": {
+    "isolatedPreview": "The exact two-domain allowlist passed all 16 reviewed pages with noindex/nofollow and no-store response headers. Missing and unrelated tenant selections returned 404.",
+    "routeGuard": "All four apex/www route IDs matched their recorded prior Workers before update and were individually read back on the isolated batch10 Worker after update.",
+    "apexAndWww": "Both apex English homepages return 200. Each www host returns one 308 redirect to the matching apex English URL.",
+    "reviewedPages": "All 16 independently reviewed English pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, and structured data.",
+    "sitemaps": "Each tenant sitemap contains exactly eight reviewed URLs and excludes the unreviewed product directory.",
+    "indexingGate": "Reviewed pages do not emit a noindex response or metadata directive. The unreviewed /en/products page remains noindex and outside both sitemaps.",
+    "robots": "The default crawler and Googlebot blocks explicitly allow the site root. Each robots file publishes the matching canonical sitemap URL.",
+    "visual": "Desktop 1440x900 and mobile 390x844 production checks passed all four viewport/domain combinations without horizontal overflow, broken images, console errors or page errors.",
+    "duplicateContent": "The highest pairwise five-word homepage shingle similarity is 0.1407, below the 0.60 release threshold. JoyaGoo Finds uses a discovery-to-candidate journey while JoyaGoo Index uses a dated stage-record journey.",
+    "existingReleases": "All 34 previously released tenants remained 200 after both shared-origin changes; all 36 released tenants were then verified together.",
+    "mainSiteIsolation": "The IndexFinds main homepage and API health return 200, registration remains 404, and the reviewed-product slug API returns reviewedOnly=true with zero currently approved slugs.",
+    "runtime": "The final tenant, main web and main API containers are healthy with zero restarts. No matching Nginx upstream or 502 error was present after the production release."
+  },
+  "rollback": {
+    "routeAction": "Restore the four exact route IDs to their previous individual Workers using batch10-route-rollback-20260828.json.",
+    "originAction": "Restore the recorded Nginx backup to return the shared tenant origin to port 3124, validate Nginx, and reload it.",
+    "containerAction": "Keep the independently accepted batch10 content container on port 3124 and the batch9 final container on port 3123 until batch10 remains stable."
+  }
+}
