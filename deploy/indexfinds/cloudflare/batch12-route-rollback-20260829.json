@@ -1,0 +1,49 @@
+{
+  "created_at": "2026-08-29T00:45:00+08:00",
+  "purpose": "Rollback snapshot before moving the independently reviewed Superbuy Deals, Index and Items tenant domains to the isolated batch12 candidate.",
+  "target_script": "indexfinds-subsite-b12-acceptance-candidate",
+  "routes": [
+    {
+      "domain": "superbuydeals.com",
+      "zone_id": "6ce294b090f7adfd1abd8f8b8dbcfa52",
+      "route_id": "377e39a8587544538585c66e175b3aff",
+      "pattern": "superbuydeals.com/*",
+      "previous_script": "favicon-fix-superbuydeals-20260820"
+    },
+    {
+      "domain": "superbuydeals.com",
+      "zone_id": "6ce294b090f7adfd1abd8f8b8dbcfa52",
+      "route_id": "137273437dbd40768b3a08b062058771",
+      "pattern": "www.superbuydeals.com/*",
+      "previous_script": "favicon-fix-superbuydeals-20260820"
+    },
+    {
+      "domain": "superbuyindex.com",
+      "zone_id": "b73df1e4e1eefcef9e2c18a13ba0da37",
+      "route_id": "1a7269a5ef88400fad9ef678c60cdda4",
+      "pattern": "superbuyindex.com/*",
+      "previous_script": "favicon-fix-superbuyindex-20260820"
+    },
+    {
+      "domain": "superbuyindex.com",
+      "zone_id": "b73df1e4e1eefcef9e2c18a13ba0da37",
+      "route_id": "b5919313b9d9433086ba90467edf9ec0",
+      "pattern": "www.superbuyindex.com/*",
+      "previous_script": "favicon-fix-superbuyindex-20260820"
+    },
+    {
+      "domain": "superbuyitems.com",
+      "zone_id": "a50adc0da048cb9889e180b060ff8974",
+      "route_id": "3c3b5c79655a45199c0a634b62143d07",
+      "pattern": "superbuyitems.com/*",
+      "previous_script": "favicon-fix-superbuyitems-20260820"
+    },
+    {
+      "domain": "superbuyitems.com",
+      "zone_id": "a50adc0da048cb9889e180b060ff8974",
+      "route_id": "eb4425ab67c9430ebf5542057dc76d32",
+      "pattern": "www.superbuyitems.com/*",
+      "previous_script": "favicon-fix-superbuyitems-20260820"
+    }
+  ]
+}

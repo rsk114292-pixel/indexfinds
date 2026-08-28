@@ -1,0 +1,49 @@
+{
+  "created_at": "2026-08-29T00:45:00+08:00",
+  "purpose": "Rollback snapshot before moving the independently reviewed OrientDig, ParcelUp and Sugargoo tenant domains to the isolated batch11 candidate.",
+  "target_script": "indexfinds-subsite-b11-acceptance-candidate",
+  "routes": [
+    {
+      "domain": "orientdigindex.com",
+      "zone_id": "eebc53649d8f5334cf4f579902c5c2f0",
+      "route_id": "1263569c32cd4e2588adeb9134e053b9",
+      "pattern": "orientdigindex.com/*",
+      "previous_script": "orientdigindex"
+    },
+    {
+      "domain": "orientdigindex.com",
+      "zone_id": "eebc53649d8f5334cf4f579902c5c2f0",
+      "route_id": "ff685352681b41fcaba74ed80f8a22d4",
+      "pattern": "www.orientdigindex.com/*",
+      "previous_script": "orientdigindex"
+    },
+    {
+      "domain": "parcelupindex.com",
+      "zone_id": "b309907fc6ba66840d374adecc03a2e3",
+      "route_id": "fbb7e39c2b4e4b63b70aea394b55fa6f",
+      "pattern": "parcelupindex.com/*",
+      "previous_script": "favicon-fix-parcelupindex-20260820"
+    },
+    {
+      "domain": "parcelupindex.com",
+      "zone_id": "b309907fc6ba66840d374adecc03a2e3",
+      "route_id": "bc6984f6a16a4e6390845ead6a985299",
+      "pattern": "www.parcelupindex.com/*",
+      "previous_script": "favicon-fix-parcelupindex-20260820"
+    },
+    {
+      "domain": "sugargooindex.net",
+      "zone_id": "88ada373ab9828d00e5cdaba3b3eb4f1",
+      "route_id": "feb7e018fc8f41eaaccaedfc48e8cf3f",
+      "pattern": "sugargooindex.net/*",
+      "previous_script": "favicon-fix-sugargooindex-20260820"
+    },
+    {
+      "domain": "sugargooindex.net",
+      "zone_id": "88ada373ab9828d00e5cdaba3b3eb4f1",
+      "route_id": "317467b71fb5453897c871d99ebae46a",
+      "pattern": "www.sugargooindex.net/*",
+      "previous_script": "favicon-fix-sugargooindex-20260820"
+    }
+  ]
+}
