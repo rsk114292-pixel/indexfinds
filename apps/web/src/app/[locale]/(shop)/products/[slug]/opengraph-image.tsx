@@ -92,7 +92,11 @@ export default async function OGImage({
     ? product.title.slice(0, 60) + '...'
     : product.title || '';
   const categoryName = product.primaryCategory
-    ? getLocalizedName(product.primaryCategory, locale)
+    // next/og's bundled font shaper cannot render the Arabic category labels
+    // used here (it throws on an unsupported GSUB lookup). Keep the Arabic
+    // page itself localized, but use the English category label in its image
+    // so one crawler request cannot terminate the image response.
+    ? getLocalizedName(product.primaryCategory, locale === 'ar' ? 'en' : locale)
     : '';
   const price = product.priceMin
     ? formatOgPrice(product.priceMin, locale)
