@@ -218,7 +218,7 @@ describe('SEO guards', () => {
     });
   });
 
-  it('product detail metadata keeps locale-aware keywords and alternates', async () => {
+  it('keeps translated product shells canonical to the reviewed English page', async () => {
     mockFetch.mockResolvedValue({
       ok: true,
       json: async () => ({
@@ -248,8 +248,37 @@ describe('SEO guards', () => {
       'Taobao',
       '1688',
     ]);
-    expect(metadata.alternates?.canonical).toBe(`${SITE_URL}/zh/products/sample-product`);
+    expect(metadata.alternates?.canonical).toBe(`${SITE_URL}/en/products/sample-product`);
+    expect(metadata.alternates?.languages).toEqual({
+      en: `${SITE_URL}/en/products/sample-product`,
+      'x-default': `${SITE_URL}/en/products/sample-product`,
+    });
     expect(metadata.openGraph?.locale).toBe('zh_CN');
+    expect(metadata.robots).toEqual({
+      index: false,
+      follow: true,
+      googleBot: { index: false, follow: true },
+    });
+  });
+
+  it('keeps a reviewed English product canonical and indexable', async () => {
+    mockFetch.mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        slug: 'reviewed-product',
+        title: 'Reviewed Product',
+        seoIndexable: true,
+      }),
+    });
+
+    const { generateMetadata } = await import('../[locale]/(shop)/products/[slug]/page');
+    const metadata = await generateMetadata({
+      params: Promise.resolve({ locale: 'en', slug: 'reviewed-product' }),
+    });
+
+    expect(metadata.alternates?.canonical).toBe(
+      `${SITE_URL}/en/products/reviewed-product`,
+    );
     expect(metadata.robots).toEqual({
       index: true,
       follow: true,

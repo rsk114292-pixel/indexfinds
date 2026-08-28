@@ -1,6 +1,7 @@
 import {
   buildUrlSetXml,
   getSitemapEntriesByChunk,
+  getSitemapChunkIds,
   getTenantSitemapOptions,
 } from '@/lib/sitemap';
 import { resolveTenantFromHeaders } from '@/lib/tenant-config';
@@ -25,7 +26,8 @@ export async function GET(
     process.env.INDEXFINDS_LOCAL_TENANT_HOST,
   );
   const options = getTenantSitemapOptions(tenant);
-  if (options?.includeCatalog === false && numericId !== 0) {
+  const validIds = await getSitemapChunkIds(options);
+  if (!validIds.includes(numericId)) {
     return new Response('Not Found', { status: 404 });
   }
 

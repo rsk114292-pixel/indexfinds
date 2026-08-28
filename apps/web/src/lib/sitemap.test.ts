@@ -53,13 +53,51 @@ async function expectTenantSitemap(
 }
 
 describe('sitemap', () => {
-  it('keeps localized product chunks below the sitemap size limit', async () => {
+  it('chunks reviewed product canonicals without locale multiplication', async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ total: 8001 }),
+      json: async () => ({ total: 8001, reviewedOnly: true }),
     });
 
     await expect(getSitemapChunkIds()).resolves.toEqual([0, 1, 2, 3, 4]);
+  });
+
+  it('does not advertise an empty product sitemap chunk', async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ total: 0, reviewedOnly: true }),
+    });
+
+    await expect(getSitemapChunkIds()).resolves.toEqual([0]);
+  });
+
+  it('submits only English canonical URLs for reviewed products', async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        slugs: ['reviewed-product'],
+        reviewedOnly: true,
+      }),
+    });
+
+    await expect(getSitemapEntriesByChunk(1)).resolves.toEqual([
+      expect.objectContaining({
+        url: `${SITE_URL}/en/products/reviewed-product`,
+        alternates: {
+          en: `${SITE_URL}/en/products/reviewed-product`,
+          'x-default': `${SITE_URL}/en/products/reviewed-product`,
+        },
+      }),
+    ]);
+  });
+
+  it('fails closed when an older API cannot prove the slug review filter', async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ total: 77973 }),
+    });
+
+    await expect(getSitemapChunkIds()).resolves.toEqual([0]);
   });
 
   it('adds locale alternates to generated entries', async () => {

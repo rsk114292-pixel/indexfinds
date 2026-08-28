@@ -136,6 +136,7 @@ describe('ProductDetailService', () => {
     await expect(service.getAllSlugs(1, 100)).resolves.toEqual({
       slugs: ['reviewed-product'],
       total: 1,
+      reviewedOnly: true,
     });
     expect(productRepository.findAndCount).toHaveBeenCalledWith(
       expect.objectContaining({

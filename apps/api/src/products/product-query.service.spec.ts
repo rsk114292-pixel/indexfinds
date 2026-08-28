@@ -307,7 +307,10 @@ describe('ProductQueryService', () => {
         { slug: 'slug-b' },
       ]);
       const result = await service.getAllSlugs();
-      expect(result).toEqual({ slugs: ['slug-a', 'slug-b'] });
+      expect(result).toEqual({
+        slugs: ['slug-a', 'slug-b'],
+        reviewedOnly: true,
+      });
     });
 
     it('传 page+limit 返回分页结果和 total', async () => {
@@ -316,7 +319,11 @@ describe('ProductQueryService', () => {
         100,
       ]);
       const result = await service.getAllSlugs(2, 50);
-      expect(result).toEqual({ slugs: ['slug-c'], total: 100 });
+      expect(result).toEqual({
+        slugs: ['slug-c'],
+        total: 100,
+        reviewedOnly: true,
+      });
       expect(productRepository.findAndCount).toHaveBeenCalledWith(
         expect.objectContaining({ skip: 50, take: 50 }),
       );

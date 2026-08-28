@@ -16,8 +16,8 @@ export type SitemapEntry = {
 };
 
 const SITE_URL = getSiteUrl();
-// Each product expands to eight localized URLs with hreflang alternates.
-// Keep chunks comfortably below the 50 MB uncompressed sitemap limit.
+// Product copy is source-language content, so only submit the English
+// canonical instead of multiplying near-identical products across locales.
 export const PRODUCTS_PER_SITEMAP = 2500;
 const LOCALES = ['en', 'zh', 'fr', 'de', 'es', 'it', 'pt', 'ar'] as const;
 
@@ -26,6 +26,12 @@ export interface SitemapOptions {
   includeCatalog?: boolean;
   staticPaths?: readonly string[];
 }
+
+type ReviewedSlugResponse = {
+  slugs?: string[];
+  total?: number;
+  reviewedOnly?: boolean;
+};
 
 export function getTenantSitemapOptions(
   tenant: TenantConfig | null,
@@ -70,22 +76,22 @@ async function fetchJson<T>(
 }
 
 export async function getProductTotal(): Promise<number> {
-  const data = await fetchJson<{ total?: number }>(
+  const data = await fetchJson<ReviewedSlugResponse>(
     `${API_BASE_URL}/products/slugs?page=1&limit=1`,
     300,
   );
-  return data?.total || 0;
+  return data?.reviewedOnly === true ? data.total || 0 : 0;
 }
 
 export async function getProductSlugsPage(
   page: number,
   limit: number,
 ): Promise<string[]> {
-  const data = await fetchJson<{ slugs?: string[] }>(
+  const data = await fetchJson<ReviewedSlugResponse>(
     `${API_BASE_URL}/products/slugs?page=${page}&limit=${limit}`,
     300,
   );
-  return data?.slugs || [];
+  return data?.reviewedOnly === true ? data.slugs || [] : [];
 }
 
 export async function getAllCategorySlugs(): Promise<string[]> {
@@ -129,7 +135,7 @@ export async function getSitemapChunkIds(
   }
 
   const total = await getProductTotal();
-  const productChunks = Math.max(1, Math.ceil(total / PRODUCTS_PER_SITEMAP));
+  const productChunks = Math.ceil(total / PRODUCTS_PER_SITEMAP);
   return Array.from({ length: productChunks + 1 }, (_, index) => index);
 }
 
@@ -245,12 +251,15 @@ export async function getSitemapEntriesByChunk(
   }
 
   const slugs = await getProductSlugsPage(id, PRODUCTS_PER_SITEMAP);
-  return slugs.flatMap((slug) =>
-    multiLocaleEntries(`/products/${slug}`, {
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    }),
-  );
+  return slugs.map((slug) => ({
+    url: `${SITE_URL}/en/products/${slug}`,
+    alternates: {
+      en: `${SITE_URL}/en/products/${slug}`,
+      'x-default': `${SITE_URL}/en/products/${slug}`,
+    },
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  }));
 }
 
 function escapeXml(value: string): string {

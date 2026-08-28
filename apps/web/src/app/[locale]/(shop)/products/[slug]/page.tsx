@@ -19,10 +19,7 @@ import {
   getProductMetadataKeywords,
 } from '@/lib/seo';
 import type { Product } from '@/types';
-import {
-  buildSiteAlternates,
-  getRequestSiteIdentity,
-} from '@/lib/request-site-identity';
+import { getRequestSiteIdentity } from '@/lib/request-site-identity';
 import { getProductDetailTag } from '@/lib/cache-tags';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
 
@@ -78,7 +75,9 @@ export async function generateMetadata({
   const price = product.priceMin
     ? `${product.currency || 'CNY'} ${product.priceMin}`
     : '';
-  const indexable = !tenant && product.seoIndexable === true;
+  const canonicalUrl = `${siteUrl}/en/products/${slug}`;
+  const indexable =
+    !tenant && locale === 'en' && product.seoIndexable === true;
 
   return {
     title: `${title}${price ? ` - ${price}` : ''}`,
@@ -97,7 +96,7 @@ export async function generateMetadata({
       title: `${title} | ${siteName}`,
       description,
       type: 'website',
-      url: `${siteUrl}/${locale}/products/${slug}`,
+      url: canonicalUrl,
       siteName,
       locale: getOgLocale(locale),
     },
@@ -110,7 +109,10 @@ export async function generateMetadata({
     },
 
     // Canonical URL + alternates
-    alternates: buildSiteAlternates(identity, `/products/${slug}`, locale),
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: canonicalUrl, 'x-default': canonicalUrl },
+    },
 
     // Robots 指令
     robots: {

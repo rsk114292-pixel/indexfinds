@@ -129,7 +129,7 @@ export class ProductDetailService {
   async getAllSlugs(
     page?: number,
     limit?: number,
-  ): Promise<{ slugs: string[]; total?: number }> {
+  ): Promise<{ slugs: string[]; total?: number; reviewedOnly: true }> {
     const where = {
       status: ProductStatus.ACTIVE,
       seoIndexable: true,
@@ -143,7 +143,11 @@ export class ProductDetailService {
         skip: (page - 1) * limit,
         take: limit,
       });
-      return { slugs: products.map((product) => product.slug), total };
+      return {
+        slugs: products.map((product) => product.slug),
+        total,
+        reviewedOnly: true,
+      };
     }
 
     const products = await this.productRepository.find({
@@ -151,7 +155,10 @@ export class ProductDetailService {
       select: ['slug'],
       order: { createdAt: 'DESC' },
     });
-    return { slugs: products.map((product) => product.slug) };
+    return {
+      slugs: products.map((product) => product.slug),
+      reviewedOnly: true,
+    };
   }
 
   private getProductDetailCacheKey(slug: string): string {
