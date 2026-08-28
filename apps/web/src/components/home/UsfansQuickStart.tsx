@@ -323,6 +323,126 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                                     icon: Scale,
                                   },
                                 ] as const)
+                              : tenant.domain === "acbuyindex.com"
+                                ? ([
+                                    {
+                                      href: "/directory",
+                                      title: "Start with a listing shortlist",
+                                      description:
+                                        "Reduce broad ACBuy search results to sources with comparable options and current listing fields.",
+                                      icon: Search,
+                                    },
+                                    {
+                                      href: "/category-research",
+                                      title: "Choose category evidence",
+                                      description:
+                                        "Define the measurements, materials or compatibility details needed for this product type.",
+                                      icon: LayoutGrid,
+                                    },
+                                    {
+                                      href: "/safety-research",
+                                      title: "Record unresolved route questions",
+                                      description:
+                                        "Keep seller, payment and destination checks open until the live source answers them.",
+                                      icon: Scale,
+                                    },
+                                  ] as const)
+                                : tenant.domain === "allchinabuyfinder.com"
+                                  ? ([
+                                      {
+                                        href: "/categories",
+                                        title: "Pick the product family",
+                                        description:
+                                          "Use category boundaries to decide which materials, sizes and option words belong in the query.",
+                                        icon: LayoutGrid,
+                                      },
+                                      {
+                                        href: "/search-ideas",
+                                        title: "Turn the idea into search language",
+                                        description:
+                                          "Combine a product noun with one differentiating feature before reviewing individual sources.",
+                                        icon: Search,
+                                      },
+                                      {
+                                        href: "/product-checklist",
+                                        title: "Test each discovery candidate",
+                                        description:
+                                          "Compare image relevance, option detail and source continuity before saving a result.",
+                                        icon: Scale,
+                                      },
+                                    ] as const)
+                                  : tenant.domain === "allchinabuyindex.com"
+                                    ? ([
+                                        {
+                                          href: "/guide",
+                                          title: "Define the index question",
+                                          description:
+                                            "Write the exact product phrase and the fields that must remain comparable across results.",
+                                          icon: Search,
+                                        },
+                                        {
+                                          href: "/research-log",
+                                          title: "Keep a dated comparison log",
+                                          description:
+                                            "Preserve source changes, missing options and the reason a listing stayed in or left the index.",
+                                          icon: LayoutGrid,
+                                        },
+                                        {
+                                          href: "/regions",
+                                          title: "Separate destination constraints",
+                                          description:
+                                            "Treat region rules and route availability as later checks rather than product attributes.",
+                                          icon: Scale,
+                                        },
+                                      ] as const)
+                                    : tenant.domain === "bbdbuyeufinds.com"
+                                      ? ([
+                                          {
+                                            href: "/eu-finds",
+                                            title: "Create an EU product brief",
+                                            description:
+                                              "Write down sizing, plug, material and use-case requirements before browsing BBDbuy-linked finds.",
+                                            icon: Search,
+                                          },
+                                          {
+                                            href: "/qc-checklist",
+                                            title: "Prepare region-aware QC fields",
+                                            description:
+                                              "Request the labels, dimensions and compatibility evidence needed for the intended EU destination.",
+                                            icon: LayoutGrid,
+                                          },
+                                          {
+                                            href: "/shipping-planner",
+                                            title: "Plan only from parcel evidence",
+                                            description:
+                                              "Keep VAT, route restrictions and measured parcel inputs separate from the displayed item price.",
+                                            icon: Scale,
+                                          },
+                                        ] as const)
+                                      : tenant.domain === "bbdbuyeus.com"
+                                        ? ([
+                                            {
+                                              href: "/search-guide",
+                                              title: "Build the US-bound shortlist",
+                                              description:
+                                                "Compare product evidence first without treating a listing price as the final delivered cost.",
+                                              icon: Search,
+                                            },
+                                            {
+                                              href: "/order-workflow",
+                                              title: "Track the order-to-warehouse handoff",
+                                              description:
+                                                "Keep the requested option, seller record and received-item evidence in separate stages.",
+                                              icon: LayoutGrid,
+                                            },
+                                            {
+                                              href: "/parcel-checklist",
+                                              title: "Evaluate the measured US parcel",
+                                              description:
+                                                "Use actual packed weight, dimensions and current route restrictions for shipping research.",
+                                              icon: Scale,
+                                            },
+                                          ] as const)
         : ([
             {
               href: "/categories",
@@ -371,6 +491,16 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                             ? { href: "/search-ideas", label: "Open the query design guide" }
                             : tenant.domain === "superbuyitems.com"
                               ? { href: "/superbuy-qc", label: "Review the item QC fields" }
+                              : tenant.domain === "acbuyindex.com"
+                                ? { href: "/category-research", label: "Set the category evidence" }
+                                : tenant.domain === "allchinabuyfinder.com"
+                                  ? { href: "/search-ideas", label: "Build a discovery query" }
+                                  : tenant.domain === "allchinabuyindex.com"
+                                    ? { href: "/research-log", label: "Open the comparison log" }
+                                    : tenant.domain === "bbdbuyeufinds.com"
+                                      ? { href: "/qc-checklist", label: "Prepare the EU QC fields" }
+                                      : tenant.domain === "bbdbuyeus.com"
+                                        ? { href: "/parcel-checklist", label: "Review US parcel inputs" }
         : { href: "/products", label: "Browse all products" };
 
   const boundaryNote =
@@ -394,8 +524,18 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                       ? "An offer label does not prove current eligibility, exact product coverage or the final checkout result. Recheck the dated source."
                       : tenant.domain === "superbuyindex.com"
                         ? "A rank, brand or category match organizes candidates; it does not verify the current option, price, seller or source page."
-                        : tenant.domain === "superbuyitems.com"
-                          ? "A linked item is a research record, not proof of authenticity, availability, received condition or future parcel cost."
+                      : tenant.domain === "superbuyitems.com"
+                        ? "A linked item is a research record, not proof of authenticity, availability, received condition or future parcel cost."
+                        : tenant.domain === "acbuyindex.com"
+                          ? "An ACBuy search match is only a shortlist candidate. Recheck the exact source, selected option, seller record and current route terms."
+                          : tenant.domain === "allchinabuyfinder.com"
+                            ? "A discovery phrase improves recall, not certainty. Confirm image relevance, option wording and the live source before keeping a find."
+                            : tenant.domain === "allchinabuyindex.com"
+                              ? "An index row preserves comparable fields; it does not confirm stock, seller reliability, authenticity or destination availability."
+                              : tenant.domain === "bbdbuyeufinds.com"
+                                ? "EU sizing, plug standards, VAT treatment and import restrictions vary. Keep each destination check outside the product claim."
+                                : tenant.domain === "bbdbuyeus.com"
+                                  ? "A US-bound parcel estimate needs measured weight, dimensions and current route rules; the catalog price cannot supply those facts."
           : "Some outbound buying links may be referral links. Confirm current price, availability and service terms on the destination site.";
 
   return (
