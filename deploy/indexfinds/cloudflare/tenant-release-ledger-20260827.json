@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T03:28:34+08:00",
+  "updatedAt": "2026-08-29T10:57:01+08:00",
   "policy": "A branding-ready flag is not a release approval. A tenant may be indexed only after independent content, technical SEO, mobile, preview and production checks pass.",
   "releasedForIndexing": [
     "acbuyindex.com",
@@ -192,11 +192,12 @@
     "domains": ["ydaexpress.net", "ydaexpress.org"],
     "routeState": "dedicated-candidate-worker-production-routed",
     "indexingState": "ready-index",
-    "releaseGateState": "content-validated-infrastructure-degraded",
-    "liveValidation": "The independently reviewed YDA content still passes isolated acceptance, but all four apex/www production hosts currently return Cloudflare 429 because the account Worker quota is exhausted. Direct-origin preparation is blocked on Cloudflare DNS Edit and Origin CA permissions.",
+    "releaseGateState": "deployed-and-live-validated",
+    "liveValidation": "After the 00:00 UTC Workers quota reset, both apex English homepages return 200 and both www hosts return the expected single 308 redirect. All 12 reviewed pages and four desktop/mobile views passed with zero failures; maximum homepage similarity is 0.4751.",
     "workerVersion": "95ba7470-7de1-418d-a46d-7b273a222d63",
     "webCommit": "5a409d3",
-    "blockerEvidence": "yda-direct-origin-blocker-20260829.json"
+    "acceptanceEvidence": "yda-post-reset-production-acceptance-20260829.json",
+    "historicalBlockerEvidence": "yda-direct-origin-blocker-20260829.json"
   },
   "directOriginMigration": {
     "domainCount": 40,
@@ -206,9 +207,19 @@
     "webCommit": "5a409d3",
     "evidence": "direct-origin-production-acceptance-20260829.json"
   },
+  "portfolioCompletion": {
+    "tenantCount": 42,
+    "reviewedPageCount": 305,
+    "desktopMobileViewCount": 84,
+    "maximumHomepageSimilarity": 0.5571,
+    "failureCount": 0,
+    "result": "complete",
+    "sourceCommit": "5a409d3",
+    "evidence": "portfolio-production-completion-20260829.json"
+  },
   "remainingTenantCount": 0,
-  "remainingState": "all-tenant-content-reviewed; two-yda-domains-await-infrastructure-recovery",
-  "currentOperationalBlockerCount": 2,
+  "remainingState": "all-42-tenant-content-and-production-validated",
+  "currentOperationalBlockerCount": 0,
   "evidence": [
     "batch1-route-rollback-20260827.json",
     "batch2-route-rollback-20260827.json",
@@ -236,6 +247,8 @@
     "yda-route-preflight-20260827.json",
     "yda-route-rollback-20260827.json",
     "yda-production-acceptance-20260827.json",
-    "yda-direct-origin-blocker-20260829.json"
+    "yda-direct-origin-blocker-20260829.json",
+    "yda-post-reset-production-acceptance-20260829.json",
+    "portfolio-production-completion-20260829.json"
   ]
 }

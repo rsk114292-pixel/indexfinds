@@ -1,0 +1,34 @@
+{
+  "validatedAt": "2026-08-29T10:48:35+08:00",
+  "sourceCommit": "5a409d3",
+  "domains": [
+    "ydaexpress.net",
+    "ydaexpress.org"
+  ],
+  "routeState": "dedicated-yda-worker-production-routed",
+  "recovery": {
+    "cause": "The Cloudflare Workers Free account-wide request quota had been exhausted before forty other tenant domains were moved to direct origin.",
+    "reset": "Cloudflare reset the daily quota at 00:00 UTC on 2026-08-29.",
+    "trafficReduction": "Only the two YDA domains remain on the dedicated YDA Worker; the other forty tenant domains now bypass Workers.",
+    "result": "Both apex English homepages recovered to 200 and both www hosts recovered to the expected single 308 redirect."
+  },
+  "checks": {
+    "reviewedPages": "All 12 reviewed sitemap pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, structured data and matching sitemap inclusion.",
+    "visual": "Both domains passed desktop 1440x900 and mobile 390x844 production checks with no overflow, broken images, page errors, console errors or bad HTTP responses.",
+    "duplicateContent": "The maximum five-word homepage shingle similarity is 0.4751, below the 0.60 release threshold.",
+    "robots": "The default crawler and Googlebot blocks allow the root, restrict only private and unreviewed routes, and publish the exact domain sitemap.",
+    "assets": "Both favicons return 200 as image/svg+xml and the rendered pages contain no broken images.",
+    "rsc": "Five independently probed YDA Express .org React Server Component prefetch endpoints return 200 as text/x-component. A transient first-pass Chromium network suspension did not reproduce in the confirmed audit.",
+    "mainSiteIsolation": "The IndexFinds main site and API remained healthy throughout recovery and validation."
+  },
+  "operationalNote": "The current YDA service remains subject to the Workers Free 100,000-request daily account limit. Direct-origin preparation is retained as a future hardening option but is not a current production blocker while only these two domains invoke Workers.",
+  "rollback": {
+    "routeAction": "Restore the four exact apex/www route IDs using yda-route-rollback-20260827.json if the dedicated YDA Worker must be reverted.",
+    "originPreparation": "The unused HTTP-only Hostinger vhosts, restricted private keys and unsigned CSRs remain isolated until DNS Edit and Origin CA permissions are available.",
+    "evidence": [
+      "yda-route-rollback-20260827.json",
+      "yda-production-acceptance-20260827.json",
+      "yda-direct-origin-blocker-20260829.json"
+    ]
+  }
+}

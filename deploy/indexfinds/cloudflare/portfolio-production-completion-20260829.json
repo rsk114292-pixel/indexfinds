@@ -1,0 +1,40 @@
+{
+  "validatedAt": "2026-08-29T10:57:01+08:00",
+  "sourceCommit": "5a409d3",
+  "recordBaseCommit": "3446084",
+  "scope": {
+    "tenantCount": 42,
+    "directOriginTenantCount": 40,
+    "dedicatedWorkerTenantCount": 2
+  },
+  "result": "complete",
+  "checks": {
+    "productionPortfolio": "All 305 reviewed sitemap pages and all 84 desktop/mobile production views passed with zero failures.",
+    "technicalSeo": "Every reviewed page has its exact tenant title, description, self-canonical, robots decision, sitemap membership, favicon and structured data; unreviewed product directories remain noindex and outside tenant sitemaps.",
+    "duplicateContent": "The maximum five-word homepage shingle similarity is 0.5571, below the 0.60 release threshold.",
+    "ydaRecovery": "Both YDA apex English homepages return 200, both www hosts return the expected single 308 redirect, and the confirmed 12-page/four-view audit passed with maximum similarity 0.4751.",
+    "mainSite": "The IndexFinds homepage and API health endpoint return 200, while the disabled registration route returns 404.",
+    "catalog": "The live catalog reports 77,973 products, 374 brands and 203 categories.",
+    "runtime": "The two tenant web containers and two API containers are healthy with zero restarts."
+  },
+  "architecture": {
+    "directOrigin": "Forty tenants use Cloudflare-proxied DNS to the Hostinger origin without invoking a Worker.",
+    "yda": "ydaexpress.net and ydaexpress.org remain isolated on the dedicated YDA Worker after quota recovery.",
+    "mainSiteIsolation": "The main IndexFinds web and API services remain separate from tenant routing."
+  },
+  "indexing": {
+    "releasedTenantCount": 42,
+    "blockedTenantCount": 0,
+    "policy": "Only independently reviewed sitemap pages are indexable; private, thin and unreviewed product routes remain excluded."
+  },
+  "rollback": {
+    "directOrigin": "Use the per-batch route rollback manifests and the direct-origin acceptance record to restore prior Worker routing.",
+    "yda": "Use yda-route-rollback-20260827.json to restore the four exact apex/www route IDs.",
+    "evidence": [
+      "direct-origin-production-acceptance-20260829.json",
+      "yda-post-reset-production-acceptance-20260829.json",
+      "tenant-release-ledger-20260827.json"
+    ]
+  },
+  "operationalNote": "The two YDA domains still share the Workers Free daily account quota. Their direct-origin preparation remains available as optional future hardening, not a current production blocker."
+}
