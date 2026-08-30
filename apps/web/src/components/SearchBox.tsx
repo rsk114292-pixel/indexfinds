@@ -477,6 +477,9 @@ export default function SearchBox({
           placeholder={
             searchMode === "link" ? t("linkPlaceholder") : t("placeholder")
           }
+          aria-label={
+            searchMode === "link" ? t("linkPlaceholder") : t("placeholder")
+          }
           role="combobox"
           aria-autocomplete="list"
           aria-expanded={showSuggestions}

@@ -28,7 +28,10 @@ export default function MobilePageTransition({ children }: MobilePageTransitionP
 
   const animation = useMemo(() => {
     if (prefersReducedMotion) {
-      return { initial: false as const, animate: {} };
+      return {
+        initial: false as const,
+        animate: { opacity: 1, transition: { duration: 0 } },
+      };
     }
     return {
       initial: { opacity: 0 },

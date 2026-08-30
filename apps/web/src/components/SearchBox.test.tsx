@@ -71,7 +71,9 @@ describe('SearchBox', () => {
 
   it('renders search input', () => {
     render(<SearchBox />);
-    expect(screen.getByPlaceholderText('placeholder')).toBeInTheDocument();
+    expect(
+      screen.getByRole('combobox', { name: 'placeholder' }),
+    ).toBeInTheDocument();
   });
 
   it('renders image search uploader', () => {

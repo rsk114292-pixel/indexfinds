@@ -26,9 +26,7 @@ export default function WhatsAppHelp() {
       className={cn(
         'whatsapp-help group fixed right-4 z-40 flex items-center gap-2 transition-[bottom,opacity,transform] sm:right-6',
         consent === 'pending'
-          ? isProductDetail
-            ? 'bottom-[calc(env(safe-area-inset-bottom)+140px)] lg:bottom-20'
-            : 'bottom-[calc(env(safe-area-inset-bottom)+128px)] lg:bottom-20'
+          ? 'hidden lg:flex lg:bottom-24'
           : isProductDetail
             ? 'bottom-[calc(env(safe-area-inset-bottom)+84px)] lg:bottom-6'
             : 'bottom-[calc(env(safe-area-inset-bottom)+80px)] lg:bottom-6',
