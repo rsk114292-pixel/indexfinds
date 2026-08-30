@@ -1,0 +1,51 @@
+{
+  "validatedAt": "2026-08-31T01:04:01+08:00",
+  "sourceCommit": "8d4de767d2a51f10674606e3fdba06ea7dfca7ad",
+  "scope": {
+    "tenantCount": 42,
+    "directOriginTenantCount": 40,
+    "dedicatedWorkerTenantCount": 2,
+    "deploymentPlatform": "Hostinger",
+    "cdnAndDns": "Cloudflare",
+    "vercelUsed": false
+  },
+  "release": {
+    "host": "186.240.157.184",
+    "releaseDirectory": "/opt/indexfinds/releases/tenant-ui-8d4de76",
+    "image": "indexfinds-web:tenant-ui-8d4de76",
+    "container": "indexfinds-web-tenant-ui-8d4de76",
+    "webPort": 3136,
+    "apiPort": 4101,
+    "containerHealth": "healthy",
+    "containerRestarts": 0
+  },
+  "checks": {
+    "build": "The exact pushed commit completed its production build and generated all 3,040 static pages.",
+    "isolatedTechnicalSeo": "All 42 tenant hosts passed isolated home, canonical, JSON-LD, favicon, robots and sitemap checks before traffic was switched.",
+    "isolatedVisual": "All 84 isolated desktop and mobile views passed with centered search, no URL-backed hero image, no hero picture, no overflow, no broken images and no browser errors.",
+    "productionEntryPoints": "All 42 apex English homepages, robots files, sitemap indexes and real favicon assets returned 200. All www hosts returned the expected 308 redirect and all disabled registration routes returned 404.",
+    "productionSitemapPages": "All 305 approved production sitemap pages returned 200 with exact self-canonicals, titles, descriptions, structured data and no unexpected noindex directive.",
+    "productionVisual": "All 84 public desktop and mobile views passed. Search width was 77.8% on desktop and 91.8% on mobile with zero measured horizontal center offset.",
+    "duplicateContent": "The maximum five-word homepage shingle similarity was 0.5660 for eastmallbuyindex.com and hoobuyindex.net, below the 0.60 release threshold.",
+    "robots": "Every Googlebot group explicitly allows the root while keeping account, authentication, admin and query-duplicate routes excluded. Cloudflare managed content signals allow search indexing and reserve AI training rights.",
+    "mainSiteIsolation": "https://indexfinds.com/en and https://api-next.indexfinds.com/health returned 200; https://indexfinds.com/en/register returned 404.",
+    "runtime": "The new tenant container and retained rollback container remained healthy with zero restarts. Nginx configuration validation passed.",
+    "storage": "Only unused Docker build cache was removed after the release. Root disk usage fell from 97% to 82%, leaving about 36 GB available. Databases, volumes, running images and rollback containers were not removed."
+  },
+  "nonBlockingObservations": [
+    "Some stale third-party product image origins returned 404 or timed out in the Next image optimizer during the acceptance crawl. The existing client fallback prevented broken images in all 84 visual checks, and no tenant entry point returned a 5xx response."
+  ],
+  "routing": {
+    "directOrigin": "Forty tenant Nginx vhosts now proxy web traffic to 127.0.0.1:3136.",
+    "yda": "The shared Hostinger origin used by the two dedicated YDA Workers now proxies to 127.0.0.1:3136.",
+    "cloudflare": "Cloudflare remains the DNS/CDN layer; no DNS record changes were required."
+  },
+  "rollback": {
+    "previousImage": "indexfinds-web:tenant-direct-5a409d3",
+    "previousContainer": "indexfinds-web-tenant-direct-5a409d3",
+    "previousPort": 3135,
+    "directOriginBackup": "/root/.indexfinds-migration/nginx-backups/tenant-direct-20260830T160837Z",
+    "sharedOriginBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-port-3135-to-3136-20260830T160952Z",
+    "state": "The previous container remains running and healthy for immediate port rollback."
+  }
+}

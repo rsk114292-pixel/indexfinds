@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T10:57:01+08:00",
+  "updatedAt": "2026-08-31T01:04:01+08:00",
   "policy": "A branding-ready flag is not a release approval. A tenant may be indexed only after independent content, technical SEO, mobile, preview and production checks pass.",
   "releasedForIndexing": [
     "acbuyindex.com",
@@ -57,7 +57,7 @@
     "releaseGateState": "deployed-and-live-validated",
     "liveValidation": "All 23 reviewed pages return 200 with exact self-canonicals, index/follow metadata and structured data. Apex/www redirects, favicon, robots, exact sitemap allowlists, API health, desktop/mobile rendering and duplicate-content acceptance passed.",
     "workerVersion": "98a0d644-6647-41a9-a774-c0aa1af1978f",
-    "webCommit": "e84422e"
+    "webCommit": "8d4de76"
   },
   "batch3": {
     "domains": [
@@ -70,7 +70,7 @@
     "releaseGateState": "deployed-and-live-validated",
     "liveValidation": "All 24 reviewed pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, structured data and exact sitemap inclusion. Unreviewed product lists remain noindex and outside each sitemap.",
     "workerVersion": "61e49b13-d2f2-4bc7-807b-760cba3ee654",
-    "webCommit": "4449e5d"
+    "webCommit": "8d4de76"
   },
   "batch4": {
     "domains": [
@@ -82,7 +82,7 @@
     "releaseGateState": "deployed-and-live-validated",
     "liveValidation": "All 16 reviewed pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, structured data and exact sitemap inclusion. Unreviewed product lists remain noindex and outside both sitemaps.",
     "workerVersion": "736bb194-3417-4999-b567-3c841b3903d3",
-    "webCommit": "135d004"
+    "webCommit": "8d4de76"
   },
   "batch5": {
     "domains": [
@@ -95,7 +95,7 @@
     "releaseGateState": "deployed-and-live-validated",
     "liveValidation": "All 24 reviewed pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, structured data and exact sitemap inclusion. Unreviewed product lists remain noindex and outside all three sitemaps.",
     "workerVersion": "9ebe6e05-8d37-4e41-ba6f-b0fee2090f4a",
-    "webCommit": "7eb675f"
+    "webCommit": "8d4de76"
   },
   "batch6": {
     "domains": [
@@ -110,7 +110,7 @@
     "releaseGateState": "deployed-and-live-validated",
     "liveValidation": "All 38 reviewed pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, structured data and exact sitemap inclusion. Unreviewed product lists remain noindex and outside all five sitemaps. Desktop and mobile production checks passed without overflow, console errors or broken images.",
     "workerVersion": "28bad301-bb3d-4c1c-8020-3619eab49c6c",
-    "webCommit": "98d0483"
+    "webCommit": "8d4de76"
   },
   "batch7": {
     "domains": [
@@ -124,7 +124,7 @@
     "releaseGateState": "deployed-and-live-validated",
     "liveValidation": "All 32 reviewed pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, structured data and exact sitemap inclusion. Unreviewed product lists remain noindex and outside all four sitemaps. Desktop and mobile production checks passed, and homepage similarity remained below the release threshold.",
     "workerVersion": "62163544-86c7-473f-b66c-ef92a7fa1076",
-    "webCommit": "b9c5bf4"
+    "webCommit": "8d4de76"
   },
   "batch8": {
     "domains": [
@@ -137,7 +137,7 @@
     "releaseGateState": "deployed-and-live-validated",
     "liveValidation": "All 12 reviewed pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, structured data and exact sitemap inclusion. Unreviewed product lists remain noindex. Desktop/mobile production checks and the 0.3559 maximum homepage similarity result passed.",
     "workerVersion": "228c5986-2b03-40a1-8bb7-4988b477f53c",
-    "webCommit": "20eadfe"
+    "webCommit": "8d4de76"
   },
   "batch9": {
     "domains": [
@@ -150,7 +150,7 @@
     "releaseGateState": "deployed-and-live-validated",
     "liveValidation": "All 24 reviewed pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, structured data and exact sitemap inclusion. Unreviewed product lists remain noindex. Desktop/mobile production checks passed and the maximum homepage similarity was 0.2660.",
     "workerVersion": "a1458fc5-50d7-47f4-bc58-2a708b31342f",
-    "webCommit": "1903673"
+    "webCommit": "8d4de76"
   },
   "batch10": {
     "domains": [
@@ -162,7 +162,7 @@
     "releaseGateState": "deployed-and-live-validated",
     "liveValidation": "All 16 reviewed pages return 200 with exact self-canonicals, index/follow metadata, unique titles and descriptions, structured data and exact sitemap inclusion. Unreviewed product lists remain noindex. Desktop/mobile production checks passed and the maximum homepage similarity was 0.1407.",
     "workerVersion": "fe270f90-fcbf-4122-82da-796cd60ba1cc",
-    "webCommit": "7cb3fd7"
+    "webCommit": "8d4de76"
   },
   "batch11": {
     "domains": [
@@ -174,7 +174,7 @@
     "indexingState": "ready-index",
     "releaseGateState": "deployed-and-live-validated",
     "liveValidation": "All reviewed sitemap pages and all six desktop/mobile views return 200 with exact technical SEO, no broken images, no overflow and tenant-specific content. Unreviewed product lists remain noindex.",
-    "webCommit": "5a409d3"
+    "webCommit": "8d4de76"
   },
   "batch12": {
     "domains": [
@@ -186,7 +186,7 @@
     "indexingState": "ready-index",
     "releaseGateState": "deployed-and-live-validated",
     "liveValidation": "All reviewed sitemap pages and all six desktop/mobile views return 200 with exact technical SEO, no broken images, no overflow and tenant-specific content. Unreviewed product lists remain noindex.",
-    "webCommit": "5a409d3"
+    "webCommit": "8d4de76"
   },
   "yda": {
     "domains": ["ydaexpress.net", "ydaexpress.org"],
@@ -195,7 +195,7 @@
     "releaseGateState": "deployed-and-live-validated",
     "liveValidation": "After the 00:00 UTC Workers quota reset, both apex English homepages return 200 and both www hosts return the expected single 308 redirect. All 12 reviewed pages and four desktop/mobile views passed with zero failures; maximum homepage similarity is 0.4751.",
     "workerVersion": "95ba7470-7de1-418d-a46d-7b273a222d63",
-    "webCommit": "5a409d3",
+    "webCommit": "8d4de76",
     "acceptanceEvidence": "yda-post-reset-production-acceptance-20260829.json",
     "historicalBlockerEvidence": "yda-direct-origin-blocker-20260829.json"
   },
@@ -203,19 +203,19 @@
     "domainCount": 40,
     "routeState": "cloudflare-proxied-dns-with-no-worker-script",
     "releaseGateState": "deployed-and-live-validated",
-    "productionValidation": "293 reviewed sitemap pages and 80 desktop/mobile views passed with zero failures; maximum homepage similarity is 0.5571.",
-    "webCommit": "5a409d3",
-    "evidence": "direct-origin-production-acceptance-20260829.json"
+    "productionValidation": "293 reviewed sitemap pages and 80 desktop/mobile views passed with zero failures; the current portfolio audit found a 0.5660 maximum homepage similarity, below the 0.60 release threshold.",
+    "webCommit": "8d4de76",
+    "evidence": "deploy/indexfinds/hostinger/tenant-ui-8d4de76-production-acceptance-20260831.json"
   },
   "portfolioCompletion": {
     "tenantCount": 42,
     "reviewedPageCount": 305,
     "desktopMobileViewCount": 84,
-    "maximumHomepageSimilarity": 0.5571,
+    "maximumHomepageSimilarity": 0.566,
     "failureCount": 0,
     "result": "complete",
-    "sourceCommit": "5a409d3",
-    "evidence": "portfolio-production-completion-20260829.json"
+    "sourceCommit": "8d4de76",
+    "evidence": "deploy/indexfinds/hostinger/tenant-ui-8d4de76-production-acceptance-20260831.json"
   },
   "remainingTenantCount": 0,
   "remainingState": "all-42-tenant-content-and-production-validated",
@@ -249,6 +249,7 @@
     "yda-production-acceptance-20260827.json",
     "yda-direct-origin-blocker-20260829.json",
     "yda-post-reset-production-acceptance-20260829.json",
-    "portfolio-production-completion-20260829.json"
+    "portfolio-production-completion-20260829.json",
+    "deploy/indexfinds/hostinger/tenant-ui-8d4de76-production-acceptance-20260831.json"
   ]
 }
