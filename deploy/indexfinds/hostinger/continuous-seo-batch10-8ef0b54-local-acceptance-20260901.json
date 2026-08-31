@@ -1,0 +1,65 @@
+{
+  "validatedAt": "2026-09-01T00:11:15+08:00",
+  "scope": "Tenth GSC-prioritized tenant SEO batch, locally accepted and held behind the Hostinger capacity gate",
+  "domains": [
+    "allchinabuyfinder.com",
+    "bbdbuyeufinds.com",
+    "eastmallbuyindex.com",
+    "fishgooindex.com",
+    "goatedbuyindex.com",
+    "gtbuyindex.com",
+    "kameymallindex.com",
+    "litbuyitems.com",
+    "litbuyproducts.com",
+    "loongbuys.net",
+    "mulebuyindex.net",
+    "mulebuyitems.com"
+  ],
+  "gscBaseline": {
+    "window": "last 28 days",
+    "recoveredUrlCount": 37,
+    "recoveredUrlClicks": 10,
+    "recoveredUrlImpressions": 353,
+    "byDomain": {
+      "allchinabuyfinder.com": { "urls": 1, "clicks": 0, "impressions": 3 },
+      "bbdbuyeufinds.com": { "urls": 4, "clicks": 2, "impressions": 21 },
+      "eastmallbuyindex.com": { "urls": 1, "clicks": 1, "impressions": 6 },
+      "fishgooindex.com": { "urls": 1, "clicks": 0, "impressions": 10 },
+      "goatedbuyindex.com": { "urls": 4, "clicks": 2, "impressions": 71 },
+      "gtbuyindex.com": { "urls": 5, "clicks": 1, "impressions": 67 },
+      "kameymallindex.com": { "urls": 5, "clicks": 0, "impressions": 17 },
+      "litbuyitems.com": { "urls": 1, "clicks": 0, "impressions": 2 },
+      "litbuyproducts.com": { "urls": 2, "clicks": 3, "impressions": 107 },
+      "loongbuys.net": { "urls": 4, "clicks": 0, "impressions": 11 },
+      "mulebuyindex.net": { "urls": 3, "clicks": 0, "impressions": 8 },
+      "mulebuyitems.com": { "urls": 6, "clicks": 1, "impressions": 30 }
+    }
+  },
+  "releaseCandidate": {
+    "sourceCommit": "8ef0b54",
+    "state": "local-ready-production-capacity-blocked",
+    "productionStillServingCommit": "9724f20",
+    "productionContainer": "indexfinds-web-seo-batch7-9724f20",
+    "productionPort": 3144
+  },
+  "checks": {
+    "legacyRecovery": "All 37 GSC-exposed legacy URLs have an explicit one-to-one mapping, return HTTP 308 in the isolated build, and point to a current reviewed page returning HTTP 200.",
+    "retiredPagePolicy": "Four sampled GSC-exposed paths without a strict equivalent keep a final HTTP 404; no homepage soft redirects were introduced.",
+    "rankingProtection": "No homepage, current ranked URL, page title, canonical, robots rule, sitemap entry or page structure changed in this batch.",
+    "localTests": "Three focused suites passed with 140 tests; TypeScript and changed-file ESLint checks passed.",
+    "productionBuild": "The exact candidate commit completed the production build successfully.",
+    "mainIsolation": "No production route, container, DNS, Cloudflare setting or IndexFinds main-site configuration changed during this batch."
+  },
+  "postDeploymentMeasurement": {
+    "technicalExpected": "Legacy URL changes from final 404 to HTTP 308 with a final reviewed HTTP 200 destination.",
+    "gscExpected": "Google consolidates impressions and clicks on the canonical reviewed targets after recrawl.",
+    "status": "pending-production-deployment-and-google-recrawl"
+  },
+  "capacity": {
+    "filesystemFree": "4.2G",
+    "filesystemUsePercent": 98,
+    "nextProductionBuildState": "blocked-pending-explicit-rollback-image-retention-decision",
+    "note": "The active release is healthy. Another Hostinger Docker image build is unsafe until exact inactive rollback containers and images are approved for removal or capacity is increased."
+  },
+  "result": "local-ready-production-capacity-blocked"
+}

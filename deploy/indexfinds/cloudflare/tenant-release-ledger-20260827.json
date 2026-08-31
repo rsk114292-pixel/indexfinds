@@ -329,6 +329,25 @@
     "releaseGateState": "local-ready-production-capacity-blocked",
     "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch9-a950b59-local-acceptance-20260831.json"
   },
+  "continuousSeoBatch10Candidate": {
+    "domains": [
+      "allchinabuyfinder.com",
+      "bbdbuyeufinds.com",
+      "eastmallbuyindex.com",
+      "fishgooindex.com",
+      "goatedbuyindex.com",
+      "gtbuyindex.com",
+      "kameymallindex.com",
+      "litbuyitems.com",
+      "litbuyproducts.com",
+      "loongbuys.net",
+      "mulebuyindex.net",
+      "mulebuyitems.com"
+    ],
+    "webSourceCommit": "8ef0b54",
+    "releaseGateState": "local-ready-production-capacity-blocked",
+    "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch10-8ef0b54-local-acceptance-20260901.json"
+  },
   "googleSearchConsole": {
     "observedAt": "2026-08-31T16:58:10+08:00",
     "verifiedDomainPropertyCount": 42,
@@ -350,7 +369,7 @@
   "remainingState": "all-42-tenant-content-and-production-validated",
   "currentOperationalBlockerCount": 1,
   "currentOperationalBlockers": [
-    "Hostinger root filesystem has 4.3G free at 98% use. The active tenant release is healthy, but another production image build requires explicit approval to remove exact inactive rollback images or an external disk-capacity increase."
+    "Hostinger root filesystem has 4.2G free at 98% use. The active tenant release is healthy, but another production image build requires explicit approval to remove exact inactive rollback images or an external disk-capacity increase."
   ],
   "evidence": [
     "batch1-route-rollback-20260827.json",
