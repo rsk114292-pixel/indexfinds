@@ -78,6 +78,70 @@ describe("tenant legacy path redirects", () => {
   );
 
   it.each([
+    [
+      "joyabuyfinds.com",
+      "/how-much-is-joyagoo-shipping/",
+      "https://joyabuyfinds.com/en/shipping",
+    ],
+    [
+      "joyabuyfinds.com",
+      "/how-to-use-joyagoo/",
+      "https://joyabuyfinds.com/en/guide",
+    ],
+    [
+      "joyabuyfinds.com",
+      "/joyagoo-shopping-guide/",
+      "https://joyabuyfinds.com/en/guide",
+    ],
+    [
+      "joyabuyfinds.com",
+      "/faq.html",
+      "https://joyabuyfinds.com/en/faq",
+    ],
+    [
+      "orientdigindex.com",
+      "/categories.html",
+      "https://orientdigindex.com/en/categories",
+    ],
+    [
+      "orientdigindex.com",
+      "/spreadsheet-checklist.html",
+      "https://orientdigindex.com/en/spreadsheet-checklist",
+    ],
+    [
+      "orientdigindex.com",
+      "/privacy.html",
+      "https://orientdigindex.com/en/privacy",
+    ],
+  ])(
+    "recovers a high-impression legacy path for %s",
+    (domain, pathname, expected) => {
+      expect(
+        getTenantLegacyPathRedirectUrl(
+          `https://${domain}${pathname}`,
+          domain,
+        ),
+      ).toBe(expected);
+    },
+  );
+
+  it.each([
+    ["joyabuyfinds.com", "/joyagoo-review/"],
+    ["joyabuyfinds.com", "/joyagoo-qc-guide/"],
+    ["joyabuyfinds.com", "/joyagoo-news/"],
+  ])(
+    "keeps a JoyaGoo legacy page without an equivalent out of soft redirects",
+    (domain, pathname) => {
+      expect(
+        getTenantLegacyPathRedirectUrl(
+          `https://${domain}${pathname}`,
+          domain,
+        ),
+      ).toBeNull();
+    },
+  );
+
+  it.each([
     ["superbuydeals.com", "/superbuy-shopping-agent/"],
     ["superbuydeals.com", "/superbuy-haul/"],
   ])(

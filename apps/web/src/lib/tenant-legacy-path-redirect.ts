@@ -21,6 +21,17 @@ const TENANT_LEGACY_PATH_REDIRECTS: Readonly<
   "usfansindex.net": {
     "/contact.html": "/en/contact",
   },
+  "joyabuyfinds.com": {
+    "/how-much-is-joyagoo-shipping": "/en/shipping",
+    "/how-to-use-joyagoo": "/en/guide",
+    "/joyagoo-shopping-guide": "/en/guide",
+    "/faq.html": "/en/faq",
+  },
+  "orientdigindex.com": {
+    "/categories.html": "/en/categories",
+    "/spreadsheet-checklist.html": "/en/spreadsheet-checklist",
+    "/privacy.html": "/en/privacy",
+  },
 };
 
 export function getTenantLegacyPathRedirectUrl(
