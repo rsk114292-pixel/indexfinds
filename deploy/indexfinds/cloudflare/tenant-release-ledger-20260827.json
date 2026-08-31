@@ -348,6 +348,14 @@
     "releaseGateState": "local-ready-production-capacity-blocked",
     "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch10-8ef0b54-local-acceptance-20260901.json"
   },
+  "continuousSeoBatch11Candidate": {
+    "domains": [
+      "sugargooindex.net"
+    ],
+    "webSourceCommit": "52d7e62",
+    "releaseGateState": "local-ready-production-capacity-blocked",
+    "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch11-52d7e62-local-acceptance-20260901.json"
+  },
   "googleSearchConsole": {
     "observedAt": "2026-08-31T16:58:10+08:00",
     "verifiedDomainPropertyCount": 42,
@@ -369,7 +377,7 @@
   "remainingState": "all-42-tenant-content-and-production-validated",
   "currentOperationalBlockerCount": 1,
   "currentOperationalBlockers": [
-    "Hostinger root filesystem has 4.2G free at 98% use. The active tenant release is healthy, but another production image build requires explicit approval to remove exact inactive rollback images or an external disk-capacity increase."
+    "Hostinger root filesystem has 2.5G free at 99% use. The active tenant release is healthy, but another production image build requires explicit approval to remove exact inactive rollback images or an external disk-capacity increase."
   ],
   "evidence": [
     "batch1-route-rollback-20260827.json",
@@ -415,6 +423,8 @@
     "deploy/indexfinds/hostinger/continuous-seo-batch7-9724f20-production-acceptance-20260831.json",
     "deploy/indexfinds/hostinger/tenant-seo-batch7-9724f20-production-acceptance-20260831.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch8-9d57ff5-local-acceptance-20260831.json",
-    "deploy/indexfinds/hostinger/continuous-seo-batch9-a950b59-local-acceptance-20260831.json"
+    "deploy/indexfinds/hostinger/continuous-seo-batch9-a950b59-local-acceptance-20260831.json",
+    "deploy/indexfinds/hostinger/continuous-seo-batch10-8ef0b54-local-acceptance-20260901.json",
+    "deploy/indexfinds/hostinger/continuous-seo-batch11-52d7e62-local-acceptance-20260901.json"
   ]
 }

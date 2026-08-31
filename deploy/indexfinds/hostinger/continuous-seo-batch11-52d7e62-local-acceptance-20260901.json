@@ -1,0 +1,62 @@
+{
+  "validatedAt": "2026-09-01T01:12:12+08:00",
+  "scope": "Eleventh GSC-prioritized tenant SEO batch, locally accepted and held behind the Hostinger capacity gate",
+  "domains": [
+    "sugargooindex.net"
+  ],
+  "gscBaseline": {
+    "window": "last 28 days",
+    "domainClicks": 0,
+    "domainImpressions": 220,
+    "domainCtrPercent": 0,
+    "domainAveragePosition": 24.4,
+    "targetQueries": {
+      "sugargoo tracking": { "impressions": 3 },
+      "how to track sugargoo package": { "impressions": 3 }
+    }
+  },
+  "releaseCandidate": {
+    "sourceCommit": "52d7e62",
+    "state": "local-ready-production-capacity-blocked",
+    "productionStillServingCommit": "9724f20",
+    "productionContainer": "indexfinds-web-seo-batch7-9724f20",
+    "productionPort": 3144
+  },
+  "page": {
+    "url": "https://sugargooindex.net/en/tracking",
+    "localStatus": 200,
+    "title": "Sugargoo Tracking Guide | Record Parcel Scans and Handoffs",
+    "canonical": "https://sugargooindex.net/en/tracking",
+    "robots": "index, follow",
+    "jsonLdBlockCount": 3,
+    "faqCount": 3,
+    "childSitemapUrlCount": 8,
+    "childSitemapIncludesPage": true
+  },
+  "officialSources": [
+    "https://blog.sugargoo.com/how-to-track-your-package-shipping-status-transit-nodes-and-delivery-time-estimates/",
+    "https://blog.sugargoo.com/sugargoo-tracking-guide/",
+    "https://blog.sugargoo.com/how-does-ordering-from-sugargoo-work-learn-how-to-buy-from-china-step-by-step/"
+  ],
+  "checks": {
+    "content": "A dedicated tracking-intent page separates recorded scans from delivery promises and does not invent live status, delivery dates or carrier outcomes.",
+    "visual": "The unrelated footwear hero image was removed from this page and replaced with a source-aligned tracking evidence sequence.",
+    "responsive": "No horizontal overflow at 1440x1000 or 390x844; desktop and mobile screenshots were reviewed.",
+    "localConsole": "Only expected local API proxy failures were observed because the isolated page preview does not run the product API; no page-code exception was introduced.",
+    "localTests": "Three focused suites passed with 140 tests; TypeScript and changed-file ESLint checks passed.",
+    "productionBuild": "The exact candidate commit completed the production build successfully.",
+    "mainIsolation": "No production route, container, DNS, Cloudflare setting or IndexFinds main-site configuration changed during this batch."
+  },
+  "postDeploymentMeasurement": {
+    "technicalExpected": "The new tracking page returns HTTP 200 with its exact canonical, indexable robots state, structured data and sitemap entry.",
+    "gscExpected": "The two existing tracking-intent queries consolidate on the dedicated page after deployment and recrawl.",
+    "status": "pending-production-deployment-and-google-recrawl"
+  },
+  "capacity": {
+    "filesystemFree": "2.5G",
+    "filesystemUsePercent": 99,
+    "nextProductionBuildState": "blocked-pending-explicit-rollback-image-retention-decision",
+    "note": "The active release is healthy. Another Hostinger Docker image build is unsafe until exact inactive rollback containers and images are approved for removal or capacity is increased."
+  },
+  "result": "local-ready-production-capacity-blocked"
+}
