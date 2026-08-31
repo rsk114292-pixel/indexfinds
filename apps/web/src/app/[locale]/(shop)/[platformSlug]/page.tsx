@@ -99,6 +99,7 @@ export default async function TenantResearchPage({
   const isTrackingRecord = page.slug === "tracking";
   const isEstimatorRecord =
     page.slug === "freight-estimator" ||
+    page.slug === "shipping-calculator" ||
     (tenant.domain === "hoobuyindex.net" && page.slug === "shipping");
   const mainClass = isLedger
     ? "bg-[#f4f0e7] text-[#18212d]"

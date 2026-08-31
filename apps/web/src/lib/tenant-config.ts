@@ -1250,6 +1250,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
       "",
       "/categories",
       "/guide",
+      "/shipping-calculator",
       "/reviews",
       "/safety",
       "/faq",

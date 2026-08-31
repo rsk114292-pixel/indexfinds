@@ -3180,6 +3180,51 @@ const LOONGBUY_PAGES: readonly TenantResearchPage[] = [
   },
   {
     domain: "loongbuys.net",
+    slug: "shipping-calculator",
+    seoTitle: "LoongBuy Shipping Calculator Guide | Inputs and Final Charge",
+    description:
+      "Use the official LoongBuy freight query with area, weight, goods restrictions and parcel dimensions, then compare its result with the measured packed parcel.",
+    eyebrow: "LoongBuy freight query guide",
+    title: "Estimate with official inputs, then verify the packed parcel.",
+    intro:
+      "LoongBuy's freight query asks for area, weight, mail-limit details and parcel dimensions. Its shopping process says the final charge is reconciled after the shipping company measures the package.",
+    sourceUrl: "https://service.loongbuy.com/en/query/freight",
+    sourceLabel: "Open the official LoongBuy freight query",
+    sections: [
+      {
+        title: "Match the official fields",
+        description:
+          "Record the destination area, weight in grams, relevant goods restriction and package length, width and height used for the query.",
+        points: [
+          "Keep the destination with every saved result",
+          "Do not omit battery, liquid, branded-goods or size restrictions",
+          "Retain all three dimensions with the weight",
+        ],
+      },
+      {
+        title: "Separate item weight from parcel weight",
+        description:
+          "LoongBuy documents volumetric weight for bulky parcels and notes that packaging can change the final measured package.",
+        points: [
+          "Label early figures as estimates",
+          "Record the packaging state used for comparison",
+          "Recheck when items are combined or removed",
+        ],
+      },
+      {
+        title: "Reconcile the submitted parcel",
+        description:
+          "Compare the system or manual quotation with the package size and weight recorded after packing, then retain any adjustment in the account record.",
+        points: [
+          "Confirm the current route and destination terms",
+          "Keep optional packaging services separate",
+          "Use the measured parcel record as the later evidence source",
+        ],
+      },
+    ],
+  },
+  {
+    domain: "loongbuys.net",
     slug: "reviews",
     seoTitle: "LoongBuy Reviews | Evaluate Route and Order Evidence",
     description:

@@ -143,10 +143,18 @@ describe("tenant research pages", () => {
     expect(getTenantResearchPaths("loongbuys.net")).toEqual([
       "/categories",
       "/guide",
+      "/shipping-calculator",
       "/reviews",
       "/safety",
       "/faq",
     ]);
+    expect(getTenantResearchPage("loongbuys.net", "shipping-calculator")).toEqual(
+      expect.objectContaining({
+        seoTitle: "LoongBuy Shipping Calculator Guide | Inputs and Final Charge",
+        sourceUrl: "https://service.loongbuy.com/en/query/freight",
+        sourceLabel: "Open the official LoongBuy freight query",
+      }),
+    );
   });
 
   it("preserves the LoveGoBuy catalog and order-action path set", () => {
@@ -385,10 +393,10 @@ describe("tenant research pages", () => {
   it("keeps every reviewed page specific and evidence-led", () => {
     const pages = getAllTenantResearchPages();
 
-    expect(pages).toHaveLength(267);
-    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(267);
-    expect(new Set(pages.map((page) => page.description)).size).toBe(267);
-    expect(new Set(pages.map((page) => page.title)).size).toBe(267);
+    expect(pages).toHaveLength(268);
+    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(268);
+    expect(new Set(pages.map((page) => page.description)).size).toBe(268);
+    expect(new Set(pages.map((page) => page.title)).size).toBe(268);
 
     const copy = JSON.stringify(pages);
     expect(copy).not.toMatch(/IndexFinds|official ACBuy site/i);

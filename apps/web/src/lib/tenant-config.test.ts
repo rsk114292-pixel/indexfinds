@@ -847,7 +847,8 @@ describe("tenant config", () => {
       }),
     );
     expect(branding?.editorial.homeVariant).toBe("guide");
-    expect(branding?.indexablePaths).toHaveLength(6);
+    expect(branding?.indexablePaths).toHaveLength(7);
+    expect(branding?.indexablePaths).toContain("/shipping-calculator");
   });
 
   it("gives LoveGoBuy a reviewed catalog-to-order-stage experience", () => {
