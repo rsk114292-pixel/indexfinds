@@ -1,0 +1,77 @@
+{
+  "validatedAt": "2026-08-31T20:09:55+08:00",
+  "scope": "Fourth GSC-prioritized tenant SEO batch",
+  "domains": [
+    "hoobuyindex.net",
+    "fishgooindex.com",
+    "sugargooindex.net"
+  ],
+  "gscBaseline": {
+    "hoobuyindex.net": {
+      "clicks": 1,
+      "impressions": 233,
+      "ctrPercent": 0.4,
+      "averagePosition": 20.8,
+      "opportunityPage": "/",
+      "opportunityPageClicks": 1,
+      "opportunityPageImpressions": 233,
+      "primaryQueries": [
+        "hoobuy",
+        "hoobuy shipping calculator",
+        "hoobuy warehouse"
+      ]
+    },
+    "fishgooindex.com": {
+      "clicks": 2,
+      "impressions": 107,
+      "ctrPercent": 1.9,
+      "averagePosition": 10.7,
+      "opportunityPage": "/",
+      "opportunityPageClicks": 2,
+      "opportunityPageImpressions": 98,
+      "primaryQueries": [
+        "fishgoo",
+        "fishgoo spreadsheet"
+      ]
+    },
+    "sugargooindex.net": {
+      "clicks": 0,
+      "impressions": 220,
+      "ctrPercent": 0.0,
+      "averagePosition": 24.4,
+      "opportunityPage": "/",
+      "opportunityPageClicks": 0,
+      "opportunityPageImpressions": 220,
+      "primaryQueries": [
+        "sugargoo tracking",
+        "how to track sugargoo package",
+        "sugargoo"
+      ]
+    }
+  },
+  "release": {
+    "sourceCommit": "12fdb62",
+    "image": "indexfinds-web:seo-batch4-12fdb62",
+    "container": "indexfinds-web-seo-batch4-12fdb62",
+    "port": 3141,
+    "health": "healthy",
+    "restartCount": 0,
+    "routeConfigCount": 41
+  },
+  "checks": {
+    "intentAlignment": "HooBuy now surfaces product-link, warehouse and shipping-estimate intent; Fishgoo keeps its distinct product-search positioning while routing spreadsheet intent to the existing guide; Sugargoo now covers the product-to-tracking workflow without promising delivery outcomes.",
+    "sourceReview": "Current first-party HooBuy estimation inputs and Sugargoo package-tracking workflow were checked before copy changes.",
+    "localTests": "Three tenant suites passed with 117 tests and TypeScript checking passed.",
+    "productionBuild": "The exact release commit completed the 3,040-page production build.",
+    "recursiveAudit": "All three domains and all 23 approved pages passed with zero failures and zero warnings.",
+    "entryPoints": "All three production homepages returned HTTP 200 with the new unique title and exact self-canonical.",
+    "mainIsolation": "The IndexFinds main homepage remained on its separate origin and returned HTTP 200 with its unchanged title and canonical.",
+    "nginx": "Configuration validation passed before reload. All 41 tenant configs moved from port 3140 to 3141."
+  },
+  "rollback": {
+    "previousContainer": "indexfinds-web-seo-batch3-e68d2b1",
+    "previousPort": 3140,
+    "nginxBackup": "/opt/indexfinds/rollback/nginx-web-12fdb62-20260831T120834Z"
+  },
+  "result": "deployed-and-live-validated"
+}

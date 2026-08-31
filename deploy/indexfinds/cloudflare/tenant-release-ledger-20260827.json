@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T19:41:12+08:00",
+  "updatedAt": "2026-08-31T20:09:55+08:00",
   "policy": "A branding-ready flag is not a release approval. A tenant may be indexed only after independent content, technical SEO, mobile, preview and production checks pass.",
   "releasedForIndexing": [
     "acbuyindex.com",
@@ -266,6 +266,16 @@
     "releaseGateState": "deployed-and-live-validated",
     "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch3-e68d2b1-production-acceptance-20260831.json"
   },
+  "continuousSeoBatch4": {
+    "domains": [
+      "hoobuyindex.net",
+      "fishgooindex.com",
+      "sugargooindex.net"
+    ],
+    "webSourceCommit": "12fdb62",
+    "releaseGateState": "deployed-and-live-validated",
+    "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch4-12fdb62-production-acceptance-20260831.json"
+  },
   "googleSearchConsole": {
     "observedAt": "2026-08-31T16:58:10+08:00",
     "verifiedDomainPropertyCount": 42,
@@ -320,6 +330,8 @@
     "deploy/indexfinds/hostinger/tenant-quality-33115d8-production-acceptance-20260831.json",
     "deploy/indexfinds/hostinger/google-search-portfolio-acceptance-20260831.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch3-e68d2b1-production-acceptance-20260831.json",
-    "deploy/indexfinds/hostinger/tenant-seo-batch3-e68d2b1-production-acceptance-20260831.json"
+    "deploy/indexfinds/hostinger/tenant-seo-batch3-e68d2b1-production-acceptance-20260831.json",
+    "deploy/indexfinds/hostinger/continuous-seo-batch4-12fdb62-production-acceptance-20260831.json",
+    "deploy/indexfinds/hostinger/tenant-seo-batch4-12fdb62-production-acceptance-20260831.json"
   ]
 }
