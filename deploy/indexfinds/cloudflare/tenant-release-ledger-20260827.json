@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T22:04:37+08:00",
+  "updatedAt": "2026-08-31T22:57:10+08:00",
   "policy": "A branding-ready flag is not a release approval. A tenant may be indexed only after independent content, technical SEO, mobile, preview and production checks pass.",
   "releasedForIndexing": [
     "acbuyindex.com",
@@ -308,6 +308,18 @@
     "releaseGateState": "deployed-and-live-validated",
     "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch7-9724f20-production-acceptance-20260831.json"
   },
+  "continuousSeoBatch8Candidate": {
+    "domains": [
+      "joyagooindex.com",
+      "superbuydeals.com",
+      "kakobuyindex.net",
+      "usfansindex.net",
+      "yoybuyindex.com"
+    ],
+    "webSourceCommit": "9d57ff5",
+    "releaseGateState": "local-ready-production-capacity-blocked",
+    "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch8-9d57ff5-local-acceptance-20260831.json"
+  },
   "googleSearchConsole": {
     "observedAt": "2026-08-31T16:58:10+08:00",
     "verifiedDomainPropertyCount": 42,
@@ -373,6 +385,7 @@
     "deploy/indexfinds/hostinger/continuous-seo-batch6-3d0034f-production-acceptance-20260831.json",
     "deploy/indexfinds/hostinger/tenant-seo-batch6-3d0034f-production-acceptance-20260831.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch7-9724f20-production-acceptance-20260831.json",
-    "deploy/indexfinds/hostinger/tenant-seo-batch7-9724f20-production-acceptance-20260831.json"
+    "deploy/indexfinds/hostinger/tenant-seo-batch7-9724f20-production-acceptance-20260831.json",
+    "deploy/indexfinds/hostinger/continuous-seo-batch8-9d57ff5-local-acceptance-20260831.json"
   ]
 }

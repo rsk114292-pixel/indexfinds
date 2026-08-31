@@ -1,0 +1,121 @@
+{
+  "validatedAt": "2026-08-31T22:57:10+08:00",
+  "scope": "Eighth GSC-prioritized tenant SEO batch, locally accepted and held behind the Hostinger capacity gate",
+  "domains": [
+    "joyagooindex.com",
+    "superbuydeals.com",
+    "kakobuyindex.net",
+    "usfansindex.net",
+    "yoybuyindex.com"
+  ],
+  "gscBaseline": {
+    "joyagooindex.com": {
+      "clicks": 1,
+      "impressions": 63,
+      "ctrPercent": 1.6,
+      "averagePosition": 21.2,
+      "pages": {
+        "/": { "clicks": 1, "impressions": 63 },
+        "/faq.html": { "clicks": 0, "impressions": 1 }
+      },
+      "queries": {
+        "joyagoo spreadsheet 2026": { "clicks": 0, "impressions": 11 },
+        "joyagoo": { "clicks": 0, "impressions": 8 },
+        "joyagoo spreadsheet": { "clicks": 1, "impressions": 3 }
+      }
+    },
+    "superbuydeals.com": {
+      "clicks": 2,
+      "impressions": 45,
+      "ctrPercent": 4.4,
+      "averagePosition": 18.8,
+      "pages": {
+        "/": { "clicks": 1, "impressions": 26 },
+        "/shipping-weight-guide.html": { "clicks": 0, "impressions": 13 },
+        "/superbuy-spreadsheet/": { "clicks": 1, "impressions": 1 },
+        "/superbuy-shopping-agent/": { "clicks": 0, "impressions": 3 },
+        "/categories.html": { "clicks": 0, "impressions": 2 },
+        "/superbuy-haul/": { "clicks": 0, "impressions": 1 }
+      },
+      "queries": {
+        "how to calculate shipping costs for superbuy": { "clicks": 0, "impressions": 3 },
+        "superbuy list": { "clicks": 0, "impressions": 1 },
+        "superbuy calculator": { "clicks": 0, "impressions": 1 },
+        "superbuy discount code": { "clicks": 0, "impressions": 1 }
+      }
+    },
+    "kakobuyindex.net": {
+      "clicks": 0,
+      "impressions": 28,
+      "ctrPercent": 0,
+      "averagePosition": 17.5,
+      "pages": {
+        "/": { "clicks": 0, "impressions": 22 },
+        "/safety.html": { "clicks": 0, "impressions": 6 },
+        "/faq.html": { "clicks": 0, "impressions": 2 }
+      },
+      "queries": {
+        "kakobuy": { "clicks": 0, "impressions": 2 },
+        "is kakobuy safe": { "clicks": 0, "impressions": 1 }
+      }
+    },
+    "usfansindex.net": {
+      "clicks": 6,
+      "impressions": 153,
+      "ctrPercent": 3.9,
+      "averagePosition": 11.9,
+      "pages": {
+        "/": { "clicks": 6, "impressions": 150 },
+        "/contact.html": { "clicks": 0, "impressions": 3 }
+      },
+      "queries": {
+        "usfand": { "clicks": 0, "impressions": 27 },
+        "usfans spreadsheet": { "clicks": 0, "impressions": 9 },
+        "usfans lista": { "clicks": 1, "impressions": 1 }
+      },
+      "action": "ranking-url-protected-no-home-content-change"
+    },
+    "yoybuyindex.com": {
+      "clicks": 0,
+      "impressions": 42,
+      "ctrPercent": 0,
+      "averagePosition": 22.2,
+      "pages": {
+        "/": { "clicks": 0, "impressions": 41 },
+        "http://www.yoybuyindex.com/": { "clicks": 0, "impressions": 1 }
+      },
+      "queries": {
+        "yoybuy": { "clicks": 0, "impressions": 7 },
+        "yoybuy official website": { "clicks": 0, "impressions": 3 },
+        "yoybuy spreadsheet": { "clicks": 0, "impressions": 2 },
+        "yoybuy coupon": { "clicks": 0, "impressions": 2 }
+      },
+      "action": "independent-site-boundary-validated-no-home-content-change"
+    }
+  },
+  "releaseCandidate": {
+    "sourceCommit": "9d57ff5",
+    "state": "local-ready-production-capacity-blocked",
+    "productionStillServingCommit": "9724f20",
+    "productionContainer": "indexfinds-web-seo-batch7-9724f20",
+    "productionPort": 3144
+  },
+  "checks": {
+    "intentAlignment": "JoyaGoo homepage metadata now matches the observed spreadsheet intent without changing the ranking URL or adding a thin annual page.",
+    "shippingAnswer": "The reviewed Superbuy shipping page now answers cost-estimation intent with packed weight, dimensions, contents, destination and route inputs before any deal condition.",
+    "legacyRecovery": "Five GSC-visible legacy HTML paths with direct reviewed equivalents return HTTP 308 in the isolated production build.",
+    "retiredPagePolicy": "Superbuy shopping-agent and haul paths have no equivalent reviewed page and keep a final HTTP 404 instead of a misleading soft redirect.",
+    "protectedRankings": "USFans and YoyBuy entry pages were reviewed but left unchanged because the present ranking URL and independent-site boundary should not be disturbed without stronger page-level evidence.",
+    "localTests": "Four focused suites passed with 130 tests; TypeScript and changed-file ESLint checks passed.",
+    "productionBuild": "The exact candidate commit completed the 3,040-page production build.",
+    "isolatedDesktopMobile": "JoyaGoo homepage and the Superbuy shipping guide were checked at 1440x1000 and 390x844 with zero horizontal overflow, correct H1, exact canonical and expected title.",
+    "mainIsolation": "No production route, container, DNS or IndexFinds main-site configuration changed during this batch."
+  },
+  "capacity": {
+    "filesystemFree": "4.2G",
+    "filesystemUsePercent": 98,
+    "nextProductionBuildState": "blocked-pending-explicit-rollback-image-retention-decision",
+    "note": "The active release is healthy. Another Hostinger Docker image build is unsafe until exact inactive rollback containers and images are approved for removal or capacity is increased."
+  },
+  "result": "local-ready-production-capacity-blocked"
+}
