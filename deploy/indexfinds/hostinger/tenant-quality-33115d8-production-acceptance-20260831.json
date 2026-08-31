@@ -17,7 +17,12 @@
     "image": "indexfinds-web:tenant-quality-33115d8",
     "container": "indexfinds-web-tenant-quality-33115d8",
     "webPort": 3137,
-    "apiPort": 4101,
+    "mainWebImage": "indexfinds-web:tenant-quality-33115d8",
+    "mainWebContainer": "indexfinds-web-main-33115d8",
+    "mainWebPort": 3129,
+    "apiImage": "indexfinds-api:catalog-33115d8",
+    "apiContainer": "indexfinds-api-catalog-33115d8",
+    "apiPort": 4103,
     "containerHealth": "healthy",
     "containerRestarts": 0
   },
@@ -31,9 +36,11 @@
     "faviconCorrection": "CNShopper serves a 2363x2363 PNG, both JoyaGoo domains serve a 64x64 PNG, and Sugargoo serves a 48x48 PNG. Every verified asset returned 200 with an image MIME type and square dimensions.",
     "usfansSourceGuide": "The public USFans spreadsheet guide returns 200, links to https://www.usfans.com/ for verification and explicitly identifies itself as an independent research index.",
     "duplicateContent": "All 305 approved titles, descriptions and H1 values remain unique. Maximum five-word homepage shingle similarity is 0.563549, below the 0.60 release threshold.",
+    "catalogConsistency": "The public stats and unfiltered product-list endpoints now both report 77,973 active products. The old 72,420 list total came from a retired identical-cover distinct rule that hid valid split SKU listings.",
+    "productVisibilityGate": "The public zero-price filter returns zero products. A verified active product returns 200, while a database-selected non-active product returns 404 from both the API slug endpoint and its public English page. Registration remains disabled with HTTP 404.",
     "mainSiteIsolation": "https://indexfinds.com/en and https://api-next.indexfinds.com/health returned 200; https://indexfinds.com/en/register returned 404.",
-    "runtime": "Nginx configuration validation passed. The active 3137 container and both retained rollback containers are healthy with zero restarts.",
-    "storage": "Hostinger root disk usage is 86%, with approximately 28 GB available. No databases, volumes, running images, rollback containers or user data were removed."
+    "runtime": "Nginx configuration validation passed. The active tenant Web, main Web and API containers and their retained immediate rollback containers are healthy with zero restarts.",
+    "storage": "Unused Docker build cache was removed after the release. Hostinger root disk usage is 87%, with approximately 27 GB available. No databases, volumes, images, running containers, rollback containers or user data were removed."
   },
   "nonBlockingObservations": [
     "Eight official source sites returned bot-blocking HTTP 403 to the audit client and KameyMall returned an upstream HTTP 502. These nine external-source observations are warnings only: no reviewed internal link and no conclusively checked official source link returned 404 or 410.",
@@ -42,6 +49,8 @@
   "routing": {
     "directOrigin": "Forty tenant Nginx vhosts proxy active web traffic to 127.0.0.1:3137.",
     "yda": "The shared Hostinger origin used by the two dedicated YDA Workers proxies to 127.0.0.1:3137.",
+    "api": "All 42 tenant API proxy entries and the main API primary upstream point to 127.0.0.1:4103; the verified 4102 API remains the main-site hot standby.",
+    "mainWeb": "The main IndexFinds Web primary upstream points to the dedicated current-release container on 127.0.0.1:3129; the previous 3128 container remains the hot standby.",
     "cloudflare": "Cloudflare remains the DNS/CDN layer; this release required no DNS or Worker route changes."
   },
   "rollback": {
@@ -52,6 +61,10 @@
     "olderPort": 3135,
     "directOriginBackup": "/root/.indexfinds-migration/nginx-backups/tenant-direct-20260831T061827Z",
     "sharedOriginBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-port-3136-to-3137-20260831T061827Z",
+    "apiDirectOriginBackup": "/root/.indexfinds-migration/nginx-backups/tenant-direct-20260831T071034Z",
+    "apiSharedOriginBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-port-4101-to-4103-20260831T071047Z",
+    "mainApiBackup": "/root/.indexfinds-migration/nginx-backups/indexfinds.com.conf.pre-api-4102-to-4103-20260831T071102Z",
+    "mainWebBackup": "/root/.indexfinds-migration/nginx-backups/indexfinds.com.conf.pre-web-3128-to-3129-20260831T071823Z",
     "state": "Both retained rollback containers remain running and healthy for immediate port rollback."
   },
   "result": "deployed-and-live-validated"

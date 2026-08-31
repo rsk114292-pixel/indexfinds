@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T14:31:00+08:00",
+  "updatedAt": "2026-08-31T15:21:00+08:00",
   "policy": "A branding-ready flag is not a release approval. A tenant may be indexed only after independent content, technical SEO, mobile, preview and production checks pass.",
   "releasedForIndexing": [
     "acbuyindex.com",
@@ -205,6 +205,20 @@
     "releaseGateState": "deployed-and-live-validated",
     "productionValidation": "293 reviewed sitemap pages and 80 desktop/mobile views passed with zero failures; the current portfolio audit found a 0.5660 maximum homepage similarity, below the 0.60 release threshold.",
     "webCommit": "33115d8",
+    "evidence": "deploy/indexfinds/hostinger/tenant-quality-33115d8-production-acceptance-20260831.json"
+  },
+  "sharedBackend": {
+    "releaseGateState": "deployed-and-live-validated",
+    "sourceCommit": "33115d8",
+    "apiPort": 4103,
+    "mainWebPort": 3129,
+    "tenantApiRouteCount": 42,
+    "publicProductCount": 77973,
+    "zeroPriceProductCount": 0,
+    "activeProductStatus": 200,
+    "nonActiveProductApiStatus": 404,
+    "nonActiveProductPageStatus": 404,
+    "registrationPageStatus": 404,
     "evidence": "deploy/indexfinds/hostinger/tenant-quality-33115d8-production-acceptance-20260831.json"
   },
   "portfolioCompletion": {
