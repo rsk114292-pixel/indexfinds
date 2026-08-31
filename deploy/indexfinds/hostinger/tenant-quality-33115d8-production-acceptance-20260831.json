@@ -1,0 +1,58 @@
+{
+  "validatedAt": "2026-08-31T14:31:00+08:00",
+  "sourceCommit": "33115d8d613f335f999418db2bcd593892f91830",
+  "scope": {
+    "tenantCount": 42,
+    "directOriginTenantCount": 40,
+    "dedicatedWorkerTenantCount": 2,
+    "reviewedSitemapPageCount": 305,
+    "desktopMobileViewCount": 84,
+    "deploymentPlatform": "Hostinger",
+    "cdnAndDns": "Cloudflare",
+    "vercelUsed": false
+  },
+  "release": {
+    "host": "186.240.157.184",
+    "releaseDirectory": "/opt/indexfinds/releases/tenant-quality-33115d8",
+    "image": "indexfinds-web:tenant-quality-33115d8",
+    "container": "indexfinds-web-tenant-quality-33115d8",
+    "webPort": 3137,
+    "apiPort": 4101,
+    "containerHealth": "healthy",
+    "containerRestarts": 0
+  },
+  "checks": {
+    "build": "The exact pushed commit completed its Hostinger production build and generated all 3,040 static pages.",
+    "localRegression": "Nine suites and 148 tests, TypeScript type checking, changed-file ESLint, the square-favicon gate and the production build passed before release.",
+    "isolatedTechnicalSeo": "All 42 tenant hosts and all 305 approved sitemap pages passed the isolated status, title, description, H1, self-canonical, robots, structured-data, favicon and registration-route gates before traffic was switched.",
+    "productionTechnicalSeo": "All 42 tenant domains passed the recursive production audit. All 305 approved sitemap pages returned the expected status with self-canonicals, metadata, structured data, valid internal links and no unexpected noindex directive.",
+    "productionEntryPoints": "All 42 English homepages, robots files and sitemap indexes returned 200, while every disabled registration route returned 404.",
+    "productionVisual": "All 84 public desktop and mobile views passed with no URL-backed hero image, horizontal overflow, visible broken image or browser error. The search bar had zero measured horizontal center offset; minimum width was 77.8% on desktop and 91.8% on mobile.",
+    "faviconCorrection": "CNShopper serves a 2363x2363 PNG, both JoyaGoo domains serve a 64x64 PNG, and Sugargoo serves a 48x48 PNG. Every verified asset returned 200 with an image MIME type and square dimensions.",
+    "usfansSourceGuide": "The public USFans spreadsheet guide returns 200, links to https://www.usfans.com/ for verification and explicitly identifies itself as an independent research index.",
+    "duplicateContent": "All 305 approved titles, descriptions and H1 values remain unique. Maximum five-word homepage shingle similarity is 0.563549, below the 0.60 release threshold.",
+    "mainSiteIsolation": "https://indexfinds.com/en and https://api-next.indexfinds.com/health returned 200; https://indexfinds.com/en/register returned 404.",
+    "runtime": "Nginx configuration validation passed. The active 3137 container and both retained rollback containers are healthy with zero restarts.",
+    "storage": "Hostinger root disk usage is 86%, with approximately 28 GB available. No databases, volumes, running images, rollback containers or user data were removed."
+  },
+  "nonBlockingObservations": [
+    "Eight official source sites returned bot-blocking HTTP 403 to the audit client and KameyMall returned an upstream HTTP 502. These nine external-source observations are warnings only: no reviewed internal link and no conclusively checked official source link returned 404 or 410.",
+    "The two legacy direct YDA apex fallback vhosts remain on port 3135. Production YDA traffic continues through the dedicated Cloudflare Workers and the shared Hostinger origin on port 3137; all four YDA apex/www English URLs and all reviewed YDA pages passed the public acceptance checks."
+  ],
+  "routing": {
+    "directOrigin": "Forty tenant Nginx vhosts proxy active web traffic to 127.0.0.1:3137.",
+    "yda": "The shared Hostinger origin used by the two dedicated YDA Workers proxies to 127.0.0.1:3137.",
+    "cloudflare": "Cloudflare remains the DNS/CDN layer; this release required no DNS or Worker route changes."
+  },
+  "rollback": {
+    "previousImage": "indexfinds-web:tenant-ui-8d4de76",
+    "previousContainer": "indexfinds-web-tenant-ui-8d4de76",
+    "previousPort": 3136,
+    "olderContainer": "indexfinds-web-tenant-direct-5a409d3",
+    "olderPort": 3135,
+    "directOriginBackup": "/root/.indexfinds-migration/nginx-backups/tenant-direct-20260831T061827Z",
+    "sharedOriginBackup": "/root/.indexfinds-migration/nginx-backups/90-indexfinds-batch1-preview-origin.conf.pre-port-3136-to-3137-20260831T061827Z",
+    "state": "Both retained rollback containers remain running and healthy for immediate port rollback."
+  },
+  "result": "deployed-and-live-validated"
+}
