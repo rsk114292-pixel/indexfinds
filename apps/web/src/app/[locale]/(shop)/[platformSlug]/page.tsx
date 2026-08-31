@@ -202,7 +202,7 @@ export default async function TenantResearchPage({
       />
       {page.questions ? <FAQPageJsonLd items={[...page.questions]} /> : null}
       <section className={heroClass}>
-        {isLedger ? (
+        {isLedger && tenant.domain !== "superbuydeals.com" ? (
           <>
             <Image
               src={profile.heroImage}

@@ -4190,14 +4190,16 @@ const SUPERBUY_DEALS_PAGES: readonly TenantResearchPage[] = [
   },
   {
     domain: "superbuydeals.com", slug: "shipping-weight-guide",
-    seoTitle: "Superbuy Shipping Cost Guide | Weight, Route and Deal Checks",
-    description: "Estimate Superbuy shipping costs with packed weight, dimensions, contents, destination and current route terms, then verify whether a shipping offer applies.",
-    eyebrow: "Shipping-cost evidence", title: "Calculate from the packed parcel before applying a deal.",
-    intro: "A useful estimate starts with the parcel and destination inputs. Any route promotion is a separate condition to verify after those inputs are known.",
+    seoTitle: "Superbuy Shipping Calculator Guide | Inputs and Final Cost",
+    description: "Prepare destination, warehouse, weight, dimensions and item category for Superbuy's official shipping calculator, then reconcile the estimate with the packed parcel.",
+    eyebrow: "Superbuy shipping calculator record", title: "Use the official fields, then keep the final parcel bill.",
+    intro: "Superbuy's official calculator asks for destination, warehouse, weight, parcel dimensions and item category. The result is a planning record, while the packed parcel and logistics bill determine the final shipping cost.",
+    sourceUrl: "https://login.superbuy.com/en/page/query/freight/",
+    sourceLabel: "Open the official Superbuy calculator",
     sections: [
-      { title: "Parcel inputs", description: "Use measured weight, dimensions, selected packaging and restriction-relevant contents." },
-      { title: "Route scope", description: "Confirm eligible destinations, lines, account types and charging methods." },
-      { title: "Final result", description: "Record the current quote and checkout result instead of promising a universal saving." },
+      { title: "Match the calculator fields", description: "Record the exact destination, warehouse, weight in grams, length, width, height and item category used for the current estimate.", points: ["Keep units with every measurement", "Retain the item category and destination", "Date the result before comparing it"] },
+      { title: "Compare chargeable weight", description: "The official calculator explains that bulky parcels can be charged by volumetric weight. Packaging changes can therefore alter the result even when item weight is unchanged.", points: ["Keep actual and volumetric weight separate", "Recheck after consolidation and packaging", "Confirm the current route limit"] },
+      { title: "Reconcile the final cost", description: "Superbuy's fee guidance says the initial international charge uses estimated weight, route and destination, then the logistics bill is reconciled after shipment.", points: ["Retain the packed parcel record", "Record refunds or added balance separately", "Verify any promotion against the selected route"] },
     ],
   },
   {

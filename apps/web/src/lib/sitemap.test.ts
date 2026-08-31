@@ -364,6 +364,7 @@ describe('sitemap', () => {
         '/safety',
         '/search-ideas',
         '/shipping',
+        '/freight-estimator',
       ],
     ],
     [
@@ -400,7 +401,7 @@ describe('sitemap', () => {
   it.each([
     [
       'loongbuys.net',
-      ['', '/categories', '/guide', '/reviews', '/safety', '/faq'],
+      ['', '/categories', '/guide', '/shipping-calculator', '/reviews', '/safety', '/faq'],
     ],
     [
       'lovegobuyindex.com',
@@ -431,6 +432,7 @@ describe('sitemap', () => {
         '/order-status-guide',
         '/buyer-safety',
         '/shipping-weight-guide',
+        '/tracking',
         '/faq',
       ],
     ],
@@ -478,11 +480,11 @@ describe('sitemap', () => {
     ],
     [
       'parcelupindex.com',
-      ['', '/getting-started', '/fees-and-budgeting', '/shipping-and-warehouse', '/qc-checklist', '/product-index-method', '/official-sources', '/methodology', '/about-parcel-up-index'],
+      ['', '/getting-started', '/fees-and-budgeting', '/shipping-and-warehouse', '/tracking', '/qc-checklist', '/product-index-method', '/official-sources', '/methodology', '/about-parcel-up-index'],
     ],
     [
       'sugargooindex.net',
-      ['', '/sugargoo-spreadsheet', '/categories', '/sugargoo-qc-guide', '/sugargoo-shipping-guide', '/sugargoo-buying-guide', '/faq'],
+      ['', '/sugargoo-spreadsheet', '/categories', '/sugargoo-qc-guide', '/sugargoo-shipping-guide', '/sugargoo-buying-guide', '/tracking', '/faq'],
     ],
     [
       'superbuydeals.com',

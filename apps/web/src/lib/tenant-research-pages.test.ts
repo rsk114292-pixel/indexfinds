@@ -210,6 +210,9 @@ describe("tenant research pages", () => {
     expect(getTenantResearchPage("oopbuyindex.net", "shipping")?.seoTitle).toBe(
       "Oopbuy Shipping Prices Guide | Two Costs and Parcel Evidence",
     );
+    expect(
+      getTenantResearchPage("superbuydeals.com", "shipping-weight-guide")?.seoTitle,
+    ).toBe("Superbuy Shipping Calculator Guide | Inputs and Final Cost");
   });
 
   it("preserves the OrientDig category-evidence path set", () => {
