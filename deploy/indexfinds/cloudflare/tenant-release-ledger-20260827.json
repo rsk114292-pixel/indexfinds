@@ -396,6 +396,14 @@
     "releaseGateState": "local-ready-production-capacity-blocked",
     "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch16-5f6fd32-local-acceptance-20260901.json"
   },
+  "continuousSeoBatch17Candidate": {
+    "domains": [
+      "oopbuyindex.net"
+    ],
+    "webSourceCommit": "2171593",
+    "releaseGateState": "local-ready-production-capacity-blocked",
+    "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch17-2171593-local-acceptance-20260901.json"
+  },
   "googleSearchConsole": {
     "observedAt": "2026-08-31T16:58:10+08:00",
     "verifiedDomainPropertyCount": 42,
@@ -470,6 +478,7 @@
     "deploy/indexfinds/hostinger/continuous-seo-batch13-65a2a92-local-acceptance-20260901.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch14-44fc4be-local-acceptance-20260901.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch15-b6f12d7-local-acceptance-20260901.json",
-    "deploy/indexfinds/hostinger/continuous-seo-batch16-5f6fd32-local-acceptance-20260901.json"
+    "deploy/indexfinds/hostinger/continuous-seo-batch16-5f6fd32-local-acceptance-20260901.json",
+    "deploy/indexfinds/hostinger/continuous-seo-batch17-2171593-local-acceptance-20260901.json"
   ]
 }
