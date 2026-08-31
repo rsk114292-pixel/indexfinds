@@ -243,6 +243,7 @@ export class SearchAnalyticsService {
       .createQueryBuilder('hs')
       .where('hs.is_pinned = true')
       .andWhere('hs.is_blocked = false')
+      .andWhere("LOWER(TRIM(hs.keyword)) <> 'search_term_string'")
       .andWhere(timeWindowCondition, { now })
       .orderBy('hs.sort_order', 'ASC', 'NULLS LAST')
       .take(limit)
@@ -257,6 +258,7 @@ export class SearchAnalyticsService {
       .createQueryBuilder('hs')
       .where('hs.is_pinned = false')
       .andWhere('hs.is_blocked = false')
+      .andWhere("LOWER(TRIM(hs.keyword)) <> 'search_term_string'")
       .andWhere('hs.search_count_7d > 0')
       .andWhere('hs.avg_result_count > 0')
       .andWhere(timeWindowCondition, { now });
@@ -279,6 +281,7 @@ export class SearchAnalyticsService {
       .createQueryBuilder('hs')
       .select('hs.keyword')
       .where('hs.keyword ILIKE :prefix', { prefix: `${prefix}%` })
+      .andWhere("LOWER(TRIM(hs.keyword)) <> 'search_term_string'")
       .andWhere('hs.avg_result_count > 0')
       .andWhere('hs.is_blocked = false')
       .andWhere(

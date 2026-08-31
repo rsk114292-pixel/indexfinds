@@ -37,6 +37,9 @@ export class SearchRecordingService {
     context: SearchContext = {},
   ): Promise<SearchLogResult> {
     const normalizedKeyword = this.normalizeKeyword(keyword);
+    if (/^\{?search_term_string\}?$/i.test(normalizedKeyword)) {
+      return { searchLogId: '' };
+    }
     const trustedVisitorId = context.deviceId || context.sessionId;
 
     if (trustedVisitorId) {

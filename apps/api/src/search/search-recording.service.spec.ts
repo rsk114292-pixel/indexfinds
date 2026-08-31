@@ -58,6 +58,14 @@ describe('SearchRecordingService', () => {
   });
 
   describe('logSearch', () => {
+    it('ignores the structured-data search placeholder', async () => {
+      const result = await service.logSearch('search_term_string', 0);
+
+      expect(result).toEqual({ searchLogId: '' });
+      expect(searchLogRepository.save).not.toHaveBeenCalled();
+      expect(dataSource.query).not.toHaveBeenCalled();
+    });
+
     it('skips writing a trusted search log when dedup is unavailable and no existing log exists', async () => {
       analyticsDedupService.claim.mockResolvedValue(false);
       searchLogRepository.findOne.mockResolvedValue(null);

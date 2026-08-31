@@ -22,6 +22,7 @@ export function isMeaningfulHotSearch(keyword: string): boolean {
   return (
     normalized.length >= 2 &&
     !/^\d+$/.test(normalized) &&
+    !/^\{?search_term_string\}?$/i.test(normalized) &&
     !/^(test|testing|undefined|null|demo)$/i.test(normalized)
   );
 }

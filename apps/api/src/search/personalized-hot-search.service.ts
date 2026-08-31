@@ -138,6 +138,7 @@ export class PersonalizedHotSearchService {
       .createQueryBuilder('hs')
       .where('hs.keyword IN (:...keywords)', { keywords })
       .andWhere('hs.is_blocked = false')
+      .andWhere("LOWER(TRIM(hs.keyword)) <> 'search_term_string'")
       .andWhere('hs.search_count_7d > 0')
       .andWhere(
         '(hs.display_start_at IS NULL OR hs.display_start_at <= :now)',

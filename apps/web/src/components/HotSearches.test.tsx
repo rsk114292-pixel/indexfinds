@@ -8,6 +8,8 @@ describe("isMeaningfulHotSearch", () => {
 
   it("removes numeric and placeholder searches", () => {
     expect(isMeaningfulHotSearch("1234567890")).toBe(false);
+    expect(isMeaningfulHotSearch("search_term_string")).toBe(false);
+    expect(isMeaningfulHotSearch("{search_term_string}")).toBe(false);
     expect(isMeaningfulHotSearch("test")).toBe(false);
     expect(isMeaningfulHotSearch("demo")).toBe(false);
   });
