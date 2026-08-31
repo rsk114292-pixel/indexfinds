@@ -4014,6 +4014,23 @@ const SUGARGOO_INDEX_PAGES: readonly TenantResearchPage[] = [
     ],
   },
   {
+    domain: "sugargooindex.net", slug: "tracking",
+    seoTitle: "Sugargoo Tracking Guide | Record Parcel Scans and Handoffs",
+    description: "Track a Sugargoo parcel from the official account record, preserve the tracking number and dated scans, and separate delayed updates from verified delivery events.",
+    eyebrow: "Sugargoo parcel tracking", title: "Track each handoff with dated evidence.",
+    intro: "Open the official parcel record, then preserve the tracking number, last scan, handoff and review time together.",
+    sections: [
+      { title: "Start with the official parcel record", description: "Open the current Sugargoo account, locate the shipped parcel and use its Check Logistics view rather than relying on an old screenshot or copied number." },
+      { title: "Preserve each handoff", description: "Record the tracking number, route or carrier, scan wording, location and timestamp so accepted, export, transit, customs and destination events remain distinguishable." },
+      { title: "Investigate a quiet timeline", description: "Compare the last confirmed scan with the route's current information pattern, then use the official support path when the evidence is missing or unclear instead of inventing a location or delivery date." },
+    ],
+    questions: [
+      { question: "Where should a Sugargoo parcel be tracked?", answer: "Use the current parcel record inside the official Sugargoo account and open its logistics details. This independent page does not access accounts or live carrier data." },
+      { question: "Does a pause in tracking prove the parcel is lost?", answer: "No. A quiet timeline can occur between scans or carrier handoffs. Preserve the last confirmed event and ask the responsible service for current evidence when the gap needs investigation." },
+      { question: "Can a tracking status predict the delivery date?", answer: "No. It records the latest available event, while customs, carrier transfers, destination processing and local delivery still depend on later evidence." },
+    ],
+  },
+  {
     domain: "sugargooindex.net", slug: "faq",
     seoTitle: "Sugargoo Spreadsheet FAQ | Links, QC and Shipping Evidence",
     description: "Read independent answers about Sugargoo spreadsheet rows, product links, warehouse QC photos, parcel inputs and changing service information.",

@@ -1538,6 +1538,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
       "/sugargoo-qc-guide",
       "/sugargoo-shipping-guide",
       "/sugargoo-buying-guide",
+      "/tracking",
       "/faq",
     ],
     editorial: {

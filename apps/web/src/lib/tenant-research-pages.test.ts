@@ -251,6 +251,7 @@ describe("tenant research pages", () => {
       "/sugargoo-qc-guide",
       "/sugargoo-shipping-guide",
       "/sugargoo-buying-guide",
+      "/tracking",
       "/faq",
     ]);
     expect(getTenantResearchPaths("superbuydeals.com")).toEqual([
@@ -369,10 +370,10 @@ describe("tenant research pages", () => {
   it("keeps every reviewed page specific and evidence-led", () => {
     const pages = getAllTenantResearchPages();
 
-    expect(pages).toHaveLength(263);
-    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(263);
-    expect(new Set(pages.map((page) => page.description)).size).toBe(263);
-    expect(new Set(pages.map((page) => page.title)).size).toBe(263);
+    expect(pages).toHaveLength(264);
+    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(264);
+    expect(new Set(pages.map((page) => page.description)).size).toBe(264);
+    expect(new Set(pages.map((page) => page.title)).size).toBe(264);
 
     const copy = JSON.stringify(pages);
     expect(copy).not.toMatch(/IndexFinds|official ACBuy site/i);

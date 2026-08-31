@@ -500,6 +500,7 @@ describe("tenant config", () => {
     expect(isTenantPathIndexable(parcelup, "/en/getting-started")).toBe(true);
     expect(isTenantPathIndexable(parcelup, "/en/products")).toBe(false);
     expect(isTenantPathIndexable(sugargoo, "/en/sugargoo-qc-guide")).toBe(true);
+    expect(isTenantPathIndexable(sugargoo, "/en/tracking")).toBe(true);
     expect(isTenantPathIndexable(sugargoo, "/zh/sugargoo-qc-guide")).toBe(false);
   });
 

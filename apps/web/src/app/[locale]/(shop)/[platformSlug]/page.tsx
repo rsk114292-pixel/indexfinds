@@ -96,6 +96,8 @@ export default async function TenantResearchPage({
   const isCatalogMap = profile.variant === "catalog-map";
   const isShortlist = profile.variant === "shortlist";
   const isItemFile = profile.variant === "item-file";
+  const isTrackingRecord =
+    tenant.domain === "sugargooindex.net" && page.slug === "tracking";
   const mainClass = isLedger
     ? "bg-[#f4f0e7] text-[#18212d]"
     : isFinder
@@ -306,6 +308,52 @@ export default async function TenantResearchPage({
                   ),
                 )}
               </ul>
+            </aside>
+          ) : isTrackingRecord ? (
+            <aside className="overflow-hidden rounded-[22px] border border-white/20 bg-[#0c252d] shadow-[0_24px_70px_rgba(0,0,0,0.28)]">
+              <div className="border-b border-white/15 px-6 py-5 sm:px-8">
+                <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-[#75d7bd]">
+                  Tracking evidence record
+                </p>
+              </div>
+              <ol className="px-6 sm:px-8">
+                {[
+                  [
+                    "01",
+                    "Official parcel record",
+                    "Open the current account record and its logistics details.",
+                  ],
+                  [
+                    "02",
+                    "Last confirmed scan",
+                    "Save the event wording, location and timestamp together.",
+                  ],
+                  [
+                    "03",
+                    "Next source to check",
+                    "Use the responsible carrier or official support path when evidence is unclear.",
+                  ],
+                ].map(([number, label, detail]) => (
+                  <li
+                    key={number}
+                    className="grid grid-cols-[42px_1fr] gap-4 border-b border-white/12 py-5 last:border-b-0"
+                  >
+                    <span className="font-mono text-sm text-[#75d7bd]">
+                      {number}
+                    </span>
+                    <div>
+                      <p className="font-bold text-white">{label}</p>
+                      <p className="mt-1 text-sm leading-6 text-white/62">
+                        {detail}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <p className="border-t border-white/15 bg-black/10 px-6 py-5 text-sm leading-6 text-white/68 sm:px-8">
+                A tracking event records what was reported. It does not promise
+                the next scan or delivery date.
+              </p>
             </aside>
           ) : isQueryIndex ? (
             <aside className="overflow-hidden rounded-[28px] border border-[#35c486]/45 bg-[#0b2118] shadow-[0_28px_90px_rgba(0,0,0,0.35)]">
