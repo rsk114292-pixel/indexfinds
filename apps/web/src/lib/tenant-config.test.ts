@@ -503,6 +503,12 @@ describe("tenant config", () => {
     expect(isTenantPathIndexable(sugargoo, "/en/sugargoo-qc-guide")).toBe(true);
     expect(isTenantPathIndexable(sugargoo, "/en/tracking")).toBe(true);
     expect(isTenantPathIndexable(sugargoo, "/zh/sugargoo-qc-guide")).toBe(false);
+    expect(
+      isTenantPathIndexable(
+        getTenantConfigByHost("litbuyindex.com")!,
+        "/en/freight-estimator",
+      ),
+    ).toBe(true);
   });
 
   it("does not treat the main site or an unknown host as a tenant", () => {
@@ -787,7 +793,7 @@ describe("tenant config", () => {
       }),
     );
     expect(branding?.editorial.homeVariant).toBe("index");
-    expect(branding?.indexablePaths).toHaveLength(8);
+    expect(branding?.indexablePaths).toHaveLength(9);
   });
 
   it("gives LitBuy Items a reviewed option-first experience", () => {

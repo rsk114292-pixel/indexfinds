@@ -97,6 +97,7 @@ export default async function TenantResearchPage({
   const isShortlist = profile.variant === "shortlist";
   const isItemFile = profile.variant === "item-file";
   const isTrackingRecord = page.slug === "tracking";
+  const isEstimatorRecord = page.slug === "freight-estimator";
   const mainClass = isLedger
     ? "bg-[#f4f0e7] text-[#18212d]"
     : isFinder
@@ -352,6 +353,33 @@ export default async function TenantResearchPage({
               <p className="border-t border-white/15 bg-black/10 px-6 py-5 text-sm leading-6 text-white/68 sm:px-8">
                 A tracking event records what was reported. It does not promise
                 the next scan or delivery date.
+              </p>
+            </aside>
+          ) : isEstimatorRecord ? (
+            <aside className="overflow-hidden rounded-[24px] border border-[#35c486]/45 bg-[#0b2118] shadow-[0_24px_70px_rgba(0,0,0,0.3)]">
+              <div className="border-b border-white/15 px-6 py-5 sm:px-8">
+                <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-[#6ce0af]">
+                  Freight estimate record
+                </p>
+              </div>
+              <dl className="px-6 sm:px-8">
+                {[
+                  ["Destination", "Record the exact country or region used for the current comparison."],
+                  ["Parcel evidence", "Keep the weight, dimensions and contents tied to their source and review date."],
+                  ["Current result", "Save the displayed options, currency and unresolved charges without turning them into a quote."],
+                ].map(([term, detail]) => (
+                  <div
+                    key={term}
+                    className="grid gap-2 border-b border-white/12 py-5 last:border-b-0"
+                  >
+                    <dt className="font-bold text-white">{term}</dt>
+                    <dd className="text-sm leading-6 text-white/62">{detail}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="border-t border-white/15 bg-black/10 px-6 py-5 text-sm leading-6 text-white/68 sm:px-8">
+                A planning estimate is not the packed-parcel charge. Recheck the
+                current source before submission.
               </p>
             </aside>
           ) : isQueryIndex ? (

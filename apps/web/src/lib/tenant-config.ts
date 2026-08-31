@@ -1133,6 +1133,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
       "/safety",
       "/search-ideas",
       "/shipping",
+      "/freight-estimator",
     ],
     editorial: {
       homeVariant: "index",

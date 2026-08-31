@@ -2853,6 +2853,27 @@ const LITBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
       { title: "Customs and last mile", description: "Keep destination review and local carrier movement separate from seller and warehouse stages." },
     ],
   },
+  {
+    domain: "litbuyindex.com",
+    slug: "freight-estimator",
+    seoTitle: "LitBuy Freight Estimator Guide | Record Inputs and Results",
+    description:
+      "Use the official LitBuy freight estimator as a dated planning source, preserve destination and parcel inputs, and keep estimates separate from packed-parcel charges.",
+    eyebrow: "LitBuy estimator evidence",
+    title: "Preserve the inputs behind every freight estimate.",
+    intro:
+      "Save the destination, parcel evidence, displayed result and review time before comparing the estimate with a packed parcel.",
+    sections: [
+      { title: "Define the comparison", description: "Record the exact destination and the parcel evidence used for this check without borrowing values from an unrelated haul." },
+      { title: "Preserve the current result", description: "Keep the displayed options, currency, included fields and unresolved charges with the review time rather than copying a detached number." },
+      { title: "Replace planning with measured evidence", description: "When the parcel is packed, compare the current result with measured weight, dimensions, contents and the route options actually offered." },
+    ],
+    questions: [
+      { question: "Where should a LitBuy freight estimate be checked?", answer: "Use the current Freight Estimator linked from the official LitBuy site. This independent guide does not calculate or quote a live shipping amount." },
+      { question: "Is an estimator result the final parcel charge?", answer: "No. Treat it as a dated planning result and recheck the packed parcel, current options, included services, currency and unresolved charges before submission." },
+      { question: "Can one estimate be reused for another parcel?", answer: "Do not assume so. Destination, contents, measurements, current options and service conditions can differ, so preserve the inputs for each comparison." },
+    ],
+  },
 ];
 
 const LITBUY_ITEMS_PAGES: readonly TenantResearchPage[] = [
