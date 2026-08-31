@@ -898,7 +898,8 @@ describe("tenant config", () => {
     );
     expect(branding?.editorial.homeVariant).toBe("index");
     expect(branding?.indexablePaths).toContain("/order-status-guide");
-    expect(branding?.indexablePaths).toHaveLength(9);
+    expect(branding?.indexablePaths).toContain("/tracking");
+    expect(branding?.indexablePaths).toHaveLength(10);
   });
 
   it("gives MuleBuy Items a reviewed layered item experience", () => {

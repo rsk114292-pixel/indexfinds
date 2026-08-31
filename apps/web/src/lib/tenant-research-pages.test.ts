@@ -179,6 +179,7 @@ describe("tenant research pages", () => {
       "/order-status-guide",
       "/buyer-safety",
       "/shipping-weight-guide",
+      "/tracking",
       "/faq",
     ]);
     expect(getTenantResearchPaths("mulebuyitems.com")).toEqual(itemPaths);
@@ -372,10 +373,10 @@ describe("tenant research pages", () => {
   it("keeps every reviewed page specific and evidence-led", () => {
     const pages = getAllTenantResearchPages();
 
-    expect(pages).toHaveLength(266);
-    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(266);
-    expect(new Set(pages.map((page) => page.description)).size).toBe(266);
-    expect(new Set(pages.map((page) => page.title)).size).toBe(266);
+    expect(pages).toHaveLength(267);
+    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(267);
+    expect(new Set(pages.map((page) => page.description)).size).toBe(267);
+    expect(new Set(pages.map((page) => page.title)).size).toBe(267);
 
     const copy = JSON.stringify(pages);
     expect(copy).not.toMatch(/IndexFinds|official ACBuy site/i);

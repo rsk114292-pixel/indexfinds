@@ -3489,6 +3489,27 @@ const MULEBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
   },
   {
     domain: "mulebuyindex.net",
+    slug: "tracking",
+    seoTitle: "MuleBuy Tracking Guide | Read Parcel Events and Handoffs",
+    description:
+      "Track a shipped MuleBuy parcel from its account record, preserve the tracking number and dated carrier events, and separate update delays from verified delivery evidence.",
+    eyebrow: "MuleBuy parcel tracking",
+    title: "Follow the parcel record across every carrier handoff.",
+    intro:
+      "Open the shipped parcel record, then keep its tracking number, last confirmed event and review time together.",
+    sections: [
+      { title: "Start in the parcel record", description: "Use the current MuleBuy account, open the Parcel section and review the tracking details attached to the shipped parcel." },
+      { title: "Cross-check the responsible carrier", description: "Use the tracking number with the current logistics route source when a carrier handoff needs separate confirmation." },
+      { title: "Treat quiet periods as unresolved", description: "International events can publish with a delay. Preserve the last confirmed scan and use the responsible support path instead of inventing a location or delivery date." },
+    ],
+    questions: [
+      { question: "Where should a shipped MuleBuy parcel be tracked?", answer: "Open the Parcel section in the current MuleBuy account and review its tracking details. The tracking number can also be checked with the responsible logistics route source." },
+      { question: "Does a pause in tracking prove that the parcel is lost?", answer: "No. Carrier handoffs and international movements can publish later. Keep the last confirmed event and ask the responsible service for current evidence when needed." },
+      { question: "Can a tracking event guarantee the delivery date?", answer: "No. It records the latest available event. Customs, carrier transfers, destination processing and local delivery still require later evidence." },
+    ],
+  },
+  {
+    domain: "mulebuyindex.net",
     slug: "faq",
     seoTitle: "MuleBuy Spreadsheet FAQ | Rows, QC and Parcel Evidence",
     description:
