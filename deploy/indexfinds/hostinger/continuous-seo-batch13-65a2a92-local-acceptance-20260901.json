@@ -1,0 +1,60 @@
+{
+  "validatedAt": "2026-09-01T01:45:25+08:00",
+  "scope": "Thirteenth GSC-prioritized tenant SEO batch, locally accepted and held behind the Hostinger capacity gate",
+  "domains": [
+    "litbuyindex.com"
+  ],
+  "gscBaseline": {
+    "window": "last 28 days",
+    "domainClicks": 1,
+    "domainImpressions": 92,
+    "domainCtrPercent": 1.1,
+    "domainAveragePosition": 19.2,
+    "targetQueries": {
+      "litbuy estimator": { "impressions": 2 },
+      "litbuy estimation": { "impressions": 1 },
+      "litbuy freight estimator": { "impressions": 1 }
+    }
+  },
+  "releaseCandidate": {
+    "sourceCommit": "65a2a92",
+    "state": "local-ready-production-capacity-blocked",
+    "productionStillServingCommit": "9724f20",
+    "productionContainer": "indexfinds-web-seo-batch7-9724f20",
+    "productionPort": 3144
+  },
+  "page": {
+    "url": "https://litbuyindex.com/en/freight-estimator",
+    "localStatus": 200,
+    "title": "LitBuy Freight Estimator Guide | Record Inputs and Results",
+    "canonical": "https://litbuyindex.com/en/freight-estimator",
+    "robots": "index, follow",
+    "jsonLdBlockCount": 3,
+    "faqCount": 3,
+    "childSitemapUrlCount": 9,
+    "childSitemapIncludesPage": true
+  },
+  "officialSources": [
+    "https://www.litbuy.com/"
+  ],
+  "checks": {
+    "content": "The page documents how to preserve a current official freight-estimator result without reproducing a calculator or inventing prices, routes, delivery times or offers.",
+    "visual": "The page uses an evidence checklist instead of the generic query-index hero image or a simulated calculator.",
+    "responsive": "No horizontal overflow at 1440x1000 or 390x844; desktop and mobile screenshots were reviewed.",
+    "localTests": "Three focused suites passed with 140 tests; TypeScript and changed-file ESLint checks passed.",
+    "productionBuild": "The exact candidate commit completed the production build successfully.",
+    "mainIsolation": "No production route, container, DNS, Cloudflare setting or IndexFinds main-site configuration changed during this batch."
+  },
+  "postDeploymentMeasurement": {
+    "technicalExpected": "The new freight-estimator guide returns HTTP 200 with its exact canonical, indexable robots state, structured data and sitemap entry.",
+    "gscExpected": "The three existing estimator-intent query variants gain one dedicated page after deployment and recrawl.",
+    "status": "pending-production-deployment-and-google-recrawl"
+  },
+  "capacity": {
+    "filesystemFree": "2.5G",
+    "filesystemUsePercent": 99,
+    "nextProductionBuildState": "blocked-pending-explicit-rollback-image-retention-decision",
+    "note": "The active release is healthy. Another Hostinger Docker image build is unsafe until exact inactive rollback containers and images are approved for removal or capacity is increased."
+  },
+  "result": "local-ready-production-capacity-blocked"
+}
