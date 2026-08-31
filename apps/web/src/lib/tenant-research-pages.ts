@@ -4067,10 +4067,10 @@ const SUPERBUY_DEALS_PAGES: readonly TenantResearchPage[] = [
   },
   {
     domain: "superbuydeals.com", slug: "shipping-weight-guide",
-    seoTitle: "Superbuy Shipping Deals | Weight, Route and Eligibility Checks",
-    description: "Evaluate a Superbuy shipping offer with measured parcel weight, dimensions, contents, destination, eligible routes and current promotional conditions.",
-    eyebrow: "Shipping-offer evidence", title: "Apply a shipping offer only to an eligible parcel.",
-    intro: "A route promotion cannot be evaluated before the parcel and destination inputs are known.",
+    seoTitle: "Superbuy Shipping Cost Guide | Weight, Route and Deal Checks",
+    description: "Estimate Superbuy shipping costs with packed weight, dimensions, contents, destination and current route terms, then verify whether a shipping offer applies.",
+    eyebrow: "Shipping-cost evidence", title: "Calculate from the packed parcel before applying a deal.",
+    intro: "A useful estimate starts with the parcel and destination inputs. Any route promotion is a separate condition to verify after those inputs are known.",
     sections: [
       { title: "Parcel inputs", description: "Use measured weight, dimensions, selected packaging and restriction-relevant contents." },
       { title: "Route scope", description: "Confirm eligible destinations, lines, account types and charging methods." },

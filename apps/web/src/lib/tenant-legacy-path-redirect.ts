@@ -8,6 +8,19 @@ const TENANT_LEGACY_PATH_REDIRECTS: Readonly<
     "/invitation-code.html": "/en/invitation-code",
     "/guide.html": "/en/guide",
   },
+  "superbuydeals.com": {
+    "/shipping-weight-guide.html": "/en/shipping-weight-guide",
+    "/categories.html": "/en/categories",
+  },
+  "joyagooindex.com": {
+    "/faq.html": "/en/faq",
+  },
+  "kakobuyindex.net": {
+    "/safety.html": "/en/safety",
+  },
+  "usfansindex.net": {
+    "/contact.html": "/en/contact",
+  },
 };
 
 export function getTenantLegacyPathRedirectUrl(

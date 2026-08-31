@@ -813,9 +813,9 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     primaryColor: "#3a8ec9",
     primaryHoverColor: "#2b70a2",
     accentColor: "#f0c15b",
-    seoTitle: "JoyaGoo Product Index | Track Source, QC and Parcel Stages",
+    seoTitle: "JoyaGoo Spreadsheet | Track Source, QC and Parcel Stages",
     description:
-      "Search JoyaGoo-linked products and keep source, option, order, QC, warehouse and parcel evidence in separate dated stages.",
+      "Use a JoyaGoo spreadsheet to keep the product source, exact option, order, QC, warehouse and parcel evidence in separate dated stages.",
     heroEyebrow: "Independent JoyaGoo process index",
     heroPrimary: "Track the product through each evidence stage.",
     heroSecondary: "Source. Option. QC. Parcel.",

@@ -38,4 +38,57 @@ describe("tenant legacy path redirects", () => {
       ),
     ).toBeNull();
   });
+
+  it.each([
+    [
+      "superbuydeals.com",
+      "/shipping-weight-guide.html",
+      "https://superbuydeals.com/en/shipping-weight-guide",
+    ],
+    [
+      "superbuydeals.com",
+      "/categories.html",
+      "https://superbuydeals.com/en/categories",
+    ],
+    [
+      "joyagooindex.com",
+      "/faq.html",
+      "https://joyagooindex.com/en/faq",
+    ],
+    [
+      "kakobuyindex.net",
+      "/safety.html",
+      "https://kakobuyindex.net/en/safety",
+    ],
+    [
+      "usfansindex.net",
+      "/contact.html",
+      "https://usfansindex.net/en/contact",
+    ],
+  ])(
+    "recovers an exposed legacy path for %s",
+    (domain, pathname, expected) => {
+      expect(
+        getTenantLegacyPathRedirectUrl(
+          `https://${domain}${pathname}`,
+          domain,
+        ),
+      ).toBe(expected);
+    },
+  );
+
+  it.each([
+    ["superbuydeals.com", "/superbuy-shopping-agent/"],
+    ["superbuydeals.com", "/superbuy-haul/"],
+  ])(
+    "does not soft-redirect a retired page without an equivalent for %s",
+    (domain, pathname) => {
+      expect(
+        getTenantLegacyPathRedirectUrl(
+          `https://${domain}${pathname}`,
+          domain,
+        ),
+      ).toBeNull();
+    },
+  );
 });
