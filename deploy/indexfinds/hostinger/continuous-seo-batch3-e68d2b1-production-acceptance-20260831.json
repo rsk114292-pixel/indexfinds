@@ -1,0 +1,75 @@
+{
+  "validatedAt": "2026-08-31T19:41:12+08:00",
+  "scope": "Third GSC-prioritized tenant SEO batch",
+  "domains": [
+    "gtbuyindex.com",
+    "litbuyproducts.com",
+    "parcelupindex.com"
+  ],
+  "gscBaseline": {
+    "gtbuyindex.com": {
+      "clicks": 3,
+      "impressions": 184,
+      "ctrPercent": 1.6,
+      "averagePosition": 11.8,
+      "opportunityPage": "/shipping.html",
+      "opportunityPageClicks": 0,
+      "opportunityPageImpressions": 38,
+      "primaryQueries": [
+        "gtbuy shipping estimate",
+        "gtbuy estimation",
+        "gtbuy shipping calculator"
+      ]
+    },
+    "litbuyproducts.com": {
+      "clicks": 5,
+      "impressions": 144,
+      "ctrPercent": 3.5,
+      "averagePosition": 9.0,
+      "opportunityPage": "/invitation-code.html",
+      "opportunityPageClicks": 3,
+      "opportunityPageImpressions": 97,
+      "primaryQueries": [
+        "litbuy invitation code",
+        "litbuy invite code"
+      ]
+    },
+    "parcelupindex.com": {
+      "clicks": 3,
+      "impressions": 137,
+      "ctrPercent": 2.2,
+      "averagePosition": 9.4,
+      "opportunityPage": "/",
+      "opportunityPageClicks": 3,
+      "opportunityPageImpressions": 137,
+      "primaryQueries": [
+        "parcel up",
+        "parcelup"
+      ]
+    }
+  },
+  "release": {
+    "sourceCommit": "e68d2b1",
+    "image": "indexfinds-web:seo-batch3-e68d2b1",
+    "container": "indexfinds-web-seo-batch3-e68d2b1",
+    "port": 3140,
+    "health": "healthy",
+    "restartCount": 0,
+    "routeConfigCount": 41
+  },
+  "checks": {
+    "intentAlignment": "GTBuy shipping now matches estimate-input intent without claiming to be a calculator; LitBuy invitation-code copy verifies the current registration path without publishing a fabricated code; Parcel Up homepage now matches brand-and-order intent while retaining its independent boundary.",
+    "localTests": "Three tenant suites passed with 116 tests and TypeScript checking passed.",
+    "productionBuild": "The exact release commit completed the 3,040-page production build.",
+    "recursiveAudit": "All three domains and all 25 approved pages passed with zero failures. The only warning is the external Parcel Up source returning HTTP 403 to automated verification.",
+    "entryPoints": "All three production opportunity pages returned HTTP 200 with the new unique title and exact self-canonical.",
+    "mainIsolation": "The IndexFinds main homepage remained on its separate origin and returned HTTP 200 with its unchanged title and canonical.",
+    "nginx": "Configuration validation passed before reload. All 41 tenant configs moved from port 3139 to 3140."
+  },
+  "rollback": {
+    "previousContainer": "indexfinds-web-seo-batch2-5cf5335",
+    "previousPort": 3139,
+    "nginxBackup": "/opt/indexfinds/rollback/nginx-web-e68d2b1-20260831T113615Z"
+  },
+  "result": "deployed-and-live-validated"
+}
