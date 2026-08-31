@@ -1,0 +1,71 @@
+{
+  "validatedAt": "2026-09-01T03:18:00+08:00",
+  "scope": "Sixteenth GSC-prioritized tenant SEO batch, locally accepted and held behind the Hostinger capacity gate",
+  "domains": [
+    "loongbuys.net"
+  ],
+  "gscBaseline": {
+    "window": "last 28 days",
+    "domainClicks": 2,
+    "domainImpressions": 114,
+    "domainCtrPercent": 1.8,
+    "domainAveragePosition": 28.2,
+    "protectedQueries": {
+      "loongbuy": {
+        "impressions": 14
+      },
+      "loongbuy.com": {
+        "impressions": 5
+      }
+    },
+    "targetQueries": {
+      "loongbuy shipping calculator": {
+        "impressions": 2
+      }
+    }
+  },
+  "releaseCandidate": {
+    "sourceCommit": "5f6fd32",
+    "state": "local-ready-production-capacity-blocked",
+    "productionStillServingCommit": "9724f20",
+    "productionContainer": "indexfinds-web-seo-batch7-9724f20",
+    "productionPort": 3144
+  },
+  "page": {
+    "url": "https://loongbuys.net/en/shipping-calculator",
+    "localStatus": 200,
+    "title": "LoongBuy Shipping Calculator Guide | Inputs and Final Charge",
+    "canonical": "https://loongbuys.net/en/shipping-calculator",
+    "robots": "index, follow",
+    "jsonLdBlockCount": 2,
+    "childSitemapUrlCount": 7,
+    "childSitemapIncludesPage": true,
+    "officialFreightQueryUrl": "https://service.loongbuy.com/en/query/freight"
+  },
+  "officialSources": [
+    "https://service.loongbuy.com/en/query/freight",
+    "https://service.loongbuy.com/en/content/process",
+    "https://service.loongbuy.com/en/content/freight"
+  ],
+  "checks": {
+    "rankingProtection": "The ranked homepage and all existing reviewed URLs remain unchanged.",
+    "content": "The new page documents LoongBuy-specific freight-query fields and the official final-weight reconciliation without inventing live rates.",
+    "visual": "The page uses a semantic estimate record and evidence cards with no generic or unrelated product hero image.",
+    "responsive": "No horizontal overflow at 1440x1000 or 390x844; desktop and mobile screenshots were reviewed.",
+    "localTests": "Three focused suites passed with 83 tests; TypeScript and changed-file ESLint checks passed.",
+    "productionBuild": "The exact candidate commit completed the production build successfully.",
+    "mainIsolation": "No production route, container, DNS, Cloudflare setting or IndexFinds main-site configuration changed during this batch."
+  },
+  "postDeploymentMeasurement": {
+    "technicalExpected": "The new calculator guide returns HTTP 200 with its exact canonical, indexable robots state, structured data, official freight-query link and sitemap entry.",
+    "gscExpected": "The shipping-calculator query gains a dedicated source-backed destination while existing brand-query landing URLs stay protected.",
+    "status": "pending-production-deployment-and-google-recrawl"
+  },
+  "capacity": {
+    "filesystemFree": "2.5G",
+    "filesystemUsePercent": 99,
+    "nextProductionBuildState": "blocked-pending-explicit-rollback-image-retention-decision",
+    "note": "The active release is healthy. Another Hostinger Docker image build is unsafe until exact inactive rollback containers and images are approved for removal or capacity is increased."
+  },
+  "result": "local-ready-production-capacity-blocked"
+}
