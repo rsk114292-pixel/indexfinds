@@ -391,10 +391,10 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     primaryColor: "#168f5e",
     primaryHoverColor: "#0f7049",
     accentColor: "#6ce0af",
-    seoTitle: "BoonBuy Product Index | Review Links, Options and Sources",
+    seoTitle: "BoonBuy Spreadsheet & Product Index | Search Guide",
     description:
-      "Search BoonBuy-linked product records, group duplicate links and retain only rows with a current source, identifiable option and useful product evidence.",
-    heroEyebrow: "Independent BoonBuy query index",
+      "Search the independent BoonBuy spreadsheet and product index, group duplicate links, and review each source, option and unresolved field before retaining a result.",
+    heroEyebrow: "Independent BoonBuy spreadsheet and query index",
     heroPrimary: "Keep the query beside every result.",
     heroSecondary: "Index evidence, not assumptions.",
     supportingLine:
@@ -625,10 +625,10 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     primaryColor: "#b63d4c",
     primaryHoverColor: "#912f3b",
     accentColor: "#f4d38a",
-    seoTitle: "GoatedBuy Product Index | Score and Refine Search Results",
+    seoTitle: "GoatedBuy Product Index | Independent Listings & Safety Guide",
     description:
-      "Search GoatedBuy-linked listings, score product relevance and visible evidence, then remove duplicates before researching a buying route.",
-    heroEyebrow: "Independent GoatedBuy result-scoring guide",
+      "Review independent GoatedBuy-linked listings, score visible evidence, remove duplicate results, and keep product research separate from safety and buying-route checks.",
+    heroEyebrow: "Independent GoatedBuy shortlist and safety guide",
     heroPrimary: "Make every result earn its place.",
     heroSecondary: "Score relevance before route research.",
     supportingLine:

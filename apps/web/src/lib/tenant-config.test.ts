@@ -73,7 +73,7 @@ describe("tenant config", () => {
       expect.objectContaining({
         siteName: "BoonBuy Index",
         logoPath: "/images/agents/boonbuy.png",
-        heroEyebrow: "Independent BoonBuy query index",
+        heroEyebrow: "Independent BoonBuy spreadsheet and query index",
         indexing: "ready",
         indexablePaths: [
           "",
@@ -246,7 +246,7 @@ describe("tenant config", () => {
       expect.objectContaining({
         siteName: "GoatedBuy Index",
         logoPath: "/images/agents/goatedbuy.svg",
-        heroEyebrow: "Independent GoatedBuy result-scoring guide",
+        heroEyebrow: "Independent GoatedBuy shortlist and safety guide",
         indexing: "ready",
         indexablePaths: [
           "",
