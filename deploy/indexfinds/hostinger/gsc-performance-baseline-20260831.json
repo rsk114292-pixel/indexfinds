@@ -1,0 +1,3283 @@
+{
+  "observedAt": "2026-08-31T10:18:15.575Z",
+  "source": "Google Search Console authenticated Domain Property performance UI",
+  "windowDays": 28,
+  "scope": "42 released IndexFinds tenant domains",
+  "summary": {
+    "domainCount": 42,
+    "dataAvailableDomainCount": 40,
+    "waitingForFirstDataDomainCount": 2,
+    "totalClicks": 89,
+    "totalImpressions": 8019,
+    "opportunityDomainCount": 31
+  },
+  "waitingForFirstData": [
+    "ydaexpress.net",
+    "ydaexpress.org"
+  ],
+  "opportunityMethod": "Impressions > 0 and average position 5-30; score weights impressions, current CTR gap and distance from position 30. Final edits still require query-level intent and page-quality review.",
+  "prioritizedOpportunities": [
+    {
+      "domain": "boonbuyindex.com",
+      "score": 2330.69,
+      "clicks": 13,
+      "impressions": 2440,
+      "ctrPercent": 0.5,
+      "averagePosition": 6,
+      "topQueries": [
+        {
+          "query": "boonbuy",
+          "clicks": 4,
+          "impressions": 2144
+        },
+        {
+          "query": "boonbuy spreadsheet",
+          "clicks": 4,
+          "impressions": 75
+        },
+        {
+          "query": "boon buy",
+          "clicks": 1,
+          "impressions": 15
+        },
+        {
+          "query": "spreadsheet boonbuy",
+          "clicks": 0,
+          "impressions": 22
+        },
+        {
+          "query": "boinbuy",
+          "clicks": 0,
+          "impressions": 9
+        },
+        {
+          "query": "boonbuy logo",
+          "clicks": 0,
+          "impressions": 9
+        },
+        {
+          "query": "bonnbuy",
+          "clicks": 0,
+          "impressions": 8
+        },
+        {
+          "query": "boonbuy.",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "booonbuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "boonbiy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "goatedbuyindex.com",
+      "score": 1185.38,
+      "clicks": 14,
+      "impressions": 1320,
+      "ctrPercent": 1.1,
+      "averagePosition": 7.3,
+      "topQueries": [
+        {
+          "query": "goatedbuy",
+          "clicks": 9,
+          "impressions": 1178
+        },
+        {
+          "query": "goatedbuy spreadsheet",
+          "clicks": 3,
+          "impressions": 26
+        },
+        {
+          "query": "goatedbuy.com",
+          "clicks": 0,
+          "impressions": 6
+        },
+        {
+          "query": "gotedbuy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "bbdbuyeusheet.com",
+      "score": 371.8,
+      "clicks": 5,
+      "impressions": 420,
+      "ctrPercent": 1.2,
+      "averagePosition": 7.6,
+      "topQueries": [
+        {
+          "query": "bbdbuyeu",
+          "clicks": 1,
+          "impressions": 350
+        },
+        {
+          "query": "bbdbuyeuonlypay",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "bbdbuyeu.com",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "bddbuyeu",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "bbduyeu",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "bbdbuy vestiti",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "bbdbuy eu",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "bbdbuy spreadsheet",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "bbdbuyeufinds.com",
+      "score": 292.11,
+      "clicks": 5,
+      "impressions": 337,
+      "ctrPercent": 1.5,
+      "averagePosition": 8,
+      "topQueries": [
+        {
+          "query": "bbdbuyeu",
+          "clicks": 4,
+          "impressions": 310
+        },
+        {
+          "query": "bbdbuyeuonlypay",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "bbdbuyeu.com",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "bbduyeu",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "bddbuyeu",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "bbduy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "gtbuyindex.com",
+      "score": 131.81,
+      "clicks": 3,
+      "impressions": 184,
+      "ctrPercent": 1.6,
+      "averagePosition": 11.8,
+      "topQueries": [
+        {
+          "query": "gtbuy links",
+          "clicks": 1,
+          "impressions": 1
+        },
+        {
+          "query": "gtbuy",
+          "clicks": 0,
+          "impressions": 15
+        },
+        {
+          "query": "gtbuy shipping estimate",
+          "clicks": 0,
+          "impressions": 8
+        },
+        {
+          "query": "gtbuy estimation",
+          "clicks": 0,
+          "impressions": 6
+        },
+        {
+          "query": "gtbuy shipping calculator",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "gt buy",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "gtbuy spreadsheet",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "gtbuy estimate",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "is gtbuy safe",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "gtbuy shipping",
+          "clicks": 0,
+          "impressions": 2
+        }
+      ]
+    },
+    {
+      "domain": "litbuyproducts.com",
+      "score": 116.73,
+      "clicks": 5,
+      "impressions": 144,
+      "ctrPercent": 3.5,
+      "averagePosition": 9,
+      "topQueries": [
+        {
+          "query": "litbuy invitation code",
+          "clicks": 0,
+          "impressions": 15
+        },
+        {
+          "query": "litbuy invite code",
+          "clicks": 0,
+          "impressions": 7
+        },
+        {
+          "query": "invite code litbuy",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "litbuy invite codes",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "lit buy invitation code",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "litbuy haul",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "litbye",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "lit buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "give me invitation code",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy invitation code reddit",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "parcelupindex.com",
+      "score": 110.4,
+      "clicks": 3,
+      "impressions": 137,
+      "ctrPercent": 2.2,
+      "averagePosition": 9.4,
+      "topQueries": [
+        {
+          "query": "parcel up",
+          "clicks": 0,
+          "impressions": 67
+        },
+        {
+          "query": "parcelup",
+          "clicks": 0,
+          "impressions": 11
+        },
+        {
+          "query": "is parcel up legit",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "parcelup courier tracking",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "parcel up official website",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "usfansindex.net",
+      "score": 106.45,
+      "clicks": 6,
+      "impressions": 153,
+      "ctrPercent": 3.9,
+      "averagePosition": 11.9,
+      "topQueries": [
+        {
+          "query": "usfans lista",
+          "clicks": 1,
+          "impressions": 1
+        },
+        {
+          "query": "usfand",
+          "clicks": 0,
+          "impressions": 27
+        },
+        {
+          "query": "usfans spreadsheet",
+          "clicks": 0,
+          "impressions": 9
+        },
+        {
+          "query": "usfans rehearsal",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "rehearsal usfans",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "us fans finder",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "qc.zone us fans",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "usfans.page.gd",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "us fnas",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "us fand",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "hoobuyindex.net",
+      "score": 85.4,
+      "clicks": 1,
+      "impressions": 233,
+      "ctrPercent": 0.4,
+      "averagePosition": 20.8,
+      "topQueries": [
+        {
+          "query": "hoobuy",
+          "clicks": 0,
+          "impressions": 30
+        },
+        {
+          "query": "hoobuy shipping calculator",
+          "clicks": 0,
+          "impressions": 6
+        },
+        {
+          "query": "hoobuy versandkostenrechner",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "hoobuy warehouse",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hoobuy official website",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hoobuy shipping estimate",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hoo buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hoonuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hoodbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hoobuuy",
+          "clicks": 0,
+          "impressions": 2
+        }
+      ]
+    },
+    {
+      "domain": "mulebuyindex.net",
+      "score": 83.5,
+      "clicks": 0,
+      "impressions": 142,
+      "ctrPercent": 0,
+      "averagePosition": 15.3,
+      "topQueries": [
+        {
+          "query": "mulebuy order pending",
+          "clicks": 0,
+          "impressions": 27
+        },
+        {
+          "query": "mulebuy tracking",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "mule shipping",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "mulebuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "mulebuy shipping time",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "mulkebuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "mullbuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "shipping mule",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "fishgooindex.com",
+      "score": 81.03,
+      "clicks": 2,
+      "impressions": 107,
+      "ctrPercent": 1.9,
+      "averagePosition": 10.7,
+      "topQueries": [
+        {
+          "query": "fishgoo",
+          "clicks": 0,
+          "impressions": 15
+        },
+        {
+          "query": "fishgoo spreadsheet",
+          "clicks": 0,
+          "impressions": 13
+        },
+        {
+          "query": "fisgoo",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "gooindex",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "fish goo",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "is fishgoo reliable",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "is fishgoo legit",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "cnshopperindex.com",
+      "score": 58.25,
+      "clicks": 2,
+      "impressions": 71,
+      "ctrPercent": 2.8,
+      "averagePosition": 8.9,
+      "topQueries": [
+        {
+          "query": "cndhopper",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "cnshoppet",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "cnschopper",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "cnshooper",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "cnshoppers",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "cnshopeer",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "cnnshoper",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "cnshopper",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "cnnshopper",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "cnchoper",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "eastmallbuyindex.com",
+      "score": 57.74,
+      "clicks": 1,
+      "impressions": 89,
+      "ctrPercent": 1.1,
+      "averagePosition": 13.6,
+      "topQueries": [
+        {
+          "query": "eastmall buy",
+          "clicks": 0,
+          "impressions": 12
+        },
+        {
+          "query": "eastmallbuy",
+          "clicks": 0,
+          "impressions": 10
+        },
+        {
+          "query": "east mall buy",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "eastmallbuy spreadsheet reddit",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "eastmallbuy reddit",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "eastmallbuy_official",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "eastmallbuy lego",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "east mallbuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "eastmallbuy spreadsheet",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "estmallbuy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "cssbuyindex.com",
+      "score": 50.34,
+      "clicks": 1,
+      "impressions": 186,
+      "ctrPercent": 0.5,
+      "averagePosition": 23.2,
+      "topQueries": [
+        {
+          "query": "cssbuy",
+          "clicks": 0,
+          "impressions": 13
+        },
+        {
+          "query": "cssbuy warehouse",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "scwbuy",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "cssbuy links",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "cssbuy warehouse address",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "buycss",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "cssbuy logo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "csss buy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "csbuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "cssbuy warehouse sale",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "sugargooindex.net",
+      "score": 49.28,
+      "clicks": 0,
+      "impressions": 220,
+      "ctrPercent": 0,
+      "averagePosition": 24.4,
+      "topQueries": [
+        {
+          "query": "sugargoo tracking",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "how to track sugargoo package",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "sugargoo",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "sugargoo links",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "links sugargoo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "link converter sugargoo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "sugargoo logo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "surgar goo",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "litbuyindex.com",
+      "score": 39.31,
+      "clicks": 1,
+      "impressions": 92,
+      "ctrPercent": 1.1,
+      "averagePosition": 19.2,
+      "topQueries": [
+        {
+          "query": "litbuy",
+          "clicks": 0,
+          "impressions": 21
+        },
+        {
+          "query": "litbuy estimator",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "llitbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "lit buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "litbuy logo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy estimation",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy directory",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "lituby",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy freight estimator",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy warehouse",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "hipobuyindex.com",
+      "score": 36.86,
+      "clicks": 4,
+      "impressions": 68,
+      "ctrPercent": 5.9,
+      "averagePosition": 15.6,
+      "topQueries": [
+        {
+          "query": "hipobuy",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "hypo buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hipobuy logo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "jhipobuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "hipobbuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "hıpobuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "hipobuy tracking",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "hipobuy discord",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "hipobuy link",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "hepobuy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "itaobuyindex.com",
+      "score": 34.46,
+      "clicks": 1,
+      "impressions": 80,
+      "ctrPercent": 1.2,
+      "averagePosition": 19.1,
+      "topQueries": [
+        {
+          "query": "itaobuy link",
+          "clicks": 1,
+          "impressions": 3
+        },
+        {
+          "query": "itaobuy",
+          "clicks": 0,
+          "impressions": 32
+        },
+        {
+          "query": "itobuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "tao buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "anytobuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "itaob",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "itao buy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "itaobuy shipping",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "itaobuy links",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "ito buy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "kameymallindex.com",
+      "score": 31.01,
+      "clicks": 0,
+      "impressions": 76,
+      "ctrPercent": 0,
+      "averagePosition": 19.8,
+      "topQueries": [
+        {
+          "query": "kameymall",
+          "clicks": 0,
+          "impressions": 35
+        },
+        {
+          "query": "kamemall",
+          "clicks": 0,
+          "impressions": 6
+        },
+        {
+          "query": "kayamels",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "oopbuyindex.net",
+      "score": 23.81,
+      "clicks": 2,
+      "impressions": 52,
+      "ctrPercent": 3.8,
+      "averagePosition": 18.1,
+      "topQueries": [
+        {
+          "query": "oopbuy",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "oopbuy logo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "oop bye",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "oopbuy shipping prices",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "oopbuy shop",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "joyagooindex.com",
+      "score": 21.82,
+      "clicks": 1,
+      "impressions": 63,
+      "ctrPercent": 1.6,
+      "averagePosition": 21.2,
+      "topQueries": [
+        {
+          "query": "joyagoo spreadsheet",
+          "clicks": 1,
+          "impressions": 3
+        },
+        {
+          "query": "joyagoo spreadsheet 2026",
+          "clicks": 0,
+          "impressions": 11
+        },
+        {
+          "query": "joyagoo",
+          "clicks": 0,
+          "impressions": 8
+        },
+        {
+          "query": "joyagoo spreadsheets",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "joyagooo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "jpyagoo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "joyagoo website",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "joyagoo link converter",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "joyagoo haul",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "yojagoo",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "superbuydeals.com",
+      "score": 19.27,
+      "clicks": 2,
+      "impressions": 45,
+      "ctrPercent": 4.4,
+      "averagePosition": 18.8,
+      "topQueries": [
+        {
+          "query": "how to calculate shipping costs for superbuy",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "superbuy list",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "superbuy calculator",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "superbuy discount code",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "kakobuyindex.net",
+      "score": 14,
+      "clicks": 0,
+      "impressions": 28,
+      "ctrPercent": 0,
+      "averagePosition": 17.5,
+      "topQueries": [
+        {
+          "query": "kakobuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "is kakobuy safe",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "kakobuy buy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "kaku buy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "kakobuy.net",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "yoybuyindex.com",
+      "score": 13.1,
+      "clicks": 0,
+      "impressions": 42,
+      "ctrPercent": 0,
+      "averagePosition": 22.2,
+      "topQueries": [
+        {
+          "query": "yoybuy",
+          "clicks": 0,
+          "impressions": 7
+        },
+        {
+          "query": "yoybuy official website",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "yoybuy spreadsheet",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "yoy buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "yoybuy coupon",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "yobuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "yoibay",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "yoybuy.com",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "loongbuys.net",
+      "score": 8.06,
+      "clicks": 2,
+      "impressions": 114,
+      "ctrPercent": 1.8,
+      "averagePosition": 28.2,
+      "topQueries": [
+        {
+          "query": "loongbuy",
+          "clicks": 0,
+          "impressions": 14
+        },
+        {
+          "query": "loongbuy.com",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "loongbuy shipping calculator",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "loongbuy reviews",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "loongbuy discord",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "loonbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "loongbuy peru",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "is loongbuy legit",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "rangbuy website",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "lovegobuyindex.com",
+      "score": 7.57,
+      "clicks": 1,
+      "impressions": 32,
+      "ctrPercent": 3.1,
+      "averagePosition": 23.9,
+      "topQueries": [
+        {
+          "query": "lovebuy",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "lovegobuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "discord lovegobuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "lovegobuy spreadsheet",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "cssbuyitems.com",
+      "score": 7.16,
+      "clicks": 0,
+      "impressions": 10,
+      "ctrPercent": 0,
+      "averagePosition": 12.1,
+      "topQueries": []
+    },
+    {
+      "domain": "superbuyindex.com",
+      "score": 4.24,
+      "clicks": 4,
+      "impressions": 110,
+      "ctrPercent": 3.6,
+      "averagePosition": 29,
+      "topQueries": [
+        {
+          "query": "superbuy finds",
+          "clicks": 2,
+          "impressions": 5
+        },
+        {
+          "query": "superbuy spreadsheet",
+          "clicks": 0,
+          "impressions": 22
+        },
+        {
+          "query": "superbuy spread sheet",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "superbuy spreadsheets",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "spreadsheet superbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "supermestockbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "superbuy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "litbuyitems.com",
+      "score": 3.64,
+      "clicks": 1,
+      "impressions": 92,
+      "ctrPercent": 1.1,
+      "averagePosition": 29.3,
+      "topQueries": [
+        {
+          "query": "litbuy spreadsheet",
+          "clicks": 0,
+          "impressions": 7
+        },
+        {
+          "query": "litbuy invite code",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "litbuy payment methods",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "lidbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "loitbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "litbuy haul",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy invite codes",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "how long does litbuy take",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy saisie douane",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy spreadsheets",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "domain": "bbdbuyeus.com",
+      "score": 3.42,
+      "clicks": 0,
+      "impressions": 14,
+      "ctrPercent": 0,
+      "averagePosition": 23.9,
+      "topQueries": [
+        {
+          "query": "bbdbuyeu",
+          "clicks": 0,
+          "impressions": 3
+        }
+      ]
+    },
+    {
+      "domain": "cssbuycatalog.com",
+      "score": 1.08,
+      "clicks": 0,
+      "impressions": 3,
+      "ctrPercent": 0,
+      "averagePosition": 21,
+      "topQueries": []
+    }
+  ],
+  "domains": [
+    {
+      "domain": "acbuyindex.com",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 152,
+      "ctrPercent": 0,
+      "averagePosition": 35.7,
+      "topQueries": [
+        {
+          "query": "acbuy",
+          "clicks": 0,
+          "impressions": 48
+        },
+        {
+          "query": "ac buy",
+          "clicks": 0,
+          "impressions": 23
+        },
+        {
+          "query": "a c buy",
+          "clicks": 0,
+          "impressions": 14
+        },
+        {
+          "query": "accbuy",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "ac buy login",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "ac buy clothes",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "acbay",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "acsbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "acbuy redeemble points",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "acebuy",
+          "clicks": 0,
+          "impressions": 2
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "allchinabuyfinder.com",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 23,
+      "ctrPercent": 0,
+      "averagePosition": 43.1,
+      "topQueries": [
+        {
+          "query": "allchinabuy finds",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "all china buy tracking",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "allchinabuyindex.com",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 197,
+      "ctrPercent": 0,
+      "averagePosition": 68.1,
+      "topQueries": [
+        {
+          "query": "allchinabuy",
+          "clicks": 0,
+          "impressions": 25
+        },
+        {
+          "query": "all china buy",
+          "clicks": 0,
+          "impressions": 11
+        },
+        {
+          "query": "all chinabuy",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "all china",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "all china buy tracking",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "allchinabuy logo",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "allchina buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "allinchina",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "allchinabuy link converter",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "allchinabuy tracking",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "bbdbuyeufinds.com",
+      "days": 28,
+      "clicks": 5,
+      "impressions": 337,
+      "ctrPercent": 1.5,
+      "averagePosition": 8,
+      "topQueries": [
+        {
+          "query": "bbdbuyeu",
+          "clicks": 4,
+          "impressions": 310
+        },
+        {
+          "query": "bbdbuyeuonlypay",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "bbdbuyeu.com",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "bbduyeu",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "bddbuyeu",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "bbduy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "bbdbuyeus.com",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 14,
+      "ctrPercent": 0,
+      "averagePosition": 23.9,
+      "topQueries": [
+        {
+          "query": "bbdbuyeu",
+          "clicks": 0,
+          "impressions": 3
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "bbdbuyeusheet.com",
+      "days": 28,
+      "clicks": 5,
+      "impressions": 420,
+      "ctrPercent": 1.2,
+      "averagePosition": 7.6,
+      "topQueries": [
+        {
+          "query": "bbdbuyeu",
+          "clicks": 1,
+          "impressions": 350
+        },
+        {
+          "query": "bbdbuyeuonlypay",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "bbdbuyeu.com",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "bddbuyeu",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "bbduyeu",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "bbdbuy vestiti",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "bbdbuy eu",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "bbdbuy spreadsheet",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "boonbuyfind.net",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 0,
+      "ctrPercent": 0,
+      "averagePosition": 0,
+      "topQueries": [],
+      "state": "available"
+    },
+    {
+      "domain": "boonbuyindex.com",
+      "days": 28,
+      "clicks": 13,
+      "impressions": 2440,
+      "ctrPercent": 0.5,
+      "averagePosition": 6,
+      "topQueries": [
+        {
+          "query": "boonbuy",
+          "clicks": 4,
+          "impressions": 2144
+        },
+        {
+          "query": "boonbuy spreadsheet",
+          "clicks": 4,
+          "impressions": 75
+        },
+        {
+          "query": "boon buy",
+          "clicks": 1,
+          "impressions": 15
+        },
+        {
+          "query": "spreadsheet boonbuy",
+          "clicks": 0,
+          "impressions": 22
+        },
+        {
+          "query": "boinbuy",
+          "clicks": 0,
+          "impressions": 9
+        },
+        {
+          "query": "boonbuy logo",
+          "clicks": 0,
+          "impressions": 9
+        },
+        {
+          "query": "bonnbuy",
+          "clicks": 0,
+          "impressions": 8
+        },
+        {
+          "query": "boonbuy.",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "booonbuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "boonbiy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "cnshopperindex.com",
+      "days": 28,
+      "clicks": 2,
+      "impressions": 71,
+      "ctrPercent": 2.8,
+      "averagePosition": 8.9,
+      "topQueries": [
+        {
+          "query": "cndhopper",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "cnshoppet",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "cnschopper",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "cnshooper",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "cnshoppers",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "cnshopeer",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "cnnshoper",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "cnshopper",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "cnnshopper",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "cnchoper",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "cssbuycatalog.com",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 3,
+      "ctrPercent": 0,
+      "averagePosition": 21,
+      "topQueries": [],
+      "state": "available"
+    },
+    {
+      "domain": "cssbuyindex.com",
+      "days": 28,
+      "clicks": 1,
+      "impressions": 186,
+      "ctrPercent": 0.5,
+      "averagePosition": 23.2,
+      "topQueries": [
+        {
+          "query": "cssbuy",
+          "clicks": 0,
+          "impressions": 13
+        },
+        {
+          "query": "cssbuy warehouse",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "scwbuy",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "cssbuy links",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "cssbuy warehouse address",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "buycss",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "cssbuy logo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "csss buy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "csbuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "cssbuy warehouse sale",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "cssbuyitems.com",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 10,
+      "ctrPercent": 0,
+      "averagePosition": 12.1,
+      "topQueries": [],
+      "state": "available"
+    },
+    {
+      "domain": "eastmallbuyindex.com",
+      "days": 28,
+      "clicks": 1,
+      "impressions": 89,
+      "ctrPercent": 1.1,
+      "averagePosition": 13.6,
+      "topQueries": [
+        {
+          "query": "eastmall buy",
+          "clicks": 0,
+          "impressions": 12
+        },
+        {
+          "query": "eastmallbuy",
+          "clicks": 0,
+          "impressions": 10
+        },
+        {
+          "query": "east mall buy",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "eastmallbuy spreadsheet reddit",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "eastmallbuy reddit",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "eastmallbuy_official",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "eastmallbuy lego",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "east mallbuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "eastmallbuy spreadsheet",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "estmallbuy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "fishgooindex.com",
+      "days": 28,
+      "clicks": 2,
+      "impressions": 107,
+      "ctrPercent": 1.9,
+      "averagePosition": 10.7,
+      "topQueries": [
+        {
+          "query": "fishgoo",
+          "clicks": 0,
+          "impressions": 15
+        },
+        {
+          "query": "fishgoo spreadsheet",
+          "clicks": 0,
+          "impressions": 13
+        },
+        {
+          "query": "fisgoo",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "gooindex",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "fish goo",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "is fishgoo reliable",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "is fishgoo legit",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "goatedbuyindex.com",
+      "days": 28,
+      "clicks": 14,
+      "impressions": 1320,
+      "ctrPercent": 1.1,
+      "averagePosition": 7.3,
+      "topQueries": [
+        {
+          "query": "goatedbuy",
+          "clicks": 9,
+          "impressions": 1178
+        },
+        {
+          "query": "goatedbuy spreadsheet",
+          "clicks": 3,
+          "impressions": 26
+        },
+        {
+          "query": "goatedbuy.com",
+          "clicks": 0,
+          "impressions": 6
+        },
+        {
+          "query": "gotedbuy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "gtbuyindex.com",
+      "days": 28,
+      "clicks": 3,
+      "impressions": 184,
+      "ctrPercent": 1.6,
+      "averagePosition": 11.8,
+      "topQueries": [
+        {
+          "query": "gtbuy links",
+          "clicks": 1,
+          "impressions": 1
+        },
+        {
+          "query": "gtbuy",
+          "clicks": 0,
+          "impressions": 15
+        },
+        {
+          "query": "gtbuy shipping estimate",
+          "clicks": 0,
+          "impressions": 8
+        },
+        {
+          "query": "gtbuy estimation",
+          "clicks": 0,
+          "impressions": 6
+        },
+        {
+          "query": "gtbuy shipping calculator",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "gt buy",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "gtbuy spreadsheet",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "gtbuy estimate",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "is gtbuy safe",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "gtbuy shipping",
+          "clicks": 0,
+          "impressions": 2
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "hipobuyindex.com",
+      "days": 28,
+      "clicks": 4,
+      "impressions": 68,
+      "ctrPercent": 5.9,
+      "averagePosition": 15.6,
+      "topQueries": [
+        {
+          "query": "hipobuy",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "hypo buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hipobuy logo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "jhipobuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "hipobbuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "hıpobuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "hipobuy tracking",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "hipobuy discord",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "hipobuy link",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "hepobuy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "hoobuyindex.net",
+      "days": 28,
+      "clicks": 1,
+      "impressions": 233,
+      "ctrPercent": 0.4,
+      "averagePosition": 20.8,
+      "topQueries": [
+        {
+          "query": "hoobuy",
+          "clicks": 0,
+          "impressions": 30
+        },
+        {
+          "query": "hoobuy shipping calculator",
+          "clicks": 0,
+          "impressions": 6
+        },
+        {
+          "query": "hoobuy versandkostenrechner",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "hoobuy warehouse",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hoobuy official website",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hoobuy shipping estimate",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hoo buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hoonuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hoodbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "hoobuuy",
+          "clicks": 0,
+          "impressions": 2
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "itaobuyindex.com",
+      "days": 28,
+      "clicks": 1,
+      "impressions": 80,
+      "ctrPercent": 1.2,
+      "averagePosition": 19.1,
+      "topQueries": [
+        {
+          "query": "itaobuy link",
+          "clicks": 1,
+          "impressions": 3
+        },
+        {
+          "query": "itaobuy",
+          "clicks": 0,
+          "impressions": 32
+        },
+        {
+          "query": "itobuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "tao buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "anytobuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "itaob",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "itao buy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "itaobuy shipping",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "itaobuy links",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "ito buy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "joyabuyfinds.com",
+      "days": 28,
+      "clicks": 3,
+      "impressions": 275,
+      "ctrPercent": 1.1,
+      "averagePosition": 31.5,
+      "topQueries": [
+        {
+          "query": "joyagoo finds",
+          "clicks": 1,
+          "impressions": 11
+        },
+        {
+          "query": "joyabuy",
+          "clicks": 0,
+          "impressions": 30
+        },
+        {
+          "query": "joya buy",
+          "clicks": 0,
+          "impressions": 14
+        },
+        {
+          "query": "joyagoo spreadsheet 2026",
+          "clicks": 0,
+          "impressions": 8
+        },
+        {
+          "query": "joyabuy spreadsheet",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "joyagoo",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "how does joyagoo work",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "is joyagoo shipping expensive",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "how long does joyagoo take to ship to uk",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "joyagoo shipping time",
+          "clicks": 0,
+          "impressions": 2
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "joyagooindex.com",
+      "days": 28,
+      "clicks": 1,
+      "impressions": 63,
+      "ctrPercent": 1.6,
+      "averagePosition": 21.2,
+      "topQueries": [
+        {
+          "query": "joyagoo spreadsheet",
+          "clicks": 1,
+          "impressions": 3
+        },
+        {
+          "query": "joyagoo spreadsheet 2026",
+          "clicks": 0,
+          "impressions": 11
+        },
+        {
+          "query": "joyagoo",
+          "clicks": 0,
+          "impressions": 8
+        },
+        {
+          "query": "joyagoo spreadsheets",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "joyagooo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "jpyagoo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "joyagoo website",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "joyagoo link converter",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "joyagoo haul",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "yojagoo",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "kakobuyindex.net",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 28,
+      "ctrPercent": 0,
+      "averagePosition": 17.5,
+      "topQueries": [
+        {
+          "query": "kakobuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "is kakobuy safe",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "kakobuy buy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "kaku buy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "kakobuy.net",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "kakobuyitems.com",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 1,
+      "ctrPercent": 0,
+      "averagePosition": 1,
+      "topQueries": [],
+      "state": "available"
+    },
+    {
+      "domain": "kameymallindex.com",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 76,
+      "ctrPercent": 0,
+      "averagePosition": 19.8,
+      "topQueries": [
+        {
+          "query": "kameymall",
+          "clicks": 0,
+          "impressions": 35
+        },
+        {
+          "query": "kamemall",
+          "clicks": 0,
+          "impressions": 6
+        },
+        {
+          "query": "kayamels",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "litbuyindex.com",
+      "days": 28,
+      "clicks": 1,
+      "impressions": 92,
+      "ctrPercent": 1.1,
+      "averagePosition": 19.2,
+      "topQueries": [
+        {
+          "query": "litbuy",
+          "clicks": 0,
+          "impressions": 21
+        },
+        {
+          "query": "litbuy estimator",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "llitbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "lit buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "litbuy logo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy estimation",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy directory",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "lituby",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy freight estimator",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy warehouse",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "litbuyitems.com",
+      "days": 28,
+      "clicks": 1,
+      "impressions": 92,
+      "ctrPercent": 1.1,
+      "averagePosition": 29.3,
+      "topQueries": [
+        {
+          "query": "litbuy spreadsheet",
+          "clicks": 0,
+          "impressions": 7
+        },
+        {
+          "query": "litbuy invite code",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "litbuy payment methods",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "lidbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "loitbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "litbuy haul",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy invite codes",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "how long does litbuy take",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy saisie douane",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy spreadsheets",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "litbuyproducts.com",
+      "days": 28,
+      "clicks": 5,
+      "impressions": 144,
+      "ctrPercent": 3.5,
+      "averagePosition": 9,
+      "topQueries": [
+        {
+          "query": "litbuy invitation code",
+          "clicks": 0,
+          "impressions": 15
+        },
+        {
+          "query": "litbuy invite code",
+          "clicks": 0,
+          "impressions": 7
+        },
+        {
+          "query": "invite code litbuy",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "litbuy invite codes",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "lit buy invitation code",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "litbuy haul",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "litbye",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "lit buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "give me invitation code",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "litbuy invitation code reddit",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "loongbuys.net",
+      "days": 28,
+      "clicks": 2,
+      "impressions": 114,
+      "ctrPercent": 1.8,
+      "averagePosition": 28.2,
+      "topQueries": [
+        {
+          "query": "loongbuy",
+          "clicks": 0,
+          "impressions": 14
+        },
+        {
+          "query": "loongbuy.com",
+          "clicks": 0,
+          "impressions": 5
+        },
+        {
+          "query": "loongbuy shipping calculator",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "loongbuy reviews",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "loongbuy discord",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "loonbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "loongbuy peru",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "is loongbuy legit",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "rangbuy website",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "lovegobuyindex.com",
+      "days": 28,
+      "clicks": 1,
+      "impressions": 32,
+      "ctrPercent": 3.1,
+      "averagePosition": 23.9,
+      "topQueries": [
+        {
+          "query": "lovebuy",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "lovegobuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "discord lovegobuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "lovegobuy spreadsheet",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "mulebuyindex.net",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 142,
+      "ctrPercent": 0,
+      "averagePosition": 15.3,
+      "topQueries": [
+        {
+          "query": "mulebuy order pending",
+          "clicks": 0,
+          "impressions": 27
+        },
+        {
+          "query": "mulebuy tracking",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "mule shipping",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "mulebuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "mulebuy shipping time",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "mulkebuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "mullbuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "shipping mule",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "mulebuyitems.com",
+      "days": 28,
+      "clicks": 2,
+      "impressions": 39,
+      "ctrPercent": 5.1,
+      "averagePosition": 32.8,
+      "topQueries": [
+        {
+          "query": "is mulebuy legit",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "mulebuy shipping time",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "how much is mulebuy shipping",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "mulebuy finds",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "mulebuy tracking number",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "mulebuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "mule shipping",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "oopbuyindex.net",
+      "days": 28,
+      "clicks": 2,
+      "impressions": 52,
+      "ctrPercent": 3.8,
+      "averagePosition": 18.1,
+      "topQueries": [
+        {
+          "query": "oopbuy",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "oopbuy logo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "oop bye",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "oopbuy shipping prices",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "oopbuy shop",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "orientdigindex.com",
+      "days": 28,
+      "clicks": 4,
+      "impressions": 135,
+      "ctrPercent": 3,
+      "averagePosition": 33.2,
+      "topQueries": [
+        {
+          "query": "orientdig spreadsheet",
+          "clicks": 1,
+          "impressions": 16
+        },
+        {
+          "query": "orientdig",
+          "clicks": 0,
+          "impressions": 11
+        },
+        {
+          "query": "orientig",
+          "clicks": 0,
+          "impressions": 6
+        },
+        {
+          "query": "orient dig",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "spreadsheet orientdig",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "orientdg",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "parcelupindex.com",
+      "days": 28,
+      "clicks": 3,
+      "impressions": 137,
+      "ctrPercent": 2.2,
+      "averagePosition": 9.4,
+      "topQueries": [
+        {
+          "query": "parcel up",
+          "clicks": 0,
+          "impressions": 67
+        },
+        {
+          "query": "parcelup",
+          "clicks": 0,
+          "impressions": 11
+        },
+        {
+          "query": "is parcel up legit",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "parcelup courier tracking",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "parcel up official website",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "sugargooindex.net",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 220,
+      "ctrPercent": 0,
+      "averagePosition": 24.4,
+      "topQueries": [
+        {
+          "query": "sugargoo tracking",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "how to track sugargoo package",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "sugargoo",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "sugargoo links",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "links sugargoo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "link converter sugargoo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "sugargoo logo",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "surgar goo",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "superbuydeals.com",
+      "days": 28,
+      "clicks": 2,
+      "impressions": 45,
+      "ctrPercent": 4.4,
+      "averagePosition": 18.8,
+      "topQueries": [
+        {
+          "query": "how to calculate shipping costs for superbuy",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "superbuy list",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "superbuy calculator",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "superbuy discount code",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "superbuyindex.com",
+      "days": 28,
+      "clicks": 4,
+      "impressions": 110,
+      "ctrPercent": 3.6,
+      "averagePosition": 29,
+      "topQueries": [
+        {
+          "query": "superbuy finds",
+          "clicks": 2,
+          "impressions": 5
+        },
+        {
+          "query": "superbuy spreadsheet",
+          "clicks": 0,
+          "impressions": 22
+        },
+        {
+          "query": "superbuy spread sheet",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "superbuy spreadsheets",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "spreadsheet superbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "supermestockbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "superbuy",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "superbuyitems.com",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 93,
+      "ctrPercent": 0,
+      "averagePosition": 57.4,
+      "topQueries": [
+        {
+          "query": "superbuy",
+          "clicks": 0,
+          "impressions": 4
+        },
+        {
+          "query": "superbuy'",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "superbuy international shipping",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "superbuy payment methods",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "how to use superbuy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "superbuy english",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "superbuuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "superbuiy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "supernuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "superbuy website",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "usfansindex.net",
+      "days": 28,
+      "clicks": 6,
+      "impressions": 153,
+      "ctrPercent": 3.9,
+      "averagePosition": 11.9,
+      "topQueries": [
+        {
+          "query": "usfans lista",
+          "clicks": 1,
+          "impressions": 1
+        },
+        {
+          "query": "usfand",
+          "clicks": 0,
+          "impressions": 27
+        },
+        {
+          "query": "usfans spreadsheet",
+          "clicks": 0,
+          "impressions": 9
+        },
+        {
+          "query": "usfans rehearsal",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "rehearsal usfans",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "us fans finder",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "qc.zone us fans",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "usfans.page.gd",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "us fnas",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "us fand",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    },
+    {
+      "domain": "ydaexpress.net",
+      "days": 28,
+      "clicks": null,
+      "impressions": null,
+      "ctrPercent": null,
+      "averagePosition": null,
+      "topQueries": [],
+      "state": "waiting-for-first-data"
+    },
+    {
+      "domain": "ydaexpress.org",
+      "days": 28,
+      "clicks": null,
+      "impressions": null,
+      "ctrPercent": null,
+      "averagePosition": null,
+      "topQueries": [],
+      "state": "waiting-for-first-data"
+    },
+    {
+      "domain": "yoybuyindex.com",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 42,
+      "ctrPercent": 0,
+      "averagePosition": 22.2,
+      "topQueries": [
+        {
+          "query": "yoybuy",
+          "clicks": 0,
+          "impressions": 7
+        },
+        {
+          "query": "yoybuy official website",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "query": "yoybuy spreadsheet",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "yoy buy",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "yoybuy coupon",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "query": "yobuy",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "yoibay",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "yoybuy.com",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "state": "available"
+    }
+  ]
+}
+

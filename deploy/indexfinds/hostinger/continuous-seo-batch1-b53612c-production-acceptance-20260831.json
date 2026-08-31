@@ -1,0 +1,59 @@
+{
+  "validatedAt": "2026-08-31T18:36:00+08:00",
+  "scope": "Continuous SEO cycle baseline, structured-data placeholder remediation, and first GSC-prioritized tenant batch",
+  "gscBaseline": {
+    "windowDays": 28,
+    "domainCount": 42,
+    "dataAvailableDomainCount": 40,
+    "waitingForFirstDataDomainCount": 2,
+    "waitingForFirstDataDomains": [
+      "ydaexpress.net",
+      "ydaexpress.org"
+    ],
+    "totalClicks": 89,
+    "totalImpressions": 8019,
+    "evidence": "deploy/indexfinds/hostinger/gsc-performance-baseline-20260831.json"
+  },
+  "apiRelease": {
+    "sourceCommit": "d06995a",
+    "image": "indexfinds-api:search-placeholder-d06995a",
+    "container": "indexfinds-api-search-placeholder-d06995a",
+    "port": 4104,
+    "health": "healthy",
+    "restartCount": 0,
+    "routeCount": 42,
+    "change": "Reject search_term_string recording and filter the legacy placeholder from general, personalized and suggestion responses."
+  },
+  "tenantRelease": {
+    "sourceCommit": "b53612c",
+    "image": "indexfinds-web:seo-batch1-b53612c",
+    "container": "indexfinds-web-seo-batch1-b53612c",
+    "port": 3138,
+    "health": "healthy",
+    "restartCount": 0,
+    "routeConfigCount": 41,
+    "domains": [
+      "boonbuyindex.com",
+      "goatedbuyindex.com"
+    ],
+    "change": "Adjust homepage titles and descriptions from real GSC demand while retaining the existing URLs, independent positioning and distinct content models."
+  },
+  "checks": {
+    "hotSearchGeneral": "200 and excludes search_term_string",
+    "hotSearchPersonalized": "200 and excludes search_term_string",
+    "targetedTests": "Three tenant suites passed with 114 tests; API and Web targeted tests, TypeScript checks and both production builds passed.",
+    "recursiveProductionAudit": "42 of 42 domains and all 305 approved pages passed with zero failures; nine external-source availability warnings remain non-blocking.",
+    "mainSite": "https://indexfinds.com/en returned 200 after the API switch.",
+    "tenantEntryPoints": "Both changed homepages, robots files and sitemaps returned 200; disabled registration returned 404.",
+    "nginx": "Configuration validation passed before both reloads."
+  },
+  "rollback": {
+    "apiContainer": "indexfinds-api-catalog-33115d8",
+    "apiPort": 4103,
+    "webContainer": "indexfinds-web-tenant-quality-33115d8",
+    "webPort": 3137,
+    "apiNginxBackup": "/opt/indexfinds/rollback/nginx-api-d06995a-20260831T1026Z",
+    "webNginxBackup": "/opt/indexfinds/rollback/nginx-web-b53612c-20260831T1031Z"
+  },
+  "result": "deployed-and-live-validated"
+}

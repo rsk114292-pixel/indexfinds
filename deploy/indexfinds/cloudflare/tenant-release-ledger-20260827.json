@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T16:58:10+08:00",
+  "updatedAt": "2026-08-31T18:36:00+08:00",
   "policy": "A branding-ready flag is not a release approval. A tenant may be indexed only after independent content, technical SEO, mobile, preview and production checks pass.",
   "releasedForIndexing": [
     "acbuyindex.com",
@@ -209,8 +209,8 @@
   },
   "sharedBackend": {
     "releaseGateState": "deployed-and-live-validated",
-    "sourceCommit": "33115d8",
-    "apiPort": 4103,
+    "sourceCommit": "d06995a",
+    "apiPort": 4104,
     "mainWebPort": 3129,
     "tenantApiRouteCount": 42,
     "publicProductCount": 77973,
@@ -219,7 +219,7 @@
     "nonActiveProductApiStatus": 404,
     "nonActiveProductPageStatus": 404,
     "registrationPageStatus": 404,
-    "evidence": "deploy/indexfinds/hostinger/tenant-quality-33115d8-production-acceptance-20260831.json"
+    "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch1-b53612c-production-acceptance-20260831.json"
   },
   "portfolioCompletion": {
     "tenantCount": 42,
@@ -228,8 +228,24 @@
     "maximumHomepageSimilarity": 0.563549,
     "failureCount": 0,
     "result": "complete",
-    "sourceCommit": "33115d8",
-    "evidence": "deploy/indexfinds/hostinger/tenant-quality-33115d8-production-acceptance-20260831.json"
+    "sourceCommit": "b53612c",
+    "evidence": "deploy/indexfinds/hostinger/tenant-seo-batch1-b53612c-production-acceptance-20260831.json"
+  },
+  "continuousSeoBatch1": {
+    "gscWindowDays": 28,
+    "dataAvailableDomainCount": 40,
+    "waitingForFirstDataDomains": [
+      "ydaexpress.net",
+      "ydaexpress.org"
+    ],
+    "firstPriorityDomains": [
+      "boonbuyindex.com",
+      "goatedbuyindex.com"
+    ],
+    "apiSourceCommit": "d06995a",
+    "webSourceCommit": "b53612c",
+    "releaseGateState": "deployed-and-live-validated",
+    "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch1-b53612c-production-acceptance-20260831.json"
   },
   "googleSearchConsole": {
     "observedAt": "2026-08-31T16:58:10+08:00",
