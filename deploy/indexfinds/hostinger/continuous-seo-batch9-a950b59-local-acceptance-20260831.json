@@ -1,0 +1,74 @@
+{
+  "validatedAt": "2026-08-31T23:18:46+08:00",
+  "scope": "Ninth GSC-prioritized tenant SEO batch, locally accepted and held behind the Hostinger capacity gate",
+  "domains": [
+    "joyabuyfinds.com",
+    "orientdigindex.com"
+  ],
+  "gscBaseline": {
+    "joyabuyfinds.com": {
+      "clicks": 3,
+      "impressions": 275,
+      "ctrPercent": 1.1,
+      "averagePosition": 31.5,
+      "opportunityPages": {
+        "/": { "clicks": 3, "impressions": 152 },
+        "/how-much-is-joyagoo-shipping/": { "clicks": 0, "impressions": 61 },
+        "/how-to-use-joyagoo/": { "clicks": 0, "impressions": 36 },
+        "/joyagoo-review/": { "clicks": 0, "impressions": 11 },
+        "/faq.html": { "clicks": 0, "impressions": 6 },
+        "/joyagoo-qc-guide/": { "clicks": 0, "impressions": 5 },
+        "/joyagoo-shopping-guide/": { "clicks": 0, "impressions": 1 }
+      },
+      "queries": {
+        "joyabuy": { "clicks": 0, "impressions": 30 },
+        "joya buy": { "clicks": 0, "impressions": 14 },
+        "joyagoo finds": { "clicks": 1, "impressions": 11 },
+        "joyagoo spreadsheet 2026": { "clicks": 0, "impressions": 8 },
+        "joyabuy spreadsheet": { "clicks": 0, "impressions": 5 }
+      }
+    },
+    "orientdigindex.com": {
+      "clicks": 4,
+      "impressions": 135,
+      "ctrPercent": 3,
+      "averagePosition": 33.2,
+      "opportunityPages": {
+        "/": { "clicks": 4, "impressions": 92 },
+        "/faq": { "clicks": 0, "impressions": 23 },
+        "/categories.html": { "clicks": 0, "impressions": 13 },
+        "/spreadsheet-checklist": { "clicks": 0, "impressions": 6 },
+        "/categories": { "clicks": 0, "impressions": 6 },
+        "/privacy.html": { "clicks": 0, "impressions": 4 },
+        "/spreadsheet-checklist.html": { "clicks": 0, "impressions": 3 }
+      },
+      "queries": {
+        "orientdig spreadsheet": { "clicks": 1, "impressions": 16 },
+        "orientdig": { "clicks": 0, "impressions": 11 },
+        "orientig": { "clicks": 0, "impressions": 6 }
+      }
+    }
+  },
+  "releaseCandidate": {
+    "sourceCommit": "a950b59",
+    "state": "local-ready-production-capacity-blocked",
+    "productionStillServingCommit": "9724f20",
+    "productionContainer": "indexfinds-web-seo-batch7-9724f20",
+    "productionPort": 3144
+  },
+  "checks": {
+    "legacyRecovery": "Seven high-impression legacy URLs with direct reviewed equivalents resolve through explicit HTTP 308 mappings in the isolated build.",
+    "retiredPagePolicy": "JoyaGoo review, QC-guide and news paths have no strict equivalent and keep a final HTTP 404 instead of receiving a soft redirect.",
+    "rankingProtection": "Neither homepage URL, title nor page structure changed. The batch only consolidates obsolete URLs on reviewed current pages.",
+    "localTests": "Three focused suites passed with 117 tests; TypeScript and changed-file ESLint checks passed.",
+    "productionBuild": "The exact candidate commit completed the 3,040-page production build.",
+    "mainIsolation": "No production route, container, DNS or IndexFinds main-site configuration changed during this batch."
+  },
+  "capacity": {
+    "filesystemFree": "4.2G",
+    "filesystemUsePercent": 98,
+    "nextProductionBuildState": "blocked-pending-explicit-rollback-image-retention-decision",
+    "note": "The active release is healthy. Another Hostinger Docker image build is unsafe until exact inactive rollback containers and images are approved for removal or capacity is increased."
+  },
+  "result": "local-ready-production-capacity-blocked"
+}
