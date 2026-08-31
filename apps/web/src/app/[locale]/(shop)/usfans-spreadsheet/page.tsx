@@ -1,7 +1,13 @@
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
-import { ArrowRight, Check, Search, SlidersHorizontal } from 'lucide-react';
+import {
+  ArrowRight,
+  Check,
+  ExternalLink,
+  Search,
+  SlidersHorizontal,
+} from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 import { FAQPageJsonLd } from '@/components/seo/FAQPageJsonLd';
@@ -11,6 +17,7 @@ import {
 } from '@/lib/tenant-config';
 
 const USFANS_ORIGIN = 'https://usfansindex.net';
+const USFANS_OFFICIAL_URL = 'https://www.usfans.com/';
 const PAGE_PATH = '/en/usfans-spreadsheet';
 
 const FAQ_ITEMS = [
@@ -33,6 +40,11 @@ const FAQ_ITEMS = [
     question: 'Where should I start if I do not know the product name?',
     answer:
       'Start with the category or brand index. These pages narrow the catalog before you open individual products.',
+  },
+  {
+    question: 'Is usfansindex.net the official USFans website?',
+    answer:
+      'No. It is an independent research index. Use usfans.com to verify current account, service, pricing, route and policy information.',
   },
 ] as const;
 
@@ -128,6 +140,15 @@ export default async function UsfansSpreadsheetPage({
                 >
                   Browse categories
                 </Link>
+                <a
+                  href={USFANS_OFFICIAL_URL}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#c9d3e1] bg-white px-5 py-2.5 text-sm font-bold text-[#111827] transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                >
+                  Verify on USFans
+                  <ExternalLink className="h-4 w-4" />
+                </a>
               </div>
             </div>
           </div>

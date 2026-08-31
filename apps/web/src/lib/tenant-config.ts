@@ -424,7 +424,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     siteName: "CNShopper Index",
     wordmark: "CNShopper",
     logoPath: "/images/agents/cnshopper.png",
-    faviconPath: "/tenants/cnshopper/favicon.png",
+    faviconPath: "/images/agents/cnshopper-favicon.png",
     themeColor: "#071a39",
     primaryColor: "#f36a0a",
     primaryHoverColor: "#d95500",
@@ -774,7 +774,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     siteName: "JoyaGoo Finds",
     wordmark: "JoyaGoo",
     logoPath: "/images/agents/joyagoo.png",
-    faviconPath: "/images/agents/joyagoo.png",
+    faviconPath: "/images/agents/joyagoo-favicon.png",
     themeColor: "#170b2d",
     primaryColor: "#e05a88",
     primaryHoverColor: "#bd3f6c",
@@ -808,7 +808,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     siteName: "JoyaGoo Index",
     wordmark: "JoyaGoo",
     logoPath: "/images/agents/joyagoo.png",
-    faviconPath: "/images/agents/joyagoo.png",
+    faviconPath: "/images/agents/joyagoo-favicon.png",
     themeColor: "#071529",
     primaryColor: "#3a8ec9",
     primaryHoverColor: "#2b70a2",
@@ -1515,7 +1515,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     siteName: "Sugargoo Spreadsheet Evidence Guide",
     wordmark: "Sugargoo",
     logoPath: "/images/agents/sugargoo.png",
-    faviconPath: "/images/agents/sugargoo.png",
+    faviconPath: "/images/agents/sugargoo-favicon.png",
     themeColor: "#24120d",
     primaryColor: "#f36b32",
     primaryHoverColor: "#d94e19",
@@ -1824,13 +1824,15 @@ function applyPlatformIdentity(
   if (!guide.agentKey) return branding;
 
   const platform = getAgentPlatform(guide.agentKey);
-  const logo = getOfficialPlatformLogo(guide.agentKey)?.src;
+  const officialAsset = getOfficialPlatformLogo(guide.agentKey);
+  const logo = officialAsset?.src;
+  const favicon = officialAsset?.faviconSrc ?? logo;
 
   return {
     ...branding,
     wordmark: platform?.name || branding.wordmark,
     logoPath: logo || branding.logoPath,
-    faviconPath: logo || branding.faviconPath,
+    faviconPath: favicon || branding.faviconPath,
   };
 }
 

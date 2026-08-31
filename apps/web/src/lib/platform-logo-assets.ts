@@ -1,6 +1,8 @@
 export interface PlatformLogoAsset {
   src: string;
   remoteSrc: string;
+  faviconSrc?: string;
+  remoteFaviconSrc?: string;
   background?: string;
 }
 
@@ -27,10 +29,14 @@ export const OFFICIAL_PLATFORM_LOGOS: Readonly<
     src: "/images/agents/joyagoo.png",
     remoteSrc:
       "https://mgt.joyagoo.com/wp-content/themes/joyabuy/assets/img/joyagoo-logo.png",
+    faviconSrc: "/images/agents/joyagoo-favicon.png",
+    remoteFaviconSrc: "https://joyagoo.com/site.ico",
   },
   sugargoo: {
     src: "/images/agents/sugargoo.png",
     remoteSrc: "https://www.sugargoo.com/favicon.ico",
+    faviconSrc: "/images/agents/sugargoo-favicon.png",
+    remoteFaviconSrc: "https://www.sugargoo.com/favicon.ico",
   },
   rizzitgo: {
     src: "/images/agents/rizzitgo.png",
@@ -109,6 +115,9 @@ export const OFFICIAL_PLATFORM_LOGOS: Readonly<
   cnshopper: {
     src: "/images/agents/cnshopper.png",
     remoteSrc:
+      "https://api.cnshopper.com/storage/admin/20260323-LXIFltkjsB35tcs5.png",
+    faviconSrc: "/images/agents/cnshopper-favicon.png",
+    remoteFaviconSrc:
       "https://api.cnshopper.com/storage/admin/20260323-LXIFltkjsB35tcs5.png",
   },
   eastmallbuy: {

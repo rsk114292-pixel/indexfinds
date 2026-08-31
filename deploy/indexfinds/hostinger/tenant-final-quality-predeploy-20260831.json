@@ -1,0 +1,44 @@
+{
+  "validatedAt": "2026-08-31T02:47:25+08:00",
+  "state": "local-ready-production-unchanged",
+  "baseCommit": "779d6039b7c941d2ca53709fc532af2f7220e3bb",
+  "objective": "Improve the search quality and ranking readiness of 42 independently positioned tenant domains without creating doorway pages, scaled low-value content or visually duplicated sites.",
+  "scope": {
+    "tenantCount": 42,
+    "reviewedSitemapPageCount": 305,
+    "productionHosting": "Hostinger",
+    "dnsAndCdn": "Cloudflare",
+    "vercelUsed": false
+  },
+  "productionBaseline": {
+    "onlineDomains": "42/42",
+    "deepSeoAndInternalLinkAudit": "41/42 passed the expanded source-link gate. The only failure was the production USFans guide, whose missing official source link is fixed locally in this change set.",
+    "titles": "305 unique values; 0 exact duplicate groups",
+    "descriptions": "305 unique values; 0 exact duplicate groups",
+    "h1": "305 unique values; 0 exact duplicate groups",
+    "homepageDuplicateCheck": "Maximum five-word shingle similarity was 0.563549 for eastmallbuyindex.com and hoobuyindex.net; no pair reached the 0.60 release threshold.",
+    "externalLinkObservations": "Eight official sites returned bot-blocking HTTP 403 to the audit client. KameyMall returned an inconclusive upstream 502. No reviewed internal link or definitively checked official source link returned 404 or 410."
+  },
+  "localFixes": [
+    "Added a nofollow official USFans verification link and an explicit independent-site FAQ disclosure to the USFans source-check guide.",
+    "Separated official header wordmarks from Google-facing square favicons for CNShopper, JoyaGoo and Sugargoo.",
+    "Added source-backed square favicon assets: CNShopper 2363x2363 PNG, JoyaGoo 64x64 PNG and Sugargoo 48x48 PNG.",
+    "Added a regression test that fails when any tenant favicon is missing, smaller than 8x8 or non-square.",
+    "Expanded the tenant production auditor to recurse child sitemaps, inspect every approved page, verify self-canonicals, robots, structured data, internal links, redirects, favicon delivery, the configured WhatsApp number and official source-link availability."
+  ],
+  "localAcceptance": {
+    "tests": "9 suites and 148 tests passed",
+    "typecheck": "passed",
+    "eslint": "passed for all changed TypeScript and TSX files",
+    "productionBuild": "passed; all 48 application static routes generated",
+    "faviconGate": "42/42 tenant favicon files passed the square and minimum-size check",
+    "usfansDesktopAndMobile": "passed local visual review with source-backed logo, official verification action, responsive content and no invented hero image",
+    "localPreview": "http://usfansindex.net.localhost:3103/en/usfans-spreadsheet"
+  },
+  "releaseGate": {
+    "commit": "approved by the owner after local acceptance",
+    "push": "approved for the current release branch",
+    "deployment": "approved for a rollback-safe Hostinger release",
+    "nextRequiredStep": "Commit only the relevant project files and three new favicon assets, deploy one Hostinger release, then rerun the 42-domain and 305-page production acceptance checks."
+  }
+}

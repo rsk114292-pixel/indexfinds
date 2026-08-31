@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import {
   getTenantFaviconAttributes,
   getTenantConfigByHost,
@@ -1158,14 +1160,75 @@ describe("tenant config", () => {
     for (const guide of SUBSITE_GUIDES.filter(({ agentKey }) => agentKey)) {
       const branding = getTenantConfigByHost(guide.domain)?.branding;
       const platform = getAgentPlatform(guide.agentKey!);
-      const officialLogo = getOfficialPlatformLogo(guide.agentKey!)?.src;
+      const officialAsset = getOfficialPlatformLogo(guide.agentKey!);
 
       expect(branding?.wordmark).toBe(platform?.name);
-      expect(branding?.logoPath).toBe(officialLogo);
-      expect(branding?.faviconPath).toBe(officialLogo);
+      expect(branding?.logoPath).toBe(officialAsset?.src);
+      expect(branding?.faviconPath).toBe(
+        officialAsset?.faviconSrc ?? officialAsset?.src,
+      );
       expect(branding?.wordmark).not.toMatch(
         /\s(?:index|items|catalog|products|finder|finds|sheet|deals|guide)$/i,
       );
+    }
+  });
+
+  it("uses a square crawlable favicon file for every tenant", () => {
+    const faviconPaths = new Set(
+      SUBSITE_GUIDES.map(
+        ({ domain }) => getTenantConfigByHost(domain)?.branding?.faviconPath,
+      ).filter((faviconPath): faviconPath is string => Boolean(faviconPath)),
+    );
+
+    expect(faviconPaths.size).toBeGreaterThan(0);
+
+    for (const faviconPath of faviconPaths) {
+      const bytes = readFileSync(
+        path.join(process.cwd(), "public", faviconPath.replace(/^\//, "")),
+      );
+      let width = 0;
+      let height = 0;
+
+      if (bytes.subarray(0, 8).equals(Buffer.from("89504e470d0a1a0a", "hex"))) {
+        width = bytes.readUInt32BE(16);
+        height = bytes.readUInt32BE(20);
+      } else if (
+        bytes.subarray(0, 4).equals(Buffer.from("00000100", "hex"))
+      ) {
+        const dimensions = Array.from(
+          { length: bytes.readUInt16LE(4) },
+          (_, index) => {
+            const offset = 6 + index * 16;
+            return {
+              width: bytes[offset] || 256,
+              height: bytes[offset + 1] || 256,
+            };
+          },
+        ).sort(
+          (left, right) =>
+            right.width * right.height - left.width * left.height,
+        );
+        width = dimensions[0]?.width || 0;
+        height = dimensions[0]?.height || 0;
+      } else {
+        const source = bytes.toString("utf8");
+        const viewBox = source.match(
+          /viewBox=["']\s*[-\d.]+\s+[-\d.]+\s+([\d.]+)\s+([\d.]+)/i,
+        );
+        const explicitWidth = source.match(/\bwidth=["']([\d.]+)/i);
+        const explicitHeight = source.match(/\bheight=["']([\d.]+)/i);
+        width = Number(viewBox?.[1] || explicitWidth?.[1] || 0);
+        height = Number(viewBox?.[2] || explicitHeight?.[1] || 0);
+      }
+
+      expect({ faviconPath, width, height }).toEqual(
+        expect.objectContaining({
+          width: expect.any(Number),
+          height: expect.any(Number),
+        }),
+      );
+      expect(width).toBeGreaterThanOrEqual(8);
+      expect(height).toBe(width);
     }
   });
 

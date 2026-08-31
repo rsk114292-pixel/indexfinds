@@ -154,6 +154,26 @@ const LOGO_SOURCES = {
   },
 };
 
+// Some official wordmarks are rectangular and work well in the header badge,
+// but Google requires a square favicon. Keep a separate source-backed favicon
+// for those platforms instead of stretching or replacing the visible logo.
+const FAVICON_SOURCES = {
+  joyagoo: {
+    source: "https://joyagoo.com/site.ico",
+    filename: "joyagoo-favicon.png",
+  },
+  cnshopper: {
+    source:
+      "https://api.cnshopper.com/storage/admin/20260323-LXIFltkjsB35tcs5.png",
+    filename: "cnshopper-favicon.png",
+  },
+  sugargoo: {
+    source: "https://www.sugargoo.com/favicon.ico",
+    filename: "sugargoo-favicon.png",
+    padToSquare: true,
+  },
+};
+
 function detectExtension(bytes) {
   if (bytes.subarray(0, 8).equals(Buffer.from("89504e470d0a1a0a", "hex"))) {
     return ".png";
@@ -168,6 +188,29 @@ function detectExtension(bytes) {
     return ".svg";
   }
   return undefined;
+}
+
+async function downloadOfficialAsset(platformKey, source) {
+  const response = await fetch(source, {
+    headers: {
+      Accept: "image/avif,image/webp,image/svg+xml,image/png,image/*,*/*;q=0.8",
+      "User-Agent":
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/127 Safari/537.36",
+    },
+    redirect: "follow",
+  });
+
+  if (!response.ok) {
+    throw new Error(`${platformKey}: ${response.status} ${response.statusText}`);
+  }
+
+  const bytes = Buffer.from(await response.arrayBuffer());
+  const detectedExtension = detectExtension(bytes);
+  if (!detectedExtension) {
+    throw new Error(`${platformKey}: official URL did not return a supported image`);
+  }
+
+  return { bytes, detectedExtension };
 }
 
 await mkdir(OUTPUT_DIR, { recursive: true });
@@ -188,24 +231,10 @@ if (
 }
 
 for (const [platformKey, { source, filename }] of logoEntries) {
-  const response = await fetch(source, {
-    headers: {
-      Accept: "image/avif,image/webp,image/svg+xml,image/png,image/*,*/*;q=0.8",
-      "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/127 Safari/537.36",
-    },
-    redirect: "follow",
-  });
-
-  if (!response.ok) {
-    throw new Error(`${platformKey}: ${response.status} ${response.statusText}`);
-  }
-
-  let bytes = Buffer.from(await response.arrayBuffer());
-  const detectedExtension = detectExtension(bytes);
-  if (!detectedExtension) {
-    throw new Error(`${platformKey}: official URL did not return a supported image`);
-  }
+  let { bytes, detectedExtension } = await downloadOfficialAsset(
+    platformKey,
+    source,
+  );
 
   if (platformKey === "joyagoo") {
     // The official file includes large decorative arrows on both sides. Keep
@@ -224,6 +253,48 @@ for (const [platformKey, { source, filename }] of logoEntries) {
   } else if (detectedExtension === ".jpg" && path.extname(filename) === ".png") {
     bytes = await sharp(bytes).png().toBuffer();
   } else if (path.extname(filename) !== detectedExtension) {
+    throw new Error(
+      `${platformKey}: expected ${path.extname(filename)}, received ${detectedExtension}`,
+    );
+  }
+
+  await writeFile(path.join(OUTPUT_DIR, filename), bytes);
+  console.log(`${filename} <- ${source}`);
+}
+
+const faviconEntries = Object.entries(FAVICON_SOURCES).filter(
+  ([platformKey]) =>
+    requestedPlatformKeys.size === 0 || requestedPlatformKeys.has(platformKey),
+);
+
+for (const [platformKey, { source, filename, padToSquare }] of faviconEntries) {
+  let { bytes, detectedExtension } = await downloadOfficialAsset(
+    platformKey,
+    source,
+  );
+
+  if (padToSquare) {
+    const metadata = await sharp(bytes).metadata();
+    if (!metadata.width || !metadata.height) {
+      throw new Error(`${platformKey}: favicon dimensions are unavailable`);
+    }
+    const size = Math.max(48, metadata.width, metadata.height);
+    const horizontal = size - metadata.width;
+    const vertical = size - metadata.height;
+    bytes = await sharp(bytes)
+      .extend({
+        top: Math.floor(vertical / 2),
+        bottom: Math.ceil(vertical / 2),
+        left: Math.floor(horizontal / 2),
+        right: Math.ceil(horizontal / 2),
+        background: { r: 0, g: 0, b: 0, alpha: 0 },
+      })
+      .png()
+      .toBuffer();
+    detectedExtension = ".png";
+  }
+
+  if (path.extname(filename) !== detectedExtension) {
     throw new Error(
       `${platformKey}: expected ${path.extname(filename)}, received ${detectedExtension}`,
     );
