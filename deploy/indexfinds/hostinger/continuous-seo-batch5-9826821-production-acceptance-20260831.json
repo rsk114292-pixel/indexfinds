@@ -1,0 +1,48 @@
+{
+  "validatedAt": "2026-08-31T21:01:30+08:00",
+  "scope": "Fifth GSC-prioritized tenant SEO batch",
+  "domains": [
+    "mulebuyindex.net"
+  ],
+  "gscBaseline": {
+    "mulebuyindex.net": {
+      "clicks": 0,
+      "impressions": 142,
+      "ctrPercent": 0.0,
+      "averagePosition": 15.3,
+      "opportunityPage": "/",
+      "opportunityPageClicks": 0,
+      "opportunityPageImpressions": 134,
+      "newOpportunityPage": "/order-status-guide",
+      "primaryQueries": [
+        "mulebuy order pending"
+      ],
+      "primaryQueryImpressions": 27
+    }
+  },
+  "release": {
+    "sourceCommit": "9826821",
+    "image": "indexfinds-web:seo-batch5-9826821",
+    "container": "indexfinds-web-seo-batch5-9826821",
+    "port": 3142,
+    "health": "running",
+    "restartCount": 0,
+    "routeConfigCount": 41
+  },
+  "checks": {
+    "intentAlignment": "A MuleBuy-specific order status guide now answers the observed order-pending query without adding a generic keyword page or changing an already ranking URL.",
+    "sourceReview": "Current MuleBuy Help Center and payment guidance plus the platform's historical official order-status explanation were reviewed before writing the page.",
+    "localTests": "Three tenant suites passed with 117 tests and TypeScript checking passed.",
+    "productionBuild": "The exact release commit completed the production container build.",
+    "recursiveAudit": "All nine approved MuleBuy Index pages passed with zero failures and zero warnings.",
+    "entryPoints": "The new production guide returned HTTP 200 with its unique title, exact self-canonical, favicon and structured data; the child sitemap contains the page.",
+    "mainIsolation": "The IndexFinds main homepage remained on its separate origin and returned HTTP 200 with its unchanged title.",
+    "nginx": "Configuration validation passed before reload. All 41 tenant configs moved from port 3141 to 3142."
+  },
+  "rollback": {
+    "previousContainer": "indexfinds-web-seo-batch4-12fdb62",
+    "previousPort": 3141,
+    "nginxBackup": "/opt/indexfinds/rollback/nginx-web-9826821-20260831T130003Z"
+  },
+  "result": "deployed-and-live-validated"
+}
