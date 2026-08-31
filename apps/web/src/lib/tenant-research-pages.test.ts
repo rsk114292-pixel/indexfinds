@@ -207,6 +207,9 @@ describe("tenant research pages", () => {
       "/safety",
       "/faq",
     ]);
+    expect(getTenantResearchPage("oopbuyindex.net", "shipping")?.seoTitle).toBe(
+      "Oopbuy Shipping Prices Guide | Two Costs and Parcel Evidence",
+    );
   });
 
   it("preserves the OrientDig category-evidence path set", () => {

@@ -3747,14 +3747,14 @@ const OOPBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
   },
   {
     domain: "oopbuyindex.net", slug: "shipping",
-    seoTitle: "Oopbuy Shipping Guide | Weight, Packaging and Route Inputs",
-    description: "Prepare an Oopbuy parcel review with received weight, dimensions, packaging decisions, full contents and current destination-specific route terms.",
-    eyebrow: "Oopbuy parcel inputs", title: "Calculate from the measured parcel, not the catalog card.",
-    intro: "A product estimate cannot confirm chargeable weight, route eligibility or the final destination cost.",
+    seoTitle: "Oopbuy Shipping Prices Guide | Two Costs and Parcel Evidence",
+    description: "Separate Oopbuy seller-to-warehouse shipping from the later international parcel price, then verify estimated weight and dimensions against warehouse evidence.",
+    eyebrow: "Oopbuy shipping price record", title: "Keep the two shipping costs in separate records.",
+    intro: "Oopbuy product pages separate the seller-to-warehouse cost from the later international shipping estimate. Early item weight and dimensions are planning inputs, not a final packed-parcel price.",
     sections: [
-      { title: "Measured package", description: "Use warehouse weight and dimensions after the retained packaging and consolidation choices are known." },
-      { title: "Complete contents", description: "Record batteries, liquids, magnets, branded items and other characteristics relevant to restrictions." },
-      { title: "Current destination route", description: "Confirm eligibility, calculation method and terms with the responsible service at decision time." },
+      { title: "Seller to Oopbuy warehouse", description: "Record the domestic shipping amount shown for the exact product source and option. Keep it outside the later international parcel comparison.", points: ["Retain the current product source", "Match the selected option and quantity", "Date the domestic amount"] },
+      { title: "Early international estimate", description: "Use the listed estimated weight and dimensions only as provisional inputs while the item has not yet been received and packed.", points: ["Label estimated fields clearly", "Keep all dimensions with the weight", "Do not present the result as a live quote"] },
+      { title: "Warehouse to delivery address", description: "After warehouse receipt, compare the actual contents, retained packaging and measured parcel with current destination routes before submission.", points: ["Confirm restricted-item characteristics", "Use the packed-parcel record", "Retain the selected route and current terms"] },
     ],
   },
   {
