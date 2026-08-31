@@ -210,7 +210,7 @@ describe("tenant config", () => {
       expect.objectContaining({
         siteName: "Fishgoo Index",
         logoPath: "/images/agents/fishgoo.ico",
-        heroEyebrow: "Independent Fishgoo product-intent guide",
+        heroEyebrow: "Independent Fishgoo product search and source guide",
         indexing: "ready",
         indexablePaths: [
           "",
@@ -293,6 +293,23 @@ describe("tenant config", () => {
       expect.objectContaining({
         seoTitle: "Parcel Up Index | Taobao Orders, QC and Shipping Guide",
         heroEyebrow: "Independent Parcel Up order and shipping guide",
+      }),
+    );
+  });
+
+  it("aligns the fourth opportunity batch with homepage query intent", () => {
+    expect(getTenantConfigByHost("hoobuyindex.net")?.branding).toEqual(
+      expect.objectContaining({
+        seoTitle:
+          "HooBuy Guide | Product Links, Warehouse and Shipping Estimates",
+        heroEyebrow: "Independent HooBuy product and shipping guide",
+      }),
+    );
+    expect(getTenantConfigByHost("sugargooindex.net")?.branding).toEqual(
+      expect.objectContaining({
+        seoTitle:
+          "Sugargoo Guide | Spreadsheet, QC, Shipping and Package Tracking",
+        heroEyebrow: "Independent Sugargoo product-to-tracking workflow",
       }),
     );
   });

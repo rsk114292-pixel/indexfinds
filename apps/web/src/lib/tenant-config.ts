@@ -585,10 +585,10 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     primaryColor: "#3289b8",
     primaryHoverColor: "#246b92",
     accentColor: "#8fdcf1",
-    seoTitle: "Fishgoo Product Index | Search by Intent and Compare Evidence",
+    seoTitle: "Fishgoo Product Index | Search Links, Images and Sources",
     description:
-      "Search Fishgoo-linked listings by category, exact query or visual intent, then compare only results with enough visible product evidence.",
-    heroEyebrow: "Independent Fishgoo product-intent guide",
+      "Use the independent Fishgoo product index to search by category, exact query or image, then reopen each source before comparing a result.",
+    heroEyebrow: "Independent Fishgoo product search and source guide",
     heroPrimary: "Choose the search mode before the product.",
     heroSecondary: "Explore broadly. Verify precisely.",
     supportingLine:
@@ -745,10 +745,10 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     primaryColor: "#ef6c24",
     primaryHoverColor: "#cc5517",
     accentColor: "#ffc86e",
-    seoTitle: "HooBuy Product Index | Verify Products Before Comparing Routes",
+    seoTitle: "HooBuy Guide | Product Links, Warehouse and Shipping Estimates",
     description:
-      "Search HooBuy-linked listings, verify product and option evidence, then compare buying routes only after the shortlist is stable.",
-    heroEyebrow: "Independent HooBuy evidence-first guide",
+      "Use this independent HooBuy guide to verify product links and options, separate warehouse evidence, and prepare weight and dimension inputs for shipping estimates.",
+    heroEyebrow: "Independent HooBuy product and shipping guide",
     heroPrimary: "Stabilize the product shortlist before choosing a route.",
     heroSecondary: "Product evidence first. Route comparison second.",
     supportingLine:
@@ -1520,10 +1520,10 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     primaryColor: "#f36b32",
     primaryHoverColor: "#d94e19",
     accentColor: "#ffc266",
-    seoTitle: "Sugargoo Spreadsheet Guide | Product, QC and Shipping Checks",
+    seoTitle: "Sugargoo Guide | Spreadsheet, QC, Shipping and Package Tracking",
     description:
-      "Use a Sugargoo spreadsheet as a product-research lead, then match the exact option, inspect warehouse QC evidence and plan the measured parcel separately.",
-    heroEyebrow: "Independent Sugargoo evidence workflow",
+      "Use a Sugargoo spreadsheet as a research lead, match the exact option, review warehouse QC, plan the measured parcel and follow dated tracking events separately.",
+    heroEyebrow: "Independent Sugargoo product-to-tracking workflow",
     heroPrimary: "Follow the product from source to parcel.",
     heroSecondary: "Search, option, QC, ship.",
     supportingLine:
