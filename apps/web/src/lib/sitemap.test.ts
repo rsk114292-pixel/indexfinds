@@ -419,19 +419,34 @@ describe('sitemap', () => {
   });
 
   it.each([
-    ['mulebuyindex.net'],
-    ['mulebuyitems.com'],
-  ])('publishes only the reviewed %s research paths', async (domain) => {
-    const paths = [
-      '',
-      '/categories',
-      '/mulebuy-spreadsheet',
-      '/spreadsheet-checklist',
-      '/search-ideas',
-      '/buyer-safety',
-      '/shipping-weight-guide',
-      '/faq',
-    ];
+    [
+      'mulebuyindex.net',
+      [
+        '',
+        '/categories',
+        '/mulebuy-spreadsheet',
+        '/spreadsheet-checklist',
+        '/search-ideas',
+        '/order-status-guide',
+        '/buyer-safety',
+        '/shipping-weight-guide',
+        '/faq',
+      ],
+    ],
+    [
+      'mulebuyitems.com',
+      [
+        '',
+        '/categories',
+        '/mulebuy-spreadsheet',
+        '/spreadsheet-checklist',
+        '/search-ideas',
+        '/buyer-safety',
+        '/shipping-weight-guide',
+        '/faq',
+      ],
+    ],
+  ])('publishes only the reviewed %s research paths', async (domain, paths) => {
     await expectTenantSitemap(domain, paths);
   });
 

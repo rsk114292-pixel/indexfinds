@@ -222,8 +222,8 @@ const TENANT_RESEARCH_PROFILES: Record<string, TenantResearchProfile> = {
   },
   "mulebuyindex.net": {
     variant: "query-index",
-    officialUrl: "https://mulebuy.com/",
-    officialLabel: "Open MuleBuy",
+    officialUrl: "https://mulebuy.com/help/help-center/",
+    officialLabel: "Open MuleBuy Help Center",
     heroImage: "/tenants/mulebuyindex/hero-shoes.webp",
     heroAlt: "Purple shoes representing a MuleBuy category and spreadsheet query",
     navLabel: "MuleBuy index records",
@@ -3379,6 +3379,39 @@ const MULEBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
       { title: "Product plus measurement", description: "Add the decisive dimension, capacity or compatibility field when it separates similar results." },
       { title: "Product plus construction", description: "Search for stitching, closure, lining, sole, connector or another category-specific detail." },
       { title: "Product plus source clue", description: "Use marketplace or seller wording only when the current destination confirms that context." },
+    ],
+  },
+  {
+    domain: "mulebuyindex.net",
+    slug: "order-status-guide",
+    seoTitle: "MuleBuy Order Pending Guide | Check Status Before Acting",
+    description:
+      "Understand MuleBuy Order Pending, Pending Payment and confirmation states, preserve the current order record and use the action shown for that exact stage.",
+    eyebrow: "MuleBuy order-status evidence",
+    title: "Identify the exact pending state before taking the next action.",
+    intro:
+      "MuleBuy uses different pending labels for purchase, payment and confirmation stages. Read the current order record first so one status is not mistaken for another.",
+    sections: [
+      {
+        title: "Order Pending",
+        description:
+          "Confirm the order number, submission time, product source and selected option. Use only the current action displayed in the MuleBuy order center and retain any cancellation or refund record.",
+      },
+      {
+        title: "Pending Payment",
+        description:
+          "Check whether payment was completed, which amount and payment reference belong to the order, and whether a current countdown or retry instruction is displayed.",
+      },
+      {
+        title: "Pending for Confirmation",
+        description:
+          "Review the product details or buyer response requested in the current record before assuming the seller, warehouse or carrier is responsible for the delay.",
+      },
+      {
+        title: "Later order and parcel stages",
+        description:
+          "Keep purchasing, seller dispatch, warehouse receipt, storage, parcel payment and tracking events separate, because each stage has a different responsible record and next action.",
+      },
     ],
   },
   {

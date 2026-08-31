@@ -1328,6 +1328,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
       "/mulebuy-spreadsheet",
       "/spreadsheet-checklist",
       "/search-ideas",
+      "/order-status-guide",
       "/buyer-safety",
       "/shipping-weight-guide",
       "/faq",

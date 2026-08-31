@@ -160,7 +160,7 @@ describe("tenant research pages", () => {
   });
 
   it("preserves distinct MuleBuy index and item evidence path sets", () => {
-    const paths = [
+    const itemPaths = [
       "/categories",
       "/mulebuy-spreadsheet",
       "/spreadsheet-checklist",
@@ -169,8 +169,21 @@ describe("tenant research pages", () => {
       "/shipping-weight-guide",
       "/faq",
     ];
-    expect(getTenantResearchPaths("mulebuyindex.net")).toEqual(paths);
-    expect(getTenantResearchPaths("mulebuyitems.com")).toEqual(paths);
+    expect(getTenantResearchPaths("mulebuyindex.net")).toEqual([
+      "/categories",
+      "/mulebuy-spreadsheet",
+      "/spreadsheet-checklist",
+      "/search-ideas",
+      "/order-status-guide",
+      "/buyer-safety",
+      "/shipping-weight-guide",
+      "/faq",
+    ]);
+    expect(getTenantResearchPaths("mulebuyitems.com")).toEqual(itemPaths);
+    expect(
+      getTenantResearchPage("mulebuyindex.net", "order-status-guide")
+        ?.seoTitle,
+    ).toBe("MuleBuy Order Pending Guide | Check Status Before Acting");
   });
 
   it("preserves the Oopbuy link-review path set", () => {
@@ -355,10 +368,10 @@ describe("tenant research pages", () => {
   it("keeps every reviewed page specific and evidence-led", () => {
     const pages = getAllTenantResearchPages();
 
-    expect(pages).toHaveLength(261);
-    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(261);
-    expect(new Set(pages.map((page) => page.description)).size).toBe(261);
-    expect(new Set(pages.map((page) => page.title)).size).toBe(261);
+    expect(pages).toHaveLength(262);
+    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(262);
+    expect(new Set(pages.map((page) => page.description)).size).toBe(262);
+    expect(new Set(pages.map((page) => page.title)).size).toBe(262);
 
     const copy = JSON.stringify(pages);
     expect(copy).not.toMatch(/IndexFinds|official ACBuy site/i);
