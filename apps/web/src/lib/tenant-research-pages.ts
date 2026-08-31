@@ -2287,14 +2287,15 @@ const CSSBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "cssbuyindex.com",
     slug: "forwarding",
-    seoTitle: "Does CSSBuy Work for USA? Forwarding Research Guide",
+    seoTitle: "CSSBuy Warehouse Guide | Address, Receipt and USA Forwarding",
     description:
-      "Understand seller-to-warehouse, receipt, parcel preparation, international transit and destination stages when researching CSSBuy USA forwarding.",
-    eyebrow: "USA forwarding stages",
-    title: "The delivery path contains separate evidence stages.",
+      "Find the current CSSBuy warehouse address in the official account flow, then separate seller delivery, receipt, parcel preparation and USA forwarding evidence.",
+    eyebrow: "Warehouse and USA forwarding stages",
+    title: "Use the current account address, then track each delivery stage separately.",
     intro:
       "Avoid turning one displayed estimate into a delivery promise. Record where each input comes from and when it was checked.",
     sections: [
+      { title: "Current warehouse address", description: "Copy the address and recipient details shown for the intended warehouse in the current official account flow; do not reuse an undated address from another page or user." },
       { title: "Seller to warehouse", description: "Track the source order separately from international forwarding and preserve the seller and option record." },
       { title: "Warehouse receipt", description: "Use the received-item record, measurements and inspection evidence for the next decision." },
       { title: "Parcel preparation", description: "Confirm selected items, packaging, restrictions and measured parcel data." },
