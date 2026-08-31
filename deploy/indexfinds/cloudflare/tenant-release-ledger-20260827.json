@@ -372,6 +372,14 @@
     "releaseGateState": "local-ready-production-capacity-blocked",
     "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch13-65a2a92-local-acceptance-20260901.json"
   },
+  "continuousSeoBatch14Candidate": {
+    "domains": [
+      "mulebuyindex.net"
+    ],
+    "webSourceCommit": "44fc4be",
+    "releaseGateState": "local-ready-production-capacity-blocked",
+    "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch14-44fc4be-local-acceptance-20260901.json"
+  },
   "googleSearchConsole": {
     "observedAt": "2026-08-31T16:58:10+08:00",
     "verifiedDomainPropertyCount": 42,
@@ -443,6 +451,7 @@
     "deploy/indexfinds/hostinger/continuous-seo-batch10-8ef0b54-local-acceptance-20260901.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch11-52d7e62-local-acceptance-20260901.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch12-e079592-local-acceptance-20260901.json",
-    "deploy/indexfinds/hostinger/continuous-seo-batch13-65a2a92-local-acceptance-20260901.json"
+    "deploy/indexfinds/hostinger/continuous-seo-batch13-65a2a92-local-acceptance-20260901.json",
+    "deploy/indexfinds/hostinger/continuous-seo-batch14-44fc4be-local-acceptance-20260901.json"
   ]
 }

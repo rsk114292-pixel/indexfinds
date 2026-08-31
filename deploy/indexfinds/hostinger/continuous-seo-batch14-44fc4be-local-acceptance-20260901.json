@@ -1,0 +1,60 @@
+{
+  "validatedAt": "2026-09-01T02:05:12+08:00",
+  "scope": "Fourteenth GSC-prioritized tenant SEO batch, locally accepted and held behind the Hostinger capacity gate",
+  "domains": [
+    "mulebuyindex.net"
+  ],
+  "gscBaseline": {
+    "window": "last 28 days",
+    "domainClicks": 0,
+    "domainImpressions": 142,
+    "domainCtrPercent": 0,
+    "domainAveragePosition": 15.3,
+    "protectedQuery": { "mulebuy order pending": { "impressions": 27 } },
+    "targetQueries": { "mulebuy tracking": { "impressions": 2 } }
+  },
+  "releaseCandidate": {
+    "sourceCommit": "44fc4be",
+    "state": "local-ready-production-capacity-blocked",
+    "productionStillServingCommit": "9724f20",
+    "productionContainer": "indexfinds-web-seo-batch7-9724f20",
+    "productionPort": 3144
+  },
+  "page": {
+    "url": "https://mulebuyindex.net/en/tracking",
+    "localStatus": 200,
+    "title": "MuleBuy Tracking Guide | Read Parcel Events and Handoffs",
+    "canonical": "https://mulebuyindex.net/en/tracking",
+    "robots": "index, follow",
+    "jsonLdBlockCount": 3,
+    "faqCount": 3,
+    "childSitemapUrlCount": 10,
+    "childSitemapIncludesPage": true
+  },
+  "officialSources": [
+    "https://mulebuy.com/help/help-center/",
+    "https://2024.mulebuy.com/help-center/how-to-check-logistics-information-after-the-package-was-sent-out-2/",
+    "https://2024.mulebuy.com/help-center/logistics-platform-introduction/"
+  ],
+  "checks": {
+    "rankingProtection": "The existing order-status guide, homepage and all ranked URLs remain unchanged.",
+    "content": "The page follows the account Parcel record, tracking number and responsible logistics source without inventing live location, timing or delivery outcomes.",
+    "visual": "The page uses the shared semantic tracking evidence sequence and contains no generic or unrelated hero image.",
+    "responsive": "No horizontal overflow at 1440x1000 or 390x844; desktop and mobile screenshots were reviewed.",
+    "localTests": "Three focused suites passed with 140 tests; TypeScript and changed-file ESLint checks passed.",
+    "productionBuild": "The exact candidate commit completed the production build successfully.",
+    "mainIsolation": "No production route, container, DNS, Cloudflare setting or IndexFinds main-site configuration changed during this batch."
+  },
+  "postDeploymentMeasurement": {
+    "technicalExpected": "The new tracking page returns HTTP 200 with its exact canonical, indexable robots state, structured data and sitemap entry.",
+    "gscExpected": "The tracking-intent query gains a dedicated destination while the 27-impression order-pending page remains protected.",
+    "status": "pending-production-deployment-and-google-recrawl"
+  },
+  "capacity": {
+    "filesystemFree": "2.5G",
+    "filesystemUsePercent": 99,
+    "nextProductionBuildState": "blocked-pending-explicit-rollback-image-retention-decision",
+    "note": "The active release is healthy. Another Hostinger Docker image build is unsafe until exact inactive rollback containers and images are approved for removal or capacity is increased."
+  },
+  "result": "local-ready-production-capacity-blocked"
+}
