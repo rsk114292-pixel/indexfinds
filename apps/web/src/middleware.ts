@@ -20,6 +20,11 @@ import {
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4101';
 const TRUSTED_VISITOR_COOKIE = 'mf_vid';
+const LEGACY_HTML_ENTRY_PATHS = new Set([
+  '/shipping.html',
+  '/invitation-code.html',
+  '/guide.html',
+]);
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -68,6 +73,9 @@ export default async function middleware(request: NextRequest) {
     : null;
   if (tenantLegacyPathRedirectUrl) {
     return NextResponse.redirect(tenantLegacyPathRedirectUrl, 308);
+  }
+  if (LEGACY_HTML_ENTRY_PATHS.has(request.nextUrl.pathname)) {
+    return NextResponse.next();
   }
 
   if (request.nextUrl.pathname.startsWith('/tenants/1to1reps/')) {
@@ -260,6 +268,9 @@ export const config = {
     '/robots.txt',
     '/sitemap.xml',
     '/sitemaps/:path*',
+    '/shipping.html',
+    '/invitation-code.html',
+    '/guide.html',
     '/tenants/1to1reps/:path*',
     // Match all pathnames except:
     // - /api (backend proxy rewrite)
