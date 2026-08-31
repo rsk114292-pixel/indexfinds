@@ -1,0 +1,102 @@
+{
+  "validatedAt": "2026-08-31T22:04:37+08:00",
+  "scope": "Seventh GSC-prioritized tenant SEO batch",
+  "domains": [
+    "litbuyindex.com",
+    "litbuyitems.com",
+    "itaobuyindex.com",
+    "cnshopperindex.com",
+    "hipobuyindex.com"
+  ],
+  "gscBaseline": {
+    "litbuyindex.com": {
+      "clicks": 1,
+      "impressions": 92,
+      "ctrPercent": 1.1,
+      "averagePosition": 19.2,
+      "opportunityPage": "/",
+      "opportunityPageClicks": 1,
+      "opportunityPageImpressions": 92,
+      "primaryQueries": ["litbuy", "litbuy estimator", "litbuy estimation", "litbuy freight estimator", "litbuy warehouse"]
+    },
+    "litbuyitems.com": {
+      "clicks": 1,
+      "impressions": 92,
+      "ctrPercent": 1.1,
+      "averagePosition": 29.3,
+      "legacyOpportunityPages": {
+        "/litbuy-haul/": {"clicks": 1, "impressions": 9},
+        "/shipping.html": {"clicks": 0, "impressions": 25},
+        "/litbuy-spreadsheet/": {"clicks": 0, "impressions": 15},
+        "/litbuy-news/litbuy-vs-superbuy/": {"clicks": 0, "impressions": 11},
+        "/invitation-code.html": {"clicks": 0, "impressions": 11},
+        "/guide.html": {"clicks": 0, "impressions": 10}
+      },
+      "primaryQueries": ["litbuy spreadsheet", "litbuy invite code", "litbuy payment methods", "litbuy haul", "how long does litbuy take"]
+    },
+    "itaobuyindex.com": {
+      "clicks": 1,
+      "impressions": 80,
+      "ctrPercent": 1.2,
+      "averagePosition": 19.1,
+      "opportunityPage": "/",
+      "opportunityPageClicks": 1,
+      "opportunityPageImpressions": 80,
+      "primaryQueries": ["itaobuy", "itaobuy link", "itaobuy links", "itaobuy shipping"]
+    },
+    "cnshopperindex.com": {
+      "clicks": 2,
+      "impressions": 71,
+      "ctrPercent": 2.8,
+      "averagePosition": 8.9,
+      "opportunityPage": "/",
+      "opportunityPageClicks": 2,
+      "opportunityPageImpressions": 71,
+      "action": "validated-no-change"
+    },
+    "hipobuyindex.com": {
+      "clicks": 4,
+      "impressions": 68,
+      "ctrPercent": 5.9,
+      "averagePosition": 15.6,
+      "opportunityPage": "/",
+      "opportunityPageClicks": 4,
+      "opportunityPageImpressions": 68,
+      "action": "validated-no-change"
+    }
+  },
+  "release": {
+    "sourceCommit": "9724f20",
+    "image": "indexfinds-web:seo-batch7-9724f20",
+    "container": "indexfinds-web-seo-batch7-9724f20",
+    "port": 3144,
+    "health": "running",
+    "restartCount": 0,
+    "routeConfigCount": 41
+  },
+  "checks": {
+    "intentAlignment": "LitBuy Index and iTaoBuy homepage snippets now match observed product-link, spreadsheet, estimator, warehouse and shipping intent using current first-party service scope.",
+    "legacyRecovery": "Five LitBuy Items legacy URLs with direct equivalents now return HTTP 308 to reviewed canonical destinations. The prior haul URL resolves to a new evidence-led haul review, and the prior spreadsheet URL consolidates on the dedicated LitBuy Index domain.",
+    "retiredPagePolicy": "The retired LitBuy versus Superbuy article has no equivalent reviewed page and remains outside the sitemap and final 404 rather than receiving a misleading soft redirect or thin replacement.",
+    "noChangeDecisions": "CNShopper and Hipobuy entry pages were verified but left unchanged because their current average position and CTR did not justify altering ranking URLs in this batch.",
+    "sourceReview": "Current first-party LitBuy and iTaoBuy product-link, warehouse, QC, estimator and shipping scope was reviewed before copy changes.",
+    "localTests": "Four tenant and redirect suites passed with 123 tests, TypeScript checking passed and all changed source files passed ESLint.",
+    "productionBuild": "The exact release commit completed the 3,040-page production build.",
+    "recursiveAudit": "All five domains and all 33 approved pages passed with zero failures and zero warnings.",
+    "entryPoints": "All changed production pages returned HTTP 200 with unique titles and exact self-canonicals; the five mapped legacy paths returned exact 308 targets.",
+    "mainIsolation": "The IndexFinds main homepage remained on its separate origin and returned HTTP 200 with its unchanged title.",
+    "nginx": "Configuration validation passed before reload. All 41 tenant configs moved from port 3143 to 3144."
+  },
+  "rollback": {
+    "previousContainer": "indexfinds-web-seo-batch6-3d0034f",
+    "previousPort": 3143,
+    "nginxBackup": "/opt/indexfinds/rollback/nginx-web-9724f20-20260831T140243Z"
+  },
+  "capacity": {
+    "filesystemFree": "4.3G",
+    "filesystemUsePercent": 98,
+    "nextProductionBuildState": "blocked-pending-explicit-rollback-image-retention-decision",
+    "note": "The active release is healthy. No prior rollback image was deleted. Another production image build is unsafe until exact inactive rollback images are approved for removal or disk capacity is expanded."
+  },
+  "result": "deployed-and-live-validated"
+}
