@@ -3891,6 +3891,23 @@ const PARCELUP_INDEX_PAGES: readonly TenantResearchPage[] = [
     ],
   },
   {
+    domain: "parcelupindex.com", slug: "tracking",
+    seoTitle: "Parcel Up Tracking Guide | Use the Carrier and Tracking Number",
+    description: "Track a Parcel Up shipment from the official tracking or shipped-order record, preserve the shipping service, tracking number and dated events, and separate update gaps from delivery claims.",
+    eyebrow: "Parcel Up courier tracking", title: "Track each carrier handoff from the official record.",
+    intro: "Save the shipping service, tracking number, last confirmed event and review time together before drawing a conclusion.",
+    sections: [
+      { title: "Open an official tracking source", description: "Use Parcel Up's current tracking page with the selected shipping service and order tracking number, or open the tracking link attached to the shipped order." },
+      { title: "Separate origin and destination events", description: "Preserve the event wording, country, location and timestamp because destination-country data can appear later than origin-country scans." },
+      { title: "Escalate missing evidence", description: "When the number, service or event trail remains unclear, use the current official support path instead of inventing a parcel location or delivery date." },
+    ],
+    questions: [
+      { question: "Where should a Parcel Up shipment be tracked?", answer: "Use the official Parcel Up delivery tracking page with the shipping service and tracking number, or follow the tracking link from the shipped-order record." },
+      { question: "Why can destination tracking appear later?", answer: "Carrier systems and country handoffs can publish events at different times. Preserve the last confirmed origin or destination event and review the official record again." },
+      { question: "Does a tracking event guarantee the delivery date?", answer: "No. It records the latest available event. Customs, carrier transfers, destination processing and local delivery still require later evidence." },
+    ],
+  },
+  {
     domain: "parcelupindex.com", slug: "qc-checklist",
     seoTitle: "Parcel Up QC Photos | Taobao Warehouse Quality Check Guide",
     description: "Review Parcel Up QC photos against the original Taobao listing, selected option, visible condition, measurements, packaging and missing views.",

@@ -96,8 +96,7 @@ export default async function TenantResearchPage({
   const isCatalogMap = profile.variant === "catalog-map";
   const isShortlist = profile.variant === "shortlist";
   const isItemFile = profile.variant === "item-file";
-  const isTrackingRecord =
-    tenant.domain === "sugargooindex.net" && page.slug === "tracking";
+  const isTrackingRecord = page.slug === "tracking";
   const mainClass = isLedger
     ? "bg-[#f4f0e7] text-[#18212d]"
     : isFinder
@@ -321,7 +320,7 @@ export default async function TenantResearchPage({
                   [
                     "01",
                     "Official parcel record",
-                    "Open the current account record and its logistics details.",
+                    "Open the official tracking or order record and its current details.",
                   ],
                   [
                     "02",

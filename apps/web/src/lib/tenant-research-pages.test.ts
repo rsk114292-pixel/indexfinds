@@ -222,6 +222,7 @@ describe("tenant research pages", () => {
       "/getting-started",
       "/fees-and-budgeting",
       "/shipping-and-warehouse",
+      "/tracking",
       "/qc-checklist",
       "/product-index-method",
       "/official-sources",
@@ -370,10 +371,10 @@ describe("tenant research pages", () => {
   it("keeps every reviewed page specific and evidence-led", () => {
     const pages = getAllTenantResearchPages();
 
-    expect(pages).toHaveLength(264);
-    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(264);
-    expect(new Set(pages.map((page) => page.description)).size).toBe(264);
-    expect(new Set(pages.map((page) => page.title)).size).toBe(264);
+    expect(pages).toHaveLength(265);
+    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(265);
+    expect(new Set(pages.map((page) => page.description)).size).toBe(265);
+    expect(new Set(pages.map((page) => page.title)).size).toBe(265);
 
     const copy = JSON.stringify(pages);
     expect(copy).not.toMatch(/IndexFinds|official ACBuy site/i);

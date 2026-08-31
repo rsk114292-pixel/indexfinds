@@ -498,6 +498,7 @@ describe("tenant config", () => {
     expect(isTenantPathIndexable(orientdig, "/en/orient-score-methodology")).toBe(true);
     expect(isTenantPathIndexable(orientdig, "/en/products")).toBe(false);
     expect(isTenantPathIndexable(parcelup, "/en/getting-started")).toBe(true);
+    expect(isTenantPathIndexable(parcelup, "/en/tracking")).toBe(true);
     expect(isTenantPathIndexable(parcelup, "/en/products")).toBe(false);
     expect(isTenantPathIndexable(sugargoo, "/en/sugargoo-qc-guide")).toBe(true);
     expect(isTenantPathIndexable(sugargoo, "/en/tracking")).toBe(true);
