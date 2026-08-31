@@ -353,6 +353,18 @@ describe("tenant research pages", () => {
     expect(getTenantResearchPaths("hoobuyindex.net")).toEqual([
       "/guide", "/categories", "/hoobuy-score", "/search-ideas", "/shipping", "/safety", "/faq",
     ]);
+    expect(getTenantResearchPage("hoobuyindex.net", "shipping")).toEqual(
+      expect.objectContaining({
+        seoTitle: "HooBuy Shipping Calculator Guide | Inputs and Estimate Limits",
+        sourceUrl: "https://hoobuy.com/estimation",
+        sourceLabel: "Open the official HooBuy estimator",
+        questions: expect.arrayContaining([
+          expect.objectContaining({
+            question: "Does this page calculate a HooBuy shipping price?",
+          }),
+        ]),
+      }),
+    );
     expect(getTenantResearchPaths("joyabuyfinds.com")).toEqual([
       "/guide", "/categories", "/joyagoo-score", "/search-ideas", "/shipping", "/safety", "/faq",
     ]);

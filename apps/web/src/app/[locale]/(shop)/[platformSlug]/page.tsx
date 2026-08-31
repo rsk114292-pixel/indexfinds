@@ -97,7 +97,9 @@ export default async function TenantResearchPage({
   const isShortlist = profile.variant === "shortlist";
   const isItemFile = profile.variant === "item-file";
   const isTrackingRecord = page.slug === "tracking";
-  const isEstimatorRecord = page.slug === "freight-estimator";
+  const isEstimatorRecord =
+    page.slug === "freight-estimator" ||
+    (tenant.domain === "hoobuyindex.net" && page.slug === "shipping");
   const mainClass = isLedger
     ? "bg-[#f4f0e7] text-[#18212d]"
     : isFinder
@@ -247,12 +249,12 @@ export default async function TenantResearchPage({
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
-                href={profile.officialUrl}
+                href={page.sourceUrl || profile.officialUrl}
                 rel="nofollow noopener noreferrer"
                 target="_blank"
                 className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${secondaryButtonClass}`}
               >
-                {profile.officialLabel}
+                {page.sourceLabel || profile.officialLabel}
                 <ExternalLink className="h-4 w-4" />
               </a>
             </div>
@@ -284,30 +286,6 @@ export default async function TenantResearchPage({
                   ? "Move forward only when the record for the previous handoff remains attached."
                   : "Preserve what was checked, when it was checked and what remains unresolved."}
               </p>
-            </aside>
-          ) : isItemCheck ? (
-            <aside className="border border-[#b8e36d]/55 bg-[#0f1e0b] p-6 shadow-[12px_12px_0_#2f4b20] sm:p-8">
-              <div className="flex items-center justify-between gap-4 border-b border-white/15 pb-5">
-                <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#b8e36d]">
-                  Link review
-                </p>
-                <span className="rounded-full border border-[#b8e36d]/45 px-3 py-1 font-mono text-xs text-[#b8e36d]">
-                  5 fields
-                </span>
-              </div>
-              <ul className="mt-2">
-                {["Source opens", "Option clear", "Evidence visible", "Risk marked", "Date saved"].map(
-                  (label) => (
-                    <li
-                      key={label}
-                      className="flex items-center gap-3 border-b border-white/10 py-4 text-sm font-bold text-white last:border-b-0"
-                    >
-                      <Check className="h-4 w-4 text-[#b8e36d]" />
-                      {label}
-                    </li>
-                  ),
-                )}
-              </ul>
             </aside>
           ) : isTrackingRecord ? (
             <aside className="overflow-hidden rounded-[22px] border border-white/20 bg-[#0c252d] shadow-[0_24px_70px_rgba(0,0,0,0.28)]">
@@ -381,6 +359,30 @@ export default async function TenantResearchPage({
                 A planning estimate is not the packed-parcel charge. Recheck the
                 current source before submission.
               </p>
+            </aside>
+          ) : isItemCheck ? (
+            <aside className="border border-[#b8e36d]/55 bg-[#0f1e0b] p-6 shadow-[12px_12px_0_#2f4b20] sm:p-8">
+              <div className="flex items-center justify-between gap-4 border-b border-white/15 pb-5">
+                <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#b8e36d]">
+                  Link review
+                </p>
+                <span className="rounded-full border border-[#b8e36d]/45 px-3 py-1 font-mono text-xs text-[#b8e36d]">
+                  5 fields
+                </span>
+              </div>
+              <ul className="mt-2">
+                {["Source opens", "Option clear", "Evidence visible", "Risk marked", "Date saved"].map(
+                  (label) => (
+                    <li
+                      key={label}
+                      className="flex items-center gap-3 border-b border-white/10 py-4 text-sm font-bold text-white last:border-b-0"
+                    >
+                      <Check className="h-4 w-4 text-[#b8e36d]" />
+                      {label}
+                    </li>
+                  ),
+                )}
+              </ul>
             </aside>
           ) : isQueryIndex ? (
             <aside className="overflow-hidden rounded-[28px] border border-[#35c486]/45 bg-[#0b2118] shadow-[0_28px_90px_rgba(0,0,0,0.35)]">

@@ -19,6 +19,8 @@ export interface TenantResearchPage {
   intro: string;
   sections: readonly TenantResearchSection[];
   questions?: readonly TenantResearchQuestion[];
+  sourceUrl?: string;
+  sourceLabel?: string;
 }
 
 export interface TenantResearchProfile {
@@ -4815,10 +4817,14 @@ const HOOBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
     { title: "Construction", description: "Use material, closure, sole, lining, hardware or component wording when relevant." },
     { title: "Compatibility", description: "Use exact model, interface, plug, voltage, language or battery requirements." },
   ] },
-  { domain: "hoobuyindex.net", slug: "shipping", seoTitle: "HooBuy Shipping Research | Warehouse Evidence to Parcel Route", description: "Research HooBuy shipping with confirmed received items, actual parcel weight and dimensions, packaging decisions and current destination routes.", eyebrow: "HooBuy parcel handoff", title: "Use warehouse and parcel records instead of listing estimates.", intro: "A product card cannot establish final parcel measurements, route availability or delivered cost.", sections: [
-    { title: "Confirm received items", description: "Reconcile option and quantity with current warehouse records before consolidation." },
-    { title: "Measure after packing", description: "Use actual weight, dimensions and selected packaging for route estimates." },
-    { title: "Confirm current terms", description: "Review route availability, restrictions, fees and destination requirements on HooBuy." },
+  { domain: "hoobuyindex.net", slug: "shipping", seoTitle: "HooBuy Shipping Calculator Guide | Inputs and Estimate Limits", description: "Prepare destination, weight, category and parcel dimensions for the official HooBuy shipping calculator, then compare the estimate with warehouse evidence.", eyebrow: "HooBuy shipping estimate guide", title: "Prepare the evidence before opening the shipping calculator.", intro: "HooBuy's official estimator asks for destination, weight, item category and parcel dimensions. Its result is a planning estimate, not the packed-parcel charge.", sourceUrl: "https://hoobuy.com/estimation", sourceLabel: "Open the official HooBuy estimator", sections: [
+    { title: "Enter comparable inputs", description: "Use the same destination, parcel weight, item category, length, width and height whenever you compare an estimate.", points: ["Record the unit used for each field", "Keep the destination and item category with the result", "Date the estimate so an older result is not presented as current"] },
+    { title: "Check chargeable weight", description: "HooBuy explains that routes can use actual or volumetric weight. Bulky packaging can therefore change the result even when item weight stays the same.", points: ["Separate item weight from packed-parcel weight", "Retain the dimensions used by the estimator", "Recheck after consolidation or packaging changes"] },
+    { title: "Reconcile after warehousing", description: "HooBuy's published guidance says route prices can vary by goods category and that value-added services are calculated separately. Use the warehouse record before submission.", points: ["Confirm current route eligibility and restrictions", "Compare the estimate with the warehouse parcel record", "Keep optional service fees outside the base estimate"] },
+  ], questions: [
+    { question: "Does this page calculate a HooBuy shipping price?", answer: "No. It prepares and records the inputs for HooBuy's official estimator so this independent guide does not invent a live rate." },
+    { question: "Why can a HooBuy shipping estimate change?", answer: "Destination, item category, actual weight, parcel dimensions, packaging and optional services can change the available routes or displayed amount." },
+    { question: "Is the estimator result the final parcel charge?", answer: "Not necessarily. Compare it with the current warehouse measurements, route terms and selected services before submitting a parcel." },
   ] },
   { domain: "hoobuyindex.net", slug: "safety", seoTitle: "Is HooBuy Safe and Legit? Third-Party Product Checklist", description: "Assess HooBuy using current domain access, account controls, payments, third-party source records, policies, support paths and parcel documentation.", eyebrow: "HooBuy service evidence", title: "Assess platform, seller and parcel evidence as separate layers.", intro: "One undated label cannot describe every product, transaction or shipment.", sections: [
     { title: "Platform layer", description: "Review current site access, account security, payment records, help content and support channels." },
