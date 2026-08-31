@@ -245,10 +245,10 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     primaryColor: "#2376b9",
     primaryHoverColor: "#195d94",
     accentColor: "#8fdcf4",
-    seoTitle: "BBDbuy EU Finds | Browse Products with Destination Context",
+    seoTitle: "BBDbuyEU Finds | Independent EU Product Discovery Guide",
     description:
-      "Browse BBDbuy-linked categories and listings with EU sizing, compatibility and destination questions kept beside the product research.",
-    heroEyebrow: "Independent EU discovery guide",
+      "Browse independent BBDbuyEU product finds by category while keeping EU sizing, compatibility and destination questions beside each source review.",
+    heroEyebrow: "Independent BBDbuyEU discovery guide",
     heroPrimary: "Start with the category, not the route.",
     heroSecondary: "Keep EU questions beside every find.",
     supportingLine:
@@ -322,10 +322,10 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     primaryColor: "#b87518",
     primaryHoverColor: "#915a10",
     accentColor: "#f6cd78",
-    seoTitle: "BBDbuy EU Sheet | Product Research Directory and Checklist",
+    seoTitle: "BBDbuyEU Spreadsheet | Product Research & Source Checklist",
     description:
-      "Use a compact BBDbuy EU sheet structure to search listings, record exact variants, preserve source links and keep missing product fields visible.",
-    heroEyebrow: "Independent EU sheet directory",
+      "Use the independent BBDbuyEU spreadsheet to record exact variants, preserve product source links and keep incomplete research fields visible.",
+    heroEyebrow: "Independent BBDbuyEU spreadsheet directory",
     heroPrimary: "Turn every result into one useful row.",
     heroSecondary: "Keep the source beside the claim.",
     supportingLine:

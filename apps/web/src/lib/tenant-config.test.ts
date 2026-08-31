@@ -342,7 +342,7 @@ describe("tenant config", () => {
       expect.objectContaining({
         siteName: "BBDbuy EU Finds",
         logoPath: "/images/agents/bbdbuy.ico",
-        heroEyebrow: "Independent EU discovery guide",
+        heroEyebrow: "Independent BBDbuyEU discovery guide",
         indexing: "ready",
       }),
     );
@@ -366,7 +366,7 @@ describe("tenant config", () => {
       expect.objectContaining({
         siteName: "BBDbuy EU Sheet",
         logoPath: "/images/agents/bbdbuy.ico",
-        heroEyebrow: "Independent EU sheet directory",
+        heroEyebrow: "Independent BBDbuyEU spreadsheet directory",
         indexing: "ready",
       }),
     );
