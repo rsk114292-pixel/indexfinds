@@ -2928,6 +2928,23 @@ const LITBUY_ITEMS_PAGES: readonly TenantResearchPage[] = [
   },
   {
     domain: "litbuyitems.com",
+    slug: "haul-review",
+    seoTitle: "LitBuy Haul Review | Link, Option, QC and Parcel Evidence",
+    description:
+      "Review a LitBuy haul by keeping each current product link, intended option, warehouse QC record, parcel measurement and dated outcome attached to the right item.",
+    eyebrow: "Haul evidence review",
+    title: "A useful haul review lets every claim be traced to the right item and stage.",
+    intro:
+      "A haul can show several products and one parcel outcome. Separate those records so an observation about one item or route does not become a claim about every result.",
+    sections: [
+      { title: "Current product source", description: "Reopen each product link and record the seller context, selected variation and review date before reusing product details." },
+      { title: "Requested and received item", description: "Keep the intended option beside the relevant warehouse images, measurements and unresolved differences." },
+      { title: "Parcel evidence", description: "Record complete contents, packaging, measured weight and dimensions, route and destination for the reviewed parcel." },
+      { title: "Dated outcome", description: "Limit delivery, support and condition observations to the documented order and date instead of presenting them as a permanent platform result." },
+    ],
+  },
+  {
+    domain: "litbuyitems.com",
     slug: "invitation-code",
     seoTitle: "LitBuy Invitation Code | Account Context, Not Product Evidence",
     description:

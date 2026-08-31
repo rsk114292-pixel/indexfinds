@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { routing } from './i18n/routing';
 import { buildReferralTrackingHeaders } from '@/lib/referral-tracking-signature';
 import { getLegacyHostRedirectUrl } from '@/lib/host-redirect';
+import { getTenantLegacyPathRedirectUrl } from '@/lib/tenant-legacy-path-redirect';
 import {
   getGuardedCatalogDetailRoute,
   resolveGuardedCatalogSlug,
@@ -57,6 +58,16 @@ export default async function middleware(request: NextRequest) {
         'x-robots-tag': 'noindex, nofollow',
       },
     });
+  }
+
+  const tenantLegacyPathRedirectUrl = tenant
+    ? getTenantLegacyPathRedirectUrl(
+        request.nextUrl.toString(),
+        tenant.domain,
+      )
+    : null;
+  if (tenantLegacyPathRedirectUrl) {
+    return NextResponse.redirect(tenantLegacyPathRedirectUrl, 308);
   }
 
   if (request.nextUrl.pathname.startsWith('/tenants/1to1reps/')) {

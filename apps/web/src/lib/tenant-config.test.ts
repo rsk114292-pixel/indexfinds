@@ -801,7 +801,7 @@ describe("tenant config", () => {
       }),
     );
     expect(branding?.editorial.homeVariant).toBe("items");
-    expect(branding?.indexablePaths).toHaveLength(8);
+    expect(branding?.indexablePaths).toHaveLength(9);
     expect(
       `${branding?.seoTitle} ${branding?.description} ${branding?.heroPrimary}`,
     ).not.toMatch(/spreadsheet|indexfinds/i);

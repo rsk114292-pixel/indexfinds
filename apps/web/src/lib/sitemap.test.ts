@@ -374,6 +374,7 @@ describe('sitemap', () => {
         '/coupons',
         '/faq',
         '/guide',
+        '/haul-review',
         '/invitation-code',
         '/safety',
         '/shipping',
