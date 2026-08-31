@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T18:36:00+08:00",
+  "updatedAt": "2026-08-31T18:46:00+08:00",
   "policy": "A branding-ready flag is not a release approval. A tenant may be indexed only after independent content, technical SEO, mobile, preview and production checks pass.",
   "releasedForIndexing": [
     "acbuyindex.com",
@@ -228,8 +228,8 @@
     "maximumHomepageSimilarity": 0.563549,
     "failureCount": 0,
     "result": "complete",
-    "sourceCommit": "b53612c",
-    "evidence": "deploy/indexfinds/hostinger/tenant-seo-batch1-b53612c-production-acceptance-20260831.json"
+    "sourceCommit": "5cf5335",
+    "evidence": "deploy/indexfinds/hostinger/tenant-seo-batch2-5cf5335-production-acceptance-20260831.json"
   },
   "continuousSeoBatch1": {
     "gscWindowDays": 28,
@@ -246,6 +246,15 @@
     "webSourceCommit": "b53612c",
     "releaseGateState": "deployed-and-live-validated",
     "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch1-b53612c-production-acceptance-20260831.json"
+  },
+  "continuousSeoBatch2": {
+    "domains": [
+      "bbdbuyeufinds.com",
+      "bbdbuyeusheet.com"
+    ],
+    "webSourceCommit": "5cf5335",
+    "releaseGateState": "deployed-and-live-validated",
+    "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch2-5cf5335-production-acceptance-20260831.json"
   },
   "googleSearchConsole": {
     "observedAt": "2026-08-31T16:58:10+08:00",

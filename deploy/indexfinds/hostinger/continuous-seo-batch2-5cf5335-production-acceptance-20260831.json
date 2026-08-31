@@ -1,0 +1,51 @@
+{
+  "validatedAt": "2026-08-31T18:46:00+08:00",
+  "scope": "Second GSC-prioritized tenant SEO batch",
+  "domains": [
+    "bbdbuyeufinds.com",
+    "bbdbuyeusheet.com"
+  ],
+  "gscBaseline": {
+    "bbdbuyeufinds.com": {
+      "clicks": 5,
+      "impressions": 337,
+      "ctrPercent": 1.5,
+      "averagePosition": 8.0,
+      "primaryQuery": "bbdbuyeu"
+    },
+    "bbdbuyeusheet.com": {
+      "clicks": 5,
+      "impressions": 420,
+      "ctrPercent": 1.2,
+      "averagePosition": 7.6,
+      "primaryQueries": [
+        "bbdbuyeu",
+        "bbdbuy spreadsheet"
+      ]
+    }
+  },
+  "release": {
+    "sourceCommit": "5cf5335",
+    "image": "indexfinds-web:seo-batch2-5cf5335",
+    "container": "indexfinds-web-seo-batch2-5cf5335",
+    "port": 3139,
+    "health": "healthy",
+    "restartCount": 0,
+    "routeConfigCount": 41
+  },
+  "checks": {
+    "intentSeparation": "BBDbuy EU Finds remains category and destination oriented; BBDbuy EU Sheet remains spreadsheet and source-field oriented.",
+    "localTests": "Three tenant suites passed with 114 tests and TypeScript checking passed.",
+    "productionBuild": "The exact release commit completed the 3,040-page production build.",
+    "recursiveAudit": "Both domains and all 12 approved pages passed with zero failures and zero warnings.",
+    "entryPoints": "Both production homepages returned their new unique titles; registration remains disabled with HTTP 404.",
+    "sharedApi": "The production hot-search response remains free of search_term_string.",
+    "nginx": "Configuration validation passed before reload."
+  },
+  "rollback": {
+    "previousContainer": "indexfinds-web-seo-batch1-b53612c",
+    "previousPort": 3138,
+    "nginxBackup": "/opt/indexfinds/rollback/nginx-web-5cf5335-20260831T1044Z"
+  },
+  "result": "deployed-and-live-validated"
+}
