@@ -1,0 +1,69 @@
+{
+  "validatedAt": "2026-09-01T04:54:46+08:00",
+  "scope": "Eighteenth GSC-prioritized tenant SEO batch, locally accepted and held behind the Hostinger capacity gate",
+  "domains": [
+    "superbuydeals.com"
+  ],
+  "gscBaseline": {
+    "window": "last 28 days",
+    "domainClicks": 2,
+    "domainImpressions": 45,
+    "domainCtrPercent": 4.4,
+    "domainAveragePosition": 18.8,
+    "targetQueries": {
+      "how to calculate shipping costs for superbuy": {
+        "impressions": 3
+      },
+      "superbuy calculator": {
+        "impressions": 1
+      },
+      "superbuy list": {
+        "impressions": 1
+      }
+    }
+  },
+  "releaseCandidate": {
+    "sourceCommit": "3ca787c",
+    "state": "local-ready-production-capacity-blocked",
+    "productionStillServingCommit": "9724f20",
+    "productionContainer": "indexfinds-web-seo-batch7-9724f20",
+    "productionPort": 3144
+  },
+  "page": {
+    "url": "https://superbuydeals.com/en/shipping-weight-guide",
+    "localStatus": 200,
+    "title": "Superbuy Shipping Calculator Guide | Inputs and Final Cost",
+    "canonical": "https://superbuydeals.com/en/shipping-weight-guide",
+    "robots": "index, follow",
+    "jsonLdBlockCount": 2,
+    "childSitemapUrlCount": 6,
+    "childSitemapIncludesPage": true,
+    "officialCalculatorUrl": "https://login.superbuy.com/en/page/query/freight/"
+  },
+  "officialSources": [
+    "https://login.superbuy.com/en/page/query/freight/",
+    "https://www.superbuy.com/en/page/guide/feecomposition/",
+    "https://www.superbuy.com/en/page/newguide/userguide/"
+  ],
+  "checks": {
+    "rankingProtection": "The existing URL, ranked homepage and other reviewed pages remain unchanged.",
+    "content": "The page now follows the official calculator fields, separates actual and volumetric weight, and documents final bill reconciliation without publishing copied live rates.",
+    "visual": "The unverified tenant hero image was removed from this page. The page uses brand colors, typography and a semantic research record instead of decorative product imagery.",
+    "responsive": "No horizontal overflow at 1440x1000 or 390x844; desktop and mobile screenshots were reviewed.",
+    "localTests": "Three focused suites passed with 117 tests; TypeScript and changed-file ESLint checks passed. Five stale sitemap assertions from earlier accepted batches were aligned with the released page lists.",
+    "productionBuild": "The exact candidate commit completed the production build successfully.",
+    "mainIsolation": "No production route, container, DNS, Cloudflare setting or IndexFinds main-site configuration changed during this batch."
+  },
+  "postDeploymentMeasurement": {
+    "technicalExpected": "The existing guide returns HTTP 200 with its exact canonical, indexable robots state, structured data, official calculator link and sitemap entry.",
+    "gscExpected": "Shipping-calculator queries receive a source-backed destination while the existing homepage and deal archive URLs stay protected.",
+    "status": "pending-production-deployment-and-google-recrawl"
+  },
+  "capacity": {
+    "filesystemFree": "2.5G",
+    "filesystemUsePercent": 99,
+    "nextProductionBuildState": "blocked-pending-explicit-rollback-image-retention-decision",
+    "note": "The active release is healthy. Another Hostinger Docker image build is unsafe until exact inactive rollback containers and images are approved for removal or capacity is increased."
+  },
+  "result": "local-ready-production-capacity-blocked"
+}
