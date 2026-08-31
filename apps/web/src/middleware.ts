@@ -31,6 +31,12 @@ const LEGACY_HTML_ENTRY_PATHS = new Set([
   '/contact.html',
   '/spreadsheet-checklist.html',
   '/privacy.html',
+  '/search-ideas.html',
+  '/review.html',
+  '/reviews.html',
+  '/reddit.html',
+  '/coupons.html',
+  '/buyer-safety.html',
 ]);
 
 const intlMiddleware = createMiddleware(routing);
@@ -285,6 +291,12 @@ export const config = {
     '/contact.html',
     '/spreadsheet-checklist.html',
     '/privacy.html',
+    '/search-ideas.html',
+    '/review.html',
+    '/reviews.html',
+    '/reddit.html',
+    '/coupons.html',
+    '/buyer-safety.html',
     '/tenants/1to1reps/:path*',
     // Match all pathnames except:
     // - /api (backend proxy rewrite)
