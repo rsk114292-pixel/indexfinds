@@ -356,6 +356,14 @@
     "releaseGateState": "local-ready-production-capacity-blocked",
     "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch11-52d7e62-local-acceptance-20260901.json"
   },
+  "continuousSeoBatch12Candidate": {
+    "domains": [
+      "parcelupindex.com"
+    ],
+    "webSourceCommit": "e079592",
+    "releaseGateState": "local-ready-production-capacity-blocked",
+    "evidence": "deploy/indexfinds/hostinger/continuous-seo-batch12-e079592-local-acceptance-20260901.json"
+  },
   "googleSearchConsole": {
     "observedAt": "2026-08-31T16:58:10+08:00",
     "verifiedDomainPropertyCount": 42,
@@ -425,6 +433,7 @@
     "deploy/indexfinds/hostinger/continuous-seo-batch8-9d57ff5-local-acceptance-20260831.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch9-a950b59-local-acceptance-20260831.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch10-8ef0b54-local-acceptance-20260901.json",
-    "deploy/indexfinds/hostinger/continuous-seo-batch11-52d7e62-local-acceptance-20260901.json"
+    "deploy/indexfinds/hostinger/continuous-seo-batch11-52d7e62-local-acceptance-20260901.json",
+    "deploy/indexfinds/hostinger/continuous-seo-batch12-e079592-local-acceptance-20260901.json"
   ]
 }
