@@ -3035,11 +3035,11 @@ const LITBUY_PRODUCTS_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "litbuyproducts.com",
     slug: "invitation-code",
-    seoTitle: "LitBuy Invitation Code | Catalog and Registration Boundary",
+    seoTitle: "LitBuy Invitation Code Guide | Verify Current Registration Offers",
     description:
-      "Research a LitBuy invitation code as registration context while keeping product discovery, seller evidence and catalog rankings independent.",
-    eyebrow: "Account boundary",
-    title: "Do not let a registration offer rank the product.",
+      "Check where a LitBuy invitation code belongs in the current registration flow, verify any displayed offer terms and keep it separate from product rankings.",
+    eyebrow: "LitBuy invitation code check",
+    title: "Verify the registration path and current offer terms.",
     intro:
       "An invitation code can be part of an account flow. It does not make a listing more complete, current or suitable for comparison.",
     sections: [
@@ -4544,9 +4544,9 @@ const GTBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
   },
   {
     domain: "gtbuyindex.com", slug: "shipping",
-    seoTitle: "GTBuy Shipping Research | From Item Record to Measured Parcel",
-    description: "Move from a GTBuy item record to parcel research using received contents, measured dimensions, packaging choices and current destination routes.",
-    eyebrow: "GTBuy parcel handoff", title: "Replace listing estimates with measured parcel evidence.",
+    seoTitle: "GTBuy Shipping Estimate Guide | Weight, Dimensions and Routes",
+    description: "Estimate GTBuy shipping with received contents, measured parcel weight and dimensions, packaging choices and current destination route terms.",
+    eyebrow: "GTBuy shipping estimate inputs", title: "Replace listing guesses with measured parcel inputs.",
     intro: "The item record identifies what was requested; the warehouse and parcel record identify what is being shipped.",
     sections: [
       { title: "Match contents", description: "Reconcile the retained product option and quantity with received warehouse records." },

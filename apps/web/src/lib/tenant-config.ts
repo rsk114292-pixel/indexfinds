@@ -1479,10 +1479,10 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     primaryColor: "#d85e25",
     primaryHoverColor: "#b84718",
     accentColor: "#ffc166",
-    seoTitle: "Parcel Up Guide | Taobao Orders, QC, Warehouse and Shipping",
+    seoTitle: "Parcel Up Index | Taobao Orders, QC and Shipping Guide",
     description:
-      "Follow a Parcel Up Taobao order from the original product source and first payment through warehouse QC, consolidation, second payment and international tracking.",
-    heroEyebrow: "Independent Parcel Up order handoff guide",
+      "Use this independent Parcel Up guide to trace a Taobao order from the original product source and first payment through warehouse QC, consolidation, second payment and tracking.",
+    heroEyebrow: "Independent Parcel Up order and shipping guide",
     heroPrimary: "Keep the Taobao source attached to every parcel step.",
     heroSecondary: "Order, warehouse, consolidate, ship.",
     supportingLine:

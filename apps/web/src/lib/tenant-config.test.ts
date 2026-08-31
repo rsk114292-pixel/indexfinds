@@ -286,6 +286,17 @@ describe("tenant config", () => {
     );
   });
 
+  it("aligns Parcel Up homepage metadata with brand-and-order intent", () => {
+    const branding = getTenantConfigByHost("parcelupindex.com")?.branding;
+
+    expect(branding).toEqual(
+      expect.objectContaining({
+        seoTitle: "Parcel Up Index | Taobao Orders, QC and Shipping Guide",
+        heroEyebrow: "Independent Parcel Up order and shipping guide",
+      }),
+    );
+  });
+
   it("gives Hipobuy a reviewed source-to-QC experience", () => {
     const tenant = getTenantConfigByHost("hipobuyindex.com");
     expect(tenant).toEqual(

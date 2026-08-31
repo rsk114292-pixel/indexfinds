@@ -216,6 +216,20 @@ describe("tenant research pages", () => {
     ]);
   });
 
+  it("aligns opportunity-page metadata with observed search intent", () => {
+    expect(
+      getTenantResearchPage("gtbuyindex.com", "shipping")?.seoTitle,
+    ).toBe(
+      "GTBuy Shipping Estimate Guide | Weight, Dimensions and Routes",
+    );
+    expect(
+      getTenantResearchPage("litbuyproducts.com", "invitation-code")
+        ?.seoTitle,
+    ).toBe(
+      "LitBuy Invitation Code Guide | Verify Current Registration Offers",
+    );
+  });
+
   it("preserves distinct Sugargoo and Superbuy evidence path sets", () => {
     expect(getTenantResearchPaths("sugargooindex.net")).toEqual([
       "/sugargoo-spreadsheet",
