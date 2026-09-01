@@ -1,0 +1,551 @@
+{
+  "generatedAt": "2026-09-01T04:36:33.842Z",
+  "release": "94961319ec705bb61b5023326b386f986d563e21",
+  "summary": {
+    "caseCount": 54,
+    "passed": 54,
+    "failed": 0
+  },
+  "results": [
+    {
+      "domain": "litbuyitems.com",
+      "path": "/litbuy-haul",
+      "target": "/en/haul-review",
+      "status": 308,
+      "location": "/en/haul-review?release=9496131",
+      "resolvedLocation": "https://litbuyitems.com/en/haul-review?release=9496131",
+      "expected": "https://litbuyitems.com/en/haul-review?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "litbuyitems.com",
+      "path": "/litbuy-spreadsheet",
+      "target": "https://litbuyindex.com/en",
+      "status": 308,
+      "location": "https://litbuyindex.com/en?release=9496131",
+      "resolvedLocation": "https://litbuyindex.com/en?release=9496131",
+      "expected": "https://litbuyindex.com/en?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "litbuyitems.com",
+      "path": "/shipping.html",
+      "target": "/en/shipping",
+      "status": 308,
+      "location": "/en/shipping?release=9496131",
+      "resolvedLocation": "https://litbuyitems.com/en/shipping?release=9496131",
+      "expected": "https://litbuyitems.com/en/shipping?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "litbuyitems.com",
+      "path": "/invitation-code.html",
+      "target": "/en/invitation-code",
+      "status": 308,
+      "location": "/en/invitation-code?release=9496131",
+      "resolvedLocation": "https://litbuyitems.com/en/invitation-code?release=9496131",
+      "expected": "https://litbuyitems.com/en/invitation-code?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "litbuyitems.com",
+      "path": "/guide.html",
+      "target": "/en/guide",
+      "status": 308,
+      "location": "/en/guide?release=9496131",
+      "resolvedLocation": "https://litbuyitems.com/en/guide?release=9496131",
+      "expected": "https://litbuyitems.com/en/guide?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "litbuyitems.com",
+      "path": "/faq.html",
+      "target": "/en/faq",
+      "status": 308,
+      "location": "/en/faq?release=9496131",
+      "resolvedLocation": "https://litbuyitems.com/en/faq?release=9496131",
+      "expected": "https://litbuyitems.com/en/faq?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "litbuyproducts.com",
+      "path": "/invitation-code.html",
+      "target": "/en/invitation-code",
+      "status": 308,
+      "location": "/en/invitation-code?release=9496131",
+      "resolvedLocation": "https://litbuyproducts.com/en/invitation-code?release=9496131",
+      "expected": "https://litbuyproducts.com/en/invitation-code?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "litbuyproducts.com",
+      "path": "/coupons.html",
+      "target": "/en/coupons",
+      "status": 308,
+      "location": "/en/coupons?release=9496131",
+      "resolvedLocation": "https://litbuyproducts.com/en/coupons?release=9496131",
+      "expected": "https://litbuyproducts.com/en/coupons?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "superbuydeals.com",
+      "path": "/shipping-weight-guide.html",
+      "target": "/en/shipping-weight-guide",
+      "status": 308,
+      "location": "/en/shipping-weight-guide?release=9496131",
+      "resolvedLocation": "https://superbuydeals.com/en/shipping-weight-guide?release=9496131",
+      "expected": "https://superbuydeals.com/en/shipping-weight-guide?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "superbuydeals.com",
+      "path": "/categories.html",
+      "target": "/en/categories",
+      "status": 308,
+      "location": "/en/categories?release=9496131",
+      "resolvedLocation": "https://superbuydeals.com/en/categories?release=9496131",
+      "expected": "https://superbuydeals.com/en/categories?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "joyagooindex.com",
+      "path": "/faq.html",
+      "target": "/en/faq",
+      "status": 308,
+      "location": "/en/faq?release=9496131",
+      "resolvedLocation": "https://joyagooindex.com/en/faq?release=9496131",
+      "expected": "https://joyagooindex.com/en/faq?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "kakobuyindex.net",
+      "path": "/safety.html",
+      "target": "/en/safety",
+      "status": 308,
+      "location": "/en/safety?release=9496131",
+      "resolvedLocation": "https://kakobuyindex.net/en/safety?release=9496131",
+      "expected": "https://kakobuyindex.net/en/safety?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "usfansindex.net",
+      "path": "/contact.html",
+      "target": "/en/contact",
+      "status": 308,
+      "location": "/en/contact?release=9496131",
+      "resolvedLocation": "https://usfansindex.net/en/contact?release=9496131",
+      "expected": "https://usfansindex.net/en/contact?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "joyabuyfinds.com",
+      "path": "/how-much-is-joyagoo-shipping",
+      "target": "/en/shipping",
+      "status": 308,
+      "location": "/en/shipping?release=9496131",
+      "resolvedLocation": "https://joyabuyfinds.com/en/shipping?release=9496131",
+      "expected": "https://joyabuyfinds.com/en/shipping?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "joyabuyfinds.com",
+      "path": "/how-to-use-joyagoo",
+      "target": "/en/guide",
+      "status": 308,
+      "location": "/en/guide?release=9496131",
+      "resolvedLocation": "https://joyabuyfinds.com/en/guide?release=9496131",
+      "expected": "https://joyabuyfinds.com/en/guide?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "joyabuyfinds.com",
+      "path": "/joyagoo-shopping-guide",
+      "target": "/en/guide",
+      "status": 308,
+      "location": "/en/guide?release=9496131",
+      "resolvedLocation": "https://joyabuyfinds.com/en/guide?release=9496131",
+      "expected": "https://joyabuyfinds.com/en/guide?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "joyabuyfinds.com",
+      "path": "/faq.html",
+      "target": "/en/faq",
+      "status": 308,
+      "location": "/en/faq?release=9496131",
+      "resolvedLocation": "https://joyabuyfinds.com/en/faq?release=9496131",
+      "expected": "https://joyabuyfinds.com/en/faq?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "orientdigindex.com",
+      "path": "/categories.html",
+      "target": "/en/categories",
+      "status": 308,
+      "location": "/en/categories?release=9496131",
+      "resolvedLocation": "https://orientdigindex.com/en/categories?release=9496131",
+      "expected": "https://orientdigindex.com/en/categories?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "orientdigindex.com",
+      "path": "/spreadsheet-checklist.html",
+      "target": "/en/spreadsheet-checklist",
+      "status": 308,
+      "location": "/en/spreadsheet-checklist?release=9496131",
+      "resolvedLocation": "https://orientdigindex.com/en/spreadsheet-checklist?release=9496131",
+      "expected": "https://orientdigindex.com/en/spreadsheet-checklist?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "orientdigindex.com",
+      "path": "/privacy.html",
+      "target": "/en/privacy",
+      "status": 308,
+      "location": "/en/privacy?release=9496131",
+      "resolvedLocation": "https://orientdigindex.com/en/privacy?release=9496131",
+      "expected": "https://orientdigindex.com/en/privacy?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "eastmallbuyindex.com",
+      "path": "/reddit.html",
+      "target": "/en/reddit",
+      "status": 308,
+      "location": "/en/reddit?release=9496131",
+      "resolvedLocation": "https://eastmallbuyindex.com/en/reddit?release=9496131",
+      "expected": "https://eastmallbuyindex.com/en/reddit?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "fishgooindex.com",
+      "path": "/faq.html",
+      "target": "/en/faq",
+      "status": 308,
+      "location": "/en/faq?release=9496131",
+      "resolvedLocation": "https://fishgooindex.com/en/faq?release=9496131",
+      "expected": "https://fishgooindex.com/en/faq?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "goatedbuyindex.com",
+      "path": "/safety.html",
+      "target": "/en/safety",
+      "status": 308,
+      "location": "/en/safety?release=9496131",
+      "resolvedLocation": "https://goatedbuyindex.com/en/safety?release=9496131",
+      "expected": "https://goatedbuyindex.com/en/safety?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "goatedbuyindex.com",
+      "path": "/guide.html",
+      "target": "/en/guide",
+      "status": 308,
+      "location": "/en/guide?release=9496131",
+      "resolvedLocation": "https://goatedbuyindex.com/en/guide?release=9496131",
+      "expected": "https://goatedbuyindex.com/en/guide?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "goatedbuyindex.com",
+      "path": "/search-ideas.html",
+      "target": "/en/search-ideas",
+      "status": 308,
+      "location": "/en/search-ideas?release=9496131",
+      "resolvedLocation": "https://goatedbuyindex.com/en/search-ideas?release=9496131",
+      "expected": "https://goatedbuyindex.com/en/search-ideas?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "goatedbuyindex.com",
+      "path": "/faq.html",
+      "target": "/en/faq",
+      "status": 308,
+      "location": "/en/faq?release=9496131",
+      "resolvedLocation": "https://goatedbuyindex.com/en/faq?release=9496131",
+      "expected": "https://goatedbuyindex.com/en/faq?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "gtbuyindex.com",
+      "path": "/categories.html",
+      "target": "/en/categories",
+      "status": 308,
+      "location": "/en/categories?release=9496131",
+      "resolvedLocation": "https://gtbuyindex.com/en/categories?release=9496131",
+      "expected": "https://gtbuyindex.com/en/categories?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "gtbuyindex.com",
+      "path": "/shipping.html",
+      "target": "/en/shipping",
+      "status": 308,
+      "location": "/en/shipping?release=9496131",
+      "resolvedLocation": "https://gtbuyindex.com/en/shipping?release=9496131",
+      "expected": "https://gtbuyindex.com/en/shipping?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "gtbuyindex.com",
+      "path": "/safety.html",
+      "target": "/en/safety",
+      "status": 308,
+      "location": "/en/safety?release=9496131",
+      "resolvedLocation": "https://gtbuyindex.com/en/safety?release=9496131",
+      "expected": "https://gtbuyindex.com/en/safety?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "gtbuyindex.com",
+      "path": "/guide.html",
+      "target": "/en/guide",
+      "status": 308,
+      "location": "/en/guide?release=9496131",
+      "resolvedLocation": "https://gtbuyindex.com/en/guide?release=9496131",
+      "expected": "https://gtbuyindex.com/en/guide?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "gtbuyindex.com",
+      "path": "/faq.html",
+      "target": "/en/faq",
+      "status": 308,
+      "location": "/en/faq?release=9496131",
+      "resolvedLocation": "https://gtbuyindex.com/en/faq?release=9496131",
+      "expected": "https://gtbuyindex.com/en/faq?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "kameymallindex.com",
+      "path": "/review.html",
+      "target": "/en/review",
+      "status": 308,
+      "location": "/en/review?release=9496131",
+      "resolvedLocation": "https://kameymallindex.com/en/review?release=9496131",
+      "expected": "https://kameymallindex.com/en/review?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "kameymallindex.com",
+      "path": "/categories.html",
+      "target": "/en/categories",
+      "status": 308,
+      "location": "/en/categories?release=9496131",
+      "resolvedLocation": "https://kameymallindex.com/en/categories?release=9496131",
+      "expected": "https://kameymallindex.com/en/categories?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "kameymallindex.com",
+      "path": "/search-ideas.html",
+      "target": "/en/search-ideas",
+      "status": 308,
+      "location": "/en/search-ideas?release=9496131",
+      "resolvedLocation": "https://kameymallindex.com/en/search-ideas?release=9496131",
+      "expected": "https://kameymallindex.com/en/search-ideas?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "kameymallindex.com",
+      "path": "/safety.html",
+      "target": "/en/safety",
+      "status": 308,
+      "location": "/en/safety?release=9496131",
+      "resolvedLocation": "https://kameymallindex.com/en/safety?release=9496131",
+      "expected": "https://kameymallindex.com/en/safety?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "kameymallindex.com",
+      "path": "/shipping.html",
+      "target": "/en/shipping",
+      "status": 308,
+      "location": "/en/shipping?release=9496131",
+      "resolvedLocation": "https://kameymallindex.com/en/shipping?release=9496131",
+      "expected": "https://kameymallindex.com/en/shipping?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "loongbuys.net",
+      "path": "/safety.html",
+      "target": "/en/safety",
+      "status": 308,
+      "location": "/en/safety?release=9496131",
+      "resolvedLocation": "https://loongbuys.net/en/safety?release=9496131",
+      "expected": "https://loongbuys.net/en/safety?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "loongbuys.net",
+      "path": "/faq.html",
+      "target": "/en/faq",
+      "status": 308,
+      "location": "/en/faq?release=9496131",
+      "resolvedLocation": "https://loongbuys.net/en/faq?release=9496131",
+      "expected": "https://loongbuys.net/en/faq?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "loongbuys.net",
+      "path": "/reviews.html",
+      "target": "/en/reviews",
+      "status": 308,
+      "location": "/en/reviews?release=9496131",
+      "resolvedLocation": "https://loongbuys.net/en/reviews?release=9496131",
+      "expected": "https://loongbuys.net/en/reviews?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "loongbuys.net",
+      "path": "/guide.html",
+      "target": "/en/guide",
+      "status": 308,
+      "location": "/en/guide?release=9496131",
+      "resolvedLocation": "https://loongbuys.net/en/guide?release=9496131",
+      "expected": "https://loongbuys.net/en/guide?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "mulebuyindex.net",
+      "path": "/shipping-weight-guide.html",
+      "target": "/en/shipping-weight-guide",
+      "status": 308,
+      "location": "/en/shipping-weight-guide?release=9496131",
+      "resolvedLocation": "https://mulebuyindex.net/en/shipping-weight-guide?release=9496131",
+      "expected": "https://mulebuyindex.net/en/shipping-weight-guide?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "mulebuyindex.net",
+      "path": "/contact.html",
+      "target": "/en/contact",
+      "status": 308,
+      "location": "/en/contact?release=9496131",
+      "resolvedLocation": "https://mulebuyindex.net/en/contact?release=9496131",
+      "expected": "https://mulebuyindex.net/en/contact?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "mulebuyindex.net",
+      "path": "/faq.html",
+      "target": "/en/faq",
+      "status": 308,
+      "location": "/en/faq?release=9496131",
+      "resolvedLocation": "https://mulebuyindex.net/en/faq?release=9496131",
+      "expected": "https://mulebuyindex.net/en/faq?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "mulebuyitems.com",
+      "path": "/mulebuy-items",
+      "target": "/en/mulebuy-spreadsheet",
+      "status": 308,
+      "location": "/en/mulebuy-spreadsheet?release=9496131",
+      "resolvedLocation": "https://mulebuyitems.com/en/mulebuy-spreadsheet?release=9496131",
+      "expected": "https://mulebuyitems.com/en/mulebuy-spreadsheet?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "mulebuyitems.com",
+      "path": "/shipping-weight-guide.html",
+      "target": "/en/shipping-weight-guide",
+      "status": 308,
+      "location": "/en/shipping-weight-guide?release=9496131",
+      "resolvedLocation": "https://mulebuyitems.com/en/shipping-weight-guide?release=9496131",
+      "expected": "https://mulebuyitems.com/en/shipping-weight-guide?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "mulebuyitems.com",
+      "path": "/faq.html",
+      "target": "/en/faq",
+      "status": 308,
+      "location": "/en/faq?release=9496131",
+      "resolvedLocation": "https://mulebuyitems.com/en/faq?release=9496131",
+      "expected": "https://mulebuyitems.com/en/faq?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "mulebuyitems.com",
+      "path": "/buyer-safety.html",
+      "target": "/en/buyer-safety",
+      "status": 308,
+      "location": "/en/buyer-safety?release=9496131",
+      "resolvedLocation": "https://mulebuyitems.com/en/buyer-safety?release=9496131",
+      "expected": "https://mulebuyitems.com/en/buyer-safety?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "mulebuyitems.com",
+      "path": "/contact.html",
+      "target": "/en/contact",
+      "status": 308,
+      "location": "/en/contact?release=9496131",
+      "resolvedLocation": "https://mulebuyitems.com/en/contact?release=9496131",
+      "expected": "https://mulebuyitems.com/en/contact?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "mulebuyitems.com",
+      "path": "/categories.html",
+      "target": "/en/categories",
+      "status": 308,
+      "location": "/en/categories?release=9496131",
+      "resolvedLocation": "https://mulebuyitems.com/en/categories?release=9496131",
+      "expected": "https://mulebuyitems.com/en/categories?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "bbdbuyeufinds.com",
+      "path": "/bbdbuyeu-product-discovery",
+      "target": "/en/eu-finds",
+      "status": 308,
+      "location": "/en/eu-finds?release=9496131",
+      "resolvedLocation": "https://bbdbuyeufinds.com/en/eu-finds?release=9496131",
+      "expected": "https://bbdbuyeufinds.com/en/eu-finds?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "bbdbuyeufinds.com",
+      "path": "/bbdbuyeu-qc-photo-finds",
+      "target": "/en/qc-checklist",
+      "status": 308,
+      "location": "/en/qc-checklist?release=9496131",
+      "resolvedLocation": "https://bbdbuyeufinds.com/en/qc-checklist?release=9496131",
+      "expected": "https://bbdbuyeufinds.com/en/qc-checklist?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "bbdbuyeufinds.com",
+      "path": "/news/bbdbuyeu-finds-checklist",
+      "target": "/en/eu-finds",
+      "status": 308,
+      "location": "/en/eu-finds?release=9496131",
+      "resolvedLocation": "https://bbdbuyeufinds.com/en/eu-finds?release=9496131",
+      "expected": "https://bbdbuyeufinds.com/en/eu-finds?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "bbdbuyeufinds.com",
+      "path": "/news/how-bbdbuyeu-finds-work",
+      "target": "/en/eu-guide",
+      "status": 308,
+      "location": "/en/eu-guide?release=9496131",
+      "resolvedLocation": "https://bbdbuyeufinds.com/en/eu-guide?release=9496131",
+      "expected": "https://bbdbuyeufinds.com/en/eu-guide?release=9496131",
+      "ok": true
+    },
+    {
+      "domain": "allchinabuyfinder.com",
+      "path": "/allchinabuy-finder",
+      "target": "/en/finder-guide",
+      "status": 308,
+      "location": "/en/finder-guide?release=9496131",
+      "resolvedLocation": "https://allchinabuyfinder.com/en/finder-guide?release=9496131",
+      "expected": "https://allchinabuyfinder.com/en/finder-guide?release=9496131",
+      "ok": true
+    }
+  ]
+}

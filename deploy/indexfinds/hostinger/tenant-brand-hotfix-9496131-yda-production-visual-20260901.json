@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-09-01T04:38:24.507Z",
+  "summary": {
+    "domainCount": 2,
+    "viewCount": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "results": [
+    {
+      "domain": "ydaexpress.net",
+      "viewport": "desktop",
+      "status": 200,
+      "overflow": false,
+      "broken": [],
+      "barRatio": 0.7777777777777778,
+      "centerOffset": 0,
+      "heroBackground": "",
+      "heroHasUrlBackground": false,
+      "h1Visible": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "badResponses": [],
+      "ok": true
+    },
+    {
+      "domain": "ydaexpress.net",
+      "viewport": "mobile",
+      "status": 200,
+      "overflow": false,
+      "broken": [],
+      "barRatio": 0.9179487179487179,
+      "centerOffset": 0,
+      "heroBackground": "",
+      "heroHasUrlBackground": false,
+      "h1Visible": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "badResponses": [],
+      "ok": true
+    },
+    {
+      "domain": "ydaexpress.org",
+      "viewport": "desktop",
+      "status": 200,
+      "overflow": false,
+      "broken": [],
+      "barRatio": 0.7777777777777778,
+      "centerOffset": 0,
+      "heroBackground": "",
+      "heroHasUrlBackground": false,
+      "h1Visible": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "badResponses": [],
+      "ok": true
+    },
+    {
+      "domain": "ydaexpress.org",
+      "viewport": "mobile",
+      "status": 200,
+      "overflow": false,
+      "broken": [],
+      "barRatio": 0.9179487179487179,
+      "centerOffset": 0,
+      "heroBackground": "",
+      "heroHasUrlBackground": false,
+      "h1Visible": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "badResponses": [],
+      "ok": true
+    }
+  ]
+}
