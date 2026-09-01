@@ -603,6 +603,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     indexing: "ready",
     indexablePaths: [
       "",
+      "/categories",
       "/parcel-brief",
       "/warehouse-checklist",
       "/consolidation-planner",
@@ -642,6 +643,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     indexing: "ready",
     indexablePaths: [
       "",
+      "/categories",
       "/service-map",
       "/terms-checklist",
       "/shopping-agent-vs-forwarding",

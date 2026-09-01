@@ -40,14 +40,11 @@ describe("tenant research pages", () => {
   });
 
   it("keeps every Next-hosted tenant out of the generic category fallback", () => {
-    const nextHostedTenants = SUBSITE_GUIDES.filter(
-      ({ domain }) => !domain.startsWith("ydaexpress."),
-    );
-    const missingCategoryFronts = nextHostedTenants
+    const missingCategoryFronts = SUBSITE_GUIDES
       .filter(({ domain }) => !getTenantResearchPage(domain, "categories"))
       .map(({ domain }) => domain);
 
-    expect(nextHostedTenants).toHaveLength(43);
+    expect(SUBSITE_GUIDES).toHaveLength(45);
     expect(missingCategoryFronts).toEqual([]);
   });
 
@@ -373,6 +370,7 @@ describe("tenant research pages", () => {
       "/consolidation-planner",
       "/tracking-handoff",
       "/faq",
+      "/categories",
     ]);
     expect(getTenantResearchPaths("ydaexpress.org")).toEqual([
       "/service-map",
@@ -380,6 +378,7 @@ describe("tenant research pages", () => {
       "/shopping-agent-vs-forwarding",
       "/quote-evidence",
       "/faq",
+      "/categories",
     ]);
     expect(
       getTenantResearchPage("ydaexpress.net", "terms-checklist"),
@@ -443,10 +442,10 @@ describe("tenant research pages", () => {
   it("keeps every reviewed page specific and evidence-led", () => {
     const pages = getAllTenantResearchPages();
 
-    expect(pages).toHaveLength(294);
-    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(294);
-    expect(new Set(pages.map((page) => page.description)).size).toBe(294);
-    expect(new Set(pages.map((page) => page.title)).size).toBe(294);
+    expect(pages).toHaveLength(296);
+    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(296);
+    expect(new Set(pages.map((page) => page.description)).size).toBe(296);
+    expect(new Set(pages.map((page) => page.title)).size).toBe(296);
 
     const copy = JSON.stringify(pages);
     expect(copy).not.toMatch(/IndexFinds|official ACBuy site/i);

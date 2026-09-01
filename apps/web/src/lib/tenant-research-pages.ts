@@ -5681,6 +5681,20 @@ const TENANT_CATEGORY_FRONT_PAGES: readonly TenantResearchPage[] = [
       { title: "Electronics", description: "Verify model, voltage, plug, interface and compatibility fields before comparing an external route." },
     ],
   },
+  {
+    domain: "ydaexpress.net", slug: "categories", seoTitle: "YDA Parcel Categories | Content-Specific Warehouse Checks", description: "Organize YDA parcel research by content type while keeping warehouse measurements, consolidation choices, restrictions and route questions separate.", eyebrow: "YDA parcel category front", title: "Let the parcel contents define the warehouse evidence required.", intro: "The category identifies parcel-sensitive questions, while measured dimensions and current route terms remain separate evidence.", sections: [
+      { title: "Wearable and soft goods", description: "Record item count, packaging choice, measured weight and dimensions before consolidation." },
+      { title: "Fragile and structured goods", description: "Document protective packaging, measured size and any consolidation constraint visible at the warehouse." },
+      { title: "Electronics and restricted contents", description: "Identify batteries, liquids, plugs and other route-sensitive contents before requesting a current quote." },
+    ],
+  },
+  {
+    domain: "ydaexpress.org", slug: "categories", seoTitle: "YDA Source Review Categories | Evidence by Service Question", description: "Organize YDA source reviews by product and service category while separating published terms, quote inputs, restrictions and tracking evidence.", eyebrow: "YDA source category front", title: "Match each category question to the source responsible for it.", intro: "A category can identify which terms to review, but current service pages, quotes and tracking records remain the evidence.", sections: [
+      { title: "Standard merchandise", description: "Check published service scope, warehouse requirements and the exact quote inputs used for the parcel." },
+      { title: "Sensitive or restricted goods", description: "Verify current content restrictions and route eligibility without relying on a generic category label." },
+      { title: "Tracking and delivery evidence", description: "Keep carrier, tracking number, scan events and destination records separate from earlier service claims." },
+    ],
+  },
 ];
 
 const TENANT_RESEARCH_PAGES = [

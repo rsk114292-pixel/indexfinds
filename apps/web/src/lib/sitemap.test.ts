@@ -513,11 +513,11 @@ describe('sitemap', () => {
     ],
     [
       'ydaexpress.net',
-      ['', '/parcel-brief', '/warehouse-checklist', '/consolidation-planner', '/tracking-handoff', '/faq'],
+      ['', '/categories', '/parcel-brief', '/warehouse-checklist', '/consolidation-planner', '/tracking-handoff', '/faq'],
     ],
     [
       'ydaexpress.org',
-      ['', '/service-map', '/terms-checklist', '/shopping-agent-vs-forwarding', '/quote-evidence', '/faq'],
+      ['', '/categories', '/service-map', '/terms-checklist', '/shopping-agent-vs-forwarding', '/quote-evidence', '/faq'],
     ],
     [
       'yoybuyindex.com',

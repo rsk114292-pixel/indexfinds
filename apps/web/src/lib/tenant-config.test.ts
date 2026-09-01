@@ -203,7 +203,7 @@ describe("tenant config", () => {
         faviconPath: "/tenants/ydaexpress-net/favicon.svg",
         indexing: "ready",
         indexablePaths: [
-          "", "/parcel-brief", "/warehouse-checklist",
+          "", "/categories", "/parcel-brief", "/warehouse-checklist",
           "/consolidation-planner", "/tracking-handoff", "/faq",
         ],
       }),
@@ -215,7 +215,7 @@ describe("tenant config", () => {
         faviconPath: "/tenants/ydaexpress-org/favicon.svg",
         indexing: "ready",
         indexablePaths: [
-          "", "/service-map", "/terms-checklist",
+          "", "/categories", "/service-map", "/terms-checklist",
           "/shopping-agent-vs-forwarding", "/quote-evidence", "/faq",
         ],
       }),
