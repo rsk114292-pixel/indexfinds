@@ -9,6 +9,7 @@ interface MobileSubPageHeaderProps {
   title: string;
   rightAction?: React.ReactNode;
   scrollHide?: boolean;
+  headingLevel?: 'h1' | 'div';
 }
 
 /**
@@ -26,10 +27,12 @@ export default function MobileSubPageHeader({
   title,
   rightAction,
   scrollHide = false,
+  headingLevel = 'h1',
 }: MobileSubPageHeaderProps) {
   const router = useRouter();
   const tc = useTranslations('common');
   const { headerVisible } = useScrollDirection({ disabled: !scrollHide });
+  const TitleElement = headingLevel;
 
   return (
     <>
@@ -48,9 +51,9 @@ export default function MobileSubPageHeader({
           </button>
 
           {/* 标题 */}
-          <h1 className="flex-1 text-base font-semibold text-foreground truncate pr-2 rtl:pl-2 rtl:pr-0">
+          <TitleElement className="flex-1 text-base font-semibold text-foreground truncate pr-2 rtl:pl-2 rtl:pr-0">
             {title}
-          </h1>
+          </TitleElement>
 
           {/* 右侧操作区（可选） */}
           {rightAction && (

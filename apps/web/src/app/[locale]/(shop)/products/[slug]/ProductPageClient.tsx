@@ -600,7 +600,7 @@ function ProductHeader({
           </Tag>
         ) : null}
       </div>
-      <h1 className="text-3xl font-bold text-foreground mb-2">{title}</h1>
+      <h2 className="text-3xl font-bold text-foreground mb-2">{title}</h2>
     </div>
   );
 }

@@ -186,6 +186,7 @@ export default function MobileBrandDetail({
       {/* 子页面返回顶栏 */}
       <MobileSubPageHeader
         title={brand?.name || slug}
+        headingLevel="div"
         scrollHide
         rightAction={
           <button
@@ -220,9 +221,9 @@ export default function MobileBrandDetail({
           )}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <h1 className="text-lg font-bold text-foreground truncate">
+              <h2 className="text-lg font-bold text-foreground truncate">
                 {brand.name}
-              </h1>
+              </h2>
               {(brand.tier === 1 || brand.tier === 2) && (
                 <Tag color="accent" size="sm">{t('popular')}</Tag>
               )}

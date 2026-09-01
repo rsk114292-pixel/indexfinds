@@ -207,6 +207,7 @@ export default function MobileCategoryDetail({
       {/* 子页面返回顶栏 */}
       <MobileSubPageHeader
         title={initialCategory ? getLocalizedName(initialCategory, locale) : slug}
+        headingLevel="div"
         scrollHide
         rightAction={
           <button
@@ -222,9 +223,9 @@ export default function MobileCategoryDetail({
 
       {/* 分类名称 */}
       <div className="px-4 pt-3 pb-1">
-        <h1 className="text-lg font-bold text-foreground">
+        <h2 className="text-lg font-bold text-foreground">
           {initialCategory ? getLocalizedName(initialCategory, locale) : slug}
-        </h1>
+        </h2>
       </div>
 
       {/* 子分类导航 + 热门品牌 */}

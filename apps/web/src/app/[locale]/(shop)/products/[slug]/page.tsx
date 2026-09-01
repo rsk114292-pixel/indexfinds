@@ -158,6 +158,7 @@ export default async function ProductPage({
 
   return (
     <>
+      <h1 className="sr-only">{product.title}</h1>
       {/* JSON-LD 结构化数据 */}
       {!tenant && product.seoIndexable === true && (
         <ProductJsonLd

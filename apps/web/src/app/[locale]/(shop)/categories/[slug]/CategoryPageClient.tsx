@@ -214,7 +214,7 @@ export default function CategoryPageClient({
                     className="inline-flex items-center px-3 py-1.5 rounded-full text-sm border border-gray-200 text-gray-600 hover:border-primary hover:text-primary transition-colors"
                   >
                     {brand.name}
-                    <span className="ml-1.5 text-xs text-gray-400">({brand.count})</span>
+                    <span className="ml-1.5 text-xs text-slate-600">({brand.count})</span>
                   </Link>
                 ))}
               </div>

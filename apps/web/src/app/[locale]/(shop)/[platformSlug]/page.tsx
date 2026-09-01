@@ -193,7 +193,7 @@ export default async function TenantResearchPage({
     : "border-white/25 text-white hover:border-white/60 hover:bg-white/8 focus-visible:ring-white focus-visible:ring-offset-[#092d35]";
 
   return (
-    <main className={mainClass}>
+    <div className={mainClass}>
       <BreadcrumbJsonLd
         locale="en"
         homeName={branding.siteName}
@@ -893,6 +893,6 @@ export default async function TenantResearchPage({
           </Link>
         </div>
       </aside>
-    </main>
+    </div>
   );
 }

@@ -263,11 +263,15 @@ function pageMetadata(url, response, html) {
     html,
     /<link[^>]+rel=["'](?:shortcut )?icon["'][^>]+href=["']([^"']+)["']/i,
   );
-  const h1 =
-    match(html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i)
-      ?.replace(/<[^>]+>/g, " ")
-      .replace(/\s+/g, " ")
-      .trim() || null;
+  const h1Values = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)].map(
+    (entry) =>
+      entry[1]
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim(),
+  );
+  const h1 = h1Values[0] || null;
+  const h1Count = h1Values.length;
   const failures = [];
   const expectedCanonical = normalizeUrl(url);
   const actualCanonical = canonical
@@ -277,7 +281,14 @@ function pageMetadata(url, response, html) {
   if (response.status !== 200) failures.push(`status ${response.status}`);
   if (!title) failures.push("missing title");
   if (!description) failures.push("missing description");
-  if (!h1) failures.push("missing h1");
+  if (h1Count !== 1) failures.push(`expected one h1, found ${h1Count}`);
+  const metadataText = [title, description, h1].filter(Boolean).join(" ");
+  if (/\b(?:search_term_string|undefined|null)\b|lorem ipsum/i.test(metadataText)) {
+    failures.push("placeholder text in title, description or h1");
+  }
+  if (/\bIndexFinds\b/i.test([title, description].filter(Boolean).join(" "))) {
+    failures.push("generic IndexFinds text in tenant metadata");
+  }
   if (!robots || !/\bindex\b/i.test(robots) || /\bnoindex\b/i.test(robots)) {
     failures.push(`unexpected robots metadata: ${robots || "missing"}`);
   }
@@ -296,6 +307,7 @@ function pageMetadata(url, response, html) {
     title,
     description,
     h1,
+    h1Count,
     robots,
     canonical: actualCanonical,
     favicon,

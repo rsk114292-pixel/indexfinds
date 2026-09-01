@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-09-01T13:24:00.000Z",
+  "environment": "local-production-build",
+  "deployed": false,
+  "scope": {
+    "tenantCount": 43,
+    "browserPageViews": 673,
+    "pageTypes": [
+      "sitemap-indexed pages",
+      "product lists",
+      "brand details",
+      "category details",
+      "product details",
+      "tenant guides",
+      "mobile shared routes"
+    ]
+  },
+  "changes": [
+    "one page-level H1 across desktop and mobile render branches",
+    "tenant-safe brand metadata without generic IndexFinds residue",
+    "single main landmark on tenant guide routes",
+    "translated category disclosure names and state",
+    "readable filter count contrast and accessible target sizes",
+    "streaming loading fallback reserves the first viewport to prevent footer layout shift",
+    "mobile initial product page is capped at its 20-item pagination size",
+    "tenant SEO audit rejects duplicate H1 and generic metadata residue"
+  ],
+  "validation": {
+    "jest": {
+      "suiteCount": 130,
+      "passedSuiteCount": 130,
+      "testCount": 914,
+      "passedTestCount": 914
+    },
+    "typescript": "pass",
+    "nextBuild": {
+      "result": "pass",
+      "generatedStaticPages": 48
+    },
+    "browserAudit": {
+      "passedTenantCount": 43,
+      "failedTenantCount": 0,
+      "passedPageViewCount": 673,
+      "failedPageViewCount": 0,
+      "failureCount": 0,
+      "warningCount": 286,
+      "warningExplanation": "All warnings are audit-induced API 429 responses and their matching console messages; no 404, 5xx, broken image, invalid metadata, invalid structured data, overflow or unlabeled-control failure was recorded."
+    },
+    "lighthouseDesktopProducts": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "bestPractices": 1,
+      "seo": 0.69,
+      "fcpSeconds": 0.4,
+      "lcpSeconds": 1.2,
+      "cls": 0,
+      "tbtMilliseconds": 20,
+      "seoNote": "The shared tenant product route is intentionally noindex until independently approved, so the generic Lighthouse SEO score is not an indexing-gate failure."
+    },
+    "lighthouseMobileProducts": {
+      "performance": 0.73,
+      "accessibility": 1,
+      "bestPractices": 0.96,
+      "fcpSeconds": 1.8,
+      "lcpSeconds": 5,
+      "cls": 0.004,
+      "tbtMilliseconds": 210,
+      "domElements": 2804,
+      "mainThreadSeconds": 6.1,
+      "labNote": "The local run spent about 2.4 seconds waiting for the remote API response. It is laboratory data, not CrUX field data or field INP. The best-practices deduction is one audit-induced 429 response from /api/platforms/active."
+    }
+  },
+  "hostingerDisk": {
+    "before": {
+      "usedPercent": 93,
+      "availableGiB": 15
+    },
+    "after": {
+      "usedPercent": 79,
+      "availableGiB": 43
+    },
+    "removedOnly": [
+      "Next.js image caches in the six active web containers",
+      "unused Docker builder cache"
+    ],
+    "preserved": [
+      "databases",
+      "uploads",
+      "product source images",
+      "encrypted backups",
+      "current production images and volumes",
+      "environment variables",
+      "SSL certificates",
+      "Nginx production configuration"
+    ]
+  }
+}

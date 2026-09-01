@@ -4,6 +4,8 @@ import type { CategoryFacetItem } from './types';
 
 jest.mock('next-intl', () => ({
   useLocale: () => 'en',
+  useTranslations: () => (key: string) =>
+    ({ expand: 'Expand', collapse: 'Collapse' })[key] || key,
 }));
 
 const mockCategories: CategoryFacetItem[] = [
@@ -55,8 +57,12 @@ describe('CategoryFilter', () => {
     expect(screen.queryByText('Boots')).not.toBeInTheDocument();
 
     // 点击展开箭头
-    const expandBtn = screen.getByText('Shoes').closest('div')!.querySelector('button')!;
+    const expandBtn = screen.getByRole('button', { name: 'Expand Shoes' });
+    expect(expandBtn).toHaveAttribute('aria-expanded', 'false');
     fireEvent.click(expandBtn);
+
+    expect(expandBtn).toHaveAttribute('aria-label', 'Collapse Shoes');
+    expect(expandBtn).toHaveAttribute('aria-expanded', 'true');
 
     expect(screen.getByText('Sneakers')).toBeInTheDocument();
     expect(screen.getByText('Boots')).toBeInTheDocument();

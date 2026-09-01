@@ -60,7 +60,7 @@ const SortSelect = dynamic(() => import("@/components/SortSelect"));
 function PageLoading() {
   return (
     <div
-      className={`${DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS} flex justify-center py-8`}
+      className={`${DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS} flex min-h-[calc(100dvh-4rem)] items-center justify-center py-8`}
     >
       <Spinner size="lg" />
     </div>
@@ -183,14 +183,15 @@ function ProductsContent({
 
   return (
     <>
+      <h1 className="sr-only">{t("allProducts")}</h1>
       {/* ── PC 端视图 ── */}
       <div className="hidden lg:block">
         <div className={`${DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS} py-6`}>
           {/* 页面标题 */}
           <div className="mb-6">
-            <h1 className="text-2xl font-bold text-foreground mb-2">
+            <h2 className="text-2xl font-bold text-foreground mb-2">
               {t("allProducts")}
-            </h1>
+            </h2>
             <p className="text-muted" aria-live="polite">
               {isLoading ? tc("loading") : t("productCount", { count: total })}
             </p>

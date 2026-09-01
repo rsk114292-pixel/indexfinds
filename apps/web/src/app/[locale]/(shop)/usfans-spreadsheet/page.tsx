@@ -110,7 +110,7 @@ export default async function UsfansSpreadsheetPage({
         items={[{ name: 'USFans spreadsheet research', url: '/usfans-spreadsheet' }]}
       />
       <FAQPageJsonLd items={[...FAQ_ITEMS]} />
-      <main className="bg-[#f5f7fb] text-[#111827]">
+      <div className="bg-[#f5f7fb] text-[#111827]">
         <section className="container mx-auto px-4 py-14 sm:py-18 lg:py-22">
           <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(300px,0.75fr)]">
             <div>
@@ -287,7 +287,7 @@ export default async function UsfansSpreadsheetPage({
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

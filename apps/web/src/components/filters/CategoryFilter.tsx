@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import type { CategoryFacetItem } from './types';
 
 interface CategoryFilterProps {
@@ -29,6 +29,8 @@ function CategoryNode({
   selectedValues,
   onChange,
   locale,
+  expandLabel,
+  collapseLabel,
   depth = 0,
   ancestorSlugs = [],
 }: {
@@ -36,6 +38,8 @@ function CategoryNode({
   selectedValues: string[];
   onChange: (values: string[]) => void;
   locale: string;
+  expandLabel: string;
+  collapseLabel: string;
   depth?: number;
   ancestorSlugs?: string[];
 }) {
@@ -59,7 +63,7 @@ function CategoryNode({
   return (
     <div>
       <div
-        className="flex items-center gap-1 group"
+        className="flex items-center gap-2 group"
         style={{ paddingLeft: depth * 16 }}
       >
         {/* 展开/折叠箭头 */}
@@ -67,7 +71,9 @@ function CategoryNode({
           <button
             type="button"
             onClick={() => setExpanded(!expanded)}
-            className="flex items-center justify-center w-5 h-5 flex-shrink-0 text-gray-400 hover:text-gray-600 transition-colors"
+            aria-expanded={expanded}
+            aria-label={`${expanded ? collapseLabel : expandLabel} ${getLocalizedName(node, locale)}`}
+            className="flex h-6 w-6 flex-shrink-0 items-center justify-center text-gray-500 transition-colors hover:text-gray-700"
           >
             <ChevronRight
               className={`w-3.5 h-3.5 transition-transform duration-200 ${
@@ -76,21 +82,21 @@ function CategoryNode({
             />
           </button>
         ) : (
-          <span className="w-5 flex-shrink-0" />
+          <span className="w-6 flex-shrink-0" />
         )}
 
         {/* Checkbox + 名称 */}
-        <label className="flex items-center gap-2 flex-1 min-h-[36px] cursor-pointer rounded px-1 -mx-1 transition-colors duration-200 hover:bg-gray-50">
+        <label className="flex min-h-10 flex-1 cursor-pointer items-center gap-2 rounded px-1 -mx-1 transition-colors duration-200 hover:bg-gray-50">
           <input
             type="checkbox"
             checked={isSelected}
             onChange={handleToggle}
-            className="w-4 h-4 rounded border-border text-primary accent-primary cursor-pointer"
+            className="h-6 w-6 cursor-pointer rounded border-border text-primary accent-primary"
           />
           <span className="text-sm flex-1">
             {getLocalizedName(node, locale)}
           </span>
-          <span className="text-xs text-gray-400 tabular-nums">
+          <span className="text-xs text-slate-600 tabular-nums">
             {node.count}
           </span>
         </label>
@@ -106,6 +112,8 @@ function CategoryNode({
               selectedValues={selectedValues}
               onChange={onChange}
               locale={locale}
+              expandLabel={expandLabel}
+              collapseLabel={collapseLabel}
               depth={depth + 1}
               ancestorSlugs={[...ancestorSlugs, node.slug]}
             />
@@ -137,6 +145,7 @@ export function CategoryFilter({
   onChange,
 }: CategoryFilterProps) {
   const locale = useLocale();
+  const t = useTranslations('filter');
   const [showAll, setShowAll] = useState(false);
 
   if (categories.length === 0) return null;
@@ -153,6 +162,8 @@ export function CategoryFilter({
           selectedValues={selectedValues}
           onChange={onChange}
           locale={locale}
+          expandLabel={t('expand')}
+          collapseLabel={t('collapse')}
         />
       ))}
       {hasMore && (

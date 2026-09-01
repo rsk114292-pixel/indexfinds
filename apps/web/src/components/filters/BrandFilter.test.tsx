@@ -28,12 +28,12 @@ describe('BrandFilter', () => {
     render(<ControlledBrandFilter />);
 
     expect(screen.queryByLabelText('Filter by brand Brand 19')).not.toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: 'Show more brands' }));
+    fireEvent.click(screen.getByRole('button', { name: 'showMoreCount' }));
 
     const lastBrand = screen.getByLabelText('Filter by brand Brand 19');
     expect(lastBrand).toBeInTheDocument();
     expect(lastBrand.closest('div')).toHaveClass('max-h-72', 'overflow-y-auto');
-    expect(screen.getByRole('button', { name: 'Show less brands' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'showLess' })).toBeInTheDocument();
   });
 
   it('shows every matching search result inside the bounded region', () => {

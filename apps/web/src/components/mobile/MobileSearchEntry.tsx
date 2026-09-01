@@ -66,7 +66,7 @@ export default function MobileSearchEntry({
           {!query && currentKeyword && (
             <span
               key={currentIndex}
-              className="max-w-[34vw] shrink-0 truncate rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium text-primary/80 animate-fade-in"
+              className="max-w-[34vw] shrink-0 truncate rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium text-slate-700 animate-fade-in"
             >
               {currentKeyword}
             </span>

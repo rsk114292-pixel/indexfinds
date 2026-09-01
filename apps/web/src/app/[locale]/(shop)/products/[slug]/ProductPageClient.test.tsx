@@ -197,4 +197,5 @@ describe('ProductPageClient referral activation fetch', () => {
       skuSelector.compareDocumentPosition(buyPanel) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
   });
+
 });

@@ -135,7 +135,7 @@ export async function generateMetadata({
 // 页面加载状态
 function PageLoading() {
   return (
-    <div className="container mx-auto px-4 py-8 flex justify-center">
+    <div className="container mx-auto flex min-h-[calc(100dvh-4rem)] items-center justify-center px-4 py-8">
       <Spinner size="lg" />
     </div>
   );
@@ -155,9 +155,9 @@ function NoScriptProductFallback({
   return (
     <noscript>
       <section className="container mx-auto px-4 py-8">
-        <h1 className="mb-6 text-2xl font-semibold text-foreground">
+        <h2 className="mb-6 text-2xl font-semibold text-foreground">
           {getLocalizedName(category, locale)}
-        </h1>
+        </h2>
         <div className={DESKTOP_PRODUCT_GRID_CLASS}>
           {products.map((product) => (
             <a
@@ -227,6 +227,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <>
+      <h1 className="sr-only">{getLocalizedName(category, locale)}</h1>
       {/* JSON-LD 结构化数据 */}
       <BreadcrumbJsonLd
         locale={locale}

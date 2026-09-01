@@ -101,7 +101,7 @@ export function BrandFilter({
               className="w-3.5 h-3.5 rounded border-border text-primary accent-primary cursor-pointer shrink-0"
             />
             <span className="text-sm truncate">{brand.label}</span>
-            <span className="text-gray-400 text-xs shrink-0">({brand.count})</span>
+            <span className="text-slate-600 text-xs shrink-0">({brand.count})</span>
           </label>
         ))}
       </div>
@@ -111,7 +111,6 @@ export function BrandFilter({
         <button
           type="button"
           onClick={onToggleExpand}
-          aria-label={expanded ? 'Show less brands' : 'Show more brands'}
           className="flex items-center gap-1 text-primary text-sm cursor-pointer min-h-[44px] self-start transition-colors duration-200 hover:text-primary/80"
         >
           {expanded ? (

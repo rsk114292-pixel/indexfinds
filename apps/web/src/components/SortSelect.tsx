@@ -86,7 +86,6 @@ export default function SortSelect({ className }: SortSelectProps) {
         onClick={() => setOpen((prev) => !prev)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-label={t('label')}
         className="flex items-center justify-between h-10 w-[180px] rounded-md border border-border bg-white px-3 text-sm text-foreground cursor-pointer transition-colors duration-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
       >
         <span className="truncate">{t(currentLabel)}</span>

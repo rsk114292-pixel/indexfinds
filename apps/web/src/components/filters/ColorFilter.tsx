@@ -63,7 +63,7 @@ export function ColorFilter({
             >
               <span style={getColorStyle(color.value)} />
               <span>{color.label || color.value}</span>
-              <span className="ml-1 rtl:mr-1 rtl:ml-0 text-gray-400">({color.count})</span>
+              <span className="ml-1 rtl:mr-1 rtl:ml-0 text-slate-600">({color.count})</span>
             </button>
           );
         })}

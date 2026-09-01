@@ -113,6 +113,13 @@ describe('ProductsPageClient', () => {
     expect(screen.getByText('Share Modal: All Products')).toBeInTheDocument();
   });
 
+  it('桌面和移动布局共享唯一的页面级 H1', () => {
+    render(<ProductsPageClient />);
+
+    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('All Products');
+  });
+
   it('按当前分类请求 facets，避免展开全站品牌和颜色', () => {
     mockSearchParams = new URLSearchParams('categories=earphones&page=1');
 

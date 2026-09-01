@@ -1024,7 +1024,7 @@
       "categoryDescription": "Browse {name} products listed on Chinese marketplaces. Review available SKU details, listing images, and buying routes.",
     "brandNotFound": "Brand Not Found",
     "brandTitle": "{name} - Shop Products",
-      "brandFallbackDescription": "Browse {name} product listings on {siteName}. Review available images, product details, and buying routes.",
+      "brandFallbackDescription": "Browse {name} product listings. Review available images, product details, and buying routes before choosing a source.",
     "categoriesTitle": "All Categories - Shop by Product Type",
     "categoriesDescription": "Browse all product categories on {siteName}. Find clothing, shoes, bags, accessories, and more from Weidian, Taobao & 1688.",
     "brandsTitle": "All Brands - Chinese Product Brands",

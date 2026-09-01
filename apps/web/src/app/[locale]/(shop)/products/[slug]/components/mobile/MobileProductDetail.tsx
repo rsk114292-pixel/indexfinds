@@ -434,9 +434,9 @@ export default function MobileProductDetail({
 
         {/* 标题 + 标签 */}
         <div className="px-4 pb-3">
-          <h1 className="text-[17px] font-semibold text-foreground leading-snug line-clamp-2 mb-2">
+          <h2 className="text-[17px] font-semibold text-foreground leading-snug line-clamp-2 mb-2">
             {product.title}
-          </h1>
+          </h2>
           <div className="flex flex-wrap gap-1.5">
             {product.primaryCategory && (
               <Link

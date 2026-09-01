@@ -18,7 +18,7 @@ export default function ItaobuyResearchGuide({
   const branding = tenant.branding!;
 
   return (
-    <main className="bg-[#f4f1ea] text-[#111827]">
+    <div className="bg-[#f4f1ea] text-[#111827]">
       <section className="border-b border-[#cbd1da] bg-[#0b1727] text-white">
         <div className="container mx-auto grid min-h-[66dvh] items-center gap-10 px-4 py-16 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] lg:py-24">
           <div>
@@ -199,6 +199,6 @@ export default function ItaobuyResearchGuide({
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

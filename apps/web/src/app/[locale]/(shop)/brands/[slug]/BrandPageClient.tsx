@@ -43,7 +43,7 @@ import MobileBrandDetail from './components/mobile/MobileBrandDetail';
 // 页面加载状态
 function PageLoading() {
   return (
-    <div className={`${DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS} flex justify-center py-8`}>
+    <div className={`${DESKTOP_PRODUCT_PAGE_CONTAINER_CLASS} flex min-h-[calc(100dvh-4rem)] items-center justify-center py-8`}>
       <Spinner size="lg" />
     </div>
   );
@@ -229,7 +229,7 @@ function BrandContent({ slug, initialBrand }: BrandPageClientProps) {
                       className="inline-flex items-center px-3 py-1.5 rounded-full text-sm bg-gray-100 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     >
                       {getLocalizedName(cat, locale)}
-                      <span className="ml-1.5 text-xs text-gray-400">({cat.productCount})</span>
+                      <span className="ml-1.5 text-xs text-slate-600">({cat.productCount})</span>
                     </Link>
                   ))}
                 </div>

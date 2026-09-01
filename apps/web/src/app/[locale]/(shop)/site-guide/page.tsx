@@ -194,7 +194,7 @@ export default async function TenantSiteGuidePage({
   return (
     <>
       <FAQPageJsonLd items={faqItems} />
-      <main className="bg-[#f7f8fa] text-[#111827]">
+      <div className="bg-[#f7f8fa] text-[#111827]">
         <section className="container mx-auto grid min-h-[72dvh] items-center gap-10 px-4 py-14 md:grid-cols-[minmax(0,1.3fr)_minmax(280px,0.7fr)] md:py-20">
           <div>
             <p className="text-sm font-bold text-primary">{tenant.title} research guide</p>
@@ -343,7 +343,7 @@ export default async function TenantSiteGuidePage({
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

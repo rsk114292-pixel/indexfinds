@@ -20,6 +20,7 @@ import {
   getRequestSiteIdentity,
 } from '@/lib/request-site-identity';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
+import { isTenantSafeBrandDescription } from '@/lib/tenant-brand-description';
 
 // Brand responses include a request-host-specific canonical and robots policy.
 // Keep them dynamic so a static RSC payload is never reused across tenants.
@@ -60,11 +61,15 @@ export async function generateMetadata({
     }
 
     const title = t('brandTitle', { name: brand.name });
-    const description = brand.description
-      || t('brandFallbackDescription', {
+    const description = isTenantSafeBrandDescription(brand.description)
+      ? brand.description || t('brandFallbackDescription', {
+          name: brand.name,
+          siteName,
+        })
+      : t('brandFallbackDescription', {
         name: brand.name,
         siteName,
-      });
+        });
 
     return {
       title,
@@ -137,6 +142,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
 
   return (
     <>
+      <h1 className="sr-only">{brand.name}</h1>
       <BreadcrumbJsonLd
         locale={locale}
         baseUrl={siteUrl}

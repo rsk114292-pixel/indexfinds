@@ -289,6 +289,42 @@ describe('route template audit', () => {
     expect(mockNotFound).toHaveBeenCalled();
   });
 
+  it('detail routes emit one shared page-level H1', async () => {
+    mockFetch.mockResolvedValueOnce(
+      mockJsonResponse({
+        id: 'p1',
+        title: 'Sample Product',
+        slug: 'sample-product',
+        seoIndexable: false,
+      }),
+    );
+
+    const productPageModule = await import('../[locale]/(shop)/products/[slug]/page');
+    const productElement = await productPageModule.default({
+      params: Promise.resolve({ locale: 'en', slug: 'sample-product' }),
+    });
+    const productMarkup = renderToStaticMarkup(productElement);
+
+    expect(productMarkup.match(/<h1\b/g)).toHaveLength(1);
+
+    mockFetch.mockResolvedValueOnce(
+      mockJsonResponse({
+        id: 'b1',
+        name: 'Nike',
+        slug: 'nike',
+        status: 'active',
+      }),
+    );
+
+    const brandPageModule = await import('../[locale]/(shop)/brands/[slug]/page');
+    const brandElement = await brandPageModule.default({
+      params: Promise.resolve({ locale: 'en', slug: 'nike' }),
+    });
+    const brandMarkup = renderToStaticMarkup(brandElement);
+
+    expect(brandMarkup.match(/<h1\b/g)).toHaveLength(1);
+  });
+
   it('brand detail route returns a real 404 for missing brands', async () => {
     mockFetch.mockResolvedValueOnce(mockJsonResponse(null, false));
 

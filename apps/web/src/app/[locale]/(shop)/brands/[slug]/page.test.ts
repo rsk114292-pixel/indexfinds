@@ -49,6 +49,7 @@ global.fetch = mockFetch;
 
 import BrandPage, { dynamic } from './page';
 import { __resetServerApiFallbackCacheForTests } from '@/lib/server-api-fetch';
+import { isTenantSafeBrandDescription } from '@/lib/tenant-brand-description';
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -57,6 +58,20 @@ beforeEach(() => {
 
 it('renders brand responses dynamically for host-specific tenants', () => {
   expect(dynamic).toBe('force-dynamic');
+});
+
+it('rejects generic or placeholder brand descriptions for tenant metadata', () => {
+  expect(
+    isTenantSafeBrandDescription(
+      'Browse Air Jordan product listings on IndexFinds.',
+    ),
+  ).toBe(false);
+  expect(isTenantSafeBrandDescription('search_term_string')).toBe(false);
+  expect(
+    isTenantSafeBrandDescription(
+      'Review the available Air Jordan listing evidence before choosing a route.',
+    ),
+  ).toBe(true);
 });
 
 describe('BrandPage merged brand redirect', () => {

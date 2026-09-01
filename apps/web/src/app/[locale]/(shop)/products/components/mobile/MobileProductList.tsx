@@ -66,14 +66,16 @@ export default function MobileProductList({
       initialProductsData
         ? {
             ...initialProductsData,
-            data: initialProductsData.data.map((product) => ({
-              ...product,
-              price: product.price ?? {
-                min: Number(product.priceMin) || 0,
-                max: Number(product.priceMax) || 0,
-                currency: product.currency || "CNY",
-              },
-            })),
+            data: initialProductsData.data
+              .slice(0, PAGE_SIZE)
+              .map((product) => ({
+                ...product,
+                price: product.price ?? {
+                  min: Number(product.priceMin) || 0,
+                  max: Number(product.priceMax) || 0,
+                  currency: product.currency || "CNY",
+                },
+              })),
           }
         : undefined,
     [initialProductsData],
@@ -210,9 +212,9 @@ export default function MobileProductList({
 
       {/* 商品数量 */}
       <div className="px-4 py-3">
-        <h1 className="text-lg font-bold text-foreground">
+        <h2 className="text-lg font-bold text-foreground">
           {t("allProducts")}
-        </h1>
+        </h2>
         <p className="text-xs text-muted" aria-live="polite">
           {isLoading ? tc("loading") : t("productCount", { count: total })}
         </p>
