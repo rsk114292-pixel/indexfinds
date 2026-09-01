@@ -794,7 +794,7 @@ export default function UsfansQuickStart({ compact = false }: { compact?: boolea
                       {item.title}
                     </span>
                     {!compact && (
-                      <span className="mt-1 block text-xs leading-5 text-[#6b7280]">
+                      <span className="mt-1 block text-xs leading-5 text-[#596174]">
                         {item.description}
                       </span>
                     )}
