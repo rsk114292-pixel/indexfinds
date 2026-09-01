@@ -91,16 +91,6 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (request.nextUrl.pathname.startsWith('/tenants/1to1reps/')) {
-    return new NextResponse('Not Found', {
-      status: 404,
-      headers: {
-        'cache-control': 'no-store',
-        'x-robots-tag': 'noindex, nofollow',
-      },
-    });
-  }
-
   if (request.nextUrl.pathname === '/favicon.ico') {
     const faviconPath = tenant?.branding?.faviconPath;
 
@@ -297,7 +287,6 @@ export const config = {
     '/reddit.html',
     '/coupons.html',
     '/buyer-safety.html',
-    '/tenants/1to1reps/:path*',
     // Match all pathnames except:
     // - /api (backend proxy rewrite)
     // - /admin (no i18n)

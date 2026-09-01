@@ -18,6 +18,27 @@ export interface SubsiteGuideDefinition {
  */
 export const SUBSITE_GUIDES: SubsiteGuideDefinition[] = [
   {
+    domain: "1to1finds.cloud",
+    title: "1to1 Finds Cloud",
+    agentKey: null,
+    catalogPath: "/",
+    productMode: "guide-only",
+  },
+  {
+    domain: "1to1finds.com",
+    title: "1to1 Finds",
+    agentKey: null,
+    catalogPath: "/",
+    productMode: "guide-only",
+  },
+  {
+    domain: "1to1spreadsheet.com",
+    title: "1to1 Spreadsheet",
+    agentKey: null,
+    catalogPath: "/",
+    productMode: "guide-only",
+  },
+  {
     domain: "acbuyindex.com",
     title: "ACBuy Index",
     agentKey: "acbuy",

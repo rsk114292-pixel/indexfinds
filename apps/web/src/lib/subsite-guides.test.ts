@@ -7,8 +7,8 @@ import {
 } from "./subsite-guides";
 
 describe("subsite guide registry", () => {
-  it("contains the 42 active subsites and excludes retired or independent projects", () => {
-    expect(SUBSITE_GUIDES).toHaveLength(42);
+  it("contains the 45 active subsites and excludes retired or independent projects", () => {
+    expect(SUBSITE_GUIDES).toHaveLength(45);
     expect(
       SUBSITE_GUIDES.some((guide) => guide.domain === "xiangshoe.net"),
     ).toBe(false);
@@ -18,7 +18,7 @@ describe("subsite guide registry", () => {
   });
 
   it("uses unique domains and only configured agent keys", () => {
-    expect(new Set(SUBSITE_GUIDES.map((guide) => guide.domain)).size).toBe(42);
+    expect(new Set(SUBSITE_GUIDES.map((guide) => guide.domain)).size).toBe(45);
 
     const configuredKeys = new Set(AGENT_PLATFORMS.map((agent) => agent.key));
     const missingKeys = SUBSITE_GUIDES.flatMap((guide) =>

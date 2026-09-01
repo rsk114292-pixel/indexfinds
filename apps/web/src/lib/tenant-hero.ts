@@ -11,6 +11,45 @@ export interface TenantHeroVisual {
 }
 
 const TENANT_HERO_VISUALS: Record<string, TenantHeroVisual> = {
+  "1to1finds.cloud": {
+    desktopPath: "/tenants/1to1reps/hero-desktop.webp",
+    mobilePath: "/tenants/1to1reps/hero-mobile.webp",
+    alt: "Footwear source image used as a backdrop for a dated evidence archive",
+    backgroundColor: "#171d22",
+    accentColor: "#8fd7e5",
+    desktopObjectPosition: "center",
+    mobileObjectPosition: "center",
+    desktopOverlay:
+      "linear-gradient(90deg, rgba(23,29,34,0.99) 0%, rgba(23,29,34,0.92) 44%, rgba(23,29,34,0.38) 72%, rgba(23,29,34,0.08) 100%)",
+    mobileOverlay:
+      "linear-gradient(0deg, rgba(23,29,34,0.99) 0%, rgba(23,29,34,0.92) 58%, rgba(23,29,34,0.24) 100%)",
+  },
+  "1to1finds.com": {
+    desktopPath: "/tenants/1to1reps/hero-desktop.webp",
+    mobilePath: "/tenants/1to1reps/hero-mobile.webp",
+    alt: "Footwear source image used for an independent product discovery guide",
+    backgroundColor: "#20262a",
+    accentColor: "#8fe0a5",
+    desktopObjectPosition: "center",
+    mobileObjectPosition: "center",
+    desktopOverlay:
+      "linear-gradient(90deg, rgba(27,37,31,0.99) 0%, rgba(27,37,31,0.91) 42%, rgba(27,37,31,0.34) 70%, rgba(27,37,31,0.06) 100%)",
+    mobileOverlay:
+      "linear-gradient(0deg, rgba(27,37,31,0.99) 0%, rgba(27,37,31,0.92) 58%, rgba(27,37,31,0.2) 100%)",
+  },
+  "1to1spreadsheet.com": {
+    desktopPath: "/tenants/1to1reps/hero-desktop.webp",
+    mobilePath: "/tenants/1to1reps/hero-mobile.webp",
+    alt: "Footwear source image used for a structured product research spreadsheet",
+    backgroundColor: "#373c3f",
+    accentColor: "#9be1ac",
+    desktopObjectPosition: "center",
+    mobileObjectPosition: "center",
+    desktopOverlay:
+      "linear-gradient(90deg, rgba(35,40,42,0.99) 0%, rgba(35,40,42,0.92) 44%, rgba(35,40,42,0.38) 72%, rgba(35,40,42,0.08) 100%)",
+    mobileOverlay:
+      "linear-gradient(0deg, rgba(35,40,42,0.99) 0%, rgba(35,40,42,0.92) 58%, rgba(35,40,42,0.24) 100%)",
+  },
   "acbuyindex.com": {
     desktopPath: "/tenants/acbuy/hero-desktop.webp",
     mobilePath: "/tenants/acbuy/hero-mobile.webp",

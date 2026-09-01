@@ -15,6 +15,39 @@ export interface TenantEditorialProfile {
  * stay noindex until their copy and source evidence pass editorial review.
  */
 export const TENANT_EDITORIAL_PROFILES = {
+  "1to1finds.cloud": {
+    heroTitle: "Preserve 1to1 finds as dated evidence records.",
+    heroAccent: "Keep links, images and open questions together.",
+    summary:
+      "Archive the resolved source, visible image set, selected option and review date so a changed link can be understood later.",
+    audience:
+      "Researchers maintaining a review history across product links that may redirect, change or disappear.",
+    researchFocus:
+      "Link resolution, image coverage, review dates and a clear handoff from archived evidence to a current decision.",
+    guideTitle: "A dated 1to1 evidence archive method",
+  },
+  "1to1finds.com": {
+    heroTitle: "Turn a 1to1 product clue into a reviewable find.",
+    heroAccent: "Refine the query before trusting the result.",
+    summary:
+      "Move from product vocabulary to a resolved source, exact option and focused QC question without treating discovery as verification.",
+    audience:
+      "Researchers starting with an image, model term, nickname or partial product identifier.",
+    researchFocus:
+      "Search vocabulary, final link destinations, option matching and the visible fields needed for the next review.",
+    guideTitle: "A source-first 1to1 finds method",
+  },
+  "1to1spreadsheet.com": {
+    heroTitle: "Record 1to1 product research in compact evidence rows.",
+    heroAccent: "Leave incomplete fields open instead of guessing.",
+    summary:
+      "Keep the query, resolved source, exact option, visible QC notes and next unanswered question in one dated row.",
+    audience:
+      "Researchers who want a repeatable spreadsheet-style process for comparing product candidates.",
+    researchFocus:
+      "Traceable source fields, option identity, visible evidence and a clear boundary before any external service handoff.",
+    guideTitle: "A compact 1to1 spreadsheet research method",
+  },
   "acbuyindex.com": {
     heroTitle: "Scan ACBuy-linked listings with a search-first workflow.",
     heroAccent: "Search broadly, then reduce the list.",

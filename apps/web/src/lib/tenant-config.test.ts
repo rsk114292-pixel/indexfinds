@@ -30,6 +30,32 @@ describe("tenant config", () => {
     expect(getTenantConfigByHost("1to1reps.com")).toBeNull();
   });
 
+  it("registers three independent 1to1 research tenants", () => {
+    const expected = [
+      ["1to1finds.cloud", "1to1 Finds Cloud", "/evidence-cloud"],
+      ["1to1finds.com", "1to1 Finds", "/finds-method"],
+      ["1to1spreadsheet.com", "1to1 Spreadsheet", "/spreadsheet-method"],
+    ] as const;
+
+    for (const [domain, siteName, primaryCtaHref] of expected) {
+      expect(getTenantConfigByHost(domain)).toEqual(
+        expect.objectContaining({
+          domain,
+          agentKey: null,
+          productMode: "guide-only",
+          canonicalOrigin: `https://${domain}`,
+          branding: expect.objectContaining({
+            siteName,
+            logoPath: "/tenants/1to1reps/brand-logo.png",
+            faviconPath: "/tenants/1to1reps/favicon-48x48.png",
+            indexing: "ready",
+            editorial: expect.objectContaining({ primaryCtaHref }),
+          }),
+        }),
+      );
+    }
+  });
+
   it("gives BoonBuy Find a source-note guide with the verified agent filter", () => {
     const tenant = getTenantConfigByHost("boonbuyfind.net");
     const branding = tenant?.branding;
@@ -135,6 +161,7 @@ describe("tenant config", () => {
       expect.objectContaining({
         siteName: "EastMallBuy Index",
         logoPath: "/images/agents/eastmallbuy.png",
+        faviconPath: "/tenants/eastmallbuy/favicon-48x48.png",
         heroEyebrow: "Independent EastMallBuy shortlist guide",
         indexing: "ready",
         indexablePaths: [
@@ -945,6 +972,9 @@ describe("tenant config", () => {
     const draftTenants = SUBSITE_GUIDES.filter(
       ({ domain }) =>
         ![
+          "1to1finds.cloud",
+          "1to1finds.com",
+          "1to1spreadsheet.com",
           "usfansindex.net",
           "itaobuyindex.com",
           "acbuyindex.com",
@@ -1001,6 +1031,9 @@ describe("tenant config", () => {
     }).map(({ domain }) => domain);
 
     expect(releasedDomains).toEqual([
+      "1to1finds.cloud",
+      "1to1finds.com",
+      "1to1spreadsheet.com",
       "acbuyindex.com",
       "allchinabuyfinder.com",
       "allchinabuyindex.com",
@@ -1084,6 +1117,9 @@ describe("tenant config", () => {
     for (const { domain, branding } of profiledTenants) {
       const expectedCta = (
         {
+          "1to1finds.cloud": "/evidence-cloud",
+          "1to1finds.com": "/finds-method",
+          "1to1spreadsheet.com": "/spreadsheet-method",
           "acbuyindex.com": "/platform-guide",
           "allchinabuyindex.com": "/guide",
           "allchinabuyfinder.com": "/finder-guide",
@@ -1135,6 +1171,9 @@ describe("tenant config", () => {
 
   it("keeps reviewed tenants distinct from each other", () => {
     const reviewed = [
+      "1to1finds.cloud",
+      "1to1finds.com",
+      "1to1spreadsheet.com",
       "itaobuyindex.com",
       "usfansindex.net",
       "acbuyindex.com",

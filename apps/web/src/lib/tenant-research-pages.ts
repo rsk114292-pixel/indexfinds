@@ -46,6 +46,39 @@ export interface TenantResearchProfile {
 }
 
 const TENANT_RESEARCH_PROFILES: Record<string, TenantResearchProfile> = {
+  "1to1finds.cloud": {
+    variant: "ledger",
+    officialUrl: "https://www.reddit.com/r/1to1reps/",
+    officialLabel: "Review the 1to1Reps community source",
+    heroImage: "/tenants/1to1reps/hero-desktop.webp",
+    heroAlt: "Footwear source image behind a dated link and image evidence archive",
+    navLabel: "1to1 evidence archive",
+    boundaryTitle: "An archived page records a past review, not a current product state.",
+    boundaryDescription:
+      "Links, images, options and seller text can change independently. Preserve the review date and reopen the live destination before using an archived record in a new decision.",
+  },
+  "1to1finds.com": {
+    variant: "finder",
+    officialUrl: "https://www.reddit.com/r/1to1reps/",
+    officialLabel: "Review the 1to1Reps community source",
+    heroImage: "/tenants/1to1reps/hero-desktop.webp",
+    heroAlt: "Footwear source image behind an independent product discovery workflow",
+    navLabel: "1to1 find review guides",
+    boundaryTitle: "A useful find is a candidate source, not a verified outcome.",
+    boundaryDescription:
+      "Resolve the final destination, identify the exact option and record visible evidence before a find enters a shortlist. Service and transaction decisions remain separate checks.",
+  },
+  "1to1spreadsheet.com": {
+    variant: "sheet",
+    officialUrl: "https://www.reddit.com/r/1to1reps/",
+    officialLabel: "Review the 1to1Reps community source",
+    heroImage: "/tenants/1to1reps/hero-desktop.webp",
+    heroAlt: "Footwear source image behind a structured product research ledger",
+    navLabel: "1to1 spreadsheet methods",
+    boundaryTitle: "A row stays useful only when every claim has a source and date.",
+    boundaryDescription:
+      "Keep incomplete fields open, distinguish visible evidence from seller language and reopen changing links before relying on a saved row.",
+  },
   "acbuyindex.com": {
     variant: "source",
     officialUrl: "https://acbuy.com",
@@ -4999,6 +5032,258 @@ const KAMEYMALL_INDEX_PAGES: readonly TenantResearchPage[] = [
   ] },
 ];
 
+const ONE_TO_ONE_SPREADSHEET_PAGES: readonly TenantResearchPage[] = [
+  {
+    domain: "1to1spreadsheet.com",
+    slug: "spreadsheet-method",
+    seoTitle: "1to1 Spreadsheet Method | Build Traceable Product Rows",
+    description:
+      "Build a 1to1 product research row from a precise query, resolved source, exact option, visible evidence, review date and one open question.",
+    eyebrow: "Spreadsheet research method",
+    title: "Make each row small enough to verify and useful enough to reopen.",
+    intro:
+      "A compact record prevents product clues, seller language and later service decisions from blending into one unsupported conclusion.",
+    sections: [
+      { title: "Start with the query", description: "Save the exact phrase, identifier or image clue that produced the candidate so another reviewer can repeat the search." },
+      { title: "Resolve the source", description: "Record the final destination after redirects together with the page date and the selected option shown during review." },
+      { title: "End with one open field", description: "State the next unanswered product, image or handoff question instead of filling the cell with an assumption." },
+    ],
+  },
+  {
+    domain: "1to1spreadsheet.com",
+    slug: "source-fields",
+    seoTitle: "1to1 Spreadsheet Source Fields | URL, Option and Review Date",
+    description:
+      "Choose the minimum 1to1 spreadsheet fields needed to trace a product candidate back to its final URL, exact option and review date.",
+    eyebrow: "Source field design",
+    title: "Keep fields that survive a changed title or image.",
+    intro:
+      "A useful source row identifies where the page resolved and which option was reviewed without copying every changing claim into the sheet.",
+    sections: [
+      { title: "Identity fields", description: "Keep the final domain, item identifier when visible, selected option and review timestamp as separate values." },
+      { title: "Evidence fields", description: "Summarize visible image coverage, shown measurements and unresolved inconsistencies without rating hidden qualities." },
+      { title: "Change fields", description: "Record redirects, removed pages or changed options as dated events rather than silently replacing the prior row." },
+    ],
+  },
+  {
+    domain: "1to1spreadsheet.com",
+    slug: "qc-record",
+    seoTitle: "1to1 Spreadsheet QC Record | Visible Image Review Fields",
+    description:
+      "Record visible QC image coverage in a 1to1 spreadsheet without turning photographs into claims about materials, authenticity or durability.",
+    eyebrow: "Visible QC record",
+    title: "Describe what the image set shows and what it cannot answer.",
+    intro:
+      "Image review becomes auditable when coverage, consistency and missing views are recorded separately from product or seller claims.",
+    sections: [
+      { title: "Coverage", description: "List the available angles, labels, measurements and close views, then note any view needed for the next comparison." },
+      { title: "Consistency", description: "Check that colors, identifiers and visible details refer to the same option across the image set." },
+      { title: "Limits", description: "Keep material composition, long-term wear and seller reliability outside the visible-image field unless supported elsewhere." },
+    ],
+  },
+  {
+    domain: "1to1spreadsheet.com",
+    slug: "handoff-checklist",
+    seoTitle: "1to1 Spreadsheet Handoff Checklist | From Row to External Review",
+    description:
+      "Use a 1to1 spreadsheet handoff checklist to carry the source, option, evidence and unresolved question into a separately chosen service review.",
+    eyebrow: "Research handoff checklist",
+    title: "Move the evidence forward without assigning a route inside the row.",
+    intro:
+      "The spreadsheet organizes product research; account, payment, warehouse, shipping and support terms belong to the current external service source.",
+    sections: [
+      { title: "Complete the product row", description: "Confirm that the source resolves, the option is identifiable and the image notes match the reviewed candidate." },
+      { title: "Name the service question", description: "Write the exact account, purchase, inspection or parcel question that the next service must answer." },
+      { title: "Preserve the boundary", description: "Do not convert catalog prices, estimated weights or community comments into final transaction terms." },
+    ],
+  },
+  {
+    domain: "1to1spreadsheet.com",
+    slug: "faq",
+    seoTitle: "1to1 Spreadsheet FAQ | Sources, QC Rows and Research Limits",
+    description:
+      "Read independent answers about 1to1 spreadsheet source fields, visible QC notes, review dates and external service handoffs.",
+    eyebrow: "Spreadsheet research questions",
+    title: "Keep the sheet useful without making it responsible for the transaction.",
+    intro:
+      "These answers explain the evidence boundary for a compact product research ledger.",
+    sections: [],
+    questions: [
+      { question: "Is 1to1spreadsheet.com a store or buying agent?", answer: "No. It is an independent product research ledger and does not sell products, accept payments or operate a purchasing service." },
+      { question: "Does a completed row verify a product?", answer: "No. It records the reviewed source, option and visible evidence for a date while leaving unresolved fields open." },
+      { question: "Why save the final URL?", answer: "Short links and redirects can hide the current destination. The final URL makes later source review easier to repeat." },
+    ],
+  },
+];
+
+const ONE_TO_ONE_FINDS_PAGES: readonly TenantResearchPage[] = [
+  {
+    domain: "1to1finds.com",
+    slug: "finds-method",
+    seoTitle: "1to1 Finds Method | From Product Clue to Reviewable Source",
+    description:
+      "Turn a 1to1 product clue into a focused query, resolved source, exact option and next evidence question before retaining the find.",
+    eyebrow: "Product discovery method",
+    title: "Use discovery to create a better source question.",
+    intro:
+      "A model nickname, partial identifier or image clue is a starting point. The retained find should end at a source that another reviewer can reopen.",
+    sections: [
+      { title: "Decode the clue", description: "Separate product type, model term, color detail and any item identifier before building the first query." },
+      { title: "Reduce the candidates", description: "Remove results whose final destination, option or visible images do not match the original research intent." },
+      { title: "Retain one reason", description: "Keep a candidate only when you can state which source field or image question it helps answer next." },
+    ],
+  },
+  {
+    domain: "1to1finds.com",
+    slug: "search-vocabulary",
+    seoTitle: "1to1 Finds Search Vocabulary | Build More Precise Queries",
+    description:
+      "Build 1to1 finds queries from product type, model language, visible detail, exact option and source identifier instead of broad promotional terms.",
+    eyebrow: "Search vocabulary",
+    title: "Choose words that narrow both the product and the later check.",
+    intro:
+      "Precise vocabulary reduces unrelated results and makes it clearer which visible field should confirm a match.",
+    sections: [
+      { title: "Product structure", description: "Start with the category and model family, then add the construction, color or size clue visible in the source material." },
+      { title: "Option language", description: "Use the exact option label when known and keep seller shorthand separate from the normalized research term." },
+      { title: "Identifier language", description: "Add item IDs or final domains only when they can be copied accurately and reviewed at the destination." },
+    ],
+  },
+  {
+    domain: "1to1finds.com",
+    slug: "source-check",
+    seoTitle: "1to1 Finds Source Check | Resolve Links Before Shortlisting",
+    description:
+      "Check where a 1to1 find resolves, whether the page remains accessible and whether its option and visible evidence match the saved query.",
+    eyebrow: "Source resolution check",
+    title: "Inspect the destination before trusting the find card.",
+    intro:
+      "A title or preview image can survive after the destination changes, so the final page must answer the current research question itself.",
+    sections: [
+      { title: "Follow redirects", description: "Record the final domain and page path, then note login walls, removed items or redirects to a generic catalog." },
+      { title: "Match the option", description: "Compare the saved query with the option name, visible color, size or identifier on the destination page." },
+      { title: "Date the result", description: "Add the review time because accessibility, price text, images and available options can change independently." },
+    ],
+  },
+  {
+    domain: "1to1finds.com",
+    slug: "qc-questions",
+    seoTitle: "1to1 Finds QC Questions | Review Visible Product Images",
+    description:
+      "Create focused QC questions for a 1to1 find using missing angles, inconsistent identifiers, option matching and visible measurement evidence.",
+    eyebrow: "QC question builder",
+    title: "Ask an image question that can produce a clear visible answer.",
+    intro:
+      "A focused question is more useful than a general quality label because it identifies the exact view or measurement still needed.",
+    sections: [
+      { title: "Coverage question", description: "Ask for the missing angle, label, measurement or close view required to compare the selected option." },
+      { title: "Consistency question", description: "Identify any color, identifier or detail that appears inconsistent across the available image set." },
+      { title: "Boundary question", description: "Keep hidden materials, long-term wear, service reliability and delivery outcomes outside a photo-only conclusion." },
+    ],
+  },
+  {
+    domain: "1to1finds.com",
+    slug: "faq",
+    seoTitle: "1to1 Finds FAQ | Discovery, Sources and QC Questions",
+    description:
+      "Read independent answers about 1to1 product discovery, final source links, option matching, visible QC questions and shortlist limits.",
+    eyebrow: "Find review questions",
+    title: "Know when a find is ready for the next check.",
+    intro:
+      "These answers separate product discovery from verification and later transaction decisions.",
+    sections: [],
+    questions: [
+      { question: "Is 1to1finds.com a seller or agent?", answer: "No. It is an independent discovery and source-review guide and does not sell products or provide purchasing services." },
+      { question: "Does a matching image confirm the exact product?", answer: "No. It can support a visual comparison, but the current source, selected option and other evidence still need review." },
+      { question: "When should a find enter the shortlist?", answer: "Keep it when the final source resolves, the option can be identified and the find answers a specific next research question." },
+    ],
+  },
+];
+
+const ONE_TO_ONE_FINDS_CLOUD_PAGES: readonly TenantResearchPage[] = [
+  {
+    domain: "1to1finds.cloud",
+    slug: "evidence-cloud",
+    seoTitle: "1to1 Finds Evidence Cloud | Build a Dated Product Archive",
+    description:
+      "Build a dated 1to1 finds archive that keeps final links, option identity, visible image evidence and unresolved questions in one record.",
+    eyebrow: "Dated evidence archive",
+    title: "Archive the review context, not just the product preview.",
+    intro:
+      "A durable record explains which destination, option and image set were reviewed, even after the live page changes.",
+    sections: [
+      { title: "Anchor the record", description: "Save the final URL, page identifier, selected option and review timestamp before adding interpretation." },
+      { title: "Attach visible evidence", description: "Describe the image set, shown measurements and missing views without copying unsupported seller claims." },
+      { title: "Mark the next refresh", description: "State which link, option or evidence field must be reopened before the record supports another decision." },
+    ],
+  },
+  {
+    domain: "1to1finds.cloud",
+    slug: "link-ledger",
+    seoTitle: "1to1 Finds Link Ledger | Track Redirects and Source Changes",
+    description:
+      "Track 1to1 finds redirects, final domains, removed pages, generic fallbacks and option changes as dated source events.",
+    eyebrow: "Link change ledger",
+    title: "Treat every destination change as a new evidence event.",
+    intro:
+      "Replacing an old URL without a note hides the reason a prior review no longer matches the live source.",
+    sections: [
+      { title: "Record the path", description: "Keep the submitted link, final destination and date so redirect behavior can be compared later." },
+      { title: "Classify the result", description: "Distinguish an accessible item page, login wall, removed page, generic catalog or unrelated destination." },
+      { title: "Preserve the prior state", description: "Add a dated update instead of overwriting the earlier destination and making the archive impossible to audit." },
+    ],
+  },
+  {
+    domain: "1to1finds.cloud",
+    slug: "image-review",
+    seoTitle: "1to1 Finds Image Review Archive | Coverage and Consistency",
+    description:
+      "Archive 1to1 finds image coverage, visible identifiers, measurements, inconsistencies and missing views without rating hidden product qualities.",
+    eyebrow: "Image evidence archive",
+    title: "Preserve what the reviewed image set could and could not show.",
+    intro:
+      "An image archive remains useful when its coverage and limits are explicit rather than summarized as a permanent quality judgment.",
+    sections: [
+      { title: "Coverage snapshot", description: "List the angles, labels, measurements and detail views available on the recorded review date." },
+      { title: "Consistency snapshot", description: "Note whether colors, identifiers and visible construction details align across the image set." },
+      { title: "Missing-evidence snapshot", description: "Identify the view or field that would be required before the next comparison can proceed." },
+    ],
+  },
+  {
+    domain: "1to1finds.cloud",
+    slug: "decision-handoff",
+    seoTitle: "1to1 Finds Decision Handoff | Refresh Archived Evidence First",
+    description:
+      "Refresh a 1to1 finds archive before handing a product candidate to an external account, purchase, warehouse or parcel workflow.",
+    eyebrow: "Archive-to-decision handoff",
+    title: "Reopen the live source before an archived record affects a new action.",
+    intro:
+      "The archive explains prior research. Current availability, options, service terms and transaction records belong to the live sources used today.",
+    sections: [
+      { title: "Refresh the product source", description: "Confirm that the destination, option and visible evidence still match the archived candidate." },
+      { title: "Name the next system", description: "Identify the external service responsible for the account, purchase, warehouse, shipping or support question." },
+      { title: "Keep records separate", description: "Do not merge an archived product observation with a later fee, parcel estimate, tracking event or delivery outcome." },
+    ],
+  },
+  {
+    domain: "1to1finds.cloud",
+    slug: "faq",
+    seoTitle: "1to1 Finds Cloud FAQ | Archived Links, Images and Refreshes",
+    description:
+      "Read independent answers about archived 1to1 links, dated image reviews, source changes, refresh checks and external decision handoffs.",
+    eyebrow: "Evidence archive questions",
+    title: "Use the archive as history, then verify the present.",
+    intro:
+      "These answers explain why dated evidence must be refreshed before a new product or service decision.",
+    sections: [],
+    questions: [
+      { question: "Does 1to1finds.cloud store products or orders?", answer: "No. It is an independent research archive and does not sell products, accept payments, hold inventory or operate order services." },
+      { question: "Is an archived link still current?", answer: "Not automatically. Reopen the destination and compare its option, images and date before relying on the archived record." },
+      { question: "Why keep old source events?", answer: "A dated history shows when redirects, removals or option changes occurred and prevents a later page from rewriting the earlier review." },
+    ],
+  },
+];
+
 const YDA_PARCEL_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "ydaexpress.net",
@@ -5270,6 +5555,9 @@ const YOYBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
 ];
 
 const TENANT_RESEARCH_PAGES = [
+  ...ONE_TO_ONE_FINDS_CLOUD_PAGES,
+  ...ONE_TO_ONE_FINDS_PAGES,
+  ...ONE_TO_ONE_SPREADSHEET_PAGES,
   ...ACBUY_PAGES,
   ...ALLCHINABUY_INDEX_PAGES,
   ...ALLCHINABUY_FINDER_PAGES,

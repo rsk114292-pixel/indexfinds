@@ -11,6 +11,30 @@ describe("tenant research pages", () => {
     expect(getTenantResearchProfile("1to1reps.com")).toBeNull();
   });
 
+  it("publishes three distinct 1to1 research path sets", () => {
+    expect(getTenantResearchPaths("1to1finds.cloud")).toEqual([
+      "/evidence-cloud",
+      "/link-ledger",
+      "/image-review",
+      "/decision-handoff",
+      "/faq",
+    ]);
+    expect(getTenantResearchPaths("1to1finds.com")).toEqual([
+      "/finds-method",
+      "/search-vocabulary",
+      "/source-check",
+      "/qc-questions",
+      "/faq",
+    ]);
+    expect(getTenantResearchPaths("1to1spreadsheet.com")).toEqual([
+      "/spreadsheet-method",
+      "/source-fields",
+      "/qc-record",
+      "/handoff-checklist",
+      "/faq",
+    ]);
+  });
+
   it("preserves the five distinct ACBuy legacy research paths", () => {
     expect(getTenantResearchPaths("acbuyindex.com")).toEqual([
       "/directory",
@@ -399,10 +423,10 @@ describe("tenant research pages", () => {
   it("keeps every reviewed page specific and evidence-led", () => {
     const pages = getAllTenantResearchPages();
 
-    expect(pages).toHaveLength(268);
-    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(268);
-    expect(new Set(pages.map((page) => page.description)).size).toBe(268);
-    expect(new Set(pages.map((page) => page.title)).size).toBe(268);
+    expect(pages).toHaveLength(283);
+    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(283);
+    expect(new Set(pages.map((page) => page.description)).size).toBe(283);
+    expect(new Set(pages.map((page) => page.title)).size).toBe(283);
 
     const copy = JSON.stringify(pages);
     expect(copy).not.toMatch(/IndexFinds|official ACBuy site/i);
@@ -413,6 +437,9 @@ describe("tenant research pages", () => {
   });
 
   it("uses different visual research profiles for each research intent", () => {
+    expect(getTenantResearchProfile("1to1finds.cloud")?.variant).toBe("ledger");
+    expect(getTenantResearchProfile("1to1finds.com")?.variant).toBe("finder");
+    expect(getTenantResearchProfile("1to1spreadsheet.com")?.variant).toBe("sheet");
     expect(getTenantResearchProfile("acbuyindex.com")?.variant).toBe("source");
     expect(getTenantResearchProfile("allchinabuyindex.com")?.variant).toBe(
       "ledger",

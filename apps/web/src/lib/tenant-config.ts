@@ -50,6 +50,9 @@ export interface TenantEditorial {
 }
 
 const INDEX_READY_TENANT_DOMAINS = new Set([
+  "1to1finds.cloud",
+  "1to1finds.com",
+  "1to1spreadsheet.com",
   "acbuyindex.com",
   "allchinabuyfinder.com",
   "allchinabuyindex.com",
@@ -121,6 +124,120 @@ export function getTenantFaviconAttributes(faviconPath: string): {
 }
 
 const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
+  "1to1finds.cloud": {
+    siteName: "1to1 Finds Cloud",
+    wordmark: "1to1 Cloud",
+    logoPath: "/tenants/1to1reps/brand-logo.png",
+    faviconPath: "/tenants/1to1reps/favicon-48x48.png",
+    themeColor: "#171d22",
+    primaryColor: "#3d7f91",
+    primaryHoverColor: "#2c6575",
+    accentColor: "#8fd7e5",
+    seoTitle: "1to1 Finds Cloud | Independent Link and Image Evidence Archive",
+    description:
+      "Use an independent 1to1 finds archive to preserve final links, visible image evidence, review dates and unresolved questions before a product handoff.",
+    heroEyebrow: "Independent 1to1 evidence archive",
+    heroPrimary: "Keep the final link beside the visible evidence.",
+    heroSecondary: "Archive what changed and what remains unknown.",
+    supportingLine:
+      "Save the resolved source, image coverage, review date and next decision without treating an archived page as a current product promise.",
+    indexing: "ready",
+    indexablePaths: [
+      "",
+      "/evidence-cloud",
+      "/link-ledger",
+      "/image-review",
+      "/decision-handoff",
+      "/faq",
+    ],
+    editorial: {
+      homeVariant: "archive",
+      introTitle: "Build a dated archive that still makes sense after a link changes.",
+      introDescription:
+        "Record the final destination, visible image set, selected option and unanswered question so later reviews can identify exactly what moved.",
+      primaryCtaLabel: "Open the evidence cloud method",
+      primaryCtaHref: "/evidence-cloud",
+      brandTitle: "Use product names as archive labels, not conclusions.",
+      brandDescription:
+        "A clear label helps retrieve a record, while the saved source, option, images and review date remain responsible for the evidence.",
+    },
+  },
+  "1to1finds.com": {
+    siteName: "1to1 Finds",
+    wordmark: "1to1 Finds",
+    logoPath: "/tenants/1to1reps/brand-logo.png",
+    faviconPath: "/tenants/1to1reps/favicon-48x48.png",
+    themeColor: "#20262a",
+    primaryColor: "#3f8f5a",
+    primaryHoverColor: "#317246",
+    accentColor: "#8fe0a5",
+    seoTitle: "1to1 Finds | Independent Product Discovery and Source Guide",
+    description:
+      "Use an independent 1to1 finds guide to turn a product clue into a focused search, resolved source link, visible option check and QC question list.",
+    heroEyebrow: "Independent 1to1 discovery guide",
+    heroPrimary: "Turn a product clue into a source you can review.",
+    heroSecondary: "Find broadly. Verify narrowly.",
+    supportingLine:
+      "Build the query, open the final destination and retain only the find whose option and visible evidence answer the next question.",
+    indexing: "ready",
+    indexablePaths: [
+      "",
+      "/finds-method",
+      "/search-vocabulary",
+      "/source-check",
+      "/qc-questions",
+      "/faq",
+    ],
+    editorial: {
+      homeVariant: "catalog",
+      introTitle: "Move from discovery language to one reviewable candidate.",
+      introDescription:
+        "Start with the product type and visible clue, refine the query and confirm where the result resolves before keeping it in a shortlist.",
+      primaryCtaLabel: "Read the finds method",
+      primaryCtaHref: "/finds-method",
+      brandTitle: "Use names to refine a find, not verify it.",
+      brandDescription:
+        "Names and model terms can narrow discovery, while the final source, exact option and visible evidence determine whether a result is retained.",
+    },
+  },
+  "1to1spreadsheet.com": {
+    siteName: "1to1 Spreadsheet",
+    wordmark: "1to1 Spreadsheet",
+    logoPath: "/tenants/1to1reps/brand-logo.png",
+    faviconPath: "/tenants/1to1reps/favicon-48x48.png",
+    themeColor: "#373c3f",
+    primaryColor: "#3f8e57",
+    primaryHoverColor: "#327145",
+    accentColor: "#9be1ac",
+    seoTitle: "1to1 Spreadsheet | Independent Product Research Ledger",
+    description:
+      "Use an independent 1to1 spreadsheet method to record queries, final source links, exact options, visible QC evidence and unresolved handoff questions.",
+    heroEyebrow: "Independent 1to1 research spreadsheet",
+    heroPrimary: "Build one evidence row at a time.",
+    heroSecondary: "Query. Source. Option. Open question.",
+    supportingLine:
+      "Keep every row small, dated and traceable so incomplete product fields remain visible instead of becoming assumptions.",
+    indexing: "ready",
+    indexablePaths: [
+      "",
+      "/spreadsheet-method",
+      "/source-fields",
+      "/qc-record",
+      "/handoff-checklist",
+      "/faq",
+    ],
+    editorial: {
+      homeVariant: "index",
+      introTitle: "Use a compact row that another reviewer can reopen.",
+      introDescription:
+        "Preserve the query, resolved source, exact option, visible evidence and next unanswered question without filling gaps with promotional language.",
+      primaryCtaLabel: "Open the spreadsheet method",
+      primaryCtaHref: "/spreadsheet-method",
+      brandTitle: "Group completed rows only after their fields are clear.",
+      brandDescription:
+        "Product and model labels can organize the sheet, while the source URL, option and review date keep each row auditable.",
+    },
+  },
   "acbuyindex.com": {
     siteName: "ACBuy Index",
     wordmark: "ACBuy Index",
@@ -540,7 +657,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     siteName: "EastMallBuy Index",
     wordmark: "EastMallBuy",
     logoPath: "/images/agents/eastmallbuy.png",
-    faviconPath: "/images/agents/eastmallbuy.png",
+    faviconPath: "/tenants/eastmallbuy/favicon-48x48.png",
     themeColor: "#0d2d4a",
     primaryColor: "#137f8f",
     primaryHoverColor: "#0d6572",

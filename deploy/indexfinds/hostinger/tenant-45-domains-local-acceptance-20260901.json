@@ -1,0 +1,57 @@
+{
+  "status": "local-ready-production-unchanged",
+  "targetDomainCount": 45,
+  "existingDomainCount": 42,
+  "newDomains": [
+    {
+      "domain": "1to1finds.cloud",
+      "purpose": "dated link and image evidence archive",
+      "currentNameservers": [
+        "atlas.dns-parking.com",
+        "hyperion.dns-parking.com"
+      ]
+    },
+    {
+      "domain": "1to1finds.com",
+      "purpose": "product discovery and source review guide",
+      "currentNameservers": [
+        "hermes.dns-parking.com",
+        "artemis.dns-parking.com"
+      ]
+    },
+    {
+      "domain": "1to1spreadsheet.com",
+      "purpose": "structured product research ledger",
+      "currentNameservers": [
+        "athena.dns-parking.com",
+        "apollo.dns-parking.com"
+      ]
+    }
+  ],
+  "tenantContract": {
+    "agentKey": null,
+    "productMode": "guide-only",
+    "sharedVerifiedBrandAssets": "/tenants/1to1reps/",
+    "retiredDomainStillExcluded": "1to1reps.com",
+    "newResearchPages": 15,
+    "newApprovedUrlsIncludingHomepages": 18
+  },
+  "validation": {
+    "targetedJest": "5 suites, 129 tests passed",
+    "finalTenantConfigJest": "1 suite, 54 tests passed",
+    "typecheck": "passed",
+    "changedFileEslint": "passed",
+    "productionBuild": "passed, 48 static routes generated",
+    "localHttp": "18 of 18 pages returned HTTP 200 with one H1 and self-canonical",
+    "seoEntrypoints": "3 of 3 robots and child sitemaps passed; 6 URLs per domain",
+    "favicons": "3 of 3 returned HTTP 200 image/png",
+    "visual": "desktop 1440x1000 and mobile 390x844 passed for all three domains with no horizontal overflow"
+  },
+  "production": {
+    "deployed": false,
+    "dnsChanged": false,
+    "nginxChanged": false,
+    "sslChanged": false,
+    "reason": "Repository release policy requires a separate explicit production approval after local acceptance."
+  }
+}
