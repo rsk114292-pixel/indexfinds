@@ -5035,6 +5035,22 @@ const KAMEYMALL_INDEX_PAGES: readonly TenantResearchPage[] = [
 const ONE_TO_ONE_SPREADSHEET_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "1to1spreadsheet.com",
+    slug: "categories",
+    seoTitle: "1to1 Spreadsheet Categories | Product-Specific Evidence Fields",
+    description:
+      "Organize 1to1 spreadsheet rows by product type while keeping category-specific measurements, materials, specifications, options and visible evidence fields.",
+    eyebrow: "Spreadsheet category field map",
+    title: "Change the row fields when the product category changes.",
+    intro:
+      "Categories organize the research record. Each product type still needs its own current source, exact option and visible evidence checks.",
+    sections: [
+      { title: "Clothing and footwear", description: "Record size system, measurements, material wording, color and the exact selected option before comparing candidates." },
+      { title: "Bags and accessories", description: "Keep dimensions, visible hardware, compartments, included pieces and option identifiers in separate fields." },
+      { title: "Electronics", description: "Capture model, voltage, plug, interface, compatibility and any stated restriction without turning specifications into a performance claim." },
+    ],
+  },
+  {
+    domain: "1to1spreadsheet.com",
     slug: "spreadsheet-method",
     seoTitle: "1to1 Spreadsheet Method | Build Traceable Product Rows",
     description:
@@ -5119,6 +5135,22 @@ const ONE_TO_ONE_SPREADSHEET_PAGES: readonly TenantResearchPage[] = [
 const ONE_TO_ONE_FINDS_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "1to1finds.com",
+    slug: "categories",
+    seoTitle: "1to1 Finds Categories | Refine Product Discovery by Type",
+    description:
+      "Browse 1to1 finds categories with product-specific search terms, option fields, measurements, specifications and visible evidence questions.",
+    eyebrow: "Product discovery categories",
+    title: "Let the product type define the search and the next check.",
+    intro:
+      "A useful category narrows discovery while making the evidence needed for a reviewable candidate explicit.",
+    sections: [
+      { title: "Apparel and footwear", description: "Combine product type with size system, measurements, construction, color and the exact option shown at the source." },
+      { title: "Bags and accessories", description: "Search with dimensions, visible hardware, closure, compartments and identifiers that can be checked on the final page." },
+      { title: "Electronics", description: "Use model, interface, voltage, plug and compatibility language, then retain the source that exposes those fields clearly." },
+    ],
+  },
+  {
+    domain: "1to1finds.com",
     slug: "finds-method",
     seoTitle: "1to1 Finds Method | From Product Clue to Reviewable Source",
     description:
@@ -5201,6 +5233,22 @@ const ONE_TO_ONE_FINDS_PAGES: readonly TenantResearchPage[] = [
 ];
 
 const ONE_TO_ONE_FINDS_CLOUD_PAGES: readonly TenantResearchPage[] = [
+  {
+    domain: "1to1finds.cloud",
+    slug: "categories",
+    seoTitle: "1to1 Finds Cloud Categories | Organize Dated Product Evidence",
+    description:
+      "Organize a dated 1to1 finds archive by product category while preserving category-specific measurements, specifications, options and image evidence.",
+    eyebrow: "Archived category evidence",
+    title: "Archive different evidence fields for different product types.",
+    intro:
+      "The category makes an archived record easier to retrieve, while the source, option, images and review date remain responsible for the evidence.",
+    sections: [
+      { title: "Wearable products", description: "Archive size system, measurements, material wording, color, selected option and the image views available on the review date." },
+      { title: "Carry goods", description: "Preserve dimensions, visible hardware, closure, compartments, included pieces and any unresolved construction question." },
+      { title: "Electronics", description: "Save model, voltage, plug, interface and compatibility fields together with the dated source that displayed them." },
+    ],
+  },
   {
     domain: "1to1finds.cloud",
     slug: "evidence-cloud",

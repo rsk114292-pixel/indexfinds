@@ -456,15 +456,15 @@ describe('sitemap', () => {
   it.each([
     [
       '1to1finds.cloud',
-      ['', '/evidence-cloud', '/link-ledger', '/image-review', '/decision-handoff', '/faq'],
+      ['', '/categories', '/evidence-cloud', '/link-ledger', '/image-review', '/decision-handoff', '/faq'],
     ],
     [
       '1to1finds.com',
-      ['', '/finds-method', '/search-vocabulary', '/source-check', '/qc-questions', '/faq'],
+      ['', '/categories', '/finds-method', '/search-vocabulary', '/source-check', '/qc-questions', '/faq'],
     ],
     [
       '1to1spreadsheet.com',
-      ['', '/spreadsheet-method', '/source-fields', '/qc-record', '/handoff-checklist', '/faq'],
+      ['', '/categories', '/spreadsheet-method', '/source-fields', '/qc-record', '/handoff-checklist', '/faq'],
     ],
     [
       'cnshopperindex.com',

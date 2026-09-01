@@ -13,6 +13,7 @@ describe("tenant research pages", () => {
 
   it("publishes three distinct 1to1 research path sets", () => {
     expect(getTenantResearchPaths("1to1finds.cloud")).toEqual([
+      "/categories",
       "/evidence-cloud",
       "/link-ledger",
       "/image-review",
@@ -20,6 +21,7 @@ describe("tenant research pages", () => {
       "/faq",
     ]);
     expect(getTenantResearchPaths("1to1finds.com")).toEqual([
+      "/categories",
       "/finds-method",
       "/search-vocabulary",
       "/source-check",
@@ -27,6 +29,7 @@ describe("tenant research pages", () => {
       "/faq",
     ]);
     expect(getTenantResearchPaths("1to1spreadsheet.com")).toEqual([
+      "/categories",
       "/spreadsheet-method",
       "/source-fields",
       "/qc-record",
@@ -423,10 +426,10 @@ describe("tenant research pages", () => {
   it("keeps every reviewed page specific and evidence-led", () => {
     const pages = getAllTenantResearchPages();
 
-    expect(pages).toHaveLength(283);
-    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(283);
-    expect(new Set(pages.map((page) => page.description)).size).toBe(283);
-    expect(new Set(pages.map((page) => page.title)).size).toBe(283);
+    expect(pages).toHaveLength(286);
+    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(286);
+    expect(new Set(pages.map((page) => page.description)).size).toBe(286);
+    expect(new Set(pages.map((page) => page.title)).size).toBe(286);
 
     const copy = JSON.stringify(pages);
     expect(copy).not.toMatch(/IndexFinds|official ACBuy site/i);
