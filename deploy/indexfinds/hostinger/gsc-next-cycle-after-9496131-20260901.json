@@ -1,0 +1,108 @@
+{
+  "recordedAt": "2026-09-01T12:40:48+08:00",
+  "baseline": {
+    "evidence": "gsc-performance-baseline-20260831.json",
+    "windowDays": 28,
+    "domainCount": 42,
+    "dataAvailableDomainCount": 40,
+    "waitingForFirstDataDomainCount": 2,
+    "totalClicks": 89,
+    "totalImpressions": 8019,
+    "prioritizedOpportunityDomainCount": 31
+  },
+  "currentRelease": {
+    "productionSourceCommit": "94961319ec705bb61b5023326b386f986d563e21",
+    "mainBranchEquivalentCommit": "b6cd69a",
+    "deployedAt": "2026-09-01",
+    "technicalAcceptance": "tenant-brand-hotfix-9496131-production-acceptance-20260901.json"
+  },
+  "completedOpportunityWork": {
+    "optimizationBatchDomainCount": 31,
+    "baselinePriorityDomainCount": 27,
+    "domains": [
+      "allchinabuyfinder.com",
+      "bbdbuyeufinds.com",
+      "bbdbuyeusheet.com",
+      "boonbuyindex.com",
+      "cnshopperindex.com",
+      "cssbuyindex.com",
+      "eastmallbuyindex.com",
+      "fishgooindex.com",
+      "goatedbuyindex.com",
+      "gtbuyindex.com",
+      "hipobuyindex.com",
+      "hoobuyindex.net",
+      "itaobuyindex.com",
+      "joyabuyfinds.com",
+      "joyagooindex.com",
+      "kakobuyindex.net",
+      "kameymallindex.com",
+      "litbuyindex.com",
+      "litbuyitems.com",
+      "litbuyproducts.com",
+      "loongbuys.net",
+      "mulebuyindex.net",
+      "mulebuyitems.com",
+      "oopbuyindex.net",
+      "orientdigindex.com",
+      "parcelupindex.com",
+      "sugargooindex.net",
+      "superbuydeals.com",
+      "superbuyindex.com",
+      "usfansindex.net",
+      "yoybuyindex.com"
+    ]
+  },
+  "heldForMoreEvidence": [
+    {
+      "domain": "lovegobuyindex.com",
+      "baselineImpressions": 32,
+      "baselineClicks": 1,
+      "averagePosition": 23.9,
+      "reason": "Only four sparse brand-adjacent queries are available. Existing reviewed pages already cover the observed LoveGoBuy and spreadsheet intent; another page would be speculative."
+    },
+    {
+      "domain": "cssbuyitems.com",
+      "baselineImpressions": 10,
+      "baselineClicks": 0,
+      "averagePosition": 12.1,
+      "reason": "No query rows were available in the captured baseline, so there is no defensible page-level intent to optimize yet."
+    },
+    {
+      "domain": "bbdbuyeus.com",
+      "baselineImpressions": 14,
+      "baselineClicks": 0,
+      "averagePosition": 23.9,
+      "reason": "The only captured query was the broad brand term. Current US-focused pages already separate product research, order workflow and parcel evidence."
+    },
+    {
+      "domain": "cssbuycatalog.com",
+      "baselineImpressions": 3,
+      "baselineClicks": 0,
+      "averagePosition": 21,
+      "reason": "No query rows were available and the sample is too small to justify new or rewritten pages."
+    }
+  ],
+  "waitingForFirstGoogleData": [
+    "ydaexpress.net",
+    "ydaexpress.org"
+  ],
+  "nextReview": {
+    "dailyTechnicalCheck": "2026-09-02T09:00:00+08:00",
+    "earliestMeaningfulSevenDayComparison": "2026-09-08",
+    "preferredFourteenDayComparison": "2026-09-15",
+    "automation": [
+      "gsc-42",
+      "gsc-spreadsheet"
+    ],
+    "decisionRules": [
+      "Prefer pages or queries with impressions and average position between 5 and 30.",
+      "Prioritize high-impression pages with low CTR after confirming the snippet matches the real search intent.",
+      "Inspect URL and query dimensions together before changing an already ranking URL.",
+      "Treat crawled or discovered but not indexed as a quality and duplication review, not an automatic technical defect.",
+      "Do not create a page when the available query sample does not establish a distinct user intent.",
+      "Keep YDA unchanged until each domain receives its own first useful query and page data."
+    ]
+  },
+  "state": "all-immediately-actionable-work-complete-awaiting-google-recalculation"
+}

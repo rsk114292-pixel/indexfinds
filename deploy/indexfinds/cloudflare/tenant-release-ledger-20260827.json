@@ -444,6 +444,24 @@
     "ydaWorkerImpact": "none",
     "evidence": "deploy/indexfinds/hostinger/tenant-brand-hotfix-9496131-production-acceptance-20260901.json"
   },
+  "nextGscCycle": {
+    "state": "waiting-for-post-release-google-data",
+    "baselinePriorityDomainCount": 31,
+    "optimizedPriorityDomainCount": 27,
+    "heldForMoreEvidenceDomains": [
+      "lovegobuyindex.com",
+      "cssbuyitems.com",
+      "bbdbuyeus.com",
+      "cssbuycatalog.com"
+    ],
+    "waitingForFirstDataDomains": [
+      "ydaexpress.net",
+      "ydaexpress.org"
+    ],
+    "nextDailyTechnicalCheck": "2026-09-02T09:00:00+08:00",
+    "earliestMeaningfulSevenDayComparison": "2026-09-08",
+    "evidence": "deploy/indexfinds/hostinger/gsc-next-cycle-after-9496131-20260901.json"
+  },
   "remainingTenantCount": 0,
   "remainingState": "all-42-tenant-content-and-production-validated",
   "currentOperationalBlockerCount": 0,
@@ -505,6 +523,7 @@
     "deploy/indexfinds/hostinger/continuous-seo-batch16-5f6fd32-local-acceptance-20260901.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch17-2171593-local-acceptance-20260901.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch18-3ca787c-local-acceptance-20260901.json",
-    "deploy/indexfinds/hostinger/tenant-brand-hotfix-9496131-production-acceptance-20260901.json"
+    "deploy/indexfinds/hostinger/tenant-brand-hotfix-9496131-production-acceptance-20260901.json",
+    "deploy/indexfinds/hostinger/gsc-next-cycle-after-9496131-20260901.json"
   ]
 }
