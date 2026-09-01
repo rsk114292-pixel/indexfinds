@@ -1,0 +1,104 @@
+{
+  "recordedAt": "2026-09-01T12:40:48+08:00",
+  "release": {
+    "sourceCommit": "94961319ec705bb61b5023326b386f986d563e21",
+    "branch": "codex/tenant-image-brand-hotfix",
+    "image": "indexfinds-web:tenant-brand-hotfix-9496131",
+    "imageDigest": "sha256:13b1bafa5d2f479815f823b1afec932f01f50676b0d0870d55faaa6e107d9ac4",
+    "container": "indexfinds-web-tenant-brand-hotfix-9496131",
+    "origin": "127.0.0.1:3149",
+    "containerState": "running-healthy",
+    "restartCount": 0
+  },
+  "scope": {
+    "applicationTenantDomainCount": 43,
+    "dedicatedYdaDomainCount": 2,
+    "totalChildDomainCount": 45,
+    "mainSiteChanged": false,
+    "apiChanged": false,
+    "ydaWorkersChanged": false
+  },
+  "corrections": [
+    "Brand detail pages now use host-aware dynamic rendering and no longer fail with DYNAMIC_SERVER_USAGE on tenant hosts.",
+    "The Next.js image optimizer explicitly permits the production API uploads path while continuing to reject unrelated remote paths."
+  ],
+  "localValidation": {
+    "targetedTests": "8/8 passed",
+    "jest": "130 suites and 910 tests passed with Playwright e2e files excluded from the Jest runner",
+    "eslint": "passed for all changed source and test files",
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "brandRouteBuildMode": "dynamic"
+  },
+  "routing": {
+    "nginxValidation": "passed",
+    "newOriginReferenceCount": 86,
+    "previousOriginReferenceCount": 0,
+    "applicationTenantConfigCount": 43,
+    "mainWebOrigin": "127.0.0.1:3129",
+    "apiOrigin": "127.0.0.1:4104"
+  },
+  "productionValidation": {
+    "applicationDomains": {
+      "passedDomainCount": 43,
+      "failedDomainCount": 0,
+      "reviewedSitemapPageCount": 318,
+      "genericRouteCheckCount": 258,
+      "imageOptimizerCheckCount": 43,
+      "failureCount": 0,
+      "evidence": "tenant-brand-hotfix-9496131-production-audit-20260901.json"
+    },
+    "visual": {
+      "desktopMobileViewCount": 86,
+      "passed": 86,
+      "failed": 0,
+      "minimumDesktopSearchWidthRatio": 0.7777777777777778,
+      "minimumMobileSearchWidthRatio": 0.9179487179487179,
+      "maximumSearchCenterOffsetPx": 0,
+      "urlBackedHeroBackgroundCount": 0,
+      "evidence": "tenant-brand-hotfix-9496131-production-visual-20260901.json"
+    },
+    "legacyRedirects": {
+      "caseCount": 54,
+      "passed": 54,
+      "failed": 0,
+      "evidence": "tenant-brand-hotfix-9496131-production-legacy-redirects-20260901.json"
+    },
+    "yda": {
+      "domainCount": 2,
+      "reviewedPageCount": 12,
+      "technicalFailureCount": 0,
+      "desktopMobileViewCount": 4,
+      "visualFailureCount": 0,
+      "evidence": [
+        "tenant-brand-hotfix-9496131-yda-production-audit-20260901.json",
+        "tenant-brand-hotfix-9496131-yda-production-visual-20260901.json"
+      ]
+    },
+    "continuity": {
+      "indexfindsHomeStatus": 200,
+      "apiHealthStatus": 200,
+      "ydaNetHomeStatus": 200,
+      "ydaOrgHomeStatus": 200
+    }
+  },
+  "rollback": {
+    "canaryBackup": "/root/.indexfinds-migration/nginx-backups/tenant-brand-hotfix-9496131-canary-20260901T035813Z",
+    "rolloutBackup": "/root/.indexfinds-migration/nginx-backups/tenant-brand-hotfix-9496131-rollout-20260901T040122Z",
+    "previousContainerPreserved": "indexfinds-web-tenant45-assets-77bf74f",
+    "previousOriginPreserved": "127.0.0.1:3148"
+  },
+  "searchConsole": {
+    "state": "technical-release-complete-google-processing-separate",
+    "dataAvailableDomainCount": 40,
+    "waitingForFirstDataDomains": [
+      "ydaexpress.net",
+      "ydaexpress.org"
+    ],
+    "note": "Deployment and technical acceptance do not claim a new Google crawl, index decision or ranking change."
+  },
+  "operationalWarnings": [
+    "Hostinger root filesystem is at 90 percent use with 21 GB available. Inactive rollback containers and images were preserved; no destructive cleanup was performed."
+  ],
+  "result": "deployed-and-live-validated"
+}

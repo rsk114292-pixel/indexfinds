@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T23:18:46+08:00",
+  "updatedAt": "2026-09-01T12:40:48+08:00",
   "policy": "A branding-ready flag is not a release approval. A tenant may be indexed only after independent content, technical SEO, mobile, preview and production checks pass.",
   "releasedForIndexing": [
     "acbuyindex.com",
@@ -429,11 +429,27 @@
     "priorityRequestState": "google-temporary-recaptcha-error-sitemap-discovery-active",
     "evidence": "deploy/indexfinds/hostinger/google-search-portfolio-acceptance-20260831.json"
   },
+  "tenantBrandImageHotfix": {
+    "domains": 43,
+    "webSourceCommit": "94961319ec705bb61b5023326b386f986d563e21",
+    "origin": "127.0.0.1:3149",
+    "releaseGateState": "deployed-and-live-validated",
+    "reviewedSitemapPageCount": 318,
+    "genericRouteCheckCount": 258,
+    "imageOptimizerCheckCount": 43,
+    "desktopMobileViewCount": 86,
+    "legacyRedirectCaseCount": 54,
+    "failureCount": 0,
+    "mainSiteImpact": "none",
+    "ydaWorkerImpact": "none",
+    "evidence": "deploy/indexfinds/hostinger/tenant-brand-hotfix-9496131-production-acceptance-20260901.json"
+  },
   "remainingTenantCount": 0,
   "remainingState": "all-42-tenant-content-and-production-validated",
-  "currentOperationalBlockerCount": 1,
-  "currentOperationalBlockers": [
-    "Hostinger root filesystem has 2.5G free at 99% use. The active tenant release is healthy, but another production image build requires explicit approval to remove exact inactive rollback images or an external disk-capacity increase."
+  "currentOperationalBlockerCount": 0,
+  "currentOperationalBlockers": [],
+  "currentOperationalWarnings": [
+    "Hostinger root filesystem has 21 GB free at 90 percent use. Exact inactive rollback containers and images remain preserved pending a separately scoped cleanup."
   ],
   "evidence": [
     "batch1-route-rollback-20260827.json",
@@ -488,6 +504,7 @@
     "deploy/indexfinds/hostinger/continuous-seo-batch15-b6f12d7-local-acceptance-20260901.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch16-5f6fd32-local-acceptance-20260901.json",
     "deploy/indexfinds/hostinger/continuous-seo-batch17-2171593-local-acceptance-20260901.json",
-    "deploy/indexfinds/hostinger/continuous-seo-batch18-3ca787c-local-acceptance-20260901.json"
+    "deploy/indexfinds/hostinger/continuous-seo-batch18-3ca787c-local-acceptance-20260901.json",
+    "deploy/indexfinds/hostinger/tenant-brand-hotfix-9496131-production-acceptance-20260901.json"
   ]
 }
