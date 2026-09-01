@@ -1,0 +1,70 @@
+{
+  "validatedAt": "2026-09-02T04:41:40+08:00",
+  "sourceCommits": {
+    "deepPageAccessibility": "26181ad353e281a563db851da3002d39ab36b9bc",
+    "mobileImagePriority": "47b7d267bda6343bda4def6842d5a23ca04390f2"
+  },
+  "release": {
+    "image": "indexfinds-web:tenant-mobile-perf-47b7d26",
+    "imageId": "sha256:e66196b9e42a7bffe2aaa5e6e375e338604788e3cbb91356778aa4df61f40a89",
+    "container": "indexfinds-web-tenant-mobile-perf-47b7d26",
+    "port": 3155,
+    "nginxRouteFileCount": 46,
+    "containerHealth": "healthy",
+    "containerRestarts": 0
+  },
+  "changes": [
+    "Removed duplicate page-level headings and generic tenant metadata fallbacks in the preceding release.",
+    "Hardened tenant color tokens and deep-page text contrast without changing tenant identity.",
+    "Removed nested interactive controls and fixed alert, tag, price, cookie and research-page semantics.",
+    "Reduced mobile product image priority to the number visible in each view mode.",
+    "Marked category thumbnails decorative when the adjacent category name already supplies the link name."
+  ],
+  "validation": {
+    "automatedTests": "131 of 131 suites and 917 of 917 tests passed; typecheck, changed-file lint and production build passed.",
+    "localHomepageAccessibility": "45 domains, 45 targets and 90 desktop/mobile views passed with zero violations or request failures.",
+    "localDeepAccessibility": "523 targets and 1,046 desktop/mobile views were covered. Two discovered page-specific contrast failures were fixed and passed targeted rechecks.",
+    "productionDirectOriginAccessibility": "43 of 43 directly served domains and 86 of 86 homepage views passed with zero violations and zero request failures before the final shared-component rollout.",
+    "productionRepresentativeDeepAccessibility": "Five directly affected targets and ten desktop/mobile views passed with zero violations and zero request failures.",
+    "productionRepresentativeSeo": "ACBuy, iTaoBuy and USFans passed 13 reviewed pages, including 12 deep pages, with zero failures and zero warnings.",
+    "finalCanary": "ACBuy homepage and product listing passed four desktop/mobile views with zero violations; Lighthouse accessibility improved from 0.99 to 1.00 after removal of redundant category image alt text.",
+    "httpAfterFinalSwitch": "All 43 direct-origin tenant English homepages returned 200. YDA returned the separately recorded Cloudflare Workers 429 quota page.",
+    "performance": {
+      "desktopProducts": "performance 0.97, LCP 0.88s, CLS 0.0001, TBT 0ms",
+      "mobileProducts": "performance 0.72, LCP 5.75s, CLS 0.0041, TBT 61ms; the single-run LCP change is within lab variance and is not claimed as an improvement",
+      "mobileHomepage": "performance 0.80, accessibility 1.00, LCP 4.61s, CLS 0.0047, TBT 97ms",
+      "fieldDataNote": "Laboratory Lighthouse measurements are not CrUX field INP or Google ranking data."
+    }
+  },
+  "storage": {
+    "beforeSafePrune": "28GB available, 86% used",
+    "builderCacheReclaimed": "7.601GB",
+    "afterSafePrune": "35GB available, 83% used",
+    "protectedData": "No images, containers, volumes, databases, uploads, certificates, environment files or Nginx production files were deleted."
+  },
+  "externalBlockers": [
+    {
+      "scope": "ydaexpress.net and ydaexpress.org",
+      "status": 429,
+      "cause": "Cloudflare Workers account quota page",
+      "action": "Production routing left unchanged; repeat acceptance after the quota reset."
+    },
+    {
+      "scope": "indexfinds.com public edge",
+      "status": 429,
+      "cause": "Cloudflare Workers plan request limit",
+      "originEvidence": "Hostinger main origin returned 200 in 0.12s and its container was healthy; API health returned 200.",
+      "action": "Requires removal or bypass of the stale main-site Worker route using Cloudflare account API or dashboard access."
+    }
+  ],
+  "rollback": {
+    "previousPort": 3154,
+    "previousContainer": "indexfinds-web-tenant-a11y-final-26181ad",
+    "olderPort": 3153,
+    "olderContainer": "indexfinds-web-tenant-a11y-842db39",
+    "nginxCanaryBackup": "/opt/indexfinds/nginx-backups/tenant-mobile-perf-47b7d26-canary",
+    "nginxPortfolioBackup": "/opt/indexfinds/nginx-backups/tenant-mobile-perf-47b7d26-all",
+    "rollbackContainersHealth": "Both retained rollback containers were healthy with zero restarts at acceptance time."
+  },
+  "result": "tenant-release-complete-external-cloudflare-quota-blockers-recorded"
+}
