@@ -114,7 +114,7 @@ export default async function UsfansSpreadsheetPage({
         <section className="container mx-auto px-4 py-14 sm:py-18 lg:py-22">
           <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(300px,0.75fr)]">
             <div>
-              <p className="text-sm font-bold text-primary">
+              <p className="text-sm font-bold text-primary-hover">
                 Independent USFans research workflow
               </p>
               <h1 className="mt-4 max-w-4xl text-4xl font-extrabold leading-[1.02] tracking-[-0.05em] sm:text-5xl lg:text-7xl">

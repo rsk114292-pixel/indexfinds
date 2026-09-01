@@ -147,19 +147,19 @@ export default async function TenantResearchPage({
   const eyebrowClass = isLedger
     ? "text-[#f2c66d]"
     : isFinder
-      ? "text-[#d45b28]"
+      ? "text-[#a83b0b]"
       : isEuFinds
-        ? "text-[#2376b9]"
+        ? "text-[#195d94]"
         : isUsParcel
           ? "text-[#ffad45]"
           : isSheet
-            ? "text-[#9b6517]"
+            ? "text-[#76500f]"
             : isItemCheck
               ? "text-[#b8e36d]"
               : isQueryIndex
                 ? "text-[#6ce0af]"
                 : isCatalogMap
-                  ? "text-[#d96b19]"
+                  ? "text-[#a8470d]"
                   : isShortlist
                     ? "text-[#ff526a]"
                     : isItemFile
@@ -168,11 +168,11 @@ export default async function TenantResearchPage({
   const primaryButtonClass = isLedger
     ? "bg-[#f2c66d] text-[#172036] hover:bg-[#ffe09b] focus-visible:ring-[#f2c66d] focus-visible:ring-offset-[#111a29]"
     : isFinder
-      ? "bg-[#ee6a32] text-white hover:bg-[#d95825] focus-visible:ring-[#ee6a32] focus-visible:ring-offset-[#fff1d9]"
+      ? "bg-[#b7410d] text-white hover:bg-[#9f3d0d] focus-visible:ring-[#b7410d] focus-visible:ring-offset-[#fff1d9]"
       : isEuFinds
         ? "bg-[#2376b9] text-white hover:bg-[#195d94] focus-visible:ring-[#2376b9] focus-visible:ring-offset-[#dcecf5]"
         : isUsParcel
-          ? "bg-[#e98305] text-white hover:bg-[#c96e00] focus-visible:ring-[#e98305] focus-visible:ring-offset-[#111b29]"
+          ? "bg-[#9c4e00] text-white hover:bg-[#7f3f00] focus-visible:ring-[#9c4e00] focus-visible:ring-offset-[#111b29]"
           : isSheet
             ? "bg-[#251d15] text-white hover:bg-[#4a3826] focus-visible:ring-[#9b6517] focus-visible:ring-offset-[#eee6d5]"
             : isItemCheck
@@ -180,9 +180,9 @@ export default async function TenantResearchPage({
               : isQueryIndex
                 ? "bg-[#35c486] text-[#061711] hover:bg-[#6ce0af] focus-visible:ring-[#35c486] focus-visible:ring-offset-[#061711]"
                 : isCatalogMap
-                  ? "bg-[#d96b19] text-white hover:bg-[#b95510] focus-visible:ring-[#d96b19] focus-visible:ring-offset-[#d9eef3]"
+                  ? "bg-[#a8470d] text-white hover:bg-[#87390a] focus-visible:ring-[#a8470d] focus-visible:ring-offset-[#d9eef3]"
                   : isShortlist
-                    ? "bg-[#ff334e] text-white hover:bg-[#df203c] focus-visible:ring-[#ff526a] focus-visible:ring-offset-[#080d1e]"
+                    ? "bg-[#c31d39] text-white hover:bg-[#a61630] focus-visible:ring-[#c31d39] focus-visible:ring-offset-[#080d1e]"
                     : isItemFile
                       ? "bg-[#24161b] text-white hover:bg-[#4a2935] focus-visible:ring-[#c9365b] focus-visible:ring-offset-[#fff0ed]"
       : "bg-[#31b38c] text-[#06231f] hover:bg-[#75d7bd] focus-visible:ring-white focus-visible:ring-offset-[#092d35]";
@@ -432,7 +432,7 @@ export default async function TenantResearchPage({
                   <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#ff526a]">
                     Shortlist gate
                   </p>
-                  <span className="font-mono text-xs text-white/45">04 checks</span>
+                  <span className="font-mono text-xs text-white/55">04 checks</span>
                 </div>
                 <ol className="mt-2">
                   {["Query match", "Duplicate group", "Evidence floor", "Dated reason"].map(
@@ -500,13 +500,13 @@ export default async function TenantResearchPage({
                     key={label}
                     className="grid grid-cols-[50px_1fr_1fr] border-b border-[#d9cfb7] text-sm last:border-b-0"
                   >
-                    <span className="border-r border-[#d9cfb7] bg-[#eee6d5] p-4 font-mono text-[#8a724f]">
+                    <span className="border-r border-[#d9cfb7] bg-[#eee6d5] p-4 font-mono text-[#745d3f]">
                       {index + 1}
                     </span>
                     <span className="border-r border-[#d9cfb7] p-4 font-bold">
                       {label}
                     </span>
-                    <span className="p-4 text-[#8a724f]">
+                    <span className="p-4 text-[#745d3f]">
                       {index < 2 ? "Required" : "Check"}
                     </span>
                   </div>
@@ -621,7 +621,7 @@ export default async function TenantResearchPage({
                       : "text-white/65 hover:text-white"
                     : isFinder
                       ? active
-                        ? "rounded-full bg-[#ee6a32] text-white"
+                        ? "rounded-full bg-[#b7410d] text-white"
                         : "rounded-full text-white/65 hover:bg-white/10 hover:text-white"
                       : isEuFinds
                         ? active
@@ -645,7 +645,7 @@ export default async function TenantResearchPage({
                                   : "rounded-full text-white/60 hover:bg-white/8 hover:text-white"
                                 : isCatalogMap
                                   ? active
-                                    ? "rounded-full bg-[#d96b19] text-white"
+                                    ? "rounded-full bg-[#a8470d] text-white"
                                     : "rounded-full text-[#526d79] hover:bg-[#e4f1f4] hover:text-[#092338]"
                       : active
                         ? "rounded-full bg-[#d9f2ea] text-[#075c50]"
@@ -672,13 +672,13 @@ export default async function TenantResearchPage({
               <FileSearch
                 className={`h-7 w-7 ${
                   isLedger
-                    ? "text-[#9b6c18]"
+                    ? "text-[#78500f]"
                     : isFinder
-                      ? "text-[#d45b28]"
+                      ? "text-[#a83b0b]"
                       : isEuFinds
                         ? "text-[#2376b9]"
                         : isUsParcel
-                          ? "text-[#e98305]"
+                          ? "text-[#9c4e00]"
                           : isSheet
                             ? "text-[#9b6517]"
                             : isItemCheck
@@ -686,7 +686,7 @@ export default async function TenantResearchPage({
                               : isQueryIndex
                                 ? "text-[#168f5e]"
                                 : isCatalogMap
-                                  ? "text-[#d96b19]"
+                                  ? "text-[#a8470d]"
                       : "text-[#087c68]"
                 }`}
               />
@@ -785,10 +785,10 @@ export default async function TenantResearchPage({
                   <span
                     className={`mb-4 block font-mono text-sm sm:mb-0 ${
                       isUsParcel
-                        ? "text-[#c96e00]"
+                        ? "text-[#8c4b00]"
                         : isQueryIndex
-                          ? "text-[#168f5e]"
-                          : "text-[#9b6c18]"
+                          ? "text-[#0c7148]"
+                          : "text-[#78500f]"
                     }`}
                   >
                     {String(index + 1).padStart(2, "0")}
@@ -800,7 +800,7 @@ export default async function TenantResearchPage({
                       isLedger || isUsParcel || isQueryIndex
                         ? "hidden"
                         : isFinder
-                          ? "rounded-full bg-[#fff0df] text-[#d45b28]"
+                          ? "rounded-full bg-[#fff0df] text-[#a83b0b]"
                           : isEuFinds
                             ? "rounded-[12px_20px] bg-[#dcecf5] text-[#2376b9]"
                             : isSheet
@@ -808,7 +808,7 @@ export default async function TenantResearchPage({
                               : isItemCheck
                                 ? "rounded-none bg-[#e5f1cf] text-[#5d8428]"
                                 : isCatalogMap
-                                  ? "rounded-full bg-[#e6f2f5] text-[#d96b19]"
+                                  ? "rounded-full bg-[#e6f2f5] text-[#a8470d]"
                           : "rounded-xl bg-[#d9f2ea] text-[#087c68]"
                     }`}
                   >

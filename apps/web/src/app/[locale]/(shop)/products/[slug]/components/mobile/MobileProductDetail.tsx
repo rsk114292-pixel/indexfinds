@@ -420,7 +420,7 @@ export default function MobileProductDetail({
         {/* 价格区域 */}
         <div className="px-4 pt-4 pb-3">
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-accent">
+            <span className="text-2xl font-bold text-primary">
               {approx}
               {formatPrice(converted, displayCurrency)}
             </span>
@@ -453,12 +453,12 @@ export default function MobileProductDetail({
                 href={`/brands/${product.brand.slug}`}
                 className="inline-flex min-h-11 items-center active:scale-95 transition-transform"
               >
-                <span className="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-accent/15 text-amber-700">
+                <span className="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-accent/15 text-amber-800">
                   {product.brand.name}
                 </span>
               </Link>
             ) : product.aiBrandName ? (
-              <span className="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-accent/15 text-amber-700">
+              <span className="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-accent/15 text-amber-800">
                 {product.aiBrandName}
               </span>
             ) : null}

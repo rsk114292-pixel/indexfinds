@@ -18,6 +18,7 @@ import { SkipToContent } from '@/components/SkipToContent';
 import TenantProvider from '@/components/TenantProvider';
 import { headers } from 'next/headers';
 import { resolveTenantFromHeaders } from '@/lib/tenant-config';
+import { accessibleTenantPrimary } from '@/lib/accessible-color';
 import type { CSSProperties } from 'react';
 
 export default async function ShopLayout({
@@ -30,8 +31,12 @@ export default async function ShopLayout({
   const tenant = resolveTenantFromHeaders(headersList, localTenantHost);
   const tenantStyle = tenant?.branding
     ? ({
-        '--color-primary': tenant.branding.primaryColor,
-        '--color-primary-hover': tenant.branding.primaryHoverColor,
+        '--color-primary': accessibleTenantPrimary(
+          tenant.branding.primaryColor,
+        ),
+        '--color-primary-hover': accessibleTenantPrimary(
+          tenant.branding.primaryHoverColor,
+        ),
         '--color-accent': tenant.branding.accentColor,
       } as CSSProperties)
     : undefined;

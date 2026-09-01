@@ -195,13 +195,13 @@ export default function CookieConsent() {
       )}
     >
       <div className="flex items-center justify-between gap-3 px-3 py-3 sm:px-4">
-        <p className="line-clamp-3 text-[11px] leading-4 text-muted sm:text-xs sm:leading-5">
+        <p className="line-clamp-3 text-[11px] leading-4 text-slate-700 sm:text-xs sm:leading-5">
           {t("message")}
         </p>
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <button
             onClick={reject}
-            className="min-h-10 rounded-lg px-2.5 py-2 text-xs text-muted transition-colors hover:bg-gray-50 hover:text-foreground cursor-pointer"
+            className="min-h-10 rounded-lg px-2.5 py-2 text-xs text-slate-700 transition-colors hover:bg-gray-50 hover:text-foreground cursor-pointer"
           >
             {t("reject")}
           </button>

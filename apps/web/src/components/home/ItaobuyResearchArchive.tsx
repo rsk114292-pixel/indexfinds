@@ -75,7 +75,7 @@ export default function ItaobuyResearchArchive({
         )}
       >
         <div className={cn(!compact && "lg:sticky lg:top-24 lg:self-start")}>
-          <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#bd4d0f]">
+          <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#b7410d]">
             <FileSearch className="h-4 w-4" />
             iTaoBuy research archive
           </p>
@@ -109,15 +109,15 @@ export default function ItaobuyResearchArchive({
                 href={record.href}
                 className="group grid min-h-28 grid-cols-[42px_1fr_auto] items-start gap-4 border-b border-[#bfc7d2] py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e96517] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f4f1ea] sm:grid-cols-[54px_1fr_auto] sm:gap-6 sm:py-6"
               >
-                <span className="font-mono text-xs font-bold tracking-[0.12em] text-[#bd4d0f]">
+                <span className="font-mono text-xs font-bold tracking-[0.12em] text-[#b7410d]">
                   {record.number}
                 </span>
                 <span>
-                  <strong className="block text-base font-extrabold tracking-[-0.02em] group-hover:text-[#bd4d0f] sm:text-lg">
+                  <strong className="block text-base font-extrabold tracking-[-0.02em] group-hover:text-[#b7410d] sm:text-lg">
                     {record.title}
                   </strong>
                   {!compact && (
-                    <span className="mt-2 block max-w-2xl text-sm leading-6 text-[#667085]">
+                    <span className="mt-2 block max-w-2xl text-sm leading-6 text-[#596174]">
                       {record.description}
                     </span>
                   )}

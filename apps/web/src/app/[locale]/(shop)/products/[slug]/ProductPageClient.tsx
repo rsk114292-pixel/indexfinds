@@ -633,7 +633,7 @@ function PriceDisplay({
 
   return (
     <div className="bg-gray-50 rounded-lg p-4">
-      <div className="text-4xl font-bold text-accent">
+      <div className="text-4xl font-bold text-primary">
         {approx}
         {formatPrice(converted, displayCurrency)}
       </div>

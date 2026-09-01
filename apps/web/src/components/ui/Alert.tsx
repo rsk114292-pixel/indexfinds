@@ -71,7 +71,7 @@ function Alert({
           <p className={`font-medium ${config.text}`}>{title}</p>
         )}
         {description && (
-          <p className={`text-sm mt-1 ${config.text} opacity-80`}>{description}</p>
+          <p className={`text-sm mt-1 ${config.text}`}>{description}</p>
         )}
         {children}
       </div>

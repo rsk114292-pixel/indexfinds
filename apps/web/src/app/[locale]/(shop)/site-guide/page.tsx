@@ -259,7 +259,7 @@ export default async function TenantSiteGuidePage({
                   </span>
                   <div>
                     <h3 className="text-base font-bold">{title}</h3>
-                    <p className="mt-1 text-sm leading-6 text-[#667085]">{description}</p>
+                    <p className="mt-1 text-sm leading-6 text-[#596174]">{description}</p>
                   </div>
                 </div>
               ))}
@@ -274,7 +274,7 @@ export default async function TenantSiteGuidePage({
               <h2 className="mt-6 text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">
                 Who this guide is designed for
               </h2>
-              <p className="mt-4 max-w-xl text-base leading-7 text-[#667085]">
+              <p className="mt-4 max-w-xl text-base leading-7 text-[#596174]">
                 {profile.audience}
               </p>
             </div>
@@ -282,7 +282,7 @@ export default async function TenantSiteGuidePage({
               <h2 className="text-xl font-extrabold tracking-[-0.03em] sm:text-2xl">
                 Research focus
               </h2>
-              <p className="mt-4 text-base leading-7 text-[#667085]">
+              <p className="mt-4 text-base leading-7 text-[#596174]">
                 {profile.researchFocus}
               </p>
               <nav aria-label={`${tenant.title} research paths`} className="mt-6 border-t border-[#e3e6eb]">
@@ -313,7 +313,7 @@ export default async function TenantSiteGuidePage({
                 Source and referral notice
               </h2>
             </div>
-            <div className="mt-5 grid gap-5 text-sm leading-6 text-[#667085] md:grid-cols-2 md:gap-9">
+            <div className="mt-5 grid gap-5 text-sm leading-6 text-[#596174] md:grid-cols-2 md:gap-9">
               <p>
                 Product information may come from marketplace listings and may not be independently verified. Confirm current price, availability, materials, images and product options on the destination website.
               </p>
@@ -335,7 +335,7 @@ export default async function TenantSiteGuidePage({
                   <summary className="cursor-pointer list-none pr-8 text-base font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
                     {item.question}
                   </summary>
-                  <p className="max-w-3xl pb-1 pt-3 text-sm leading-6 text-[#667085]">
+                  <p className="max-w-3xl pb-1 pt-3 text-sm leading-6 text-[#596174]">
                     {item.answer}
                   </p>
                 </details>

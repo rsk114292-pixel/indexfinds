@@ -46,16 +46,13 @@ export default function MobileSearchEntry({
   const openSearch = () => onTap?.(currentKeyword);
 
   return (
-    <div
-      role="button"
-      tabIndex={0}
-      onClick={openSearch}
-      onKeyDown={(e) => {
-        if (e.key === "Enter") openSearch();
-      }}
-      className="flex h-12 w-full items-center gap-2 rounded-xl bg-[#f7f4ef] px-2.5 transition-colors duration-150 active:bg-[#f0ebe4] cursor-pointer"
-    >
-      <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden pl-1">
+    <div className="flex h-12 w-full items-center gap-2 rounded-xl bg-[#f7f4ef] px-2.5 transition-colors duration-150 active:bg-[#f0ebe4]">
+      <button
+        type="button"
+        onClick={openSearch}
+        className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden pl-1 text-left"
+        aria-label={t("search")}
+      >
         <Search className="h-4.5 w-4.5 shrink-0 text-muted/90" />
         <div className="flex min-w-0 items-center gap-1.5 overflow-hidden">
           <span
@@ -72,7 +69,7 @@ export default function MobileSearchEntry({
             </span>
           )}
         </div>
-      </div>
+      </button>
 
       <button
         type="button"

@@ -17,7 +17,7 @@ interface TagProps {
 
 const colorStyles: Record<TagColor, string> = {
   primary: 'bg-primary/10 text-primary',
-  accent: 'bg-accent/15 text-amber-700',
+  accent: 'bg-accent/15 text-amber-800',
   gray: 'bg-gray-100 text-gray-600',
   purple: 'bg-purple-50 text-purple-600',
   blue: 'bg-blue-50 text-blue-600',

@@ -37,7 +37,7 @@ export default function ItaobuyResearchGuide({
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/products"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#e96517] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#bd4d0f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb44a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1727]"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#b7410d] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#9f3d0d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb44a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1727]"
               >
                 Search products <ArrowRight className="h-4 w-4" />
               </Link>
@@ -88,7 +88,7 @@ export default function ItaobuyResearchGuide({
 
       <section id="spreadsheet" className="scroll-mt-24 border-b border-[#cbd1da]">
         <div className="container mx-auto grid gap-8 px-4 py-14 lg:grid-cols-[180px_1fr] lg:gap-16 lg:py-20">
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#bd4d0f]">01 / Spreadsheet</p>
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#b7410d]">01 / Spreadsheet</p>
           <div>
             <h2 className="max-w-3xl text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">
               Treat an iTaoBuy spreadsheet as a discovery record.
@@ -106,8 +106,8 @@ export default function ItaobuyResearchGuide({
               </p>
             </div>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/products" className="font-bold text-[#bd4d0f] underline decoration-[#e96517]/35 underline-offset-4 hover:decoration-[#e96517]">Search the product index</Link>
-              <Link href="/categories" className="font-bold text-[#bd4d0f] underline decoration-[#e96517]/35 underline-offset-4 hover:decoration-[#e96517]">Browse categories</Link>
+              <Link href="/products" className="font-bold text-[#b7410d] underline decoration-[#e96517]/35 underline-offset-4 hover:decoration-[#e96517]">Search the product index</Link>
+              <Link href="/categories" className="font-bold text-[#b7410d] underline decoration-[#e96517]/35 underline-offset-4 hover:decoration-[#e96517]">Browse categories</Link>
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@ export default function ItaobuyResearchGuide({
 
       <section id="workflow" className="scroll-mt-24 border-b border-[#cbd1da] bg-white">
         <div className="container mx-auto grid gap-8 px-4 py-14 lg:grid-cols-[180px_1fr] lg:gap-16 lg:py-20">
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#bd4d0f]">02 / Workflow</p>
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#b7410d]">02 / Workflow</p>
           <div>
             <h2 className="text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">A source-trace workflow for every shortlist.</h2>
             <ol className="mt-8 border-t border-[#cbd1da]">
@@ -126,8 +126,8 @@ export default function ItaobuyResearchGuide({
                 ["External route", "Compare fees, restrictions and service terms only after the product record is stable."],
               ].map(([title, text], index) => (
                 <li key={title} className="grid grid-cols-[44px_1fr] gap-5 border-b border-[#cbd1da] py-5 sm:grid-cols-[60px_1fr]">
-                  <span className="font-mono text-xs font-bold text-[#bd4d0f]">0{index + 1}</span>
-                  <div><h3 className="font-extrabold">{title}</h3><p className="mt-1 text-sm leading-6 text-[#667085]">{text}</p></div>
+                  <span className="font-mono text-xs font-bold text-[#b7410d]">0{index + 1}</span>
+                  <div><h3 className="font-extrabold">{title}</h3><p className="mt-1 text-sm leading-6 text-[#596174]">{text}</p></div>
                 </li>
               ))}
             </ol>
@@ -137,7 +137,7 @@ export default function ItaobuyResearchGuide({
 
       <section id="safety" className="scroll-mt-24 border-b border-[#cbd1da]">
         <div className="container mx-auto grid gap-8 px-4 py-14 lg:grid-cols-[180px_1fr] lg:gap-16 lg:py-20">
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#bd4d0f]">03 / Safety</p>
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#b7410d]">03 / Safety</p>
           <div>
             <div className="flex items-center gap-3"><ShieldCheck className="h-6 w-6 text-[#bd4d0f]" /><h2 className="text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">Is iTaoBuy legit or safe?</h2></div>
             <p className="mt-6 max-w-3xl text-base leading-8 text-[#5f6672]">
@@ -153,7 +153,7 @@ export default function ItaobuyResearchGuide({
 
       <section id="promo-code" className="scroll-mt-24 border-b border-[#cbd1da] bg-white">
         <div className="container mx-auto grid gap-8 px-4 py-14 lg:grid-cols-[180px_1fr] lg:gap-16 lg:py-20">
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#bd4d0f]">04 / Promo code</p>
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#b7410d]">04 / Promo code</p>
           <div>
             <h2 className="text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">Verify an iTaoBuy promo code as a dated offer.</h2>
             <p className="mt-6 max-w-3xl text-base leading-8 text-[#5f6672]">
@@ -168,7 +168,7 @@ export default function ItaobuyResearchGuide({
 
       <section id="reddit" className="scroll-mt-24 border-b border-[#cbd1da]">
         <div className="container mx-auto grid gap-8 px-4 py-14 lg:grid-cols-[180px_1fr] lg:gap-16 lg:py-20">
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#bd4d0f]">05 / Reddit</p>
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#b7410d]">05 / Reddit</p>
           <div>
             <h2 className="text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">Read iTaoBuy Reddit posts as dated reports.</h2>
             <p className="mt-6 max-w-3xl text-base leading-8 text-[#5f6672]">
@@ -183,7 +183,7 @@ export default function ItaobuyResearchGuide({
 
       <section id="faq" className="scroll-mt-24 bg-white">
         <div className="container mx-auto grid gap-8 px-4 py-14 lg:grid-cols-[180px_1fr] lg:gap-16 lg:py-20">
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#bd4d0f]">06 / FAQ</p>
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#b7410d]">06 / FAQ</p>
           <div>
             <h2 className="text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">iTaoBuy research questions</h2>
             <div className="mt-8 border-t border-[#cbd1da]">
@@ -192,7 +192,7 @@ export default function ItaobuyResearchGuide({
                   <summary className="cursor-pointer list-none pr-8 font-extrabold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e96517]">
                     {item.question}
                   </summary>
-                  <p className="max-w-3xl pt-3 text-sm leading-7 text-[#667085]">{item.answer}</p>
+                  <p className="max-w-3xl pt-3 text-sm leading-7 text-[#596174]">{item.answer}</p>
                 </details>
               ))}
             </div>
