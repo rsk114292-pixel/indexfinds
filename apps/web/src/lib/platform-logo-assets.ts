@@ -122,6 +122,7 @@ export const OFFICIAL_PLATFORM_LOGOS: Readonly<
   },
   eastmallbuy: {
     src: "/images/agents/eastmallbuy.png",
+    faviconSrc: "/tenants/eastmallbuy/favicon-48x48.png",
     remoteSrc: "https://eastmallbuy.com/web/favicon.jpg",
   },
   goatedbuy: {

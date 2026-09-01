@@ -135,6 +135,7 @@ describe("tenant config", () => {
       expect.objectContaining({
         siteName: "EastMallBuy Index",
         logoPath: "/images/agents/eastmallbuy.png",
+        faviconPath: "/tenants/eastmallbuy/favicon-48x48.png",
         heroEyebrow: "Independent EastMallBuy shortlist guide",
         indexing: "ready",
         indexablePaths: [

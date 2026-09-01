@@ -540,7 +540,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     siteName: "EastMallBuy Index",
     wordmark: "EastMallBuy",
     logoPath: "/images/agents/eastmallbuy.png",
-    faviconPath: "/images/agents/eastmallbuy.png",
+    faviconPath: "/tenants/eastmallbuy/favicon-48x48.png",
     themeColor: "#0d2d4a",
     primaryColor: "#137f8f",
     primaryHoverColor: "#0d6572",
