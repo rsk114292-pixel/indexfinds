@@ -4,6 +4,7 @@ const rawArgs = process.argv.slice(2);
 const outputFlag = rawArgs.indexOf("--output");
 const outputPath = outputFlag >= 0 ? rawArgs[outputFlag + 1] : null;
 const summaryOnly = rawArgs.includes("--summary-only");
+const deepAudit = rawArgs.includes("--deep");
 const domains = rawArgs.filter(
   (value, index) =>
     (outputFlag < 0 || (index !== outputFlag && index !== outputFlag + 1)) &&
@@ -12,7 +13,7 @@ const domains = rawArgs.filter(
 
 if (domains.length === 0) {
   console.error(
-    "Usage: node audit-tenant-seo.mjs <domain> [...domain] [--output report.json]",
+    "Usage: node audit-tenant-seo.mjs <domain> [...domain] [--deep] [--summary-only] [--output report.json]",
   );
   process.exit(2);
 }
@@ -22,6 +23,12 @@ const USER_AGENT =
 const REQUEST_TIMEOUT_MS = 20_000;
 const RETRY_DELAYS_MS = [0, 500, 1_500];
 const CONCURRENCY = 4;
+const DEEP_PAGE_PATHS = [
+  "/en/products",
+  "/en/brands/air-jordan",
+  "/en/categories/earphones",
+  "/en/products/design-hoodie-i71b6i",
+];
 
 function match(html, pattern) {
   return html.match(pattern)?.[1]?.trim() || null;
@@ -244,7 +251,7 @@ async function readSitemap(domain) {
   };
 }
 
-function pageMetadata(url, response, html) {
+function pageMetadata(url, response, html, { expectedIndexable = true } = {}) {
   const jsonLd = extractJsonLd(html);
   const title = match(html, /<title[^>]*>([^<]*)<\/title>/i);
   const description = match(
@@ -289,8 +296,12 @@ function pageMetadata(url, response, html) {
   if (/\bIndexFinds\b/i.test([title, description].filter(Boolean).join(" "))) {
     failures.push("generic IndexFinds text in tenant metadata");
   }
-  if (!robots || !/\bindex\b/i.test(robots) || /\bnoindex\b/i.test(robots)) {
-    failures.push(`unexpected robots metadata: ${robots || "missing"}`);
+  if (expectedIndexable) {
+    if (!robots || !/\bindex\b/i.test(robots) || /\bnoindex\b/i.test(robots)) {
+      failures.push(`unexpected robots metadata: ${robots || "missing"}`);
+    }
+  } else if (!robots || !/\bnoindex\b/i.test(robots)) {
+    failures.push(`unreviewed deep page is not noindex: ${robots || "missing"}`);
   }
   if (actualCanonical !== expectedCanonical) {
     failures.push(
@@ -383,7 +394,27 @@ async function audit(domain) {
     return pageMetadata(url, result.response, result.body);
   });
 
+  const deepPages = deepAudit
+    ? await mapLimit(DEEP_PAGE_PATHS, CONCURRENCY, async (pathname) => {
+        const url = `${origin}${pathname}`;
+        const result = await request(url);
+        if (!result.response) {
+          return {
+            url,
+            failures: [`request failed: ${result.error}`],
+            links: [],
+          };
+        }
+        return pageMetadata(url, result.response, result.body, {
+          expectedIndexable: false,
+        });
+      })
+    : [];
+
   pages.forEach((page) => {
+    page.failures.forEach((failure) => failures.push(`${page.url}: ${failure}`));
+  });
+  deepPages.forEach((page) => {
     page.failures.forEach((failure) => failures.push(`${page.url}: ${failure}`));
   });
 
@@ -539,6 +570,7 @@ async function audit(domain) {
     ),
     brokenInternalLinks,
     pages,
+    deepPages,
     warnings,
     failures,
   };
@@ -552,6 +584,10 @@ const report = {
   failedDomainCount: results.filter((result) => result.result === "fail").length,
   reviewedPageCount: results.reduce(
     (sum, result) => sum + result.sitemapPageCount,
+    0,
+  ),
+  reviewedDeepPageCount: results.reduce(
+    (sum, result) => sum + result.deepPages.length,
     0,
   ),
   failureCount: results.reduce(
@@ -578,6 +614,7 @@ console.error(
     passedDomainCount: report.passedDomainCount,
     failedDomainCount: report.failedDomainCount,
     reviewedPageCount: report.reviewedPageCount,
+    reviewedDeepPageCount: report.reviewedDeepPageCount,
     failureCount: report.failureCount,
     warningCount: report.warningCount,
     outputPath,

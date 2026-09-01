@@ -1,0 +1,136 @@
+{
+  "recordedAt": "2026-09-01T22:59:30.4859279+08:00",
+  "release": {
+    "sourceCommit": "a0f182c49f8a3967d1c13325506df8fe6204ad80",
+    "sourceBranch": "google-search-compliance-2026-08",
+    "image": "indexfinds-web:tenant-deep-a0f182c",
+    "imageDigest": "sha256:80e81895c1f74bfc0ca8274d5671c22d01e27229179f7b49e10b3bd25cbbdb82",
+    "container": "indexfinds-web-tenant-deep-a0f182c",
+    "origin": "127.0.0.1:3152",
+    "containerState": "running-healthy",
+    "restartCount": 0
+  },
+  "scope": {
+    "applicationTenantDomainCount": 43,
+    "dedicatedYdaDomainCount": 2,
+    "totalChildDomainCount": 45,
+    "nginxOriginConfigCount": 46,
+    "mainSiteChanged": false,
+    "apiChanged": false,
+    "oneToOneRepsOriginChanged": false
+  },
+  "corrections": [
+    "Generic product, brand and category routes render one page-level H1 across desktop and mobile branches.",
+    "Tenant brand metadata rejects generic IndexFinds and placeholder residue and falls back to tenant-specific copy.",
+    "Tenant guide routes expose one main landmark.",
+    "Category disclosures expose translated accessible names and state; filter count contrast and interactive target sizes were corrected.",
+    "Streaming fallbacks reserve the first viewport to prevent footer layout shift.",
+    "Mobile product lists request the 20-item mobile page size instead of the desktop 60-item payload.",
+    "The release audit now checks deep noindex routes in addition to sitemap-indexed pages."
+  ],
+  "localValidation": {
+    "jest": "130 suites and 914 tests passed",
+    "typescript": "passed",
+    "eslint": "passed for changed source, test and audit files",
+    "productionBuild": "passed with 48 generated static pages",
+    "browserAudit": {
+      "tenantCount": 43,
+      "pageViewCount": 673,
+      "failedPageViewCount": 0,
+      "failureCount": 0,
+      "warningCount": 286,
+      "warningExplanation": "Warnings were audit-induced API 429 responses and matching console messages; no 404, 5xx, broken image, invalid metadata, invalid structured data, overflow or unlabeled-control failure was recorded."
+    },
+    "lighthouse": {
+      "desktopProducts": "performance 0.95, accessibility 1.00, best practices 1.00, LCP 1.2s, CLS 0, TBT 20ms",
+      "mobileProducts": "performance 0.73, accessibility 1.00, LCP 5.0s, CLS 0.004, TBT 210ms",
+      "fieldDataNote": "These are laboratory results, not CrUX field INP or Google ranking data."
+    }
+  },
+  "productionValidation": {
+    "canary": {
+      "domain": "acbuyindex.com",
+      "indexedPageCount": 7,
+      "browserPageViewCount": 15,
+      "failureCount": 0,
+      "warningCount": 0
+    },
+    "portfolio": {
+      "domainCount": 45,
+      "passedDomainCount": 45,
+      "failedDomainCount": 0,
+      "sitemapIndexedPageCount": 343,
+      "deepNoindexPageCount": 180,
+      "failureCount": 0,
+      "warningCount": 13,
+      "warningExplanation": "The warnings are inconclusive 403 or 502 responses from third-party official source sites. No local source link returned 404 or 410.",
+      "warningDomains": [
+        "cssbuycatalog.com",
+        "cssbuyindex.com",
+        "cssbuyitems.com",
+        "joyabuyfinds.com",
+        "joyagooindex.com",
+        "kameymallindex.com",
+        "loongbuys.net",
+        "lovegobuyindex.com",
+        "parcelupindex.com",
+        "1to1spreadsheet.com",
+        "1to1finds.com",
+        "1to1finds.cloud"
+      ],
+      "rawEvidence": "tenant-deep-production-full-a0f182c.json",
+      "rawEvidenceSha256": "a158f8d3d8941014309ead505990cbc1ef779447ea9d210d88718c66c3e8cde2"
+    },
+    "continuity": {
+      "indexfindsHomeStatus": 200,
+      "indexfindsProductsStatus": 200,
+      "apiHealthStatus": 200,
+      "ydaNetApexStatus": 200,
+      "ydaNetWwwStatus": 200,
+      "ydaOrgApexStatus": 200,
+      "ydaOrgWwwStatus": 200,
+      "mainWebContainer": "running-healthy",
+      "apiContainer": "running-healthy"
+    }
+  },
+  "routing": {
+    "nginxValidation": "passed",
+    "activeOriginReferenceCount": 46,
+    "previousOriginReferenceCount": 0,
+    "activeOrigin": "127.0.0.1:3152",
+    "previousOrigin": "127.0.0.1:3150"
+  },
+  "hostingerDisk": {
+    "initialRisk": "93 percent used with 15 GiB available",
+    "afterSafeCleanupAndRelease": "80 percent used with 39 GiB available",
+    "reclaimedAfterBuildGiB": 7.678,
+    "removedOnly": [
+      "Next.js image caches in active web containers",
+      "unused Docker builder cache"
+    ],
+    "preserved": [
+      "databases",
+      "uploads",
+      "product source images",
+      "backups",
+      "Docker volumes",
+      "current and immediate rollback images and containers",
+      "environment variables",
+      "SSL certificates",
+      "Nginx production configuration"
+    ]
+  },
+  "rollback": {
+    "canaryBackup": "/opt/indexfinds/nginx-backups/tenant-deep-a0f182c-canary",
+    "rolloutBackup": "/opt/indexfinds/nginx-backups/tenant-deep-a0f182c-all",
+    "previousContainerPreserved": "indexfinds-web-tenant-categories-59dbe3d",
+    "previousImagePreserved": "indexfinds-web:tenant-categories-59dbe3d",
+    "previousOriginPreserved": "127.0.0.1:3150",
+    "previousContainerState": "running-healthy"
+  },
+  "searchConsole": {
+    "state": "technical-release-complete-google-processing-separate",
+    "note": "This release does not claim a new Google crawl, index decision, Core Web Vitals field result or ranking change. Existing GSC monitoring remains the source of truth for those delayed outcomes."
+  },
+  "result": "deployed-and-live-validated"
+}
