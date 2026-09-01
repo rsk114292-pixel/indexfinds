@@ -246,7 +246,10 @@ export default function MobileProductList({
                 (product.popularityScore ?? 0) >= hotThreshold
               }
               returnTo={returnTo}
-              imagePriority={index < (viewMode === "compact" ? 6 : 4)}
+              imagePriority={
+                index <
+                (viewMode === "compact" ? 3 : viewMode === "list" ? 1 : 2)
+              }
               headingLevel={2}
             />
           ))}

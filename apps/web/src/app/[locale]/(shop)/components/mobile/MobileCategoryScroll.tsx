@@ -97,7 +97,7 @@ function CategoryItem({ category }: { category: Category }) {
         {coverImage ? (
           <Image
             src={getProductCardThumbnail(coverImage)}
-            alt={localName}
+            alt=""
             width={56}
             height={56}
             className="object-cover w-full h-full"
