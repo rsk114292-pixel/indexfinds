@@ -47,12 +47,16 @@ jest.mock('@/lib/request-site-identity', () => ({
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
 
-import BrandPage, { generateStaticParams } from './page';
+import BrandPage, { dynamic } from './page';
 import { __resetServerApiFallbackCacheForTests } from '@/lib/server-api-fetch';
 
 beforeEach(() => {
   jest.clearAllMocks();
   __resetServerApiFallbackCacheForTests();
+});
+
+it('renders brand responses dynamically for host-specific tenants', () => {
+  expect(dynamic).toBe('force-dynamic');
 });
 
 describe('BrandPage merged brand redirect', () => {
@@ -150,37 +154,5 @@ describe('BrandPage merged brand redirect', () => {
 
     expect(mockRedirect).not.toHaveBeenCalled();
     expect(mockNotFound).toHaveBeenCalled();
-  });
-});
-
-describe('generateStaticParams', () => {
-  it('API 返回 slugs 时生成所有 locale × slug 组合', async () => {
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ slugs: ['nike', 'adidas'] }),
-    });
-
-    const params = await generateStaticParams();
-
-    // 8 locales × 2 slugs = 16 组合
-    expect(params).toHaveLength(16);
-    expect(params).toContainEqual({ locale: 'en', slug: 'nike' });
-    expect(params).toContainEqual({ locale: 'zh', slug: 'adidas' });
-  });
-
-  it('API 请求失败时返回空数组（不阻断构建）', async () => {
-    mockFetch.mockResolvedValueOnce({ ok: false });
-
-    const params = await generateStaticParams();
-
-    expect(params).toEqual([]);
-  });
-
-  it('网络异常时返回空数组（不阻断构建）', async () => {
-    mockFetch.mockRejectedValueOnce(new Error('Network error'));
-
-    const params = await generateStaticParams();
-
-    expect(params).toEqual([]);
   });
 });

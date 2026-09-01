@@ -19,21 +19,11 @@ import {
   buildSiteAlternates,
   getRequestSiteIdentity,
 } from '@/lib/request-site-identity';
-import { locales } from '@/i18n/config';
 import { fetchServerApiJson } from '@/lib/server-api-fetch';
 
-// 构建时预生成所有品牌 × 所有 locale 的静态页面
-export async function generateStaticParams() {
-  const data = await fetchServerApiJson<{ slugs?: string[] }>('/brands/slugs');
-
-  if (!data?.slugs?.length) {
-    return [];
-  }
-
-  return locales.flatMap((locale) =>
-    data.slugs!.map((slug) => ({ locale, slug })),
-  );
-}
+// Brand responses include a request-host-specific canonical and robots policy.
+// Keep them dynamic so a static RSC payload is never reused across tenants.
+export const dynamic = 'force-dynamic';
 
 // 服务端获取品牌数据
 async function getBrand(slug: string): Promise<Brand | null> {
