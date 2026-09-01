@@ -261,6 +261,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     indexing: "ready",
     indexablePaths: [
       "",
+      "/categories",
       "/directory",
       "/platform-guide",
       "/category-research",
@@ -415,6 +416,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     indexing: "ready",
     indexablePaths: [
       "",
+      "/categories",
       "/search-guide",
       "/order-workflow",
       "/parcel-checklist",
@@ -522,6 +524,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     indexing: "ready",
     indexablePaths: [
       "",
+      "/categories",
       "/boonbuy-products",
       "/query-method",
       "/source-checklist",
@@ -560,6 +563,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     indexing: "ready",
     indexablePaths: [
       "",
+      "/categories",
       "/cnshopper-products",
       "/category-map",
       "/source-checklist",
@@ -1328,6 +1332,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     indexing: "ready",
     indexablePaths: [
       "",
+      "/categories",
       "/coupons",
       "/faq",
       "/guide",
@@ -1615,6 +1620,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     indexing: "ready",
     indexablePaths: [
       "",
+      "/categories",
       "/getting-started",
       "/fees-and-budgeting",
       "/shipping-and-warehouse",
@@ -1813,6 +1819,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     supportingLine:
       "Search the product index, preserve the listing context and separate visible evidence from claims that still need confirmation.",
     indexing: "ready",
+    indexablePaths: ["", "/categories", "/site-guide"],
     editorial: {
       homeVariant: "archive",
       introTitle: "One archive for six different research questions.",
@@ -1843,6 +1850,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     supportingLine:
       "Start with a candidate listing, preserve its source context and verify price, options and availability on the destination website.",
     indexing: "ready",
+    indexablePaths: ["", "/categories", "/usfans-spreadsheet"],
     editorial: {
       homeVariant: "index",
       introTitle: "Turn a USFans find into a source-check record.",

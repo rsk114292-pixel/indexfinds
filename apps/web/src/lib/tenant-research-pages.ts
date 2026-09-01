@@ -79,6 +79,28 @@ const TENANT_RESEARCH_PROFILES: Record<string, TenantResearchProfile> = {
     boundaryDescription:
       "Keep incomplete fields open, distinguish visible evidence from seller language and reopen changing links before relying on a saved row.",
   },
+  "itaobuyindex.com": {
+    variant: "ledger",
+    officialUrl: "https://www.itaobuy.com",
+    officialLabel: "Open iTaoBuy",
+    heroImage: "/tenants/itaobuy/hero-desktop.webp",
+    heroAlt: "iTaoBuy product research archive with category-specific evidence fields",
+    navLabel: "iTaoBuy research archive",
+    boundaryTitle: "Keep every category record attached to its current source.",
+    boundaryDescription:
+      "Category labels organize discovery. Exact options, visible evidence, prices, stock, seller details and service terms still require a current source check.",
+  },
+  "usfansindex.net": {
+    variant: "source",
+    officialUrl: "https://www.usfans.com",
+    officialLabel: "Open USFans",
+    heroImage: "/images/agents/usfans.png",
+    heroAlt: "USFans category research record",
+    navLabel: "USFans source checks",
+    boundaryTitle: "A category narrows the candidate set but does not verify an item.",
+    boundaryDescription:
+      "Reopen the current source for product identity, selected option, visible evidence, price and availability before comparing an external route.",
+  },
   "acbuyindex.com": {
     variant: "source",
     officialUrl: "https://acbuy.com",
@@ -5602,6 +5624,65 @@ const YOYBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
   },
 ];
 
+const TENANT_CATEGORY_FRONT_PAGES: readonly TenantResearchPage[] = [
+  {
+    domain: "acbuyindex.com", slug: "categories", seoTitle: "ACBuy Index Categories | Product Research Fields by Type", description: "Browse ACBuy-linked categories with product-specific measurements, option fields, specifications and source evidence for a focused shortlist.", eyebrow: "ACBuy category front", title: "Change the evidence checklist when the product type changes.", intro: "The shared catalog supplies candidates while this category front defines the fields that make each result reviewable.", sections: [
+      { title: "Apparel and footwear", description: "Compare size systems, measurements, materials, colors and the exact option shown on the current source." },
+      { title: "Bags and accessories", description: "Record dimensions, visible hardware, closures, compartments and included pieces before shortlisting." },
+      { title: "Electronics", description: "Check model, voltage, plug, interface and compatibility fields without assuming performance from a category label." },
+    ],
+  },
+  {
+    domain: "bbdbuyeus.com", slug: "categories", seoTitle: "BBDbuy US Categories | Product Evidence Before Parcel Planning", description: "Browse BBDbuy-linked categories and separate product-specific evidence from later warehouse measurements, US route rules and parcel costs.", eyebrow: "US product category front", title: "Choose the product fields before planning the US parcel.", intro: "A category can organize the shortlist, but warehouse dimensions and route terms belong to later records.", sections: [
+      { title: "Clothing and shoes", description: "Preserve sizing, measurements, material wording and the selected option before any parcel estimate." },
+      { title: "Bags and accessories", description: "Compare dimensions, visible hardware and included pieces while keeping packaging assumptions open." },
+      { title: "Electronics", description: "Record model, plug, voltage and compatibility, then check restrictions against the current route separately." },
+    ],
+  },
+  {
+    domain: "boonbuyindex.com", slug: "categories", seoTitle: "BoonBuy Index Categories | Query and Source Fields by Product", description: "Organize BoonBuy-linked results by product category while retaining the query, final source, exact option and unresolved evidence field.", eyebrow: "BoonBuy category index", title: "Use the category to structure the row, not replace the source.", intro: "Every category needs a different comparison field set even though candidates come from the same shared catalog.", sections: [
+      { title: "Wearable products", description: "Index size system, measurements, material wording, color and option identity beside the source URL." },
+      { title: "Carry goods", description: "Keep dimensions, closure, visible hardware, compartments and included pieces as separate fields." },
+      { title: "Electronics", description: "Retain model, interface, voltage, plug and compatibility language with the dated source." },
+    ],
+  },
+  {
+    domain: "cnshopperindex.com", slug: "categories", seoTitle: "CNShopper Index Categories | Category-Led Source Checks", description: "Browse CNShopper-linked categories with product-specific comparison fields before handing a selected source to an order or parcel workflow.", eyebrow: "CNShopper category front", title: "Let the category define the source check before the handoff.", intro: "The category front narrows candidates while the exact listing and option remain responsible for product evidence.", sections: [
+      { title: "Apparel and footwear", description: "Check sizing, measurements, construction, color and option labels on the resolved listing." },
+      { title: "Bags and accessories", description: "Compare dimensions, visible hardware, closure, compartments and included pieces at the source." },
+      { title: "Electronics", description: "Match model, voltage, plug, interface and compatibility before beginning an order handoff." },
+    ],
+  },
+  {
+    domain: "litbuyproducts.com", slug: "categories", seoTitle: "LitBuy Product Categories | Comparable Fields for Each Group", description: "Browse LitBuy-linked categories using different measurement, material, dimension, specification and compatibility fields for each product group.", eyebrow: "LitBuy category front", title: "Define a comparable field set before opening the product group.", intro: "A category improves discovery only when it tells the reviewer which current source fields must be compared.", sections: [
+      { title: "Clothing and footwear", description: "Compare size systems, measurements, material wording, construction and exact variations." },
+      { title: "Bags and accessories", description: "Use dimensions, closure, visible hardware, compartments and included pieces as the comparison boundary." },
+      { title: "Electronics", description: "Check model, interface, voltage, plug and compatibility on each current source." },
+    ],
+  },
+  {
+    domain: "parcelupindex.com", slug: "categories", seoTitle: "Parcel Up Categories | Product Evidence Before the Taobao Order", description: "Browse Parcel Up product categories while preserving category-specific source fields before the first payment, warehouse QC and parcel stages.", eyebrow: "Parcel Up category front", title: "Start the order record with the fields the product type requires.", intro: "The product category belongs to the source record; warehouse evidence and the measured parcel are later stages.", sections: [
+      { title: "Apparel and shoes", description: "Save size system, measurements, material wording, color and the selected Taobao option before ordering." },
+      { title: "Bags and accessories", description: "Record dimensions, visible hardware, closure, compartments and included pieces at the source stage." },
+      { title: "Electronics", description: "Keep model, voltage, plug, interface and compatibility fields separate from later route restrictions." },
+    ],
+  },
+  {
+    domain: "itaobuyindex.com", slug: "categories", seoTitle: "iTaoBuy Categories | Source-Linked Product Research Archive", description: "Organize iTaoBuy-linked product records by category while preserving exact options, source URLs, measurements, specifications and open evidence fields.", eyebrow: "iTaoBuy category archive", title: "Give every product type its own source-linked evidence fields.", intro: "The category organizes the archive while each current listing remains responsible for the product facts recorded inside it.", sections: [
+      { title: "Wearable products", description: "Archive size system, measurements, materials, color, selected option and the source review date." },
+      { title: "Carry goods", description: "Preserve dimensions, visible hardware, closure, compartments and unresolved construction questions." },
+      { title: "Electronics", description: "Record model, voltage, plug, interface and compatibility beside the current source." },
+    ],
+  },
+  {
+    domain: "usfansindex.net", slug: "categories", seoTitle: "USFans Categories | Product-Specific Source Check Fields", description: "Browse USFans-linked categories with product-specific measurements, option details, specifications and visible evidence fields before route comparison.", eyebrow: "USFans category source checks", title: "Use the category to decide which source facts must be checked.", intro: "Shared catalog candidates remain useful only when the exact option and category-specific evidence can be reopened at the source.", sections: [
+      { title: "Clothing and footwear", description: "Check size system, measurements, material wording, color and exact option before retaining the candidate." },
+      { title: "Bags and accessories", description: "Compare dimensions, visible hardware, closures, compartments and included pieces on the current page." },
+      { title: "Electronics", description: "Verify model, voltage, plug, interface and compatibility fields before comparing an external route." },
+    ],
+  },
+];
+
 const TENANT_RESEARCH_PAGES = [
   ...ONE_TO_ONE_FINDS_CLOUD_PAGES,
   ...ONE_TO_ONE_FINDS_PAGES,
@@ -5646,6 +5727,7 @@ const TENANT_RESEARCH_PAGES = [
   ...YDA_PARCEL_PAGES,
   ...YDA_SOURCE_REVIEW_PAGES,
   ...YOYBUY_INDEX_PAGES,
+  ...TENANT_CATEGORY_FRONT_PAGES,
 ];
 
 export function getTenantResearchPage(

@@ -121,14 +121,11 @@ describe('sitemap', () => {
   });
 
   it('keeps tenant sitemaps limited to reviewed unique English pages', async () => {
-    await expectTenantSitemap('usfansindex.net', [
-      '',
-      '/usfans-spreadsheet',
-    ]);
+    await expectTenantSitemap('usfansindex.net', ['', '/categories', '/usfans-spreadsheet']);
   });
 
   it('publishes only the reviewed iTaoBuy home and research guide', async () => {
-    await expectTenantSitemap('itaobuyindex.com', ['', '/site-guide']);
+    await expectTenantSitemap('itaobuyindex.com', ['', '/categories', '/site-guide']);
   });
 
   it('publishes only the reviewed ACBuy research allowlist', async () => {
@@ -142,6 +139,7 @@ describe('sitemap', () => {
         includeCatalog: false,
         staticPaths: [
           '',
+          '/categories',
           '/directory',
           '/platform-guide',
           '/category-research',
@@ -153,6 +151,7 @@ describe('sitemap', () => {
     await expect(getSitemapChunkIds(options)).resolves.toEqual([0]);
     await expect(getSitemapEntriesByChunk(0, options)).resolves.toEqual([
       expect.objectContaining({ url: 'https://acbuyindex.com/en' }),
+      expect.objectContaining({ url: 'https://acbuyindex.com/en/categories' }),
       expect.objectContaining({ url: 'https://acbuyindex.com/en/directory' }),
       expect.objectContaining({
         url: 'https://acbuyindex.com/en/platform-guide',
@@ -276,6 +275,7 @@ describe('sitemap', () => {
       'bbdbuyeus.com',
       [
         '',
+        '/categories',
         '/search-guide',
         '/order-workflow',
         '/parcel-checklist',
@@ -385,6 +385,7 @@ describe('sitemap', () => {
       'litbuyproducts.com',
       [
         '',
+        '/categories',
         '/coupons',
         '/faq',
         '/guide',
@@ -468,11 +469,11 @@ describe('sitemap', () => {
     ],
     [
       'cnshopperindex.com',
-      ['', '/cnshopper-products', '/category-map', '/source-checklist', '/order-handoff', '/faq'],
+      ['', '/categories', '/cnshopper-products', '/category-map', '/source-checklist', '/order-handoff', '/faq'],
     ],
     [
       'boonbuyindex.com',
-      ['', '/boonbuy-products', '/query-method', '/source-checklist', '/route-boundaries', '/faq'],
+      ['', '/categories', '/boonbuy-products', '/query-method', '/source-checklist', '/route-boundaries', '/faq'],
     ],
     [
       'eastmallbuyindex.com',
@@ -492,7 +493,7 @@ describe('sitemap', () => {
     ],
     [
       'parcelupindex.com',
-      ['', '/getting-started', '/fees-and-budgeting', '/shipping-and-warehouse', '/tracking', '/qc-checklist', '/product-index-method', '/official-sources', '/methodology', '/about-parcel-up-index'],
+      ['', '/categories', '/getting-started', '/fees-and-budgeting', '/shipping-and-warehouse', '/tracking', '/qc-checklist', '/product-index-method', '/official-sources', '/methodology', '/about-parcel-up-index'],
     ],
     [
       'sugargooindex.net',

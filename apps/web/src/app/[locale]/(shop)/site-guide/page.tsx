@@ -34,7 +34,8 @@ async function getGuideContext(locale: string) {
   if (
     !tenant ||
     tenant.domain === "usfansindex.net" ||
-    getTenantResearchPaths(tenant.domain).length > 0
+    (tenant.domain !== "itaobuyindex.com" &&
+      getTenantResearchPaths(tenant.domain).length > 0)
   ) {
     return null;
   }

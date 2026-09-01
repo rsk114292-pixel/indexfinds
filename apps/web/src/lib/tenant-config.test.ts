@@ -103,6 +103,7 @@ describe("tenant config", () => {
         indexing: "ready",
         indexablePaths: [
           "",
+          "/categories",
           "/boonbuy-products",
           "/query-method",
           "/source-checklist",
@@ -133,6 +134,7 @@ describe("tenant config", () => {
         indexing: "ready",
         indexablePaths: [
           "",
+          "/categories",
           "/cnshopper-products",
           "/category-map",
           "/source-checklist",
@@ -618,6 +620,7 @@ describe("tenant config", () => {
         indexing: "ready",
         indexablePaths: [
           "",
+          "/categories",
           "/directory",
           "/platform-guide",
           "/category-research",
@@ -855,7 +858,7 @@ describe("tenant config", () => {
       }),
     );
     expect(branding?.editorial.homeVariant).toBe("catalog");
-    expect(branding?.indexablePaths).toHaveLength(8);
+    expect(branding?.indexablePaths).toHaveLength(9);
     expect(
       `${branding?.seoTitle} ${branding?.description} ${branding?.heroPrimary}`,
     ).not.toMatch(/spreadsheet|indexfinds/i);

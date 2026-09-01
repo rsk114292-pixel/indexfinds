@@ -4,6 +4,7 @@ import {
   getTenantResearchPaths,
   getTenantResearchProfile,
 } from "./tenant-research-pages";
+import { SUBSITE_GUIDES } from "./subsite-guides";
 
 describe("tenant research pages", () => {
   it("does not publish research pages for the retired 1to1Reps tenant", () => {
@@ -38,6 +39,18 @@ describe("tenant research pages", () => {
     ]);
   });
 
+  it("keeps every Next-hosted tenant out of the generic category fallback", () => {
+    const nextHostedTenants = SUBSITE_GUIDES.filter(
+      ({ domain }) => !domain.startsWith("ydaexpress."),
+    );
+    const missingCategoryFronts = nextHostedTenants
+      .filter(({ domain }) => !getTenantResearchPage(domain, "categories"))
+      .map(({ domain }) => domain);
+
+    expect(nextHostedTenants).toHaveLength(43);
+    expect(missingCategoryFronts).toEqual([]);
+  });
+
   it("preserves the five distinct ACBuy legacy research paths", () => {
     expect(getTenantResearchPaths("acbuyindex.com")).toEqual([
       "/directory",
@@ -45,6 +58,7 @@ describe("tenant research pages", () => {
       "/category-research",
       "/safety-research",
       "/faq",
+      "/categories",
     ]);
   });
 
@@ -81,6 +95,7 @@ describe("tenant research pages", () => {
       "/parcel-checklist",
       "/us-shipping",
       "/faq",
+      "/categories",
     ]);
     expect(getTenantResearchPaths("bbdbuyeusheet.com")).toEqual([
       "/categories",
@@ -163,6 +178,7 @@ describe("tenant research pages", () => {
       "/safety",
       "/shipping",
       "/spreadsheet",
+      "/categories",
     ]);
   });
 
@@ -271,6 +287,7 @@ describe("tenant research pages", () => {
       "/official-sources",
       "/methodology",
       "/about-parcel-up-index",
+      "/categories",
     ]);
   });
 
@@ -327,7 +344,7 @@ describe("tenant research pages", () => {
 
   it("preserves CNShopper, EastMallBuy and Fishgoo source paths", () => {
     expect(getTenantResearchPaths("cnshopperindex.com")).toEqual([
-      "/cnshopper-products", "/category-map", "/source-checklist", "/order-handoff", "/faq",
+      "/cnshopper-products", "/category-map", "/source-checklist", "/order-handoff", "/faq", "/categories",
     ]);
     expect(getTenantResearchPaths("eastmallbuyindex.com")).toEqual([
       "/guide",
@@ -377,7 +394,7 @@ describe("tenant research pages", () => {
       "/categories", "/search-guide", "/product-checklist", "/platform-guide", "/faq",
     ]);
     expect(getTenantResearchPaths("boonbuyindex.com")).toEqual([
-      "/boonbuy-products", "/query-method", "/source-checklist", "/route-boundaries", "/faq",
+      "/boonbuy-products", "/query-method", "/source-checklist", "/route-boundaries", "/faq", "/categories",
     ]);
     expect(getTenantResearchPaths("goatedbuyindex.com")).toEqual([
       "/guide", "/categories", "/goatedbuy-score", "/search-ideas", "/shipping", "/safety", "/faq",
@@ -426,10 +443,10 @@ describe("tenant research pages", () => {
   it("keeps every reviewed page specific and evidence-led", () => {
     const pages = getAllTenantResearchPages();
 
-    expect(pages).toHaveLength(286);
-    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(286);
-    expect(new Set(pages.map((page) => page.description)).size).toBe(286);
-    expect(new Set(pages.map((page) => page.title)).size).toBe(286);
+    expect(pages).toHaveLength(294);
+    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(294);
+    expect(new Set(pages.map((page) => page.description)).size).toBe(294);
+    expect(new Set(pages.map((page) => page.title)).size).toBe(294);
 
     const copy = JSON.stringify(pages);
     expect(copy).not.toMatch(/IndexFinds|official ACBuy site/i);
