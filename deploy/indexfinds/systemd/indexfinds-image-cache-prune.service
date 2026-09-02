@@ -1,0 +1,12 @@
+[Unit]
+Description=Prune stale IndexFinds Next.js image cache files
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+Environment=INDEXFINDS_IMAGE_CACHE_MAX_AGE_MINUTES=720
+ExecStart=/usr/local/sbin/indexfinds-prune-next-image-cache
+
+[Install]
+WantedBy=multi-user.target

@@ -100,6 +100,16 @@ copies default to 7 days and remote copies to 30 days. Run
 scheduled restore drill; at least monthly, restore into a temporary PostgreSQL
 database and record the result rather than relying only on `pg_restore --list`.
 
+### Next.js image cache maintenance
+
+The shared web containers can accumulate a large on-disk image optimizer cache.
+Install `scripts/prune-next-image-cache.sh` as
+`/usr/local/sbin/indexfinds-prune-next-image-cache`, then install and enable the
+matching service and timer from `systemd/`. The timer removes only optimized
+image cache files older than 12 hours from running `indexfinds-web-*`
+containers. It does not touch source images, uploads, databases, or Docker
+volumes.
+
 ## 2. Preview API
 
 1. Add a DNS-only record for `api-next.indexfinds.com` pointing to the new VPS.
