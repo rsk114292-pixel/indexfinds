@@ -47,6 +47,7 @@ export default async function HelpPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'helpPage' });
+  const { siteName } = await getRequestSiteIdentity();
 
   const faqItems = FAQ_CATEGORIES.flatMap((cat) =>
     FAQ_KEYS.map((key) => ({
@@ -58,7 +59,7 @@ export default async function HelpPage({
   return (
     <>
       <FAQPageJsonLd items={faqItems} />
-      <HelpPageClient />
+      <HelpPageClient siteName={siteName} />
     </>
   );
 }

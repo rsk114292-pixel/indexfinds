@@ -47,6 +47,7 @@ export default async function AgentDetailPage({ params }: AgentPageProps) {
   const { key } = await params;
   const agent = getAgentPlatform(key);
   if (!agent) notFound();
+  const { siteName } = await getRequestSiteIdentity();
 
-  return <AgentDetailClient agent={agent} />;
+  return <AgentDetailClient agent={agent} siteName={siteName} />;
 }

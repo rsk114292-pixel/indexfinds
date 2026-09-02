@@ -46,7 +46,7 @@ export default async function AgentDirectoryPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'agents' });
-  const { siteUrl } = await getRequestSiteIdentity();
+  const { siteUrl, siteName } = await getRequestSiteIdentity();
   const items = AGENT_PLATFORMS.map((agent) => ({
     name: agent.name,
     url: `${siteUrl}/${locale}/agents/${agent.key}`,
@@ -55,7 +55,7 @@ export default async function AgentDirectoryPage({
   return (
     <>
       <ItemListJsonLd name={t('allGuides')} items={items} />
-      <AgentDirectoryClient />
+      <AgentDirectoryClient siteName={siteName} />
     </>
   );
 }

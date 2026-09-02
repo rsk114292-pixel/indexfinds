@@ -28,7 +28,6 @@ import {
   usePlatformStore,
 } from '@/stores/usePlatformStore';
 import { cn } from '@/lib/utils';
-import { useTenant } from '@/components/TenantProvider';
 
 const PRIORITIES: Array<{
   key: AgentMatchPriority;
@@ -41,11 +40,14 @@ const PRIORITIES: Array<{
   { key: 'payment', icon: CreditCard, label: 'matchPayment' },
 ];
 
-export default function AgentMatchWizard() {
+export default function AgentMatchWizard({
+  siteName = 'IndexFinds',
+}: {
+  siteName?: string;
+}) {
   const t = useTranslations('agents');
   const shippingT = useTranslations('shippingEstimator');
   const locale = useLocale();
-  const siteName = useTenant()?.branding?.siteName || 'IndexFinds';
   const [destination, setDestination] = useState<ShippingDestination>('US');
   const [weightKg, setWeightKg] = useState(1);
   const [priority, setPriority] = useState<AgentMatchPriority>('budget');

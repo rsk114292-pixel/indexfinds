@@ -22,15 +22,15 @@ import {
   getSubsiteCatalogUrl,
   getSubsiteGuidesForAgent,
 } from "@/lib/subsite-guides";
-import { useTenant } from "@/components/TenantProvider";
 
 export default function AgentDetailClient({
   agent,
+  siteName = "IndexFinds",
 }: {
   agent: AgentPlatformDefinition;
+  siteName?: string;
 }) {
   const t = useTranslations("agents");
-  const siteName = useTenant()?.branding?.siteName || "IndexFinds";
   const { platforms, platformKey, setPlatform, fetchPlatforms } =
     usePlatformStore();
   const platform = platforms.find((item) => item.key === agent.key);

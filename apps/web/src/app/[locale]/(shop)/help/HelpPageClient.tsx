@@ -15,7 +15,6 @@ import {
   Send,
 } from 'lucide-react';
 import { FadeIn } from '@/components/ui/FadeIn';
-import { useTenant } from '@/components/TenantProvider';
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -75,9 +74,12 @@ function AccordionItem({
 /*  HelpPageClient                                                     */
 /* ------------------------------------------------------------------ */
 
-export default function HelpPageClient() {
+export default function HelpPageClient({
+  siteName = 'IndexFinds',
+}: {
+  siteName?: string;
+}) {
   const t = useTranslations('helpPage');
-  const siteName = useTenant()?.branding?.siteName || 'IndexFinds';
   const whatsappHelpUrl = buildWhatsAppHelpUrl(
     `Hello ${siteName}, I need help buying from China.`,
   );

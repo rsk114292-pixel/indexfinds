@@ -37,6 +37,7 @@ export async function generateMetadata({
   };
 }
 
-export default function CompareAgentsPage() {
-  return <CompareAgentsClient />;
+export default async function CompareAgentsPage() {
+  const { siteName } = await getRequestSiteIdentity();
+  return <CompareAgentsClient siteName={siteName} />;
 }

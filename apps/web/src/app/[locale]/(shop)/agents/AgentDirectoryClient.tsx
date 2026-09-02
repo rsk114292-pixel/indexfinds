@@ -19,7 +19,11 @@ import { countConfiguredComparisonFields } from "@/lib/agent-recommendation";
 import AgentMatchWizard from "./AgentMatchWizard";
 import { SUBSITE_GUIDES, getSubsiteCatalogUrl } from "@/lib/subsite-guides";
 
-export default function AgentDirectoryClient() {
+export default function AgentDirectoryClient({
+  siteName = "IndexFinds",
+}: {
+  siteName?: string;
+}) {
   const t = useTranslations("agents");
   const [query, setQuery] = useState("");
   const { platforms, fetchPlatforms } = usePlatformStore();
@@ -80,7 +84,7 @@ export default function AgentDirectoryClient() {
         </div>
       </section>
 
-      <AgentMatchWizard />
+      <AgentMatchWizard siteName={siteName} />
 
       <section className="container mx-auto px-4 py-10 md:py-14">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">

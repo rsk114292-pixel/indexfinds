@@ -7,15 +7,17 @@ import { Link } from "@/i18n/navigation";
 import { AGENT_PLATFORMS } from "@/lib/agent-platforms";
 import PlatformLogoBadge from "@/components/platforms/PlatformLogoBadge";
 import { usePlatformStore } from "@/stores/usePlatformStore";
-import { useTenant } from "@/components/TenantProvider";
 
 const DEFAULT_COMPARE_KEYS = ["loongbuy", "kakobuy", "superbuy"];
 const MAX_COMPARE_AGENTS = 3;
 
-export default function CompareAgentsClient() {
+export default function CompareAgentsClient({
+  siteName = "IndexFinds",
+}: {
+  siteName?: string;
+}) {
   const t = useTranslations("agents");
   const locale = useLocale();
-  const siteName = useTenant()?.branding?.siteName || "IndexFinds";
   const [selectedKeys, setSelectedKeys] = useState(DEFAULT_COMPARE_KEYS);
   const { platforms, platformKey, fetchPlatforms, setPlatform } =
     usePlatformStore();

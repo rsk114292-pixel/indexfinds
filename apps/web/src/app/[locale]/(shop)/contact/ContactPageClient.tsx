@@ -4,7 +4,6 @@ import { useTranslations } from 'next-intl';
 import { getContactEmail, getPrivacyEmail } from '@/lib/site-config';
 import { buildWhatsAppHelpUrl, TELEGRAM_URL } from '@/lib/support-links';
 import LegalPageLayout from '@/components/legal/LegalPageLayout';
-import { useTenant } from '@/components/TenantProvider';
 
 const SECTIONS = [
   { id: 'get-in-touch', title: '' },
@@ -13,9 +12,12 @@ const SECTIONS = [
   { id: 'important-note', title: '' },
 ];
 
-export default function ContactPageClient() {
+export default function ContactPageClient({
+  siteName = 'IndexFinds',
+}: {
+  siteName?: string;
+}) {
   const t = useTranslations('contactPage');
-  const siteName = useTenant()?.branding?.siteName || 'IndexFinds';
   const whatsappHelpUrl = buildWhatsAppHelpUrl(
     `Hello ${siteName}, I need help buying from China.`,
   );
