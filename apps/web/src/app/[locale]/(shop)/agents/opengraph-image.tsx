@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { getSiteName } from '@/lib/site-config';
 
-export const alt = 'IndexFinds buying agent guides';
+export const alt = 'Buying agent guides';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 

@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { generateAlternates, getOgLocale } from '@/lib/seo';
-import { getSiteName, getSiteUrl } from '@/lib/site-config';
+import { defaultGoogleBot, getOgLocale } from '@/lib/seo';
+import { buildSiteAlternates, getRequestSiteIdentity } from '@/lib/request-site-identity';
 import CompareAgentsClient from './CompareAgentsClient';
-
-const SITE_URL = getSiteUrl();
 
 export async function generateMetadata({
   params,
@@ -13,6 +11,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'agents' });
+  const identity = await getRequestSiteIdentity();
+  const { siteUrl, siteName, tenant } = identity;
   const title = t('compareTitle');
   const description = t('compareSubtitle');
 
@@ -22,14 +22,18 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${locale}/agents/compare`,
-      siteName: getSiteName(),
+      url: `${siteUrl}/${locale}/agents/compare`,
+      siteName,
       type: 'website',
       locale: getOgLocale(locale),
     },
     twitter: { card: 'summary_large_image', title, description },
-    alternates: generateAlternates('/agents/compare', locale),
-    robots: { index: true, follow: true },
+    alternates: buildSiteAlternates(identity, '/agents/compare', locale),
+    robots: {
+      index: !tenant,
+      follow: true,
+      googleBot: tenant ? { index: false, follow: true } : defaultGoogleBot,
+    },
   };
 }
 

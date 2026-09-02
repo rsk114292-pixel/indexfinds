@@ -22,6 +22,7 @@ import {
   getSubsiteCatalogUrl,
   getSubsiteGuidesForAgent,
 } from "@/lib/subsite-guides";
+import { useTenant } from "@/components/TenantProvider";
 
 export default function AgentDetailClient({
   agent,
@@ -29,6 +30,7 @@ export default function AgentDetailClient({
   agent: AgentPlatformDefinition;
 }) {
   const t = useTranslations("agents");
+  const siteName = useTenant()?.branding?.siteName || "IndexFinds";
   const { platforms, platformKey, setPlatform, fetchPlatforms } =
     usePlatformStore();
   const platform = platforms.find((item) => item.key === agent.key);
@@ -86,13 +88,13 @@ export default function AgentDetailClient({
               />
               <div>
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-primary">
-                  {t("guideEyebrow")}
+                  {t("guideEyebrow", { siteName })}
                 </span>
                 <h1 className="mt-2 text-3xl font-extrabold tracking-[-0.035em] md:text-5xl">
                   {t("guideTitle", { name: agent.name })}
                 </h1>
                 <p className="mt-3 max-w-2xl text-sm leading-7 text-white/60 md:text-base">
-                  {t("guideSubtitle", { name: agent.name })}
+                  {t("guideSubtitle", { name: agent.name, siteName })}
                 </p>
               </div>
             </div>
@@ -131,7 +133,7 @@ export default function AgentDetailClient({
             <h2 className="text-2xl font-bold text-foreground md:text-3xl">
               {t("howToTitle", { name: agent.name })}
             </h2>
-            <p className="mt-2 text-sm text-muted">{t("howToSubtitle")}</p>
+            <p className="mt-2 text-sm text-muted">{t("howToSubtitle", { siteName })}</p>
           </div>
           <div className="grid gap-4 md:grid-cols-4">
             {steps.map((step, index) => {
@@ -198,7 +200,7 @@ export default function AgentDetailClient({
                   {t("disclosureTitle")}
                 </h3>
                 <p className="mt-1 text-sm leading-6 text-muted">
-                  {t("disclosureBody")}
+                  {t("disclosureBody", { siteName })}
                 </p>
               </div>
             </div>

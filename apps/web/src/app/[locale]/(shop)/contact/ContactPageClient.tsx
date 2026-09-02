@@ -2,8 +2,9 @@
 
 import { useTranslations } from 'next-intl';
 import { getContactEmail, getPrivacyEmail } from '@/lib/site-config';
-import { TELEGRAM_URL, WHATSAPP_HELP_URL } from '@/lib/support-links';
+import { buildWhatsAppHelpUrl, TELEGRAM_URL } from '@/lib/support-links';
 import LegalPageLayout from '@/components/legal/LegalPageLayout';
+import { useTenant } from '@/components/TenantProvider';
 
 const SECTIONS = [
   { id: 'get-in-touch', title: '' },
@@ -14,6 +15,10 @@ const SECTIONS = [
 
 export default function ContactPageClient() {
   const t = useTranslations('contactPage');
+  const siteName = useTenant()?.branding?.siteName || 'IndexFinds';
+  const whatsappHelpUrl = buildWhatsAppHelpUrl(
+    `Hello ${siteName}, I need help buying from China.`,
+  );
 
   const sections = SECTIONS.map((s) => ({
     ...s,
@@ -55,7 +60,7 @@ export default function ContactPageClient() {
         <p className="text-sm text-muted leading-relaxed mb-3">{t('sections.community.content')}</p>
         <ul className="space-y-2 text-sm text-muted">
           <li>
-            <a href={WHATSAPP_HELP_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">WhatsApp</a> — {t('sections.community.whatsapp')}
+            <a href={whatsappHelpUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">WhatsApp</a> — {t('sections.community.whatsapp')}
           </li>
           <li>
             <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Telegram</a> — {t('sections.community.telegram')}

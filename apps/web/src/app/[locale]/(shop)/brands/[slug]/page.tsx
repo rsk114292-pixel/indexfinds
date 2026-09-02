@@ -100,9 +100,14 @@ export async function generateMetadata({
       },
     };
   } catch {
+    const identity = await getRequestSiteIdentity().catch(() => null);
     return {
-      title: getSiteName(),
-      robots: { index: true, follow: true, googleBot: defaultGoogleBot },
+      title: identity?.siteName || getSiteName(),
+      robots: {
+        index: false,
+        follow: true,
+        googleBot: { index: false, follow: true },
+      },
     };
   }
 }

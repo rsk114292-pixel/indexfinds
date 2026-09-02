@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { getContactEmail } from '@/lib/site-config';
-import { TELEGRAM_URL, WHATSAPP_HELP_URL, WHATSAPP_NUMBER } from '@/lib/support-links';
+import { buildWhatsAppHelpUrl, TELEGRAM_URL, WHATSAPP_NUMBER } from '@/lib/support-links';
 import {
   ChevronDown,
   Rocket,
@@ -15,6 +15,7 @@ import {
   Send,
 } from 'lucide-react';
 import { FadeIn } from '@/components/ui/FadeIn';
+import { useTenant } from '@/components/TenantProvider';
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -76,6 +77,10 @@ function AccordionItem({
 
 export default function HelpPageClient() {
   const t = useTranslations('helpPage');
+  const siteName = useTenant()?.branding?.siteName || 'IndexFinds';
+  const whatsappHelpUrl = buildWhatsAppHelpUrl(
+    `Hello ${siteName}, I need help buying from China.`,
+  );
 
   /* ---- Build FAQ data from translations ---- */
   const categories: FaqCategory[] = [
@@ -190,36 +195,18 @@ export default function HelpPageClient() {
   }, []);
 
   /* ---- Shared: Hero Section ---- */
-  const heroDesktop = (
+  const hero = (
     <section className="relative bg-secondary overflow-hidden">
       {/* Decorative glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/10 blur-[120px] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full bg-blue-500/8 blur-[80px] pointer-events-none" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[80px] lg:h-[600px] lg:w-[600px] lg:blur-[120px]" />
+      <div className="pointer-events-none absolute right-0 top-0 hidden h-[300px] w-[300px] rounded-full bg-blue-500/8 blur-[80px] lg:block" />
 
-      <div className="relative container mx-auto px-4 py-20 text-center">
+      <div className="container relative mx-auto px-4 py-10 text-center lg:py-20">
         <FadeIn>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="mb-2 text-2xl font-bold text-white md:text-4xl lg:mb-4 lg:text-5xl">
             {t('hero.title')}
           </h1>
-          <p className="text-lg text-white/70 max-w-2xl mx-auto">
-            {t('hero.subtitle')}
-          </p>
-        </FadeIn>
-      </div>
-    </section>
-  );
-
-  const heroMobile = (
-    <section className="relative bg-secondary overflow-hidden">
-      {/* Decorative glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-primary/10 blur-[80px] pointer-events-none" />
-
-      <div className="relative container mx-auto px-4 py-10 text-center">
-        <FadeIn>
-          <h1 className="text-2xl font-bold text-white mb-2">
-            {t('hero.title')}
-          </h1>
-          <p className="text-sm text-white/70 max-w-md mx-auto">
+          <p className="mx-auto max-w-2xl text-sm text-white/70 md:text-lg">
             {t('hero.subtitle')}
           </p>
         </FadeIn>
@@ -289,7 +276,7 @@ export default function HelpPageClient() {
 
           {/* WhatsApp */}
           <a
-            href={WHATSAPP_HELP_URL}
+            href={whatsappHelpUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center gap-3 p-6 rounded-xl border border-border hover:border-primary/30 hover:bg-primary/5 transition-colors"
@@ -337,68 +324,41 @@ export default function HelpPageClient() {
 
   return (
     <>
-      {/* ── PC 端视图 ── */}
-      <div className="hidden lg:block">
-        {heroDesktop}
+      {hero}
 
-        <div className="container mx-auto px-4 py-12">
-          {/* Category navigation cards */}
-          <FadeIn>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  type="button"
-                  onClick={() => scrollToCategory(category.id)}
-                  className="flex flex-col items-center gap-3 p-6 rounded-xl border border-border bg-surface hover:border-primary/30 hover:shadow-md transition-all cursor-pointer"
+      <div className="container mx-auto px-4 py-8 lg:py-12">
+        <FadeIn>
+          <div className="mb-12 hidden grid-cols-2 gap-4 lg:grid lg:grid-cols-4">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                type="button"
+                onClick={() => scrollToCategory(category.id)}
+                className="flex cursor-pointer flex-col items-center gap-3 rounded-xl border border-border bg-surface p-6 transition-all hover:border-primary/30 hover:shadow-md"
+              >
+                <div
+                  className={`flex h-11 w-11 items-center justify-center rounded-xl ${category.bgClass} ${category.colorClass}`}
                 >
-                  <div
-                    className={`w-11 h-11 rounded-xl ${category.bgClass} ${category.colorClass} flex items-center justify-center`}
-                  >
-                    {category.icon}
-                  </div>
-                  <div className="text-center">
-                    <p className="text-sm font-semibold text-foreground">
-                      {category.title}
-                    </p>
-                    <p className="text-xs text-muted mt-1">
-                      {t('categoryCardCount', {
-                        count: category.items.length,
-                      })}
-                    </p>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </FadeIn>
-
-          {/* FAQ sections */}
-          <div className="space-y-10 mb-16">
-            {categories.map((category) => (
-              <FadeIn key={category.id}>{faqSection(category.id)}</FadeIn>
+                  {category.icon}
+                </div>
+                <div className="text-center">
+                  <p className="text-sm font-semibold text-foreground">{category.title}</p>
+                  <p className="mt-1 text-xs text-muted">
+                    {t('categoryCardCount', { count: category.items.length })}
+                  </p>
+                </div>
+              </button>
             ))}
           </div>
+        </FadeIn>
 
-          {/* Contact section */}
-          {contactSection}
+        <div className="mb-10 space-y-8 lg:mb-16 lg:space-y-10">
+          {categories.map((category) => (
+            <FadeIn key={category.id}>{faqSection(category.id)}</FadeIn>
+          ))}
         </div>
-      </div>
 
-      {/* ── Mobile 端视图 ── */}
-      <div className="lg:hidden">
-        {heroMobile}
-
-        <div className="container mx-auto px-4 py-8">
-          {/* FAQ sections - directly listed, no category cards */}
-          <div className="space-y-8 mb-10">
-            {categories.map((category) => (
-              <FadeIn key={category.id}>{faqSection(category.id)}</FadeIn>
-            ))}
-          </div>
-
-          {/* Contact section */}
-          {contactSection}
-        </div>
+        {contactSection}
       </div>
     </>
   );

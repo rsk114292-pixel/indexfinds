@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { buildWhatsAppHelpUrl } from "@/lib/support-links";
+import { useTenant } from "@/components/TenantProvider";
 
 interface ProductSourceMetaProps {
   sourceUrl?: string | null;
@@ -48,6 +49,7 @@ export default function ProductSourceMeta({
 }: ProductSourceMetaProps) {
   const t = useTranslations("product");
   const locale = useLocale();
+  const siteName = useTenant()?.branding?.siteName || "IndexFinds";
   const sourceName = getSourceName(sourceUrl);
   const updatedDate = updatedAt ? new Date(updatedAt) : null;
   const updatedLabel =
@@ -65,7 +67,7 @@ export default function ProductSourceMeta({
       : null;
   const reportUrl = buildWhatsAppHelpUrl(
     [
-      "Hello IndexFinds, I want to report a product issue.",
+      `Hello ${siteName}, I want to report a product issue.`,
       productTitle ? `Product: ${productTitle}` : null,
       productId ? `Product ID: ${productId}` : null,
       sourceUrl ? `Source: ${sourceUrl}` : null,

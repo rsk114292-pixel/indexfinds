@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { getSiteName } from '@/lib/site-config';
 
-export const alt = 'IndexFinds product discovery';
+export const alt = 'Product discovery';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 

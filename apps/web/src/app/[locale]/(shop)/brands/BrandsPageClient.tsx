@@ -23,11 +23,14 @@ import ProductCard from '@/components/ProductCard';
 import { Link } from '@/i18n/navigation';
 import { OutboundSource } from '@/lib/search-tracking';
 import type { ProductListItem } from '@/types';
+import { useTenant } from '@/components/TenantProvider';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 export default function BrandsPageClient() {
   const t = useTranslations('brands');
+  const tenant = useTenant();
+  const siteName = tenant?.branding?.siteName || 'IndexFinds';
   const [searchQuery, setSearchQuery] = useState('');
 
   const {
@@ -278,7 +281,7 @@ export default function BrandsPageClient() {
                       <div>
                         <span className="mb-2 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
                           <Sparkles className="h-3.5 w-3.5" />
-                          IndexFinds
+                          {siteName}
                         </span>
                         <h2 className="text-xl font-bold">
                           {t('collectionGrowingTitle')}

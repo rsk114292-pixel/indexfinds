@@ -11,10 +11,8 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import HowItWorksPageClient from './HowItWorksPageClient';
 import { HowToJsonLd } from '@/components/seo/HowToJsonLd';
-import { generateAlternates, getOgLocale } from '@/lib/seo';
-import { getSiteUrl, getSiteName } from '@/lib/site-config';
-
-const SITE_URL = getSiteUrl();
+import { defaultGoogleBot, getOgLocale } from '@/lib/seo';
+import { buildSiteAlternates, getRequestSiteIdentity } from '@/lib/request-site-identity';
 
 const STEP_KEYS = ['step1', 'step2', 'step3', 'step4'] as const;
 
@@ -25,9 +23,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
+  const identity = await getRequestSiteIdentity();
+  const { siteUrl, siteName, tenant } = identity;
 
   const title = t('howItWorksTitle');
-  const description = t('howItWorksDescription');
+  const description = t('howItWorksDescription', { siteName });
 
   return {
     title,
@@ -35,14 +35,18 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${locale}/how-it-works`,
-      siteName: getSiteName(),
+      url: `${siteUrl}/${locale}/how-it-works`,
+      siteName,
       type: 'website',
       locale: getOgLocale(locale),
     },
     twitter: { card: 'summary', title, description },
-    alternates: generateAlternates('/how-it-works', locale),
-    robots: { index: true, follow: true },
+    alternates: buildSiteAlternates(identity, '/how-it-works', locale),
+    robots: {
+      index: !tenant,
+      follow: true,
+      googleBot: tenant ? { index: false, follow: true } : defaultGoogleBot,
+    },
   };
 }
 

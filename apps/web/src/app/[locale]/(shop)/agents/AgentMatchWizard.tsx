@@ -28,6 +28,7 @@ import {
   usePlatformStore,
 } from '@/stores/usePlatformStore';
 import { cn } from '@/lib/utils';
+import { useTenant } from '@/components/TenantProvider';
 
 const PRIORITIES: Array<{
   key: AgentMatchPriority;
@@ -44,6 +45,7 @@ export default function AgentMatchWizard() {
   const t = useTranslations('agents');
   const shippingT = useTranslations('shippingEstimator');
   const locale = useLocale();
+  const siteName = useTenant()?.branding?.siteName || 'IndexFinds';
   const [destination, setDestination] = useState<ShippingDestination>('US');
   const [weightKg, setWeightKg] = useState(1);
   const [priority, setPriority] = useState<AgentMatchPriority>('budget');
@@ -246,7 +248,7 @@ export default function AgentMatchWizard() {
                           href={`/agents/${platform.key}`}
                           className="flex h-9 items-center justify-center gap-1 rounded-lg border border-border px-3 text-xs font-bold text-foreground hover:border-primary/30 hover:text-primary"
                         >
-                          {t('indexFindsGuide')}
+                          {t('indexFindsGuide', { siteName })}
                           <ArrowRight className="h-3.5 w-3.5" />
                         </Link>
                       </div>
@@ -266,7 +268,7 @@ export default function AgentMatchWizard() {
                     {t('notConfigured')}
                   </p>
                   <p className="mx-auto mt-2 max-w-md text-xs leading-5 text-muted">
-                    {t('comparisonNoticeBody')}
+                    {t('comparisonNoticeBody', { siteName })}
                   </p>
                 </div>
               )}
