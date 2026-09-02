@@ -5,8 +5,8 @@ import HowItWorksPageClient from '../how-it-works/HowItWorksPageClient';
 
 describe('responsive informational pages', () => {
   it.each([
-    ['help', <HelpPageClient />],
-    ['how it works', <HowItWorksPageClient />],
+    ['help', <HelpPageClient key="help" />],
+    ['how it works', <HowItWorksPageClient key="how-it-works" />],
   ])('renders one semantic content tree for %s', (_name, page) => {
     const markup = renderToStaticMarkup(page);
 
