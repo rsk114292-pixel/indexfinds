@@ -44,82 +44,70 @@ export default function LegalPageLayout({ title, lastUpdated, sections, children
   };
 
   return (
-    <>
-      {/* PC */}
-      <div className="hidden lg:block">
-        <div className="container mx-auto px-4 py-12">
-          {/* Header */}
-          <div className="mb-10">
-            <h1 className="text-3xl font-bold text-foreground mb-2">{title}</h1>
-            <p className="text-sm text-muted">Last updated: {lastUpdated}</p>
-          </div>
-          {/* 2-column layout */}
-          <div className="flex gap-12">
-            {/* Sidebar TOC */}
-            <nav className="w-64 shrink-0">
-              <div className="sticky top-24">
-                <h3 className="text-xs font-semibold text-muted uppercase tracking-wider mb-4">Table of Contents</h3>
-                <ul className="space-y-1">
-                  {sections.map((s) => (
-                    <li key={s.id}>
-                      <button
-                        onClick={() => scrollToSection(s.id)}
-                        className={`w-full text-left text-sm py-1.5 px-3 rounded-lg transition-colors ${
-                          activeSection === s.id
-                            ? 'text-primary font-medium bg-primary/5'
-                            : 'text-muted hover:text-foreground'
-                        }`}
-                      >
-                        {s.title}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </nav>
-            {/* Content */}
-            <div className="flex-1 min-w-0 max-w-3xl">
-              <div className="prose-like">
-                {children}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="container mx-auto px-4 py-8 lg:py-12">
+      <header className="mb-6 lg:mb-10">
+        <h1 className="mb-1 text-2xl font-bold text-foreground lg:mb-2 lg:text-3xl">{title}</h1>
+        <p className="text-xs text-muted lg:text-sm">Last updated: {lastUpdated}</p>
+      </header>
 
-      {/* Mobile */}
-      <div className="lg:hidden">
-        <div className="px-4 py-8">
-          <h1 className="text-2xl font-bold text-foreground mb-1">{title}</h1>
-          <p className="text-xs text-muted mb-6">Last updated: {lastUpdated}</p>
-          {/* Collapsible TOC */}
-          <div className="mb-8 bg-surface border border-border rounded-xl overflow-hidden">
-            <button
-              onClick={() => setIsTocOpen(!isTocOpen)}
-              className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-foreground"
-            >
-              <span>Table of Contents</span>
-              <ChevronDown className={`w-4 h-4 text-muted transition-transform ${isTocOpen ? 'rotate-180' : ''}`} />
-            </button>
-            {isTocOpen && (
-              <div className="px-4 pb-3 space-y-1">
-                {sections.map((s) => (
+      <div className="lg:flex lg:gap-12">
+        <nav className="hidden w-64 shrink-0 lg:block" aria-label="Table of contents">
+          <div className="sticky top-24">
+            <h2 className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted">Table of Contents</h2>
+            <ul className="space-y-1">
+              {sections.map((s) => (
+                <li key={s.id}>
                   <button
-                    key={s.id}
+                    type="button"
                     onClick={() => scrollToSection(s.id)}
-                    className="w-full text-left text-sm py-1.5 text-muted hover:text-primary"
+                    className={`w-full rounded-lg px-3 py-1.5 text-left text-sm transition-colors ${
+                      activeSection === s.id
+                        ? 'bg-primary/5 font-medium text-primary'
+                        : 'text-muted hover:text-foreground'
+                    }`}
                   >
                     {s.title}
                   </button>
-                ))}
-              </div>
-            )}
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="prose-like">
-            {children}
-          </div>
+        </nav>
+
+        <div className="mb-8 overflow-hidden rounded-xl border border-border bg-surface lg:hidden">
+          <button
+            type="button"
+            aria-controls="mobile-legal-toc"
+            aria-expanded={isTocOpen}
+            onClick={() => setIsTocOpen(!isTocOpen)}
+            className="flex w-full items-center justify-between px-4 py-3 text-sm font-medium text-foreground"
+          >
+            <span>Table of Contents</span>
+            <ChevronDown
+              aria-hidden="true"
+              className={`h-4 w-4 text-muted transition-transform ${isTocOpen ? 'rotate-180' : ''}`}
+            />
+          </button>
+          {isTocOpen && (
+            <div id="mobile-legal-toc" className="space-y-1 px-4 pb-3">
+              {sections.map((s) => (
+                <button
+                  type="button"
+                  key={s.id}
+                  onClick={() => scrollToSection(s.id)}
+                  className="w-full py-1.5 text-left text-sm text-muted hover:text-primary"
+                >
+                  {s.title}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="min-w-0 flex-1 lg:max-w-3xl">
+          <div className="prose-like">{children}</div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
