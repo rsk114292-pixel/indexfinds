@@ -1,0 +1,455 @@
+{
+  "generatedAt": "2026-09-02T03:36:42.003Z",
+  "domainCount": 2,
+  "targetCount": 22,
+  "viewCount": 44,
+  "passedDomainCount": 2,
+  "failedDomainCount": 0,
+  "passedTargetCount": 22,
+  "failedTargetCount": 0,
+  "violationCount": 0,
+  "seriousOrCriticalCount": 0,
+  "requestFailureCount": 0,
+  "results": [
+    {
+      "domain": "ydaexpress.net",
+      "target": "https://ydaexpress.net/en",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.net",
+      "target": "https://ydaexpress.net/en/categories",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.net",
+      "target": "https://ydaexpress.net/en/parcel-brief",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.net",
+      "target": "https://ydaexpress.net/en/warehouse-checklist",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.net",
+      "target": "https://ydaexpress.net/en/consolidation-planner",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.net",
+      "target": "https://ydaexpress.net/en/tracking-handoff",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.net",
+      "target": "https://ydaexpress.net/en/faq",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.net",
+      "target": "https://ydaexpress.net/en/products",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.net",
+      "target": "https://ydaexpress.net/en/brands/air-jordan",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.net",
+      "target": "https://ydaexpress.net/en/categories/earphones",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.net",
+      "target": "https://ydaexpress.net/en/products/design-hoodie-i71b6i",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.org",
+      "target": "https://ydaexpress.org/en",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.org",
+      "target": "https://ydaexpress.org/en/categories",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.org",
+      "target": "https://ydaexpress.org/en/service-map",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.org",
+      "target": "https://ydaexpress.org/en/terms-checklist",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.org",
+      "target": "https://ydaexpress.org/en/shopping-agent-vs-forwarding",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.org",
+      "target": "https://ydaexpress.org/en/quote-evidence",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.org",
+      "target": "https://ydaexpress.org/en/faq",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.org",
+      "target": "https://ydaexpress.org/en/products",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.org",
+      "target": "https://ydaexpress.org/en/brands/air-jordan",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.org",
+      "target": "https://ydaexpress.org/en/categories/earphones",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    },
+    {
+      "domain": "ydaexpress.org",
+      "target": "https://ydaexpress.org/en/products/design-hoodie-i71b6i",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    }
+  ]
+}
