@@ -164,7 +164,7 @@
     "linkPlaceholder": "Paste a Weidian, Taobao, 1688 or Yupoo product link",
     "invalidProductLink": "Enter a product link containing a recognizable product ID.",
     "findFromLink": "Find product",
-    "linkSearchDesc": "Paste a supported product link. IndexFinds extracts its product ID and searches the current catalog.",
+    "linkSearchDesc": "Paste a supported product link. This tool extracts its product ID and searches the current catalog.",
     "requestProduct": {
       "title": "Didn't find the right product?",
       "description": "Submit a sourcing request and our team can review it for future listing.",
@@ -458,7 +458,7 @@
     },
     "trust": {
       "title": "You stay in control of the purchase",
-      "body": "IndexFinds helps you discover and compare products. We do not sell goods or process payments; your selected buying agent handles the order and delivery.",
+      "body": "This catalog helps you discover and compare products. We do not sell goods or process payments; your selected buying agent handles the order and delivery.",
       "independent": "Independent product index",
       "redirects": "Clear redirects to your chosen agent",
       "agentChoice": "Your agent, your final decision"
@@ -516,14 +516,14 @@
     "openGuide": "Open guide",
     "noResults": "No matching buying agents",
     "allGuides": "All agent guides",
-    "guideEyebrow": "{siteName} agent guide",
+    "guideEyebrow": "Independent agent guide",
     "guideTitle": "How to use {name}",
-    "guideSubtitle": "Discover products on {siteName}, review the available details, and continue through {name} when you are ready to purchase.",
+    "guideSubtitle": "Discover products in this catalog, review the available details, and continue through {name} when you are ready to purchase.",
     "selectedAgent": "Selected as your agent",
     "useAsAgent": "Use {name} as my agent",
     "officialWebsite": "Official website",
     "howToTitle": "Buy with {name} in four steps",
-    "howToSubtitle": "{siteName} handles discovery; your chosen agent handles checkout and delivery.",
+    "howToSubtitle": "This catalog supports discovery; your chosen agent handles checkout and delivery.",
     "stepSearchTitle": "Find a product",
     "stepSearchBody": "Search by keyword, brand, category, or product image.",
     "stepReviewTitle": "Review the details",
@@ -533,7 +533,7 @@
     "stepContinueTitle": "Continue securely",
     "stepContinueBody": "Complete the order, payment, warehouse, and shipping steps on the agent website.",
     "disclosureTitle": "Independent discovery service",
-    "disclosureBody": "{siteName} is not the agent and does not process your payment. Always confirm the final price and service terms on the official agent website.",
+    "disclosureBody": "This independent catalog is not the agent and does not process your payment. Always confirm the final price and service terms on the official agent website.",
     "browseProducts": "Browse products",
     "compareAgents": "Compare agents",
     "matchEyebrow": "Agent route helper",
@@ -558,7 +558,7 @@
     "preferred": "Preferred",
     "setPreferred": "Set as preferred",
     "visitOfficial": "Visit website",
-    "indexFindsGuide": "{siteName} guide",
+    "indexFindsGuide": "Independent guide",
     "serviceFees": "Service fees",
     "shippingCoverage": "Shipping coverage",
     "warehouseQc": "Warehouse & QC",
@@ -571,7 +571,7 @@
     "variesByRoute": "Varies by route and destination",
     "noAgentSelected": "Select at least one agent to start comparing.",
     "comparisonNoticeTitle": "Check current terms before buying",
-    "comparisonNoticeBody": "Fees, supported destinations, warehouse periods, and QC services can change. {siteName} does not rank agents or guarantee their services; confirm the latest terms on each official website."
+    "comparisonNoticeBody": "Fees, supported destinations, warehouse periods, and QC services can change. This directory does not rank agents or guarantee their services; confirm the latest terms on each official website."
   },
   "brands": {
     "title": "Brands",
@@ -1120,7 +1120,7 @@
       }
     },
     "features": {
-      "title": "Why {siteName}?",
+      "title": "Why use this catalog?",
       "products": {
         "title": "A Growing Product Catalog",
         "description": "A massive curated collection of products from Weidian, Taobao, and 1688."
@@ -1175,27 +1175,27 @@
   "helpPage": {
     "hero": {
       "title": "Help Center",
-      "subtitle": "Find answers to common questions about using {siteName}"
+      "subtitle": "Find answers to common questions about using this catalog"
     },
     "categoryCardCount": "{count} questions",
     "categories": {
       "gettingStarted": {
         "title": "Getting Started",
         "q1": {
-          "question": "What is {siteName}?",
-          "answer": "{siteName} is a product discovery platform that helps you explore products from Chinese marketplaces such as Weidian, Taobao, and 1688. Catalog size and available product details change as listings are reviewed and updated."
+          "question": "What is this catalog?",
+          "answer": "This is an independent product discovery catalog that helps you explore products from Chinese marketplaces such as Weidian, Taobao, and 1688. Catalog size and available product details change as listings are reviewed and updated."
         },
         "q2": {
-          "question": "How do I create an account?",
-          "answer": "Click the \"Sign Up\" button in the top right corner. You can register with your email address. After registration, you can save favorites and track your browsing history."
+          "question": "Can I create an account?",
+          "answer": "Account registration is currently unavailable. You can still browse products, categories, brands, and agent guides without an account."
         },
         "q3": {
           "question": "What is a purchasing agent?",
           "answer": "A purchasing agent (daigou) is a service that buys products from Chinese marketplaces on your behalf and ships them internationally. Current options are listed in our purchasing-agent directory."
         },
         "q4": {
-          "question": "Is {siteName} free to use?",
-          "answer": "Yes! {siteName} is completely free. We earn a small commission from purchasing agents when you buy through our links, at no extra cost to you."
+          "question": "Is this catalog free to browse?",
+          "answer": "Yes. Browsing this catalog is free. Any purchasing, payment, warehouse, or shipping fees are set by the third-party agent you choose."
         }
       },
       "shoppingQc": {
@@ -1229,7 +1229,7 @@
         },
         "q3": {
           "question": "Do you handle payments or shipping?",
-          "answer": "No. {siteName} is a product discovery platform only. All payments, shipping, and customer service are handled by the purchasing agent you choose."
+          "answer": "No. This site is a product discovery catalog only. All payments, shipping, and customer service are handled by the purchasing agent you choose."
         },
         "q4": {
           "question": "What if an item is out of stock?",
@@ -1527,7 +1527,7 @@
     "sections": {
       "get-in-touch": {
         "title": "Get In Touch",
-        "content": "We'd love to hear from you! Whether you have questions about our platform, suggestions for improvement, or need assistance, our team is here to help. We typically respond within 24-48 hours."
+        "content": "Use the contact channels below for questions about the catalog, suggestions, privacy requests, or general assistance."
       },
       "email": {
         "title": "Email",
@@ -1544,7 +1544,7 @@
       },
       "important-note": {
         "title": "Important Note",
-        "content": "{siteName} is a product discovery platform — we do not process orders, handle shipping, or manage payments. For questions about your order status, shipping tracking, payment issues, or refunds, please contact your purchasing agent (daigou) platform directly. They handle all transaction-related matters."
+        "content": "This site is a product discovery catalog — we do not process orders, handle shipping, or manage payments. For questions about your order status, shipping tracking, payment issues, or refunds, please contact your purchasing agent (daigou) platform directly. They handle all transaction-related matters."
       }
     }
   },
