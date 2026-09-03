@@ -14,6 +14,8 @@ import { HowToJsonLd } from '@/components/seo/HowToJsonLd';
 import { defaultGoogleBot, getOgLocale } from '@/lib/seo';
 import { buildSiteAlternates, getRequestSiteIdentity } from '@/lib/request-site-identity';
 
+export const dynamic = 'force-dynamic';
+
 const STEP_KEYS = ['step1', 'step2', 'step3', 'step4'] as const;
 
 export async function generateMetadata({
@@ -57,6 +59,7 @@ export default async function HowItWorksPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'howItWorksPage' });
+  const { siteName } = await getRequestSiteIdentity();
 
   const steps = STEP_KEYS.map((key) => ({
     name: t(`steps.${key}.title`),
@@ -70,7 +73,7 @@ export default async function HowItWorksPage({
         description={t('hero.subtitle')}
         steps={steps}
       />
-      <HowItWorksPageClient />
+      <HowItWorksPageClient siteName={siteName} />
     </>
   );
 }

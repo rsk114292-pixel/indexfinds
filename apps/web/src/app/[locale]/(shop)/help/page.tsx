@@ -5,6 +5,8 @@ import { FAQPageJsonLd } from '@/components/seo/FAQPageJsonLd';
 import { defaultGoogleBot, getOgLocale } from '@/lib/seo';
 import { buildSiteAlternates, getRequestSiteIdentity } from '@/lib/request-site-identity';
 
+export const dynamic = 'force-dynamic';
+
 const FAQ_CATEGORIES = ['gettingStarted', 'shoppingQc', 'agentsOrders', 'accountSupport'] as const;
 const FAQ_KEYS = ['q1', 'q2', 'q3', 'q4'] as const;
 
@@ -51,8 +53,8 @@ export default async function HelpPage({
 
   const faqItems = FAQ_CATEGORIES.flatMap((cat) =>
     FAQ_KEYS.map((key) => ({
-      question: t(`categories.${cat}.${key}.question`),
-      answer: t(`categories.${cat}.${key}.answer`),
+      question: t(`categories.${cat}.${key}.question`, { siteName }),
+      answer: t(`categories.${cat}.${key}.answer`, { siteName }),
     })),
   );
 

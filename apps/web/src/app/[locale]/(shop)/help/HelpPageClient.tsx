@@ -94,8 +94,8 @@ export default function HelpPageClient({
       title: t('categories.gettingStarted.title'),
       items: [
         {
-          question: t('categories.gettingStarted.q1.question'),
-          answer: t('categories.gettingStarted.q1.answer'),
+          question: t('categories.gettingStarted.q1.question', { siteName }),
+          answer: t('categories.gettingStarted.q1.answer', { siteName }),
         },
         {
           question: t('categories.gettingStarted.q2.question'),
@@ -106,8 +106,8 @@ export default function HelpPageClient({
           answer: t('categories.gettingStarted.q3.answer'),
         },
         {
-          question: t('categories.gettingStarted.q4.question'),
-          answer: t('categories.gettingStarted.q4.answer'),
+          question: t('categories.gettingStarted.q4.question', { siteName }),
+          answer: t('categories.gettingStarted.q4.answer', { siteName }),
         },
       ],
     },
@@ -153,7 +153,7 @@ export default function HelpPageClient({
         },
         {
           question: t('categories.agentsOrders.q3.question'),
-          answer: t('categories.agentsOrders.q3.answer'),
+          answer: t('categories.agentsOrders.q3.answer', { siteName }),
         },
         {
           question: t('categories.agentsOrders.q4.question'),
@@ -209,7 +209,7 @@ export default function HelpPageClient({
             {t('hero.title')}
           </h1>
           <p className="mx-auto max-w-2xl text-sm text-white/70 md:text-lg">
-            {t('hero.subtitle')}
+            {t('hero.subtitle', { siteName })}
           </p>
         </FadeIn>
       </div>

@@ -73,7 +73,9 @@ export default function ContactPageClient({
       {/* 4. Important Note */}
       <section id="important-note" className="scroll-mt-24 mb-10">
         <h2 className="text-xl font-semibold text-foreground mb-4">{t('sections.important-note.title')}</h2>
-        <p className="text-sm text-muted leading-relaxed">{t('sections.important-note.content')}</p>
+        <p className="text-sm text-muted leading-relaxed">
+          {t('sections.important-note.content', { siteName })}
+        </p>
       </section>
     </LegalPageLayout>
   );

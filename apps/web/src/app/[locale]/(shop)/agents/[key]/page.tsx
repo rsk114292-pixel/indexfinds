@@ -6,6 +6,8 @@ import { defaultGoogleBot, getOgLocale } from '@/lib/seo';
 import { buildSiteAlternates, getRequestSiteIdentity } from '@/lib/request-site-identity';
 import AgentDetailClient from './AgentDetailClient';
 
+export const dynamic = 'force-dynamic';
+
 interface AgentPageProps {
   params: Promise<{ locale: string; key: string }>;
 }

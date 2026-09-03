@@ -4,6 +4,8 @@ import ContactPageClient from './ContactPageClient';
 import { defaultGoogleBot, getOgLocale } from '@/lib/seo';
 import { buildSiteAlternates, getRequestSiteIdentity } from '@/lib/request-site-identity';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({
   params,
 }: {
@@ -15,7 +17,7 @@ export async function generateMetadata({
   const { siteUrl, siteName, tenant } = identity;
 
   const title = t('contactTitle');
-  const description = t('contactDescription');
+  const description = t('contactDescription', { siteName });
 
   return {
     title,

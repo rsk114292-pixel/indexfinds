@@ -89,7 +89,11 @@ const features = [
 /*  Component                                                                  */
 /* -------------------------------------------------------------------------- */
 
-export default function HowItWorksPageClient() {
+export default function HowItWorksPageClient({
+  siteName = 'IndexFinds',
+}: {
+  siteName?: string;
+}) {
   const t = useTranslations('howItWorksPage');
 
   return (
@@ -166,7 +170,7 @@ export default function HowItWorksPageClient() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <h2 className="text-center text-2xl font-bold text-foreground lg:text-3xl">
-              {t('features.title')}
+              {t('features.title', { siteName })}
             </h2>
           </FadeIn>
 

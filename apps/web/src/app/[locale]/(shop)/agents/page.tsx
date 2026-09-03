@@ -6,6 +6,8 @@ import { defaultGoogleBot, getOgLocale } from '@/lib/seo';
 import { buildSiteAlternates, getRequestSiteIdentity } from '@/lib/request-site-identity';
 import AgentDirectoryClient from './AgentDirectoryClient';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({
   params,
 }: {
