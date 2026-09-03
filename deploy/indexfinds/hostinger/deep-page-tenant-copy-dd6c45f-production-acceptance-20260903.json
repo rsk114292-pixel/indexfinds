@@ -1,0 +1,177 @@
+{
+  "generatedAt": "2026-09-03T12:39:09+08:00",
+  "result": "pass",
+  "scope": "IndexFinds main web and all 45 active tenant domains",
+  "sourceCommits": [
+    "2c4a591",
+    "729a2b4",
+    "12a7553",
+    "a464371",
+    "658911b",
+    "060666d",
+    "dd6c45f"
+  ],
+  "changeSummary": [
+    "Removed duplicate responsive legal-page rendering that could produce duplicate H1 content.",
+    "Made tenant deep pages resolve request-specific identity, metadata, canonical and Open Graph URLs.",
+    "Removed shared visible IndexFinds copy from tenant help, contact, how-it-works and agent pages.",
+    "Removed inaccurate sign-up guidance while registration remains disabled and removed unsupported response-time and commission claims.",
+    "Kept unapproved shared tenant deep pages noindex,follow and outside the approved indexing surface."
+  ],
+  "localVerification": {
+    "testSuites": 133,
+    "tests": 921,
+    "typecheck": "pass",
+    "changedFileLint": "pass",
+    "productionBuild": "pass"
+  },
+  "deployment": {
+    "host": "Hostinger",
+    "image": "indexfinds-web:tenant-copy-dd6c45f-api",
+    "imageId": "804c82350e58",
+    "requiredBuildApiUrl": "https://api-next.indexfinds.com",
+    "mainPort": 3132,
+    "tenantPort": 3157,
+    "mainContainer": "indexfinds-web-main-deep-copy-dd6c45f-api",
+    "tenantContainer": "indexfinds-web-tenant-deep-copy-dd6c45f-api",
+    "nginxTenantConfigFiles": 46,
+    "nginxTenantReferences": 90,
+    "nginxValidation": "pass",
+    "configBackup": "/opt/indexfinds/nginx-backups/tenant-copy-dd6c45f-api-20260903",
+    "rollback": {
+      "mainPort": 3131,
+      "tenantPort": 3156,
+      "additionalMainPort": 3130,
+      "additionalTenantPort": 3155
+    }
+  },
+  "recoveredPreReleaseFailure": {
+    "cause": "The first dd6c45f image was built without the required public API build argument, so server-rendered brand and category routes attempted the localhost development API.",
+    "effect": "Canary checks found 404 responses for brand/category routes and a missing product H1 before the corrected image was accepted.",
+    "containment": "Production was immediately restored to ports 3131 and 3156; the failed image was never retained as the final release.",
+    "resolution": "Rebuilt dd6c45f with the production API URL and repeated canary, public SEO and accessibility acceptance before cutover."
+  },
+  "canaryAcceptance": {
+    "mainHost": "indexfinds.com",
+    "tenantHost": "acbuyindex.com",
+    "pagesPerHost": 9,
+    "totalPages": 18,
+    "status200": 18,
+    "singleH1": 18,
+    "selfCanonical": 18,
+    "selfOpenGraphUrl": 18,
+    "tenantMainBrandLeaks": 0,
+    "tenantSharedDeepRobots": "noindex, follow",
+    "representativeRoutes": [
+      "/en/help",
+      "/en/contact",
+      "/en/how-it-works",
+      "/en/agents",
+      "/en/agents/compare",
+      "/en/agents/loongbuy",
+      "/en/brands/air-jordan",
+      "/en/categories/earphones",
+      "/en/products/design-hoodie-i71b6i"
+    ]
+  },
+  "portfolioPublicAcceptance": {
+    "tenantDomainCount": 45,
+    "route": "/en/help",
+    "passed": 45,
+    "failed": 0,
+    "requirements": [
+      "HTTP 200",
+      "exactly one H1",
+      "noindex, follow",
+      "self-domain canonical",
+      "no visible IndexFinds brand leak"
+    ]
+  },
+  "representativeTenantDeepAudit": {
+    "domain": "acbuyindex.com",
+    "result": "pass",
+    "reviewedPages": 7,
+    "reviewedDeepPages": 4,
+    "failures": 0,
+    "warnings": 0,
+    "evidence": "tenant-acbuy-deep-copy-dd6c45f-api-production-audit-20260903.json"
+  },
+  "ydaAcceptance": {
+    "domains": [
+      "ydaexpress.net",
+      "ydaexpress.org"
+    ],
+    "seo": {
+      "passedDomains": 2,
+      "reviewedPages": 14,
+      "reviewedDeepPages": 8,
+      "failures": 0,
+      "warnings": 0,
+      "evidence": "tenant-yda-deep-copy-dd6c45f-api-production-audit-20260903.json"
+    },
+    "accessibility": {
+      "targets": 22,
+      "desktopMobileViews": 44,
+      "passedTargets": 22,
+      "violations": 0,
+      "seriousOrCritical": 0,
+      "requestFailures": 0,
+      "evidence": "tenant-yda-deep-copy-dd6c45f-api-a11y-acceptance-20260903.json"
+    },
+    "entryUrls": [
+      {
+        "url": "https://ydaexpress.net/en",
+        "finalStatus": 200,
+        "redirects": 0
+      },
+      {
+        "url": "https://www.ydaexpress.net/en",
+        "finalStatus": 200,
+        "redirects": 1,
+        "finalUrl": "https://ydaexpress.net/en"
+      },
+      {
+        "url": "https://ydaexpress.org/en",
+        "finalStatus": 200,
+        "redirects": 0
+      },
+      {
+        "url": "https://www.ydaexpress.org/en",
+        "finalStatus": 200,
+        "redirects": 1,
+        "finalUrl": "https://ydaexpress.org/en"
+      }
+    ]
+  },
+  "serviceBoundaries": {
+    "mainRepresentativeRoutes": "200",
+    "apiRoot": 404,
+    "apiHealth": 200,
+    "retired1to1reps": 410,
+    "retired1to1repsRobots": "noindex, nofollow"
+  },
+  "disk": {
+    "before": {
+      "usedPercent": 87,
+      "availableGb": 26
+    },
+    "after": {
+      "usedPercent": 83,
+      "availableGb": 35
+    },
+    "removed": [
+      "three unused failed/intermediate web images",
+      "two corresponding temporary source release directories",
+      "rebuildable Docker build cache"
+    ],
+    "preserved": [
+      "databases",
+      "uploads",
+      "Docker volumes",
+      "TLS certificates",
+      "current production containers",
+      "rollback containers"
+    ]
+  },
+  "indexingStatement": "Deployment and technical acceptance are complete. Google discovery, indexing and ranking remain external outcomes and are not represented as complete by this release record."
+}
