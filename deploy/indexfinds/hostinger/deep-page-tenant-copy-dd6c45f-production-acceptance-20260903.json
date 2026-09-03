@@ -87,6 +87,17 @@
       "no visible IndexFinds brand leak"
     ]
   },
+  "portfolioDeepSeoAudit": {
+    "tenantDomainCount": 45,
+    "passedDomains": 45,
+    "failedDomains": 0,
+    "reviewedApprovedPages": 343,
+    "reviewedDeepPages": 180,
+    "failures": 0,
+    "warnings": 13,
+    "warningClassification": "External official-source endpoints rejected the audit user agent with 403, except the external KameyMall source which returned 502. No warning was caused by a tenant page, canonical, robots, sitemap or structured-data failure.",
+    "evidence": "tenant-45-deep-copy-dd6c45f-api-production-audit-20260903.json"
+  },
   "representativeTenantDeepAudit": {
     "domain": "acbuyindex.com",
     "result": "pass",

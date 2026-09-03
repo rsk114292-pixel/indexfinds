@@ -210,8 +210,11 @@
     "webCommit": "dd6c45f",
     "mainWebPort": 3132,
     "tenantWebPort": 3157,
-    "liveValidation": "All 45 active tenant help pages passed public identity, single-H1, self-canonical and noindex checks. The representative ACBuy deep audit and the full YDA SEO and desktop/mobile accessibility audits passed with zero failures or warnings.",
-    "evidence": "deploy/indexfinds/hostinger/deep-page-tenant-copy-dd6c45f-production-acceptance-20260903.json"
+    "liveValidation": "All 45 active tenant help pages passed public identity, single-H1, self-canonical and noindex checks. The complete production SEO audit passed all 45 domains, 343 approved pages and 180 representative deep pages with zero site failures. Thirteen external-source availability warnings were isolated to third-party 403/502 responses. The representative ACBuy audit and the full YDA SEO and desktop/mobile accessibility audits also passed.",
+    "evidence": [
+      "deploy/indexfinds/hostinger/deep-page-tenant-copy-dd6c45f-production-acceptance-20260903.json",
+      "deploy/indexfinds/hostinger/tenant-45-deep-copy-dd6c45f-api-production-audit-20260903.json"
+    ]
   },
   "directOriginMigration": {
     "domainCount": 40,
