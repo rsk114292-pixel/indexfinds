@@ -276,7 +276,10 @@ describe('route template audit', () => {
   });
 
   it('product detail route returns a real 404 for missing products', async () => {
-    mockFetch.mockResolvedValueOnce(mockJsonResponse(null, false));
+    mockFetch.mockResolvedValueOnce({
+      ...mockJsonResponse(null, false),
+      status: 404,
+    });
 
     const pageModule = await import('../[locale]/(shop)/products/[slug]/page');
 

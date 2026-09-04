@@ -9,6 +9,10 @@ type NextFetchOptions = RequestInit & {
   timeoutMs?: number;
   /** Maximum age of the last successful response used when upstream fails. */
   staleIfErrorMs?: number;
+  /** Number of extra attempts for transient upstream failures. */
+  retryCount?: number;
+  /** Surface non-404 upstream failures to the nearest route error boundary. */
+  throwOnError?: boolean;
 };
 
 interface FallbackCacheEntry {
@@ -153,28 +157,52 @@ export async function fetchServerApiJson<T>(
   const {
     timeoutMs = DEFAULT_TIMEOUT_MS,
     staleIfErrorMs = DEFAULT_STALE_IF_ERROR_MS,
+    retryCount = 0,
+    throwOnError = false,
     ...requestInit
   } = init || {};
   const fallbackEnabled =
     staleIfErrorMs > 0 && canUseSharedFallback(url, requestInit);
-  const deadline = createDeadlineSignal(requestInit.signal, timeoutMs);
 
-  try {
-    const response = await fetch(url, {
-      ...requestInit,
-      signal: deadline.signal,
-    });
+  for (let attempt = 0; attempt <= retryCount; attempt += 1) {
+    const deadline = createDeadlineSignal(requestInit.signal, timeoutMs);
 
-    if (!response.ok) {
-      return fallbackEnabled ? readFallback<T>(url, staleIfErrorMs) : null;
+    try {
+      const response = await fetch(url, {
+        ...requestInit,
+        signal: deadline.signal,
+      });
+
+      if (response.ok) {
+        const value = (await response.json()) as T;
+        if (fallbackEnabled) writeFallback(url, value);
+        return value;
+      }
+
+      const fallback = fallbackEnabled
+        ? readFallback<T>(url, staleIfErrorMs)
+        : null;
+      if (fallback !== null) return fallback;
+
+      const isMissing = response.status === 404 || response.status === 410;
+      if (isMissing) return null;
+      if (attempt < retryCount && response.status >= 500) continue;
+      if (throwOnError) {
+        throw new Error(`Upstream request failed with status ${response.status}`);
+      }
+      return null;
+    } catch (error) {
+      const fallback = fallbackEnabled
+        ? readFallback<T>(url, staleIfErrorMs)
+        : null;
+      if (fallback !== null) return fallback;
+      if (attempt < retryCount) continue;
+      if (throwOnError) throw error;
+      return null;
+    } finally {
+      deadline.cleanup();
     }
-
-    const value = (await response.json()) as T;
-    if (fallbackEnabled) writeFallback(url, value);
-    return value;
-  } catch {
-    return fallbackEnabled ? readFallback<T>(url, staleIfErrorMs) : null;
-  } finally {
-    deadline.cleanup();
   }
+
+  return null;
 }

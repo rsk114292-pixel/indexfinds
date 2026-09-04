@@ -30,6 +30,9 @@ export const dynamic = 'force-dynamic';
 // 服务端获取产品数据
 async function getProduct(slug: string): Promise<Product | null> {
   return fetchServerApiJson<Product>(`/products/slug/${slug}`, {
+    timeoutMs: 8_000,
+    retryCount: 1,
+    throwOnError: true,
     next: {
       revalidate: 3600,
       tags: [getProductDetailTag(slug)],

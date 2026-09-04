@@ -131,4 +131,57 @@ describe('server-api-fetch', () => {
     ).resolves.toBeNull();
     expect(Date.now() - startedAt).toBeLessThan(500);
   });
+
+  it('retries transient failures and returns the recovered response', async () => {
+    process.env.NEXT_PUBLIC_API_URL = 'https://api.lolobuyspreadsheets.com';
+    const { fetchServerApiJson } = await import('./server-api-fetch');
+    const fetchMock = jest
+      .fn()
+      .mockResolvedValueOnce({ ok: false, status: 503 } as Response)
+      .mockResolvedValueOnce(jsonResponse({ slug: 'recovered-product' }));
+    global.fetch = fetchMock as typeof fetch;
+
+    await expect(
+      fetchServerApiJson('/products/slug/recovered-product', {
+        retryCount: 1,
+        throwOnError: true,
+        staleIfErrorMs: 0,
+      }),
+    ).resolves.toEqual({ slug: 'recovered-product' });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it('returns null for a genuine missing resource when errors are surfaced', async () => {
+    process.env.NEXT_PUBLIC_API_URL = 'https://api.lolobuyspreadsheets.com';
+    const { fetchServerApiJson } = await import('./server-api-fetch');
+    global.fetch = jest
+      .fn()
+      .mockResolvedValue({ ok: false, status: 404 } as Response) as typeof fetch;
+
+    await expect(
+      fetchServerApiJson('/products/slug/missing', {
+        retryCount: 1,
+        throwOnError: true,
+        staleIfErrorMs: 0,
+      }),
+    ).resolves.toBeNull();
+  });
+
+  it('surfaces a persistent upstream failure instead of reporting missing data', async () => {
+    process.env.NEXT_PUBLIC_API_URL = 'https://api.lolobuyspreadsheets.com';
+    const { fetchServerApiJson } = await import('./server-api-fetch');
+    const fetchMock = jest
+      .fn()
+      .mockResolvedValue({ ok: false, status: 503 } as Response);
+    global.fetch = fetchMock as typeof fetch;
+
+    await expect(
+      fetchServerApiJson('/products/slug/unavailable', {
+        retryCount: 1,
+        throwOnError: true,
+        staleIfErrorMs: 0,
+      }),
+    ).rejects.toThrow('Upstream request failed with status 503');
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
 });
