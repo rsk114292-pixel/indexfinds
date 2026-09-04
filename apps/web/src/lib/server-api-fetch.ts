@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '@/lib/constants';
+import { API_BASE_URL } from "@/lib/constants";
 
 type NextFetchOptions = RequestInit & {
   next?: {
@@ -23,6 +23,7 @@ interface FallbackCacheEntry {
 const DEFAULT_TIMEOUT_MS = 4_500;
 const DEFAULT_STALE_IF_ERROR_MS = 15 * 60 * 1000;
 const MAX_FALLBACK_ENTRIES = 120;
+const INTERNAL_API_HEADER = "x-indexfinds-internal-token";
 
 const fallbackCache = (() => {
   const sharedGlobal = globalThis as typeof globalThis & {
@@ -33,20 +34,20 @@ const fallbackCache = (() => {
 })();
 
 function isBuildPhase() {
-  return process.env.NEXT_PHASE === 'phase-production-build';
+  return process.env.NEXT_PHASE === "phase-production-build";
 }
 
 function isLocalApiUrl(url: string) {
   try {
     const parsed = new URL(url);
-    return ['localhost', '127.0.0.1', '0.0.0.0'].includes(parsed.hostname);
+    return ["localhost", "127.0.0.1", "0.0.0.0"].includes(parsed.hostname);
   } catch {
     return false;
   }
 }
 
 export function shouldSkipServerApiFetch(input: string) {
-  const url = input.startsWith('http') ? input : `${API_BASE_URL}${input}`;
+  const url = input.startsWith("http") ? input : `${API_BASE_URL}${input}`;
   return isBuildPhase() && isLocalApiUrl(url);
 }
 
@@ -63,36 +64,56 @@ export function buildServerTrackingHeaders(input?: {
   ].filter(Boolean);
 
   if (cookieParts.length > 0) {
-    headers.cookie = cookieParts.join('; ');
+    headers.cookie = cookieParts.join("; ");
   }
 
   if (input?.visitId) {
-    headers['x-visit-id'] = input.visitId;
+    headers["x-visit-id"] = input.visitId;
   }
 
   return headers;
 }
 
 function canUseSharedFallback(url: string, init: RequestInit) {
-  const method = (init.method || 'GET').toUpperCase();
-  if (method !== 'GET' || init.cache === 'no-store') return false;
+  const method = (init.method || "GET").toUpperCase();
+  if (method !== "GET" || init.cache === "no-store") return false;
 
   const headerNames = new Set<string>();
   const headers = init.headers;
   if (Array.isArray(headers)) {
     headers.forEach(([name]) => headerNames.add(name.toLowerCase()));
-  } else if (headers && typeof (headers as Headers).forEach === 'function') {
-    (headers as Headers).forEach((_value, name) => headerNames.add(name.toLowerCase()));
+  } else if (headers && typeof (headers as Headers).forEach === "function") {
+    (headers as Headers).forEach((_value, name) =>
+      headerNames.add(name.toLowerCase()),
+    );
   } else if (headers) {
     Object.keys(headers).forEach((name) => headerNames.add(name.toLowerCase()));
   }
 
-  return ![
-    'authorization',
-    'cookie',
-    'x-visit-id',
-    'x-api-key',
-  ].some((name) => headerNames.has(name)) && url.startsWith(API_BASE_URL);
+  return (
+    !["authorization", "cookie", "x-visit-id", "x-api-key"].some((name) =>
+      headerNames.has(name),
+    ) && url.startsWith(API_BASE_URL)
+  );
+}
+
+function withInternalApiToken(
+  url: string,
+  headersInit: HeadersInit | undefined,
+): HeadersInit | undefined {
+  const token = process.env.INDEXFINDS_INTERNAL_API_TOKEN?.trim();
+  if (!token) return headersInit;
+
+  try {
+    if (new URL(url).origin !== new URL(API_BASE_URL).origin)
+      return headersInit;
+  } catch {
+    return headersInit;
+  }
+
+  const headers = new Headers(headersInit);
+  headers.set(INTERNAL_API_HEADER, token);
+  return headers;
 }
 
 function readFallback<T>(key: string, maxAgeMs: number): T | null {
@@ -116,18 +137,24 @@ function writeFallback(key: string, value: unknown) {
   }
 }
 
-function createDeadlineSignal(signal: AbortSignal | null | undefined, timeoutMs: number) {
+function createDeadlineSignal(
+  signal: AbortSignal | null | undefined,
+  timeoutMs: number,
+) {
   const controller = new AbortController();
   const abortFromUpstream = () => controller.abort(signal?.reason);
 
   if (signal?.aborted) {
     abortFromUpstream();
   } else {
-    signal?.addEventListener('abort', abortFromUpstream, { once: true });
+    signal?.addEventListener("abort", abortFromUpstream, { once: true });
   }
 
   const timer = setTimeout(
-    () => controller.abort(new DOMException('Upstream request timed out', 'TimeoutError')),
+    () =>
+      controller.abort(
+        new DOMException("Upstream request timed out", "TimeoutError"),
+      ),
     Math.max(1, timeoutMs),
   );
 
@@ -135,7 +162,7 @@ function createDeadlineSignal(signal: AbortSignal | null | undefined, timeoutMs:
     signal: controller.signal,
     cleanup: () => {
       clearTimeout(timer);
-      signal?.removeEventListener('abort', abortFromUpstream);
+      signal?.removeEventListener("abort", abortFromUpstream);
     },
   };
 }
@@ -148,7 +175,7 @@ export async function fetchServerApiJson<T>(
   input: string,
   init?: NextFetchOptions,
 ): Promise<T | null> {
-  const url = input.startsWith('http') ? input : `${API_BASE_URL}${input}`;
+  const url = input.startsWith("http") ? input : `${API_BASE_URL}${input}`;
 
   if (shouldSkipServerApiFetch(url)) {
     return null;
@@ -170,6 +197,7 @@ export async function fetchServerApiJson<T>(
     try {
       const response = await fetch(url, {
         ...requestInit,
+        headers: withInternalApiToken(url, requestInit.headers),
         signal: deadline.signal,
       });
 
@@ -188,7 +216,9 @@ export async function fetchServerApiJson<T>(
       if (isMissing) return null;
       if (attempt < retryCount && response.status >= 500) continue;
       if (throwOnError) {
-        throw new Error(`Upstream request failed with status ${response.status}`);
+        throw new Error(
+          `Upstream request failed with status ${response.status}`,
+        );
       }
       return null;
     } catch (error) {

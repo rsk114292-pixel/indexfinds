@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CacheModule } from '@nestjs/cache-manager';
 import KeyvRedis from '@keyv/redis';
-import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { ScheduleModule } from '@nestjs/schedule';
 import { APP_GUARD } from '@nestjs/core';
 import { AppController } from './app.controller';
@@ -37,6 +37,7 @@ import { WithdrawalsModule } from './withdrawals/withdrawals.module';
 import { ProductSourcingRequestsModule } from './product-sourcing-requests/product-sourcing-requests.module';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
+import { InternalThrottlerGuard } from './common/guards/internal-throttler.guard';
 
 const enableQueue = process.env.NODE_ENV !== 'test';
 
@@ -169,7 +170,7 @@ function resolveApiEnvFiles(): string[] {
       ? [
           {
             provide: APP_GUARD,
-            useClass: ThrottlerGuard,
+            useClass: InternalThrottlerGuard,
           },
         ]
       : []),
