@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import {
   getAllTenantResearchPages,
   getTenantResearchPage,
@@ -5,14 +7,11 @@ import {
   getTenantResearchProfile,
 } from "./tenant-research-pages";
 import { SUBSITE_GUIDES } from "./subsite-guides";
+import { NEW_AGENT_TENANTS } from "./new-agent-tenants";
+import { getTenantConfigByHost } from "./tenant-config";
 
 describe("tenant research pages", () => {
-  it("does not publish research pages for the retired 1to1Reps tenant", () => {
-    expect(getTenantResearchPaths("1to1reps.com")).toEqual([]);
-    expect(getTenantResearchProfile("1to1reps.com")).toBeNull();
-  });
-
-  it("publishes three distinct 1to1 research path sets", () => {
+  it("publishes four distinct 1to1 research path sets", () => {
     expect(getTenantResearchPaths("1to1finds.cloud")).toEqual([
       "/categories",
       "/evidence-cloud",
@@ -29,6 +28,14 @@ describe("tenant research pages", () => {
       "/qc-questions",
       "/faq",
     ]);
+    expect(getTenantResearchPaths("1to1reps.com")).toEqual([
+      "/categories",
+      "/finds",
+      "/qc-checklist",
+      "/agent-guide",
+      "/source-safety",
+      "/faq",
+    ]);
     expect(getTenantResearchPaths("1to1spreadsheet.com")).toEqual([
       "/categories",
       "/spreadsheet-method",
@@ -40,11 +47,11 @@ describe("tenant research pages", () => {
   });
 
   it("keeps every Next-hosted tenant out of the generic category fallback", () => {
-    const missingCategoryFronts = SUBSITE_GUIDES
-      .filter(({ domain }) => !getTenantResearchPage(domain, "categories"))
-      .map(({ domain }) => domain);
+    const missingCategoryFronts = SUBSITE_GUIDES.filter(
+      ({ domain }) => !getTenantResearchPage(domain, "categories"),
+    ).map(({ domain }) => domain);
 
-    expect(SUBSITE_GUIDES).toHaveLength(45);
+    expect(SUBSITE_GUIDES).toHaveLength(58);
     expect(missingCategoryFronts).toEqual([]);
   });
 
@@ -188,9 +195,12 @@ describe("tenant research pages", () => {
       "/safety",
       "/faq",
     ]);
-    expect(getTenantResearchPage("loongbuys.net", "shipping-calculator")).toEqual(
+    expect(
+      getTenantResearchPage("loongbuys.net", "shipping-calculator"),
+    ).toEqual(
       expect.objectContaining({
-        seoTitle: "LoongBuy Shipping Calculator Guide | Inputs and Final Charge",
+        seoTitle:
+          "LoongBuy Shipping Calculator Guide | Inputs and Final Charge",
         sourceUrl: "https://service.loongbuy.com/en/query/freight",
         sourceLabel: "Open the official LoongBuy freight query",
       }),
@@ -232,8 +242,7 @@ describe("tenant research pages", () => {
     ]);
     expect(getTenantResearchPaths("mulebuyitems.com")).toEqual(itemPaths);
     expect(
-      getTenantResearchPage("mulebuyindex.net", "order-status-guide")
-        ?.seoTitle,
+      getTenantResearchPage("mulebuyindex.net", "order-status-guide")?.seoTitle,
     ).toBe("MuleBuy Order Pending Guide | Check Status Before Acting");
   });
 
@@ -251,7 +260,8 @@ describe("tenant research pages", () => {
       "Oopbuy Shipping Prices Guide | Two Costs and Parcel Evidence",
     );
     expect(
-      getTenantResearchPage("superbuydeals.com", "shipping-weight-guide")?.seoTitle,
+      getTenantResearchPage("superbuydeals.com", "shipping-weight-guide")
+        ?.seoTitle,
     ).toBe("Superbuy Shipping Calculator Guide | Inputs and Final Cost");
   });
 
@@ -289,17 +299,12 @@ describe("tenant research pages", () => {
   });
 
   it("aligns opportunity-page metadata with observed search intent", () => {
-    expect(
-      getTenantResearchPage("gtbuyindex.com", "shipping")?.seoTitle,
-    ).toBe(
+    expect(getTenantResearchPage("gtbuyindex.com", "shipping")?.seoTitle).toBe(
       "GTBuy Shipping Estimate Guide | Weight, Dimensions and Routes",
     );
     expect(
-      getTenantResearchPage("litbuyproducts.com", "invitation-code")
-        ?.seoTitle,
-    ).toBe(
-      "LitBuy Invitation Code Guide | Verify Current Registration Offers",
-    );
+      getTenantResearchPage("litbuyproducts.com", "invitation-code")?.seoTitle,
+    ).toBe("LitBuy Invitation Code Guide | Verify Current Registration Offers");
   });
 
   it("preserves distinct Sugargoo and Superbuy evidence path sets", () => {
@@ -341,7 +346,12 @@ describe("tenant research pages", () => {
 
   it("preserves CNShopper, EastMallBuy and Fishgoo source paths", () => {
     expect(getTenantResearchPaths("cnshopperindex.com")).toEqual([
-      "/cnshopper-products", "/category-map", "/source-checklist", "/order-handoff", "/faq", "/categories",
+      "/cnshopper-products",
+      "/category-map",
+      "/source-checklist",
+      "/order-handoff",
+      "/faq",
+      "/categories",
     ]);
     expect(getTenantResearchPaths("eastmallbuyindex.com")).toEqual([
       "/guide",
@@ -383,36 +393,68 @@ describe("tenant research pages", () => {
     expect(
       getTenantResearchPage("ydaexpress.net", "terms-checklist"),
     ).toBeNull();
-    expect(
-      getTenantResearchPage("ydaexpress.org", "parcel-brief"),
-    ).toBeNull();
+    expect(getTenantResearchPage("ydaexpress.org", "parcel-brief")).toBeNull();
   });
 
   it("preserves distinct BoonBuy, GoatedBuy, GTBuy and Hipobuy research paths", () => {
     expect(getTenantResearchPaths("boonbuyfind.net")).toEqual([
-      "/categories", "/search-guide", "/product-checklist", "/platform-guide", "/faq",
+      "/categories",
+      "/search-guide",
+      "/product-checklist",
+      "/platform-guide",
+      "/faq",
     ]);
     expect(getTenantResearchPaths("boonbuyindex.com")).toEqual([
-      "/boonbuy-products", "/query-method", "/source-checklist", "/route-boundaries", "/faq", "/categories",
+      "/boonbuy-products",
+      "/query-method",
+      "/source-checklist",
+      "/route-boundaries",
+      "/faq",
+      "/categories",
     ]);
     expect(getTenantResearchPaths("goatedbuyindex.com")).toEqual([
-      "/guide", "/categories", "/goatedbuy-score", "/search-ideas", "/shipping", "/safety", "/faq",
+      "/guide",
+      "/categories",
+      "/goatedbuy-score",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ]);
     expect(getTenantResearchPaths("gtbuyindex.com")).toEqual([
-      "/guide", "/categories", "/gtbuy-score", "/search-ideas", "/shipping", "/safety", "/faq",
+      "/guide",
+      "/categories",
+      "/gtbuy-score",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ]);
     expect(getTenantResearchPaths("hipobuyindex.com")).toEqual([
-      "/guide", "/categories", "/hipobuy-score", "/search-ideas", "/shipping", "/safety", "/faq",
+      "/guide",
+      "/categories",
+      "/hipobuy-score",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ]);
   });
 
   it("preserves HooBuy, both JoyaGoo intents and KameyMall source paths", () => {
     expect(getTenantResearchPaths("hoobuyindex.net")).toEqual([
-      "/guide", "/categories", "/hoobuy-score", "/search-ideas", "/shipping", "/safety", "/faq",
+      "/guide",
+      "/categories",
+      "/hoobuy-score",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ]);
     expect(getTenantResearchPage("hoobuyindex.net", "shipping")).toEqual(
       expect.objectContaining({
-        seoTitle: "HooBuy Shipping Calculator Guide | Inputs and Estimate Limits",
+        seoTitle:
+          "HooBuy Shipping Calculator Guide | Inputs and Estimate Limits",
         sourceUrl: "https://hoobuy.com/estimation",
         sourceLabel: "Open the official HooBuy estimator",
         questions: expect.arrayContaining([
@@ -423,29 +465,53 @@ describe("tenant research pages", () => {
       }),
     );
     expect(getTenantResearchPaths("joyabuyfinds.com")).toEqual([
-      "/guide", "/categories", "/joyagoo-score", "/search-ideas", "/shipping", "/safety", "/faq",
+      "/guide",
+      "/categories",
+      "/joyagoo-score",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ]);
     expect(getTenantResearchPaths("joyagooindex.com")).toEqual([
-      "/guide", "/categories", "/joyagoo-score", "/search-ideas", "/shipping", "/safety", "/faq",
+      "/guide",
+      "/categories",
+      "/joyagoo-score",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ]);
     expect(getTenantResearchPaths("kameymallindex.com")).toEqual([
-      "/guide", "/categories", "/review", "/search-ideas", "/shipping", "/safety", "/faq",
+      "/guide",
+      "/categories",
+      "/review",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ]);
   });
 
   it("preserves the YoyBuy spreadsheet review sequence", () => {
     expect(getTenantResearchPaths("yoybuyindex.com")).toEqual([
-      "/spreadsheet", "/categories", "/qc-checklist", "/search-ideas", "/shipping", "/safety", "/faq",
+      "/spreadsheet",
+      "/categories",
+      "/qc-checklist",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ]);
   });
 
   it("keeps every reviewed page specific and evidence-led", () => {
     const pages = getAllTenantResearchPages();
 
-    expect(pages).toHaveLength(296);
-    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(296);
-    expect(new Set(pages.map((page) => page.description)).size).toBe(296);
-    expect(new Set(pages.map((page) => page.title)).size).toBe(296);
+    expect(pages).toHaveLength(394);
+    expect(new Set(pages.map((page) => page.seoTitle)).size).toBe(394);
+    expect(new Set(pages.map((page) => page.description)).size).toBe(394);
+    expect(new Set(pages.map((page) => page.title)).size).toBe(394);
 
     const copy = JSON.stringify(pages);
     expect(copy).not.toMatch(/IndexFinds|official ACBuy site/i);
@@ -455,10 +521,102 @@ describe("tenant research pages", () => {
     );
   });
 
+  it("keeps indexable research-page search snippets semantically distinct", () => {
+    const pages = getAllTenantResearchPages().filter((page) =>
+      getTenantConfigByHost(page.domain)?.branding?.indexablePaths?.includes(
+        `/${page.slug}`,
+      ),
+    );
+    const tokens = (value: string) =>
+      new Set(
+        value
+          .toLowerCase()
+          .replace(/[^a-z0-9 ]/g, " ")
+          .split(/\s+/)
+          .filter((token) => token.length > 2),
+      );
+
+    for (let leftIndex = 0; leftIndex < pages.length; leftIndex += 1) {
+      const left = pages[leftIndex];
+      const leftTokens = tokens(
+        `${left.seoTitle} ${left.description} ${left.title}`,
+      );
+      for (let rightIndex = leftIndex + 1; rightIndex < pages.length; rightIndex += 1) {
+        const right = pages[rightIndex];
+        if (left.domain === right.domain) continue;
+        const rightTokens = tokens(
+          `${right.seoTitle} ${right.description} ${right.title}`,
+        );
+        const overlap = [...leftTokens].filter((token) =>
+          rightTokens.has(token),
+        ).length;
+        const similarity =
+          overlap / (leftTokens.size + rightTokens.size - overlap);
+
+        expect({
+          left: `${left.domain}/${left.slug}`,
+          right: `${right.domain}/${right.slug}`,
+          belowDuplicateThreshold: similarity < 0.72,
+        }).toEqual({
+          left: `${left.domain}/${left.slug}`,
+          right: `${right.domain}/${right.slug}`,
+          belowDuplicateThreshold: true,
+        });
+      }
+    }
+  });
+
+  it("gives every new agent a source-backed and semantically distinct page set", () => {
+    const pages = getAllTenantResearchPages();
+
+    for (const tenant of NEW_AGENT_TENANTS) {
+      const tenantPages = pages.filter((page) => page.domain === tenant.domain);
+      expect(tenantPages).toHaveLength(7);
+      expect(tenantPages.every((page) => page.reviewedAt === "2026-09-03")).toBe(
+        true,
+      );
+      expect(
+        tenantPages.every(
+          (page) =>
+            page.sourceUrl === tenant.research.evidenceUrl &&
+            page.methodNote === tenant.research.officialEvidence,
+        ),
+      ).toBe(true);
+    }
+
+    for (const slug of [
+      "categories",
+      "guide",
+      "source-check",
+      "qc-checklist",
+      "shipping",
+      "safety",
+      "faq",
+    ]) {
+      const normalized = NEW_AGENT_TENANTS.map((tenant) => {
+        const page = getTenantResearchPage(tenant.domain, slug)!;
+        return JSON.stringify([
+          page.description,
+          page.intro,
+          ...page.sections.map((section) => section.description),
+          ...(page.questions || []).map((question) => question.answer),
+        ])
+          .toLowerCase()
+          .replaceAll(tenant.platformName.toLowerCase(), "[platform]")
+          .replaceAll(tenant.domain, "[domain]");
+      });
+
+      expect(new Set(normalized).size).toBe(NEW_AGENT_TENANTS.length);
+    }
+  });
+
   it("uses different visual research profiles for each research intent", () => {
     expect(getTenantResearchProfile("1to1finds.cloud")?.variant).toBe("ledger");
     expect(getTenantResearchProfile("1to1finds.com")?.variant).toBe("finder");
-    expect(getTenantResearchProfile("1to1spreadsheet.com")?.variant).toBe("sheet");
+    expect(getTenantResearchProfile("1to1reps.com")?.variant).toBe("source");
+    expect(getTenantResearchProfile("1to1spreadsheet.com")?.variant).toBe(
+      "sheet",
+    );
     expect(getTenantResearchProfile("acbuyindex.com")?.variant).toBe("source");
     expect(getTenantResearchProfile("allchinabuyindex.com")?.variant).toBe(
       "ledger",
@@ -532,7 +690,9 @@ describe("tenant research pages", () => {
     expect(getTenantResearchProfile("superbuyitems.com")?.variant).toBe(
       "item-file",
     );
-    expect(getTenantResearchProfile("cnshopperindex.com")?.variant).toBe("catalog-map");
+    expect(getTenantResearchProfile("cnshopperindex.com")?.variant).toBe(
+      "catalog-map",
+    );
     expect(getTenantResearchProfile("eastmallbuyindex.com")?.variant).toBe(
       "shortlist",
     );
@@ -540,24 +700,57 @@ describe("tenant research pages", () => {
       "query-index",
     );
     expect(getTenantResearchProfile("boonbuyfind.net")?.variant).toBe("source");
-    expect(getTenantResearchProfile("boonbuyindex.com")?.variant).toBe("query-index");
-    expect(getTenantResearchProfile("goatedbuyindex.com")?.variant).toBe("shortlist");
-    expect(getTenantResearchProfile("gtbuyindex.com")?.variant).toBe("query-index");
-    expect(getTenantResearchProfile("hipobuyindex.com")?.variant).toBe("item-file");
-    expect(getTenantResearchProfile("hoobuyindex.net")?.variant).toBe("item-check");
-    expect(getTenantResearchProfile("joyabuyfinds.com")?.variant).toBe("finder");
-    expect(getTenantResearchProfile("joyagooindex.com")?.variant).toBe("ledger");
-    expect(getTenantResearchProfile("kameymallindex.com")?.variant).toBe("catalog-map");
+    expect(getTenantResearchProfile("boonbuyindex.com")?.variant).toBe(
+      "query-index",
+    );
+    expect(getTenantResearchProfile("goatedbuyindex.com")?.variant).toBe(
+      "shortlist",
+    );
+    expect(getTenantResearchProfile("gtbuyindex.com")?.variant).toBe(
+      "query-index",
+    );
+    expect(getTenantResearchProfile("hipobuyindex.com")?.variant).toBe(
+      "item-file",
+    );
+    expect(getTenantResearchProfile("hoobuyindex.net")?.variant).toBe(
+      "item-check",
+    );
+    expect(getTenantResearchProfile("joyabuyfinds.com")?.variant).toBe(
+      "finder",
+    );
+    expect(getTenantResearchProfile("joyagooindex.com")?.variant).toBe(
+      "ledger",
+    );
+    expect(getTenantResearchProfile("kameymallindex.com")?.variant).toBe(
+      "catalog-map",
+    );
     expect(getTenantResearchProfile("yoybuyindex.com")?.variant).toBe("sheet");
-    expect(getTenantResearchProfile("ydaexpress.net")?.variant).toBe("us-parcel");
+    expect(getTenantResearchProfile("ydaexpress.net")?.variant).toBe(
+      "us-parcel",
+    );
     expect(getTenantResearchProfile("ydaexpress.org")?.variant).toBe("ledger");
   });
 
   it("does not return an ACBuy page for an unrelated tenant", () => {
     expect(getTenantResearchPage("cssbuyindex.com", "directory")).toBeNull();
     expect(getTenantResearchPage("acbuyindex.com", "missing")).toBeNull();
-    expect(
-      getTenantResearchPage("allchinabuyfinder.com", "guide"),
-    ).toBeNull();
+    expect(getTenantResearchPage("allchinabuyfinder.com", "guide")).toBeNull();
+  });
+
+  it("keeps unverified tenant hero artwork out of research-page rendering", () => {
+    const source = readFileSync(
+      path.join(
+        process.cwd(),
+        "src",
+        "app",
+        "[locale]",
+        "(shop)",
+        "[platformSlug]",
+        "page.tsx",
+      ),
+      "utf8",
+    );
+
+    expect(source).not.toContain("profile.heroImage");
   });
 });

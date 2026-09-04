@@ -1,3 +1,5 @@
+import { NEW_AGENT_TENANTS } from "./new-agent-tenants";
+
 export type SubsiteProductMode =
   | "agent-feed"
   | "direct-products"
@@ -27,6 +29,13 @@ export const SUBSITE_GUIDES: SubsiteGuideDefinition[] = [
   {
     domain: "1to1finds.com",
     title: "1to1 Finds",
+    agentKey: null,
+    catalogPath: "/",
+    productMode: "guide-only",
+  },
+  {
+    domain: "1to1reps.com",
+    title: "1to1Reps",
     agentKey: null,
     catalogPath: "/",
     productMode: "guide-only",
@@ -332,6 +341,13 @@ export const SUBSITE_GUIDES: SubsiteGuideDefinition[] = [
     catalogPath: "/spreadsheet/",
     productMode: "agent-feed",
   },
+  ...NEW_AGENT_TENANTS.map(({ domain, title, agentKey }) => ({
+    domain,
+    title,
+    agentKey,
+    catalogPath: "/",
+    productMode: "agent-feed" as const,
+  })),
 ];
 
 function normalizeHostname(value: string): string {

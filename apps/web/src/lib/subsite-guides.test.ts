@@ -7,18 +7,18 @@ import {
 } from "./subsite-guides";
 
 describe("subsite guide registry", () => {
-  it("contains the 45 active subsites and excludes retired or independent projects", () => {
-    expect(SUBSITE_GUIDES).toHaveLength(45);
+  it("contains the 58 active subsites and excludes independent projects", () => {
+    expect(SUBSITE_GUIDES).toHaveLength(58);
     expect(
       SUBSITE_GUIDES.some((guide) => guide.domain === "xiangshoe.net"),
     ).toBe(false);
     expect(
       SUBSITE_GUIDES.some((guide) => guide.domain === "1to1reps.com"),
-    ).toBe(false);
+    ).toBe(true);
   });
 
   it("uses unique domains and only configured agent keys", () => {
-    expect(new Set(SUBSITE_GUIDES.map((guide) => guide.domain)).size).toBe(45);
+    expect(new Set(SUBSITE_GUIDES.map((guide) => guide.domain)).size).toBe(58);
 
     const configuredKeys = new Set(AGENT_PLATFORMS.map((agent) => agent.key));
     const missingKeys = SUBSITE_GUIDES.flatMap((guide) =>

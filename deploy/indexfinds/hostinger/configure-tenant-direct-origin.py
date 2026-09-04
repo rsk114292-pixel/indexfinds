@@ -51,13 +51,23 @@ def extract_required(pattern: str, source: str, label: str) -> str:
     return match.group(1)
 
 
-def render_vhost(domain: str, existing: str, web_port: int, api_port: int) -> str:
-    certificate = extract_required(
-        r"\bssl_certificate\s+([^;]+);", existing, "ssl_certificate"
-    )
-    certificate_key = extract_required(
-        r"\bssl_certificate_key\s+([^;]+);", existing, "ssl_certificate_key"
-    )
+def render_vhost(
+    domain: str,
+    existing: str,
+    web_port: int,
+    api_port: int,
+    certificate: str | None = None,
+    certificate_key: str | None = None,
+) -> str:
+    if (certificate is None) != (certificate_key is None):
+        raise ValueError("Certificate and certificate key must be supplied together")
+    if certificate is None:
+        certificate = extract_required(
+            r"\bssl_certificate\s+([^;]+);", existing, "ssl_certificate"
+        )
+        certificate_key = extract_required(
+            r"\bssl_certificate_key\s+([^;]+);", existing, "ssl_certificate_key"
+        )
     for certificate_path in (certificate, certificate_key):
         if not Path(certificate_path).is_file():
             raise ValueError(f"Missing certificate file: {certificate_path}")
@@ -164,7 +174,13 @@ def restore(backup_dir: Path) -> None:
     print(json.dumps({"mode": "restore", "backup_dir": str(backup_dir), "restored": restored}))
 
 
-def deploy(domains: list[str], web_port: int, api_port: int) -> None:
+def deploy(
+    domains: list[str],
+    web_port: int,
+    api_port: int,
+    certificate: str | None,
+    certificate_key: str | None,
+) -> None:
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     backup_dir = BACKUP_ROOT / f"tenant-direct-{timestamp}"
     backup_dir.mkdir(parents=True, exist_ok=False)
@@ -188,12 +204,25 @@ def deploy(domains: list[str], web_port: int, api_port: int) -> None:
                 }
             )
             replacements.append(
-                (target, render_vhost(domain, existing, web_port, api_port), target.stat().st_mode)
+                (
+                    target,
+                    render_vhost(
+                        domain,
+                        existing,
+                        web_port,
+                        api_port,
+                        certificate,
+                        certificate_key,
+                    ),
+                    target.stat().st_mode,
+                )
             )
         manifest = {
             "created_at": datetime.now(timezone.utc).isoformat(),
             "web_port": web_port,
             "api_port": api_port,
+            "certificate": certificate,
+            "certificate_key": certificate_key,
             "files": entries,
         }
         (backup_dir / "manifest.json").write_text(
@@ -236,6 +265,8 @@ def main() -> None:
     parser.add_argument("--domains", nargs="+")
     parser.add_argument("--web-port", type=int, default=3132)
     parser.add_argument("--api-port", type=int, default=4101)
+    parser.add_argument("--certificate")
+    parser.add_argument("--certificate-key")
     parser.add_argument("--restore-dir", type=Path)
     args = parser.parse_args()
     if args.restore_dir:
@@ -243,7 +274,13 @@ def main() -> None:
         return
     if not args.domains:
         parser.error("--domains is required unless --restore-dir is used")
-    deploy(args.domains, args.web_port, args.api_port)
+    deploy(
+        args.domains,
+        args.web_port,
+        args.api_port,
+        args.certificate,
+        args.certificate_key,
+    )
 
 
 if __name__ == "__main__":

@@ -26,14 +26,11 @@ describe("tenant config", () => {
     );
   });
 
-  it("does not resolve the retired 1to1Reps tenant", () => {
-    expect(getTenantConfigByHost("1to1reps.com")).toBeNull();
-  });
-
-  it("registers three independent 1to1 research tenants", () => {
+  it("registers four independent 1to1 research tenants", () => {
     const expected = [
       ["1to1finds.cloud", "1to1 Finds Cloud", "/evidence-cloud"],
       ["1to1finds.com", "1to1 Finds", "/finds-method"],
+      ["1to1reps.com", "1to1Reps", "/finds"],
       ["1to1spreadsheet.com", "1to1 Spreadsheet", "/spreadsheet-method"],
     ] as const;
 
@@ -93,7 +90,10 @@ describe("tenant config", () => {
     const branding = tenant?.branding;
 
     expect(tenant).toEqual(
-      expect.objectContaining({ agentKey: "boonbuy", productMode: "agent-feed" }),
+      expect.objectContaining({
+        agentKey: "boonbuy",
+        productMode: "agent-feed",
+      }),
     );
     expect(branding).toEqual(
       expect.objectContaining({
@@ -203,8 +203,13 @@ describe("tenant config", () => {
         faviconPath: "/tenants/ydaexpress-net/favicon.svg",
         indexing: "ready",
         indexablePaths: [
-          "", "/categories", "/parcel-brief", "/warehouse-checklist",
-          "/consolidation-planner", "/tracking-handoff", "/faq",
+          "",
+          "/categories",
+          "/parcel-brief",
+          "/warehouse-checklist",
+          "/consolidation-planner",
+          "/tracking-handoff",
+          "/faq",
         ],
       }),
     );
@@ -215,8 +220,13 @@ describe("tenant config", () => {
         faviconPath: "/tenants/ydaexpress-org/favicon.svg",
         indexing: "ready",
         indexablePaths: [
-          "", "/categories", "/service-map", "/terms-checklist",
-          "/shopping-agent-vs-forwarding", "/quote-evidence", "/faq",
+          "",
+          "/categories",
+          "/service-map",
+          "/terms-checklist",
+          "/shopping-agent-vs-forwarding",
+          "/quote-evidence",
+          "/faq",
         ],
       }),
     );
@@ -308,8 +318,14 @@ describe("tenant config", () => {
         logoPath: "/images/agents/gtbuy.png",
         indexing: "ready",
         indexablePaths: [
-          "", "/guide", "/categories", "/gtbuy-score", "/search-ideas",
-          "/shipping", "/safety", "/faq",
+          "",
+          "/guide",
+          "/categories",
+          "/gtbuy-score",
+          "/search-ideas",
+          "/shipping",
+          "/safety",
+          "/faq",
         ],
       }),
     );
@@ -346,7 +362,10 @@ describe("tenant config", () => {
   it("gives Hipobuy a reviewed source-to-QC experience", () => {
     const tenant = getTenantConfigByHost("hipobuyindex.com");
     expect(tenant).toEqual(
-      expect.objectContaining({ agentKey: "hipobuy", productMode: "agent-feed" }),
+      expect.objectContaining({
+        agentKey: "hipobuy",
+        productMode: "agent-feed",
+      }),
     );
     expect(tenant?.branding).toEqual(
       expect.objectContaining({
@@ -354,8 +373,14 @@ describe("tenant config", () => {
         logoPath: "/images/agents/hipobuy.png",
         indexing: "ready",
         indexablePaths: [
-          "", "/guide", "/categories", "/hipobuy-score", "/search-ideas",
-          "/shipping", "/safety", "/faq",
+          "",
+          "/guide",
+          "/categories",
+          "/hipobuy-score",
+          "/search-ideas",
+          "/shipping",
+          "/safety",
+          "/faq",
         ],
       }),
     );
@@ -495,10 +520,12 @@ describe("tenant config", () => {
 
     expect(isTenantPathIndexable(usfans, "/en")).toBe(true);
     expect(isTenantPathIndexable(usfans, "/en/usfans-spreadsheet")).toBe(true);
+    expect(isTenantPathIndexable(usfans, "/en/parcel-guide")).toBe(true);
     expect(isTenantPathIndexable(usfans, "/en/products/example")).toBe(false);
     expect(isTenantPathIndexable(usfans, "/en/privacy")).toBe(false);
     expect(isTenantPathIndexable(itaobuy, "/en")).toBe(true);
     expect(isTenantPathIndexable(itaobuy, "/en/site-guide")).toBe(true);
+    expect(isTenantPathIndexable(itaobuy, "/en/source-ledger")).toBe(true);
     expect(isTenantPathIndexable(itaobuy, "/en/products/example")).toBe(false);
     expect(isTenantPathIndexable(itaobuy, "/zh/site-guide")).toBe(false);
     expect(isTenantPathIndexable(yoybuy, "/en")).toBe(true);
@@ -524,14 +551,18 @@ describe("tenant config", () => {
     expect(isTenantPathIndexable(joyafinds, "/en/products")).toBe(false);
     expect(isTenantPathIndexable(joyaindex, "/en/joyagoo-score")).toBe(true);
     expect(isTenantPathIndexable(joyaindex, "/zh/joyagoo-score")).toBe(false);
-    expect(isTenantPathIndexable(orientdig, "/en/orient-score-methodology")).toBe(true);
+    expect(
+      isTenantPathIndexable(orientdig, "/en/orient-score-methodology"),
+    ).toBe(true);
     expect(isTenantPathIndexable(orientdig, "/en/products")).toBe(false);
     expect(isTenantPathIndexable(parcelup, "/en/getting-started")).toBe(true);
     expect(isTenantPathIndexable(parcelup, "/en/tracking")).toBe(true);
     expect(isTenantPathIndexable(parcelup, "/en/products")).toBe(false);
     expect(isTenantPathIndexable(sugargoo, "/en/sugargoo-qc-guide")).toBe(true);
     expect(isTenantPathIndexable(sugargoo, "/en/tracking")).toBe(true);
-    expect(isTenantPathIndexable(sugargoo, "/zh/sugargoo-qc-guide")).toBe(false);
+    expect(isTenantPathIndexable(sugargoo, "/zh/sugargoo-qc-guide")).toBe(
+      false,
+    );
     expect(
       isTenantPathIndexable(
         getTenantConfigByHost("litbuyindex.com")!,
@@ -586,8 +617,8 @@ describe("tenant config", () => {
   });
 
   it("declares the official USFans favicon at its real size", () => {
-    const faviconPath = getTenantConfigByHost("usfansindex.net")!.branding!
-      .faviconPath;
+    const faviconPath =
+      getTenantConfigByHost("usfansindex.net")!.branding!.faviconPath;
 
     expect(getTenantFaviconAttributes(faviconPath)).toEqual({
       type: "image/png",
@@ -839,7 +870,8 @@ describe("tenant config", () => {
       }),
     );
     expect(branding?.editorial.homeVariant).toBe("items");
-    expect(branding?.indexablePaths).toHaveLength(9);
+    expect(branding?.indexablePaths).toHaveLength(8);
+    expect(branding?.indexablePaths).not.toContain("/invitation-code");
     expect(
       `${branding?.seoTitle} ${branding?.description} ${branding?.heroPrimary}`,
     ).not.toMatch(/spreadsheet|indexfinds/i);
@@ -977,6 +1009,7 @@ describe("tenant config", () => {
         ![
           "1to1finds.cloud",
           "1to1finds.com",
+          "1to1reps.com",
           "1to1spreadsheet.com",
           "usfansindex.net",
           "itaobuyindex.com",
@@ -1020,6 +1053,18 @@ describe("tenant config", () => {
           "yoybuyindex.com",
           "ydaexpress.net",
           "ydaexpress.org",
+          "pantherbuyindex.com",
+          "ponybuyindex.com",
+          "ossbuyindex.com",
+          "okeyhaulindex.com",
+          "mycnboxindex.com",
+          "dgobuyindex.com",
+          "hubbuyindex.com",
+          "tigbuyindex.com",
+          "spanbuyindex.com",
+          "ootdbuyindex.com",
+          "vigorbuyindex.com",
+          "rizzitgoindex.com",
         ].includes(domain),
     );
 
@@ -1036,6 +1081,7 @@ describe("tenant config", () => {
     expect(releasedDomains).toEqual([
       "1to1finds.cloud",
       "1to1finds.com",
+      "1to1reps.com",
       "1to1spreadsheet.com",
       "acbuyindex.com",
       "allchinabuyfinder.com",
@@ -1079,6 +1125,18 @@ describe("tenant config", () => {
       "ydaexpress.net",
       "ydaexpress.org",
       "yoybuyindex.com",
+      "pantherbuyindex.com",
+      "ponybuyindex.com",
+      "ossbuyindex.com",
+      "okeyhaulindex.com",
+      "mycnboxindex.com",
+      "dgobuyindex.com",
+      "hubbuyindex.com",
+      "tigbuyindex.com",
+      "spanbuyindex.com",
+      "ootdbuyindex.com",
+      "vigorbuyindex.com",
+      "rizzitgoindex.com",
     ]);
   });
 
@@ -1122,6 +1180,7 @@ describe("tenant config", () => {
         {
           "1to1finds.cloud": "/evidence-cloud",
           "1to1finds.com": "/finds-method",
+          "1to1reps.com": "/finds",
           "1to1spreadsheet.com": "/spreadsheet-method",
           "acbuyindex.com": "/platform-guide",
           "allchinabuyindex.com": "/guide",
@@ -1163,6 +1222,18 @@ describe("tenant config", () => {
           "yoybuyindex.com": "/spreadsheet",
           "ydaexpress.net": "/parcel-brief",
           "ydaexpress.org": "/service-map",
+          "pantherbuyindex.com": "/guide",
+          "ponybuyindex.com": "/guide",
+          "ossbuyindex.com": "/guide",
+          "okeyhaulindex.com": "/guide",
+          "mycnboxindex.com": "/guide",
+          "dgobuyindex.com": "/guide",
+          "hubbuyindex.com": "/guide",
+          "tigbuyindex.com": "/guide",
+          "spanbuyindex.com": "/guide",
+          "ootdbuyindex.com": "/guide",
+          "vigorbuyindex.com": "/guide",
+          "rizzitgoindex.com": "/guide",
         } as Record<string, string>
       )[domain];
       expect(branding?.editorial.primaryCtaHref).toBe(
@@ -1176,6 +1247,7 @@ describe("tenant config", () => {
     const reviewed = [
       "1to1finds.cloud",
       "1to1finds.com",
+      "1to1reps.com",
       "1to1spreadsheet.com",
       "itaobuyindex.com",
       "usfansindex.net",
@@ -1273,9 +1345,7 @@ describe("tenant config", () => {
       if (bytes.subarray(0, 8).equals(Buffer.from("89504e470d0a1a0a", "hex"))) {
         width = bytes.readUInt32BE(16);
         height = bytes.readUInt32BE(20);
-      } else if (
-        bytes.subarray(0, 4).equals(Buffer.from("00000100", "hex"))
-      ) {
+      } else if (bytes.subarray(0, 4).equals(Buffer.from("00000100", "hex"))) {
         const dimensions = Array.from(
           { length: bytes.readUInt16LE(4) },
           (_, index) => {

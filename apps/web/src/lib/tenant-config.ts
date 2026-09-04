@@ -5,6 +5,7 @@ import {
 import { getAgentPlatform } from "./agent-platforms";
 import { getOfficialPlatformLogo } from "./platform-logo-assets";
 import { getTenantEditorialProfile } from "./tenant-editorial-profiles";
+import { NEW_AGENT_TENANTS } from "./new-agent-tenants";
 import { getSiteName, getSiteUrl } from "./site-config";
 
 export interface TenantConfig extends SubsiteGuideDefinition {
@@ -52,6 +53,7 @@ export interface TenantEditorial {
 const INDEX_READY_TENANT_DOMAINS = new Set([
   "1to1finds.cloud",
   "1to1finds.com",
+  "1to1reps.com",
   "1to1spreadsheet.com",
   "acbuyindex.com",
   "allchinabuyfinder.com",
@@ -95,6 +97,7 @@ const INDEX_READY_TENANT_DOMAINS = new Set([
   "ydaexpress.net",
   "ydaexpress.org",
   "yoybuyindex.com",
+  ...NEW_AGENT_TENANTS.map(({ domain }) => domain),
 ]);
 
 export function isTenantReleasedForIndexing(tenant: TenantConfig): boolean {
@@ -122,6 +125,60 @@ export function getTenantFaviconAttributes(faviconPath: string): {
 
   return { type, sizes };
 }
+
+const NEW_AGENT_TENANT_BRANDING = Object.fromEntries(
+  NEW_AGENT_TENANTS.map(
+    ({
+      domain,
+      title,
+      platformName,
+      logoPath,
+      themeColor,
+      primaryColor,
+      primaryHoverColor,
+      accentColor,
+      research,
+    }) => [
+      domain,
+      {
+        siteName: title,
+        wordmark: platformName,
+        logoPath,
+        faviconPath: logoPath,
+        themeColor,
+        primaryColor,
+        primaryHoverColor,
+        accentColor,
+        seoTitle: research.homepageTitle,
+        description: research.homepageDescription,
+        heroEyebrow: `Independent ${platformName} ${research.angles.guide.toLowerCase()}`,
+        heroPrimary: research.heroTitle,
+        heroSecondary: research.heroAccent,
+        supportingLine: research.summary,
+        indexing: "ready" as const,
+        indexablePaths: [
+          "",
+          "/categories",
+          "/guide",
+          "/source-check",
+          "/qc-checklist",
+          "/shipping",
+          "/safety",
+          "/faq",
+        ],
+        editorial: {
+          homeVariant: "index" as const,
+          introTitle: research.guideTitle,
+          introDescription: research.guideFocus,
+          primaryCtaLabel: `Open the ${platformName} research guide`,
+          primaryCtaHref: "/guide",
+          brandTitle: `${platformName} category and brand paths are discovery filters.`,
+          brandDescription: research.categoryFocus,
+        },
+      },
+    ],
+  ),
+) as Record<string, TenantBranding>;
 
 const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
   "1to1finds.cloud": {
@@ -153,7 +210,8 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     ],
     editorial: {
       homeVariant: "archive",
-      introTitle: "Build a dated archive that still makes sense after a link changes.",
+      introTitle:
+        "Build a dated archive that still makes sense after a link changes.",
       introDescription:
         "Record the final destination, visible image set, selected option and unanswered question so later reviews can identify exactly what moved.",
       primaryCtaLabel: "Open the evidence cloud method",
@@ -200,6 +258,45 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
       brandTitle: "Use names to refine a find, not verify it.",
       brandDescription:
         "Names and model terms can narrow discovery, while the final source, exact option and visible evidence determine whether a result is retained.",
+    },
+  },
+  "1to1reps.com": {
+    siteName: "1to1Reps",
+    wordmark: "1to1Reps",
+    logoPath: "/tenants/1to1reps/brand-logo.png",
+    faviconPath: "/tenants/1to1reps/favicon-48x48.png",
+    themeColor: "#101512",
+    primaryColor: "#23823e",
+    primaryHoverColor: "#176c31",
+    accentColor: "#8be29a",
+    seoTitle: "1to1Reps Product Research | Search, Source and QC Guide",
+    description:
+      "Use an independent 1to1Reps research guide to search product clues, review source links, compare visible QC evidence and record open questions.",
+    heroEyebrow: "Independent 1to1Reps product research",
+    heroPrimary: "Research 1to1 reps before choosing a source.",
+    heroSecondary: "Search first. Check the evidence.",
+    supportingLine:
+      "Start with a product clue, resolve the source and keep the exact option, visible evidence and unanswered questions together.",
+    indexing: "ready",
+    indexablePaths: [
+      "",
+      "/categories",
+      "/finds",
+      "/qc-checklist",
+      "/agent-guide",
+      "/source-safety",
+      "/faq",
+    ],
+    editorial: {
+      homeVariant: "guide",
+      introTitle: "Move from a product clue to a source record you can reopen.",
+      introDescription:
+        "Search the shared catalog, confirm the final destination and record only the visible product and QC evidence needed for the next decision.",
+      primaryCtaLabel: "Open the finds guide",
+      primaryCtaHref: "/finds",
+      brandTitle: "Use names to organize research, not prove a product claim.",
+      brandDescription:
+        "Product and model terms narrow the search, while the current source, exact option and visible evidence keep the result reviewable.",
     },
   },
   "1to1spreadsheet.com": {
@@ -425,12 +522,14 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     ],
     editorial: {
       homeVariant: "index",
-      introTitle: "Keep product discovery and parcel planning in the right order.",
+      introTitle:
+        "Keep product discovery and parcel planning in the right order.",
       introDescription:
         "Compare listing evidence before purchase, then move to warehouse measurements and current US route information without treating the catalog price as a landed cost.",
       primaryCtaLabel: "Read the BBDbuy US research guide",
       primaryCtaHref: "/search-guide",
-      brandTitle: "Use brands to organize the shortlist, not estimate shipping.",
+      brandTitle:
+        "Use brands to organize the shortlist, not estimate shipping.",
       brandDescription:
         "Brand pages can group comparable products, while parcel weight, dimensions, restrictions and current route terms still require separate confirmation.",
     },
@@ -499,7 +598,8 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
         "Record the exact variant, visible measurements, images and original source instead of treating a result title as a complete product record.",
       primaryCtaLabel: "Read the BoonBuy research guide",
       primaryCtaHref: "/search-guide",
-      brandTitle: "Use brand pages to narrow the search, not settle the evidence.",
+      brandTitle:
+        "Use brand pages to narrow the search, not settle the evidence.",
       brandDescription:
         "A brand filter can reduce the result set, while the product page and current source remain responsible for the details you compare.",
     },
@@ -572,7 +672,8 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     ],
     editorial: {
       homeVariant: "catalog",
-      introTitle: "Browse broadly, then finish with a precise source checklist.",
+      introTitle:
+        "Browse broadly, then finish with a precise source checklist.",
       introDescription:
         "Choose a category, narrow the listing and preserve the option, source and open questions that still matter when the product leaves the catalog.",
       primaryCtaLabel: "Read the CNShopper category method",
@@ -617,7 +718,8 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
         "Record what arrived, how items should be combined, the measured parcel inputs and unresolved destination questions without turning estimates into delivery promises.",
       primaryCtaLabel: "Build the parcel brief",
       primaryCtaHref: "/parcel-brief",
-      brandTitle: "Use product categories to identify parcel-sensitive contents.",
+      brandTitle:
+        "Use product categories to identify parcel-sensitive contents.",
       brandDescription:
         "Batteries, liquids, fragile goods, branded items and unusual dimensions may require different evidence and current route checks before consolidation.",
     },
@@ -657,7 +759,8 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
         "Shopping assistance, warehouse handling, parcel forwarding, quotes and carrier events answer different questions and can change on different dates.",
       primaryCtaLabel: "Open the service evidence map",
       primaryCtaHref: "/service-map",
-      brandTitle: "Treat marketplace names as workflow context, not endorsements.",
+      brandTitle:
+        "Treat marketplace names as workflow context, not endorsements.",
       brandDescription:
         "Published support for marketplace links describes a service entry point; seller claims, product facts and later parcel terms still require separate current evidence.",
     },
@@ -881,8 +984,14 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
       "Confirm the item, selected option and source status before service, destination or shipping questions enter the comparison.",
     indexing: "ready",
     indexablePaths: [
-      "", "/guide", "/categories", "/hoobuy-score", "/search-ideas",
-      "/shipping", "/safety", "/faq",
+      "",
+      "/guide",
+      "/categories",
+      "/hoobuy-score",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ],
     editorial: {
       homeVariant: "items",
@@ -915,17 +1024,25 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
       "Use categories and visual clues to find candidates, then retain only listings with a traceable source, identifiable option and clear next check.",
     indexing: "ready",
     indexablePaths: [
-      "", "/guide", "/categories", "/joyagoo-score", "/search-ideas",
-      "/shipping", "/safety", "/faq",
+      "",
+      "/guide",
+      "/categories",
+      "/joyagoo-score",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ],
     editorial: {
       homeVariant: "catalog",
-      introTitle: "Turn open-ended browsing into a product-specific source note.",
+      introTitle:
+        "Turn open-ended browsing into a product-specific source note.",
       introDescription:
         "Keep the discovery context, final source, intended option and unresolved evidence together instead of presenting a candidate find as a verified choice.",
       primaryCtaLabel: "Read the JoyaGoo discovery guide",
       primaryCtaHref: "/guide",
-      brandTitle: "Use brand paths to continue discovery, not settle the decision.",
+      brandTitle:
+        "Use brand paths to continue discovery, not settle the decision.",
       brandDescription:
         "Brand and category filters can surface candidates while the current product source remains responsible for option, price and seller details.",
     },
@@ -949,8 +1066,14 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
       "Use exact queries for discovery, then keep seller claims, warehouse checks and route records separated as the item moves forward.",
     indexing: "ready",
     indexablePaths: [
-      "", "/guide", "/categories", "/joyagoo-score", "/search-ideas",
-      "/shipping", "/safety", "/faq",
+      "",
+      "/guide",
+      "/categories",
+      "/joyagoo-score",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ],
     editorial: {
       homeVariant: "archive",
@@ -983,8 +1106,14 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
       "Use category context to learn which fields matter, then switch to a traceable product record before comparing warehouse or shipping decisions.",
     indexing: "ready",
     indexablePaths: [
-      "", "/guide", "/categories", "/review", "/search-ideas",
-      "/shipping", "/safety", "/faq",
+      "",
+      "/guide",
+      "/categories",
+      "/review",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ],
     editorial: {
       homeVariant: "catalog",
@@ -1017,8 +1146,14 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
       "Turn a candidate link into a dated research row, then reopen the source and verify each product and parcel field at the stage where it becomes available.",
     indexing: "ready",
     indexablePaths: [
-      "", "/spreadsheet", "/categories", "/qc-checklist", "/search-ideas",
-      "/shipping", "/safety", "/faq",
+      "",
+      "/spreadsheet",
+      "/categories",
+      "/qc-checklist",
+      "/search-ideas",
+      "/shipping",
+      "/safety",
+      "/faq",
     ],
     editorial: {
       homeVariant: "index",
@@ -1268,7 +1403,8 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
         "Save the exact query, group repeated candidates and keep only links whose current source and intended variation remain understandable.",
       primaryCtaLabel: "Open the LitBuy index method",
       primaryCtaHref: "/guide",
-      brandTitle: "Use brands to group the result set after the query is clear.",
+      brandTitle:
+        "Use brands to group the result set after the query is clear.",
       brandDescription:
         "A brand page can organize candidates, while the current source, selected option and evidence note decide whether a link stays in the index.",
     },
@@ -1298,7 +1434,6 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
       "/faq",
       "/guide",
       "/haul-review",
-      "/invitation-code",
       "/safety",
       "/shipping",
     ],
@@ -1429,7 +1564,8 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
         "Use category fields to compare listings, then identify whether the open question belongs to the source, the order record, the warehouse stage or the external service destination.",
       primaryCtaLabel: "Open the LoveGoBuy order guide",
       primaryCtaHref: "/guide",
-      brandTitle: "Use brands to narrow a category, not to settle the decision.",
+      brandTitle:
+        "Use brands to narrow a category, not to settle the decision.",
       brandDescription:
         "A brand filter can reduce the result set while the exact option, current source and order-stage evidence remain attached to every retained listing.",
     },
@@ -1565,7 +1701,8 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     primaryColor: "#e96b2c",
     primaryHoverColor: "#c85018",
     accentColor: "#ff9c61",
-    seoTitle: "OrientDig Spreadsheet Index | Product Score, QC and Category Checks",
+    seoTitle:
+      "OrientDig Spreadsheet Index | Product Score, QC and Category Checks",
     description:
       "Use an OrientDig spreadsheet index as a dated research record: compare product-specific evidence, review QC photos and keep shipping inputs separate from listing claims.",
     heroEyebrow: "Independent OrientDig evidence desk",
@@ -1640,7 +1777,8 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
         "Use the first payment for the selected product record, the warehouse stage for received-item evidence and the second payment for the measured parcel and current shipping route.",
       primaryCtaLabel: "Start the Parcel Up order guide",
       primaryCtaHref: "/getting-started",
-      brandTitle: "Retain the seller and original Taobao source beside the item.",
+      brandTitle:
+        "Retain the seller and original Taobao source beside the item.",
       brandDescription:
         "A translated title or brand filter is not enough to preserve seller context, exact options, domestic delivery status or the evidence needed at the warehouse handoff.",
     },
@@ -1821,7 +1959,15 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     supportingLine:
       "Search the product index, preserve the listing context and separate visible evidence from claims that still need confirmation.",
     indexing: "ready",
-    indexablePaths: ["", "/categories", "/site-guide"],
+    indexablePaths: [
+      "",
+      "/categories",
+      "/site-guide",
+      "/source-ledger",
+      "/qc-evidence",
+      "/parcel-record",
+      "/faq",
+    ],
     editorial: {
       homeVariant: "archive",
       introTitle: "One archive for six different research questions.",
@@ -1852,7 +1998,15 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
     supportingLine:
       "Start with a candidate listing, preserve its source context and verify price, options and availability on the destination website.",
     indexing: "ready",
-    indexablePaths: ["", "/categories", "/usfans-spreadsheet"],
+    indexablePaths: [
+      "",
+      "/categories",
+      "/usfans-spreadsheet",
+      "/source-check",
+      "/qc-record",
+      "/parcel-guide",
+      "/faq",
+    ],
     editorial: {
       homeVariant: "index",
       introTitle: "Turn a USFans find into a source-check record.",
@@ -1865,6 +2019,7 @@ const TENANT_BRANDING: Partial<Record<string, TenantBranding>> = {
         "A brand page can narrow the research set. Product identity, condition, price and availability still require source verification.",
     },
   },
+  ...NEW_AGENT_TENANT_BRANDING,
 };
 
 const DRAFT_PALETTES = {
@@ -1932,7 +2087,8 @@ function buildDraftBranding(guide: SubsiteGuideDefinition): TenantBranding {
     indexing: "draft",
     editorial: {
       homeVariant: isGuide ? "guide" : isCatalog ? "catalog" : "index",
-      introTitle: profile?.guideTitle ||
+      introTitle:
+        profile?.guideTitle ||
         (isGuide
           ? `Use ${guide.title} as a research guide.`
           : isCatalog
@@ -2044,7 +2200,9 @@ export function resolveTenantFromHeaders(
     trustedProxyHost ||
     firstForwardedHost(headers.get("x-forwarded-host")) ||
     headers.get("host");
-  return getTenantConfigByHost(host) || getTenantConfigByHost(localFallbackHost);
+  return (
+    getTenantConfigByHost(host) || getTenantConfigByHost(localFallbackHost)
+  );
 }
 
 export function resolveSiteIdentityFromHeaders(
@@ -2072,9 +2230,7 @@ export function isTenantPathIndexable(
     "",
     branding.editorial.primaryCtaHref,
   ];
-  return configuredPaths.some(
-    (path) => normalizedPath === `/en${path}`,
-  );
+  return configuredPaths.some((path) => normalizedPath === `/en${path}`);
 }
 
 export function isTenantLocaleIndexable(

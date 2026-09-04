@@ -72,6 +72,31 @@ export const AGENT_PLATFORMS: AgentPlatformDefinition[] = [
   { key: "orientdig", name: "OrientDig", officialUrl: "https://orientdig.com" },
   { key: "parcelup", name: "Parcel Up", officialUrl: "https://parcelup.com" },
   { key: "yoybuy", name: "YoyBuy", officialUrl: "https://www.yoybuy.com" },
+  {
+    key: "pantherbuy",
+    name: "PantherBuy",
+    officialUrl: "https://pantherbuy.com",
+  },
+  {
+    key: "ponybuy",
+    name: "PonyBuy",
+    officialUrl: "https://www.ponybuy.com",
+  },
+  { key: "ossbuy", name: "OssBuy", officialUrl: "https://www.ossbuy.com" },
+  {
+    key: "okeyhaul",
+    name: "OKEYHAUL",
+    officialUrl: "https://www.okeyhaul.com",
+  },
+  { key: "dgobuy", name: "DgoBuy", officialUrl: "https://dgobuy.com" },
+  { key: "hubbuy", name: "HubBuy", officialUrl: "https://hubbuy.com" },
+  { key: "tigbuy", name: "TigBuy", officialUrl: "https://tigbuy.com" },
+  { key: "spanbuy", name: "SpanBuy", officialUrl: "https://spanbuy.com" },
+  {
+    key: "vigorbuy",
+    name: "VigorBuy",
+    officialUrl: "https://vigorbuy.com",
+  },
 ];
 
 export function getAgentPlatform(

@@ -40,8 +40,8 @@ describe('PlatformsService', () => {
   it('includes every agent restored from the subsite network', () => {
     const keys = new Set(DEFAULT_PLATFORMS.map((platform) => platform.key));
 
-    expect(DEFAULT_PLATFORMS).toHaveLength(35);
-    expect(keys.size).toBe(35);
+    expect(DEFAULT_PLATFORMS).toHaveLength(44);
+    expect(keys.size).toBe(44);
     expect([...keys]).toEqual(
       expect.arrayContaining([
         'acbuy',
@@ -58,6 +58,15 @@ describe('PlatformsService', () => {
         'orientdig',
         'parcelup',
         'yoybuy',
+        'pantherbuy',
+        'ponybuy',
+        'ossbuy',
+        'okeyhaul',
+        'dgobuy',
+        'hubbuy',
+        'tigbuy',
+        'spanbuy',
+        'vigorbuy',
       ]),
     );
   });

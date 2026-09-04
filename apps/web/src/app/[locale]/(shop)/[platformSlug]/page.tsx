@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import {
@@ -202,18 +201,8 @@ export default async function TenantResearchPage({
       />
       {page.questions ? <FAQPageJsonLd items={[...page.questions]} /> : null}
       <section className={heroClass}>
-        {isLedger && tenant.domain !== "superbuydeals.com" ? (
-          <>
-            <Image
-              src={profile.heroImage}
-              alt=""
-              fill
-              sizes="100vw"
-              className="object-cover opacity-25"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#111a29] via-[#111a29]/95 to-[#111a29]/55" />
-          </>
+        {isLedger ? (
+          <div className="absolute inset-0 bg-gradient-to-r from-[#111a29] via-[#111a29] to-[#1b2738]" />
         ) : null}
         <div
           className={`container relative mx-auto grid min-h-[68dvh] items-center gap-10 px-4 py-14 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] md:py-20 ${
@@ -388,17 +377,6 @@ export default async function TenantResearchPage({
             </aside>
           ) : isQueryIndex ? (
             <aside className="overflow-hidden rounded-[28px] border border-[#35c486]/45 bg-[#0b2118] shadow-[0_28px_90px_rgba(0,0,0,0.35)]">
-              <div className="relative h-44">
-                <Image
-                  src={profile.heroImage}
-                  alt={profile.heroAlt}
-                  fill
-                  sizes="(max-width: 767px) 100vw, 46vw"
-                  className="object-cover opacity-70"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b2118] via-transparent to-transparent" />
-              </div>
               <div className="p-6 sm:p-8">
                 <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#6ce0af]">
                   Query record
@@ -416,17 +394,6 @@ export default async function TenantResearchPage({
             </aside>
           ) : isShortlist ? (
             <aside className="overflow-hidden rounded-[10px] border border-[#5160a7]/55 bg-[#10172e] shadow-[16px_16px_0_#ff334e]">
-              <div className="relative h-40 border-b border-white/15">
-                <Image
-                  src={profile.heroImage}
-                  alt={profile.heroAlt}
-                  fill
-                  sizes="(max-width: 767px) 100vw, 46vw"
-                  className="object-cover opacity-65"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#10172e] to-transparent" />
-              </div>
               <div className="p-6 sm:p-8">
                 <div className="flex items-center justify-between gap-4 border-b border-white/15 pb-4">
                   <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#ff526a]">
@@ -452,17 +419,6 @@ export default async function TenantResearchPage({
             </aside>
           ) : isItemFile ? (
             <aside className="overflow-hidden rounded-[30px] border border-[#e8aeba] bg-white shadow-[0_24px_70px_rgba(91,36,54,0.16)]">
-              <div className="relative h-40">
-                <Image
-                  src={profile.heroImage}
-                  alt={profile.heroAlt}
-                  fill
-                  sizes="(max-width: 767px) 100vw, 46vw"
-                  className="object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent" />
-              </div>
               <div className="p-6 sm:p-8">
                 <div className="flex items-center gap-3 border-b border-[#f0d5db] pb-5">
                   <FileSearch className="h-5 w-5 text-[#c9365b]" />
@@ -512,20 +468,10 @@ export default async function TenantResearchPage({
                   </div>
                 ),
               )}
-              <div className="relative h-36 border-t border-[#b8aa87]">
-                <Image
-                  src={profile.heroImage}
-                  alt={profile.heroAlt}
-                  fill
-                  sizes="(max-width: 767px) 100vw, 46vw"
-                  className="object-cover opacity-75"
-                  priority
-                />
-              </div>
             </aside>
           ) : (
-            <div
-              className={`relative min-h-[320px] overflow-hidden border sm:min-h-[420px] ${
+            <aside
+              className={`flex min-h-[320px] flex-col justify-between overflow-hidden border p-6 sm:min-h-[420px] sm:p-8 ${
                 isFinder
                   ? "rotate-1 rounded-[34px] border-[#efc995] bg-white shadow-[0_24px_80px_rgba(94,55,18,0.18)]"
                   : isEuFinds
@@ -535,45 +481,44 @@ export default async function TenantResearchPage({
                   : "rounded-[22px] border-white/15"
               }`}
             >
-              <Image
-                src={profile.heroImage}
-                alt={profile.heroAlt}
-                fill
-                sizes="(max-width: 767px) 100vw, 46vw"
-                className="object-cover"
-                priority
-              />
+              <div>
+                <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] opacity-65">
+                  Source-backed research
+                </p>
+                <p className="mt-5 text-2xl font-extrabold tracking-[-0.03em]">
+                  {branding.wordmark}
+                </p>
+                <dl className="mt-8 border-t border-current/15 text-sm">
+                  {[
+                    ["Page", page.eyebrow],
+                    ["Source", profile.officialLabel],
+                    ["Review", "Confirm current details"],
+                  ].map(([term, detail]) => (
+                    <div
+                      key={term}
+                      className="grid grid-cols-[88px_1fr] gap-4 border-b border-current/15 py-4"
+                    >
+                      <dt className="font-mono text-xs uppercase tracking-[0.12em] opacity-55">
+                        {term}
+                      </dt>
+                      <dd className="font-semibold">{detail}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
               <div
-                className={`absolute inset-0 bg-gradient-to-t ${
-                  isFinder
-                    ? "from-[#172036]/65 via-transparent to-transparent"
-                    : isEuFinds
-                      ? "from-[#10243a]/72 via-transparent to-transparent"
-                      : isCatalogMap
-                        ? "from-[#092338]/78 via-transparent to-transparent"
-                    : "from-[#092d35]/72 via-transparent to-transparent"
-                }`}
-              />
-              <div
-                className={`absolute bottom-5 left-5 right-5 flex items-center gap-3 border p-4 backdrop-blur-md ${
+                className={`mt-8 border p-4 ${
                   isFinder || isEuFinds || isCatalogMap
-                    ? "rounded-full border-white/35 bg-white/88 text-[#172036]"
-                    : "rounded-[14px] border-white/20 bg-[#092d35]/78 text-white"
+                    ? "rounded-[18px] border-current/15 bg-white/70 text-[#172036]"
+                    : "rounded-[14px] border-white/20 bg-white/5 text-white"
                 }`}
               >
-                <Image
-                  src={branding.logoPath}
-                  alt=""
-                  width={44}
-                  height={44}
-                  className="h-11 w-11 rounded-xl bg-white object-contain p-1.5"
-                />
                 <p className="text-sm font-semibold leading-5">
                   Independent research. Current product and service terms
                   require confirmation at the source.
                 </p>
               </div>
-            </div>
+            </aside>
           )}
         </div>
       </section>
@@ -658,6 +603,52 @@ export default async function TenantResearchPage({
           })}
         </div>
       </nav>
+
+      <section className="container mx-auto px-4 pt-10">
+        <dl className="grid gap-5 border border-current/15 bg-white p-5 text-sm md:grid-cols-[minmax(180px,0.6fr)_minmax(160px,0.5fr)_minmax(0,1.9fr)] md:p-6">
+          <div>
+            <dt className="font-mono text-xs uppercase tracking-[0.14em] text-[#5d706f]">
+              Editorial responsibility
+            </dt>
+            <dd className="mt-2 font-bold">
+              {page.editorialOwner || `${branding.siteName} research desk`}
+            </dd>
+          </div>
+          <div>
+            <dt className="font-mono text-xs uppercase tracking-[0.14em] text-[#5d706f]">
+              {page.reviewedAt ? "Last reviewed" : "Review status"}
+            </dt>
+            <dd className="mt-2 font-bold">
+              {page.reviewedAt ? (
+                <time dateTime={page.reviewedAt}>
+                  {new Intl.DateTimeFormat("en-US", {
+                    dateStyle: "long",
+                    timeZone: "UTC",
+                  }).format(new Date(`${page.reviewedAt}T00:00:00Z`))}
+                </time>
+              ) : (
+                "Source reference available"
+              )}
+            </dd>
+          </div>
+          <div>
+            <dt className="font-mono text-xs uppercase tracking-[0.14em] text-[#5d706f]">
+              Review method
+            </dt>
+            <dd className="mt-2 leading-6 text-[#5d706f]">
+              {page.methodNote || profile.boundaryDescription}{" "}
+              <a
+                href={page.sourceUrl || profile.officialUrl}
+                rel="nofollow noopener noreferrer"
+                target="_blank"
+                className="font-bold text-current underline underline-offset-4"
+              >
+                Open source
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </section>
 
       {page.questions ? (
         <section className="container mx-auto px-4 py-14 lg:py-20">

@@ -1,3 +1,5 @@
+import { NEW_AGENT_TENANTS } from "./new-agent-tenants";
+
 export interface TenantEditorialProfile {
   heroTitle: string;
   heroAccent: string;
@@ -6,6 +8,20 @@ export interface TenantEditorialProfile {
   researchFocus: string;
   guideTitle: string;
 }
+
+const NEW_AGENT_EDITORIAL_PROFILES = Object.fromEntries(
+  NEW_AGENT_TENANTS.map(({ domain, research }) => [
+    domain,
+    {
+      heroTitle: research.heroTitle,
+      heroAccent: research.heroAccent,
+      summary: research.summary,
+      audience: research.audience,
+      researchFocus: research.researchFocus,
+      guideTitle: research.guideTitle,
+    },
+  ]),
+) as Record<string, TenantEditorialProfile>;
 
 /**
  * Domain-specific editorial seeds for local tenant builds.
@@ -36,6 +52,17 @@ export const TENANT_EDITORIAL_PROFILES = {
     researchFocus:
       "Search vocabulary, final link destinations, option matching and the visible fields needed for the next review.",
     guideTitle: "A source-first 1to1 finds method",
+  },
+  "1to1reps.com": {
+    heroTitle: "Research 1to1 reps before choosing a source.",
+    heroAccent: "Search first. Check the evidence.",
+    summary:
+      "Move from a product clue to a resolved source, exact option, visible QC evidence and a short list of unanswered questions.",
+    audience:
+      "Researchers comparing product candidates before deciding whether a source deserves a closer review.",
+    researchFocus:
+      "Search terms, final link destinations, option identity, visible QC details and the claims that still need a current source.",
+    guideTitle: "An evidence-first 1to1Reps research method",
   },
   "1to1spreadsheet.com": {
     heroTitle: "Record 1to1 product research in compact evidence rows.",
@@ -71,7 +98,8 @@ export const TENANT_EDITORIAL_PROFILES = {
     guideTitle: "An AllChinaBuy category discovery method",
   },
   "allchinabuyindex.com": {
-    heroTitle: "Search an AllChinaBuy-linked product index before leaving the catalog.",
+    heroTitle:
+      "Search an AllChinaBuy-linked product index before leaving the catalog.",
     heroAccent: "Keep your comparison in one place.",
     summary:
       "Search by product, brand or category, then review source status and available options before continuing.",
@@ -163,8 +191,7 @@ export const TENANT_EDITORIAL_PROFILES = {
     heroAccent: "Refine the phrase before the product list.",
     summary:
       "Start with an exact product or brand phrase, reduce irrelevant results and review visible listing details.",
-    audience:
-      "Researchers who already know what they want to search for.",
+    audience: "Researchers who already know what they want to search for.",
     researchFocus:
       "Query precision, comparable product fields and destination checks that remain outside the index.",
     guideTitle: "A query-first CSSBuy index workflow",
@@ -225,7 +252,8 @@ export const TENANT_EDITORIAL_PROFILES = {
     guideTitle: "A compact GTBuy index research sequence",
   },
   "hipobuyindex.com": {
-    heroTitle: "Research HipoBuy-linked listings without losing source context.",
+    heroTitle:
+      "Research HipoBuy-linked listings without losing source context.",
     heroAccent: "Keep every comparison traceable.",
     summary:
       "Search listings, preserve the source link and separate visible catalog facts from unverified destination details.",
@@ -273,8 +301,7 @@ export const TENANT_EDITORIAL_PROFILES = {
     heroAccent: "Refine, inspect and compare.",
     summary:
       "Use exact queries and filters, then review source status and visible options before comparing buying routes.",
-    audience:
-      "Researchers arriving with a known product phrase or brand.",
+    audience: "Researchers arriving with a known product phrase or brand.",
     researchFocus:
       "Query refinement, listing completeness and the checkpoints required before an external handoff.",
     guideTitle: "How to search the JoyaGoo product index",
@@ -295,8 +322,7 @@ export const TENANT_EDITORIAL_PROFILES = {
     heroAccent: "Make item details the center of the review.",
     summary:
       "Compare images, options and source status on individual item pages before opening an external service.",
-    audience:
-      "Researchers comparing a small number of specific products.",
+    audience: "Researchers comparing a small number of specific products.",
     researchFocus:
       "Item-level evidence, option visibility and missing fields that should be confirmed at the destination.",
     guideTitle: "How to inspect Kakobuy-linked item pages",
@@ -328,8 +354,7 @@ export const TENANT_EDITORIAL_PROFILES = {
     heroAccent: "Check the page before the handoff.",
     summary:
       "Open individual products, compare visible options and identify information that still needs destination confirmation.",
-    audience:
-      "Shoppers researching specific LitBuy-linked items.",
+    audience: "Shoppers researching specific LitBuy-linked items.",
     researchFocus:
       "Item options, image context, source availability and unverified fields that should remain clearly labeled.",
     guideTitle: "A LitBuy item-page review checklist",
@@ -372,8 +397,7 @@ export const TENANT_EDITORIAL_PROFILES = {
     heroAccent: "Use the same checks across every result.",
     summary:
       "Apply a consistent search and review sequence so shortlisted products can be compared on the same visible fields.",
-    audience:
-      "Researchers who prefer a repeatable catalog-screening method.",
+    audience: "Researchers who prefer a repeatable catalog-screening method.",
     researchFocus:
       "Consistent filters, comparable listing fields and transparent notes for missing information.",
     guideTitle: "A repeatable MuleBuy index screening method",
@@ -383,8 +407,7 @@ export const TENANT_EDITORIAL_PROFILES = {
     heroAccent: "Keep each item review specific.",
     summary:
       "Inspect product images, options and source status, then record what still requires external confirmation.",
-    audience:
-      "Shoppers comparing a focused set of MuleBuy-linked items.",
+    audience: "Shoppers comparing a focused set of MuleBuy-linked items.",
     researchFocus:
       "Item-specific evidence, option differences and source fields that should not be inferred.",
     guideTitle: "How to compare MuleBuy-linked item pages",
@@ -412,7 +435,8 @@ export const TENANT_EDITORIAL_PROFILES = {
     guideTitle: "An OrientDig editorial catalog guide",
   },
   "parcelupindex.com": {
-    heroTitle: "Prepare Parcel Up-linked product research before route planning.",
+    heroTitle:
+      "Prepare Parcel Up-linked product research before route planning.",
     heroAccent: "Keep product facts and delivery questions separate.",
     summary:
       "Compare listings first, then confirm destination fees, availability and delivery terms outside the catalog.",
@@ -434,7 +458,8 @@ export const TENANT_EDITORIAL_PROFILES = {
     guideTitle: "How to research Sugargoo-linked listings",
   },
   "superbuydeals.com": {
-    heroTitle: "Research Superbuy-linked listings without assuming a deal label.",
+    heroTitle:
+      "Research Superbuy-linked listings without assuming a deal label.",
     heroAccent: "Compare current evidence, not promotional wording.",
     summary:
       "Review visible product prices and source details, then confirm whether any offer still applies at the destination.",
@@ -499,6 +524,7 @@ export const TENANT_EDITORIAL_PROFILES = {
       "Search relevance, source inspection and separation of product data from destination service terms.",
     guideTitle: "A YoyBuy index review sequence",
   },
+  ...NEW_AGENT_EDITORIAL_PROFILES,
 } as const satisfies Record<string, TenantEditorialProfile>;
 
 export function getTenantEditorialProfile(

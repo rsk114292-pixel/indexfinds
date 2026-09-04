@@ -152,6 +152,42 @@ const LOGO_SOURCES = {
     source: "https://img.yoybuy.com/v7/imgs/favicon.ico",
     filename: "yoybuy.ico",
   },
+  pantherbuy: {
+    source: "https://pantherbuy.com/favicon.ico",
+    filename: "pantherbuy.png",
+  },
+  ponybuy: {
+    source: "https://www.ponybuy.com/favicon.ico",
+    filename: "ponybuy.png",
+  },
+  ossbuy: {
+    source: "https://www.ossbuy.com/favicon.ico",
+    filename: "ossbuy.png",
+  },
+  okeyhaul: {
+    source: "https://www.okeyhaul.com/logo.png",
+    filename: "okeyhaul.png",
+  },
+  dgobuy: {
+    source: "https://dgobuy.com/images/jy.ico?id=bbd0d1dde6339378b921",
+    filename: "dgobuy.png",
+  },
+  hubbuy: {
+    source: "https://cdn.hubbuy.app/favicon/favicon_64.ico",
+    filename: "hubbuy.png",
+  },
+  tigbuy: {
+    source: "https://tigbuy.com/favicon.ico",
+    filename: "tigbuy.png",
+  },
+  spanbuy: {
+    source: "https://spanbuy.com/favicon.ico",
+    filename: "spanbuy.ico",
+  },
+  vigorbuy: {
+    source: "https://cdn.static.vigorbuy.com/assets/favicon/favicon_64.ico",
+    filename: "vigorbuy.ico",
+  },
 };
 
 // Some official wordmarks are rectangular and work well in the header badge,
@@ -201,13 +237,17 @@ async function downloadOfficialAsset(platformKey, source) {
   });
 
   if (!response.ok) {
-    throw new Error(`${platformKey}: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `${platformKey}: ${response.status} ${response.statusText}`,
+    );
   }
 
   const bytes = Buffer.from(await response.arrayBuffer());
   const detectedExtension = detectExtension(bytes);
   if (!detectedExtension) {
-    throw new Error(`${platformKey}: official URL did not return a supported image`);
+    throw new Error(
+      `${platformKey}: official URL did not return a supported image`,
+    );
   }
 
   return { bytes, detectedExtension };
@@ -226,7 +266,9 @@ if (
   logoEntries.length !== requestedPlatformKeys.size
 ) {
   const knownKeys = new Set(Object.keys(LOGO_SOURCES));
-  const unknownKeys = [...requestedPlatformKeys].filter((key) => !knownKeys.has(key));
+  const unknownKeys = [...requestedPlatformKeys].filter(
+    (key) => !knownKeys.has(key),
+  );
   throw new Error(`Unknown platform key(s): ${unknownKeys.join(", ")}`);
 }
 
@@ -250,7 +292,28 @@ for (const [platformKey, { source, filename }] of logoEntries) {
       .extract({ left: 280, top: 746, width: 1740, height: 961 })
       .png()
       .toBuffer();
-  } else if (detectedExtension === ".jpg" && path.extname(filename) === ".png") {
+  } else if (
+    platformKey === "okeyhaul" ||
+    platformKey === "pantherbuy" ||
+    platformKey === "rizzitgo"
+  ) {
+    // The platform publishes a narrow official mark. Preserve the mark and
+    // add transparent side padding so it remains a valid square favicon.
+    const metadata = await sharp(bytes).metadata();
+    const size = Math.max(metadata.width || 0, metadata.height || 0);
+    bytes = await sharp(bytes)
+      .resize({
+        width: size,
+        height: size,
+        fit: "contain",
+        background: { r: 0, g: 0, b: 0, alpha: 0 },
+      })
+      .png()
+      .toBuffer();
+  } else if (
+    detectedExtension === ".jpg" &&
+    path.extname(filename) === ".png"
+  ) {
     bytes = await sharp(bytes).png().toBuffer();
   } else if (path.extname(filename) !== detectedExtension) {
     throw new Error(

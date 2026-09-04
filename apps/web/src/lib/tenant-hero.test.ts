@@ -17,6 +17,10 @@ describe("tenant hero visuals", () => {
     ).toBe(true);
   });
 
+  it("keeps the 1to1Reps homepage centered without a background image", () => {
+    expect(getTenantHeroVisual("1to1reps.com")).toBeNull();
+  });
+
   it("gives the two YDA research tenants different visual systems", () => {
     const parcelGuide = getTenantHeroVisual("ydaexpress.net");
     const sourceReview = getTenantHeroVisual("ydaexpress.org");

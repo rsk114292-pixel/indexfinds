@@ -121,11 +121,27 @@ describe('sitemap', () => {
   });
 
   it('keeps tenant sitemaps limited to reviewed unique English pages', async () => {
-    await expectTenantSitemap('usfansindex.net', ['', '/categories', '/usfans-spreadsheet']);
+    await expectTenantSitemap('usfansindex.net', [
+      '',
+      '/categories',
+      '/usfans-spreadsheet',
+      '/source-check',
+      '/qc-record',
+      '/parcel-guide',
+      '/faq',
+    ]);
   });
 
-  it('publishes only the reviewed iTaoBuy home and research guide', async () => {
-    await expectTenantSitemap('itaobuyindex.com', ['', '/categories', '/site-guide']);
+  it('publishes the reviewed iTaoBuy evidence guides', async () => {
+    await expectTenantSitemap('itaobuyindex.com', [
+      '',
+      '/categories',
+      '/site-guide',
+      '/source-ledger',
+      '/qc-evidence',
+      '/parcel-record',
+      '/faq',
+    ]);
   });
 
   it('publishes only the reviewed ACBuy research allowlist', async () => {
@@ -376,7 +392,6 @@ describe('sitemap', () => {
         '/faq',
         '/guide',
         '/haul-review',
-        '/invitation-code',
         '/safety',
         '/shipping',
       ],
@@ -462,6 +477,10 @@ describe('sitemap', () => {
     [
       '1to1finds.com',
       ['', '/categories', '/finds-method', '/search-vocabulary', '/source-check', '/qc-questions', '/faq'],
+    ],
+    [
+      '1to1reps.com',
+      ['', '/categories', '/finds', '/qc-checklist', '/agent-guide', '/source-safety', '/faq'],
     ],
     [
       '1to1spreadsheet.com',

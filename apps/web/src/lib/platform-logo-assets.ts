@@ -161,6 +161,42 @@ export const OFFICIAL_PLATFORM_LOGOS: Readonly<
     src: "/images/agents/yoybuy.ico",
     remoteSrc: "https://img.yoybuy.com/v7/imgs/favicon.ico",
   },
+  pantherbuy: {
+    src: "/images/agents/pantherbuy.png",
+    remoteSrc: "https://pantherbuy.com/favicon.ico",
+  },
+  ponybuy: {
+    src: "/images/agents/ponybuy.png",
+    remoteSrc: "https://www.ponybuy.com/favicon.ico",
+  },
+  ossbuy: {
+    src: "/images/agents/ossbuy.png",
+    remoteSrc: "https://www.ossbuy.com/favicon.ico",
+  },
+  okeyhaul: {
+    src: "/images/agents/okeyhaul.png",
+    remoteSrc: "https://www.okeyhaul.com/logo.png",
+  },
+  dgobuy: {
+    src: "/images/agents/dgobuy.png",
+    remoteSrc: "https://dgobuy.com/images/jy.ico?id=bbd0d1dde6339378b921",
+  },
+  hubbuy: {
+    src: "/images/agents/hubbuy.png",
+    remoteSrc: "https://cdn.hubbuy.app/favicon/favicon_64.ico",
+  },
+  tigbuy: {
+    src: "/images/agents/tigbuy.png",
+    remoteSrc: "https://tigbuy.com/favicon.ico",
+  },
+  spanbuy: {
+    src: "/images/agents/spanbuy.ico",
+    remoteSrc: "https://spanbuy.com/favicon.ico",
+  },
+  vigorbuy: {
+    src: "/images/agents/vigorbuy.ico",
+    remoteSrc: "https://cdn.static.vigorbuy.com/assets/favicon/favicon_64.ico",
+  },
 };
 
 export function getOfficialPlatformLogo(

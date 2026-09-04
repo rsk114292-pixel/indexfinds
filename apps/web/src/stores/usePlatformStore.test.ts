@@ -20,7 +20,7 @@ function createPlatform(overrides: Partial<Platform> = {}): Platform {
 
 describe('usePlatformStore i18n helpers', () => {
   it('为 API 或 CORS 故障提供完整的本地代理目录', () => {
-    expect(FALLBACK_PLATFORMS).toHaveLength(35);
+    expect(FALLBACK_PLATFORMS).toHaveLength(AGENT_PLATFORMS.length);
     expect(FALLBACK_PLATFORMS.map((platform) => platform.key)).toEqual(
       AGENT_PLATFORMS.map((platform) => platform.key),
     );
