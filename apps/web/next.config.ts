@@ -11,11 +11,11 @@ const apiOrigin = parsedApiUrl.origin;
 const isDevelopment = process.env.NODE_ENV !== 'production';
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com`,
+  `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com https://sdk.51.la`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  `connect-src 'self' ${apiOrigin}${isDevelopment ? ' ws: wss:' : ''} https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com`,
+  `connect-src 'self' ${apiOrigin}${isDevelopment ? ' ws: wss:' : ''} https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://collect-v6.51.la`,
   "worker-src 'self' blob:",
   "manifest-src 'self'",
   "media-src 'self' https:",

@@ -9,6 +9,8 @@ import { getSiteName, getThemeVars } from "@/lib/site-config";
 import { resolveTenantFromHeaders } from "@/lib/tenant-config";
 import "./globals.css";
 
+const LA51_TRACKING_ID = "3QNswCxHDkPanqOo";
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -70,6 +72,27 @@ export default async function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content={siteName} />
+        {!tenant && (
+          <>
+            <script
+              dangerouslySetInnerHTML={{
+                __html:
+                  "window.LA=window.LA||{init:function(config){this.config=config;}};",
+              }}
+            />
+            <script
+              async
+              charSet="UTF-8"
+              id="LA_COLLECT"
+              src="https://sdk.51.la/js-sdk-pro.min.js"
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `LA.init({id:"${LA51_TRACKING_ID}",ck:"${LA51_TRACKING_ID}"});`,
+              }}
+            />
+          </>
+        )}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${notoArabic.variable} antialiased`}
