@@ -3,7 +3,6 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 import useSWRInfinite from 'swr/infinite';
 import useSWR from 'swr';
 import { Loader2, Search } from 'lucide-react';
@@ -26,6 +25,7 @@ import type { FacetsData } from '@/components/filters/types';
 import { countActiveFilters } from '@/lib/filter-utils';
 import { computeHotThreshold } from '@/lib/utils';
 import { useInfiniteReturnScrollRestoration } from '@/hooks/useInfiniteReturnScrollRestoration';
+import BrandLogo from '@/components/brands/BrandLogo';
 
 const MobileSortBar = dynamic(
   () => import('../../../../products/components/mobile/MobileSortBar'),
@@ -203,22 +203,12 @@ export default function MobileBrandDetail({
       {/* 品牌头部 */}
       {brand && (
         <div className="px-4 pt-3 pb-3 flex items-center gap-3">
-          {brand.logoUrl ? (
-            <div className="w-12 h-12 relative flex-shrink-0 rounded-xl overflow-hidden bg-white border border-border">
-              <Image
-                src={brand.logoUrl}
-                alt={brand.name}
-                fill
-                className="object-contain p-0.5"
-              />
-            </div>
-          ) : (
-            <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span className="text-xl font-bold text-gray-400">
-                {brand.name.charAt(0)}
-              </span>
-            </div>
-          )}
+          <BrandLogo
+            name={brand.name}
+            logoUrl={brand.logoUrl}
+            size="sm"
+            className="h-12 w-12"
+          />
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <h2 className="text-lg font-bold text-foreground truncate">

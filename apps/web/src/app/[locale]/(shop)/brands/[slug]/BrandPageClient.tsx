@@ -11,7 +11,6 @@
 import { useMemo, Suspense } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import useSWR from 'swr';
 import { Home, ChevronRight } from 'lucide-react';
@@ -39,6 +38,7 @@ import {
   DESKTOP_PRODUCT_SKELETON_COUNT,
 } from '@/lib/product-list-layout';
 import MobileBrandDetail from './components/mobile/MobileBrandDetail';
+import BrandLogo from '@/components/brands/BrandLogo';
 
 // 页面加载状态
 function PageLoading() {
@@ -183,22 +183,12 @@ function BrandContent({ slug, initialBrand }: BrandPageClientProps) {
 
             {/* 品牌头部 */}
             <div className="mb-8 flex items-start gap-6">
-              {brand.logoUrl ? (
-                <div className="w-20 h-20 relative flex-shrink-0">
-                  <Image
-                    src={brand.logoUrl}
-                    alt={brand.name}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-              ) : (
-                <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <span className="text-3xl font-bold text-gray-400">
-                    {brand.name.charAt(0)}
-                  </span>
-                </div>
-              )}
+              <BrandLogo
+                name={brand.name}
+                logoUrl={brand.logoUrl}
+                size="lg"
+                priority
+              />
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h2 className="text-2xl font-bold text-foreground">

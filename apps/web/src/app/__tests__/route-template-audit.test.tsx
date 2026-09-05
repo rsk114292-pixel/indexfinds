@@ -191,6 +191,7 @@ function createTranslator(namespace: string) {
 function mockJsonResponse(data: unknown, ok = true) {
   return {
     ok,
+    status: ok ? 200 : 404,
     json: async () => data,
   };
 }

@@ -245,7 +245,10 @@ export default async function TenantResearchPage({
                 target="_blank"
                 className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${secondaryButtonClass}`}
               >
-                {page.sourceLabel || profile.officialLabel}
+                {page.sourceLabel ||
+                  (page.sourceUrl
+                    ? profile.officialLabel
+                    : `${profile.officialLabel} homepage`)}
                 <ExternalLink className="h-4 w-4" />
               </a>
             </div>
@@ -616,7 +619,7 @@ export default async function TenantResearchPage({
           </div>
           <div>
             <dt className="font-mono text-xs uppercase tracking-[0.14em] text-[#5d706f]">
-              {page.reviewedAt ? "Last reviewed" : "Review status"}
+              {page.reviewedAt ? "Last reviewed" : "Page review date"}
             </dt>
             <dd className="mt-2 font-bold">
               {page.reviewedAt ? (
@@ -627,7 +630,7 @@ export default async function TenantResearchPage({
                   }).format(new Date(`${page.reviewedAt}T00:00:00Z`))}
                 </time>
               ) : (
-                "Source reference available"
+                "Not recorded for this page"
               )}
             </dd>
           </div>
@@ -643,7 +646,7 @@ export default async function TenantResearchPage({
                 target="_blank"
                 className="font-bold text-current underline underline-offset-4"
               >
-                Open source
+                {page.sourceUrl ? "Open page source" : "Open platform homepage"}
               </a>
             </dd>
           </div>

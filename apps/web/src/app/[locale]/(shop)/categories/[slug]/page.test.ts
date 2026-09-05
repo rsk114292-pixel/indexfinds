@@ -105,4 +105,30 @@ describe('CategoryPage', () => {
       ]),
     );
   });
+
+  it('retries a transient category API failure instead of rendering a false 404', async () => {
+    mockFetch
+      .mockResolvedValueOnce({ ok: false, status: 503 })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ name: '鞋靴', slug: 'shoes' }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ data: [], meta: { total: 0 } }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ categories: [], brands: [] }),
+      });
+
+    await CategoryPage({
+      params: Promise.resolve({ locale: 'en', slug: 'shoes' }),
+    });
+
+    const categoryRequests = mockFetch.mock.calls.filter(([url]) =>
+      String(url).endsWith('/categories/slug/shoes'),
+    );
+    expect(categoryRequests).toHaveLength(2);
+  });
 });

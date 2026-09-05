@@ -201,8 +201,8 @@ describe("tenant research pages", () => {
       expect.objectContaining({
         seoTitle:
           "LoongBuy Shipping Calculator Guide | Inputs and Final Charge",
-        sourceUrl: "https://service.loongbuy.com/en/query/freight",
-        sourceLabel: "Open the official LoongBuy freight query",
+        sourceUrl: "https://service.loongbuy.com/en/content/freight",
+        sourceLabel: "Open LoongBuy freight guidance",
       }),
     );
   });

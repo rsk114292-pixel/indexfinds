@@ -335,6 +335,7 @@ describe('SEO guards', () => {
   it('missing brand metadata is noindex to avoid soft-404 indexing', async () => {
     mockFetch.mockResolvedValue({
       ok: false,
+      status: 404,
     });
 
     const { generateMetadata } = await import('../[locale]/(shop)/brands/[slug]/page');

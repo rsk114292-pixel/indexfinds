@@ -47,7 +47,9 @@ async function getCategory(slug: string): Promise<Category | null> {
   const data = await fetchServerApiJson<Category | { data?: Category }>(
     `/categories/slug/${slug}`,
     {
-      next: { revalidate: 86400 }, // ISR: 24小时
+      next: { revalidate: 300 },
+      retryCount: 1,
+      throwOnError: true,
     },
   );
   if (!data) return null;

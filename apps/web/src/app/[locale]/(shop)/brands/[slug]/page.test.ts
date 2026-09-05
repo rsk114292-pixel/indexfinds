@@ -161,6 +161,7 @@ describe('BrandPage merged brand redirect', () => {
   it('should NOT redirect if brand not found (null)', async () => {
     mockFetch.mockResolvedValueOnce({
       ok: false,
+      status: 404,
     });
 
     const params = Promise.resolve({ locale: 'en', slug: 'nonexistent' });

@@ -29,7 +29,10 @@ export const dynamic = 'force-dynamic';
 // 服务端获取品牌数据
 async function getBrand(slug: string): Promise<Brand | null> {
   return fetchServerApiJson<Brand>(`/brands/slug/${slug}`, {
-    next: { revalidate: 86400 }, // ISR: 24小时
+    // Brand governance and logo corrections must not remain stale for a day.
+    next: { revalidate: 300 },
+    retryCount: 1,
+    throwOnError: true,
   });
 }
 

@@ -2669,6 +2669,10 @@ const CSSBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Use current destination guidance and carrier information for factors outside the warehouse service.",
       },
     ],
+    sourceUrl: "https://new.cssbuy.com/shipforme",
+    sourceLabel: "Open CSSBuy Ship For Me",
+    methodNote:
+      "The official page required a Cloudflare verification step on 2026-09-05. Do not copy a warehouse address from this guide; use the current account record.",
   },
   {
     domain: "cssbuyindex.com",
@@ -2914,6 +2918,10 @@ const CSSBUY_CATALOG_PAGES: readonly TenantResearchPage[] = [
           "Use measured inputs, packaging, restrictions and current destination eligibility for forwarding decisions.",
       },
     ],
+    sourceUrl: "https://new.cssbuy.com/shipforme",
+    sourceLabel: "Open CSSBuy Ship For Me",
+    methodNote:
+      "The official page required a Cloudflare verification step on 2026-09-05. This guide records the workflow boundary, not a current warehouse address or rate.",
   },
   {
     domain: "cssbuycatalog.com",
@@ -4374,18 +4382,18 @@ const LOONGBUY_PAGES: readonly TenantResearchPage[] = [
     slug: "shipping-calculator",
     seoTitle: "LoongBuy Shipping Calculator Guide | Inputs and Final Charge",
     description:
-      "Use the official LoongBuy freight query with area, weight, goods restrictions and parcel dimensions, then compare its result with the measured packed parcel.",
+      "Use current LoongBuy freight guidance to record chargeable weight, restrictions and parcel dimensions, then compare the estimate with the measured packed parcel.",
     eyebrow: "LoongBuy freight query guide",
     title: "Estimate with official inputs, then verify the packed parcel.",
     intro:
-      "LoongBuy's freight query asks for area, weight, mail-limit details and parcel dimensions. Its shopping process says the final charge is reconciled after the shipping company measures the package.",
-    sourceUrl: "https://service.loongbuy.com/en/query/freight",
-    sourceLabel: "Open the official LoongBuy freight query",
+      "LoongBuy's official guidance describes restricted-goods checks, actual and volumetric weight, and later reconciliation after carrier measurements. The live query page was access-protected during this review, so follow its current fields rather than copying an old form.",
+    sourceUrl: "https://service.loongbuy.com/en/content/freight",
+    sourceLabel: "Open LoongBuy freight guidance",
     sections: [
       {
         title: "Match the official fields",
         description:
-          "Record the destination area, weight in grams, relevant goods restriction and package length, width and height used for the query.",
+          "Record every destination, weight, restriction and dimension field shown by the current query so a saved estimate can be reproduced.",
         points: [
           "Keep the destination with every saved result",
           "Do not omit battery, liquid, branded-goods or size restrictions",
@@ -4413,6 +4421,8 @@ const LOONGBUY_PAGES: readonly TenantResearchPage[] = [
         ],
       },
     ],
+    methodNote:
+      "The official query page returned a Cloudflare access challenge on 2026-09-05. This page does not claim that its form fields or prices were directly verified in that session.",
   },
   {
     domain: "loongbuys.net",
@@ -4887,7 +4897,7 @@ const MULEBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
     slug: "order-status-guide",
     seoTitle: "MuleBuy Order Pending Guide | Check Status Before Acting",
     description:
-      "Understand MuleBuy Order Pending, Pending Payment and confirmation states, preserve the current order record and use the action shown for that exact stage.",
+      "Understand MuleBuy Order Pending, Payment Pending and confirmation states, preserve the current order record and use the action shown for that exact stage.",
     eyebrow: "MuleBuy order-status evidence",
     title: "Identify the exact pending state before taking the next action.",
     intro:
@@ -4899,7 +4909,7 @@ const MULEBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Confirm the order number, submission time, product source and selected option. Use only the current action displayed in the MuleBuy order center and retain any cancellation or refund record.",
       },
       {
-        title: "Pending Payment",
+        title: "Payment Pending",
         description:
           "Check whether payment was completed, which amount and payment reference belong to the order, and whether a current countdown or retry instruction is displayed.",
       },
@@ -4914,6 +4924,9 @@ const MULEBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Keep purchasing, seller dispatch, warehouse receipt, storage, parcel payment and tracking events separate, because each stage has a different responsible record and next action.",
       },
     ],
+    sourceUrl: "https://mulebuy.com/help/faq/",
+    sourceLabel: "Open the current MuleBuy FAQ",
+    reviewedAt: "2026-09-05",
   },
   {
     domain: "mulebuyindex.net",
@@ -5026,6 +5039,9 @@ const MULEBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "No. It records the latest available event. Customs, carrier transfers, destination processing and local delivery still require later evidence.",
       },
     ],
+    sourceUrl: "https://mulebuy.com/help/faq/",
+    sourceLabel: "Open the current MuleBuy FAQ",
+    reviewedAt: "2026-09-05",
   },
   {
     domain: "mulebuyindex.net",
@@ -5451,6 +5467,10 @@ const OOPBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
         ],
       },
     ],
+    sourceUrl: "https://oopbuy.com/product/1688/792010200504",
+    sourceLabel: "Open the official Oopbuy product-page example",
+    methodNote:
+      "On 2026-09-05 the direct page returned the application shell while recent official search-index text still exposed the two estimate labels. Recheck a current product page before relying on the field names.",
   },
   {
     domain: "oopbuyindex.net",
@@ -5941,6 +5961,10 @@ const PARCELUP_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Confirm the current destination route, calculation method, surcharges and payment terms before submission.",
       },
     ],
+    sourceUrl: "https://parcelup.com/help",
+    sourceLabel: "Open Parcel Up help",
+    methodNote:
+      "The official page required a Cloudflare verification step on 2026-09-05. Payment terms and amounts must be rechecked in the current account.",
   },
   {
     domain: "parcelupindex.com",
@@ -5970,6 +5994,10 @@ const PARCELUP_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Keep route, second-payment reference, dispatch event and tracking updates with their dates.",
       },
     ],
+    sourceUrl: "https://parcelup.com/help/taobao-items-warehouse",
+    sourceLabel: "Open Parcel Up warehouse help",
+    methodNote:
+      "The official page required a Cloudflare verification step on 2026-09-05. Treat the workflow as reviewable context, not a fixed fee or storage promise.",
   },
   {
     domain: "parcelupindex.com",
@@ -6015,6 +6043,10 @@ const PARCELUP_INDEX_PAGES: readonly TenantResearchPage[] = [
           "No. It records the latest available event. Customs, carrier transfers, destination processing and local delivery still require later evidence.",
       },
     ],
+    sourceUrl: "https://parcelup.com/order/delivery-tracking",
+    sourceLabel: "Open Parcel Up delivery tracking",
+    methodNote:
+      "The official page required a Cloudflare verification step on 2026-09-05. This guide does not access live parcel data.",
   },
   {
     domain: "parcelupindex.com",
@@ -6345,6 +6377,11 @@ const SUGARGOO_INDEX_PAGES: readonly TenantResearchPage[] = [
           "No. It records the latest available event, while customs, carrier transfers, destination processing and local delivery still depend on later evidence.",
       },
     ],
+    sourceUrl:
+      "https://blog.sugargoo.com/how-to-track-your-package-shipping-status-transit-nodes-and-delivery-time-estimates/",
+    sourceLabel: "Open the official Sugargoo tracking article",
+    methodNote:
+      "The official article returned 502 on 2026-09-05 while its first-party search-index text remained available. Recheck the source before changing workflow facts.",
   },
   {
     domain: "sugargooindex.net",
@@ -6506,6 +6543,7 @@ const SUPERBUY_DEALS_PAGES: readonly TenantResearchPage[] = [
         ],
       },
     ],
+    reviewedAt: "2026-09-05",
   },
   {
     domain: "superbuydeals.com",
@@ -8104,9 +8142,10 @@ const HOOBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
     eyebrow: "HooBuy shipping estimate guide",
     title: "Prepare the evidence before opening the shipping calculator.",
     intro:
-      "HooBuy's official estimator asks for destination, weight, item category and parcel dimensions. Its result is a planning estimate, not the packed-parcel charge.",
+      "HooBuy's official estimator asks for destination, weight, item category and parcel dimensions. Save its displayed result as a dated planning record, then keep later warehouse and checkout evidence separate.",
     sourceUrl: "https://hoobuy.com/estimation",
     sourceLabel: "Open the official HooBuy estimator",
+    reviewedAt: "2026-09-05",
     sections: [
       {
         title: "Enter comparable inputs",
@@ -8131,7 +8170,7 @@ const HOOBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
       {
         title: "Reconcile after warehousing",
         description:
-          "HooBuy's published guidance says route prices can vary by goods category and that value-added services are calculated separately. Use the warehouse record before submission.",
+          "Use the warehouse record before submission. Treat optional service costs as unknown unless the current route or checkout record identifies them separately.",
         points: [
           "Confirm current route eligibility and restrictions",
           "Compare the estimate with the warehouse parcel record",
@@ -8148,12 +8187,12 @@ const HOOBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
       {
         question: "Why can a HooBuy shipping estimate change?",
         answer:
-          "Destination, item category, actual weight, parcel dimensions, packaging and optional services can change the available routes or displayed amount.",
+          "The estimator uses destination, item category, actual weight and parcel dimensions. Packaging changes can alter those measured inputs, so retain the exact values used for each result.",
       },
       {
         question: "Is the estimator result the final parcel charge?",
         answer:
-          "Not necessarily. Compare it with the current warehouse measurements, route terms and selected services before submitting a parcel.",
+          "This independent guide does not assume that it is. Retain the current warehouse measurements, route terms and checkout total before treating any amount as final.",
       },
     ],
   },

@@ -66,7 +66,7 @@ export async function generateMetadata({
 async function getBrandsList(): Promise<{ name: string; slug: string }[]> {
   const data = await fetchServerApiJson<{ data?: { name: string; slug: string }[] }>(
     '/brands?status=active&hasProducts=true&limit=0',
-    { next: { revalidate: 86400 } },
+    { next: { revalidate: 300 } },
   );
   return data?.data || [];
 }
