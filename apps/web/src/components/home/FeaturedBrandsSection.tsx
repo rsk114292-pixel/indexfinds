@@ -11,6 +11,7 @@ import { useTenant } from '@/components/TenantProvider';
 import { FadeIn, StaggerChildren, staggerItemVariants } from '@/components/ui/FadeIn';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { fetcher } from '@/lib/api';
+import { cn } from '@/lib/utils';
 import type { ApiListResponse, Brand } from '@/types';
 
 interface FeaturedBrandsSectionProps {
@@ -84,7 +85,12 @@ export default function FeaturedBrandsSection({
                     key={brand.id}
                     href={`/brands/${brand.slug}`}
                     prefetch={false}
-                    className="group grid min-h-20 grid-cols-[56px_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-[#dbe3ee] bg-white px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                    className={cn(
+                      'group grid min-h-20 items-center gap-4 rounded-2xl border border-[#dbe3ee] bg-white px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
+                      brand.logoUrl
+                        ? 'grid-cols-[56px_minmax(0,1fr)_auto]'
+                        : 'grid-cols-[minmax(0,1fr)_auto]',
+                    )}
                   >
                     <BrandLogo
                       name={brand.name}

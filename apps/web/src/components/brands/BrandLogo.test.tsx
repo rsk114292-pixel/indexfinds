@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import BrandLogo from './BrandLogo';
 
 describe('BrandLogo', () => {
-  it('shows meaningful initials while a remote logo is loading', () => {
+  it('keeps a remote logo hidden until it loads without inventing a badge', () => {
     render(
       <BrandLogo
         name="Air Jordan"
@@ -10,8 +10,9 @@ describe('BrandLogo', () => {
       />,
     );
 
-    expect(screen.getByText('AJ')).toBeInTheDocument();
-    expect(screen.getByAltText('Air Jordan')).toHaveClass('opacity-0');
+    const image = screen.getByAltText('Air Jordan');
+    expect(image.parentElement).toHaveClass('opacity-0');
+    expect(screen.queryByText('AJ')).not.toBeInTheDocument();
   });
 
   it('reveals a successfully loaded remote logo', () => {
@@ -26,10 +27,10 @@ describe('BrandLogo', () => {
     Object.defineProperty(image, 'naturalWidth', { configurable: true, value: 200 });
     fireEvent.load(image);
 
-    expect(image).toHaveClass('opacity-100');
+    expect(image.parentElement).toHaveClass('opacity-100');
   });
 
-  it('keeps a branded fallback when a remote logo fails', () => {
+  it('removes a remote logo when it fails', () => {
     render(
       <BrandLogo
         name="Air Jordan"
@@ -40,6 +41,12 @@ describe('BrandLogo', () => {
     fireEvent.error(screen.getByAltText('Air Jordan'));
 
     expect(screen.queryByAltText('Air Jordan')).not.toBeInTheDocument();
-    expect(screen.getByText('AJ')).toBeInTheDocument();
+    expect(screen.queryByText('AJ')).not.toBeInTheDocument();
+  });
+
+  it('renders nothing when no verified logo exists', () => {
+    const { container } = render(<BrandLogo name="Air Jordan" />);
+
+    expect(container).toBeEmptyDOMElement();
   });
 });
