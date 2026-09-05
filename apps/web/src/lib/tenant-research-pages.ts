@@ -4386,7 +4386,7 @@ const LOONGBUY_PAGES: readonly TenantResearchPage[] = [
     eyebrow: "LoongBuy freight query guide",
     title: "Estimate with official inputs, then verify the packed parcel.",
     intro:
-      "LoongBuy's official guidance describes restricted-goods checks, actual and volumetric weight, and later reconciliation after carrier measurements. The live query page was access-protected during this review, so follow its current fields rather than copying an old form.",
+      "LoongBuy's official freight guidance describes restricted-goods checks and actual versus volumetric weight. Recent first-party search-index text for its process page describes later carrier measurement reconciliation; direct access to that page timed out during this review, so treat that point as provisional and follow the current account record.",
     sourceUrl: "https://service.loongbuy.com/en/content/freight",
     sourceLabel: "Open LoongBuy freight guidance",
     sections: [
@@ -4421,8 +4421,9 @@ const LOONGBUY_PAGES: readonly TenantResearchPage[] = [
         ],
       },
     ],
+    reviewedAt: "2026-09-06",
     methodNote:
-      "The official query page returned a Cloudflare access challenge on 2026-09-05. This page does not claim that its form fields or prices were directly verified in that session.",
+      "The freight page was directly reviewed on 2026-09-06. The separate process page was readable in recent first-party search-index text but timed out on direct access; no live route price or final charge is claimed here.",
   },
   {
     domain: "loongbuys.net",
@@ -4558,6 +4559,11 @@ const LOVEGOBUY_PAGES: readonly TenantResearchPage[] = [
           "Define dimensions, quantity, materials, intended use and any restriction-relevant characteristics for that product type.",
       },
     ],
+    sourceUrl: "https://lovegobuy.com/",
+    sourceLabel: "Open the current LoveGoBuy site",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official homepage supports product-link, keyword and image discovery. The category fields on this page are an independent editorial framework, not LoveGoBuy policy.",
   },
   {
     domain: "lovegobuyindex.com",
@@ -4591,6 +4597,11 @@ const LOVEGOBUY_PAGES: readonly TenantResearchPage[] = [
           "Keep the source URL, selected option, date, order stage and the evidence or policy used for the next decision.",
       },
     ],
+    sourceUrl: "https://lovegobuy.com/",
+    sourceLabel: "Review the current LoveGoBuy site",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official homepage supports platform identity and a high-level warehouse, QC and consolidation workflow. Current coupon and refund rules were not verified there, so the answers remain verification prompts rather than policy claims.",
   },
   {
     domain: "lovegobuyindex.com",
@@ -4624,6 +4635,11 @@ const LOVEGOBUY_PAGES: readonly TenantResearchPage[] = [
           "Use the applicable current policy and responsible support channel for coupon, cancellation, return or refund questions.",
       },
     ],
+    sourceUrl: "https://lovegobuy.com/",
+    sourceLabel: "Check the current LoveGoBuy site",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official homepage supports product-link, keyword and image discovery plus a warehouse, QC and consolidation workflow. Current coupon and refund rules were not verified there.",
   },
   {
     domain: "lovegobuyindex.com",
@@ -4657,6 +4673,11 @@ const LOVEGOBUY_PAGES: readonly TenantResearchPage[] = [
           "Check current restrictions, destination route terms and escalation channels for the exact order or parcel.",
       },
     ],
+    sourceUrl: "https://lovegobuy.com/",
+    sourceLabel: "Check the current LoveGoBuy site",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official homepage was reviewed for platform identity and high-level workflow only. It does not support a permanent safety verdict or the current coupon and refund terms discussed as checks on this page.",
   },
   {
     domain: "lovegobuyindex.com",
@@ -4690,6 +4711,11 @@ const LOVEGOBUY_PAGES: readonly TenantResearchPage[] = [
           "Confirm the discount appears in the correct step before payment and retain the visible result for the transaction record.",
       },
     ],
+    sourceUrl: "https://lovegobuy.com/",
+    sourceLabel: "Check the current LoveGoBuy site",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "No current first-party coupon rule was verified during this review. This is an independent verification checklist, not an active offer or LoveGoBuy policy.",
   },
   {
     domain: "lovegobuyindex.com",
@@ -4756,6 +4782,11 @@ const LOVEGOBUY_PAGES: readonly TenantResearchPage[] = [
           "Read the applicable terms, deadlines, fees and return conditions before submitting the request through the responsible channel.",
       },
     ],
+    sourceUrl: "https://lovegobuy.com/",
+    sourceLabel: "Check the current LoveGoBuy site",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "No current first-party refund rule was verified during this review. This page prepares evidence for a request and does not state LoveGoBuy policy, eligibility or deadlines.",
   },
 ];
 
@@ -5467,10 +5498,11 @@ const OOPBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
         ],
       },
     ],
-    sourceUrl: "https://oopbuy.com/product/1688/792010200504",
+    sourceUrl: "https://oopbuy.com/product/0/934046990025",
     sourceLabel: "Open the official Oopbuy product-page example",
+    reviewedAt: "2026-09-06",
     methodNote:
-      "On 2026-09-05 the direct page returned the application shell while recent official search-index text still exposed the two estimate labels. Recheck a current product page before relying on the field names.",
+      "Recent first-party search-index text for this product example exposed seller-to-warehouse and international-estimate fields, while direct HTML returned only the application shell on 2026-09-06. The example may disappear and does not support a live rate or final-charge promise.",
   },
   {
     domain: "oopbuyindex.net",
@@ -5963,8 +5995,9 @@ const PARCELUP_INDEX_PAGES: readonly TenantResearchPage[] = [
     ],
     sourceUrl: "https://parcelup.com/help",
     sourceLabel: "Open Parcel Up help",
+    reviewedAt: "2026-09-06",
     methodNote:
-      "The official page required a Cloudflare verification step on 2026-09-05. Payment terms and amounts must be rechecked in the current account.",
+      "The official help page was directly reviewed on 2026-09-06 for the two-stage workflow. Payment terms and amounts remain time-sensitive and must be rechecked in the current account.",
   },
   {
     domain: "parcelupindex.com",
@@ -5996,8 +6029,9 @@ const PARCELUP_INDEX_PAGES: readonly TenantResearchPage[] = [
     ],
     sourceUrl: "https://parcelup.com/help/taobao-items-warehouse",
     sourceLabel: "Open Parcel Up warehouse help",
+    reviewedAt: "2026-09-06",
     methodNote:
-      "The official page required a Cloudflare verification step on 2026-09-05. Treat the workflow as reviewable context, not a fixed fee or storage promise.",
+      "The official warehouse help page was directly reviewed on 2026-09-06. It supports the workflow context, not a fixed fee, dispatch time or storage promise.",
   },
   {
     domain: "parcelupindex.com",
@@ -6045,8 +6079,9 @@ const PARCELUP_INDEX_PAGES: readonly TenantResearchPage[] = [
     ],
     sourceUrl: "https://parcelup.com/order/delivery-tracking",
     sourceLabel: "Open Parcel Up delivery tracking",
+    reviewedAt: "2026-09-06",
     methodNote:
-      "The official page required a Cloudflare verification step on 2026-09-05. This guide does not access live parcel data.",
+      "The official tracking page was directly reviewed on 2026-09-06 for its shipping-service and tracking-number inputs. This guide does not access live parcel data.",
   },
   {
     domain: "parcelupindex.com",
@@ -6275,6 +6310,12 @@ const SUGARGOO_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Request or record absent angles, measurements or functional checks before a parcel decision.",
       },
     ],
+    sourceUrl:
+      "https://blog.sugargoo.com/sugargoo-superbuy-mulebuy-kakobuy-check-qc-photos/",
+    sourceLabel: "Review the official Sugargoo QC article",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The first-party article supports using warehouse QC photos as visible evidence. This checklist does not claim that images prove hidden materials, performance or authenticity.",
   },
   {
     domain: "sugargooindex.net",
@@ -6304,6 +6345,12 @@ const SUGARGOO_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Confirm eligibility, charging method, surcharges and destination rules at submission time.",
       },
     ],
+    sourceUrl:
+      "https://blog.sugargoo.com/how-to-combine-multiple-orders-on-sugargoo/",
+    sourceLabel: "Review the official Sugargoo consolidation article",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The first-party article supports consolidation as a parcel-planning step. Route availability, charges and destination rules must still be checked at submission time.",
   },
   {
     domain: "sugargooindex.net",
@@ -6332,6 +6379,12 @@ const SUGARGOO_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Use measured parcel inputs, current route terms and dated carrier events for the final stage.",
       },
     ],
+    sourceUrl:
+      "https://blog.sugargoo.com/how-does-ordering-from-sugargoo-work-learn-how-to-buy-from-china-step-by-step/",
+    sourceLabel: "Review the official Sugargoo ordering guide",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The first-party guide supports the high-level order, warehouse and parcel handoffs. It does not make product-quality, route-speed or final-cost guarantees here.",
   },
   {
     domain: "sugargooindex.net",
@@ -6380,8 +6433,9 @@ const SUGARGOO_INDEX_PAGES: readonly TenantResearchPage[] = [
     sourceUrl:
       "https://blog.sugargoo.com/how-to-track-your-package-shipping-status-transit-nodes-and-delivery-time-estimates/",
     sourceLabel: "Open the official Sugargoo tracking article",
+    reviewedAt: "2026-09-06",
     methodNote:
-      "The official article returned 502 on 2026-09-05 while its first-party search-index text remained available. Recheck the source before changing workflow facts.",
+      "The official article returned 403 on direct access on 2026-09-06 while its first-party search-index text remained readable. This is search-index-only evidence, not a claim of direct page verification.",
   },
   {
     domain: "sugargooindex.net",
@@ -8667,7 +8721,7 @@ const KAMEYMALL_INDEX_PAGES: readonly TenantResearchPage[] = [
     eyebrow: "KameyMall category-to-item method",
     title: "Browse to learn the fields, then review one item precisely.",
     intro:
-      "KameyMall publishes product search, historical QC and warehouse workflows. Use each as a separate evidence layer.",
+      "KameyMall's current site supports product search and service entry points. A 2024 KameyMall-hosted guide describes an earlier QC and warehouse workflow; keep that historical context separate from current order evidence.",
     sections: [
       {
         title: "Category orientation",
@@ -8685,6 +8739,11 @@ const KAMEYMALL_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Compare received-item evidence and parcel measurements with the saved request.",
       },
     ],
+    sourceUrl: "https://www.kameymall.com/",
+    sourceLabel: "Open the current KameyMall site",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The current homepage supports identity and search context. Historical workflow references are dated and do not establish current fees, timings or policy.",
   },
   {
     domain: "kameymallindex.com",
@@ -8741,6 +8800,11 @@ const KAMEYMALL_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Use current received-item images and measurements for the actual order record.",
       },
     ],
+    sourceUrl: "https://www.kameymall.com/forum/7253?page=home_d",
+    sourceLabel: "Review the 2024 KameyMall-hosted guide",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "This is a historical KameyMall-hosted forum guide dated 2024-05-14. It provides context only and does not establish current QC policy or replace evidence for the present order.",
   },
   {
     domain: "kameymallindex.com",
@@ -8780,7 +8844,7 @@ const KAMEYMALL_INDEX_PAGES: readonly TenantResearchPage[] = [
     title:
       "Replace product and historical estimates with actual parcel inputs.",
     intro:
-      "KameyMall publishes preview and parcel workflows; use current packed measurements for route decisions.",
+      "KameyMall exposes a current transport page; use the current packed measurements and route inputs shown there rather than historical estimates.",
     sections: [
       {
         title: "Confirm contents",
@@ -8798,6 +8862,11 @@ const KAMEYMALL_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Use actual package inputs and current destination terms on KameyMall.",
       },
     ],
+    sourceUrl: "https://www.kameymall.com/agency/transport",
+    sourceLabel: "Open the current KameyMall transport page",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The current transport page is the route-information source. This independent checklist does not preserve a quoted rate, delivery time or route guarantee.",
   },
   {
     domain: "kameymallindex.com",
@@ -8855,6 +8924,11 @@ const KAMEYMALL_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Automatic, duplicate, stale, incomplete or generic rows stay outside Google until they add reviewed product-specific value.",
       },
     ],
+    sourceUrl: "https://www.kameymall.com/forum/7253?page=home_d",
+    sourceLabel: "Review the dated KameyMall-hosted guide",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The linked guide is historical context from 2024. Current account, order, warehouse and shipping facts must be checked on KameyMall's present service pages.",
   },
 ];
 
@@ -10279,7 +10353,7 @@ const TENANT_CATEGORY_FRONT_PAGES: readonly TenantResearchPage[] = [
     ],
     sourceUrl: "https://www.usfans.com/beginner-guide",
     sourceLabel: "Review the USFans beginner guide",
-    reviewedAt: "2026-09-03",
+    reviewedAt: "2026-09-06",
     editorialOwner: "USFans Index research desk",
     methodNote:
       "The category fields follow the current USFans source workflow for Taobao, Tmall and 1688 while product claims remain listing-specific.",
@@ -10509,7 +10583,7 @@ const THIN_TENANT_RESEARCH_PAGES: readonly TenantResearchPage[] = [
     ],
     sourceUrl: "https://www.usfans.com/beginner-guide",
     sourceLabel: "Review the USFans beginner guide",
-    reviewedAt: "2026-09-03",
+    reviewedAt: "2026-09-06",
     editorialOwner: "USFans Index research desk",
     methodNote:
       "The official USFans guide currently documents product-link, keyword and image entry points for Taobao, Tmall and 1688 sources.",
@@ -10523,7 +10597,7 @@ const THIN_TENANT_RESEARCH_PAGES: readonly TenantResearchPage[] = [
     eyebrow: "USFans warehouse QC record",
     title: "Connect USFans warehouse evidence to the exact ordered item.",
     intro:
-      "The warehouse record can show visible condition and supplied measurements, but it cannot establish every seller or product claim.",
+      "The warehouse record can show supplied photos and visible condition, but it cannot establish every seller or product claim.",
     sections: [
       {
         title: "Order-to-warehouse match",
@@ -10533,7 +10607,7 @@ const THIN_TENANT_RESEARCH_PAGES: readonly TenantResearchPage[] = [
       {
         title: "Visible QC evidence",
         description:
-          "Review the supplied photos, dimensions, weight, labels, color, condition and included pieces.",
+          "Review supplied photos, labels, color, visible condition and included pieces; if dimensions or weight are shown, preserve them as account evidence.",
       },
       {
         title: "After-sale question",
@@ -10543,7 +10617,7 @@ const THIN_TENANT_RESEARCH_PAGES: readonly TenantResearchPage[] = [
     ],
     sourceUrl: "https://www.usfans.com/beginner-guide",
     sourceLabel: "Review USFans inspection guidance",
-    reviewedAt: "2026-09-03",
+    reviewedAt: "2026-09-06",
     editorialOwner: "USFans Index research desk",
     methodNote:
       "USFans' official guide describes inspection, warehouse storage and user access to received-item records; conclusions remain limited to visible evidence.",
@@ -10575,12 +10649,12 @@ const THIN_TENANT_RESEARCH_PAGES: readonly TenantResearchPage[] = [
           "Record the packed size and weight, final fee adjustment, carrier number and later parcel events separately.",
       },
     ],
-    sourceUrl: "https://www.usfans.com/beginner-guide",
-    sourceLabel: "Review USFans parcel steps",
-    reviewedAt: "2026-09-03",
+    sourceUrl: "https://www.usfans.com/estimation",
+    sourceLabel: "Review the current USFans estimator",
+    reviewedAt: "2026-09-06",
     editorialOwner: "USFans Index research desk",
     methodNote:
-      "The official USFans guide distinguishes the international shipping deposit from the final fee calculated after carrier-verified size and weight.",
+      "The official estimator supports current route-input review; the beginner guide separately describes deposit and later fee reconciliation. Formulae, routes and tolerances remain time-sensitive.",
   },
   {
     domain: "usfansindex.net",
@@ -10612,7 +10686,7 @@ const THIN_TENANT_RESEARCH_PAGES: readonly TenantResearchPage[] = [
     ],
     sourceUrl: "https://www.usfans.com/beginner-guide",
     sourceLabel: "Open the USFans beginner guide",
-    reviewedAt: "2026-09-03",
+    reviewedAt: "2026-09-06",
     editorialOwner: "USFans Index research desk",
     methodNote:
       "The FAQ uses the current official beginner guide for workflow facts and keeps seller, warehouse and carrier responsibilities separate.",
