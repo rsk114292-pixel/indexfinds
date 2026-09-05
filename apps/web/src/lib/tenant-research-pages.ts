@@ -147,7 +147,7 @@ const TENANT_RESEARCH_PROFILES: Record<string, TenantResearchProfile> = {
   },
   "acbuyindex.com": {
     variant: "source",
-    officialUrl: "https://acbuy.com",
+    officialUrl: "https://www.acbuy.com/en/",
     officialLabel: "Open ACBuy",
     heroImage: "/tenants/acbuy/hero-desktop.webp",
     heroAlt: "ACBuy product research workspace",
@@ -1102,12 +1102,12 @@ const ACBUY_PAGES: readonly TenantResearchPage[] = [
       {
         title: "Review warehouse evidence",
         description:
-          "Use the measurements, photos and notes provided after arrival to check the ordered option.",
+          "Use the inspection photos and feedback shown after arrival to check the ordered option.",
       },
       {
         title: "Build the parcel",
         description:
-          "Confirm selected items, recorded measurements, restrictions and available services before parcel submission.",
+          "Confirm selected items, recorded item details, restrictions and available services before parcel submission.",
       },
       {
         title: "Confirm the route",
@@ -1188,7 +1188,7 @@ const ACBUY_PAGES: readonly TenantResearchPage[] = [
       {
         title: "Check item restrictions",
         description:
-          "Review current rules for batteries, liquids, powders, magnets, sharp items, food and branded goods.",
+          "Review the current ACBuy prohibited-item and route information for the exact item, then confirm destination rules separately.",
       },
       {
         title: "Review destination requirements",
@@ -1369,12 +1369,12 @@ const ALLCHINABUY_INDEX_PAGES: readonly TenantResearchPage[] = [
       {
         title: "Define the packaging request",
         description:
-          "Write specific requests for removal, retention, protection, reinforcement or consolidation only when they serve a clear purpose.",
+          "Write specific requests for package removal, package reinforcement, insurance or consolidation only when they serve a clear purpose.",
       },
       {
         title: "Check route eligibility",
         description:
-          "Review the real contents for batteries, liquids, powders, magnets, fragile parts and category restrictions.",
+          "Review the exact contents against the current mail restrictions; do not infer eligibility from the product category.",
       },
       {
         title: "Review the destination record",
@@ -1820,7 +1820,7 @@ const BBDBUY_EU_FINDS_PAGES: readonly TenantResearchPage[] = [
       {
         title: "Official service",
         description:
-          "Use BBDbuy for current account, order, warehouse, estimator, route and service information.",
+          "Verify account, order, warehouse, estimate and route questions on the current BBDbuy site; if a function is not documented there, keep it unresolved.",
       },
       {
         title: "Destination guidance",
@@ -1839,7 +1839,7 @@ const BBDBUY_EU_FINDS_PAGES: readonly TenantResearchPage[] = [
     slug: "qc-checklist",
     seoTitle: "BBDbuy QC Checklist | Review Product Photo Evidence",
     description:
-      "Use a neutral BBDbuy QC photo checklist to match the selected item, review category-specific details and preserve unresolved questions.",
+      "Use a neutral QC-evidence checklist for a BBDbuy-linked order to match the selected item, review category-specific details and preserve unresolved questions.",
     eyebrow: "Product photo evidence",
     title: "Match the item before judging the finish.",
     intro:
@@ -1872,7 +1872,7 @@ const BBDBUY_EU_FINDS_PAGES: readonly TenantResearchPage[] = [
     slug: "shipping-planner",
     seoTitle: "BBDbuy EU Shipping Planner | Prepare Estimate Inputs",
     description:
-      "Prepare destination, parcel contents, measured weight, dimensions, packaging and evidence status before using current BBDbuy shipping tools.",
+      "Prepare destination, parcel contents, measured weight, dimensions, packaging and evidence status before using any shipping tool currently exposed by BBDbuy.",
     eyebrow: "EU parcel input record",
     title: "Compare routes from a stable parcel record.",
     intro:
@@ -2089,7 +2089,7 @@ const BBDBUY_US_PAGES: readonly TenantResearchPage[] = [
       {
         question: "Is this BBDbuy's official website?",
         answer:
-          "No. This is an independent US product and parcel planning guide. Use BBDbuy for current account, order, warehouse and route services.",
+          "No. This is an independent US product and parcel planning guide. Use the current BBDbuy site to verify which account, order, warehouse and route functions are available.",
       },
       {
         question: "When should I estimate US shipping?",
@@ -7032,10 +7032,20 @@ const SUPERBUY_ITEMS_PAGES: readonly TenantResearchPage[] = [
   },
 ];
 
+const PLATFORM_SOURCE_REVIEW_DATE = "2026-09-06";
+const BOONBUY_EDITORIAL_METHOD =
+  "This page documents the site's independent research method; it does not assert current BoonBuy fees, routes or delivery outcomes.";
+const BOONBUY_OFFICIAL_METHOD =
+  "The BoonBuy homepage was reviewed for the platform workflow described here. Product, route, fee and delivery outcomes remain time-sensitive and are not guaranteed by this guide.";
+const CNSHOPPER_EDITORIAL_METHOD =
+  "This page documents the site's independent research method; it does not assert current CNShopper fees, routes or delivery outcomes.";
+
 const BOONBUY_FIND_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "boonbuyfind.net",
     slug: "categories",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: BOONBUY_EDITORIAL_METHOD,
     seoTitle: "BoonBuy Product Categories | Build a Source-Ready Search",
     description:
       "Browse BoonBuy product categories and identify the measurements, specifications, option fields and source evidence needed before saving a find.",
@@ -7064,6 +7074,8 @@ const BOONBUY_FIND_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "boonbuyfind.net",
     slug: "search-guide",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: BOONBUY_EDITORIAL_METHOD,
     seoTitle: "How to Search BoonBuy Products | Query and Source Guide",
     description:
       "Use a BoonBuy search query that combines product type, one meaningful constraint and a source check without turning result titles into verified facts.",
@@ -7092,6 +7104,8 @@ const BOONBUY_FIND_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "boonbuyfind.net",
     slug: "product-checklist",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: BOONBUY_EDITORIAL_METHOD,
     seoTitle: "BoonBuy Product Checklist | Option, Evidence and Unknowns",
     description:
       "Review a BoonBuy-linked product with the current source, exact option, category-specific evidence, duplicate check and unresolved questions.",
@@ -7120,6 +7134,10 @@ const BOONBUY_FIND_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "boonbuyfind.net",
     slug: "platform-guide",
+    sourceUrl: "https://boonbuy.com/",
+    sourceLabel: "BoonBuy official homepage",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: BOONBUY_OFFICIAL_METHOD,
     seoTitle: "How BoonBuy Works | Independent Research Handoff Guide",
     description:
       "Separate BoonBuy product discovery from assisted purchase, warehouse receiving, QC, consolidation, parcel estimation, dispatch and tracking decisions.",
@@ -7149,6 +7167,10 @@ const BOONBUY_FIND_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "boonbuyfind.net",
     slug: "faq",
+    sourceUrl: "https://boonbuy.com/",
+    sourceLabel: "BoonBuy official homepage",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: BOONBUY_OFFICIAL_METHOD,
     seoTitle: "BoonBuy Find FAQ | Search, QC, Sources and Shipping Scope",
     description:
       "Read independent answers about BoonBuy product search, source links, QC evidence, platform workflow and the public indexing quality gate.",
@@ -7182,6 +7204,8 @@ const BOONBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "boonbuyindex.com",
     slug: "boonbuy-products",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: BOONBUY_EDITORIAL_METHOD,
     seoTitle: "BoonBuy Products | Build a Reviewed Product Index",
     description:
       "Review BoonBuy-linked products by query intent, final source, exact option and visible evidence before retaining one representative result.",
@@ -7210,6 +7234,8 @@ const BOONBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "boonbuyindex.com",
     slug: "query-method",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: BOONBUY_EDITORIAL_METHOD,
     seoTitle: "BoonBuy Search Method | Query, Source and Evidence Fields",
     description:
       "Use a BoonBuy product query with one meaningful constraint, then retain the source and evidence fields needed to reproduce the search decision.",
@@ -7238,6 +7264,8 @@ const BOONBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "boonbuyindex.com",
     slug: "source-checklist",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: BOONBUY_EDITORIAL_METHOD,
     seoTitle:
       "BoonBuy Source Checklist | Review Product Links Before Retaining",
     description:
@@ -7268,6 +7296,10 @@ const BOONBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "boonbuyindex.com",
     slug: "route-boundaries",
+    sourceUrl: "https://boonbuy.com/",
+    sourceLabel: "BoonBuy official homepage",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: BOONBUY_OFFICIAL_METHOD,
     seoTitle:
       "BoonBuy Route Boundaries | Separate Product and Service Research",
     description:
@@ -7297,6 +7329,10 @@ const BOONBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "boonbuyindex.com",
     slug: "faq",
+    sourceUrl: "https://boonbuy.com/",
+    sourceLabel: "BoonBuy official homepage",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: BOONBUY_OFFICIAL_METHOD,
     seoTitle: "BoonBuy Index FAQ | Products, Duplicates and Google Review Gate",
     description:
       "Read independent answers about BoonBuy product links, duplicate grouping, source checks, service boundaries and the reviewed Google indexing gate.",
@@ -7329,6 +7365,8 @@ const CNSHOPPER_INDEX_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "cnshopperindex.com",
     slug: "cnshopper-products",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: CNSHOPPER_EDITORIAL_METHOD,
     seoTitle:
       "CNShopper Products | Browse Categories and Preserve Source Context",
     description:
@@ -7358,6 +7396,8 @@ const CNSHOPPER_INDEX_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "cnshopperindex.com",
     slug: "category-map",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: CNSHOPPER_EDITORIAL_METHOD,
     seoTitle: "CNShopper Category Map | Plan Product-Specific Comparisons",
     description:
       "Use a CNShopper category map to choose product-specific comparison fields for apparel, footwear, bags, accessories and electronics.",
@@ -7386,6 +7426,8 @@ const CNSHOPPER_INDEX_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "cnshopperindex.com",
     slug: "source-checklist",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: CNSHOPPER_EDITORIAL_METHOD,
     seoTitle: "CNShopper Source Checklist | Product Link and Option Review",
     description:
       "Review a CNShopper-linked product for final source, seller context, exact option, visible specifications, image relevance and unresolved fields.",
@@ -7415,6 +7457,11 @@ const CNSHOPPER_INDEX_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "cnshopperindex.com",
     slug: "order-handoff",
+    sourceUrl: "https://cnshopper.com/forwarding",
+    sourceLabel: "CNShopper forwarding guide",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote:
+      "The CNShopper forwarding guide was reviewed for its warehouse pre-alert, consolidation, parcel submission and freight sequence. Product and order details still require their own current records.",
     seoTitle: "CNShopper Order Handoff | Product, Warehouse and Parcel Records",
     description:
       "Carry a CNShopper product record into ordering, warehouse review and parcel planning without treating catalog fields as later-stage evidence.",
@@ -7443,6 +7490,11 @@ const CNSHOPPER_INDEX_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "cnshopperindex.com",
     slug: "faq",
+    sourceUrl: "https://cnshopper.com/help_center",
+    sourceLabel: "CNShopper help center",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote:
+      "The CNShopper help center was reviewed for official support topics and entry points; this guide does not treat it as evidence for marketing or delivery guarantees.",
     seoTitle: "CNShopper Index FAQ | Categories, Sources and Indexing Review",
     description:
       "Read independent answers about CNShopper categories, product sources, option review, order handoffs and the public search indexing threshold.",
@@ -10181,6 +10233,8 @@ const TENANT_CATEGORY_FRONT_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "boonbuyindex.com",
     slug: "categories",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: BOONBUY_EDITORIAL_METHOD,
     seoTitle: "BoonBuy Index Categories | Query and Source Fields by Product",
     description:
       "Organize BoonBuy-linked results by product category while retaining the query, final source, exact option and unresolved evidence field.",
@@ -10209,6 +10263,8 @@ const TENANT_CATEGORY_FRONT_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "cnshopperindex.com",
     slug: "categories",
+    reviewedAt: PLATFORM_SOURCE_REVIEW_DATE,
+    methodNote: CNSHOPPER_EDITORIAL_METHOD,
     seoTitle: "CNShopper Index Categories | Category-Led Source Checks",
     description:
       "Browse CNShopper-linked categories with product-specific comparison fields before handing a selected source to an order or parcel workflow.",

@@ -441,6 +441,47 @@ describe("tenant research pages", () => {
     ]);
   });
 
+  it("records reviewed provenance without presenting editorial methods as official facts", () => {
+    const pages = getAllTenantResearchPages();
+    const auditedDomains = [
+      "boonbuyfind.net",
+      "boonbuyindex.com",
+      "cnshopperindex.com",
+    ];
+    const auditedPages = pages.filter((page) =>
+      auditedDomains.includes(page.domain),
+    );
+
+    expect(auditedPages).toHaveLength(17);
+    expect(
+      auditedPages.every((page) => page.reviewedAt === "2026-09-06"),
+    ).toBe(true);
+    expect(auditedPages.every((page) => Boolean(page.methodNote))).toBe(true);
+
+    expect(
+      getTenantResearchPage("boonbuyfind.net", "platform-guide")?.sourceUrl,
+    ).toBe("https://boonbuy.com/");
+    expect(
+      getTenantResearchPage("boonbuyindex.com", "route-boundaries")
+        ?.sourceUrl,
+    ).toBe("https://boonbuy.com/");
+    expect(
+      getTenantResearchPage("cnshopperindex.com", "order-handoff")
+        ?.sourceUrl,
+    ).toBe("https://cnshopper.com/forwarding");
+    expect(
+      getTenantResearchPage("cnshopperindex.com", "faq")?.sourceUrl,
+    ).toBe("https://cnshopper.com/help_center");
+
+    for (const [domain, slug] of [
+      ["boonbuyfind.net", "search-guide"],
+      ["boonbuyindex.com", "query-method"],
+      ["cnshopperindex.com", "category-map"],
+    ]) {
+      expect(getTenantResearchPage(domain, slug)?.sourceUrl).toBeUndefined();
+    }
+  });
+
   it("preserves HooBuy, both JoyaGoo intents and KameyMall source paths", () => {
     expect(getTenantResearchPaths("hoobuyindex.net")).toEqual([
       "/guide",
@@ -752,5 +793,7 @@ describe("tenant research pages", () => {
     );
 
     expect(source).not.toContain("profile.heroImage");
+    expect(source).not.toContain("Open platform homepage");
+    expect(source).not.toContain("`${profile.officialLabel} homepage`");
   });
 });

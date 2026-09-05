@@ -245,10 +245,7 @@ export default async function TenantResearchPage({
                 target="_blank"
                 className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${secondaryButtonClass}`}
               >
-                {page.sourceLabel ||
-                  (page.sourceUrl
-                    ? profile.officialLabel
-                    : `${profile.officialLabel} homepage`)}
+                {page.sourceLabel || profile.officialLabel}
                 <ExternalLink className="h-4 w-4" />
               </a>
             </div>
@@ -646,7 +643,7 @@ export default async function TenantResearchPage({
                 target="_blank"
                 className="font-bold text-current underline underline-offset-4"
               >
-                {page.sourceUrl ? "Open page source" : "Open platform homepage"}
+                {page.sourceLabel || profile.officialLabel}
               </a>
             </dd>
           </div>
