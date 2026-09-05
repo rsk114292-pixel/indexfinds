@@ -120,6 +120,31 @@ describe('sitemap', () => {
     expect(zhHome?.alternates?.['x-default']).toBe(`${SITE_URL}/en`);
   });
 
+  it('excludes invalid and duplicate API slugs from indexable sitemap URLs', async () => {
+    mockFetch
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ slugs: ['shoes', ' shoes ', '', null, 'null'] }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          slugs: ['nike', ' nike ', 'null', 'undefined', null],
+        }),
+      });
+
+    const entries = await getSitemapEntriesByChunk(0);
+    const urls = entries.map((entry) => entry.url);
+
+    expect(urls).toContain(`${SITE_URL}/en/categories/shoes`);
+    expect(urls).toContain(`${SITE_URL}/en/brands/nike`);
+    expect(urls.filter((url) => url.endsWith('/categories/shoes'))).toHaveLength(
+      8,
+    );
+    expect(urls.filter((url) => url.endsWith('/brands/nike'))).toHaveLength(8);
+    expect(urls.some((url) => /\/(?:null|undefined)$/.test(url))).toBe(false);
+  });
+
   it('keeps tenant sitemaps limited to reviewed unique English pages', async () => {
     await expectTenantSitemap('usfansindex.net', [
       '',

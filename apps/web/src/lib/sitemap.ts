@@ -75,6 +75,24 @@ async function fetchJson<T>(
   });
 }
 
+function filterIndexableSlugs(slugs: unknown): string[] {
+  if (!Array.isArray(slugs)) return [];
+
+  return [
+    ...new Set(
+      slugs
+        .filter((slug): slug is string => typeof slug === 'string')
+        .map((slug) => slug.trim())
+        .filter(
+          (slug) =>
+            slug.length > 0 &&
+            slug.toLowerCase() !== 'null' &&
+            slug.toLowerCase() !== 'undefined',
+        ),
+    ),
+  ];
+}
+
 export async function getProductTotal(): Promise<number> {
   const data = await fetchJson<ReviewedSlugResponse>(
     `${API_BASE_URL}/products/slugs?page=1&limit=1`,
@@ -91,7 +109,7 @@ export async function getProductSlugsPage(
     `${API_BASE_URL}/products/slugs?page=${page}&limit=${limit}`,
     300,
   );
-  return data?.reviewedOnly === true ? data.slugs || [] : [];
+  return data?.reviewedOnly === true ? filterIndexableSlugs(data.slugs) : [];
 }
 
 export async function getAllCategorySlugs(): Promise<string[]> {
@@ -99,7 +117,7 @@ export async function getAllCategorySlugs(): Promise<string[]> {
     `${API_BASE_URL}/categories/slugs`,
     86400,
   );
-  return data?.slugs || [];
+  return filterIndexableSlugs(data?.slugs);
 }
 
 export async function getAllBrandSlugs(): Promise<string[]> {
@@ -107,7 +125,7 @@ export async function getAllBrandSlugs(): Promise<string[]> {
     `${API_BASE_URL}/brands/slugs`,
     86400,
   );
-  return data?.slugs || [];
+  return filterIndexableSlugs(data?.slugs);
 }
 
 function multiLocaleEntries(

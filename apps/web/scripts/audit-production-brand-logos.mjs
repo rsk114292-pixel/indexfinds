@@ -69,13 +69,17 @@ try {
     const context = await browser.newContext({ viewport: definition.viewport });
     const page = await context.newPage();
     for (const brand of brands) {
+      const brandName = brand.name || brand.brand;
+      if (!brandName || !brand.slug) {
+        throw new Error("Brand audit input requires a name/brand column and a slug column");
+      }
       const url = `${baseUrl}/en/brands/${brand.slug}`;
       const response = await page.goto(url, {
         waitUntil: "domcontentloaded",
         timeout: 30_000,
       });
       const heading = page.getByRole("heading", {
-        name: brand.name,
+        name: brandName,
         exact: true,
         level: 2,
       });
@@ -96,7 +100,7 @@ try {
               complete: image.complete,
               naturalWidth: image.naturalWidth,
             })),
-        brand.name,
+        brandName,
       );
       const placeholderCount = await page.locator(definition.placeholder).count();
       const oldLogoUrl = brand.old_logo_url;
@@ -109,7 +113,7 @@ try {
         }
       });
       results.push({
-        name: brand.name,
+        name: brandName,
         slug: brand.slug,
         viewport: definition.name,
         url,
