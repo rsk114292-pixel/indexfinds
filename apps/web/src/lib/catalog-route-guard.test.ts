@@ -80,6 +80,19 @@ describe('catalog-route-guard', () => {
     );
   });
 
+  it.each(['null', 'NULL', ' undefined '])(
+    'rejects placeholder catalog slug %s without calling the API',
+    async (slug) => {
+      const { resolveGuardedCatalogSlug } = loadModule();
+
+      await expect(resolveGuardedCatalogSlug('brands', slug)).resolves.toEqual({
+        exists: false,
+        canonicalSlug: null,
+      });
+      expect(mockFetch).not.toHaveBeenCalled();
+    },
+  );
+
   it('returns the canonical category slug for an exact legacy alias', async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,

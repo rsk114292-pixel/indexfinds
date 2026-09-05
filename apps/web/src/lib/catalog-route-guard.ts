@@ -10,6 +10,7 @@ const LOCALIZED_DETAIL_ROUTE_PATTERN = new RegExp(
   `^/(?<locale>[a-z]{2})/(?<entityType>${GUARDED_ENTITY_TYPES.join('|')})/(?<slug>[^/]+?)/?$`,
   'i',
 );
+const INVALID_CATALOG_SLUGS = new Set(['null', 'undefined']);
 
 export interface GuardedCatalogDetailRoute {
   locale: string;
@@ -46,6 +47,10 @@ export async function resolveGuardedCatalogSlug(
   entityType: GuardedEntityType,
   slug: string,
 ): Promise<GuardedCatalogSlugResolution> {
+  if (INVALID_CATALOG_SLUGS.has(slug.trim().toLowerCase())) {
+    return { exists: false, canonicalSlug: null };
+  }
+
   try {
     const response = await fetch(
       `${API_BASE_URL}/${entityType}/slug/${encodeURIComponent(slug)}`,
