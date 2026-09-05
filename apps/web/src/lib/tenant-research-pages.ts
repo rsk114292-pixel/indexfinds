@@ -8063,7 +8063,7 @@ const HIPOBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
       {
         question: "Is this the official Hipobuy site?",
         answer:
-          "No. Use hipobuy.com for current account, order, warehouse and shipping information.",
+          "No. Use the current Hipobuy site or authenticated app for account, order, warehouse and shipping information.",
       },
       {
         question: "Why are some collected products excluded from Google?",
@@ -10897,7 +10897,208 @@ const NEW_AGENT_RESEARCH_PAGES: readonly TenantResearchPage[] =
   ],
   );
 
-const TENANT_RESEARCH_PAGES = [
+interface ReviewedPlatformSource {
+  sourceUrl: string;
+  sourceLabel: string;
+  methodNote: string;
+}
+
+const REVIEWED_PLATFORM_SOURCE_DATE = "2026-09-06";
+
+const REVIEWED_PLATFORM_SOURCE_DEFAULTS: Record<
+  string,
+  ReviewedPlatformSource
+> = {
+  "cssbuyitems.com": {
+    sourceUrl: "https://new.cssbuy.com/buyforme",
+    sourceLabel: "Open the official CSSBuy buying workflow",
+    methodNote:
+      "The official workflow supports product-link, option, purchase, inspection and warehouse stages. Current prices, addresses, storage, routes, fees and timing still require the live CSSBuy account or tool.",
+  },
+  "cssbuyindex.com": {
+    sourceUrl: "https://new.cssbuy.com/buyforme",
+    sourceLabel: "Open the official CSSBuy buying workflow",
+    methodNote:
+      "The official workflow supports product-link, option, purchase, inspection and warehouse stages. Current prices, addresses, storage, routes, fees and timing still require the live CSSBuy account or tool.",
+  },
+  "cssbuycatalog.com": {
+    sourceUrl: "https://new.cssbuy.com/buyforme",
+    sourceLabel: "Open the official CSSBuy buying workflow",
+    methodNote:
+      "The official workflow supports product-link, option, purchase, inspection and warehouse stages. Current prices, addresses, storage, routes, fees and timing still require the live CSSBuy account or tool.",
+  },
+  "eastmallbuyindex.com": {
+    sourceUrl: "https://www.eastmallbuy.com/help-center",
+    sourceLabel: "Open the official EastMallBuy Help Center",
+    methodNote:
+      "The official Help Center confirms current service topics only. This independent page does not restate changing fees, delivery times, promotions or account-specific results.",
+  },
+  "fishgooindex.com": {
+    sourceUrl: "https://blog.fishgoo.com/faq/",
+    sourceLabel: "Open the official Fishgoo FAQ",
+    methodNote:
+      "Fishgoo first-party pages currently disagree on whether free warehouse storage lasts 90 or 100 days. This page makes no storage-duration, route-count, price or delivery-time promise; verify the current account and calculator.",
+  },
+  "goatedbuyindex.com": {
+    sourceUrl: "https://www.goatedbuy.com/#/pages/doc/buyingProcess",
+    sourceLabel: "Open the official GoatedBuy buying-process route",
+    methodNote:
+      "This is an official client-side route found in the current GoatedBuy application. A normal fetch returns only the app shell, so fees, timing, availability and policy details remain unverified until checked in the live app or account.",
+  },
+  "hipobuyindex.com": {
+    sourceUrl: "https://app.hipobuy.com/",
+    sourceLabel: "Open the official Hipobuy app",
+    methodNote:
+      "The public Hipobuy app supports the brand, search and QC-photo positioning only. No public first-party source was found for current fees, routes, storage, inspection depth or delivery times; verify those details in the authenticated app.",
+  },
+  "hoobuyindex.net": {
+    sourceUrl: "https://hoobuy.com/fill-buy",
+    sourceLabel: "Open the official HooBuy assisted-purchase form",
+    methodNote:
+      "The official form states that assisted-purchase items come from third-party platforms and that HooBuy cannot determine product quality or authenticity. Current seller, service and parcel terms still require a live check.",
+  },
+  "itaobuyindex.com": {
+    sourceUrl:
+      "https://www.itaobuy.com/help/detail?namespaceCode=help_center&articleCode=purchasing_notice",
+    sourceLabel: "Open the official iTaoBuy shopping information",
+    methodNote:
+      "The official shopping information supports the purchasing and warehouse workflow. Product claims remain attached to the marketplace source, while current fees, timing, availability and account results require a live check.",
+  },
+};
+
+const REVIEWED_PLATFORM_SOURCE_OVERRIDES: Record<
+  string,
+  ReviewedPlatformSource
+> = {
+  "cssbuyitems.com/shipping": {
+    sourceUrl: "https://new.cssbuy.com/estimates",
+    sourceLabel: "Open the official CSSBuy cost calculator",
+    methodNote:
+      "The official calculator defines weight, dimensions, commodity attributes and destination inputs. Its result is an estimate, not a guaranteed route, delivery time or final parcel charge.",
+  },
+  "cssbuyindex.com/forwarding": {
+    sourceUrl: "https://new.cssbuy.com/shipforme",
+    sourceLabel: "Open the official CSSBuy Ship For Me workflow",
+    methodNote:
+      "The official forwarding page supports external purchase, warehouse receipt, consolidation and route selection. Use the authenticated account for the current warehouse address, storage, fees and restrictions.",
+  },
+  "cssbuycatalog.com/forwarding": {
+    sourceUrl: "https://new.cssbuy.com/shipforme",
+    sourceLabel: "Open the official CSSBuy Ship For Me workflow",
+    methodNote:
+      "The official forwarding page supports external purchase, warehouse receipt, consolidation and route selection. Use the authenticated account for the current warehouse address, storage, fees and restrictions.",
+  },
+  "cssbuycatalog.com/usa": {
+    sourceUrl: "https://new.cssbuy.com/estimates",
+    sourceLabel: "Open the official CSSBuy cost calculator",
+    methodNote:
+      "The official calculator defines destination, weight, dimensions and commodity-attribute inputs. It does not guarantee USA route eligibility, transit time or final cost for a specific parcel.",
+  },
+  "eastmallbuyindex.com/guide": {
+    sourceUrl:
+      "https://www.eastmallbuy.com/index/information/index/information_id/22.html",
+    sourceLabel: "Open the official EastMallBuy Service Agreement",
+    methodNote:
+      "The official agreement supports the shopping-agent, third-party seller and parcel-forwarding boundaries. It does not guarantee product quality, authenticity, customs clearance or a current transaction outcome.",
+  },
+  "eastmallbuyindex.com/legit": {
+    sourceUrl:
+      "https://www.eastmallbuy.com/index/information/index/information_id/22.html",
+    sourceLabel: "Open the official EastMallBuy Service Agreement",
+    methodNote:
+      "The agreement identifies service and responsibility boundaries; it is not independent proof that every seller, product, payment or shipment is safe or successful.",
+  },
+  "eastmallbuyindex.com/referral-code": {
+    sourceUrl: "https://www.eastmallbuy.com/index/help/info/id/91.html",
+    sourceLabel: "Open the official EastMallBuy affiliate notice",
+    methodNote:
+      "The official notice documents an affiliate reward channel, not a current referral code. This page therefore publishes no active code or reward amount.",
+  },
+  "eastmallbuyindex.com/faq": {
+    sourceUrl:
+      "https://www.eastmallbuy.com/index/information/index/information_id/12.html",
+    sourceLabel: "Open the official EastMallBuy Inspection Policy",
+    methodNote:
+      "The official policy limits inspection mainly to visible appearance and selected order fields. It excludes professional checks of authenticity, function and quality for relevant products.",
+  },
+  "fishgooindex.com/fishgoo-checklist": {
+    sourceUrl: "https://blog.fishgoo.com/how-to-check-qc-photos/",
+    sourceLabel: "Open the official Fishgoo QC-photo guide",
+    methodNote:
+      "The first-party guide supports using QC photos as visible evidence, not as proof of hidden construction, performance or authenticity. Recheck current account options before requesting extra evidence.",
+  },
+  "fishgooindex.com/shipping": {
+    sourceUrl: "https://blog.fishgoo.com/terms-of-service/",
+    sourceLabel: "Open the official Fishgoo Terms of Service",
+    methodNote:
+      "The official terms distinguish actual and volumetric weight and state that delivery estimates are approximate. Fishgoo pages disagree on the free-storage period, so this page intentionally states no duration or live rate.",
+  },
+  "fishgooindex.com/safety": {
+    sourceUrl: "https://blog.fishgoo.com/terms-of-service/",
+    sourceLabel: "Open the official Fishgoo Terms of Service",
+    methodNote:
+      "The official terms describe Fishgoo as an intermediary and list service limits. They do not independently prove that every seller, product, payment or shipment is safe or successful.",
+  },
+  "goatedbuyindex.com/shipping": {
+    sourceUrl: "https://www.goatedbuy.com/#/pages/estimation/shipping",
+    sourceLabel: "Open the official GoatedBuy shipping-estimation route",
+    methodNote:
+      "This official route is rendered inside the GoatedBuy client application. Its current fields, rates, eligibility and timing cannot be verified from the public app shell and must be checked live.",
+  },
+  "goatedbuyindex.com/safety": {
+    sourceUrl: "https://www.goatedbuy.com/#/pages/doc/service-terms",
+    sourceLabel: "Open the official GoatedBuy service-terms route",
+    methodNote:
+      "This official client-side route returns only the app shell to a normal fetch. Treat all detailed policy, payment and account claims as unverified until the live route is reviewed.",
+  },
+  "goatedbuyindex.com/faq": {
+    sourceUrl: "https://www.goatedbuy.com/#/pages/help/center",
+    sourceLabel: "Open the official GoatedBuy Help Center route",
+    methodNote:
+      "The current official application exposes this client-side Help Center route, but its body is not independently available in static HTML. Verify service details in the live app.",
+  },
+  "hoobuyindex.net/shipping": {
+    sourceUrl: "https://hoobuy.com/estimation",
+    sourceLabel: "Open the official HooBuy estimator",
+    methodNote:
+      "The official estimator supports destination, weight, item-category and parcel-dimension inputs. Keep its dated result separate from warehouse measurements, optional services and the final checkout amount.",
+  },
+  "itaobuyindex.com/qc-evidence": {
+    sourceUrl:
+      "https://www.itaobuy.com/help/detail?namespaceCode=help_center&articleCode=proxy_disclaimer",
+    sourceLabel: "Open the official iTaoBuy special-item disclaimer",
+    methodNote:
+      "The official disclaimer limits professional inspection of electronics, branded and other special items to visible appearance and accessories; it does not verify function, quality, completeness or authenticity.",
+  },
+  "itaobuyindex.com/parcel-record": {
+    sourceUrl:
+      "https://www.itaobuy.com/help/detail?namespaceCode=help_center&articleCode=user_agreement",
+    sourceLabel: "Open the official iTaoBuy Terms of Use",
+    methodNote:
+      "The current terms separate purchasing and international-logistics stages and distinguish estimated from packed-parcel charges. Current routes, customs rules, fees and timing still require a dated live check.",
+  },
+  "itaobuyindex.com/faq": {
+    sourceUrl:
+      "https://www.itaobuy.com/help/detail?namespaceCode=help_center&articleCode=user_agreement",
+    sourceLabel: "Open the official iTaoBuy Terms of Use",
+    methodNote:
+      "The official terms support current service boundaries only. This independent FAQ does not certify sellers, product authenticity, inspection completeness, route availability or delivery outcomes.",
+  },
+};
+
+function addReviewedPlatformSource(
+  page: TenantResearchPage,
+): TenantResearchPage {
+  const source =
+    REVIEWED_PLATFORM_SOURCE_OVERRIDES[`${page.domain}/${page.slug}`] ||
+    REVIEWED_PLATFORM_SOURCE_DEFAULTS[page.domain];
+
+  return source
+    ? { ...page, ...source, reviewedAt: REVIEWED_PLATFORM_SOURCE_DATE }
+    : page;
+}
+
+const TENANT_RESEARCH_PAGES: readonly TenantResearchPage[] = [
   ...ONE_TO_ONE_FINDS_CLOUD_PAGES,
   ...ONE_TO_ONE_FINDS_PAGES,
   ...ONE_TO_ONE_REPS_PAGES,
@@ -10945,7 +11146,7 @@ const TENANT_RESEARCH_PAGES = [
   ...TENANT_CATEGORY_FRONT_PAGES,
   ...THIN_TENANT_RESEARCH_PAGES,
   ...NEW_AGENT_RESEARCH_PAGES,
-];
+].map(addReviewedPlatformSource);
 
 export function getTenantResearchPage(
   domain: string,

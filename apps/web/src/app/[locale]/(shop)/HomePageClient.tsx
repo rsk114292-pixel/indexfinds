@@ -48,9 +48,6 @@ const UsfansQuickStart = dynamic(
 const ItaobuyResearchArchive = dynamic(
   () => import("@/components/home/ItaobuyResearchArchive"),
 );
-const ItaobuyOfficialPromotion = dynamic(
-  () => import("@/components/tenant/ItaobuyOfficialPromotion"),
-);
 
 interface HomePageClientProps {
   initialViewport: "desktop" | "mobile";
@@ -94,9 +91,6 @@ export default function HomePageClient({
   if (viewport === "mobile") {
     return (
       <>
-        {tenant?.domain === "itaobuyindex.com" && (
-          <ItaobuyOfficialPromotion />
-        )}
         <MobileHome
           initialCategories={initialCategories}
           initialHotSearches={initialHotSearches}
@@ -360,9 +354,6 @@ export default function HomePageClient({
   if (homeVariant === "archive") {
     return (
       <>
-        {tenant?.domain === "itaobuyindex.com" && (
-          <ItaobuyOfficialPromotion />
-        )}
         <HeroSection initialHotSearches={initialHotSearches} />
         <ItaobuyResearchArchive />
         <CategoriesBentoSection initialData={initialCategories} />
