@@ -1,0 +1,45 @@
+{
+  "generatedAt": "2026-09-05T19:12:00Z",
+  "sourceAudit": "main-indexfinds-url-audit-report-20260905.json",
+  "sourceAuditTotalCount": 4648,
+  "sourceAuditPassedCount": 4633,
+  "sourceAuditFailedCount": 15,
+  "resolutionRelease": "ee560ee",
+  "resolution": {
+    "transientBrandFailures": {
+      "count": 7,
+      "currentStatus": 200,
+      "urls": [
+        "https://indexfinds.com/en/brands/essentials",
+        "https://indexfinds.com/en/brands/fendace",
+        "https://indexfinds.com/zh/brands/fendace",
+        "https://indexfinds.com/en/brands/subaru",
+        "https://indexfinds.com/zh/brands/subaru",
+        "https://indexfinds.com/fr/brands/subaru",
+        "https://indexfinds.com/de/brands/subaru"
+      ],
+      "classification": "The original 404 results were transient/rate-related observations; every URL was rechecked sequentially and returned 200 in production."
+    },
+    "placeholderBrandFailures": {
+      "count": 8,
+      "currentStatus": 404,
+      "xRobotsTag": "noindex, nofollow",
+      "removedFromSitemap": true,
+      "currentSitemapOccurrenceCount": 0,
+      "urls": [
+        "https://indexfinds.com/en/brands/null",
+        "https://indexfinds.com/zh/brands/null",
+        "https://indexfinds.com/fr/brands/null",
+        "https://indexfinds.com/de/brands/null",
+        "https://indexfinds.com/es/brands/null",
+        "https://indexfinds.com/it/brands/null",
+        "https://indexfinds.com/pt/brands/null",
+        "https://indexfinds.com/ar/brands/null"
+      ],
+      "classification": "The placeholder route was a real defect. Invalid catalog slugs are now rejected before API lookup and excluded from sitemap generation."
+    }
+  },
+  "remainingUnresolvedFromSourceAudit": 0,
+  "method": "Sequential public HTTPS recheck with 250 ms spacing; no full 4,648-URL rescan was required because every recorded failure was individually resolved.",
+  "limitation": "This resolution closes the 15 recorded technical failures only; it is not a claim that every URL received full browser, visual, accessibility, or Google indexing acceptance."
+}
