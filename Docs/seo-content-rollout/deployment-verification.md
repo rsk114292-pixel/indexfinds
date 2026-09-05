@@ -2,60 +2,57 @@
 
 Last updated: 2026-09-05 (Asia/Shanghai)
 
-## Production topology observed
+## Production topology verified
 
 - Hostinger Nginx exposes 62 root hostnames: 58 shared tenant websites, `indexfinds.com`, independent `xiangshoe.net`, `api-next.indexfinds.com`, and the Hostinger server hostname.
-- The 58 tenant websites currently use the unified tenant application. `1to1reps.com` is routed to the healthy tenant production service on port 3158.
-- `indexfinds.com` and `xiangshoe.net` remain separate production surfaces and are not counted as tenant clones.
-- Hostinger disk usage was approximately 84%, with about 33 GB free, during the latest read-only check. This is not an active outage but remains a release-capacity risk.
+- All 58 tenant websites, including restored `1to1reps.com`, route to the unified web release on port 3163 and the API release on port 4105.
+- `indexfinds.com` and `xiangshoe.net` remain separate production surfaces; neither was converted into a shared tenant.
+- Hostinger disk use reached 92% before the release. Removing only rebuildable Docker builder cache reclaimed 11.78 GB. After the final image build the filesystem was at 88% with approximately 24 GB free.
+
+## Released change chain
+
+- `f975814` — distinct tenant research surfaces and the 453-page tenant editorial/sitemap set.
+- `0c65b55` — a transient upstream API failure no longer renders as a false `Product Not Found`; only 404/410 represent a missing product.
+- `2d21d35` — authenticated same-origin tenant SSR traffic is separated from public API throttling. The internal token is accepted only by constant-time comparison and the web client does not forward it to a different origin.
+- `f053cf5` — removes invented initials/gradient brand badges. Missing or failed logos render no image; verified logos and brand text remain.
 
 ## Build and test evidence
 
-- Web unit/integration tests: 133 suites, 922 tests passed.
-- Web TypeScript check: passed.
-- Web lint: passed.
-- Web production build: passed on Next.js 15.5.23.
-- API platform tests: 64 tests passed.
-- API TypeScript check: passed.
-- API build: passed.
+- API: 130 suites and 2,086 tests passed; targeted lint, TypeScript validation, and production build passed.
+- Web after the final logo change: 133 suites and 933 tests passed; targeted lint, TypeScript validation, and the Next.js 15.5.23 production build passed (48 generated routes).
+- The exact API and web source archives were SHA-256 checked before building on Hostinger. The web archive for `f053cf5` was `F95CD3DE6AFACF0D279038EF2D535B5106E61F0816D7FFE1B2025C366D6B0CCB`.
 
-## Public tenant acceptance
+## API and product-route acceptance
 
-- Audit timestamp: 2026-09-04T14:11:22.647Z.
-- Tenant domains: 58 checked, 58 passed, 0 failed.
-- Sitemap/editorial pages: 454 checked.
-- Representative deep pages: 232 checked.
-- Failures: 0.
-- External-source fetch warnings: 14. These were upstream `403`/`502` responses during automated checking and did not represent broken internal tenant routes.
+- API canary: 45 unauthenticated concurrent health requests produced 30 HTTP 200 and 15 HTTP 429, proving public throttling still applies.
+- API canary: 80 authenticated internal health requests produced 80 HTTP 200 and no 429.
+- Web-to-API product stress: 80 concurrent product requests produced 80 HTTP 200, with no API 429 and no web error.
+- Five public tenant domains were sampled three times each after cutover. All 15 responses were HTTP 200 and all rendered the expected product H1.
+- Since the API cutover, the checked production log window contained zero 429 and zero 5xx responses.
 
-## Homepage visual acceptance
+## Tenant production acceptance
 
-- All 58 tenant homepages were rechecked at 1440x900 and 390x844.
-- Homepage status, one visible H1, centered command bar, document width and header identity were checked in both viewports.
-- The command bar center offset was 0 pixels on the checked desktop and mobile layouts.
-- No tenant homepage hero used a URL-backed decorative product image; current heroes use CSS color/gradient treatments.
-- No actual document-width overflow was detected. The mobile brand rail remains intentionally horizontally scrollable inside its own clipped container.
-- `bbdbuyeus.com` and `rizzitgoindex.com` produced one transient image-timing warning during the batch run. A dedicated recheck returned HTTP 200 and successfully decoded every header logo at a non-zero natural size, so no asset replacement was made.
+- Full isolated audit: 58 tenant domains, 453 sitemap/editorial pages, zero failures, and no duplicate exact title, description, or H1 across indexable tenant pages.
+- Final public release regression: 58/58 homepages, 58/58 robots files, and 58/58 sitemap entry points returned HTTP 200; canonical host checks and sitemap-host checks had zero failures.
+- All four YDA English endpoints passed: apex and `www` for both `ydaexpress.net` and `ydaexpress.org` resolved to their canonical apex `/en` page with HTTP 200.
+- `indexfinds.com/en` and `api-next.indexfinds.com/health` returned HTTP 200. Disabled `indexfinds.com/en/register` returned HTTP 404.
+- `1to1reps.com` briefly drifted back to an older port during the release window. Its configuration was backed up and restored to the same 3163/4105 release as the other 57 tenants.
 
-## Cross-site snippet review
+## Brand-image acceptance
 
-- All 454 public sitemap/editorial pages had unique exact titles, descriptions and H1s across domains.
-- Shared catalog, brand, category and representative product pages may reuse source data, but the audited copies remain `noindex, follow` and outside tenant sitemaps.
-- One indexable near-duplicate snippet pair was found: Kakobuy Items shipping versus LitBuy Items shipping (token Jaccard 0.786). The LitBuy page was rewritten around post-arrival parcel scenarios and an automated cross-domain similarity guard was added. This source change is not yet a production release.
-- `litbuyproducts.com` retains the invitation-code search intent. The older `litbuyitems.com/en/invitation-code` URL remains reachable but was removed from that tenant's index allowlist and sitemap so it will emit `noindex, follow` after deployment.
+- 314 active brands with products were inspected. Of 137 configured logo URLs, 111 returned a usable image and 26 returned HTTP 404.
+- The 26 broken records were exported before mutation to `/root/.indexfinds-migration/database-backups/broken-brand-logos-20260905T024250Z.csv`, then only their `logoUrl` values were set to null.
+- 229 brand-related cache keys were selectively invalidated. The public API subsequently returned all 26 affected brands with null logo URLs.
+- Desktop and narrow-width brand pages were rendered before release, followed by a public production screenshot. Verified logos remain visible and missing logos show text without fabricated image badges.
 
-## 1to1Reps acceptance
+## Main and independent sitemap sampling
 
-- HTTPS apex and redirect behavior: passed; homepage resolves to `/en`.
-- Homepage and seven sitemap pages: HTTP 200.
-- Unknown route: HTTP 404.
-- Per-page canonical: exact-domain/self-referencing.
-- H1: one per checked page.
-- Robots: editorial pages `index, follow`; raw catalog/product pages remain `noindex, follow`.
-- Sitemap and favicon: HTTP 200.
-- Retirement residue/410: not present in the current live route.
+- `indexfinds.com`: 4,648 HTTPS same-host sitemap URLs, zero duplicates. Twelve evenly distributed pages were sampled for HTTP, canonical, H1, and robots state.
+- `xiangshoe.net`: 13,408 HTTPS same-host sitemap URLs, zero duplicates. Twelve evenly distributed pages passed the same sampled checks.
+- The first concurrent IndexFinds sample produced three Cloudflare 522 responses and one client timeout. Each affected URL then returned HTTP 200 in three sequential retries; direct Hostinger-origin checks were also HTTP 200 and the main container was healthy. No restart or unrelated infrastructure change was made.
 
-## Main and independent sites
+## Rollback evidence
 
-- `indexfinds.com`: homepage HTTP 200; sitemap HTTP 200 with 4,648 same-host URLs.
-- `xiangshoe.net`: homepage HTTP 200; robots and sitemap HTTP 200; sitemap contains 13,408 same-host URLs. It remains independent and needs a separate sitemap-scale content audit.
+- API/Nginx backup: `/root/.indexfinds-migration/nginx-backups/tenant-internal-2d21d35-20260904T201650Z`.
+- Web/Nginx backups: `/root/.indexfinds-migration/nginx-backups/tenant-brand-logo-f053cf5-20260905T024128Z` and `/root/.indexfinds-migration/nginx-backups/tenant-brand-cache-f053cf5-20260905T024757Z`.
+- Previous API and web containers remain available on their old local ports during the observation period. No database, uploads volume, SSL certificate, or unrelated site configuration was deleted.
