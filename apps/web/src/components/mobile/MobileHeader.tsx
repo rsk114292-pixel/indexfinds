@@ -119,6 +119,7 @@ export default function MobileHeader() {
                     platformKey={currentPlatform.key}
                     name={currentPlatform.name}
                     logoUrl={currentPlatform.logoUrl}
+                    imageLoading="eager"
                     className="flex h-6 w-6 items-center justify-center rounded"
                     imageClassName="h-6 w-6 rounded object-contain"
                     labelClassName="text-[8px] font-bold"

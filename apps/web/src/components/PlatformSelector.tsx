@@ -199,6 +199,7 @@ export default function PlatformSelector({
               platformKey={currentPlatform.key}
               name={getLocalizedPlatformName(currentPlatform, locale)}
               logoUrl={currentPlatform.logoUrl}
+              imageLoading="eager"
               className="flex h-6 w-6 items-center justify-center rounded-md"
               imageClassName="h-6 w-6 rounded-md object-contain"
               labelClassName="text-[8px] font-bold"

@@ -9,6 +9,25 @@ describe("PlatformLogoBadge", () => {
       "src",
       "/images/agents/loongbuy.ico",
     );
+    expect(screen.getByRole("img", { name: "Loongbuy" })).toHaveAttribute(
+      "loading",
+      "lazy",
+    );
+  });
+
+  it("loads a first-viewport platform logo eagerly when requested", () => {
+    render(
+      <PlatformLogoBadge
+        platformKey="litbuy"
+        name="Litbuy"
+        imageLoading="eager"
+      />,
+    );
+
+    expect(screen.getByRole("img", { name: "Litbuy" })).toHaveAttribute(
+      "loading",
+      "eager",
+    );
   });
 
   it("prefers the bundled official logo over an uploaded managed logo", () => {

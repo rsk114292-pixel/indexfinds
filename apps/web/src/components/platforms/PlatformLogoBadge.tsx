@@ -157,6 +157,7 @@ interface PlatformLogoBadgeProps {
   platformKey: string;
   name: string;
   logoUrl?: string;
+  imageLoading?: "eager" | "lazy";
   className?: string;
   imageClassName?: string;
   labelClassName?: string;
@@ -166,6 +167,7 @@ export default function PlatformLogoBadge({
   platformKey,
   name,
   logoUrl,
+  imageLoading = "lazy",
   className = "",
   imageClassName = "",
   labelClassName = "",
@@ -218,7 +220,7 @@ export default function PlatformLogoBadge({
         <img
           src={resolvedLogo.src}
           alt={name}
-          loading="lazy"
+          loading={imageLoading}
           decoding="async"
           className={cn("h-full w-full object-contain p-0.5", imageClassName)}
           onError={() => {
