@@ -3776,10 +3776,10 @@ const LITBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
   {
     domain: "litbuyindex.com",
     slug: "freight-estimator",
-    seoTitle: "LitBuy Freight Estimator Guide | Record Inputs and Results",
+    seoTitle: "LitBuy Freight Estimate Checklist | Verify the Current Tool",
     description:
-      "Use the official LitBuy freight estimator as a dated planning source, preserve destination and parcel inputs, and keep estimates separate from packed-parcel charges.",
-    eyebrow: "LitBuy estimator evidence",
+      "If LitBuy currently links a freight estimator, preserve its destination, parcel inputs, displayed result and review time before comparing it with the packed parcel.",
+    eyebrow: "LitBuy estimate verification",
     title: "Preserve the inputs behind every freight estimate.",
     intro:
       "Save the destination, parcel evidence, displayed result and review time before comparing the estimate with a packed parcel.",
@@ -3804,7 +3804,7 @@ const LITBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
       {
         question: "Where should a LitBuy freight estimate be checked?",
         answer:
-          "Use the current Freight Estimator linked from the official LitBuy site. This independent guide does not calculate or quote a live shipping amount.",
+          "If LitBuy currently links a freight estimator, open it from the current service rather than an archived URL. This independent guide does not calculate or quote a live shipping amount.",
       },
       {
         question: "Is an estimator result the final parcel charge?",
@@ -9986,11 +9986,11 @@ const YDA_SOURCE_REVIEW_PAGES: readonly TenantResearchPage[] = [
     slug: "service-map",
     seoTitle: "YDA Express Service Map | Shopping, Warehouse and Forwarding",
     description:
-      "Map YDA Express shopping assistance, warehouse receiving, consolidation, parcel forwarding and tracking into separate evidence stages.",
+      "Confirm which functions the current YDA Express service documents before mapping shopping assistance, warehouse handling, forwarding and tracking into separate evidence stages.",
     eyebrow: "Service evidence map",
     title: "Assign each claim to the service stage that can support it.",
     intro:
-      "The official site describes shopping-agent and parcel-forwarding functions, but product, warehouse, parcel and carrier facts come from different records.",
+      "Before relying on shopping-agent or parcel-forwarding terminology, confirm which functions the current YDA Express service documents. Product, warehouse, parcel and carrier facts still come from different records.",
     sections: [
       {
         title: "Shopping assistance",
@@ -11134,6 +11134,7 @@ interface ReviewedPlatformSource {
   sourceUrl: string;
   sourceLabel: string;
   methodNote: string;
+  reviewedAt?: string;
 }
 
 const REVIEWED_PLATFORM_SOURCE_DATE = "2026-09-06";
@@ -11203,6 +11204,85 @@ const REVIEWED_PLATFORM_SOURCE_OVERRIDES: Record<
   string,
   ReviewedPlatformSource
 > = {
+  "acbuyindex.com/platform-guide": {
+    sourceUrl: "https://www.acbuy.com/en/",
+    sourceLabel: "Open the official ACBuy homepage",
+    methodNote:
+      "The reviewed homepage supports the high-level order, warehouse, inspection-feedback, parcel and international-shipping workflow. It does not establish current fees, routes, timing, promotions or account-specific outcomes.",
+  },
+  "acbuyindex.com/faq": {
+    sourceUrl: "https://www.acbuy.com/en/",
+    sourceLabel: "Open the official ACBuy homepage",
+    methodNote:
+      "The reviewed homepage supports the high-level order, warehouse, inspection-feedback, parcel and international-shipping workflow. It does not establish current fees, routes, timing, promotions or account-specific outcomes.",
+  },
+  "allchinabuyindex.com/shipping-checklist": {
+    sourceUrl: "https://www.allchinabuy.com/en/page/guide/appagent/",
+    sourceLabel: "Open the official AllChinaBuy shopping-agent guide",
+    methodNote:
+      "The reviewed guide supports purchase, warehouse weighing and checking, photos, consolidation, parcel submission, packaging and tracking stages. Item eligibility and destination rules remain current checks.",
+  },
+  "allchinabuyindex.com/research-log": {
+    sourceUrl: "https://www.allchinabuy.com/en/page/guide/appagent/",
+    sourceLabel: "Open the official AllChinaBuy shopping-agent guide",
+    methodNote:
+      "The reviewed guide supports purchase, warehouse weighing and checking, photos, consolidation, parcel submission, packaging and tracking stages. Item eligibility and destination rules remain current checks.",
+  },
+  "allchinabuyfinder.com/faq": {
+    sourceUrl: "https://www.allchinabuy.com/en/page/help/",
+    sourceLabel: "Open the official AllChinaBuy Help entry",
+    methodNote:
+      "The reviewed Help entry supports directing account and service questions to AllChinaBuy. Exact policies, fees, routes and other changing details require the current article or account.",
+  },
+  "litbuyindex.com/codes-coupons": {
+    sourceUrl: "https://www.litbuy.com/",
+    sourceLabel: "Open the official LitBuy homepage",
+    reviewedAt: "2026-09-05",
+    methodNote:
+      "The reviewed homepage showed new-user shipping coupons after login. Values, thresholds, caps, routes, expiry and account eligibility are dynamic; this page publishes no current code or amount.",
+  },
+  "litbuyitems.com/coupons": {
+    sourceUrl: "https://www.litbuy.com/",
+    sourceLabel: "Open the official LitBuy homepage",
+    reviewedAt: "2026-09-05",
+    methodNote:
+      "The reviewed homepage supports keeping the displayed new-user shipping coupon separate from item price. Account status, currency, thresholds, routes, expiry and checkout acceptance remain live checks.",
+  },
+  "litbuyproducts.com/coupons": {
+    sourceUrl: "https://www.litbuy.com/",
+    sourceLabel: "Open the official LitBuy homepage",
+    reviewedAt: "2026-09-05",
+    methodNote:
+      "The reviewed homepage showed fixed-value and percentage shipping labels. Values, caps, thresholds, routes and expiry are dynamic, so this checklist publishes no detached offer as current.",
+  },
+  "litbuyindex.com/freight-estimator": {
+    sourceUrl: "https://www.litbuy.com/",
+    sourceLabel: "Open the current LitBuy platform entry",
+    reviewedAt: "2026-09-04",
+    methodNote:
+      "The current evidence ledger verifies the LitBuy homepage as the platform entry only; it does not contain a precise public freight-estimator URL. This page therefore describes how to verify any estimator linked by the current service and publishes no live rate, route, delivery-time or final-charge promise.",
+  },
+  "parcelupindex.com/about-parcel-up-index": {
+    sourceUrl: "https://parcelup.com/help",
+    sourceLabel: "Open the official Parcel Up Help entry",
+    reviewedAt: "2026-09-05",
+    methodNote:
+      "The official Help source supports the first-payment, warehouse-check, second-payment and tracking sequence through search-index evidence. Direct access returned 403 during review, so current fees, workflow details and page availability must be rechecked before use.",
+  },
+  "superbuydeals.com/shipping-weight-guide": {
+    sourceUrl: "https://login.superbuy.com/en/page/query/freight/",
+    sourceLabel: "Open the official Superbuy calculator",
+    reviewedAt: "2026-09-05",
+    methodNote:
+      "The linked calculator supports the stated parcel inputs and volumetric-weight comparison. Separate official Shopping Agent Guidance documents initial international payment and later carrier-measurement reconciliation; rates, routes and promotions remain dynamic, and neither source guarantees the final charge.",
+  },
+  "ydaexpress.org/service-map": {
+    sourceUrl: "https://www.ydaexpress.com/",
+    sourceLabel: "Open the current YDA Express platform entry",
+    reviewedAt: "2026-09-04",
+    methodNote:
+      "The current evidence ledger verifies ydaexpress.com as the platform entry only; it does not establish that shopping-agent and parcel-forwarding workflows are both currently offered. This page therefore treats service-scope labels as checks rather than current service claims.",
+  },
   "cssbuyitems.com/shipping": {
     sourceUrl: "https://new.cssbuy.com/estimates",
     sourceLabel: "Open the official CSSBuy cost calculator",
@@ -11327,7 +11407,11 @@ function addReviewedPlatformSource(
     REVIEWED_PLATFORM_SOURCE_DEFAULTS[page.domain];
 
   return source
-    ? { ...page, ...source, reviewedAt: REVIEWED_PLATFORM_SOURCE_DATE }
+    ? {
+        ...page,
+        ...source,
+        reviewedAt: source.reviewedAt || REVIEWED_PLATFORM_SOURCE_DATE,
+      }
     : page;
 }
 
