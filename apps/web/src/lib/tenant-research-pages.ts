@@ -3228,6 +3228,11 @@ const KAKOBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Keep destination review and local carrier movement separate from seller and warehouse timing.",
       },
     ],
+    sourceUrl: "https://www.kakobuy.com/tools/estimate",
+    sourceLabel: "Open the Kakobuy shipping estimator",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official estimator route resolves through Kakobuy's JavaScript application. It is the current place to check parcel and destination inputs, but no live rate, route eligibility or delivery time was copied into this guide.",
   },
   {
     domain: "kakobuyindex.net",
@@ -3267,6 +3272,11 @@ const KAKOBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "No. Use current parcel measurements, contents, destination and route information from the service responsible for the shipment.",
       },
     ],
+    sourceUrl: "https://www.kakobuy.com/service/help/question",
+    sourceLabel: "Open Kakobuy help",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official help route currently resolves as a JavaScript application shell. It supports the service handoff only; this independent shortlist method and Kakobuy Score are not official platform ratings.",
   },
 ];
 
@@ -3336,6 +3346,11 @@ const KAKOBUY_ITEMS_PAGES: readonly TenantResearchPage[] = [
           "Add the review date and reopen the source before price, stock, options or product evidence is used later.",
       },
     ],
+    sourceUrl: "https://www.kakobuy.com/quality-inspection",
+    sourceLabel: "Open Kakobuy quality inspection",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official quality-inspection route resolves through Kakobuy's JavaScript application. It is used only as the current QC handoff; the item-file method and its evidence limits are independent editorial guidance.",
   },
   {
     domain: "kakobuyitems.com",
@@ -3468,6 +3483,11 @@ const KAKOBUY_ITEMS_PAGES: readonly TenantResearchPage[] = [
           "Use the complete parcel and destination record with the current service responsible for route eligibility and terms.",
       },
     ],
+    sourceUrl: "https://www.kakobuy.com/tools/estimate",
+    sourceLabel: "Open the Kakobuy shipping estimator",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official estimator route resolves through Kakobuy's JavaScript application. Recheck the exact contents, packed measurements, destination and current route there; this page does not publish a rate or delivery promise.",
   },
   {
     domain: "kakobuyitems.com",
@@ -3507,6 +3527,11 @@ const KAKOBUY_ITEMS_PAGES: readonly TenantResearchPage[] = [
           "Do not assume so. Use received-item and packaged-parcel measurements with current route information from the responsible service.",
       },
     ],
+    sourceUrl: "https://www.kakobuy.com/service/help/question",
+    sourceLabel: "Open Kakobuy help",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official help route currently resolves as a JavaScript application shell. It is a current support handoff, not evidence that images authenticate an item or that a route will accept it.",
   },
 ];
 
@@ -4958,6 +4983,8 @@ const MULEBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
     sourceUrl: "https://mulebuy.com/help/faq/",
     sourceLabel: "Open the current MuleBuy FAQ",
     reviewedAt: "2026-09-05",
+    methodNote:
+      "The official FAQ documents distinct pending states and the account actions attached to them. Status wording and available actions can change, so this guide does not promise cancellation, refund or resolution outcomes.",
   },
   {
     domain: "mulebuyindex.net",
@@ -5025,6 +5052,11 @@ const MULEBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Check eligibility, pricing inputs and destination terms with the responsible service for the exact parcel.",
       },
     ],
+    sourceUrl: "https://mulebuy.com/help/shipping-weight/",
+    sourceLabel: "Open MuleBuy's weight description",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide distinguishes estimated, packed actual and volumetric chargeable weight and points to the live estimator. Divisors, routes, prices, thresholds and reconciliation rules can change and are not reproduced here.",
   },
   {
     domain: "mulebuyindex.net",
@@ -5073,6 +5105,8 @@ const MULEBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
     sourceUrl: "https://mulebuy.com/help/faq/",
     sourceLabel: "Open the current MuleBuy FAQ",
     reviewedAt: "2026-09-05",
+    methodNote:
+      "The official FAQ directs shipped parcels to the account Parcel record and its tracking number, with carrier or route sources as a second check. It does not guarantee event timing or delivery dates.",
   },
   {
     domain: "mulebuyindex.net",
@@ -5208,6 +5242,11 @@ const MULEBUY_ITEMS_PAGES: readonly TenantResearchPage[] = [
           "Differences between title, options, images, warehouse notes and received-item evidence remain visible.",
       },
     ],
+    sourceUrl: "https://mulebuy.com/help/quality-check/",
+    sourceLabel: "Open MuleBuy's quality-check scope",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official help page documents warehouse QC photos and explicit limits, including hidden defects and electronics. This checklist therefore treats QC as visible evidence rather than certification or proof of authenticity.",
   },
   {
     domain: "mulebuyitems.com",
@@ -5307,6 +5346,11 @@ const MULEBUY_ITEMS_PAGES: readonly TenantResearchPage[] = [
           "Use the complete parcel and destination record with the current service responsible for eligibility and terms.",
       },
     ],
+    sourceUrl: "https://mulebuy.com/help/shipping-weight/",
+    sourceLabel: "Open MuleBuy's weight description",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide separates stored-item estimates from the packed parcel and describes route-dependent volumetric weight. This page does not copy changing divisors, prices, thresholds or delivery estimates.",
   },
   {
     domain: "mulebuyitems.com",
@@ -5340,6 +5384,11 @@ const MULEBUY_ITEMS_PAGES: readonly TenantResearchPage[] = [
           "After exact contents, received measurements, packaging questions and restriction-relevant characteristics are recorded.",
       },
     ],
+    sourceUrl: "https://mulebuy.com/help/quality-check/",
+    sourceLabel: "Open MuleBuy's quality-check scope",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official help page states that QC photos are for review and do not constitute full product certification. Exact options, hidden condition, performance and route eligibility remain separate checks.",
   },
 ];
 
@@ -5591,6 +5640,12 @@ const ORIENTDIG_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Add the date, evidence score, missing facts and next check without guessing.",
       },
     ],
+    sourceUrl:
+      "https://mgt.orientdig.com/help-center/shopping-assistant-guidance/",
+    sourceLabel: "Open OrientDig Shopping Assistant Guidance",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide documents supported product-search and shopping-assistant stages. The spreadsheet row structure, evidence score and publication gate on this site remain independent editorial methods.",
   },
   {
     domain: "orientdigindex.com",
@@ -5649,6 +5704,12 @@ const ORIENTDIG_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Request or record the angles, labels or measurements needed for the remaining decision.",
       },
     ],
+    sourceUrl:
+      "https://mgt.orientdig.com/help-center/the-inspection-scope-of-the-shopping-agent-service/",
+    sourceLabel: "Open OrientDig's inspection scope",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official help page defines visible inspection coverage and limits, including no power-on test for electronic products. QC images are therefore treated as observable warehouse evidence, not product certification.",
   },
   {
     domain: "orientdigindex.com",
@@ -5877,6 +5938,12 @@ const ORIENTDIG_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Verify destination eligibility, calculation inputs and terms with the responsible service.",
       },
     ],
+    sourceUrl:
+      "https://mgt.orientdig.com/help-center/estimated-billing-weight-and-actual-billing-weight-when-will-the-overcharged-postage-be-refunded/",
+    sourceLabel: "Open OrientDig's billing-weight guide",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide distinguishes estimated and actual billing weight. Route rules, volumetric formulas, refund handling and displayed prices can change, so only current parcel and account records should drive a transaction.",
   },
   {
     domain: "orientdigindex.com",
@@ -5905,6 +5972,12 @@ const ORIENTDIG_INDEX_PAGES: readonly TenantResearchPage[] = [
           "State which stage and date the evidence covers instead of generalizing one order.",
       },
     ],
+    sourceUrl:
+      "https://mgt.orientdig.com/help-categories/shipping-delivery/customs-taxes/",
+    sourceLabel: "Open OrientDig customs and tax help",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official help category provides the current customs-and-tax topic boundary. It does not support a permanent safety verdict, guaranteed clearance, fixed tax amount or delivery outcome.",
   },
   {
     domain: "orientdigindex.com",
@@ -5933,6 +6006,12 @@ const ORIENTDIG_INDEX_PAGES: readonly TenantResearchPage[] = [
           "No. Use measured parcel inputs and current destination-specific terms at decision time.",
       },
     ],
+    sourceUrl:
+      "https://mgt.orientdig.com/help-center/the-inspection-scope-of-the-shopping-agent-service/",
+    sourceLabel: "Open OrientDig's inspection scope",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official inspection page supports the stated QC limits. Shipping-weight guidance was separately checked against OrientDig's billing-weight help; neither source turns the independent Orient Score into a product-quality rating.",
   },
 ];
 
@@ -6770,6 +6849,11 @@ const SUPERBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Confirm route, calculation, restrictions and local rules with current responsible sources.",
       },
     ],
+    sourceUrl: "https://login.superbuy.com/en/page/query/freight/",
+    sourceLabel: "Open Superbuy's shipping estimator",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official estimator requests current destination, warehouse, weight, dimensions and item-category inputs and explains volumetric weight. It does not make a route, price, customs or delivery promise for this page.",
   },
   {
     domain: "superbuyindex.com",
@@ -6799,6 +6883,11 @@ const SUPERBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Check exact contents against current carrier, customs and local requirements.",
       },
     ],
+    sourceUrl: "https://www.superbuy.com/en/page/newguide/userguide/",
+    sourceLabel: "Open Superbuy's current service guide",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide separates the assisted-purchase service, third-party products, two payment stages and logistics risk. It does not establish seller quality, item authenticity, customs clearance or a permanent platform-safety verdict.",
   },
   {
     domain: "superbuyindex.com",
@@ -6828,6 +6917,11 @@ const SUPERBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Only reviewed pages and records that pass source, option, evidence, duplicate and quality checks should be indexable.",
       },
     ],
+    sourceUrl: "https://www.superbuy.com/en/page/guide/shoppingagent/",
+    sourceLabel: "Open Superbuy Shopping Agent Guidance",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide supports the account, order, warehouse, QC and parcel handoff. The spreadsheet method, duplicate rules and Google indexing gate described here are independent editorial controls.",
   },
 ];
 
@@ -6915,6 +7009,11 @@ const SUPERBUY_ITEMS_PAGES: readonly TenantResearchPage[] = [
           "Request or document missing measurements, angles or checks before accepting the item for a parcel.",
       },
     ],
+    sourceUrl: "https://www.superbuy.com/en/page/guide/shoppingagent/",
+    sourceLabel: "Open Superbuy Shopping Agent Guidance",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide documents warehouse inspection photos and identifies different standards for some sources. The checklist records visible evidence only and does not authenticate the product or reveal hidden condition.",
   },
   {
     domain: "superbuyitems.com",
@@ -6943,6 +7042,11 @@ const SUPERBUY_ITEMS_PAGES: readonly TenantResearchPage[] = [
           "Pass complete item contents and measurements into the current route check.",
       },
     ],
+    sourceUrl: "https://login.superbuy.com/en/page/query/freight/",
+    sourceLabel: "Open Superbuy's shipping estimator",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official estimator provides current parcel-input and route comparisons. This page carries received measurements into that check without copying changing rates, eligibility, customs outcomes or delivery estimates.",
   },
   {
     domain: "superbuyitems.com",
@@ -7029,6 +7133,11 @@ const SUPERBUY_ITEMS_PAGES: readonly TenantResearchPage[] = [
           "Treat it as preliminary only. Use received and packed measurements with current route terms for parcel decisions.",
       },
     ],
+    sourceUrl: "https://www.superbuy.com/en/page/guide/shoppingagent/",
+    sourceLabel: "Open Superbuy Shopping Agent Guidance",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide supports the order, warehouse inspection and parcel stages. It does not make QC photos proof of authenticity, internal materials, performance or future route acceptance.",
   },
 ];
 
@@ -8389,6 +8498,12 @@ const JOYABUY_FINDS_PAGES: readonly TenantResearchPage[] = [
           "Retain a dated reason and next question, or retire weak, redirected and duplicate sources.",
       },
     ],
+    sourceUrl:
+      "https://mgt.joyagoo.com/help-center/shopping-assistant-guidance/",
+    sourceLabel: "Open JoyaGoo Shopping Guidance",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide documents product-link, name and image search plus later order, warehouse and parcel stages. The discovery score, retention rules and Google indexing gate on this site are independent editorial methods.",
   },
   {
     domain: "joyabuyfinds.com",
@@ -8501,6 +8616,12 @@ const JOYABUY_FINDS_PAGES: readonly TenantResearchPage[] = [
           "Use measured contents, packaging, destination and current route terms.",
       },
     ],
+    sourceUrl:
+      "https://mgt.joyagoo.com/help-center/shopping-assistant-guidance/",
+    sourceLabel: "Open JoyaGoo Shopping Guidance",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide separates product payment, warehouse receipt, parcel submission and international shipping. Current fees, storage terms, routes, restrictions and timing must still be rechecked in the account before a shipment decision.",
   },
   {
     domain: "joyabuyfinds.com",
@@ -8529,6 +8650,12 @@ const JOYABUY_FINDS_PAGES: readonly TenantResearchPage[] = [
           "Remove dead, redirected, mismatched and insufficient sources from public results.",
       },
     ],
+    sourceUrl:
+      "https://mgt.joyagoo.com/help-center/three-things-you-need-to-know-before-using-the-shopping-agent-service-for-the-first-time/",
+    sourceLabel: "Open JoyaGoo's first-use notice",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official notice separates the assisted-purchase service from third-party product and logistics risks. It does not establish a permanent safe, legitimate, seller-quality or delivery verdict.",
   },
   {
     domain: "joyabuyfinds.com",
@@ -8558,6 +8685,12 @@ const JOYABUY_FINDS_PAGES: readonly TenantResearchPage[] = [
           "Candidates remain noindex until source, option, uniqueness and distinct research value pass review.",
       },
     ],
+    sourceUrl:
+      "https://mgt.joyagoo.com/help-center/shopping-assistant-guidance/",
+    sourceLabel: "Open JoyaGoo Shopping Guidance",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide supports the current search modes and staged service handoff. It does not verify a discovery result, product option, seller claim or future service outcome.",
   },
 ];
 
@@ -8589,6 +8722,12 @@ const JOYAGOO_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Record selected contents, measured package inputs, route, payment and shipment events.",
       },
     ],
+    sourceUrl:
+      "https://mgt.joyagoo.com/help-center/shopping-assistant-guidance/",
+    sourceLabel: "Open JoyaGoo Shopping Guidance",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide documents the search, product payment, order, warehouse QC, parcel and tracking stages. This page records those handoffs without promising current fees, storage periods, route availability or timing.",
   },
   {
     domain: "joyagooindex.com",
@@ -8703,6 +8842,12 @@ const JOYAGOO_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Record current route, international payment, tracking and destination events.",
       },
     ],
+    sourceUrl:
+      "https://mgt.joyagoo.com/help-center/shopping-assistant-guidance/",
+    sourceLabel: "Open JoyaGoo Shopping Guidance",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official guide supports the separate product, warehouse and international-shipping stages and the use of estimated then packed parcel inputs. Route, restriction, fee and timing details remain current-account checks.",
   },
   {
     domain: "joyagooindex.com",
@@ -8731,6 +8876,12 @@ const JOYAGOO_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Use exact contents, selected route, tracking, customs and delivery events.",
       },
     ],
+    sourceUrl:
+      "https://mgt.joyagoo.com/help-center/three-things-you-need-to-know-before-using-the-shopping-agent-service-for-the-first-time/",
+    sourceLabel: "Open JoyaGoo's first-use notice",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official notice distinguishes the service from third-party product and logistics risks. The evidence checklist is not a permanent verdict about safety, legitimacy, sellers, products or delivery.",
   },
   {
     domain: "joyagooindex.com",
@@ -8760,6 +8911,12 @@ const JOYAGOO_INDEX_PAGES: readonly TenantResearchPage[] = [
           "No. Only reviewed pages with traceable stages, distinct value and current sources are indexable.",
       },
     ],
+    sourceUrl:
+      "https://mgt.joyagoo.com/help-center/do-you-help-me-to-do-quality-check/",
+    sourceLabel: "Open JoyaGoo's quality-check scope",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The official help page describes visible warehouse checks and explicit limitations, including electronics without power-on testing. QC photos therefore remain observable evidence, not proof of authenticity, hidden condition or performance.",
   },
 ];
 
@@ -10056,6 +10213,11 @@ const YOYBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Leave identity, internal materials, performance and other non-visible claims unresolved unless stronger evidence supports them.",
       },
     ],
+    sourceUrl: "https://www.yoybuy.com/",
+    sourceLabel: "Open YoyBuy",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The current official homepage exposes product search, warehouse, parcel and QC workflow labels. It does not define the inspection depth for every item, so QC remains visible evidence rather than certification.",
   },
   {
     domain: "yoybuyindex.com",
@@ -10084,6 +10246,11 @@ const YOYBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Open the final listing and confirm seller context, exact option, visible fields and current availability.",
       },
     ],
+    sourceUrl: "https://www.yoybuy.com/",
+    sourceLabel: "Open YoyBuy",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The current official homepage supports link, keyword and image search and names Taobao and 1688. Search results remain discovery leads; the exact seller, option, availability and product claims require a live source check.",
   },
   {
     domain: "yoybuyindex.com",
@@ -10112,6 +10279,11 @@ const YOYBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Use actual packed weight and dimensions with the routes, restrictions and fees shown for the destination at that time.",
       },
     ],
+    sourceUrl: "https://www.yoybuy.com/",
+    sourceLabel: "Open YoyBuy",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The current official homepage separates product and domestic payment from the later parcel and international-shipping stage. Fees, storage terms, route availability, restrictions and delivery timing remain live account checks.",
   },
   {
     domain: "yoybuyindex.com",
@@ -10170,6 +10342,11 @@ const YOYBUY_INDEX_PAGES: readonly TenantResearchPage[] = [
           "Automatic, duplicate, incomplete or generic pages stay noindex until they receive distinct reviewed value and traceable evidence.",
       },
     ],
+    sourceUrl: "https://www.yoybuy.com/",
+    sourceLabel: "Open YoyBuy",
+    reviewedAt: "2026-09-06",
+    methodNote:
+      "The current official homepage supports the search, order, warehouse, QC and parcel handoffs referenced here. This independent spreadsheet and its Google indexing gate are not official YoyBuy properties or service guarantees.",
   },
 ];
 
