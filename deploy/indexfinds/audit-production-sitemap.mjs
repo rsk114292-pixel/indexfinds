@@ -68,6 +68,7 @@ const TRANSIENT_STATUS = new Set([
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 let lastRequestStartedAt = 0;
+const requestAgent = new https.Agent({ keepAlive: true, maxSockets: 1 });
 
 async function waitForRequestSlot() {
   if (!extendedResources || delayMs <= 0) return;
@@ -186,6 +187,7 @@ function requestOnce(
     const parsed = new URL(url);
     const request = https.request(
       {
+        agent: requestAgent,
         hostname:
           originIp && isSiteHost(parsed.hostname) ? originIp : parsed.hostname,
         servername: parsed.hostname,
@@ -740,5 +742,6 @@ const report = {
 };
 await writeFile(outputPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
 console.log(JSON.stringify({ ...report, failures: undefined }));
+requestAgent.destroy();
 
 if (state.remainingCount === 0 && failures.length > 0) process.exitCode = 1;
