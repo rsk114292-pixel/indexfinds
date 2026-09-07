@@ -80,7 +80,7 @@
       "name": "每日 GSC 60 域名索引巡检与修复",
       "status": "ACTIVE",
       "frequency": "daily at 09:00 Asia/Shanghai",
-      "nextScheduledRun": "2026-09-07T09:00:00+08:00",
+      "nextScheduledRun": "2026-09-08T09:00:00+08:00",
       "output": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-60-index-YYYY-MM-DD.md",
       "checkpoint": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-60-index-checkpoint.json"
     },
@@ -89,7 +89,7 @@
       "name": "每日 GSC 24小时 Spreadsheet 查询排名巡检",
       "status": "ACTIVE",
       "frequency": "daily at 09:00 Asia/Shanghai",
-      "nextScheduledRun": "2026-09-07T09:00:00+08:00",
+      "nextScheduledRun": "2026-09-08T09:00:00+08:00",
       "output": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-spreadsheet-24h-YYYY-MM-DD.md",
       "checkpoint": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-spreadsheet-history.json"
     }
@@ -116,6 +116,33 @@
       "observedPosition": 18,
       "observedImpressions": 1,
       "classification": "small sample; no ranking rise or decline asserted"
+    }
+  },
+  "scheduledRun2026-09-07": {
+    "indexMonitor": {
+      "output": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-60-index-2026-09-07.md",
+      "checkpoint": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-60-index-checkpoint.json",
+      "completed": 0,
+      "partial": 0,
+      "pending": 60,
+      "rateLimited": false,
+      "breakpoint": "browser_session_attach before dgobuyindex.com",
+      "reason": "The rerun could not attach to the existing browser session because this task's browser tool required approval while its approval policy was never. No GSC page was read, so historical verified-property states remain the latest evidence and no unknown value was converted to zero.",
+      "reportSha256": "E4FFAE177125679AD742A411E2CEA48ACBC7D744C5275F5DA8B75B347621C63E",
+      "checkpointSha256": "8FB517AC29125A2F54B7BD8289A54428D91974EF24DCD88507A3F1C9082A1576"
+    },
+    "queryMonitor": {
+      "output": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-spreadsheet-24h-2026-09-07.md",
+      "history": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-spreadsheet-history.json",
+      "primaryAccountCompleted": 48,
+      "secondaryAccountPending": 12,
+      "reason": "The primary owner session was available, while the secondary owner account was not present in this automation task's browser session.",
+      "observedQuery": "orientdig spreadsheet",
+      "observedPosition": 18.3,
+      "observedImpressions": 3,
+      "classification": "new appearance after zero impressions in the comparison window; no ranking rise or decline asserted",
+      "reportSha256": "D21F35BE595476048F5C62EB847945BCB644748BAD0E874479FE9308E314DA8C",
+      "historySha256": "B36D60CA5891EFB6534BB3683ADC04E3565993027854C737D5D52C0189F08452"
     }
   },
   "limits": "No value is written as zero when the interface did not return data. Sitemap submission and validation start are not treated as Google indexing or validation success."
