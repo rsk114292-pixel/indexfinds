@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "release": {
+    "commit": "64b62dc",
+    "cutoverAt": "2026-09-06T16:09:00Z",
+    "productionContainer": "indexfinds-web-tenant58-64b62dc-canary",
+    "productionPort": 3167,
+    "image": "indexfinds-web:64b62dc",
+    "imageId": "sha256:70a782b449e6e9bde2d6b6cac59d1441470c53bc66c75830ff0fb3b5eca8fcf8",
+    "imageSizeBytes": 90196794,
+    "health": "healthy",
+    "restartCount": 0
+  },
+  "sourceArchive": {
+    "localPath": "C:/Users/问题/AppData/Local/Temp/indexfinds-web-64b62dc-20260906.tar.gz",
+    "remotePath": "/tmp/indexfinds-web-64b62dc-20260906.tar.gz",
+    "sha256": "9BC16B441887B9DF4C079DFB84BD9166A5E7388E39E590DC0DBA3EFDE7942B5B",
+    "remoteLifecycle": "removed after the image build and production acceptance; local source archive retained"
+  },
+  "buildAndTest": {
+    "testSuitesPassed": 137,
+    "testsPassed": 1005,
+    "lint": "passed",
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "generatedStaticPages": 48
+  },
+  "candidateAcceptance": {
+    "technical": {
+      "domainsChecked": 58,
+      "domainsPassed": 58,
+      "domainsFailed": 0,
+      "reportPath": "C:/Users/问题/AppData/Local/Temp/tenant-canary-audit-64b62dc.json",
+      "reportBytes": 18576,
+      "reportSha256": "64CECC5967E77409E5F66187BF78E9CD135E6CD4E8CE353537868E1EA66CA449"
+    },
+    "browser": {
+      "pages": 14,
+      "desktopAndMobileViews": 28,
+      "passedViews": 28,
+      "failedViews": 0,
+      "checks": [
+        "HTTP status",
+        "title",
+        "single H1",
+        "canonical",
+        "horizontal overflow",
+        "source links",
+        "tenant-specific metadata",
+        "image requests",
+        "local and API resource failures",
+        "expired iTaoBuy promotion absence",
+        "selected platform logo eager loading"
+      ]
+    }
+  },
+  "nginxCutover": {
+    "tenantConfigFiles": 58,
+    "referencesBefore": {
+      "port3165": 116,
+      "port3167": 0
+    },
+    "referencesAfter": {
+      "port3165": 0,
+      "port3167": 116
+    },
+    "configTest": "passed",
+    "reload": "passed",
+    "backupPath": "/root/indexfinds-rollbacks/nginx-tenant58-64b62dc-20260906T160900Z",
+    "backupFileCount": 58,
+    "backupTarSha256": "a7008affb35a5b2ff4cabee32310517c2063ffba64b185369765db89b083214e"
+  },
+  "productionAcceptance": {
+    "generatedAt": "2026-09-06T16:26:33.641Z",
+    "tenantDomainsChecked": 58,
+    "tenantDomainsPassed": 58,
+    "tenantDomainsFailed": 0,
+    "indexableContentPagesReviewed": 453,
+    "internalFailures": 0,
+    "externalSourceWarnings": 39,
+    "warningBoundary": "The warnings are inconclusive responses from third-party official or community sources, such as 403, 502, or timeouts; they are not broken internal tenant links.",
+    "keyUrls": {
+      "https://indexfinds.com/en": 200,
+      "https://acbuyindex.com/en/platform-guide": 200,
+      "https://litbuyindex.com/en": 200,
+      "https://litbuyindex.com/en/codes-coupons": 200,
+      "https://ydaexpress.net/en": 200,
+      "https://www.ydaexpress.net/en": "one redirect then apex 200",
+      "https://ydaexpress.org/en": 200,
+      "https://www.ydaexpress.org/en": "one redirect then apex 200",
+      "https://1to1reps.com/en": 200,
+      "https://api-next.indexfinds.com/health": 200,
+      "https://indexfinds.com/en/register": "expected 404"
+    }
+  },
+  "rollback": {
+    "container": "indexfinds-web-tenant58-419dab7-canary",
+    "port": 3165,
+    "health": "healthy",
+    "restartCount": 0,
+    "retained": true
+  },
+  "productionObservation": {
+    "automationId": "3158-3157",
+    "name": "3167生产观察与回滚保护",
+    "status": "ACTIVE",
+    "frequency": "every 6 hours",
+    "currentRelease": "64b62dc on port 3167",
+    "protectedRollback": "419dab7 on port 3165",
+    "earliestRollbackReviewAt": "2026-09-09T00:09:00+08:00"
+  },
+  "storage": {
+    "peakAfterBuild": {
+      "usedPercent": 90,
+      "freeGiB": 21
+    },
+    "safeCleanup": {
+      "dockerBuilderCacheReclaimedGiB": 7.471,
+      "exactTemporaryPathsRemoved": 10,
+      "temporaryBytesApproxMiB": 53
+    },
+    "afterCleanup": {
+      "usedPercent": 87,
+      "freeGiB": 27
+    },
+    "protectedData": [
+      "databases",
+      "uploads",
+      "original product images",
+      "Docker volumes",
+      "certificates",
+      "Nginx production configuration",
+      "current and rollback containers and images"
+    ]
+  },
+  "knownNonBlockingBoundary": {
+    "issue": "Some historical third-party detail-image URLs return 404 or time out in the Next image optimizer logs.",
+    "classification": "The matched products are not SEO-indexable historical/high-risk records and browser acceptance found no visible broken image on the reviewed release paths.",
+    "databaseMutation": false,
+    "releaseBlocker": false
+  },
+  "productionVerified": true
+}

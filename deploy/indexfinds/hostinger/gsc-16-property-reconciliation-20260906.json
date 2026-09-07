@@ -1,0 +1,122 @@
+{
+  "observedAtAsiaShanghai": "2026-09-05T12:29:00+08:00",
+  "recordedAtAsiaShanghai": "2026-09-06T03:28:00+08:00",
+  "scope": "Sixteen properties added relative to the older 42-tenant baseline",
+  "correction": {
+    "included": "1to1reps.com",
+    "excluded": "boonbuyindex.com",
+    "reason": "boonbuyindex.com belongs to the older baseline; 1to1reps.com is the fourth added property alongside the three 1to1 research domains"
+  },
+  "primaryAccountProperties": [
+    {
+      "domain": "1to1finds.cloud",
+      "property": "verified and accessible",
+      "sitemap": "success",
+      "gscDiscoveredPages": 7,
+      "indexingState": "processing",
+      "dataCutoff": null
+    },
+    {
+      "domain": "1to1finds.com",
+      "property": "verified and accessible",
+      "sitemap": "success",
+      "gscDiscoveredPages": 7,
+      "indexingState": "processing",
+      "dataCutoff": null
+    },
+    {
+      "domain": "1to1spreadsheet.com",
+      "property": "verified and accessible",
+      "sitemap": "success",
+      "gscDiscoveredPages": 7,
+      "indexingState": "processing",
+      "dataCutoff": null
+    },
+    {
+      "domain": "1to1reps.com",
+      "property": "verified and accessible",
+      "sitemap": "success",
+      "gscDiscoveredPages": 6,
+      "currentPublicSitemapPages": 7,
+      "indexingState": "partial data available",
+      "dataCutoff": "2026-08-28",
+      "indexedPages": 245,
+      "unindexedPages": 808,
+      "validationState": {
+        "server5xxPages": 49,
+        "soft404Pages": 2,
+        "startedAt": "2026-09-01",
+        "passed": false
+      },
+      "missingBaseline": "current/prior 28-day and 90-day page-query performance export"
+    }
+  ],
+  "secondaryAccountProperties": {
+    "propertyState": "verified owner and accessible",
+    "sitemapState": "success",
+    "gscDiscoveredPagesPerDomain": 8,
+    "indexingState": "processing",
+    "dataCutoff": null,
+    "domains": [
+      "dgobuyindex.com",
+      "hubbuyindex.com",
+      "mycnboxindex.com",
+      "okeyhaulindex.com",
+      "ootdbuyindex.com",
+      "ossbuyindex.com",
+      "pantherbuyindex.com",
+      "ponybuyindex.com",
+      "rizzitgoindex.com",
+      "spanbuyindex.com",
+      "tigbuyindex.com",
+      "vigorbuyindex.com"
+    ]
+  },
+  "requiredUserAction": "For the 24-hour query monitor only, restore the jnian0619@gmail.com login in that automation task's browser session. The index monitor already accessed all twelve secondary-account properties; no DNS change is required.",
+  "dnsChangeRequired": false,
+  "automations": [
+    {
+      "id": "gsc-42",
+      "name": "每日 GSC 60 域名索引巡检与修复",
+      "status": "ACTIVE",
+      "frequency": "daily at 09:00 Asia/Shanghai",
+      "nextScheduledRun": "2026-09-07T09:00:00+08:00",
+      "output": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-60-index-YYYY-MM-DD.md",
+      "checkpoint": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-60-index-checkpoint.json"
+    },
+    {
+      "id": "gsc-spreadsheet",
+      "name": "每日 GSC 24小时 Spreadsheet 查询排名巡检",
+      "status": "ACTIVE",
+      "frequency": "daily at 09:00 Asia/Shanghai",
+      "nextScheduledRun": "2026-09-07T09:00:00+08:00",
+      "output": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-spreadsheet-24h-YYYY-MM-DD.md",
+      "checkpoint": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-spreadsheet-history.json"
+    }
+  ],
+  "trialRun": "D:/桌面/Desktop/新建文件夹/gsc-60-readonly-trial-2026-09-05.md",
+  "scheduledRun2026-09-06": {
+    "indexMonitor": {
+      "output": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-60-index-2026-09-06.md",
+      "checkpoint": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-60-index-checkpoint.json",
+      "completed": 47,
+      "partial": 1,
+      "pending": 12,
+      "secondaryAccountCompleted": 12,
+      "breakpoint": "mulebuyitems.com sitemap",
+      "reason": "Google Search Console HTTP 429 after a controlled retry; remaining values were left unavailable rather than written as zero"
+    },
+    "queryMonitor": {
+      "output": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-spreadsheet-24h-2026-09-06.md",
+      "history": "D:/桌面/Desktop/新建文件夹/gsc-monitor/gsc-spreadsheet-history.json",
+      "primaryAccountCompleted": 48,
+      "secondaryAccountPending": 12,
+      "reason": "The secondary owner account was not present in this automation task's browser session",
+      "observedQuery": "orientdig spreadsheet",
+      "observedPosition": 18,
+      "observedImpressions": 1,
+      "classification": "small sample; no ranking rise or decline asserted"
+    }
+  },
+  "limits": "No value is written as zero when the interface did not return data. Sitemap submission and validation start are not treated as Google indexing or validation success."
+}
