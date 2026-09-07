@@ -55,7 +55,7 @@
 "tigbuyindex.com","2026/9/4 14:11:22","pass","200","200","200","8","8","4","8","8","200","0","0","0","4","0","0",""
 "usfansindex.net","2026/9/4 14:11:22","pass","200","200","200","7","7","4","7","7","200","0","0","0","4","0","0",""
 "vigorbuyindex.com","2026/9/4 14:11:22","pass","200","200","200","8","8","4","8","8","200","0","0","0","4","0","0",""
-"xiangshoe.net","2026/9/5 10:51:00","sample_pass_deep_audit_pending","200","200","200","13408","12","","","","200","0","0","0","","","1","13408 sitemap URLs are HTTPS/same-host/unique; 12 distributed production samples passed; independent sitemap-scale audit remains separate"
+"xiangshoe.net","2026/9/8 1:33:53","pass_with_search_axe_limit","200","200","200","13408","13408","4","","","200","0","0","0","","","1","13408/13408 low-load technical checks passed; homepage/category/product passed 6 desktop/mobile axe views after WhatsApp contrast and number fix; search passed 2 targeted browser views but full-DOM axe timed out on 13130 cards; Core Web Vitals trace tool unavailable"
 "ydaexpress.net","2026/9/4 14:11:22","pass","200","200","200","7","7","4","7","7","200","0","0","0","4","0","0",""
 "ydaexpress.org","2026/9/4 14:11:22","pass","200","200","200","7","7","4","7","7","200","0","0","0","4","0","0",""
 "yoybuyindex.com","2026/9/4 14:11:22","pass","200","200","200","8","8","4","8","8","200","0","0","0","4","0","0",""

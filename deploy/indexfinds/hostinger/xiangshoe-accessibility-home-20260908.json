@@ -1,0 +1,69 @@
+{
+  "generatedAt": "2026-09-07T17:11:39.980Z",
+  "domainCount": 1,
+  "targetCount": 1,
+  "viewCount": 2,
+  "passedDomainCount": 0,
+  "failedDomainCount": 1,
+  "passedTargetCount": 0,
+  "failedTargetCount": 1,
+  "violationCount": 2,
+  "seriousOrCriticalCount": 2,
+  "requestFailureCount": 0,
+  "results": [
+    {
+      "domain": "xiangshoe.net",
+      "target": "https://xiangshoe.net/",
+      "result": "fail",
+      "violationCount": 2,
+      "seriousOrCriticalCount": 2,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+              "help": "Elements must meet minimum color contrast ratio thresholds",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI",
+              "nodes": [
+                {
+                  "target": [
+                    ".header-whatsapp"
+                  ],
+                  "html": "<a class=\"header-whatsapp\" href=\"https://wa.me/8618250279002\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"Contact Xiang Xiang on WhatsApp\">WhatsApp: +86 182 5027 9002</a>",
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.98 (foreground color: #ffffff, background color: #25d366, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+              "help": "Elements must meet minimum color contrast ratio thresholds",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI",
+              "nodes": [
+                {
+                  "target": [
+                    ".header-whatsapp"
+                  ],
+                  "html": "<a class=\"header-whatsapp\" href=\"https://wa.me/8618250279002\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"Contact Xiang Xiang on WhatsApp\">WhatsApp: +86 182 5027 9002</a>",
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.98 (foreground color: #ffffff, background color: #25d366, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

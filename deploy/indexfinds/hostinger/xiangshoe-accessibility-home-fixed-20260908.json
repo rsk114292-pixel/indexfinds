@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-09-07T17:19:23.699Z",
+  "domainCount": 1,
+  "targetCount": 1,
+  "viewCount": 2,
+  "passedDomainCount": 1,
+  "failedDomainCount": 0,
+  "passedTargetCount": 1,
+  "failedTargetCount": 0,
+  "violationCount": 0,
+  "seriousOrCriticalCount": 0,
+  "requestFailureCount": 0,
+  "results": [
+    {
+      "domain": "xiangshoe.net",
+      "target": "https://xiangshoe.net/?verify=20260908a",
+      "result": "pass",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "requestFailureCount": 0,
+      "views": [
+        {
+          "viewport": "desktop",
+          "status": 200,
+          "violations": []
+        },
+        {
+          "viewport": "mobile",
+          "status": 200,
+          "violations": []
+        }
+      ]
+    }
+  ]
+}

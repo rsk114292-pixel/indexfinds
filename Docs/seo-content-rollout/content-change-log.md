@@ -1,6 +1,6 @@
 # SEO content rollout change log
 
-Last updated: 2026-09-07 (Asia/Shanghai)
+Last updated: 2026-09-08 (Asia/Shanghai)
 
 ## Released tenant/content baseline
 
@@ -20,7 +20,9 @@ Last updated: 2026-09-07 (Asia/Shanghai)
 - `419dab7`: removed remaining brand-detail placeholders, shortened stale brand caching, and hardened tenant brand/category routes. The 26 affected identities subsequently passed 52/52 tenant and 52/52 main desktop/mobile text-fallback checks; no unlicensed logo was installed.
 - `4100919` → `a9fbaf7` → `c4905a9` → `e742c38` → `3dd6aad`: tightened content/source boundaries, added exact first-party evidence where available, removed the expired iTaoBuy campaign, corrected seven source-to-route mappings, and avoided fabricated citations on methodology-only pages.
 - `64b62dc`: eagerly loads only the selected desktop/mobile platform icon while keeping repeated platform lists lazy. This is the current 58-tenant release on Hostinger port 3167.
-- Removed the release-space blocker by pruning 7.471 GB of rebuildable Docker builder cache and ten exact temporary build/audit paths totalling about 53 MB. Disk is now 87% used with about 27 GB free. Business data, volumes, certificates, and rollback versions were retained.
+- Removed the release-space blocker by pruning 7.471 GB of rebuildable Docker builder cache and ten exact temporary build/audit paths totalling about 53 MB. The latest check is 88% used with about 25 GB free, so growth remains under observation. Business data, volumes, certificates, and rollback versions were retained.
+- Xiangshoe's shared static header now uses the requested WhatsApp number `+852 54930490` on all 19,991 HTML pages. Its WhatsApp button colours were darkened from a failing 1.98:1 contrast to 7.67:1 (default) and 9.88:1 (hover), and the stylesheet URL was versioned to bypass the long public cache. The change has a complete production rollback archive.
+- The audit runner now preserves sitemap trailing slashes, upgrades resumable checkpoints in place, and reuses one HTTPS connection. These audit-only changes reduce false redirect warnings and origin load without altering production URLs.
 
 ## Verification snapshot
 
@@ -30,8 +32,9 @@ Last updated: 2026-09-07 (Asia/Shanghai)
 - Nginx cut 58 tenant configurations and 116 upstream references from port 3165 to 3167 after a successful global configuration test. The healthy `419dab7` container remains on 3165 as the immediate rollback; backup `/root/indexfinds-rollbacks/nginx-tenant58-64b62dc-20260906T160900Z` contains all 58 configurations.
 - Product concurrency: 80/80 canary requests passed without API 429 or web error.
 - Main site: the 4,648-URL low-load source audit closed all 15 recorded anomalies; the current sitemap contains 4,712 URLs and no placeholder brand slug. Release `ee560ee` remains healthy on port 3137 with `207a5e1` on 3136 as rollback.
-- Xiangshoe: the 13,408-URL sitemap is HTTPS, same-host, and duplicate-free. The resumable two-second audit reached 6,858 URLs with zero recorded page failures, paused on one TLS interruption, confirmed that URL had recovered, and resumed from the same checkpoint. Full coverage is not claimed until the remaining count reaches zero.
+- Xiangshoe: all 13,408 sitemap URLs completed the extended low-load audit with 13,408 passes and zero failures. The compact report's 8,977 redirects/warnings were classified as an old-auditor trailing-slash artifact; the remaining 4,251 checks under the corrected URL format had zero redirects and zero warnings. Homepage, category, and product passed six post-fix desktop/mobile axe views with zero violations. Search passed two targeted desktop/mobile interaction and layout checks; its full 13,130-card axe scan timed out and is not claimed as a pass or failure.
 - Exact tenant archive SHA-256: `9BC16B441887B9DF4C079DFB84BD9166A5E7388E39E590DC0DBA3EFDE7942B5B`. Hostinger image ID: `sha256:70a782b449e6e9bde2d6b6cac59d1441470c53bc66c75830ff0fb3b5eca8fcf8`.
+- Xiangshoe evidence: `xiangshoe-production-acceptance-20260908.json`, the compact completed crawl report, and four homepage/category/product accessibility reports. Measured Core Web Vitals remain unclaimed because the required Chrome performance integration is unavailable in this task.
 
 ## GSC baseline retained
 

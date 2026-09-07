@@ -1,6 +1,6 @@
 # Remaining work, blockers, and external waits
 
-Last updated: 2026-09-07 (Asia/Shanghai)
+Last updated: 2026-09-08 (Asia/Shanghai)
 
 This file distinguishes work that can still be completed now from outcomes that require Google or another account owner. A deployment, successful sitemap read, or GSC validation start is not evidence of indexing or ranking success.
 
@@ -9,7 +9,7 @@ This file distinguishes work that can still be completed now from outcomes that 
 ### Production page coverage
 
 - `indexfinds.com`: the 4,648-URL low-load audit completed with 4,633 immediate passes and 15 recorded failures. All 15 were resolved and rechecked: seven transient brand requests now return HTTP 200, while eight invalid `/brands/null` routes correctly return HTTP 404 with `X-Robots-Tag: noindex, nofollow` and are absent from the current 4,712-URL sitemap. Release `ee560ee` is live on port 3137 with a healthy rollback container. Evidence: `main-indexfinds-url-audit-resolution-20260906.json` and `main-ee560ee-production-acceptance-20260906.json`.
-- `xiangshoe.net`: 13,408 current sitemap URLs, all unique HTTPS same-host entries. Its resumable one-worker scan reached 6,858/13,408 with zero recorded page failures before pausing on one persistent TLS connection interruption. The affected URL then returned normally in three public checks and one origin-targeted check, so the same checkpoint was resumed at a two-second interval rather than restarting. Any 429, 522, or persistent 5xx still pauses expansion while the origin is diagnosed.
+- `xiangshoe.net`: the resumable low-load scan is complete at 13,408/13,408 with zero page failures, non-200 responses, missing canonicals, H1-count failures, or critical-resource failures. The earlier 8,977 redirect warnings were caused by the auditor stripping canonical trailing slashes, not by the sitemap; the upgraded final 4,251 checks produced zero redirects/warnings. Homepage, category, product, and search received desktop/mobile browser checks. The WhatsApp number and colour-contrast defect was fixed and six homepage/category/product axe views now have zero violations. Search targeted checks pass, but its 13,130-card full-DOM axe run timed out and is not counted as pass or failure.
 - Browser acceptance remains intentionally narrower than the lightweight URL crawl. After each crawl, desktop and mobile browser checks must cover each important page type, every modified page type, and every anomalous URL. A lightweight crawl is never labelled a full browser render.
 
 ### Brand images
@@ -31,7 +31,7 @@ This file distinguishes work that can still be completed now from outcomes that 
 
 - YDA currently returns normally through the shared web/API release, but a later 200 is recovery evidence rather than proof of the earlier 522's cause. Available logs show no OOM, disk I/O fault, Nginx connection exhaustion, or active origin outage. They do show periods of load above four cores, high swap use, remote-image timeouts, and active image-cache growth. Because YDA did not have request-level Nginx logging and no exact Cloudflare Ray ID/time is available, the 522 root cause remains unconfirmed.
 - No DNS, Cloudflare, Nginx, port, or architecture change is justified by the available evidence. The low-risk application false-404 fixes and reduced audit rate address confirmed behaviour without rebuilding infrastructure.
-- Hostinger is currently 87% used with about 27 GB free after reclaiming 7.471 GB of Docker builder cache and deleting ten exact rebuildable `/tmp` build/audit paths totalling about 53 MB. Databases, uploads, product images, active volumes, current releases, certificates, and rollback assets were left untouched. Stopped containers and old rollback directories remain review candidates only; they are not safe to delete automatically while their rollback purpose is unresolved.
+- Hostinger is currently 88% used with about 25 GB free after the earlier safe cleanup reclaimed 7.471 GB of Docker builder cache and about 53 MB of exact rebuildable `/tmp` paths. Databases, uploads, product images, active volumes, current releases, certificates, and rollback assets were left untouched. The movement from 87%/27 GB to 88%/25 GB confirms continued growth; stopped containers and old rollback directories remain review candidates only and are not safe to delete automatically while their rollback purpose is unresolved.
 
 ## GSC states that must not be conflated
 
@@ -78,5 +78,5 @@ The DNS ownership TXT records remain present, the secondary owner account can op
 ## Production blockers and completion rule
 
 - Tenant-content release `64b62dc` completed the scoped clean build, 58/58 canary checks, 28/28 representative desktop/mobile browser views, Nginx cutover, 58/58 public domain checks, and 453-page public content verification. Port 3165 remains healthy as the immediate rollback. The production observation window remains active; this is deployment/acceptance evidence, not Google indexing or ranking evidence.
-- The IndexFinds URL audit is closed with zero unresolved recorded failures. The Xiangshoe report is not complete until its checkpoint `remainingCount` is zero and persistent anomalies have been classified. Correct 404s and intentional redirects are retained; sitemap entries that truly fail remain defects.
+- The IndexFinds and Xiangshoe lightweight URL audits are closed with zero unresolved recorded failures. Xiangshoe still has two explicitly bounded browser/performance limits: the oversized search DOM prevents the current full-page axe run from completing, and the Chrome performance integration required for measured Core Web Vitals is unavailable. Correct 404s and intentional redirects remain valid outcomes; sitemap entries that truly fail remain defects.
 - Content pages are not declared factually complete merely because duplication, headings, canonical, and structured data pass. The source ledger must match the exact published claim and review date.

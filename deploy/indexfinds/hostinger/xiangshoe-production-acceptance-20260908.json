@@ -1,0 +1,121 @@
+{
+  "generatedAtAsiaShanghai": "2026-09-08T01:33:53+08:00",
+  "domain": "xiangshoe.net",
+  "siteType": "independent_static_site",
+  "crawl": {
+    "sitemapUrls": 13408,
+    "completed": 13408,
+    "remaining": 0,
+    "passed": 13408,
+    "failed": 0,
+    "non200": 0,
+    "missingCanonical": 0,
+    "h1CountFailures": 0,
+    "criticalResourceFailures": 0,
+    "report": "xiangshoe-url-audit-report-20260906.json",
+    "reportSha256": "E950CF9B7D0F2C3720E1D59064305FC9651C8A01C7F63493CCDA8654D7D39499",
+    "checkpointSha256": "AAE2B9AE2FEE8CB70F2D09C1AAA8ABD46B10B3056B79A5EF1BD867D1AD23EAA9",
+    "checkpointCommitted": false,
+    "checkpointCommitReason": "The resumable checkpoint is 18,273,842 bytes; the compact final report and acceptance record preserve the release evidence.",
+    "legacyRedirectWarnings": 8977,
+    "legacyRedirectWarningClassification": "Audit artifact: the earlier audit version removed trailing slashes before requesting already-canonical sitemap URLs. Production sitemap and HTML canonicals retain the correct trailing slash.",
+    "preservedSitemapUrlResults": 4251,
+    "preservedSitemapUrlRedirects": 0,
+    "preservedSitemapUrlWarnings": 0
+  },
+  "productionFix": {
+    "patchId": "xiangshoe-whatsapp-a11y-20260908T0115",
+    "scope": "Shared static header and stylesheet only; no catalog, product image, URL, sitemap, robots, canonical, DNS, Cloudflare, Nginx, database or IndexFinds tenant change.",
+    "htmlFilesChanged": 19991,
+    "oldWhatsappHrefFilesAfter": 0,
+    "oldWhatsappTextFilesAfter": 0,
+    "newWhatsappHrefFilesAfter": 19991,
+    "newWhatsappTextFilesAfter": 19991,
+    "newWhatsappHref": "https://wa.me/85254930490",
+    "newWhatsappText": "WhatsApp: +852 54930490",
+    "stylesheetVersionedReferences": 19991,
+    "defaultButtonBackground": "#075e54",
+    "defaultButtonWhiteTextContrastRatio": 7.67,
+    "hoverButtonBackground": "#064c44",
+    "hoverButtonWhiteTextContrastRatio": 9.88,
+    "productionStylesheetSha256": "f0ec7b6dbb821272e798ae52adb5e4f1e0497d96671c451534df2672fd44dfaa",
+    "productionHomepageSha256": "67302b16c7673a6f831001c89bf3c95116579ca58435b54cf92fbb9ab9160c1c",
+    "temporaryFilesRemaining": 0,
+    "rollback": {
+      "directory": "/root/indexfinds-rollbacks/xiangshoe-whatsapp-a11y-20260908T0115",
+      "affectedFileCount": 19991,
+      "archiveSha256": "32ede882ba721d932826156da53e9cf848d3969cd35ad89146640a7c0d0ec28f",
+      "stylesheetBackupSha256": "a483655837b4fd5cfcf8f2b26735a7774ec0e04f2eaf3771097842ca9e0ea1b7"
+    }
+  },
+  "browserAcceptance": {
+    "homeBefore": {
+      "views": 2,
+      "seriousOrCriticalViolations": 2,
+      "issue": "header-whatsapp white text on #25d366 measured 1.98:1",
+      "report": "xiangshoe-accessibility-home-20260908.json",
+      "reportSha256": "4C51B1FC3E4F6BFFD789028E9942CBA902B3D81B902664CE174B900A7EA5A989"
+    },
+    "homeAfter": {
+      "views": 2,
+      "status200": 2,
+      "violations": 0,
+      "seriousOrCriticalViolations": 0,
+      "report": "xiangshoe-accessibility-home-fixed-20260908.json",
+      "reportSha256": "5ED46572206861701AD4B8595FB50EDDF9F330ACD1D9A42810938C5726407DE9"
+    },
+    "category": {
+      "url": "https://xiangshoe.net/categories/asics/",
+      "views": 2,
+      "status200": 2,
+      "violations": 0,
+      "seriousOrCriticalViolations": 0,
+      "report": "xiangshoe-accessibility-category-20260908.json",
+      "reportSha256": "D07DFD12E25FBB8D7B0E4213BFAE4C953BC8484C7A27D01725EDF168122EB7E9"
+    },
+    "product": {
+      "url": "https://xiangshoe.net/products/off-white-sneaker-221266720/",
+      "views": 2,
+      "status200": 2,
+      "violations": 0,
+      "seriousOrCriticalViolations": 0,
+      "report": "xiangshoe-accessibility-product-20260908.json",
+      "reportSha256": "B827B104CF72FD73493901B88B34478FF16EEE851742180E94B23250A9D48300"
+    },
+    "search": {
+      "url": "https://xiangshoe.net/search.html?q=off-white",
+      "views": 2,
+      "status200": 2,
+      "title": "Search Product Albums | Xiang Xiang",
+      "h1Count": 1,
+      "canonical": "https://xiangshoe.net/search.html",
+      "productCards": 13130,
+      "matchingCards": 155,
+      "noMatchCardsAfterInput": 0,
+      "horizontalOverflowPixels": 0,
+      "inputVisible": true,
+      "consoleErrors": 0,
+      "sameSiteFailedResources": 0,
+      "axeFullDomStatus": "tool_timeout",
+      "axeFullDomNote": "Axe did not complete against the 13,130-card search DOM after eight minutes. The process was stopped and the result was not counted as a pass or failure; targeted interaction and layout checks passed on both viewports."
+    }
+  },
+  "publicRegression": {
+    "nginxConfig": "pass",
+    "homepage": 200,
+    "search": 200,
+    "category": 200,
+    "product": 200,
+    "robots": 200,
+    "sitemap": 200,
+    "favicon": 200,
+    "mainContainer": "healthy; restart 0",
+    "tenantContainer": "healthy; restart 0",
+    "hostDisk": "88% used; 25 GB available"
+  },
+  "limits": {
+    "fullBrowserRenders": false,
+    "coreWebVitalsTrace": "not run because the chrome-devtools MCP performance tools are unavailable in this task",
+    "googleIndexingOrRankingClaimed": false
+  }
+}

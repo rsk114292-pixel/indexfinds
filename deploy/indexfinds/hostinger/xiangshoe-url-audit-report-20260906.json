@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-09-07T17:00:31.370Z",
+  "domain": "xiangshoe.net",
+  "mode": "production-origin-with-public-host-and-sni",
+  "sitemapUrl": "https://xiangshoe.net/sitemap.xml",
+  "totalCount": 13408,
+  "completedCount": 13408,
+  "remainingCount": 0,
+  "stoppedReason": null,
+  "passedCount": 13408,
+  "failedCount": 0,
+  "failures": [],
+  "coverageByAuditVersion": {
+    "basicV1": 0,
+    "extendedV2": 13408
+  },
+  "auditProfile": "extended-v2",
+  "schemaVersion": 2,
+  "redirectedPageCount": 8977,
+  "xRobotsTagPageCount": 0,
+  "xRobotsNoindexCount": 0,
+  "faviconSourceCounts": {
+    "declared": 1,
+    "fallback": 13407
+  },
+  "warningCount": 8977,
+  "resourceSummary": {
+    "uniqueChecked": 3,
+    "passed": 3,
+    "failed": 0,
+    "byType": {
+      "favicon": 1,
+      "stylesheet": 1,
+      "script": 1
+    }
+  },
+  "resourceFailures": []
+}
