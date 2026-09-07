@@ -89,6 +89,17 @@ function requestUrl(value) {
   return url.toString();
 }
 
+function reconcileRequestUrls(urls, sitemapUrls, results = {}) {
+  const sitemapByKey = new Map(
+    sitemapUrls.map((value) => [normalizeUrl(value), requestUrl(value)]),
+  );
+  return urls.map((value) =>
+    results[value]
+      ? value
+      : sitemapByKey.get(normalizeUrl(value)) || requestUrl(value),
+  );
+}
+
 function decodeXml(value) {
   return value
     .replaceAll("&amp;", "&")
@@ -528,7 +539,15 @@ function runSelfTest() {
   assert.equal(resolveUrl("../favicon.ico", "https://example.com/en/page"), "https://example.com/favicon.ico");
   assert.equal(headerValue({ "x-robots-tag": ["index", "follow"] }, "x-robots-tag"), "index, follow");
   assert.equal(requestUrl("https://example.com/products/example/#details"), "https://example.com/products/example/");
-  console.log(JSON.stringify({ selfTest: "passed", checks: 8 }));
+  assert.deepEqual(
+    reconcileRequestUrls(
+      ["https://example.com/products/done", "https://example.com/products/pending"],
+      ["https://example.com/products/done/", "https://example.com/products/pending/"],
+      { "https://example.com/products/done": { status: 200 } },
+    ),
+    ["https://example.com/products/done", "https://example.com/products/pending/"],
+  );
+  console.log(JSON.stringify({ selfTest: "passed", checks: 9 }));
 }
 
 if (selfTest) {
@@ -575,6 +594,7 @@ if (!state) {
     totalCount: urls.length,
     completedCount: 0,
     remainingCount: urls.length,
+    urlFormat: "preserve-sitemap",
     urls,
     results: {},
     stoppedReason: null,
@@ -594,6 +614,15 @@ if (extendedResources) {
 
 if (state.domain !== domain || state.sitemapUrl !== sitemapUrl) {
   throw new Error("checkpoint does not match the requested domain and sitemap");
+}
+
+if (state.urlFormat !== "preserve-sitemap") {
+  const sitemapUrls = (await readSitemap(sitemapUrl)).filter(
+    (url) => new URL(url).hostname === domain,
+  );
+  state.urls = reconcileRequestUrls(state.urls, sitemapUrls, state.results);
+  state.urlFormat = "preserve-sitemap";
+  await saveState(state);
 }
 
 if (recheckFailures) {
