@@ -83,6 +83,12 @@ function normalizeUrl(value) {
   return url.toString();
 }
 
+function requestUrl(value) {
+  const url = new URL(value);
+  url.hash = "";
+  return url.toString();
+}
+
 function decodeXml(value) {
   return value
     .replaceAll("&amp;", "&")
@@ -521,7 +527,8 @@ function runSelfTest() {
   assert.equal(findScriptSource(html), "/app.js");
   assert.equal(resolveUrl("../favicon.ico", "https://example.com/en/page"), "https://example.com/favicon.ico");
   assert.equal(headerValue({ "x-robots-tag": ["index", "follow"] }, "x-robots-tag"), "index, follow");
-  console.log(JSON.stringify({ selfTest: "passed", checks: 7 }));
+  assert.equal(requestUrl("https://example.com/products/example/#details"), "https://example.com/products/example/");
+  console.log(JSON.stringify({ selfTest: "passed", checks: 8 }));
 }
 
 if (selfTest) {
@@ -547,9 +554,15 @@ async function saveState(state) {
 
 let state = await loadState();
 if (!state) {
-  const urls = [...new Set((await readSitemap(sitemapUrl)).map(normalizeUrl))].filter(
-    (url) => new URL(url).hostname === domain,
-  );
+  const urls = [];
+  const seenUrls = new Set();
+  for (const value of await readSitemap(sitemapUrl)) {
+    const url = requestUrl(value);
+    const key = normalizeUrl(url);
+    if (new URL(url).hostname !== domain || seenUrls.has(key)) continue;
+    seenUrls.add(key);
+    urls.push(url);
+  }
   state = {
     ...(extendedResources
       ? { schemaVersion: 2, auditProfile: "extended-v2", resources: {} }
